@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
-__all__ = ("LoginPayload", "RefreshPayload")
+__all__ = ("LoginPayload", "RefreshPayload", "CheckPayload")
 
 
 class __TokenDict(TypedDict):
@@ -41,3 +41,10 @@ class RefreshPayload(TypedDict):
     result: Literal["ok", "error"]
     token: __TokenDict
     message: str
+
+
+class CheckPayload(TypedDict):
+    result: Literal["ok"]
+    isAuthenticated: bool
+    roles: list[str]
+    permissions: list[str]

@@ -34,7 +34,7 @@ from . import __version__, utils
 from .errors import APIException, LoginError, RefreshError
 
 if TYPE_CHECKING:
-    from .types.payloads import LoginPayload, RefreshPayload
+    from .types.payloads import LoginPayload, RefreshPayload, CheckPayload
 
 __all__ = ("HTTPClient", "Route")
 
@@ -238,7 +238,7 @@ class HTTPClient:
             self.__session = await self._generate_session()
 
         async with self.__session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
-            data = await response.json()
+            data: CheckPayload = await response.json()
 
         if not (300 > response.status >= 200) or data["result"] == "error":
             text = await response.text()
