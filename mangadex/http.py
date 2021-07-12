@@ -36,7 +36,7 @@ from . import __version__, utils
 from .errors import APIException, LoginError, RefreshError
 
 if TYPE_CHECKING:
-    from .types.payloads import LoginPayload, RefreshPayload, CheckPayload
+    from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
 
 __all__ = ("HTTPClient", "Route")
 
@@ -136,6 +136,7 @@ class HTTPClient:
         """
 
         if self.__session is not None:
+            await self.logout()
             await self.__session.close()
 
     async def _get_token(self) -> str:
@@ -270,6 +271,21 @@ class HTTPClient:
         self._token = await self._get_token()
         LOGGER.debug("Token fetched: %s", self._token[:20])
         return self._token
+
+    async def logout(self) -> None:
+        """|coro|
+
+        This performs the logout request, also done in :meth:`HTTPClient.close` for convenience.
+        """
+        if self.__session is None:
+            self.__session = await self._generate_session()
+
+        route = Route("POST", "/auth/logout")
+        async with self.__session.request(route.verb, route.url) as response:
+            data: dict[str, str] = await response.json()
+
+        if not (300 > response.status >= 200) or data["result"] != "ok":
+            raise APIException("Unable to logout", response.status)
 
     async def request(self, route: Route, **kwargs: Any) -> Optional[Union[dict[Any, Any], str]]:
         """|coro|
