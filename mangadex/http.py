@@ -22,16 +22,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 import datetime
-import logging
 import json
+import logging
 import sys
+from typing import TYPE_CHECKING, Any, ClassVar, Optional, Union
 from urllib.parse import quote as _uriquote
-from typing import Optional, ClassVar, Any, TYPE_CHECKING, Union
 
 import aiohttp
 
-from . import utils
-from . import __version__
+from . import __version__, utils
 from .errors import APIException, LoginError, RefreshError
 
 if TYPE_CHECKING:
@@ -100,7 +99,7 @@ class HTTPClient:
     ) -> None:
         if not (login and password):
             raise ValueError(
-                "You did not provide appropriate login information, a username and login combination is required."
+                "You did not provide appropriate login information, a login (username) and password combination is required."
             )
 
         self.login = login

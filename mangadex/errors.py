@@ -23,7 +23,6 @@ DEALINGS IN THE SOFTWARE.
 """
 import datetime
 
-
 __all__ = ("APIException", "LoginError", "RefreshError")
 
 
