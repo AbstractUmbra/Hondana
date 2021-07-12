@@ -41,7 +41,7 @@ flake8-isort = "^4.0.0"
 flake8-black = "^0.2.1"
 
 [tool.poetry.scripts]
-version = "mangadex:main"
+version = "mangadex.__main__:show_version"
 
 [tool.black]
 line-length = 125
