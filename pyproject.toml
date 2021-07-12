@@ -45,6 +45,12 @@ version = "mangadex:main"
 line-length = 125
 target-version = ["py39"]
 
+[tool.isort]
+profile = "black"
+src_paths = ["mangadex"]
+known_first_party = "mangadex"
+lines_after_imports = 2
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
