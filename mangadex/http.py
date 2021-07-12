@@ -41,6 +41,7 @@ if TYPE_CHECKING:
 __all__ = ("HTTPClient", "Route")
 
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel("DEBUG")
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
@@ -128,6 +129,15 @@ class HTTPClient:
         """
         return aiohttp.ClientSession()
 
+    async def close(self) -> None:
+        """|coro|
+
+        This method will close the internal client session to ensure a clean exit.
+        """
+
+        if self.__session is not None:
+            await self.__session.close()
+
     async def _get_token(self) -> str:
         """|coro|
 
@@ -191,15 +201,18 @@ class HTTPClient:
         async with self.__session.post(route.url, json={"token": self._token}) as response:
             data: RefreshPayload = await response.json()
 
+        assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
+
         if 300 > response.status >= 200:
             text = await response.text()
             LOGGER.debug("Error (code %d) when trying to refresh a token: %s", text, response.status)
             raise RefreshError(text, response.status, self.__last_refresh)
 
-        if self._token == data["token"]["session"]:
+        if self._token is not None and self._token == data["token"]["session"]:
             LOGGER.debug("Token refreshed successfully and matches.")
             return self._token
 
+        # Theoretically unreachable
         raise RefreshError("Token was refreshed but a new token was given?", 200, self.__last_refresh)
 
     async def _try_token(self) -> str:
@@ -223,8 +236,8 @@ class HTTPClient:
         """
         if self._token is None:
             LOGGER.debug("No jwt set yet, will attempt to generate one.")
-            token = await self._get_token()
-            return token
+            self._token = await self._get_token()
+            return self._token
 
         if self.__last_refresh is not None:
             now = datetime.datetime.utcnow()
@@ -232,6 +245,9 @@ class HTTPClient:
                 refreshed = await self._refresh_token()
                 if refreshed:
                     return self._token
+            else:
+                LOGGER.debug("Within the same 15m span of token generation, reusing it.")
+                return self._token
 
         LOGGER.debug("Attempting to validate token: %s", self._token)
         route = Route("GET", "/auth/check")
