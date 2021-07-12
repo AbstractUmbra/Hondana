@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "mangadex.py"
+version = "0.1.0"
+description = "An asynchronous wrapper around the Mangadex v5 API"
+authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
+
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/AbstractUmbra/mystbin.py"
+repository = "https://github.com/AbstractUmbra/mystbin.py"
+
+keywords = ["mangadex", "manga", "wrapper"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Internet",
+    "Typing :: Typed",
+]
+include = ["LICENSE"]
+packages = [
+    { include = "mangadex" },
+    { include = "mangadex/**/*.py" },
+    { include = "mangadex/py.typed" },
+]
+
+[tool.poetry.urls]
+"Issue Tracker" = "https://github.com/AbstractUmbra/mangadex.py/issues"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+aiohttp = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+flake8 = "^3.9.2"
+isort = "^5.9.2"
+
+[tool.poetry.scripts]
+version = "mangadex:main"
+
+[tool.black]
+line-length = 125
+target-version = ["py39"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
