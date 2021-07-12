@@ -32,7 +32,7 @@ class APIException(Exception):
     def __init__(self, message: str, response_code: int) -> None:
         self.message = message
         self.response_code = response_code
-        super().__init__()
+        super().__init__(self.message, self.response_code)
 
 
 class LoginError(APIException):
