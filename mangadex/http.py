@@ -89,7 +89,7 @@ class HTTPClient:
         You failed to pass appropriate login information (login and password, or a token).
     """
 
-    __slots__ = ("login", "password", "__session", "_token", "__refresh_token", "__last_refresh")
+    __slots__ = ("login", "password", "__session", "_token", "__refresh_token", "__last_refresh", "user_agent")
 
     def __init__(
         self,
@@ -110,12 +110,17 @@ class HTTPClient:
         self.__refresh_token: Optional[str] = None
         self.__last_refresh: Optional[datetime.datetime] = None
         user_agent = "Mangadex.py (https://github.com/AbstractUmbra/mangadex.py {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
-        self.user_agent = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
+        self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
 
         Creates an :class:`aiohttp.ClientSession` for use in the http client.
+
+        Returns
+        --------
+        :class:`aiohttp.ClientSession`
+            The underlying client session we use.
 
         .. note::
             This method must be a coroutine to avoid the deprecation warning of Python 3.9+.
@@ -126,6 +131,16 @@ class HTTPClient:
         """|coro|
 
         This private method will login to Mangadex with the login username and password to retrieve a JWT auth token.
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we will use.
+
+        Raises
+        -------
+        LoginError
+            The passed username and password are incorrect.
 
         .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
@@ -142,19 +157,34 @@ class HTTPClient:
             text = await response.text()
             raise LoginError(text, response.status)
 
-        self.__last_refresh = datetime.datetime.utcnow() - datetime.timedelta(seconds=30)
         token = data["token"]["session"]
+        refresh_token = data["token"]["refresh"]
+        self.__last_refresh = datetime.datetime.utcnow() - datetime.timedelta(seconds=30)
+        self.__refresh_token = refresh_token
         return token
 
-    async def _refresh_token(self) -> bool:
+    async def _refresh_token(self) -> str:
         """|coro|
 
         This private method will refresh the current set token (:attr:`._auth`)
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we just refreshed.
+
+        Raises
+        -------
+        RefreshError
+            We were unable to refresh the token.
 
         .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
         LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
+
+        if self.__session is None:
+            self.__session = await self._generate_session()
 
         route = Route("POST", "/auth/refresh")
         async with self.__session.post(route.url, json={"token": self._token}) as response:
@@ -176,6 +206,16 @@ class HTTPClient:
 
         This private method will try and use the existing :attr:`_auth` to authenticate to the API.
         If this is unset, or returns a non-2xx response code, we will refresh the JWT / request another one.
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we generated, refreshed or already had that is still valid.
+
+        Raises
+        -------
+        APIError
+            Something went wrong with testing our authentication against the API.
 
         .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
@@ -223,6 +263,16 @@ class HTTPClient:
         -----------
         route: :class:`Route`
             The route describes the http verb and endpoint to hit, the request is the one that takes in the query params or request body.
+
+        Returns
+        --------
+        Optional[Union[dict[Any, Any], str]]
+            The potential response data we got from the request.
+
+        Raises
+        -------
+        APIException
+            Something went wrong with this request.
 
         Raises
         -------
