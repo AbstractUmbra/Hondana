@@ -22,7 +22,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import TypedDict, Literal
+from typing import Literal, TypedDict
+
 
 __all__ = ("LoginPayload", "RefreshPayload")
 
