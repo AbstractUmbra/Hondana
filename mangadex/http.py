@@ -78,7 +78,7 @@ class HTTPClient:
         A aiohttp ClientSession to use instead of creating one.
 
     .. note::
-        If you do not pass a login and password, or a token then we cannot actually login and will error.
+        If you do not pass a login and password then we cannot actually login and will error.
 
     .. note::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set. Do not pass one you plan to re-use for other things, lest you leak your login data.
