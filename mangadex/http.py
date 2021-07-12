@@ -27,16 +27,25 @@ import datetime
 import json
 import logging
 import sys
-from typing import TYPE_CHECKING, Any, ClassVar, Optional, Union
+from typing import TYPE_CHECKING, Any, ClassVar, Optional, Union, TypeVar, Coroutine
 from urllib.parse import quote as _uriquote
 
 import aiohttp
 
 from . import __version__, utils
 from .errors import APIException, LoginError, RefreshError
+from .manga import Manga
+from .author import Author
+from .cover import Cover
 
 if TYPE_CHECKING:
     from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
+    from .types.manga import ViewMangaResponse
+    from .types.author import GetAuthorResponse
+    from .types.cover import GetCoverResponse
+
+    T = TypeVar("T")
+    Response = Coroutine[Any, Any, T]
 
 __all__ = ("HTTPClient", "Route")
 
@@ -91,7 +100,16 @@ class HTTPClient:
         You failed to pass appropriate login information (login and password, or a token).
     """
 
-    __slots__ = ("login", "password", "__session", "_token", "__refresh_token", "__last_refresh", "user_agent")
+    __slots__ = (
+        "login",
+        "password",
+        "__session",
+        "_token",
+        "__refresh_token",
+        "__last_refresh",
+        "user_agent",
+        "_connection",
+    )
 
     def __init__(
         self,
@@ -199,7 +217,7 @@ class HTTPClient:
             self.__session = await self._generate_session()
 
         route = Route("POST", "/auth/refresh")
-        async with self.__session.post(route.url, json={"token": self._token}) as response:
+        async with self.__session.post(route.url, json={"token": self.__refresh_token}) as response:
             data: RefreshPayload = await response.json()
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
@@ -250,7 +268,7 @@ class HTTPClient:
                 LOGGER.debug("Within the same 15m span of token generation, reusing it.")
                 return self._token
 
-        LOGGER.debug("Attempting to validate token: %s", self._token)
+        LOGGER.debug("Attempting to validate token: %s", self._token[:20])
         route = Route("GET", "/auth/check")
 
         if self.__session is None:
@@ -287,7 +305,7 @@ class HTTPClient:
         if not (300 > response.status >= 200) or data["result"] != "ok":
             raise APIException("Unable to logout", response.status)
 
-    async def request(self, route: Route, **kwargs: Any) -> Optional[Union[dict[Any, Any], str]]:
+    async def request(self, route: Route, **kwargs: Any) -> Any:
         """|coro|
 
         This performs the HTTP request, handling authentication tokens when doing it.
@@ -299,7 +317,7 @@ class HTTPClient:
 
         Returns
         --------
-        Optional[Union[dict[Any, Any], str]]
+        Any
             The potential response data we got from the request.
 
         Raises
@@ -329,6 +347,39 @@ class HTTPClient:
         async with self.__session.request(route.verb, route.url, **kwargs) as response:
             data = await json_or_text(response)
 
-            if 300 >> response.status >= 200:
+            if 300 > response.status >= 200:
                 return data
             raise APIException(str(data), response.status)
+
+    def _get_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[ViewMangaResponse]:
+        route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
+        if includes:
+            query = utils.php_query_builder({"includes": includes})
+            data = self.request(route, params=query)
+        else:
+            data = self.request(route)
+
+        return data
+
+    async def get_manga(self, manga_id: str, includes: Optional[list[str]] = None) -> Manga:
+        data = await self._get_manga(manga_id, includes)
+
+        return Manga(self, data)
+
+    def _get_author(self, author_id: str) -> Response[GetAuthorResponse]:
+        route = Route("GET", "/author/{author_id}", author_id=author_id)
+        return self.request(route)
+
+    async def get_author(self, author_id: str) -> Author:
+        data = await self._get_author(author_id)
+
+        return Author(self, data)
+
+    def _get_cover(self, cover_id: str) -> Response[GetCoverResponse]:
+        route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
+        return self.request(route)
+
+    async def get_cover(self, cover_id: str) -> Cover:
+        data = await self._get_cover(cover_id)
+
+        return Cover(self, data)
