@@ -35,7 +35,7 @@ def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> 
     """
     {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
     ->
-    ?order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp
+    "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
     """
     fmt = []
     for key, value in obj.items():
