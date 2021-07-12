@@ -110,6 +110,34 @@ pycodestyle = ">=2.7.0,<2.8.0"
 pyflakes = ">=2.3.0,<2.4.0"
 
 [[package]]
+name = "flake8-black"
+version = "0.2.1"
+description = "flake8 plugin to call black as a code style validator"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+black = "*"
+flake8 = ">=3.0.0"
+
+[[package]]
+name = "flake8-isort"
+version = "4.0.0"
+description = "flake8 plugin that integrates isort ."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+flake8 = ">=3.2.1,<4"
+isort = ">=4.3.5,<6"
+testfixtures = ">=6.8.0,<7"
+
+[package.extras]
+test = ["pytest (>=4.0.2,<6)", "toml"]
+
+[[package]]
 name = "idna"
 version = "3.2"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -188,6 +216,19 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "testfixtures"
+version = "6.17.1"
+description = "A collection of helpers and mock objects for unit tests and doc tests."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[package.extras]
+build = ["setuptools-git", "wheel", "twine"]
+docs = ["sphinx", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
+test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
+
+[[package]]
 name = "toml"
 version = "0.10.2"
 description = "Python Library for Tom's Obvious, Minimal Language"
@@ -218,7 +259,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "e44683f0df267164410514b3094e2549aab1615f27083a8a9ce375bd377646d9"
+content-hash = "21e1f3f44404dae5b265fed4c38df9c2389008e3e6570c4644eabed305c8fce0"
 
 [metadata.files]
 aiohttp = [
@@ -291,6 +332,14 @@ colorama = [
 flake8 = [
     {file = "flake8-3.9.2-py2.py3-none-any.whl", hash = "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"},
     {file = "flake8-3.9.2.tar.gz", hash = "sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b"},
+]
+flake8-black = [
+    {file = "flake8-black-0.2.1.tar.gz", hash = "sha256:f26651bc10db786c03f4093414f7c9ea982ed8a244cec323c984feeffdf4c118"},
+    {file = "flake8_black-0.2.1-py3-none-any.whl", hash = "sha256:941514149cb8b489cb17a4bb1cf18d84375db3b34381bb018de83509437931a0"},
+]
+flake8-isort = [
+    {file = "flake8-isort-4.0.0.tar.gz", hash = "sha256:2b91300f4f1926b396c2c90185844eb1a3d5ec39ea6138832d119da0a208f4d9"},
+    {file = "flake8_isort-4.0.0-py2.py3-none-any.whl", hash = "sha256:729cd6ef9ba3659512dee337687c05d79c78e1215fdf921ed67e5fe46cce2f3c"},
 ]
 idna = [
     {file = "idna-3.2-py3-none-any.whl", hash = "sha256:14475042e284991034cb48e06f6851428fb14c4dc953acd9be9a5e95c7b6dd7a"},
@@ -401,6 +450,10 @@ regex = [
     {file = "regex-2021.7.6-cp39-cp39-win32.whl", hash = "sha256:eaf58b9e30e0e546cdc3ac06cf9165a1ca5b3de8221e9df679416ca667972035"},
     {file = "regex-2021.7.6-cp39-cp39-win_amd64.whl", hash = "sha256:4c9c3155fe74269f61e27617529b7f09552fbb12e44b1189cebbdb24294e6e1c"},
     {file = "regex-2021.7.6.tar.gz", hash = "sha256:8394e266005f2d8c6f0bc6780001f7afa3ef81a7a2111fa35058ded6fce79e4d"},
+]
+testfixtures = [
+    {file = "testfixtures-6.17.1-py2.py3-none-any.whl", hash = "sha256:9ed31e83f59619e2fa17df053b241e16e0608f4580f7b5a9333a0c9bdcc99137"},
+    {file = "testfixtures-6.17.1.tar.gz", hash = "sha256:5ec3a0dd6f71cc4c304fbc024a10cc293d3e0b852c868014b9f233203e149bda"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
