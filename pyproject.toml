@@ -37,13 +37,21 @@ aiohttp = "^3.7.4"
 black = "^21.6b0"
 flake8 = "^3.9.2"
 isort = "^5.9.2"
+flake8-isort = "^4.0.0"
+flake8-black = "^0.2.1"
 
 [tool.poetry.scripts]
-version = "mangadex:main"
+version = "mangadex.__main__:show_version"
 
 [tool.black]
 line-length = 125
 target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+src_paths = ["mangadex"]
+known_first_party = "mangadex"
+lines_after_imports = 2
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

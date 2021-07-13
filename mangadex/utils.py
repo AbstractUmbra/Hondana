@@ -24,6 +24,7 @@ DEALINGS IN THE SOFTWARE.
 import json
 from typing import Any, Union
 
+
 __all__ = ("to_json", "php_query_builder")
 
 

@@ -38,6 +38,7 @@ from .manga import Manga
 from .author import Author
 from .cover import Cover
 
+
 if TYPE_CHECKING:
     from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
     from .types.manga import ViewMangaResponse
