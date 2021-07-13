@@ -27,23 +27,23 @@ import datetime
 import json
 import logging
 import sys
-from typing import TYPE_CHECKING, Any, ClassVar, Optional, Union, TypeVar, Coroutine
+from typing import TYPE_CHECKING, Any, ClassVar, Coroutine, Optional, TypeVar, Union
 from urllib.parse import quote as _uriquote
 
 import aiohttp
 
 from . import __version__, utils
-from .errors import APIException, LoginError, RefreshError
-from .manga import Manga
 from .author import Author
 from .cover import Cover
+from .errors import APIException, LoginError, NotFound, RefreshError
+from .manga import Manga
 
 
 if TYPE_CHECKING:
-    from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
-    from .types.manga import ViewMangaResponse
     from .types.author import GetAuthorResponse
     from .types.cover import GetCoverResponse
+    from .types.manga import ViewMangaResponse
+    from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -93,7 +93,8 @@ class HTTPClient:
         If you do not pass a login and password then we cannot actually login and will error.
 
     .. note::
-        The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set. Do not pass one you plan to re-use for other things, lest you leak your login data.
+        The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
+        Do not pass one you plan to re-use for other things, lest you leak your login data.
 
     Raises
     -------
@@ -314,7 +315,8 @@ class HTTPClient:
         Parameters
         -----------
         route: :class:`Route`
-            The route describes the http verb and endpoint to hit, the request is the one that takes in the query params or request body.
+            The route describes the http verb and endpoint to hit.
+            The request is the one that takes in the query params or request body.
 
         Returns
         --------
@@ -354,16 +356,34 @@ class HTTPClient:
 
     def _get_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[ViewMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
-        if includes:
-            query = utils.php_query_builder({"includes": includes})
-            data = self.request(route, params=query)
-        else:
-            data = self.request(route)
+
+        includes = includes or ["artist", "cover_url", "author"]
+        query = utils.php_query_builder({"includes": includes})
+        data = self.request(route, params=query)
 
         return data
 
     async def get_manga(self, manga_id: str, includes: Optional[list[str]] = None) -> Manga:
+        """|coro|
+
+        The method will fetch a Manga from the Mangadex API.
+
+        Parameters
+        -----------
+        includes: Optional[List[:class:`str`]]
+            This is a list of items to include in the query.
+            Be default we request all optionals (artist, cover_art and author).
+            Pass a new list of these strings to overwrite it.
+
+        Raises
+        -------
+        NotFound
+            The passed manga ID was not found, likely due to an incorrect ID.
+        """
         data = await self._get_manga(manga_id, includes)
+
+        if data["result"] == "error":
+            raise NotFound(f"Manga with the ID {manga_id} could not be found")
 
         return Manga(self, data)
 
@@ -372,15 +392,42 @@ class HTTPClient:
         return self.request(route)
 
     async def get_author(self, author_id: str) -> Author:
+        """|coro|
+
+        The method will fetch an Author from the Mangadex API.
+
+        Raises
+        -------
+        NotFound
+            The passed author ID was not found, likely due to an incorrect ID.
+        """
         data = await self._get_author(author_id)
 
-        return Author(self, data)
+        if data["result"] == "error":
+            raise NotFound(f"Author with the ID {author_id} could not be found.")
+
+        author_data = data["data"]
+        attributes = author_data["attributes"]
+
+        return Author(self, author_data, attributes)
 
     def _get_cover(self, cover_id: str) -> Response[GetCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
         return self.request(route)
 
     async def get_cover(self, cover_id: str) -> Cover:
+        """|coro|
+
+        The method will fetch a Cover from the Mangadex API.
+
+        Raises
+        -------
+        NotFound
+            The passed cover ID was not found, likely due to an incorrect ID.
+        """
         data = await self._get_cover(cover_id)
+
+        if data["result"] == "error":
+            raise NotFound(f"A Cover with the ID {cover_id} could not be found.")
 
         return Cover(self, data)

@@ -24,35 +24,31 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
+
+from .types.artist import ArtistResponse
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.author import AuthorAttributesResponse, AuthorResponse
-    from .types.relationship import RelationshipResponse
-
-__all__ = ("Author",)
 
 
-class Author:
-    __slots__ = ("_http", "_data", "id", "name", "image_url", "biography", "version", "_created_at", "_updated_at")
+class Artist:
+    __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
-    def __init__(
-        self, http: HTTPClient, data: Union[AuthorResponse, RelationshipResponse], attributes: AuthorAttributesResponse
-    ) -> None:
+    def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
         self._http = http
-        self._data = data
-        self.id = data["id"]
+        self.id = payload["id"]
+        attributes = payload["attributes"]
         self.name = attributes["name"]
         self.image_url = attributes["imageUrl"]
         self.biography = attributes["biography"]
-        self.version = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
+        self.version = attributes["version"]
 
     def __repr__(self) -> str:
-        return f"<Author id={self.id} name='{self.name}'>"
+        return f"<Artist id={self.id} name='{self.name}'>"
 
     def __str__(self) -> str:
         return self.name

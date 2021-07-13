@@ -22,16 +22,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import TypedDict, Literal
-
-
-class _RelationshipOptionalResponse(TypedDict, total=False):
-    attributes: dict[str, str]
-
-
-class RelationshipResponse(_RelationshipOptionalResponse):
-    id: str
-    type: Literal["manga", "chapter", "scanlation_group", "author", "cover_art"]
+from typing import Literal, TypedDict
 
 
 class TagAttributesResponse(TypedDict):

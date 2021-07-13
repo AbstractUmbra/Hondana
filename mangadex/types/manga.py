@@ -22,13 +22,29 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import TypedDict, Literal, Optional
+from typing import Literal, Optional, TypedDict
 
-from .shared import RelationshipResponse, TagResponse
+from .relationship import RelationshipResponse
+from .shared import TagResponse
+
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 PublicationDemographic = Literal["shouned", "shoujo", "josei", "seinen"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
+
+
+class MangaLinks(TypedDict, total=False):
+    al: Optional[str]
+    ap: Optional[str]
+    bw: Optional[str]
+    mu: Optional[str]
+    nu: Optional[str]
+    kt: Optional[str]
+    amz: Optional[str]
+    ebj: Optional[str]
+    mal: Optional[str]
+    raw: Optional[str]
+    engtl: Optional[str]
 
 
 class MangaAttributesResponseOptional(TypedDict, total=False):
@@ -39,7 +55,7 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
     title: dict[str, str]
     altTitles: list[dict[str, str]]
     description: dict[str, str]
-    links: dict[str, str]
+    links: MangaLinks
     originalLanguage: str
     lastVolume: Optional[str]
     lastChapter: Optional[str]

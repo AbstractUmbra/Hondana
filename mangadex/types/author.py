@@ -22,14 +22,14 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict
+from typing import Literal, Optional, TypedDict
 
-from .shared import RelationshipResponse
+from .relationship import RelationshipResponse
 
 
 class AuthorAttributesResponse(TypedDict):
     name: str
-    imageUrl: str
+    imageUrl: Optional[str]
     biography: dict[str, str]
     version: int
     createdAt: str

@@ -21,28 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
 
-from typing import Literal, Optional, TypedDict
-
-from .relationship import RelationshipResponse
-
-
-class CoverAttributesResponse(TypedDict):
-    volume: Optional[str]
-    fileName: str
-    description: str
-    version: int
-    createdAt: str
-    updatedAt: str
+from typing import Literal, TypedDict
 
 
-class CoverResponse(TypedDict):
+class _RelationshipOptionalResponse(TypedDict, total=False):
+    attributes: dict[str, str]
+
+
+class RelationshipResponse(_RelationshipOptionalResponse):
     id: str
-    type: Literal["cover_art"]
-    attributes: CoverAttributesResponse
-
-
-class GetCoverResponse(TypedDict):
-    result: str
-    data: CoverResponse
-    relationships: list[RelationshipResponse]
+    type: Literal["manga", "chapter", "scanlation_group", "author", "cover_art", "artist"]

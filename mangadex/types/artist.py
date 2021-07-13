@@ -24,25 +24,17 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, Optional, TypedDict
 
-from .relationship import RelationshipResponse
 
-
-class CoverAttributesResponse(TypedDict):
-    volume: Optional[str]
-    fileName: str
-    description: str
+class ArtistAttributesResponse(TypedDict):
+    name: str
+    imageUrl: Optional[str]
+    biography: dict[str, str]
     version: int
     createdAt: str
     updatedAt: str
 
 
-class CoverResponse(TypedDict):
+class ArtistResponse(TypedDict):
     id: str
-    type: Literal["cover_art"]
-    attributes: CoverAttributesResponse
-
-
-class GetCoverResponse(TypedDict):
-    result: str
-    data: CoverResponse
-    relationships: list[RelationshipResponse]
+    type: Literal["artist"]
+    attributes: ArtistAttributesResponse

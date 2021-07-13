@@ -24,14 +24,15 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional, Literal, Union
+from typing import TYPE_CHECKING, Literal, Optional
 
-from .author import PartialAuthor
+from .artist import Artist
+
 
 if TYPE_CHECKING:
+    from .author import Author
     from .http import HTTPClient
     from .types.manga import ViewMangaResponse
-    from .author import Author
 
 
 __all__ = ("Manga",)
@@ -99,13 +100,14 @@ class Manga:
     def updated_at(self) -> datetime.datetime:
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    async def get_author(self) -> Optional[Union[Author, PartialAuthor]]:
+    async def get_author(self) -> Optional[Author]:
         """|coro|
 
         This method will return the author of the manga.
 
         .. note::
-            If the parent manga was requested with the "author" `includes[]` query parameter, then this method will not make an extra API call to retrieve the Author data.
+            If the parent manga was requested with the "author" `includes[]` query parameter,
+            then this method will not make an extra API call to retrieve the Author data.
         """
         author = None
         for item in self.relationships:
@@ -117,7 +119,7 @@ class Manga:
             return None
 
         if "attributes" in author:
-            return PartialAuthor(self._http, author)
+            return Author(self._http, author, author["attributes"])  # type: ignore #TODO: Investigate typing.Protocol or abcs here.
 
         return await self._http.get_author(author["id"])
 
@@ -132,7 +134,8 @@ class Manga:
             The size of the image to return. If no type is passed, it will return the original quality url.
 
         .. note::
-            If the parent manga was requested with the "cover_art" `includes[]` query parameter, then this method will not make an extra API call to retrieve the Cover data.
+            If the parent manga was requested with the "cover_art" `includes[]` query parameter,
+            then this method will not make an extra API call to retrieve the Cover data.
         """
         cover_key = None
         for item in self.relationships:
@@ -158,3 +161,22 @@ class Manga:
             fmt = ""
 
         return f"https://uploads.mangadex.org/covers/{self.id}/{cover_id}{fmt}"
+
+    def get_artist(self) -> Optional[Artist]:
+        """This method will return the artist of the parent Manga.
+
+        .. note::
+            If the parent manga was **not** requested with the "artist" `includes[]` query parameter then this method will return ``None``.
+        """
+
+        artist = None
+        for item in self.relationships:
+            if item["type"] == "artist":
+                artist = item
+                break
+
+        if artist is None:
+            return None
+
+        if "attributes" in artist:
+            return Artist(self._http, artist)  # type: ignore #TODO: Investigate typing.Protocol or abcs here.

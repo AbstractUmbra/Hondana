@@ -23,7 +23,8 @@ DEALINGS IN THE SOFTWARE.
 """
 import datetime
 
-__all__ = ("APIException", "LoginError", "RefreshError")
+
+__all__ = ("APIException", "LoginError", "RefreshError", "NotFound")
 
 
 class APIException(Exception):
@@ -47,3 +48,11 @@ class RefreshError(APIException):
         self.response_code = response_code
         self.last_refresh = last_refresh
         super().__init__(message, response_code)
+
+
+class NotFound(APIException):
+    """An error for when the requested API item was not found."""
+
+    def __init__(self, message: str) -> None:
+        self.message = message
+        super().__init__(message, 404)

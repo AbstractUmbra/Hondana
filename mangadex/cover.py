@@ -26,6 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING
 
+
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.cover import GetCoverResponse
