@@ -33,8 +33,13 @@ __path__ = __import__("pkgutil").extend_path(__path__, __name__)
 import logging
 from typing import NamedTuple
 
+from . import utils
+from .artist import Artist
+from .author import Author
+from .cover import Cover
+from .errors import *
 from .http import HTTPClient as Client
-from .utils import *
+from .manga import Manga
 
 
 class VersionInfo(NamedTuple):
