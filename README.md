@@ -47,4 +47,4 @@ my_feed = await client.get_my_feed(limit=20, offset=0, created_at_since=one_week
 
 ### API caveats to note
 
-There are no API endpoints for Artist. Currently if you query a manga without the `"artist"` query includes then you will not recieve artist data.
+There are no API endpoints for Artist. Currently, if you query a manga without the `"artist"` query includes then you will not receive artist data.
