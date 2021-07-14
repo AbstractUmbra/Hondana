@@ -26,6 +26,25 @@ A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
+
+### Examples
+
+```py
+import datetime
+
+import mangadex
+
+client = mangadex.Client(login="My login username", password="My password")  # sadly we can only use these to generate the necessary token.
+
+manga = await client.get_manga("Your Manga uuid4 string here")
+
+one_week_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)
+my_feed = await client.get_my_feed(limit=20, offset=0, created_at_since=one_week_ago, order={"createdAt": "desc"})
+# My feed will be a list of 20 Chapters, ordered by creation date descending
+```
+
+**NOTE**: More examples will follow as the library is developed.
+
 ### API caveats to note
 
 There are no API endpoints for Artist. Currently if you query a manga without the `"artist"` query includes then you will not recieve artist data.
