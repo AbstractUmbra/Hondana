@@ -21,30 +21,47 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-import json
-from typing import Any, Union
+
+from typing import Literal, Optional, TypedDict
+
+from .relationship import RelationshipResponse
 
 
-__all__ = ("to_json", "php_query_builder")
+__all__ = ("GetChapterFeedResponse", "ChapterAttributesResponse")
 
 
-def to_json(obj: Any) -> str:
-    return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+class ChapterAttributesOptionalResponse(TypedDict, total=False):
+    uploader: Optional[str]
 
 
-def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> str:
-    """
-    {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
-    ->
-    "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
-    """
-    fmt = []
-    for key, value in obj.items():
-        if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={value}")
-        elif isinstance(value, list):
-            fmt.extend(f"{key}[]={item}" for item in value)
-        elif isinstance(value, dict):
-            fmt.extend(f"{key}[{subkey}]={subvalue}" for subkey, subvalue in value.items())
+class ChapterAttributesResponse(ChapterAttributesOptionalResponse):
+    title: Optional[str]
+    volume: Optional[str]
+    chapter: Optional[str]
+    translatedLanguage: str
+    hash: str
+    data: list[str]
+    dataSaver: list[str]
+    version: int
+    createdAt: str
+    updatedAt: str
+    publishAt: str
 
-    return "&".join(fmt)
+
+class ChapterResponse(TypedDict):
+    id: str
+    type: Literal["chapter"]
+    attributes: ChapterAttributesResponse
+
+
+class GetChapterResponse(TypedDict):
+    result: Literal["ok", "err"]
+    data: ChapterResponse
+    relationships: list[RelationshipResponse]
+
+
+class GetChapterFeedResponse(TypedDict):
+    results: list[GetChapterResponse]
+    limit: int
+    offset: int
+    total: int

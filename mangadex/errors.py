@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 import datetime
 
 
-__all__ = ("APIException", "LoginError", "RefreshError", "NotFound")
+__all__ = ("APIException", "LoginError", "RefreshError", "NotFound", "BadRequest")
 
 
 class APIException(Exception):
@@ -56,3 +56,11 @@ class NotFound(APIException):
     def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(message, 404)
+
+
+class BadRequest(APIException):
+    """An error for when the API query was malformed."""
+
+    def __init__(self, message: str) -> None:
+        self.message = message
+        super().__init__(message, 400)

@@ -34,16 +34,19 @@ import aiohttp
 
 from . import __version__, utils
 from .author import Author
+from .chapter import Chapter
 from .cover import Cover
-from .errors import APIException, LoginError, NotFound, RefreshError
+from .errors import APIException, BadRequest, LoginError, NotFound, RefreshError
 from .manga import Manga
 
 
 if TYPE_CHECKING:
     from .types.author import GetAuthorResponse
+    from .types.chapter import GetChapterFeedResponse
     from .types.cover import GetCoverResponse
     from .types.manga import ViewMangaResponse
     from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
+    from .types.query import GetUserFeedQuery
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -52,6 +55,7 @@ __all__ = ("HTTPClient", "Route")
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel("DEBUG")
+EPOCH = datetime.datetime.fromtimestamp(0)
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
@@ -431,3 +435,116 @@ class HTTPClient:
             raise NotFound(f"A Cover with the ID {cover_id} could not be found.")
 
         return Cover(self, data)
+
+    def _get_my_feed(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        translated_languages: Optional[list[str]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[GetUserFeedQuery] = None,
+    ) -> Response[GetChapterFeedResponse]:
+        route = Route("GET", "/user/follows/manga/feed")
+
+        def fmt(in_: datetime.datetime) -> str:
+            return f"{in_:%Y-%m-%dT%H:%M:%S}"
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+        if translated_languages:
+            query["translatedLanguage"] = translated_languages
+
+        if created_at_since:
+            query["createdAtSince"] = fmt(created_at_since)
+
+        if updated_at_since:
+            query["updatedAtSince"] = fmt(updated_at_since)
+
+        if published_at_since:
+            query["publishAtSince"] = fmt(published_at_since)
+
+        if order:
+            query["order"] = order
+
+        resolved_query = utils.php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    async def get_my_feed(
+        self,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        translated_languages: Optional[list[str]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[GetUserFeedQuery] = None,
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method will retrieve the logged in user's followed manga chapter feed.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 100. This is the limit of manga that is returned in this request, it is clamped at 500 as that is the max in the API.
+        offset: :class:`int`
+            Defaults to 0. This is the pagination offset, the number must be greater than 0. If set lower than 0 then it is set to 0.
+        translated_languages: Optional[list[:class:`str`]]
+            A list of language codes to return chapters for.
+        created_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their update date.
+        published_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their published date.
+        order: Optional[Dict[str, str]]
+            A query parameter to choose the 'order by' response from the API.
+
+        .. note::
+            If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters, then the API will return oldest first based on creation date.
+
+        Examples
+        ---------
+        Requesting your feed::
+            last_week = datetime.datetime.utcnow() - datetime.timedelta(days=7)
+            await Client.get_my_feed(limit=10, offset=0, translated_languages=["en", "br"], created_at_since=last_week, order={"createdAt": "desc"})
+
+        Raises
+        -------
+        BadRequest
+            The parameters were invalid and the API request failed.
+
+        Returns
+        --------
+        List[Chapter]
+            Returns a list of Chapter instances.
+        """
+
+        limit = min(max(1, limit), 500)
+        if offset < 0:
+            offset = 0
+
+        data = await self._get_my_feed(
+            limit=limit,
+            offset=offset,
+            translated_languages=translated_languages,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+        )
+
+        if data.get("result", True) == "error":
+            raise BadRequest("The api query was malformed")
+
+        chapters: list[Chapter] = []
+        for item in data["results"]:
+            chapters.append(Chapter(self, item))
+
+        return chapters

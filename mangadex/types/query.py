@@ -21,30 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-import json
-from typing import Any, Union
+
+from typing import Literal, TypedDict
 
 
-__all__ = ("to_json", "php_query_builder")
+__all__ = ("GetUserFeedQuery",)
 
 
-def to_json(obj: Any) -> str:
-    return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
-
-
-def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> str:
-    """
-    {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
-    ->
-    "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
-    """
-    fmt = []
-    for key, value in obj.items():
-        if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={value}")
-        elif isinstance(value, list):
-            fmt.extend(f"{key}[]={item}" for item in value)
-        elif isinstance(value, dict):
-            fmt.extend(f"{key}[{subkey}]={subvalue}" for subkey, subvalue in value.items())
-
-    return "&".join(fmt)
+class GetUserFeedQuery(TypedDict, total=False):
+    createdAt: Literal["asc", "desc"]
+    updatedAt: Literal["asc", "desc"]
+    publishAt: Literal["asc", "desc"]
+    volume: Literal["asc", "desc"]
+    chapter: Literal["asc", "desc"]
