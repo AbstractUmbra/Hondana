@@ -28,10 +28,8 @@ __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"
 __version__ = "0.1.0a"
 
-__path__ = __import__("pkgutil").extend_path(__path__, __name__)
-
 import logging
-from typing import NamedTuple, Literal
+from typing import Literal, NamedTuple
 
 from . import utils
 from .artist import Artist
