@@ -29,7 +29,7 @@ from .shared import TagResponse
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-PublicationDemographic = Literal["shouned", "shoujo", "josei", "seinen"]
+PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 
 
