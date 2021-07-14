@@ -24,13 +24,12 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.author import AuthorAttributesResponse, AuthorResponse
-    from .types.relationship import RelationshipResponse
 
 __all__ = ("Author",)
 
@@ -38,9 +37,7 @@ __all__ = ("Author",)
 class Author:
     __slots__ = ("_http", "_data", "id", "name", "image_url", "biography", "version", "_created_at", "_updated_at")
 
-    def __init__(
-        self, http: HTTPClient, data: Union[AuthorResponse, RelationshipResponse], attributes: AuthorAttributesResponse
-    ) -> None:
+    def __init__(self, http: HTTPClient, data: AuthorResponse, attributes: AuthorAttributesResponse) -> None:
         self._http = http
         self._data = data
         self.id = data["id"]

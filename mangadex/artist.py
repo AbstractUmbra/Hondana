@@ -33,6 +33,9 @@ if TYPE_CHECKING:
     from .http import HTTPClient
 
 
+__all__ = ("Artist",)
+
+
 class Artist:
     __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
