@@ -562,7 +562,7 @@ class Client:
         Raises
         -------
         BadRequest
-            The parameters were invalid and the API request failed.
+            The query parameters were not valid.
 
         Returns
         --------
@@ -742,7 +742,7 @@ class Client:
         Raises
         -------
         BadRequest
-            The parameters were invalid and the API request failed.
+            The query parameters were not valid.
 
         Returns
         --------
@@ -919,6 +919,13 @@ class Client:
             The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
             Leave this as ``None`` unless you fit this criteria.
 
+        Raises
+        -------
+        BadRequest
+            The query parameters were not valid.
+        Forbidden
+            The query failed due to authorization failure.
+
         Returns
         --------
         :class:`Manga`
@@ -1004,6 +1011,8 @@ class Client:
 
         Raises
         -------
+        Forbidden
+            The query failed due to authorization failure.
         NotFound
             The passed manga ID was not found, likely due to an incorrect ID.
 
@@ -1171,10 +1180,8 @@ class Client:
         -------
         BadRequest
             The query parameters were not valid.
-
         Forbidden
             The update errored due to authentication failure.
-
         NotFound
             The specified manga does not exist.
 
