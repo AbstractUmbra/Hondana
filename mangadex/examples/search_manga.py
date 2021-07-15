@@ -16,7 +16,7 @@ async def search_for_tags() -> list[mangadex.Manga]:
     # we now perform a search with a limit of 10 (returned manga)
     # an offset of 0 (pagination needs)
     # and using our predefined tags earlier.
-    manga_response = await client.search_manga(limit=10, offset=0, included_tags=tags)
+    manga_response = await client.manga_list(limit=10, offset=0, included_tags=tags)
 
     # `manga_response` will be a list of upto 10 manga that match the search criteria above.
     return manga_response
@@ -37,7 +37,7 @@ async def more_refined_search() -> list[mangadex.Manga]:
     demographic = ["shounen"]
 
     # lets try a search
-    search = await client.search_manga(
+    search = await client.manga_list(
         limit=10,
         offset=0,
         included_tags=tags,

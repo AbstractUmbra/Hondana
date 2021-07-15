@@ -30,11 +30,13 @@ from .artist import Artist
 from .cover import Cover
 from .tags import Tag
 
+from .utils import MISSING
 
 if TYPE_CHECKING:
     from .author import Author
     from .http import Client
-    from .types.manga import ViewMangaResponse
+    from .types import manga
+    from .tags import QueryTags
 
 
 __all__ = ("Manga",)
@@ -92,7 +94,7 @@ class Manga:
         "_relationships",
     )
 
-    def __init__(self, http: Client, payload: ViewMangaResponse) -> None:
+    def __init__(self, http: Client, payload: manga.ViewMangaResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
@@ -247,3 +249,114 @@ class Manga:
 
         if "attributes" in artist:
             return Artist(self._http, artist)  # type: ignore #TODO: Investigate typing.Protocol or abcs here.
+
+    async def update(
+        self,
+        *,
+        title: Optional[dict[str, str]] = None,
+        alt_titles: Optional[list[dict[str, str]]] = None,
+        description: Optional[dict[str, str]] = None,
+        authors: Optional[list[str]] = None,
+        artists: Optional[list[str]] = None,
+        links: Optional[manga.MangaLinks] = None,
+        original_language: Optional[str] = None,
+        last_volume: str = MISSING,
+        last_chapter: str = MISSING,
+        publication_demographic: manga.PublicationDemographic = MISSING,
+        status: manga.MangaStatus = MISSING,
+        year: int = MISSING,
+        content_rating: Optional[manga.ContentRating] = None,
+        tags: Optional[QueryTags] = None,
+        mod_notes: str = MISSING,
+        version: int,
+    ) -> Manga:
+        """|coro|
+
+        This method will update the current Manga within the MangaDex API.
+
+        Parameters
+        -----------
+        title: Optional[Dict[:class:`str`, :class:`str`]]
+            The manga titles in the format of ``language_key: title``
+            i.e. ``{"en": "Some Manga Title"}``
+        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+            The alternative titles in the format of ``language_key: title``
+            i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
+        description: Optional[Dict[:class:`str`, :class:`str`]]
+            The manga description in the format of ``language_key: description``
+            i.e. ``{"en": "My amazing manga where x y z happens"}``
+        authors: Optional[List[:class:`str`]]
+            The list of author UUIDs to credit to this manga.
+        artists: Optional[List[:class:`str`]]
+            The list of artist UUIDs to credit to this manga.
+        links: Optional[Dict[str, Any]]
+            The links relevant to the manga.
+            See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
+        original_language: Optional[:class:`str`]
+            The language key for the original language of the manga.
+        last_volume: :class:`str`
+            The last volume to attribute to this manga.
+        last_chapter: :class:`str`
+            The last chapter to attribute to this manga.
+        publication_demographic: Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]
+            The target publication demographic of this manga.
+        status: Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]
+            The status of the manga.
+        year: :class:`int`
+            The release year of the manga.
+        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
+            The content rating of the manga.
+        tags: Optional[:class:`QueryTags`]
+            The QueryTags instance for the list of tags to attribute to this manga.
+        mod_notes: :class:`str`
+            The moderator notes to add to this Manga.
+        version: :class:`int`
+            The revision version of this manga.
+
+
+        .. note::
+            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
+            Leave this as the default unless you fit this criteria.
+
+        .. note::
+            With the ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
+            if you leave these values as their default, they will instead be cast to ``None`` (null) in the API.
+            Provide values for these unless you want to nullify them.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were not valid.
+
+        Forbidden
+            The update errored due to authentication failure.
+
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        :class:`Manga`
+            The manga that was returned after creation.
+        """
+        data = await self._http._update_manga(
+            self.id,
+            title=title,
+            alt_titles=alt_titles,
+            description=description,
+            authors=authors,
+            artists=artists,
+            links=links,
+            original_language=original_language,
+            last_volume=last_volume,
+            last_chapter=last_chapter,
+            publication_demographic=publication_demographic,
+            status=status,
+            year=year,
+            content_rating=content_rating,
+            tags=tags,
+            mod_notes=mod_notes,
+            version=version,
+        )
+
+        return self.__class__(self._http, data)

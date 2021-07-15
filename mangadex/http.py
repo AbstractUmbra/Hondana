@@ -34,6 +34,7 @@ from urllib.parse import quote as _uriquote
 import aiohttp
 
 from . import __version__, utils
+from .utils import MISSING
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
@@ -98,8 +99,8 @@ class Route:
         The prepended path to the API endpoing you with to target.
         e.g. ``"/manga/{manga_id}"``
     parameters: Any
-        This is a special cased kwargs. Anything passed to these will substitude it's key to value in the :attr:`path`.
-        E.g. if your :attr:`path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
+        This is a special cased kwargs. Anything passed to these will substitude it's key to value in the `path`.
+        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
         making ``"manga/..."``
     """
 
@@ -420,41 +421,6 @@ class Client:
         with open(path, "w") as fp:
             json.dump(tags, fp, indent=4)
 
-    def _get_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[manga.ViewMangaResponse]:
-        route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
-
-        includes = includes or ["artist", "cover_url", "author"]
-        query = utils.php_query_builder({"includes": includes})
-        data = self.request(route, params=query)
-
-        return data
-
-    async def get_manga(self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = None) -> Manga:
-        """|coro|
-
-        The method will fetch a Manga from the MangaDex API.
-
-        Parameters
-        -----------
-        includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
-            This is a list of items to include in the query.
-            Be default we request all optionals (artist, cover_art and author).
-            Pass a new list of these strings to overwrite it.
-
-        Raises
-        -------
-        NotFound
-            The passed manga ID was not found, likely due to an incorrect ID.
-
-        Returns
-        --------
-        :class:`Manga`
-            The Manga that was returned from the API.
-        """
-        data = await self._get_manga(manga_id, includes)
-
-        return Manga(self, data)
-
     def _get_author(self, author_id: str) -> Response[GetAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
         return self.request(route)
@@ -624,7 +590,7 @@ class Client:
 
         return chapters
 
-    def _search_manga(
+    def _manga_list(
         self,
         *,
         limit: int,
@@ -704,7 +670,7 @@ class Client:
 
         return self.request(route, params=resolved_query)
 
-    async def search_manga(
+    async def manga_list(
         self,
         *,
         limit: int = 100,
@@ -787,7 +753,7 @@ class Client:
         if offset < 0:
             offset = 0
 
-        data = await self._search_manga(
+        data = await self._manga_list(
             limit=limit,
             offset=offset,
             title=title,
@@ -933,13 +899,13 @@ class Client:
             The last volume to attribute to this manga.
         last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: Optional[Literal["shounen", "shoujo", "josei", "seinen"]]
+        publication_demographic: Optional[Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]]
             The target publication demographic of this manga.
-        status: Optional[Literal["ongoing", "completed", "hiatus", "cancelled"]]
+        status: Optional[Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]]
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: Optional[Literal["safe", "suggestive", "erotica", "pornographic"]]
+        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -960,6 +926,265 @@ class Client:
         """
 
         data = await self._create_manga(
+            title=title,
+            alt_titles=alt_titles,
+            description=description,
+            authors=authors,
+            artists=artists,
+            links=links,
+            original_language=original_language,
+            last_volume=last_volume,
+            last_chapter=last_chapter,
+            publication_demographic=publication_demographic,
+            status=status,
+            year=year,
+            content_rating=content_rating,
+            tags=tags,
+            mod_notes=mod_notes,
+            version=version,
+        )
+
+        return Manga(self, data)
+
+    def _get_manga_volumes_and_chapters(
+        self, *, manga_id: str, translated_languages: Optional[list[str]] = None
+    ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
+        ...
+
+        route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
+
+        if translated_languages:
+            query = utils.php_query_builder({"translatedLanguage": translated_languages})
+            return self.request(route, params=query)
+        return self.request(route)
+
+    async def get_manga_volumes_and_chapters(
+        self, *, manga_id: str, translated_language: Optional[list[str]] = None
+    ) -> manga.GetMangaVolumesAndChaptersResponse:
+        """|coro|
+
+        This endpoint returns the raw relational mapping of a manga's volumes and chapters.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The manga UUID we are querying against.
+        translated_language: Optional[Dict[:class:`str`, List[:class:`str`]]]
+            The list of language codes you want to limit the search to.
+
+        Returns
+        --------
+        Dict[str, Any]
+            The raw payload from mangadex. There is not guarantee of the keys here.
+        """
+        data = await self._get_manga_volumes_and_chapters(manga_id=manga_id, translated_languages=translated_language)
+
+        return data
+
+    def _view_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[manga.ViewMangaResponse]:
+        route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
+
+        includes = includes or ["artist", "cover_url", "author"]
+        query = utils.php_query_builder({"includes": includes})
+        data = self.request(route, params=query)
+
+        return data
+
+    async def view_manga(self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = None) -> Manga:
+        """|coro|
+
+        The method will fetch a Manga from the MangaDex API.
+
+        Parameters
+        -----------
+        includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
+            This is a list of items to include in the query.
+            Be default we request all optionals (artist, cover_art and author).
+            Pass a new list of these strings to overwrite it.
+
+        Raises
+        -------
+        NotFound
+            The passed manga ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Manga`
+            The Manga that was returned from the API.
+        """
+        data = await self._view_manga(manga_id, includes)
+
+        return Manga(self, data)
+
+    def _update_manga(
+        self,
+        manga_id: str,
+        *,
+        title: Optional[dict[str, str]],
+        alt_titles: Optional[list[dict[str, str]]],
+        description: Optional[dict[str, str]],
+        authors: Optional[list[str]],
+        artists: Optional[list[str]],
+        links: Optional[manga.MangaLinks],
+        original_language: Optional[str],
+        last_volume: str,
+        last_chapter: str,
+        publication_demographic: manga.PublicationDemographic,
+        status: manga.MangaStatus,
+        year: int,
+        content_rating: Optional[manga.ContentRating],
+        tags: Optional[QueryTags],
+        mod_notes: str,
+        version: int,
+    ) -> Response[manga.ViewMangaResponse]:
+        route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
+
+        query = {}
+        query["version"] = version
+
+        if title:
+            query["title"] = title
+
+        if alt_titles:
+            query["altTitles"] = alt_titles
+
+        if description:
+            query["description"] = description
+
+        if authors:
+            query["authors"] = authors
+
+        if artists:
+            query["artists"] = artists
+
+        if links:
+            query["links"] = links
+
+        if original_language:
+            query["originalLanguage"] = original_language
+
+        if last_volume is not MISSING:
+            query["lastVolume"] = last_volume
+
+        if last_chapter is not MISSING:
+            query["lastChapter"] = last_chapter
+
+        if publication_demographic is not MISSING:
+            query["publicationDemographic"] = publication_demographic
+
+        if status is not MISSING:
+            query["status"] = status
+
+        if year is not MISSING:
+            query["year"] = year
+
+        if content_rating:
+            query["contentRating"] = content_rating
+
+        if tags:
+            query["tags"] = tags.tags
+
+        if mod_notes is not MISSING:
+            query["modNotes"] = mod_notes
+
+        resolved_query = utils.php_query_builder(query)
+
+        return self.request(route, json=resolved_query)
+
+    async def update_manga(
+        self,
+        manga_id: str,
+        *,
+        title: Optional[dict[str, str]] = None,
+        alt_titles: Optional[list[dict[str, str]]] = None,
+        description: Optional[dict[str, str]] = None,
+        authors: Optional[list[str]] = None,
+        artists: Optional[list[str]] = None,
+        links: Optional[manga.MangaLinks] = None,
+        original_language: Optional[str] = None,
+        last_volume: str = MISSING,
+        last_chapter: str = MISSING,
+        publication_demographic: manga.PublicationDemographic = MISSING,
+        status: manga.MangaStatus = MISSING,
+        year: int = MISSING,
+        content_rating: Optional[manga.ContentRating] = None,
+        tags: Optional[QueryTags] = None,
+        mod_notes: str = MISSING,
+        version: int,
+    ) -> Manga:
+        """|coro|
+
+        This method will update a Manga within the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to update.
+        title: Optional[Dict[:class:`str`, :class:`str`]]
+            The manga titles in the format of ``language_key: title``
+            i.e. ``{"en": "Some Manga Title"}``
+        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+            The alternative titles in the format of ``language_key: title``
+            i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
+        description: Optional[Dict[:class:`str`, :class:`str`]]
+            The manga description in the format of ``language_key: description``
+            i.e. ``{"en": "My amazing manga where x y z happens"}``
+        authors: Optional[List[:class:`str`]]
+            The list of author UUIDs to credit to this manga.
+        artists: Optional[List[:class:`str`]]
+            The list of artist UUIDs to credit to this manga.
+        links: Optional[Dict[str, Any]]
+            The links relevant to the manga.
+            See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
+        original_language: Optional[:class:`str`]
+            The language key for the original language of the manga.
+        last_volume: :class:`str`
+            The last volume to attribute to this manga.
+        last_chapter: :class:`str`
+            The last chapter to attribute to this manga.
+        publication_demographic: Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]
+            The target publication demographic of this manga.
+        status: Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]
+            The status of the manga.
+        year: :class:`int`
+            The release year of the manga.
+        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
+            The content rating of the manga.
+        tags: Optional[:class:`QueryTags`]
+            The QueryTags instance for the list of tags to attribute to this manga.
+        mod_notes: :class:`str`
+            The moderator notes to add to this Manga.
+        version: :class:`int`
+            The revision version of this manga.
+
+
+        .. note::
+            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
+            Leave this as the default unless you fit this criteria.
+
+        .. note::
+            With the ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
+            if you leave these values as their default, they will instead be cast to ``None`` (null) in the API.
+            Provide values for these unless you want to nullify them.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were not valid.
+
+        Forbidden
+            The update errored due to authentication failure.
+
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        :class:`Manga`
+            The manga that was returned after creation.
+        """
+        data = await self._update_manga(
+            manga_id,
             title=title,
             alt_titles=alt_titles,
             description=description,

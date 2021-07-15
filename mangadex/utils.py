@@ -26,9 +26,23 @@ import pathlib
 from typing import Any, Mapping, Union
 
 
-__all__ = ("to_json", "php_query_builder", "TAGS")
+__all__ = ("MISSING", "to_json", "php_query_builder", "TAGS")
 
 _PROJECT_DIR = pathlib.Path(__file__)
+
+
+class MissingSentinal:
+    def __eq__(self, other: Any) -> bool:
+        return False
+
+    def __bool__(self) -> bool:
+        return False
+
+    def __repr__(self) -> str:
+        return "..."
+
+
+MISSING: Any = MissingSentinal()
 
 
 def to_json(obj: Any) -> str:

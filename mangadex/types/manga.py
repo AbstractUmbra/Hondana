@@ -22,11 +22,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, Optional, TypedDict
+from typing import Literal, Optional, TypedDict, TypeVar
 
 from .relationship import RelationshipResponse
 from .tags import TagResponse
-
 
 __all__ = (
     "MangaLinks",
@@ -34,6 +33,7 @@ __all__ = (
     "MangaResponse",
     "ViewMangaResponse",
     "MangaSearchResponse",
+    "GetVolumesAndChapterResponse",
     "MangaStatus",
     "PublicationDemographic",
     "ContentRating",
@@ -100,3 +100,19 @@ class MangaSearchResponse(TypedDict):
     limit: int
     offset: int
     total: int
+
+
+class _ChaptersResponse(TypedDict):
+    chapter: str
+    count: str
+
+
+class _VolumesAndChaptersResponse(TypedDict, total=False):
+    chapters: dict[str, _ChaptersResponse]
+    count: int
+    volume: str
+
+
+class GetMangaVolumesAndChaptersResponse(TypedDict):
+    result: Literal["ok", "error"]
+    volumes: Optional[dict[str, _VolumesAndChaptersResponse]]

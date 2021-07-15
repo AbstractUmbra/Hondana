@@ -48,9 +48,9 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | ----------------------------------------------------- | ------------ | ---------------------------------- |
 | Manga List                                            | [x]          | Done.                              |
 | Create Manga                                          | [x]          | Done. Unsure if I can test this... |
-| Get Manga Volumes & Chapters                          | [ ]          | Soon:tm:                           |
+| Get Manga Volumes & Chapters                          | [x]          | Done.                              |
 | View Manga                                            | [x]          | Done.                              |
-| Update Manga                                          | [ ]          | Soon:tm:                           |
+| Update Manga                                          | [x]          | Soon:tm:                           |
 | Delete Manga                                          | [ ]          | Soon:tm:                           |
 | Add Manga to CustomList                               | [ ]          | Soon:tm:                           |
 | Remove Manga from CustomList                          | [ ]          | Soon:tm:                           |
