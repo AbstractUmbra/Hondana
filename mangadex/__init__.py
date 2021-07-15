@@ -34,6 +34,7 @@ from typing import Literal, NamedTuple
 from . import utils
 from .artist import Artist
 from .author import Author
+from .chapter import Chapter
 from .cover import Cover
 from .errors import *
 from .http import HTTPClient as Client
