@@ -68,9 +68,9 @@ class Cover:
     def __init__(self, http: Client, payload: GetCoverResponse) -> None:
         self._http = http
         data = payload["data"]
-        attributes = data["attributes"]
         self._data = data
         self.id = data["id"]
+        attributes = data["attributes"]
         self.volume = attributes["volume"]
         self.file_name = attributes["fileName"]
         self.description = attributes["description"]
@@ -87,13 +87,30 @@ class Cover:
 
     @property
     def created_at(self) -> datetime.datetime:
+        """When this cover was created."""
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
+        """When this cover was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    def url(self, type: Optional[Literal["256", "512"]] = "512") -> Optional[str]:
+    def url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
+        """Method to return the Cover url.
+
+        Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
+
+        Parameters
+        -----------
+        type: Optional[Literal["256", "512"]]
+            Defaults to ``None`` to return original quality.
+            Specifies the return image dimensions.
+
+        Returns
+        --------
+        Optional[:class:`str`]
+            The Cover url.
+        """
         parent_manga = None
         for item in self._relationships:
             if item["type"] == "manga":
