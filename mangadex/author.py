@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
-    from .http import HTTPClient
+    from .http import Client
     from .types.author import AuthorAttributesResponse, AuthorResponse
 
 __all__ = ("Author",)
@@ -37,7 +37,7 @@ __all__ = ("Author",)
 class Author:
     __slots__ = ("_http", "_data", "id", "name", "image_url", "biography", "version", "_created_at", "_updated_at")
 
-    def __init__(self, http: HTTPClient, data: AuthorResponse, attributes: AuthorAttributesResponse) -> None:
+    def __init__(self, http: Client, data: AuthorResponse, attributes: AuthorAttributesResponse) -> None:
         self._http = http
         self._data = data
         self.id = data["id"]

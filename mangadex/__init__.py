@@ -37,7 +37,7 @@ from .author import Author
 from .chapter import Chapter
 from .cover import Cover
 from .errors import *
-from .http import HTTPClient as Client
+from .http import Client
 from .manga import Manga
 from .tags import Tags
 from .utils import TAGS as MANGA_TAGS

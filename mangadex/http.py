@@ -91,7 +91,7 @@ class Route:
         self.url: str = url
 
 
-class HTTPClient:
+class Client:
     """Underlying HTTP Client for the Mangadex API.
 
     Attributes
@@ -555,7 +555,7 @@ class HTTPClient:
 
         Returns
         --------
-        List[Chapter]
+        List[:class:`~Chapter`]
             Returns a list of Chapter instances.
         """
 

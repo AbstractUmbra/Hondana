@@ -60,6 +60,9 @@ src_paths = ["mangadex"]
 known_first_party = "mangadex"
 lines_after_imports = 2
 
+[tool.pyright]
+ignore = ["docs/conf.py"]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

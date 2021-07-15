@@ -22,6 +22,11 @@ Author
 .. autoclass:: Author
     :members:
 
+Chapter
+~~~~~~~
+.. autoclass:: Chapter
+    :members:
+
 Cover
 ~~~~~
 .. autoclass:: Cover

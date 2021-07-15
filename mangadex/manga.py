@@ -31,7 +31,7 @@ from .artist import Artist
 
 if TYPE_CHECKING:
     from .author import Author
-    from .http import HTTPClient
+    from .http import Client
     from .types.manga import ViewMangaResponse
 
 
@@ -60,7 +60,7 @@ class Manga:
         "relationships",
     )
 
-    def __init__(self, http: HTTPClient, payload: ViewMangaResponse) -> None:
+    def __init__(self, http: Client, payload: ViewMangaResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]

@@ -3,3 +3,4 @@ env/
 build/
 dist/
 docs/build
+docs/_build

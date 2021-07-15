@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
-    from .http import HTTPClient
+    from .http import Client
     from .types.cover import GetCoverResponse
 
 
@@ -38,7 +38,7 @@ __all__ = ("Cover",)
 class Cover:
     __slots__ = ("_http", "_data", "id", "volume", "file_name", "description", "version", "_created_at", "_updated_at")
 
-    def __init__(self, http: HTTPClient, payload: GetCoverResponse) -> None:
+    def __init__(self, http: Client, payload: GetCoverResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
