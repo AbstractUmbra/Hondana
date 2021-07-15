@@ -42,7 +42,7 @@ from .manga import Manga
 
 
 if TYPE_CHECKING:
-    from .tags import Tags
+    from .tags import QueryTags
     from .types import manga
     from .types.author import GetAuthorResponse
     from .types.chapter import GetChapterFeedResponse
@@ -80,6 +80,8 @@ def fmt(in_: datetime.datetime) -> str:
 
 
 class Route:
+    """"""
+
     BASE: ClassVar[str] = "https://api.mangadex.org"
 
     def __init__(self, verb: str, path: str, **parameters: Any) -> None:
@@ -103,12 +105,14 @@ class Client:
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
 
-    .. note ::
+
+    .. note::
         If you do not pass a login and password then we cannot actually login and will error.
 
-    .. note ::
+    .. note::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
         Do not pass one you plan to re-use for other things, lest you leak your login data.
+
 
     Raises
     -------
@@ -158,7 +162,7 @@ class Client:
         :class:`aiohttp.ClientSession`
             The underlying client session we use.
 
-        .. note ::
+        .. note::
             This method must be a coroutine to avoid the deprecation warning of Python 3.9+.
         """
         return aiohttp.ClientSession()
@@ -188,7 +192,7 @@ class Client:
         :class:`str`
             The authentication token we will use.
 
-        .. note ::
+        .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
 
@@ -224,7 +228,7 @@ class Client:
         :class:`str`
             The authentication token we just refreshed.
 
-        .. note ::
+        .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
         LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
@@ -266,8 +270,8 @@ class Client:
         :class:`str`
             The authentication token we generated, refreshed or already had that is still valid.
 
-        .. note ::
-            This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
+        .. note::
+            This does not use :meth:`Client.request` due to circular usage of request > generate token.
         """
         if self._token is None:
             LOGGER.debug("No jwt set yet, will attempt to generate one.")
@@ -309,7 +313,7 @@ class Client:
     async def logout(self) -> None:
         """|coro|
 
-        This performs the logout request, also done in :meth:`HTTPClient.close` for convenience.
+        This performs the logout request, also done in :meth:`Client.close` for convenience.
         """
         if self.__session is None:
             self.__session = await self._generate_session()
@@ -403,7 +407,7 @@ class Client:
 
         Parameters
         -----------
-        includes: Optional[Literal["author", "artist", "cover_art"]]
+        includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
             This is a list of items to include in the query.
             Be default we request all optionals (artist, cover_art and author).
             Pass a new list of these strings to overwrite it.
@@ -458,9 +462,9 @@ class Client:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
-        query = utils.php_query_builder(query)
+        resolved_query = utils.php_query_builder(query)
 
-        return self.request(route, params=query)
+        return self.request(route, params=resolved_query)
 
     async def get_cover(self, cover_id: str, includes: list[str] = ["manga"]) -> Cover:
         """|coro|
@@ -475,8 +479,10 @@ class Client:
             A list of the additional information to gather related to the Cover.
             defaults to ``["manga"]``
 
-        .. note ::
+
+        .. note::
             If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
+
 
         Raises
         -------
@@ -561,12 +567,14 @@ class Client:
             A start point to return chapters from based on their update date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published date.
-        order: Optional[Dict[str, str]]
+        order: Optional[Dict[:class:`str`, :class:`str`]]
             A query parameter to choose the 'order by' response from the API.
 
-        .. note ::
+
+        .. note::
             If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
             then the API will return oldest first based on creation date.
+
 
         Raises
         -------
@@ -611,8 +619,8 @@ class Client:
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         year: Optional[int],
-        included_tags: Optional[Tags],
-        excluded_tags: Optional[Tags],
+        included_tags: Optional[QueryTags],
+        excluded_tags: Optional[QueryTags],
         status: Optional[list[manga.MangaStatus]],
         original_language: Optional[list[str]],
         publication_demographic: Optional[list[manga.PublicationDemographic]],
@@ -691,8 +699,8 @@ class Client:
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         year: Optional[int] = None,
-        included_tags: Optional[Tags] = None,
-        excluded_tags: Optional[Tags] = None,
+        included_tags: Optional[QueryTags] = None,
+        excluded_tags: Optional[QueryTags] = None,
         status: Optional[list[manga.MangaStatus]] = None,
         original_language: Optional[list[str]] = None,
         publication_demographic: Optional[list[manga.PublicationDemographic]] = None,
@@ -718,25 +726,25 @@ class Client:
         title: Optional[:class:`str`]
             The manga title or partial title to include in the search.
         authors: Optional[List[:class:`str`]]
-            The author(s) uuids to include in the search.
+            The author(s) UUIDs to include in the search.
         artists: Optional[List[:class:`str`]]
-            The artist(s) uuids to include in the search.
+            The artist(s) UUIDs to include in the search.
         year: Optional[:class:`int`]
             The release year of the manga to include in the search.
-        included_tags: Optional[Tags]
+        included_tags: Optional[:class:`QueryTags`]
             An instance of mangadex.Tags to include in the search.
-        excluded_tags: Optional[Tags]
+        excluded_tags: Optional[:class:`QueryTags`]
             An instance of mangadex.Tags to include in the search.
-        status: Optional[list[manga.MangaStatus]]
+        status: Optional[list[Dict[:class:`str`, Any]]]
             The status(es) of manga to include in the search.
         original_language: Optional[:class:`str`]
             A list of language codes to include for the Manga's original language.
             i.e. ``["en"]``
-        publication_demographic: Optional[List[manga.PublicationDemographic]]
+        publication_demographic: Optional[List[Dict[:class:`str`, Any]]]
             The publication demographic(s) to limit the search to.
         ids: Optional[:class:`str`]
-            A list of manga uuid(s) to limit the search to.
-        content_rating: Optional[list[manga.ContentRating]]
+            A list of manga UUID(s) to limit the search to.
+        content_rating: Optional[list[Dict[:class:`str`, Any]]]
             The content rating(s) to filter the search to.
         created_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
@@ -747,7 +755,7 @@ class Client:
         order: Optional[]
             A query parameter to choose the ordering of the response
             i.e. ``{"createdAt": "desc"}``
-        includes: Optional[List[manga.MangaIncludes]]
+        includes: Optional[List[Dict[:class:`str`, Any]]]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
 

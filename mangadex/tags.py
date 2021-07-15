@@ -27,7 +27,7 @@ from .types.tags import TagResponse
 from .utils import TAGS
 
 
-__all__ = ("Tag", "Tags")
+__all__ = ("Tag", "QueryTags")
 
 
 class Tag:
@@ -47,11 +47,12 @@ class Tag:
     version: :class:`int`
         Version revision of this tag.
 
-    .. note ::
+
+    .. note::
         The tag descriptions are currently empty, but seemingly they will be localised descriptions of each one.
         i.e. ``[{"en": "some tag description"}]``
 
-    .. note ::
+    .. note::
         All tag names currently only have the ``"en"`` key attributed to their localization, so we return this by default.
 
     """
@@ -73,12 +74,12 @@ class Tag:
         return self._name.get("en", next(iter(self._name)))
 
 
-class Tags:
+class QueryTags:
     """Utility class for creating a Tag based query.
 
     Attributes
     -----------
-    *tags: :class:`str`
+    tags: :class:`str`
         The tag names you are going to query.
     mode: :class:`str`
         The logical operation for the tags.
@@ -92,7 +93,8 @@ class Tags:
     ValueError
         The tags passed did not align with MangaDex tags.
 
-    .. note ::
+
+    .. note::
         The tags passed need to match the *local* cache of the tags.
         If you feel this is out of date, you can try the helper method :meth:`Client.update_tags`
     """

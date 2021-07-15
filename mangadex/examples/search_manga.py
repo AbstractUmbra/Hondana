@@ -11,7 +11,7 @@ client = mangadex.Client(login="my login username", password="my login password"
 async def search_for_tags() -> list[mangadex.Manga]:
     # Using the tag builder for ease during a query
     # This will add a restriction to search for a manga with all 3 of these tags using logical AND
-    tags = mangadex.Tags("action", "comedy", "isekai", mode="and")
+    tags = mangadex.QueryTags("action", "comedy", "isekai", mode="and")
 
     # we now perform a search with a limit of 10 (returned manga)
     # an offset of 0 (pagination needs)
@@ -25,7 +25,7 @@ async def search_for_tags() -> list[mangadex.Manga]:
 async def more_refined_search() -> list[mangadex.Manga]:
     # let's do a more refined search using many of the query parameters...
 
-    tags = mangadex.Tags("action", "comedy", "isekai", mode="and")
+    tags = mangadex.QueryTags("action", "comedy", "isekai", mode="and")
 
     # Let's say we only way to show manga created in the last week, lets make a naive utc datetime for one week ago
     seven_days_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)

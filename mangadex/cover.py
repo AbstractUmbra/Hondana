@@ -36,6 +36,22 @@ __all__ = ("Cover",)
 
 
 class Cover:
+    """A class representing a Cover returned from the MangaDex API.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The UUID associated with this cover.
+    volume: Optional[:class:`str`]
+        The volume attributed to this cover, if any.
+    file_name: :class:`str`
+        The file name of this cover.
+    description: :class:`str`
+        The description of this cover.
+    version: :class:`int`
+        The version revision of this Cover.
+    """
+
     __slots__ = (
         "_http",
         "_data",
@@ -46,7 +62,7 @@ class Cover:
         "version",
         "_created_at",
         "_updated_at",
-        "relationships",
+        "_relationships",
     )
 
     def __init__(self, http: Client, payload: GetCoverResponse) -> None:
@@ -61,7 +77,7 @@ class Cover:
         self.version = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
-        self.relationships = payload["relationships"]
+        self._relationships = payload["relationships"]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id} filename={self.file_name}>"
@@ -79,7 +95,7 @@ class Cover:
 
     def url(self, type: Optional[Literal["256", "512"]] = "512") -> Optional[str]:
         parent_manga = None
-        for item in self.relationships:
+        for item in self._relationships:
             if item["type"] == "manga":
                 parent_manga = item
                 break

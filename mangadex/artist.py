@@ -37,6 +37,21 @@ __all__ = ("Artist",)
 
 
 class Artist:
+    """A class representing an Artist returns from the MangaDex API.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The UUID associated with this artist.
+    name: :class:`str`
+        The artist's name.
+    image_url: Optional[:class:`str`]
+        The artist's image url, if any.
+    biography: Optional[:class:`str`]
+        The artist's biography, if any.
+    version: :class:`int`
+        The version revision of this artist.
+    """
     __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
     def __init__(self, http: Client, payload: ArtistResponse) -> None:
@@ -58,8 +73,10 @@ class Artist:
 
     @property
     def created_at(self) -> datetime.datetime:
+        """When this artist was created."""
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
+        """When this artist was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)

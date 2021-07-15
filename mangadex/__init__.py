@@ -31,15 +31,15 @@ __version__ = "0.1.0a"
 import logging
 from typing import Literal, NamedTuple
 
-from . import utils
-from .artist import Artist
-from .author import Author
-from .chapter import Chapter
-from .cover import Cover
+from . import utils as utils
+from .artist import Artist as Artist
+from .author import Author as Author
+from .chapter import Chapter as Chapter
+from .cover import Cover as Cover
 from .errors import *
-from .http import Client
-from .manga import Manga
-from .tags import Tags
+from .http import Client as Client, Route as Route
+from .manga import Manga as Manga
+from .tags import *
 from .utils import TAGS as MANGA_TAGS
 
 

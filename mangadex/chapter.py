@@ -36,6 +36,33 @@ __all__ = ("Chapter",)
 
 
 class Chapter:
+    """A class representing a Chapter returned from the MangaDex API.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The UUID associated with this chapter.
+    title: Optional[:class:`str`]
+        The manga's title.
+        Interestingly enough, this can sometimes be ``None``.
+    volume: Optional[:class:`str`]
+        The volume UUID this chapter is associated with this chapter, if any.
+    chapter: Optional[:class:`str`]
+        The chapter identifier (e.g. '001') associated with this chapter, if any.
+    translated_language: :class:`str`
+        The language code that this chapter was translated to.
+    hash: :class:`str`
+        The hash associated with this chapter.
+    data: List[:class:`str`]
+        A list of chapter page URLs (original quality).
+    data_saver: List[:class:`str`]
+        A list of chapter page URLs (data saver quality).
+    uploader: Optional[:class:`str`]
+        The UUID of the uploader attributed to this chapter, if any.
+    version: class:`int`
+        The revision version of this chapter.
+    """
+
     __slots__ = (
         "_http",
         "id",
@@ -79,12 +106,15 @@ class Chapter:
 
     @property
     def created_at(self) -> datetime.datetime:
+        """When this chapter was created."""
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
+        """When this chapter was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
     def published_at(self) -> datetime.datetime:
+        """When this chapter was published."""
         return datetime.datetime.fromisoformat(self._published_at)

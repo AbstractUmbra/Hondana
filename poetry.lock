@@ -21,7 +21,7 @@ speedups = ["aiodns", "brotlipy", "cchardet"]
 name = "alabaster"
 version = "0.7.12"
 description = "A configurable sidebar-enabled Sphinx theme"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -59,7 +59,7 @@ tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>
 name = "babel"
 version = "2.9.1"
 description = "Internationalization utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -70,7 +70,7 @@ pytz = ">=2015.7"
 name = "beautifulsoup4"
 version = "4.9.3"
 description = "Screen-scraping library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -107,7 +107,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 name = "certifi"
 version = "2021.5.30"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -123,7 +123,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "charset-normalizer"
 version = "2.0.2"
 description = "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5.0"
 
@@ -145,7 +145,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -153,56 +153,15 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "docutils"
 version = "0.17.1"
 description = "Docutils -- Python Documentation Utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-
-[[package]]
-name = "flake8"
-version = "3.9.2"
-description = "the modular source code checker: pep8 pyflakes and co"
-category = "dev"
-optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
-
-[package.dependencies]
-mccabe = ">=0.6.0,<0.7.0"
-pycodestyle = ">=2.7.0,<2.8.0"
-pyflakes = ">=2.3.0,<2.4.0"
-
-[[package]]
-name = "flake8-black"
-version = "0.2.1"
-description = "flake8 plugin to call black as a code style validator"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-black = "*"
-flake8 = ">=3.0.0"
-
-[[package]]
-name = "flake8-isort"
-version = "4.0.0"
-description = "flake8 plugin that integrates isort ."
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-flake8 = ">=3.2.1,<4"
-isort = ">=4.3.5,<6"
-testfixtures = ">=6.8.0,<7"
-
-[package.extras]
-test = ["pytest (>=4.0.2,<6)", "toml"]
 
 [[package]]
 name = "furo"
 version = "2021.7.5b38"
 description = "A clean customisable Sphinx documentation theme."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -226,7 +185,7 @@ python-versions = ">=3.5"
 name = "imagesize"
 version = "1.2.0"
 description = "Getting image size from png/jpeg/jpeg2000/gif file"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -248,7 +207,7 @@ plugins = ["setuptools"]
 name = "jinja2"
 version = "3.0.1"
 description = "A very fast and expressive template engine."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -262,17 +221,9 @@ i18n = ["Babel (>=2.7)"]
 name = "markupsafe"
 version = "2.0.1"
 description = "Safely add untrusted strings to HTML/XML markup."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
-
-[[package]]
-name = "mccabe"
-version = "0.6.1"
-description = "McCabe checker, plugin for flake8"
-category = "dev"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "multidict"
@@ -294,7 +245,7 @@ python-versions = "*"
 name = "packaging"
 version = "21.0"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -310,26 +261,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "pycodestyle"
-version = "2.7.0"
-description = "Python style guide checker"
-category = "dev"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[[package]]
-name = "pyflakes"
-version = "2.3.1"
-description = "passive checker of Python programs"
-category = "dev"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[[package]]
 name = "pygments"
 version = "2.9.0"
 description = "Pygments is a syntax highlighting package written in Python."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -337,7 +272,7 @@ python-versions = ">=3.5"
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
@@ -345,7 +280,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "pytz"
 version = "2021.1"
 description = "World timezone definitions, modern and historical"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -361,7 +296,7 @@ python-versions = "*"
 name = "requests"
 version = "2.26.0"
 description = "Python HTTP for Humans."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
@@ -379,7 +314,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 name = "snowballstemmer"
 version = "2.1.0"
 description = "This package provides 29 stemmers for 28 languages generated from Snowball algorithms."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -387,7 +322,7 @@ python-versions = "*"
 name = "soupsieve"
 version = "2.2.1"
 description = "A modern CSS selector implementation for Beautiful Soup."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -395,7 +330,7 @@ python-versions = ">=3.6"
 name = "sphinx"
 version = "4.1.1"
 description = "Python documentation generator"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -426,7 +361,7 @@ test = ["pytest", "pytest-cov", "html5lib", "cython", "typed-ast"]
 name = "sphinxcontrib-applehelp"
 version = "1.0.2"
 description = "sphinxcontrib-applehelp is a sphinx extension which outputs Apple help books"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -438,7 +373,7 @@ test = ["pytest"]
 name = "sphinxcontrib-devhelp"
 version = "1.0.2"
 description = "sphinxcontrib-devhelp is a sphinx extension which outputs Devhelp document."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -450,7 +385,7 @@ test = ["pytest"]
 name = "sphinxcontrib-htmlhelp"
 version = "2.0.0"
 description = "sphinxcontrib-htmlhelp is a sphinx extension which renders HTML help files"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -462,7 +397,7 @@ test = ["pytest", "html5lib"]
 name = "sphinxcontrib-jsmath"
 version = "1.0.1"
 description = "A sphinx extension which renders display math in HTML via JavaScript"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -473,7 +408,7 @@ test = ["pytest", "flake8", "mypy"]
 name = "sphinxcontrib-qthelp"
 version = "1.0.3"
 description = "sphinxcontrib-qthelp is a sphinx extension which outputs QtHelp document."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -485,7 +420,7 @@ test = ["pytest"]
 name = "sphinxcontrib-serializinghtml"
 version = "1.1.5"
 description = "sphinxcontrib-serializinghtml is a sphinx extension which outputs \"serialized\" HTML files (json and pickle)."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -497,25 +432,12 @@ test = ["pytest"]
 name = "sphinxcontrib-trio"
 version = "1.1.2"
 description = "Make Sphinx better at documenting Python functions and methods"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
 sphinx = ">=1.7"
-
-[[package]]
-name = "testfixtures"
-version = "6.18.0"
-description = "A collection of helpers and mock objects for unit tests and doc tests."
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.extras]
-build = ["setuptools-git", "wheel", "twine"]
-docs = ["sphinx", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
-test = ["pytest (>=3.6)", "pytest-cov", "pytest-django", "zope.component", "sybil", "twisted", "mock", "django (<2)", "django"]
 
 [[package]]
 name = "toml"
@@ -537,7 +459,7 @@ python-versions = "*"
 name = "urllib3"
 version = "1.26.6"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
@@ -564,7 +486,7 @@ docs = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "897251f4e79c0d08f46be05eb4158441a742039e9000e5fc1c046795b1ee9723"
+content-hash = "8e59f627743ee35fcd001fe8b8d6183733efd654dbe28df8e7c12c73c2c07deb"
 
 [metadata.files]
 aiohttp = [
@@ -659,18 +581,6 @@ docutils = [
     {file = "docutils-0.17.1-py2.py3-none-any.whl", hash = "sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61"},
     {file = "docutils-0.17.1.tar.gz", hash = "sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125"},
 ]
-flake8 = [
-    {file = "flake8-3.9.2-py2.py3-none-any.whl", hash = "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"},
-    {file = "flake8-3.9.2.tar.gz", hash = "sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b"},
-]
-flake8-black = [
-    {file = "flake8-black-0.2.1.tar.gz", hash = "sha256:f26651bc10db786c03f4093414f7c9ea982ed8a244cec323c984feeffdf4c118"},
-    {file = "flake8_black-0.2.1-py3-none-any.whl", hash = "sha256:941514149cb8b489cb17a4bb1cf18d84375db3b34381bb018de83509437931a0"},
-]
-flake8-isort = [
-    {file = "flake8-isort-4.0.0.tar.gz", hash = "sha256:2b91300f4f1926b396c2c90185844eb1a3d5ec39ea6138832d119da0a208f4d9"},
-    {file = "flake8_isort-4.0.0-py2.py3-none-any.whl", hash = "sha256:729cd6ef9ba3659512dee337687c05d79c78e1215fdf921ed67e5fe46cce2f3c"},
-]
 furo = [
     {file = "furo-2021.7.5b38-py3-none-any.whl", hash = "sha256:81316a9d498f77dd82b4c4a378a33561e5f762372a716cad91150b4b90da7b35"},
     {file = "furo-2021.7.5b38.tar.gz", hash = "sha256:e1d98a9c447aef2567b49ef685b963b4f809b9f436993c3dcd4a817547525a49"},
@@ -727,10 +637,6 @@ markupsafe = [
     {file = "MarkupSafe-2.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:693ce3f9e70a6cf7d2fb9e6c9d8b204b6b39897a2c4a1aa65728d5ac97dcc1d8"},
     {file = "MarkupSafe-2.0.1.tar.gz", hash = "sha256:594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a"},
 ]
-mccabe = [
-    {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
-    {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
-]
 multidict = [
     {file = "multidict-5.1.0-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:b7993704f1a4b204e71debe6095150d43b2ee6150fa4f44d6d966ec356a8d61f"},
     {file = "multidict-5.1.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:9dd6e9b1a913d096ac95d0399bd737e00f2af1e1594a787e00f7975778c8b2bf"},
@@ -781,14 +687,6 @@ packaging = [
 pathspec = [
     {file = "pathspec-0.8.1-py2.py3-none-any.whl", hash = "sha256:aa0cb481c4041bf52ffa7b0d8fa6cd3e88a2ca4879c533c9153882ee2556790d"},
     {file = "pathspec-0.8.1.tar.gz", hash = "sha256:86379d6b86d75816baba717e64b1a3a3469deb93bb76d613c9ce79edc5cb68fd"},
-]
-pycodestyle = [
-    {file = "pycodestyle-2.7.0-py2.py3-none-any.whl", hash = "sha256:514f76d918fcc0b55c6680472f0a37970994e07bbb80725808c17089be302068"},
-    {file = "pycodestyle-2.7.0.tar.gz", hash = "sha256:c389c1d06bf7904078ca03399a4816f974a1d590090fecea0c63ec26ebaf1cef"},
-]
-pyflakes = [
-    {file = "pyflakes-2.3.1-py2.py3-none-any.whl", hash = "sha256:7893783d01b8a89811dd72d7dfd4d84ff098e5eed95cfa8905b22bbffe52efc3"},
-    {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
 ]
 pygments = [
     {file = "Pygments-2.9.0-py3-none-any.whl", hash = "sha256:d66e804411278594d764fc69ec36ec13d9ae9147193a1740cd34d272ca383b8e"},
@@ -888,10 +786,6 @@ sphinxcontrib-serializinghtml = [
 sphinxcontrib-trio = [
     {file = "sphinxcontrib-trio-1.1.2.tar.gz", hash = "sha256:9f1ba9c1d5965b534e85258d8b677dd94e9b1a9a2e918b85ccd42590596b47c0"},
     {file = "sphinxcontrib_trio-1.1.2-py3-none-any.whl", hash = "sha256:1b849be08a147ef4113e35c191a51c5792613a9a54697b497cd91656d906a232"},
-]
-testfixtures = [
-    {file = "testfixtures-6.18.0-py2.py3-none-any.whl", hash = "sha256:9bddf79b2dddb36420a20c25a65c827a8e7398c6ed4e2c75c2697857cb006be9"},
-    {file = "testfixtures-6.18.0.tar.gz", hash = "sha256:d4bd1c4f90eac90a73e1bdc59c31d03943f218d687f3c5a09e48478841a8af5f"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
