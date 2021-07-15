@@ -29,14 +29,14 @@ from typing import TYPE_CHECKING, Literal, Optional
 from .artist import Artist
 from .cover import Cover
 from .tags import Tag
-
 from .utils import MISSING
+
 
 if TYPE_CHECKING:
     from .author import Author
     from .http import Client
-    from .types import manga
     from .tags import QueryTags
+    from .types import manga
 
 
 __all__ = ("Manga",)

@@ -34,7 +34,6 @@ from urllib.parse import quote as _uriquote
 import aiohttp
 
 from . import __version__, utils
-from .utils import MISSING
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
@@ -48,6 +47,7 @@ from .errors import (
     Unauthorized,
 )
 from .manga import Manga
+from .utils import MISSING
 
 
 if TYPE_CHECKING:

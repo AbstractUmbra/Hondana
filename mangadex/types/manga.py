@@ -27,6 +27,7 @@ from typing import Literal, Optional, TypedDict, TypeVar
 from .relationship import RelationshipResponse
 from .tags import TagResponse
 
+
 __all__ = (
     "MangaLinks",
     "MangaAttributesResponse",
