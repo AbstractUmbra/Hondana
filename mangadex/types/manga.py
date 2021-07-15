@@ -42,7 +42,7 @@ __all__ = (
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen", "none"]
+PublicationDemographic = Literal["shouned", "shoujo", "josei", "seinen", "none"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 MangaIncludes = list[Literal["author", "artist", "cover_art"]]
 
