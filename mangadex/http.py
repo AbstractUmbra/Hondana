@@ -97,9 +97,9 @@ class HTTPClient:
     Attributes
     -----------
     login: :class:`str`
-        Your login username for the API. Used in conjuction with your password to generate an authentication token.
+        Your login username for the API. Used in conjunction with your password to generate an authentication token.
     password: :class:`str`
-        Your login password for the API. Used in conjuction with your username to generate an authentication token.
+        Your login password for the API. Used in conjunction with your username to generate an authentication token.
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
 
