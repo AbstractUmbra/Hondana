@@ -103,10 +103,10 @@ class Client:
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
 
-    .. note::
+    .. note ::
         If you do not pass a login and password then we cannot actually login and will error.
 
-    .. note::
+    .. note ::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
         Do not pass one you plan to re-use for other things, lest you leak your login data.
 
@@ -158,7 +158,7 @@ class Client:
         :class:`aiohttp.ClientSession`
             The underlying client session we use.
 
-        .. note::
+        .. note ::
             This method must be a coroutine to avoid the deprecation warning of Python 3.9+.
         """
         return aiohttp.ClientSession()
@@ -188,7 +188,7 @@ class Client:
         LoginError
             The passed username and password are incorrect.
 
-        .. note::
+        .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
 
@@ -224,7 +224,7 @@ class Client:
         RefreshError
             We were unable to refresh the token.
 
-        .. note::
+        .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
         LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
@@ -266,7 +266,7 @@ class Client:
         APIError
             Something went wrong with testing our authentication against the API.
 
-        .. note::
+        .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
         if self._token is None:
@@ -544,7 +544,7 @@ class Client:
         order: Optional[Dict[str, str]]
             A query parameter to choose the 'order by' response from the API.
 
-        .. note::
+        .. note ::
             If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
             then the API will return oldest first based on creation date.
 
