@@ -32,7 +32,7 @@ __all__ = ("TagResponse", "GetTagListResponse")
 
 class TagAttributesResponse(TypedDict):
     name: dict[str, str]
-    description: dict[str, str]
+    description: list[dict[str, str]]
     group: str
     version: int
 

@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mangadex.py"
 version = "0.1.0"
-description = "An asynchronous wrapper around the Mangadex v5 API"
+description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
 license = "MIT"

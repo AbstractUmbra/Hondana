@@ -92,7 +92,7 @@ class Route:
 
 
 class Client:
-    """Underlying HTTP Client for the Mangadex API.
+    """Underlying HTTP Client for the MangaDex API.
 
     Attributes
     -----------
@@ -145,7 +145,7 @@ class Client:
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
         self.__last_refresh: Optional[datetime.datetime] = None
-        user_agent = "Mangadex.py (https://github.com/AbstractUmbra/mangadex.py {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
+        user_agent = "MangaDex.py (https://github.com/AbstractUmbra/mangadex.py {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
     async def _generate_session(self) -> aiohttp.ClientSession:
@@ -176,7 +176,7 @@ class Client:
     async def _get_token(self) -> str:
         """|coro|
 
-        This private method will login to Mangadex with the login username and password to retrieve a JWT auth token.
+        This private method will login to MangaDex with the login username and password to retrieve a JWT auth token.
 
         Raises
         -------
@@ -399,7 +399,7 @@ class Client:
     async def get_manga(self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = None) -> Manga:
         """|coro|
 
-        The method will fetch a Manga from the Mangadex API.
+        The method will fetch a Manga from the MangaDex API.
 
         Parameters
         -----------
@@ -432,7 +432,7 @@ class Client:
     async def get_author(self, author_id: str) -> Author:
         """|coro|
 
-        The method will fetch an Author from the Mangadex API.
+        The method will fetch an Author from the MangaDex API.
 
         Raises
         -------
@@ -454,19 +454,29 @@ class Client:
 
         return Author(self, author_data, attributes)
 
-    def _get_cover(self, cover_id: str) -> Response[GetCoverResponse]:
+    def _get_cover(self, cover_id: str, includes: list[str]) -> Response[GetCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
-        return self.request(route)
 
-    async def get_cover(self, cover_id: str) -> Cover:
+        query = {"includes": includes}
+        query = utils.php_query_builder(query)
+
+        return self.request(route, params=query)
+
+    async def get_cover(self, cover_id: str, includes: list[str] = ["manga"]) -> Cover:
         """|coro|
 
-        The method will fetch a Cover from the Mangadex API.
+        The method will fetch a Cover from the MangaDex API.
 
         Parameters
         -----------
         cover_id: :class:`str`
             The id of the cover we are fetching from the API.
+        includes: List[:class:`str`]
+            A list of the additional information to gather related to the Cover.
+            defaults to ``["manga"]``
+
+        .. note ::
+            If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
 
         Raises
         -------
@@ -478,7 +488,7 @@ class Client:
         :class:`Cover`
             The Cover returned from the API.
         """
-        data = await self._get_cover(cover_id)
+        data = await self._get_cover(cover_id, includes=includes)
 
         if data["result"] == "error":
             raise NotFound(f"A Cover with the ID {cover_id} could not be found.")

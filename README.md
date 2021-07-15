@@ -14,7 +14,7 @@
 
 <br>
 
-A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.mangadex.org/docs.html).
+A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 
 <br>
 

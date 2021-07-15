@@ -24,9 +24,11 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Optional
 
 from .artist import Artist
+from .cover import Cover
+from .tags import Tag
 
 
 if TYPE_CHECKING:
@@ -52,18 +54,48 @@ class Manga:
         "publication_demographic",
         "year",
         "content_rating",
-        "tags",
+        "_tags",
         "version",
         "_created_at",
         "_updated_at",
         "id",
         "relationships",
     )
+    """A class representing a Manga returned from the MangaDex API.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The uuid associated to this manga.
+    alternative_titles: Dict[:class:`str`, :class:`str`]
+        The alternative title mapping for the Manga.
+        i.e. ``{"en": "Some Other Title"}``
+    locked: :class:`bool`
+        If the Manga is considered 'locked' or not in the API.
+    links: :class:`MangaLinks <mangadex.types.manga.MangaLinks>`
+        The mapping of links the API has attributed to the Manga.
+        (see: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data)
+    original_language: :class:`str`
+        The language code for the original language of the Manga.
+    last_volume: Optional[:class:`str`]
+        The last volume attributed to the manga, if any.
+    last_chapter: Optional[:class:`str`]
+        The last chapter attributed to the manga, if any.
+    publication_demographic: Optional[:class:`PublicationDemographic <mangadex.types.manga.PublicationDemographic>`]
+        The attributed publication demographic(s) for the manga, if any.
+    year: Optional[:class:`int`]
+        The year the manga was release, if the key exists.
+    content_rating: Optional[:class:`ContentRating <mangadex.types.manga.ContentRating>`]
+        The content rating attributed to the manga, if any.
+    version: :class:`int`
+        The version revision of this manga.
+    """
 
     def __init__(self, http: Client, payload: ViewMangaResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
+        self.id = data["id"]
         self._data = data
         self._title = attributes["title"]
         self.alternate_titles = attributes["altTitles"]
@@ -75,11 +107,10 @@ class Manga:
         self.publication_demographic = attributes["publicationDemographic"]
         self.year = attributes["year"]
         self.content_rating = attributes["contentRating"]
-        self.tags = attributes["tags"]
+        self._tags = attributes["tags"]
         self.version = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
-        self.id = data["id"]
         self.relationships = payload["relationships"]
 
     def __repr__(self) -> str:
@@ -90,20 +121,33 @@ class Manga:
 
     @property
     def title(self) -> str:
-        return self._title["en"]
+        """The manga's title."""
+        return self._title.get("en", next(iter(self._title)))
+
+    @property
+    def tags(self) -> list[Tag]:
+        """The tags associated with this manga."""
+        return [Tag(tag) for tag in self._tags]
 
     @property
     def created_at(self) -> datetime.datetime:
+        """The date this manga was created."""
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
+        """The date this manga was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
     async def get_author(self) -> Optional[Author]:
         """|coro|
 
         This method will return the author of the manga.
+
+        Returns
+        --------
+        Optional[:class:`Author`]
+            The author of the manga.
 
         .. note::
             If the parent manga was requested with the "author" `includes[]` query parameter,
@@ -123,7 +167,7 @@ class Manga:
 
         return await self._http.get_author(author["id"])
 
-    async def cover_url(self, type: Optional[Literal["512", "256"]] = None) -> Optional[str]:
+    async def cover_url(self) -> Optional[Cover]:
         """|coro|
 
         This method will return the cover URL of the parent Manga.
@@ -132,6 +176,11 @@ class Manga:
         -----------
         type: Optional[Literal["512", "256"]]
             The size of the image to return. If no type is passed, it will return the original quality url.
+
+        Returns
+        --------
+        Optional[:class:`Cover`]
+            The Cover associated with this Manga.
 
         .. note::
             If the parent manga was requested with the "cover_art" `includes[]` query parameter,
@@ -147,23 +196,16 @@ class Manga:
             return None
 
         if "attributes" not in cover_key:
-            cover_id = await self._http.get_cover(cover_key["id"])
-        else:
-            cover_id = cover_key["attributes"].get("fileName", None)
-            if cover_id is None:
-                return None
-
-        if type == "512":
-            fmt = ".512.jpg"
-        elif type == "256":
-            fmt = ".256.jpg"
-        else:
-            fmt = ""
-
-        return f"https://uploads.mangadex.org/covers/{self.id}/{cover_id}{fmt}"
+            return await self._http.get_cover(cover_key["id"])
+        return Cover(self._http, cover_key["attributes"])  # type: ignore
 
     def get_artist(self) -> Optional[Artist]:
         """This method will return the artist of the parent Manga.
+
+        Returns
+        --------
+        Optional[:class:`Artist`]
+            The artist associated with this Manga.
 
         .. note::
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter

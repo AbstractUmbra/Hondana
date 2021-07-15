@@ -1,9 +1,9 @@
-.. Mangadex.py documentation master file, created by
+.. MangaDex.py documentation master file, created by
    sphinx-quickstart on Thu Jul 15 19:02:45 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Mangadex.py's documentation!
+Welcome to MangaDex.py's documentation!
 =======================================
 
 .. toctree::

@@ -3,7 +3,7 @@ import datetime
 import mangadex
 
 
-# We need to login with user and password (for now?) since Mangadex does not let you create user based API tokens.
+# We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
 # We instead use our credentials to login and fetch an expiring auth token
 client = mangadex.Client(login="my login username", password="my login password")
 

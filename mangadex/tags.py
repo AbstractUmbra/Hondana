@@ -23,13 +23,80 @@ DEALINGS IN THE SOFTWARE.
 """
 from typing import Optional
 
+from .types.tags import TagResponse
 from .utils import TAGS
 
 
-__all__ = ("Tags",)
+__all__ = ("Tag", "Tags")
+
+
+class Tag:
+    """A class representing a single Tag from MangaDex.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The UUID associated with this tag.
+    type: Literal[:class:`str`]
+        The type of the object, literally "tag".
+    description: List[Dict[:class:`str`, :class:`str`]]
+        The description(s) of the tag.
+    group: :class:`str`
+        The group (or kind) of tag.
+        e.g. if it is a genre specification, or theme.
+    version: :class:`int`
+        Version revision of this tag.
+
+    .. note ::
+        The tag descriptions are currently empty, but seemingly they will be localised descriptions of each one.
+        i.e. ``[{"en": "some tag description"}]``
+
+    .. note ::
+        All tag names currently only have the ``"en"`` key attributed to their localization, so we return this by default.
+
+    """
+
+    __slots__ = ("_data", "_name", "id", "type", "description", "group", "version")
+
+    def __init__(self, payload: TagResponse) -> None:
+        self._data = payload
+        attributes = payload["attributes"]
+        self._name = attributes["name"]
+        self.id = payload["id"]
+        self.type = "tag"
+        self.description = attributes["description"]
+        self.group = attributes["group"]
+        self.version = attributes["version"]
+
+    @property
+    def name(self) -> str:
+        return self._name.get("en", next(iter(self._name)))
 
 
 class Tags:
+    """Utility class for creating a Tag based query.
+
+    Attributes
+    -----------
+    *tags: :class:`str`
+        The tag names you are going to query.
+    mode: :class:`str`
+        The logical operation for the tags.
+        i.e. ``"AND"`` or ``"OR"``
+
+    Raises
+    -------
+    TypeError
+        The mode specified for the builder is not one of "and" or "or"
+
+    ValueError
+        The tags passed did not align with MangaDex tags.
+
+    .. note ::
+        The tags passed need to match the *local* cache of the tags.
+        If you feel this is out of date, you can try the helper method :meth:`Client.update_tags`
+    """
+
     def __init__(self, *tags: str, mode: str = "AND"):
         self._tags = list(tags)
         self.tags: Optional[list[str]] = None
@@ -39,17 +106,6 @@ class Tags:
         self.set_tags()
 
     def __repr__(self) -> str:
-        if self.tags is None:
-            tags = self.set_tags()
-        else:
-            tags = self.tags
-
-        assert self.tags is not None
-        if len(self.tags) > 5:
-            tags = ", ".join(self.tags[:5])
-            tags += "..."
-        else:
-            tags = ", ".join(self.tags)
         return f"<Tags mode={self.mode}>"
 
     def set_tags(self) -> list[str]:

@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal, Optional
 
 
 if TYPE_CHECKING:
@@ -36,7 +36,18 @@ __all__ = ("Cover",)
 
 
 class Cover:
-    __slots__ = ("_http", "_data", "id", "volume", "file_name", "description", "version", "_created_at", "_updated_at")
+    __slots__ = (
+        "_http",
+        "_data",
+        "id",
+        "volume",
+        "file_name",
+        "description",
+        "version",
+        "_created_at",
+        "_updated_at",
+        "relationships",
+    )
 
     def __init__(self, http: Client, payload: GetCoverResponse) -> None:
         self._http = http
@@ -50,6 +61,7 @@ class Cover:
         self.version = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
+        self.relationships = payload["relationships"]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id} filename={self.file_name}>"
@@ -64,3 +76,24 @@ class Cover:
     @property
     def updated_at(self) -> datetime.datetime:
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    def url(self, type: Optional[Literal["256", "512"]] = "512") -> Optional[str]:
+        parent_manga = None
+        for item in self.relationships:
+            if item["type"] == "manga":
+                parent_manga = item
+                break
+
+        if parent_manga is None:
+            return
+
+        parent_manga_id = parent_manga["id"]
+
+        if type == "256":
+            fmt = ".256.jpg"
+        elif type == "512":
+            fmt = ".512.jpg"
+        else:
+            fmt = ""
+
+        return f"https://uploads.mangadex.org/covers/{parent_manga_id}/{self.file_name}{fmt}"
