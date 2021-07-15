@@ -1,0 +1,18 @@
+version: 2
+formats: []
+
+build:
+  image: testing
+
+sphinx:
+  configuration: docs/conf.py
+  fail_on_warning: false
+  builder: html
+
+python:
+  version: 3.9
+  install:
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
