@@ -1,8 +1,14 @@
-# mangadex.py
+<h1 align="center">mangadex.py</h1>
+
+<div style="text-align:center">
+    <a href='https://mangadexpy.readthedocs.io/en/latest/?badge=latest'>
+        <img src='https://readthedocs.org/projects/mangadexpy/badge/?version=latest' alt='Documentation Status' />
+    </a>
+</div>
 
 A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.mangadex.org/docs.html).
 
-### Features
+## Features
 **NOTE** This library is still in development, I will list off the API methods and their progress here:
 
 | Feature          | Implemented? | Notes                                              |
@@ -27,25 +33,8 @@ A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### Examples
-
-```py
-import datetime
-import mangadex
-
-async def main():
-    client = mangadex.Client(login="My login username", password="My password")  # sadly we can only use these to generate the necessary token.
-
-    manga = await client.get_manga("Your Manga uuid4 string here")
-
-    one_week_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)
-    my_feed = await client.get_my_feed(limit=20, offset=0, created_at_since=one_week_ago, order={"createdAt": "desc"})
-    # My feed will be a list of 20 Chapters, ordered by creation date descending
-
-    return my_feed
-
-asyncio.run(main())
-```
+## Examples
+Please take a look at the [examples](../mangadex.py/mangadex/examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
 
