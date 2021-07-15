@@ -53,10 +53,11 @@ class Author:
 
     __slots__ = ("_http", "_data", "id", "name", "image_url", "biography", "version", "_created_at", "_updated_at")
 
-    def __init__(self, http: Client, data: AuthorResponse, attributes: AuthorAttributesResponse) -> None:
+    def __init__(self, http: Client, data: AuthorResponse) -> None:
         self._http = http
         self._data = data
         self.id = data["id"]
+        attributes = data["attributes"]
         self.name = attributes["name"]
         self.image_url = attributes["imageUrl"]
         self.biography = attributes["biography"]
