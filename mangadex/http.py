@@ -80,7 +80,20 @@ def fmt(in_: datetime.datetime) -> str:
 
 
 class Route:
-    """"""
+    """A helper class for instanciating a HTTP method to MangaDex.
+
+    Parameters
+    -----------
+    verb: :class:`str`
+        The HTTP verb you wish to perform, e.g. ``"POST"``
+    path: :class:`str`
+        The prepended path to the API endpoing you with to target.
+        e.g. ``"/manga/{manga_id}"``
+    parameters: Any
+        This is a special cased kwargs. Anything passed to these will substitude it's key to value in the :attr:`path`.
+        E.g. if your :attr:`path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
+        making ``"manga/..."``
+    """
 
     BASE: ClassVar[str] = "https://api.mangadex.org"
 
