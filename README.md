@@ -4,6 +4,12 @@
     <a href='https://mangadexpy.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/mangadexpy/badge/?version=latest' alt='Documentation Status' />
     </a>
+    <a href='https://github.com/AbstractUmbra/mangadex.py/actions/workflows/build.yaml'>
+        <img src='https://github.com/AbstractUmbra/mystbin.py/workflows/Build/badge.svg' alt='Build status' />
+    </a>
+    <a href='https://github.com/AbstractUmbra/mangadex.py/actions/workflows/lint.yaml'>
+        <img src='https://github.com/AbstractUmbra/mangadex.py/workflows/Lint/badge.svg' alt='Build status' />
+    </a>
 </div>
 
 A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.mangadex.org/docs.html).
