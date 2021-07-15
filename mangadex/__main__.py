@@ -40,7 +40,8 @@ def show_version():
 
     md_version_info = mangadex.version_info
     entries.append(
-        f"- mangadex.py v{md_version_info.major}.{md_version_info.minor}.{md_version_info.micro}-{md_version_info.releaselevel}"
+        f"- mangadex.py v{md_version_info.major}.{md_version_info.minor}."
+        f"{md_version_info.micro}-{md_version_info.releaselevel}"
     )
 
     if md_version_info.releaselevel != "final":
