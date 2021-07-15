@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Literal
 
 from .artist import Artist
 from .cover import Cover
@@ -165,24 +165,20 @@ class Manga:
             return None
 
         if "attributes" in author:
-            return Author(self._http, author, author["attributes"])  # type: ignore #TODO: typing.Protocol or abcs here.
+            return Author(self._http, author)  # type: ignore #TODO: typing.Protocol or abcs here.
 
         return await self._http.get_author(author["id"])
 
-    async def cover_url(self) -> Optional[Cover]:
+    async def get_cover(self) -> Optional[Cover]:
         """|coro|
 
-        This method will return the cover URL of the parent Manga.
+        This method will return the cover URL of the parent Manga if it exists.
 
         Returns
         --------
         Optional[:class:`Cover`]
             The Cover associated with this Manga.
 
-
-        .. note::
-            If the parent manga was requested with the "cover_art" `includes[]` query parameter,
-            then this method will not make an extra API call to retrieve the Cover data.
         """
         cover_key = None
         for item in self._relationships:
@@ -193,9 +189,38 @@ class Manga:
         if cover_key is None:
             return None
 
-        if "attributes" not in cover_key:
-            return await self._http.get_cover(cover_key["id"])
-        return Cover(self._http, cover_key["attributes"])  # type: ignore
+        return await self._http.get_cover(cover_key["id"])
+
+    def cover_url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
+        """This method will return a direct url to the cover art of the parent Manga.
+
+        If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
+
+
+        .. note::
+            For a more stable cover return, try :meth:`Manga.get_cover`
+        """
+        cover = None
+        for item in self._relationships:
+            if item["type"] == "cover_art":
+                cover = item
+                break
+
+        if cover is None:
+            return
+
+        if type == "256":
+            fmt = ".256.jpg"
+        elif type == "512":
+            fmt = ".512.jpg"
+        else:
+            fmt = ""
+
+        attributes = cover.get("attributes", None)
+        if attributes is None:
+            return None
+
+        return f"https://uploads.mangadex.org/covers/{self.id}/{attributes['fileName']}{fmt}"
 
     def get_artist(self) -> Optional[Artist]:
         """This method will return the artist of the parent Manga.
