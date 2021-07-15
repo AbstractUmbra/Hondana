@@ -31,16 +31,20 @@ A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.
 
 ```py
 import datetime
-
 import mangadex
 
-client = mangadex.Client(login="My login username", password="My password")  # sadly we can only use these to generate the necessary token.
+async def main():
+    client = mangadex.Client(login="My login username", password="My password")  # sadly we can only use these to generate the necessary token.
 
-manga = await client.get_manga("Your Manga uuid4 string here")
+    manga = await client.get_manga("Your Manga uuid4 string here")
 
-one_week_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)
-my_feed = await client.get_my_feed(limit=20, offset=0, created_at_since=one_week_ago, order={"createdAt": "desc"})
-# My feed will be a list of 20 Chapters, ordered by creation date descending
+    one_week_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)
+    my_feed = await client.get_my_feed(limit=20, offset=0, created_at_since=one_week_ago, order={"createdAt": "desc"})
+    # My feed will be a list of 20 Chapters, ordered by creation date descending
+
+    return my_feed
+
+asyncio.run(main())
 ```
 
 **NOTE**: More examples will follow as the library is developed.
