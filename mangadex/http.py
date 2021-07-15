@@ -28,7 +28,16 @@ import json
 import logging
 import pathlib
 import sys
-from typing import TYPE_CHECKING, Any, ClassVar, Coroutine, Optional, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Coroutine,
+    Literal,
+    Optional,
+    TypeVar,
+    Union,
+)
 from urllib.parse import quote as _uriquote
 
 import aiohttp
@@ -689,7 +698,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         order: Optional[GetUserFeedQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = None,
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
     ) -> list[Manga]:
         """|coro|
 
@@ -738,6 +747,7 @@ class Client:
         includes: Optional[List[Dict[:class:`str`, Any]]]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
+            Defaults to these values.
 
         Raises
         -------
@@ -997,7 +1007,9 @@ class Client:
 
         return data
 
-    async def view_manga(self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = None) -> Manga:
+    async def view_manga(
+        self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
+    ) -> Manga:
         """|coro|
 
         The method will fetch a Manga from the MangaDex API.
@@ -1211,3 +1223,188 @@ class Client:
         )
 
         return Manga(self, data)
+
+    def _delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
+        return self.request(route)
+
+    async def delete_manga(self, manga_id: str, /) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will delete a Manga from the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to delete.
+
+        Raises
+        -------
+        Forbidden
+            The update errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]:
+            The response payload.
+        """
+        data = await self._delete_manga(manga_id)
+
+        return data
+
+    def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
+        return self.request(route)
+
+    async def unfollow_manga(self, manga_id: str, /) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will unfollow a Manga for the logged in user in the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to unfollow.
+
+        Raises
+        -------
+        Forbidden
+            The request errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]
+            The response payload.
+        """
+        return await self._unfollow_manga(manga_id)
+
+    def _follow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
+        return self.request(route)
+
+    async def follow_manga(self, manga_id: str, /) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will follow a Manga for the logged in user in the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to unfollow.
+
+        Raises
+        -------
+        Forbidden
+            The request errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]
+            The response payload.
+        """
+        return await self._follow_manga(manga_id)
+
+    def _manga_feed(
+        self,
+        manga_id: str,
+        /,
+        *,
+        limit: int,
+        offset: int,
+        created_at_since: Optional[datetime.datetime],
+        updated_at_since: Optional[datetime.datetime],
+        published_at_since: Optional[datetime.datetime],
+        order: Optional[manga.MangaOrderQuery],
+        includes: Optional[list[manga.MangaIncludes]],
+    ) -> Response[GetChapterFeedResponse]:
+        route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if created_at_since:
+            query["createdAtSince"] = fmt(created_at_since)
+
+        if updated_at_since:
+            query["updatedAtSince"] = fmt(updated_at_since)
+
+        if published_at_since:
+            query["publishAtSince"] = fmt(published_at_since)
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = utils.php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    async def manga_feed(
+        self,
+        manga_id: str,
+        /,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method returns the specified manga's chapter feed.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga whose feed we are requesting.
+        limit: :class:`int`
+            Defaults to 100. The maximum amount of chapters to return in the response.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset for the request.
+        created_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their updated at date.
+        published_at_since: Optional[:class:`datedate.datetime`]
+            A start point to return chapters from based on their published at date.
+        order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
+            A query parameter to choose how the responses are ordered.
+            i.e. ``{"chapters": "desc"}``
+        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+            The list of options to include increased payloads for per chapter.
+            Defaults to these values.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were malformed.
+
+        Returns
+        --------
+        List[:class:`Chapter`]
+            The list of chapters returned from this request.
+        """
+        data = await self._manga_feed(
+            manga_id,
+            limit=limit,
+            offset=offset,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+            includes=includes,
+        )
+
+        return [Chapter(self, item) for item in data["results"]]

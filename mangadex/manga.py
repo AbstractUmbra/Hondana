@@ -27,6 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
 from .artist import Artist
+from .chapter import Chapter
 from .cover import Cover
 from .tags import Tag
 from .utils import MISSING
@@ -360,3 +361,133 @@ class Manga:
         )
 
         return self.__class__(self._http, data)
+
+    async def delete(self) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will delete a Manga from the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to delete.
+
+        Raises
+        -------
+        Forbidden
+            The update errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]:
+            The response payload.
+        """
+
+        return await self._http._delete_manga(self.id)
+
+    async def unfollow(self) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will unfollow the current Manga for the logged in user in the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to unfollow.
+
+        Raises
+        -------
+        Forbidden
+            The request errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]
+            The response payload.
+        """
+        return await self._http._unfollow_manga(self.id)
+
+    async def follow(self) -> dict[str, Literal["ok", "error"]]:
+        """|coro|
+
+        This method will follow the current Manga for the logged in user in the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID of the manga to unfollow.
+
+        Raises
+        -------
+        Forbidden
+            The request errored due to authentication failure.
+        NotFound
+            The specified manga does not exist.
+
+        Returns
+        --------
+        Dict[str, Literal[``"ok"``, ``"error"``]]
+            The response payload.
+        """
+        return await self._http._follow_manga(self.id)
+
+    async def feed(
+        self,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method returns the current manga's chapter feed.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 100. The maximum amount of chapters to return in the response.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset for the request.
+        created_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their updated at date.
+        published_at_since: Optional[:class:`datedate.datetime`]
+            A start point to return chapters from based on their published at date.
+        order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
+            A query parameter to choose how the responses are ordered.
+            i.e. ``{"chapters": "desc"}``
+        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+            The list of options to include increased payloads for per chapter.
+            Defaults to these values.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were malformed.
+
+        Returns
+        --------
+        List[:class:`Chapter`]
+            The list of chapters returned from this request.
+        """
+        data = await self._http._manga_feed(
+            self.id,
+            limit=limit,
+            offset=offset,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+            includes=includes,
+        )
+
+        return [Chapter(self._http, item) for item in data["results"]]

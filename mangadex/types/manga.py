@@ -29,6 +29,7 @@ from .tags import TagResponse
 
 
 __all__ = (
+    "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaResponse",
@@ -46,6 +47,11 @@ MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 MangaIncludes = Literal["author", "artist", "cover_art"]
+
+
+class MangaOrderQuery(TypedDict, total=False):
+    volume: Literal["asc", "desc"]
+    chapter: Literal["asc", "desc"]
 
 
 class MangaLinks(TypedDict, total=False):

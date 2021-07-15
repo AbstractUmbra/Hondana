@@ -50,14 +50,14 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Create Manga                                          | [x]          | Done. Unsure if I can test this... |
 | Get Manga Volumes & Chapters                          | [x]          | Done.                              |
 | View Manga                                            | [x]          | Done.                              |
-| Update Manga                                          | [x]          | Soon:tm:                           |
-| Delete Manga                                          | [ ]          | Soon:tm:                           |
+| Update Manga                                          | [x]          | Done.                              |
+| Delete Manga                                          | [x]          | Done.                              |
 | Add Manga to CustomList                               | [ ]          | Soon:tm:                           |
 | Remove Manga from CustomList                          | [ ]          | Soon:tm:                           |
 | Get logged in User followed Manga feed (Chapter list) | [x]          | Done.                              |
-| Unfollow Manga                                        | [ ]          | Soon:tm:                           |
-| Follow Manga                                          | [ ]          | Soon:tm:                           |
-| Manga Feed                                            | [ ]          | Soon:tm:                           |
+| Unfollow Manga                                        | [x]          | Done.                              |
+| Follow Manga                                          | [x]          | Done.                              |
+| Manga Feed                                            | [x]          | Soon:tm:                           |
 | Manga Read Markers                                    | [ ]          | Soon:tm:                           |
 | Manga Read Markers (grouped)                          | [ ]          | Soon:tm:                           |
 | Get a random Manga                                    | [ ]          | Soon:tm:                           |
