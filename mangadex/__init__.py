@@ -38,6 +38,8 @@ from .cover import Cover
 from .errors import *
 from .http import HTTPClient as Client
 from .manga import Manga
+from .tags import Tags
+from .utils import TAGS as MANGA_TAGS
 
 
 class VersionInfo(NamedTuple):
@@ -48,7 +50,6 @@ class VersionInfo(NamedTuple):
     serial: int
 
 
-__version__ = "0.1.0"
 version_info = VersionInfo(major=0, minor=1, micro=0, releaselevel="alpha", serial=0)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
