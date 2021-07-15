@@ -52,6 +52,7 @@ class Artist:
     version: :class:`int`
         The version revision of this artist.
     """
+
     __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
     def __init__(self, http: Client, payload: ArtistResponse) -> None:
