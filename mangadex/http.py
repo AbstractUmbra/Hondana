@@ -26,6 +26,7 @@ from __future__ import annotations
 import datetime
 import json
 import logging
+import pathlib
 import sys
 from typing import TYPE_CHECKING, Any, ClassVar, Coroutine, Optional, TypeVar, Union
 from urllib.parse import quote as _uriquote
@@ -41,12 +42,14 @@ from .manga import Manga
 
 
 if TYPE_CHECKING:
+    from .tags import Tags
+    from .types import manga
     from .types.author import GetAuthorResponse
     from .types.chapter import GetChapterFeedResponse
     from .types.cover import GetCoverResponse
-    from .types.manga import ViewMangaResponse
     from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
     from .types.query import GetUserFeedQuery
+    from .types.tags import GetTagListResponse
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -56,6 +59,9 @@ __all__ = ("HTTPClient", "Route")
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel("DEBUG")
 EPOCH = datetime.datetime.fromtimestamp(0)
+TAGS = utils.TAGS
+
+_PROJECT_DIR = pathlib.Path(__file__)
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
@@ -67,6 +73,10 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
         pass
 
     return text
+
+
+def fmt(in_: datetime.datetime) -> str:
+    return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
 class Route:
@@ -228,7 +238,7 @@ class HTTPClient:
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
 
-        if 300 > response.status >= 200:
+        if not (300 > response.status >= 200):
             text = await response.text()
             LOGGER.debug("Error (code %d) when trying to refresh a token: %s", text, response.status)
             raise RefreshError(text, response.status, self.__last_refresh)
@@ -358,7 +368,25 @@ class HTTPClient:
                 return data
             raise APIException(str(data), response.status)
 
-    def _get_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[ViewMangaResponse]:
+    def _update_tags(self) -> Response[list[GetTagListResponse]]:
+        route = Route("GET", "/manga/tag")
+        return self.request(route)
+
+    async def update_tags(self) -> None:
+        data = await self._update_tags()
+
+        tags: dict[str, str] = {}
+
+        for tag in data:
+            name_key = tag["data"]["attributes"]["name"]
+            name = name_key.get("en", next(iter(name_key))).title()
+            tags[name] = tag["data"]["id"]
+
+        path = _PROJECT_DIR.parent / "extras" / "tags.json"
+        with open(path, "w") as fp:
+            json.dump(tags, fp, indent=4)
+
+    def _get_manga(self, manga_id: str, includes: Optional[list[str]]) -> Response[manga.ViewMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         includes = includes or ["artist", "cover_url", "author"]
@@ -449,9 +477,6 @@ class HTTPClient:
     ) -> Response[GetChapterFeedResponse]:
         route = Route("GET", "/user/follows/manga/feed")
 
-        def fmt(in_: datetime.datetime) -> str:
-            return f"{in_:%Y-%m-%dT%H:%M:%S}"
-
         query = {}
         query["limit"] = limit
         query["offset"] = offset
@@ -492,9 +517,11 @@ class HTTPClient:
         Parameters
         -----------
         limit: :class:`int`
-            Defaults to 100. This is the limit of manga that is returned in this request, it is clamped at 500 as that is the max in the API.
+            Defaults to 100. This is the limit of manga that is returned in this request,
+            it is clamped at 500 as that is the max in the API.
         offset: :class:`int`
-            Defaults to 0. This is the pagination offset, the number must be greater than 0. If set lower than 0 then it is set to 0.
+            Defaults to 0. This is the pagination offset, the number must be greater than 0.
+            If set lower than 0 then it is set to 0.
         translated_languages: Optional[list[:class:`str`]]
             A list of language codes to return chapters for.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -507,13 +534,8 @@ class HTTPClient:
             A query parameter to choose the 'order by' response from the API.
 
         .. note::
-            If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters, then the API will return oldest first based on creation date.
-
-        Examples
-        ---------
-        Requesting your feed::
-            last_week = datetime.datetime.utcnow() - datetime.timedelta(days=7)
-            await Client.get_my_feed(limit=10, offset=0, translated_languages=["en", "br"], created_at_since=last_week, order={"createdAt": "desc"})
+            If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
+            then the API will return oldest first based on creation date.
 
         Raises
         -------
@@ -540,7 +562,7 @@ class HTTPClient:
             order=order,
         )
 
-        if data.get("result", True) == "error":
+        if data.get("result", None) == "error":
             raise BadRequest("The api query was malformed")
 
         chapters: list[Chapter] = []
@@ -548,3 +570,139 @@ class HTTPClient:
             chapters.append(Chapter(self, item))
 
         return chapters
+
+    def _search_manga(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        title: Optional[str],
+        authors: Optional[list[str]],
+        artists: Optional[list[str]],
+        year: Optional[int],
+        included_tags: Optional[Tags],
+        excluded_tags: Optional[Tags],
+        status: Optional[list[manga.MangaStatus]],
+        original_langauge: Optional[list[str]],
+        publication_demographic: Optional[list[manga.PublicationDemographic]],
+        ids: Optional[list[str]],
+        content_rating: Optional[list[manga.ContentRating]],
+        created_at_since: Optional[datetime.datetime],
+        updated_at_since: Optional[datetime.datetime],
+        order: Optional[GetUserFeedQuery],
+        includes: Optional[list[manga.MangaIncludes]],
+    ) -> Response[manga.MangaSearchResponse]:
+        route = Route("GET", "/manga")
+
+        query = {}
+
+        query["limit"] = limit
+        query["offset"] = offset
+        if title:
+            query["title"] = title
+
+        if authors:
+            query["authors"] = authors
+
+        if artists:
+            query["artist"] = artists
+
+        if year:
+            query["year"] = year
+
+        if included_tags:
+            query["includedTags"] = included_tags.tags
+            query["includedTagsMode"] = included_tags.mode
+
+        if excluded_tags:
+            query["excludedTags"] = excluded_tags.tags
+            query["excludedTagsMode"] = excluded_tags.mode
+
+        if status:
+            query["status"] = status
+
+        if original_langauge:
+            query["originalLanguage"] = original_langauge
+
+        if publication_demographic:
+            query["publicationDemographic"] = publication_demographic
+
+        if ids:
+            query["ids"] = ids
+
+        if content_rating:
+            query["contentRating"] = content_rating
+
+        if created_at_since:
+            query["createdAtSince"] = fmt(created_at_since)
+
+        if updated_at_since:
+            query["updatedAtSince"] = fmt(updated_at_since)
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = utils.php_query_builder(query)
+
+        LOGGER.debug(resolved_query)
+
+        return self.request(route, params=resolved_query)
+
+    async def search_manga(
+        self,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        title: Optional[str] = None,
+        authors: Optional[list[str]] = None,
+        artists: Optional[list[str]] = None,
+        year: Optional[int] = None,
+        included_tags: Optional[Tags] = None,
+        excluded_tags: Optional[Tags] = None,
+        status: Optional[list[manga.MangaStatus]] = None,
+        original_langauge: Optional[list[str]] = None,
+        publication_demographic: Optional[list[manga.PublicationDemographic]] = None,
+        ids: Optional[list[str]] = None,
+        content_rating: Optional[list[manga.ContentRating]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        order: Optional[GetUserFeedQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = None,
+    ) -> list[Manga]:
+        ...
+
+        limit = min(max(1, limit), 500)
+        if offset < 0:
+            offset = 0
+
+        data = await self._search_manga(
+            limit=limit,
+            offset=offset,
+            title=title,
+            authors=authors,
+            artists=artists,
+            year=year,
+            included_tags=included_tags,
+            excluded_tags=excluded_tags,
+            status=status,
+            original_langauge=original_langauge,
+            publication_demographic=publication_demographic,
+            ids=ids,
+            content_rating=content_rating,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            order=order,
+            includes=includes,
+        )
+
+        if data.get("result", None) == "error":
+            raise BadRequest("The API query for search was malformed.")
+
+        manga: list[Manga] = []
+        for item in data["results"]:
+            manga.append(Manga(self, item))
+
+        return manga

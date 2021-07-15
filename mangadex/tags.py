@@ -21,35 +21,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from typing import Optional
 
-__title__ = "mangadex"
-__author__ = "AbstractUmbra"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.1.0a"
-
-import logging
-from typing import Literal, NamedTuple
-
-from . import utils
-from .artist import Artist
-from .author import Author
-from .cover import Cover
-from .errors import *
-from .http import HTTPClient as Client
-from .manga import Manga
-from .tags import Tags
-from .utils import TAGS as MANGA_TAGS
+from .utils import TAGS
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+__all__ = ("Tags",)
 
 
-version_info = VersionInfo(major=0, minor=1, micro=0, releaselevel="alpha", serial=0)
+class Tags:
+    def __init__(self, *tags: str, mode: str = "AND"):
+        self._tags = list(tags)
+        self.tags: Optional[list[str]] = None
+        self.mode = mode.upper()
+        if self.mode not in {"AND", "OR"}:
+            raise TypeError("Tags mode has to be 'AND' or 'OR'.")
+        self.set_tags()
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+    def __repr__(self) -> str:
+        if self.tags is None:
+            tags = self.set_tags()
+        else:
+            tags = self.tags
+
+        assert self.tags is not None
+        if len(self.tags) > 5:
+            tags = ", ".join(self.tags[:5])
+            tags += "..."
+        else:
+            tags = ", ".join(self.tags)
+        return f"<Tags mode={self.mode}>"
+
+    def set_tags(self) -> list[str]:
+        tags = []
+        for tag in self._tags:
+            tags.append(TAGS.get(tag.title()))
+
+        if not tags:
+            raise ValueError("No tags passed matched any valid MangaDex tags.")
+
+        self.tags = tags
+        return self.tags

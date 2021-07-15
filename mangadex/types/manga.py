@@ -25,12 +25,26 @@ DEALINGS IN THE SOFTWARE.
 from typing import Literal, Optional, TypedDict
 
 from .relationship import RelationshipResponse
-from .shared import TagResponse
+from .tags import TagResponse
+
+
+__all__ = (
+    "MangaLinks",
+    "MangaAttributesResponse",
+    "MangaResponse",
+    "ViewMangaResponse",
+    "MangaSearchResponse",
+    "MangaStatus",
+    "PublicationDemographic",
+    "ContentRating",
+    "MangaIncludes",
+)
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-PublicationDemographic = Literal["shouned", "shoujo", "josei", "seinen"]
+PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen", "none"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
+MangaIncludes = list[Literal["author", "artist", "cover_art"]]
 
 
 class MangaLinks(TypedDict, total=False):
@@ -79,3 +93,10 @@ class ViewMangaResponse(TypedDict):
     result: Literal["ok", "error"]
     data: MangaResponse
     relationships: list[RelationshipResponse]
+
+
+class MangaSearchResponse(TypedDict):
+    results: list[ViewMangaResponse]
+    limit: int
+    offset: int
+    total: int

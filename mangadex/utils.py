@@ -22,10 +22,13 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 import json
+import pathlib
 from typing import Any, Union
 
 
-__all__ = ("to_json", "php_query_builder")
+__all__ = ("to_json", "php_query_builder", "TAGS")
+
+_PROJECT_DIR = pathlib.Path(__file__)
 
 
 def to_json(obj: Any) -> str:
@@ -48,3 +51,8 @@ def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> 
             fmt.extend(f"{key}[{subkey}]={subvalue}" for subkey, subvalue in value.items())
 
     return "&".join(fmt)
+
+
+path = _PROJECT_DIR.parent / "extras" / "tags.json"
+with open(path, "r") as fp:
+    TAGS = json.load(fp)
