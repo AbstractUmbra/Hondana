@@ -50,7 +50,7 @@ class Manga:
     -----------
     id: :class:`str`
         The UUID associated to this manga.
-    alternative_titles: Dict[:class:`str`, :class:`str`]
+    alternate_titles: Dict[:class:`str`, :class:`str`]
         The alternative title mapping for the Manga.
         i.e. ``{"en": "Some Other Title"}``
     locked: :class:`bool`
@@ -367,11 +367,6 @@ class Manga:
 
         This method will delete a Manga from the MangaDex API.
 
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to delete.
-
         Raises
         -------
         Forbidden
@@ -392,11 +387,6 @@ class Manga:
 
         This method will unfollow the current Manga for the logged in user in the MangaDex API.
 
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to unfollow.
-
         Raises
         -------
         Forbidden
@@ -415,11 +405,6 @@ class Manga:
         """|coro|
 
         This method will follow the current Manga for the logged in user in the MangaDex API.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to unfollow.
 
         Raises
         -------

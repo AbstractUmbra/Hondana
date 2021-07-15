@@ -1017,6 +1017,8 @@ class Client:
 
         Parameters
         -----------
+        manga_id: :class:`str`
+            The UUID of the manga to view.
         includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
             This is a list of items to include in the query.
             Be default we request all optionals (artist, cover_art and author).
