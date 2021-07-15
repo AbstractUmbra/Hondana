@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 import json
 import pathlib
-from typing import Any, Union
+from typing import Any, Union, Mapping
 
 
 __all__ = ("to_json", "php_query_builder", "TAGS")
@@ -35,7 +35,7 @@ def to_json(obj: Any) -> str:
     return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
 
 
-def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> str:
+def php_query_builder(obj: Mapping[str, Union[str, int, bool, list[str], dict[str, str]]]) -> str:
     """
     {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
     ->
