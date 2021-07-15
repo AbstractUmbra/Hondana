@@ -24,6 +24,11 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
+from .relationship import RelationshipResponse
+
+
+__all__ = ("TagResponse", "GetTagListResponse")
+
 
 class TagAttributesResponse(TypedDict):
     name: dict[str, str]
@@ -36,3 +41,9 @@ class TagResponse(TypedDict):
     id: str
     type: Literal["tag"]
     attributes: TagAttributesResponse
+
+
+class GetTagListResponse(TypedDict):
+    result: Literal["ok"]
+    data: TagResponse
+    relationships: list[RelationshipResponse]
