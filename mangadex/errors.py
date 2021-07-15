@@ -23,17 +23,20 @@ DEALINGS IN THE SOFTWARE.
 """
 import datetime
 
+import aiohttp
 
-__all__ = ("APIException", "LoginError", "RefreshError", "NotFound", "BadRequest")
+
+__all__ = ("APIException", "LoginError", "RefreshError", "NotFound", "BadRequest", "Unauthorized", "Forbidden")
 
 
 class APIException(Exception):
     """Generic API error when the response code is a non 2xx error."""
 
-    def __init__(self, message: str, response_code: int) -> None:
+    def __init__(self, response: aiohttp.ClientResponse, message: str, response_code: int) -> None:
+        self.response = response
         self.message = message
         self.response_code = response_code
-        super().__init__(self.message, self.response_code)
+        super().__init__(self.response, self.message, self.response_code)
 
 
 class LoginError(APIException):
@@ -43,24 +46,47 @@ class LoginError(APIException):
 class RefreshError(APIException):
     """An error during the token refresh process."""
 
-    def __init__(self, message: str, response_code: int, last_refresh: datetime.datetime) -> None:
+    def __init__(
+        self, response: aiohttp.ClientResponse, message: str, response_code: int, last_refresh: datetime.datetime
+    ) -> None:
+        self.response = response
         self.message = message
         self.response_code = response_code
         self.last_refresh = last_refresh
-        super().__init__(message, response_code)
+        super().__init__(response, message, response_code)
 
 
 class NotFound(APIException):
     """An error for when the requested API item was not found."""
 
-    def __init__(self, message: str) -> None:
+    def __init__(self, response: aiohttp.ClientResponse, message: str) -> None:
+        self.response = response
         self.message = message
-        super().__init__(message, 404)
+        super().__init__(response, message, 404)
 
 
 class BadRequest(APIException):
     """An error for when the API query was malformed."""
 
-    def __init__(self, message: str) -> None:
+    def __init__(self, response: aiohttp.ClientResponse, message: str) -> None:
+        self.response = response
         self.message = message
-        super().__init__(message, 400)
+        super().__init__(response, message, 400)
+
+
+class Unauthorized(APIException):
+    """An error for when you are unauthorized on this API endpoint."""
+
+    def __init__(self, response: aiohttp.ClientResponse, message: str) -> None:
+        self.response = response
+        self.message = message
+        super().__init__(response, message, 401)
+
+
+class Forbidden(APIException):
+    """An error for when your authorization was rejected."""
+
+    def __init__(self, response: aiohttp.ClientResponse, message: str) -> None:
+        self.response = response
+        self.message = message
+        super().__init__(response, message, 403)

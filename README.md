@@ -25,8 +25,8 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | ---------------- | ------------ | -------------------------------------------------- |
 | Chapter Upload   | [ ]          | Soon:tm:                                           |
 | Manga            | [/]          | Partially implemented.                             |
-| Cover            | [ ]          | Soon:tm:                                           |
-| Author           | [ ]          | Soon:tm:                                           |
+| Cover            | [/]          | Soon:tm:                                           |
+| Author           | [/]          | Soon:tm:                                           |
 | Search           | [ ]          | Soon:tm:                                           |
 | Auth             | [x]          | Authentication is done per request, token handled. |
 | Scanlation Group | [ ]          | Soon:tm:                                           |
@@ -42,6 +42,28 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
+
+### In Progress: Manga
+| Endpoint                                              | Implemented? | Notes                              |
+| ----------------------------------------------------- | ------------ | ---------------------------------- |
+| Manga List                                            | [x]          | Done.                              |
+| Create Manga                                          | [x]          | Done. Unsure if I can test this... |
+| Get Manga Volumes & Chapters                          | [ ]          | Soon:tm:                           |
+| View Manga                                            | [x]          | Done.                              |
+| Update Manga                                          | [ ]          | Soon:tm:                           |
+| Delete Manga                                          | [ ]          | Soon:tm:                           |
+| Add Manga to CustomList                               | [ ]          | Soon:tm:                           |
+| Remove Manga from CustomList                          | [ ]          | Soon:tm:                           |
+| Get logged in User followed Manga feed (Chapter list) | [x]          | Done.                              |
+| Unfollow Manga                                        | [ ]          | Soon:tm:                           |
+| Follow Manga                                          | [ ]          | Soon:tm:                           |
+| Manga Feed                                            | [ ]          | Soon:tm:                           |
+| Manga Read Markers                                    | [ ]          | Soon:tm:                           |
+| Manga Read Markers (grouped)                          | [ ]          | Soon:tm:                           |
+| Get a random Manga                                    | [ ]          | Soon:tm:                           |
+| Tag list                                              | [x]          | Soon:tm:                           |
+| Get a Manga reading status                            | [ ]          | Soon:tm:                           |
+| Update Manga reading status                           | [ ]          | Soon:tm:                           |
 
 ## Examples
 Please take a look at the [examples](../mangadex.py/mangadex/examples/) directory for working examples.

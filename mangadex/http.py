@@ -37,7 +37,15 @@ from . import __version__, utils
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
-from .errors import APIException, BadRequest, LoginError, NotFound, RefreshError
+from .errors import (
+    APIException,
+    BadRequest,
+    Forbidden,
+    LoginError,
+    NotFound,
+    RefreshError,
+    Unauthorized,
+)
 from .manga import Manga
 
 
@@ -218,7 +226,7 @@ class Client:
 
         if data["result"] == "error":
             text = await response.text()
-            raise LoginError(text, response.status)
+            raise LoginError(response, text, response.status)
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
@@ -258,10 +266,10 @@ class Client:
         if not (300 > response.status >= 200):
             text = await response.text()
             LOGGER.debug("Error (code %d) when trying to refresh a token: %s", text, response.status)
-            raise RefreshError(text, response.status, self.__last_refresh)
+            raise RefreshError(response, text, response.status, self.__last_refresh)
 
         if data["result"] == "error":
-            raise RefreshError("The API reported an error when refreshing the token", 200, self.__last_refresh)
+            raise RefreshError(response, "The API reported an error when refreshing the token", 200, self.__last_refresh)
 
         self._token = data["token"]["session"]
         return self._token
@@ -312,7 +320,7 @@ class Client:
         if not (300 > response.status >= 200) or data["result"] == "error":
             text = await response.text()
             LOGGER.debug("Hit an error (code %d) when checking token auth: %s", text, response.status)
-            raise APIException(text, response.status)
+            raise APIException(response, text, response.status)
 
         if data["isAuthenticated"] is True:
             LOGGER.debug("Token is still valid: %s", self._token[:20])
@@ -335,7 +343,7 @@ class Client:
             data: dict[str, str] = await response.json()
 
         if not (300 > response.status >= 200) or data["result"] != "ok":
-            raise APIException("Unable to logout", response.status)
+            raise APIException(response, "Unable to logout", response.status)
 
     async def request(self, route: Route, **kwargs: Any) -> Any:
         """|coro|
@@ -377,7 +385,16 @@ class Client:
 
             if 300 > response.status >= 200:
                 return data
-            raise APIException(str(data), response.status)
+
+            if response.status == 400:
+                raise BadRequest(response, str(data))
+            elif response.status == 401:
+                raise Unauthorized(response, str(data))
+            elif response.status == 403:
+                raise Forbidden(response, str(data))
+            elif response.status == 404:
+                raise NotFound(response, str(data))
+            raise APIException(response, str(data), response.status)
 
     def _update_tags(self) -> Response[list[GetTagListResponse]]:
         route = Route("GET", "/manga/tag")
@@ -436,9 +453,6 @@ class Client:
         """
         data = await self._get_manga(manga_id, includes)
 
-        if data["result"] == "error":
-            raise NotFound(f"Manga with the ID {manga_id} could not be found")
-
         return Manga(self, data)
 
     def _get_author(self, author_id: str) -> Response[GetAuthorResponse]:
@@ -461,9 +475,6 @@ class Client:
             The Author returned from the API.
         """
         data = await self._get_author(author_id)
-
-        if data["result"] == "error":
-            raise NotFound(f"Author with the ID {author_id} could not be found.")
 
         author_data = data["data"]
 
@@ -494,7 +505,6 @@ class Client:
         .. note::
             If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
 
-
         Raises
         -------
         NotFound
@@ -506,9 +516,6 @@ class Client:
             The Cover returned from the API.
         """
         data = await self._get_cover(cover_id, includes=includes)
-
-        if data["result"] == "error":
-            raise NotFound(f"A Cover with the ID {cover_id} could not be found.")
 
         return Cover(self, data)
 
@@ -586,7 +593,6 @@ class Client:
             If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
             then the API will return oldest first based on creation date.
 
-
         Raises
         -------
         BadRequest
@@ -611,9 +617,6 @@ class Client:
             published_at_since=published_at_since,
             order=order,
         )
-
-        if data.get("result", None) == "error":
-            raise BadRequest("The api query was malformed")
 
         chapters: list[Chapter] = []
         for item in data["results"]:
@@ -804,11 +807,175 @@ class Client:
             includes=includes,
         )
 
-        if data.get("result", None) == "error":
-            raise BadRequest("The API query for search was malformed.")
-
         manga: list[Manga] = []
         for item in data["results"]:
             manga.append(Manga(self, item))
 
         return manga
+
+    def _create_manga(
+        self,
+        *,
+        title: dict[str, str],
+        alt_titles: Optional[list[dict[str, str]]],
+        description: Optional[dict[str, str]],
+        authors: Optional[list[str]],
+        artists: Optional[list[str]],
+        links: Optional[manga.MangaLinks],
+        original_language: Optional[str],
+        last_volume: Optional[str],
+        last_chapter: Optional[str],
+        publication_demographic: Optional[manga.PublicationDemographic],
+        status: Optional[manga.MangaStatus],
+        year: Optional[int],
+        content_rating: Optional[manga.ContentRating],
+        tags: Optional[QueryTags],
+        mod_notes: Optional[str],
+        version: int,
+    ) -> Response[manga.ViewMangaResponse]:
+
+        query = {}
+        query["title"] = title
+        query["version"] = version
+
+        if alt_titles:
+            query["altTitles"] = alt_titles
+
+        if description:
+            query["description"] = description
+
+        if authors:
+            query["authors"] = authors
+
+        if artists:
+            query["artists"] = artists
+
+        if links:
+            query["links"] = links
+
+        if original_language:
+            query["originalLanguage"] = original_language
+
+        if last_volume:
+            query["lastVolume"] = last_volume
+
+        if last_chapter:
+            query["lastChapter"] = last_chapter
+
+        if publication_demographic:
+            query["publicationDemographic"] = publication_demographic
+
+        if status:
+            query["status"] = status
+
+        if year:
+            query["year"] = year
+
+        if content_rating:
+            query["contentRating"] = content_rating
+
+        if tags:
+            query["tags"] = tags.tags
+
+        if mod_notes:
+            query["modNotes"] = mod_notes
+
+        resolved_query = utils.php_query_builder(query)
+
+        route = Route("POST", "/manga")
+        return self.request(route, params=resolved_query)
+
+    async def create_manga(
+        self,
+        *,
+        title: dict[str, str],
+        alt_titles: Optional[list[dict[str, str]]] = None,
+        description: Optional[dict[str, str]] = None,
+        authors: Optional[list[str]] = None,
+        artists: Optional[list[str]] = None,
+        links: Optional[manga.MangaLinks] = None,
+        original_language: Optional[str] = None,
+        last_volume: Optional[str] = None,
+        last_chapter: Optional[str] = None,
+        publication_demographic: Optional[manga.PublicationDemographic] = None,
+        status: Optional[manga.MangaStatus] = None,
+        year: Optional[int] = None,
+        content_rating: Optional[manga.ContentRating] = None,
+        tags: Optional[QueryTags] = None,
+        mod_notes: Optional[str] = None,
+        version: int,
+    ) -> Manga:
+        """|coro|
+
+        This method will create a Manga within the MangaDex API for you.
+
+        Parameters
+        -----------
+        title: Dict[:class:`str`, :class:`str`]
+            The manga titles in the format of ``language_key: title``
+            i.e. ``{"en": "Some Manga Title"}``
+        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+            The alternative titles in the format of ``language_key: title``
+            i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
+        description: Optional[Dict[:class:`str`, :class:`str`]]
+            The manga description in the format of ``language_key: description``
+            i.e. ``{"en": "My amazing manga where x y z happens"}``
+        authors: Optional[List[:class:`str`]]
+            The list of author UUIDs to credit to this manga.
+        artists: Optional[List[:class:`str`]]
+            The list of artist UUIDs to credit to this manga.
+        links: Optional[Dict[str, Any]]
+            The links relevant to the manga.
+            See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
+        original_language: Optional[:class:`str`]
+            The language key for the original language of the manga.
+        last_volume: Optional[:class:`str`]
+            The last volume to attribute to this manga.
+        last_chapter: Optional[:class:`str`]
+            The last chapter to attribute to this manga.
+        publication_demographic: Optional[Literal["shounen", "shoujo", "josei", "seinen"]]
+            The target publication demographic of this manga.
+        status: Optional[Literal["ongoing", "completed", "hiatus", "cancelled"]]
+            The status of the manga.
+        year: Optional[:class:`int`]
+            The release year of the manga.
+        content_rating: Optional[Literal["safe", "suggestive", "erotica", "pornographic"]]
+            The content rating of the manga.
+        tags: Optional[:class:`QueryTags`]
+            The QueryTags instance for the list of tags to attribute to this manga.
+        mod_notes: Optional[:class:`str`]
+            The moderator notes to add to this Manga.
+        version: :class:`int`
+            The revision version of this manga.
+
+
+        .. note::
+            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
+            Leave this as ``None`` unless you fit this criteria.
+
+        Returns
+        --------
+        :class:`Manga`
+            The manga that was returned after creation.
+        """
+
+        data = await self._create_manga(
+            title=title,
+            alt_titles=alt_titles,
+            description=description,
+            authors=authors,
+            artists=artists,
+            links=links,
+            original_language=original_language,
+            last_volume=last_volume,
+            last_chapter=last_chapter,
+            publication_demographic=publication_demographic,
+            status=status,
+            year=year,
+            content_rating=content_rating,
+            tags=tags,
+            mod_notes=mod_notes,
+            version=version,
+        )
+
+        return Manga(self, data)

@@ -71,6 +71,14 @@ BadRequest
 ~~~~~~~~~~
 .. autoclass:: BadRequest()
 
+Unauthorized
+~~~~~~~~~~~~
+.. autoclass:: Unauthorized()
+
+Forbidden
+~~~~~~~~~
+.. autoclass:: Forbidden()
+
 
 Utilities
 ---------

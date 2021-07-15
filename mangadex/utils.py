@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 import json
 import pathlib
-from typing import Any, Union, Mapping
+from typing import Any, Mapping, Union
 
 
 __all__ = ("to_json", "php_query_builder", "TAGS")
