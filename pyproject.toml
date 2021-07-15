@@ -33,6 +33,10 @@ packages = [
 python = "^3.9"
 aiohttp = "^3.7.4"
 
+sphinx = "^4.0.0"
+sphinxcontrib-trio = "*"
+furo = "*"
+
 [tool.poetry.extras]
 docs = ["sphinx sphinxcontrib-trio furo"]
 
@@ -41,10 +45,6 @@ black = "^21.6b0"
 isort = "^5.9.2"
 flake8-isort = "^4.0.0"
 flake8-black = "^0.2.1"
-
-sphinx = "^4.0.0"
-sphinxcontrib-trio = "*"
-furo = "*"
 
 [tool.poetry.scripts]
 version = "mangadex.__main__:show_version"
