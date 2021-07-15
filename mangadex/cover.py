@@ -102,7 +102,7 @@ class Cover:
 
         Parameters
         -----------
-        type: Optional[Literal["256", "512"]]
+        type: Optional[Literal[``"256"``, ``"512"``]]
             Defaults to ``None`` to return original quality.
             Specifies the return image dimensions.
 
