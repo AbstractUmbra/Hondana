@@ -99,17 +99,17 @@ def fmt(in_: datetime.datetime) -> str:
 
 
 class Route:
-    """A helper class for instanciating a HTTP method to MangaDex.
+    """A helper class for instantiating a HTTP method to MangaDex.
 
     Parameters
     -----------
     verb: :class:`str`
         The HTTP verb you wish to perform, e.g. ``"POST"``
     path: :class:`str`
-        The prepended path to the API endpoing you with to target.
+        The prepended path to the API endpoint you with to target.
         e.g. ``"/manga/{manga_id}"``
     parameters: Any
-        This is a special cased kwargs. Anything passed to these will substitude it's key to value in the `path`.
+        This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
         E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
         making ``"manga/..."``
     """
@@ -993,7 +993,7 @@ class Client:
         Returns
         --------
         Dict[str, Any]
-            The raw payload from mangadex. There is not guarantee of the keys here.
+            The raw payload from mangadex. There is no guarantee of the keys here.
         """
         data = await self._get_manga_volumes_and_chapters(manga_id=manga_id, translated_languages=translated_language)
 
@@ -1379,7 +1379,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_langauges: List[:class:`str`]
+        translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
