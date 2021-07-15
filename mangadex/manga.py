@@ -119,7 +119,7 @@ class Manga:
             return None
 
         if "attributes" in author:
-            return Author(self._http, author, author["attributes"])  # type: ignore #TODO: Investigate typing.Protocol or abcs here.
+            return Author(self._http, author, author["attributes"])  # type: ignore #TODO: typing.Protocol or abcs here.
 
         return await self._http.get_author(author["id"])
 
@@ -166,7 +166,8 @@ class Manga:
         """This method will return the artist of the parent Manga.
 
         .. note::
-            If the parent manga was **not** requested with the "artist" `includes[]` query parameter then this method will return ``None``.
+            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
+            then this method will return ``None``.
         """
 
         artist = None

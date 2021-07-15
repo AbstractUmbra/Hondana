@@ -21,38 +21,44 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-import json
-import pathlib
-from typing import Any, Union
+from typing import Optional
+
+from .utils import TAGS
 
 
-__all__ = ("to_json", "php_query_builder", "TAGS")
-
-_PROJECT_DIR = pathlib.Path(__file__)
+__all__ = ("Tags",)
 
 
-def to_json(obj: Any) -> str:
-    return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+class Tags:
+    def __init__(self, *tags: str, mode: str = "AND"):
+        self._tags = list(tags)
+        self.tags: Optional[list[str]] = None
+        self.mode = mode.upper()
+        if self.mode not in {"AND", "OR"}:
+            raise TypeError("Tags mode has to be 'AND' or 'OR'.")
+        self.set_tags()
 
+    def __repr__(self) -> str:
+        if self.tags is None:
+            tags = self.set_tags()
+        else:
+            tags = self.tags
 
-def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> str:
-    """
-    {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
-    ->
-    "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
-    """
-    fmt = []
-    for key, value in obj.items():
-        if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={value}")
-        elif isinstance(value, list):
-            fmt.extend(f"{key}[]={item}" for item in value)
-        elif isinstance(value, dict):
-            fmt.extend(f"{key}[{subkey}]={subvalue}" for subkey, subvalue in value.items())
+        assert self.tags is not None
+        if len(self.tags) > 5:
+            tags = ", ".join(self.tags[:5])
+            tags += "..."
+        else:
+            tags = ", ".join(self.tags)
+        return f"<Tags mode={self.mode}>"
 
-    return "&".join(fmt)
+    def set_tags(self) -> list[str]:
+        tags = []
+        for tag in self._tags:
+            tags.append(TAGS.get(tag.title()))
 
+        if not tags:
+            raise ValueError("No tags passed matched any valid MangaDex tags.")
 
-path = _PROJECT_DIR.parent / "extras" / "tags.json"
-with open(path, "r") as fp:
-    TAGS: dict[str, list[str]] = json.load(fp)
+        self.tags = tags
+        return self.tags
