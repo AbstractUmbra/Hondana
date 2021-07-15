@@ -24,6 +24,7 @@ packages = [
     { include = "mangadex" },
     { include = "mangadex/**/*.py" },
     { include = "mangadex/py.typed" },
+    { include = "mangadex/extras/tags.json" },
 ]
 
 [tool.poetry.urls]
