@@ -73,7 +73,7 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
 
-__all__ = ("HTTPClient", "Route")
+__all__ = ("Client", "Route")
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel("DEBUG")
