@@ -33,6 +33,13 @@ packages = [
 python = "^3.9"
 aiohttp = "^3.7.4"
 
+sphinx = "^4.0.0"
+sphinxcontrib-trio = "*"
+furo = "*"
+
+[tool.poetry.extras]
+docs = ["sphinx sphinxcontrib-trio furo"]
+
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
 flake8 = "^3.9.2"
