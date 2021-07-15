@@ -260,12 +260,11 @@ class Client:
             LOGGER.debug("Error (code %d) when trying to refresh a token: %s", text, response.status)
             raise RefreshError(text, response.status, self.__last_refresh)
 
-        if self._token is not None and self._token == data["token"]["session"]:
-            LOGGER.debug("Token refreshed successfully and matches.")
-            return self._token
+        if data["result"] == "error":
+            raise RefreshError("The API reported an error when refreshing the token", 200, self.__last_refresh)
 
-        # Theoretically unreachable
-        raise RefreshError("Token was refreshed but a new token was given?", 200, self.__last_refresh)
+        self._token = data["token"]["session"]
+        return self._token
 
     async def _try_token(self) -> str:
         """|coro|
@@ -467,9 +466,8 @@ class Client:
             raise NotFound(f"Author with the ID {author_id} could not be found.")
 
         author_data = data["data"]
-        attributes = author_data["attributes"]
 
-        return Author(self, author_data, attributes)
+        return Author(self, author_data)
 
     def _get_cover(self, cover_id: str, includes: list[str]) -> Response[GetCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
