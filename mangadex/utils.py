@@ -58,7 +58,7 @@ def php_query_builder(obj: Mapping[str, Union[str, int, bool, list[str], dict[st
     fmt = []
     for key, value in obj.items():
         if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={value}")
+            fmt.append(f"{key}={value}".lower())
         elif isinstance(value, list):
             fmt.extend(f"{key}[]={item}" for item in value)
         elif isinstance(value, dict):

@@ -37,6 +37,7 @@ from typing import (
     Optional,
     TypeVar,
     Union,
+    overload,
 )
 from urllib.parse import quote as _uriquote
 
@@ -62,10 +63,10 @@ from .utils import MISSING
 if TYPE_CHECKING:
     from .tags import QueryTags
     from .types import manga
+    from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.author import GetAuthorResponse
     from .types.chapter import GetChapterFeedResponse
     from .types.cover import GetCoverResponse
-    from .types.payloads import CheckPayload, LoginPayload, RefreshPayload
     from .types.query import GetUserFeedQuery
     from .types.tags import GetTagListResponse
 
@@ -1426,6 +1427,53 @@ class Client:
             return self.request(route, params=resolved_query)
 
         return self.request(route)
+
+    @overload
+    def _manga_read_markers(
+        self, manga_ids: list[str], /, *, grouped: Literal[True]
+    ) -> Response[manga.MangaGroupedReadMarkersResponse]:
+        ...
+
+    @overload
+    def _manga_read_markers(
+        self, manga_ids: list[str], /, *, grouped: Literal[False]
+    ) -> Response[manga.MangaReadMarkersResponse]:
+        ...
+
+    def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: bool = False):
+        if grouped is False:
+            if len(manga_ids) != 1:
+                raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
+
+            id_ = manga_ids[0]
+            route = Route("GET", "/manga/{manga_id}/read", manga_id=id_)
+            return self.request(route)
+
+        route = Route("GET", "/manga/read")
+        query = {"ids": manga_ids, "grouped": True}
+        resolved_query = utils.php_query_builder(query)
+        return self.request(route, params=resolved_query)
+
+    async def manga_read_markers(
+        self, *, manga_ids: list[str]
+    ) -> Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]:
+        """|coro|
+
+        This method will return the read chapters of the passed manga if singular, or all manga if plural.
+
+        Parameters
+        -----------
+        manga_ids: List[:class:`str`]
+            A list of a single manga UUID or a list of many manga UUIDs.
+
+        Returns
+        --------
+        Union[Dict[]]
+
+        """
+        if len(manga_ids) == 1:
+            return await self._manga_read_markers(manga_ids, grouped=False)
+        return await self._manga_read_markers(manga_ids, grouped=True)
 
     async def get_random_manga(
         self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
