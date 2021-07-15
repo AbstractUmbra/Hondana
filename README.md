@@ -1,6 +1,6 @@
 <h1 align="center">mangadex.py</h1>
 
-<div style="text-align:center">
+<div align="center">
     <a href='https://mangadexpy.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/mangadexpy/badge/?version=latest' alt='Documentation Status' />
     </a>
@@ -12,7 +12,11 @@
     </a>
 </div>
 
+<br>
+
 A lightweight and asynchronous wrapper around the [Mangadex v5 API](https://api.mangadex.org/docs.html).
+
+<br>
 
 ## Features
 **NOTE** This library is still in development, I will list off the API methods and their progress here:
