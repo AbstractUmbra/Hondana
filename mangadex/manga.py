@@ -440,6 +440,7 @@ class Manga:
         *,
         limit: int = 100,
         offset: int = 0,
+        translated_languages: Optional[list[str]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -456,11 +457,13 @@ class Manga:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
+        translated_langauges: List[:class:`str`]
+            A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their updated at date.
-        published_at_since: Optional[:class:`datedate.datetime`]
+        published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
         order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
             A query parameter to choose how the responses are ordered.
@@ -483,6 +486,7 @@ class Manga:
             self.id,
             limit=limit,
             offset=offset,
+            translated_languages=translated_languages,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,

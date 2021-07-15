@@ -60,7 +60,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Manga Feed                                            | [x]          | Soon:tm:                           |
 | Manga Read Markers                                    | [ ]          | Soon:tm:                           |
 | Manga Read Markers (grouped)                          | [ ]          | Soon:tm:                           |
-| Get a random Manga                                    | [ ]          | Soon:tm:                           |
+| Get a random Manga                                    | [x]          | Soon:tm:                           |
 | Tag list                                              | [x]          | Soon:tm:                           |
 | Get a Manga reading status                            | [ ]          | Soon:tm:                           |
 | Update Manga reading status                           | [ ]          | Soon:tm:                           |

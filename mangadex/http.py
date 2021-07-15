@@ -1317,6 +1317,7 @@ class Client:
         *,
         limit: int,
         offset: int,
+        translated_languages: Optional[list[str]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -1328,6 +1329,9 @@ class Client:
         query = {}
         query["limit"] = limit
         query["offset"] = offset
+
+        if translated_languages:
+            query["translatedLanguage"] = translated_languages
 
         if created_at_since:
             query["createdAtSince"] = fmt(created_at_since)
@@ -1355,6 +1359,7 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
+        translated_languages: Optional[list[str]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -1373,11 +1378,13 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
+        translated_langauges: List[:class:`str`]
+            A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their updated at date.
-        published_at_since: Optional[:class:`datedate.datetime`]
+        published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
         order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
             A query parameter to choose how the responses are ordered.
@@ -1400,6 +1407,7 @@ class Client:
             manga_id,
             limit=limit,
             offset=offset,
+            translated_languages=translated_languages,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
@@ -1408,3 +1416,31 @@ class Client:
         )
 
         return [Chapter(self, item) for item in data["results"]]
+
+    def _get_random_manga(self, *, includes: Optional[list[manga.MangaIncludes]]) -> Response[manga.ViewMangaResponse]:
+        route = Route("GET", "/manga/random")
+
+        if includes:
+            query = {"includes": includes}
+            resolved_query = utils.php_query_builder(query)
+            return self.request(route, params=resolved_query)
+
+        return self.request(route)
+
+    async def get_random_manga(
+        self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
+    ) -> Manga:
+        """|coro|
+
+        This method will return a random manga from the MangaDex API.
+
+        Parameters
+        -----------
+        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+            The optional includes for the manga payload.
+            Defaults to all three.
+
+        """
+        data = await self._get_random_manga(includes=includes)
+
+        return Manga(self, data)
