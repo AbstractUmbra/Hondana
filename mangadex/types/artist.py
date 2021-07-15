@@ -25,6 +25,9 @@ DEALINGS IN THE SOFTWARE.
 from typing import Literal, Optional, TypedDict
 
 
+__all__ = ("ArtistResponse", "ArtistAttributesResponse")
+
+
 class ArtistAttributesResponse(TypedDict):
     name: str
     imageUrl: Optional[str]

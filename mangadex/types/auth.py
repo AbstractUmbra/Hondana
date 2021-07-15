@@ -28,19 +28,19 @@ from typing import Literal, TypedDict
 __all__ = ("LoginPayload", "RefreshPayload", "CheckPayload")
 
 
-class __TokenDict(TypedDict):
+class _TokenDict(TypedDict):
     session: str
     refresh: str
 
 
 class LoginPayload(TypedDict):
     result: Literal["ok", "error"]
-    token: __TokenDict
+    token: _TokenDict
 
 
 class RefreshPayload(TypedDict):
     result: Literal["ok", "error"]
-    token: __TokenDict
+    token: _TokenDict
     message: str
 
 

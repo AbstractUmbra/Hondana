@@ -27,6 +27,9 @@ from typing import Literal, Optional, TypedDict
 from .relationship import RelationshipResponse
 
 
+__all__ = ("GetAuthorResponse", "AuthorResponse", "AuthorAttributesResponse")
+
+
 class AuthorAttributesResponse(TypedDict):
     name: str
     imageUrl: Optional[str]

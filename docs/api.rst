@@ -48,38 +48,6 @@ QueryTags
     :members:
 
 
-Exceptions
-----------
-
-APIException
-~~~~~~~~~~~~
-.. autoclass:: APIException()
-
-LoginError
-~~~~~~~~~~
-.. autoclass:: LoginError()
-
-RefreshError
-~~~~~~~~~~~~
-.. autoclass:: RefreshError()
-
-NotFound
-~~~~~~~~
-.. autoclass:: NotFound()
-
-BadRequest
-~~~~~~~~~~
-.. autoclass:: BadRequest()
-
-Unauthorized
-~~~~~~~~~~~~
-.. autoclass:: Unauthorized()
-
-Forbidden
-~~~~~~~~~
-.. autoclass:: Forbidden()
-
-
 Utilities
 ---------
 .. autoclass:: Route

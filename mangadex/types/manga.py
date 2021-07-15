@@ -29,17 +29,19 @@ from .tags import TagResponse
 
 
 __all__ = (
+    "MangaStatus",
+    "PublicationDemographic",
+    "ContentRating",
+    "MangaIncludes",
     "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaResponse",
     "ViewMangaResponse",
     "MangaSearchResponse",
-    "GetVolumesAndChapterResponse",
-    "MangaStatus",
-    "PublicationDemographic",
-    "ContentRating",
-    "MangaIncludes",
+    "GetMangaVolumesAndChaptersResponse",
+    "MangaReadMarkersResponse",
+    "MangaGroupedReadMarkersResponse",
 )
 
 
@@ -123,3 +125,13 @@ class _VolumesAndChaptersResponse(TypedDict, total=False):
 class GetMangaVolumesAndChaptersResponse(TypedDict):
     result: Literal["ok", "error"]
     volumes: Optional[dict[str, _VolumesAndChaptersResponse]]
+
+
+class MangaReadMarkersResponse(TypedDict):
+    result: Literal["ok"]
+    data: list[str]
+
+
+class MangaGroupedReadMarkersResponse(TypedDict):
+    result: Literal["ok"]
+    data: dict[str, list[str]]

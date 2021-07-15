@@ -27,6 +27,9 @@ from typing import Literal, Optional, TypedDict
 from .relationship import RelationshipResponse
 
 
+__all__ = ("GetCoverResponse", "CoverResponse", "CoverAttributesResponse")
+
+
 class CoverAttributesResponse(TypedDict):
     volume: Optional[str]
     fileName: str

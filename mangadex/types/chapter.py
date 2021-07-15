@@ -27,14 +27,14 @@ from typing import Literal, Optional, TypedDict
 from .relationship import RelationshipResponse
 
 
-__all__ = ("GetChapterFeedResponse", "ChapterAttributesResponse")
+__all__ = ("GetChapterFeedResponse", "GetChapterResponse", "ChapterResponse", "ChapterAttributesResponse")
 
 
-class ChapterAttributesOptionalResponse(TypedDict, total=False):
+class _ChapterAttributesOptionalResponse(TypedDict, total=False):
     uploader: Optional[str]
 
 
-class ChapterAttributesResponse(ChapterAttributesOptionalResponse):
+class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     title: Optional[str]
     volume: Optional[str]
     chapter: Optional[str]

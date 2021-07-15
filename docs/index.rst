@@ -11,6 +11,8 @@ Welcome to MangaDex.py's documentation!
    :caption: Contents:
 
    api
+   types
+   exceptions
 
 
 
