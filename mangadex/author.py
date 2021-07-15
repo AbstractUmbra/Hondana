@@ -29,7 +29,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .http import Client
-    from .types.author import AuthorAttributesResponse, AuthorResponse
+    from .types.author import AuthorResponse
 
 __all__ = ("Author",)
 

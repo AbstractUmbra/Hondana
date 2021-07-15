@@ -22,7 +22,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, Optional, TypedDict, TypeVar
+from typing import Literal, Optional, TypedDict
 
 from .relationship import RelationshipResponse
 from .tags import TagResponse
