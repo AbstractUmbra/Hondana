@@ -178,15 +178,15 @@ class Client:
 
         This private method will login to Mangadex with the login username and password to retrieve a JWT auth token.
 
-        Returns
-        --------
-        :class:`str`
-            The authentication token we will use.
-
         Raises
         -------
         LoginError
             The passed username and password are incorrect.
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we will use.
 
         .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
@@ -214,15 +214,15 @@ class Client:
 
         This private method will refresh the current set token (:attr:`._auth`)
 
-        Returns
-        --------
-        :class:`str`
-            The authentication token we just refreshed.
-
         Raises
         -------
         RefreshError
             We were unable to refresh the token.
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we just refreshed.
 
         .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
@@ -256,15 +256,15 @@ class Client:
         This private method will try and use the existing :attr:`_auth` to authenticate to the API.
         If this is unset, or returns a non-2xx response code, we will refresh the JWT / request another one.
 
-        Returns
-        --------
-        :class:`str`
-            The authentication token we generated, refreshed or already had that is still valid.
-
         Raises
         -------
         APIError
             Something went wrong with testing our authentication against the API.
+
+        Returns
+        --------
+        :class:`str`
+            The authentication token we generated, refreshed or already had that is still valid.
 
         .. note ::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
@@ -332,20 +332,15 @@ class Client:
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
-        Returns
-        --------
-        Any
-            The potential response data we got from the request.
-
-        Raises
-        -------
-        APIException
-            Something went wrong with this request.
-
         Raises
         -------
         APIException
             A generic exception raised when the HTTP response code is non 2xx.
+
+        Returns
+        --------
+        Any
+            The potential response data we got from the request.
         """
         if self.__session is None:
             self.__session = await self._generate_session()
@@ -401,14 +396,14 @@ class Client:
 
         return data
 
-    async def get_manga(self, manga_id: str, includes: Optional[list[str]] = None) -> Manga:
+    async def get_manga(self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = None) -> Manga:
         """|coro|
 
         The method will fetch a Manga from the Mangadex API.
 
         Parameters
         -----------
-        includes: Optional[List[:class:`str`]]
+        includes: Optional[Literal["author", "artist", "cover_art"]]
             This is a list of items to include in the query.
             Be default we request all optionals (artist, cover_art and author).
             Pass a new list of these strings to overwrite it.
@@ -417,6 +412,11 @@ class Client:
         -------
         NotFound
             The passed manga ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Manga`
+            The Manga that was returned from the API.
         """
         data = await self._get_manga(manga_id, includes)
 
@@ -438,6 +438,11 @@ class Client:
         -------
         NotFound
             The passed author ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Author`
+            The Author returned from the API.
         """
         data = await self._get_author(author_id)
 
@@ -467,6 +472,11 @@ class Client:
         -------
         NotFound
             The passed cover ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Cover`
+            The Cover returned from the API.
         """
         data = await self._get_cover(cover_id)
 
@@ -555,7 +565,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`~Chapter`]
+        List[:class:`Chapter`]
             Returns a list of Chapter instances.
         """
 
