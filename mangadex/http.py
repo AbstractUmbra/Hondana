@@ -373,6 +373,12 @@ class HTTPClient:
         return self.request(route)
 
     async def update_tags(self) -> None:
+        """|coro|
+
+        Convenience method for updating the local cache of tags.
+
+        This should ideally not need to be called by the end user but nevertheless it exists in the event MangaDex
+        add a new tag or similar."""
         data = await self._update_tags()
 
         tags: dict[str, str] = {}
@@ -451,6 +457,11 @@ class HTTPClient:
         """|coro|
 
         The method will fetch a Cover from the Mangadex API.
+
+        Parameters
+        -----------
+        cover_id: :class:`str`
+            The id of the cover we are fetching from the API.
 
         Raises
         -------
@@ -583,7 +594,7 @@ class HTTPClient:
         included_tags: Optional[Tags],
         excluded_tags: Optional[Tags],
         status: Optional[list[manga.MangaStatus]],
-        original_langauge: Optional[list[str]],
+        original_language: Optional[list[str]],
         publication_demographic: Optional[list[manga.PublicationDemographic]],
         ids: Optional[list[str]],
         content_rating: Optional[list[manga.ContentRating]],
@@ -621,8 +632,8 @@ class HTTPClient:
         if status:
             query["status"] = status
 
-        if original_langauge:
-            query["originalLanguage"] = original_langauge
+        if original_language:
+            query["originalLanguage"] = original_language
 
         if publication_demographic:
             query["publicationDemographic"] = publication_demographic
@@ -663,7 +674,7 @@ class HTTPClient:
         included_tags: Optional[Tags] = None,
         excluded_tags: Optional[Tags] = None,
         status: Optional[list[manga.MangaStatus]] = None,
-        original_langauge: Optional[list[str]] = None,
+        original_language: Optional[list[str]] = None,
         publication_demographic: Optional[list[manga.PublicationDemographic]] = None,
         ids: Optional[list[str]] = None,
         content_rating: Optional[list[manga.ContentRating]] = None,
@@ -672,8 +683,64 @@ class HTTPClient:
         order: Optional[GetUserFeedQuery] = None,
         includes: Optional[list[manga.MangaIncludes]] = None,
     ) -> list[Manga]:
-        ...
+        """|coro|
 
+        This method will perform a search based on the passed query parameters for manga.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 100. This is the limit of manga that is returned in this request,
+            it is clamped at 500 as that is the max in the API.
+        offset: :class:`int`
+            Defaults to 0. This is the pagination offset, the number must be greater than 0.
+            If set lower than 0 then it is set to 0.
+        title: Optional[:class:`str`]
+            The manga title or partial title to include in the search.
+        authors: Optional[List[:class:`str`]]
+            The author(s) uuids to include in the search.
+        artists: Optional[List[:class:`str`]]
+            The artist(s) uuids to include in the search.
+        year: Optional[:class:`int`]
+            The release year of the manga to include in the search.
+        included_tags: Optional[Tags]
+            An instance of mangadex.Tags to include in the search.
+        excluded_tags: Optional[Tags]
+            An instance of mangadex.Tags to include in the search.
+        status: Optional[list[manga.MangaStatus]]
+            The status(es) of manga to include in the search.
+        original_language: Optional[:class:`str`]
+            A list of language codes to include for the Manga's original language.
+            i.e. ``["en"]``
+        publication_demographic: Optional[List[manga.PublicationDemographic]]
+            The publication demographic(s) to limit the search to.
+        ids: Optional[:class:`str`]
+            A list of manga uuid(s) to limit the search to.
+        content_rating: Optional[list[manga.ContentRating]]
+            The content rating(s) to filter the search to.
+        created_at_since: Optional[datetime.datetime]
+            A (naive UTC) datetime instance we specify for searching.
+            Used for returning manga created *after* this date.
+        updated_at_since: Optional[datetime.datetime]
+            A (naive UTC) datetime instance we specify for searching.
+            Used for returning manga updated *after* this date.
+        order: Optional[]
+            A query parameter to choose the ordering of the response
+            i.e. ``{"createdAt": "desc"}``
+        includes: Optional[List[manga.MangaIncludes]]
+            A list of things to include in the returned manga response payloads.
+            i.e. ``["author", "cover_art", "artist"]``
+
+        Raises
+        -------
+        BadRequest
+            The parameters were invalid and the API request failed.
+
+        Returns
+        --------
+        List[Manga]
+            Returns a list of Manga instances.
+        """
         limit = min(max(1, limit), 500)
         if offset < 0:
             offset = 0
@@ -688,7 +755,7 @@ class HTTPClient:
             included_tags=included_tags,
             excluded_tags=excluded_tags,
             status=status,
-            original_langauge=original_langauge,
+            original_language=original_language,
             publication_demographic=publication_demographic,
             ids=ids,
             content_rating=content_rating,

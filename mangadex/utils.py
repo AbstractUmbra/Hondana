@@ -55,4 +55,4 @@ def php_query_builder(obj: dict[str, Union[str, list[str], dict[str, str]]]) -> 
 
 path = _PROJECT_DIR.parent / "extras" / "tags.json"
 with open(path, "r") as fp:
-    TAGS = json.load(fp)
+    TAGS: dict[str, list[str]] = json.load(fp)
