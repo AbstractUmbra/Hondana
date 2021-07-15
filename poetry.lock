@@ -564,7 +564,7 @@ docs = []
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "ed1ac061bf1fcff9a988dcbd26846e37d74ec985e136aecdc818870d5cf62ad3"
+content-hash = "02050cb7f38a229e718886196d05ec470a530a7b6688c99038ebd5d9a51796f8"
 
 [metadata.files]
 aiohttp = [
