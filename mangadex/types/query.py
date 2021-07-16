@@ -29,6 +29,18 @@ __all__ = ("GetUserFeedQuery",)
 
 
 class GetUserFeedQuery(TypedDict, total=False):
+    """
+    createdAt: Literal[``"asc"``, ``"desc"``]
+
+    updatedAt: Literal[``"asc"``, ``"desc"``]
+
+    publishAt: Literal[``"asc"``, ``"desc"``]
+
+    volume: Literal[``"asc"``, ``"desc"``]
+
+    chapter: Literal[``"asc"``, ``"desc"``]
+    """
+
     createdAt: Literal["asc", "desc"]
     updatedAt: Literal["asc", "desc"]
     publishAt: Literal["asc", "desc"]

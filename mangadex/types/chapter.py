@@ -35,6 +35,33 @@ class _ChapterAttributesOptionalResponse(TypedDict, total=False):
 
 
 class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
+    """
+    title: Optional[:class:`str`]
+
+    volume: Optional[:class:`str`]
+
+    chapter: Optional[:class:`str`]
+
+    translatedLanguage: :class:`str`
+
+    hash: :class:`str`
+
+    data: List[:class:`str`]
+
+    dataSaver: List[:class:`str`]
+
+    version: :class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+
+    publishAt: :class:`str`
+
+    uploader: :class:`str`
+        This key is optional.
+    """
+
     title: Optional[str]
     volume: Optional[str]
     chapter: Optional[str]
@@ -49,18 +76,46 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
 
 
 class ChapterResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"chapter"``]
+
+    attributes: :class:`ChapterAttributesResponse`
+    """
+
     id: str
     type: Literal["chapter"]
     attributes: ChapterAttributesResponse
 
 
 class GetChapterResponse(TypedDict):
-    result: Literal["ok", "err"]
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    data: :class:`ChapterResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+    """
+
+    result: Literal["ok", "error"]
     data: ChapterResponse
     relationships: list[RelationshipResponse]
 
 
 class GetChapterFeedResponse(TypedDict):
+    """
+    results: List[:class:`GetChapterResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
     results: list[GetChapterResponse]
     limit: int
     offset: int

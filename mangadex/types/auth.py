@@ -25,26 +25,56 @@ DEALINGS IN THE SOFTWARE.
 from typing import Literal, TypedDict
 
 
-__all__ = ("LoginPayload", "RefreshPayload", "CheckPayload")
+__all__ = ("TokenResponse", "LoginPayload", "RefreshPayload", "CheckPayload")
 
 
-class _TokenDict(TypedDict):
+class TokenResponse(TypedDict):
+    """
+    session: :class:`str`
+
+    refresh: :class:`str`
+    """
+
     session: str
     refresh: str
 
 
 class LoginPayload(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    token: :class:`TokenResponse`
+    """
+
     result: Literal["ok", "error"]
-    token: _TokenDict
+    token: TokenResponse
 
 
 class RefreshPayload(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    token: :class:`TokenResponse`
+
+    message: :class:`str`
+    """
+
     result: Literal["ok", "error"]
-    token: _TokenDict
+    token: TokenResponse
     message: str
 
 
 class CheckPayload(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    isAuthenticated: :class:`bool`
+
+    roles: List[:class:`str`]
+
+    permissions: List[:class:`str`]
+    """
+
     result: Literal["ok"]
     isAuthenticated: bool
     roles: list[str]

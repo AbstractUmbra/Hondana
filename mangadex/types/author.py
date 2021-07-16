@@ -24,6 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, Optional, TypedDict
 
+from .common import LocalisedString
 from .relationship import RelationshipResponse
 
 
@@ -31,21 +32,53 @@ __all__ = ("GetAuthorResponse", "AuthorResponse", "AuthorAttributesResponse")
 
 
 class AuthorAttributesResponse(TypedDict):
+    """
+    name: :class:`str`
+
+    imageUrl: Optional[:class:`str`]
+
+    biography: Dict[:class:`str`, :class:`str`]
+
+    version: :class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+    """
+
     name: str
     imageUrl: Optional[str]
-    biography: dict[str, str]
+    biography: LocalisedString
     version: int
     createdAt: str
     updatedAt: str
 
 
 class AuthorResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"author"``]
+
+    attributes: :class:`AuthorAttributesResponse`
+    """
+
     id: str
     type: Literal["author"]
     attributes: AuthorAttributesResponse
 
 
 class GetAuthorResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    data: :class:`AuthorResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+    """
+
     result: Literal["ok", "error"]
     data: AuthorResponse
     relationships: list[RelationshipResponse]

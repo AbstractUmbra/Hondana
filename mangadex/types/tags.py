@@ -24,6 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
+from .common import LocalisedString
 from .relationship import RelationshipResponse
 
 
@@ -31,19 +32,47 @@ __all__ = ("TagResponse", "GetTagListResponse", "TagAttributesResponse")
 
 
 class TagAttributesResponse(TypedDict):
-    name: dict[str, str]
-    description: list[dict[str, str]]
+    """
+    name: :class:`LocalisedString`
+
+    description: List[:class:`LocalisedString`]
+
+    group: :class:`str`
+
+    version: :class:`int`
+    """
+
+    name: LocalisedString
+    description: list[LocalisedString]
     group: str
     version: int
 
 
 class TagResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"tag"``]
+
+    attributes: :class:`TagAttributesResponse`
+    """
+
     id: str
     type: Literal["tag"]
     attributes: TagAttributesResponse
 
 
 class GetTagListResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    data: :class:`TagResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+    """
+
     result: Literal["ok"]
     data: TagResponse
     relationships: list[RelationshipResponse]
