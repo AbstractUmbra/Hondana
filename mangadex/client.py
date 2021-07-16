@@ -43,7 +43,7 @@ _PROJECT_DIR = pathlib.Path(__file__)
 
 
 class Client:
-    """Underlying HTTP Client for the MangaDex API.
+    """User Client for interfacing with the MangaDex API.
 
     Attributes
     -----------
