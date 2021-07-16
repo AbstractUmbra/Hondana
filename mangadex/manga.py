@@ -35,7 +35,7 @@ from .utils import MISSING
 
 if TYPE_CHECKING:
     from .author import Author
-    from .http import Client
+    from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
 
@@ -95,7 +95,7 @@ class Manga:
         "_relationships",
     )
 
-    def __init__(self, http: Client, payload: manga.ViewMangaResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: manga.ViewMangaResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
@@ -170,7 +170,8 @@ class Manga:
         if "attributes" in author:
             return Author(self._http, author)  # type: ignore #TODO: typing.Protocol or abcs here.
 
-        return await self._http.get_author(author["id"])
+        data = await self._http._get_author(author["id"])
+        return Author(self._http, data["data"])
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
@@ -192,7 +193,8 @@ class Manga:
         if cover_key is None:
             return None
 
-        return await self._http.get_cover(cover_key["id"])
+        data = await self._http._get_cover(cover_key["id"], ["manga"])
+        return Cover(self._http, data)
 
     def cover_url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.

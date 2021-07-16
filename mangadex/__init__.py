@@ -35,9 +35,9 @@ from . import utils as utils
 from .artist import Artist as Artist
 from .author import Author as Author
 from .chapter import Chapter as Chapter
+from .client import Client as Client
 from .cover import Cover as Cover
 from .errors import *
-from .http import Client as Client
 from .http import Route as Route
 from .manga import Manga as Manga
 from .tags import *

@@ -30,7 +30,7 @@ from .types.artist import ArtistResponse
 
 
 if TYPE_CHECKING:
-    from .http import Client
+    from .http import HTTPClient
 
 
 __all__ = ("Artist",)
@@ -55,7 +55,7 @@ class Artist:
 
     __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
-    def __init__(self, http: Client, payload: ArtistResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
         self._http = http
         self.id = payload["id"]
         attributes = payload["attributes"]

@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional
 
 
 if TYPE_CHECKING:
-    from .http import Client
+    from .http import HTTPClient
     from .types.cover import GetCoverResponse
 
 
@@ -65,7 +65,7 @@ class Cover:
         "_relationships",
     )
 
-    def __init__(self, http: Client, payload: GetCoverResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: GetCoverResponse) -> None:
         self._http = http
         data = payload["data"]
         self._data = data
