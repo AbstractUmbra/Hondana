@@ -61,6 +61,7 @@ if TYPE_CHECKING:
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.author import GetAuthorResponse
     from .types.chapter import GetChapterFeedResponse
+    from .types.common import LocalisedString
     from .types.cover import GetCoverResponse
     from .types.query import GetUserFeedQuery
     from .types.tags import GetTagListResponse
@@ -87,7 +88,7 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
     return text
 
 
-def fmt(in_: datetime.datetime) -> str:
+def to_iso_format(in_: datetime.datetime) -> str:
     return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
@@ -410,13 +411,13 @@ class HTTPClient:
             query["translatedLanguage"] = translated_languages
 
         if created_at_since:
-            query["createdAtSince"] = fmt(created_at_since)
+            query["createdAtSince"] = to_iso_format(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = fmt(updated_at_since)
+            query["updatedAtSince"] = to_iso_format(updated_at_since)
 
         if published_at_since:
-            query["publishAtSince"] = fmt(published_at_since)
+            query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
             query["order"] = order
@@ -488,10 +489,10 @@ class HTTPClient:
             query["contentRating"] = content_rating
 
         if created_at_since:
-            query["createdAtSince"] = fmt(created_at_since)
+            query["createdAtSince"] = to_iso_format(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = fmt(updated_at_since)
+            query["updatedAtSince"] = to_iso_format(updated_at_since)
 
         if order:
             query["order"] = order
@@ -508,9 +509,9 @@ class HTTPClient:
     def _create_manga(
         self,
         *,
-        title: dict[str, str],
-        alt_titles: Optional[list[dict[str, str]]],
-        description: Optional[dict[str, str]],
+        title: LocalisedString,
+        alt_titles: Optional[list[LocalisedString]],
+        description: Optional[LocalisedString],
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         links: Optional[manga.MangaLinks],
@@ -602,21 +603,21 @@ class HTTPClient:
         self,
         manga_id: str,
         *,
-        title: Optional[dict[str, str]],
-        alt_titles: Optional[list[dict[str, str]]],
-        description: Optional[dict[str, str]],
+        title: Optional[LocalisedString],
+        alt_titles: Optional[list[LocalisedString]],
+        description: Optional[LocalisedString],
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         links: Optional[manga.MangaLinks],
         original_language: Optional[str],
-        last_volume: str,
-        last_chapter: str,
-        publication_demographic: manga.PublicationDemographic,
-        status: manga.MangaStatus,
-        year: int,
+        last_volume: Optional[str],
+        last_chapter: Optional[str],
+        publication_demographic: Optional[manga.PublicationDemographic],
+        status: Optional[manga.MangaStatus],
+        year: Optional[int],
         content_rating: Optional[manga.ContentRating],
         tags: Optional[QueryTags],
-        mod_notes: str,
+        mod_notes: Optional[str],
         version: int,
     ) -> Response[manga.ViewMangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
@@ -735,13 +736,13 @@ class HTTPClient:
             query["translatedLanguage"] = translated_languages
 
         if created_at_since:
-            query["createdAtSince"] = fmt(created_at_since)
+            query["createdAtSince"] = to_iso_format(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = fmt(updated_at_since)
+            query["updatedAtSince"] = to_iso_format(updated_at_since)
 
         if published_at_since:
-            query["publishAtSince"] = fmt(published_at_since)
+            query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
             query["order"] = order
@@ -787,4 +788,15 @@ class HTTPClient:
         route = Route("GET", "/manga/read")
         query = {"ids": manga_ids, "grouped": True}
         resolved_query = utils.php_query_builder(query)
+        return self.request(route, params=resolved_query)
+
+    def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaReadingStatusResponse]:
+        route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
+        return self.request(route)
+
+    def _update_manga_reading_status(
+        self, manga_id: str, /, status: Optional[manga.ReadingStatus]
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
+        resolved_query = utils.php_query_builder({"status": status})
         return self.request(route, params=resolved_query)

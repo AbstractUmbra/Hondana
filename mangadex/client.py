@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 import datetime
 import json
 import pathlib
-from typing import TYPE_CHECKING, Literal, Optional, Union
+from typing import Literal, Optional, Union
 
 from aiohttp import ClientSession
 
@@ -33,10 +33,11 @@ from .chapter import Chapter
 from .cover import Cover
 from .http import HTTPClient
 from .manga import Manga
-from .utils import MISSING
-from .types.query import GetUserFeedQuery
 from .tags import QueryTags
 from .types import manga
+from .types.common import LocalisedString
+from .types.query import GetUserFeedQuery
+from .utils import MISSING
 
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -345,9 +346,9 @@ class Client:
     async def create_manga(
         self,
         *,
-        title: dict[str, str],
-        alt_titles: Optional[list[dict[str, str]]] = None,
-        description: Optional[dict[str, str]] = None,
+        title: LocalisedString,
+        alt_titles: Optional[list[LocalisedString]] = None,
+        description: Optional[LocalisedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -368,13 +369,13 @@ class Client:
 
         Parameters
         -----------
-        title: Dict[:class:`str`, :class:`str`]
+        title: :class:`~mangadex.types.LocalisedString`
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+        alt_titles: Optional[List[:class:`~mangadex.types.LocalisedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[Dict[:class:`str`, :class:`str`]]
+        description: Optional[:class:`~mangadex.types.LocalisedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
@@ -501,21 +502,21 @@ class Client:
         self,
         manga_id: str,
         *,
-        title: Optional[dict[str, str]] = None,
-        alt_titles: Optional[list[dict[str, str]]] = None,
-        description: Optional[dict[str, str]] = None,
+        title: Optional[LocalisedString] = None,
+        alt_titles: Optional[list[LocalisedString]] = None,
+        description: Optional[LocalisedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
         original_language: Optional[str] = None,
-        last_volume: str = MISSING,
-        last_chapter: str = MISSING,
-        publication_demographic: manga.PublicationDemographic = MISSING,
-        status: manga.MangaStatus = MISSING,
-        year: int = MISSING,
+        last_volume: Optional[str] = MISSING,
+        last_chapter: Optional[str] = MISSING,
+        publication_demographic: Optional[manga.PublicationDemographic] = MISSING,
+        status: Optional[manga.MangaStatus] = MISSING,
+        year: Optional[int] = MISSING,
         content_rating: Optional[manga.ContentRating] = None,
         tags: Optional[QueryTags] = None,
-        mod_notes: str = MISSING,
+        mod_notes: Optional[str] = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -526,15 +527,12 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga to update.
-        title: Optional[Dict[:class:`str`, :class:`str`]]
+        title: Optional[:class:`~mangadex.types.LocalisedString`]
             The manga titles in the format of ``language_key: title``
-            i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+        alt_titles: Optional[List[:class:`~mangadex.types.LocalisedString`]]
             The alternative titles in the format of ``language_key: title``
-            i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[Dict[:class:`str`, :class:`str`]]
+        description: Optional[:class:`~mangadex.types.LocalisedString`]
             The manga description in the format of ``language_key: description``
-            i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
@@ -544,21 +542,21 @@ class Client:
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
             The language key for the original language of the manga.
-        last_volume: :class:`str`
+        last_volume: Optional[:class:`str`]
             The last volume to attribute to this manga.
-        last_chapter: :class:`str`
+        last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
         publication_demographic: Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]
             The target publication demographic of this manga.
-        status: Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]
+        status: Optional[Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]]
             The status of the manga.
-        year: :class:`int`
+        year: Optional[:class:`int`]
             The release year of the manga.
         content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
-        mod_notes: :class:`str`
+        mod_notes: Optional[:class:`str`]
             The moderator notes to add to this Manga.
         version: :class:`int`
             The revision version of this manga.
@@ -569,9 +567,8 @@ class Client:
             Leave this as the default unless you fit this criteria.
 
         .. note::
-            With the ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
-            if you leave these values as their default, they will instead be cast to ``None`` (null) in the API.
-            Provide values for these unless you want to nullify them.
+            The ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
+            are nullable in the API, to do this please pass ``None``.
 
         Raises
         -------
@@ -760,3 +757,61 @@ class Client:
         data = await self._http._get_random_manga(includes=includes)
 
         return Manga(self._http, data)
+
+    async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
+        """|coro|
+
+        This method will return the current reading status for the specifed manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID associated with the manga you wish to query.
+
+        Raises
+        -------
+        Forbidden
+            You are not authenticated to perform this action.
+        NotFound
+            The specified manga does not exist, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`~mangadex.types.MangaReadingStatusResponse`
+            The raw payload from the API response.
+        """
+        return await self._http._get_manga_reading_status(manga_id)
+
+    async def update_manga_reading_status(
+        self, manga_id: str, /, *, status: Optional[manga.ReadingStatus]
+    ) -> dict[Literal["result"], Literal["ok"]]:
+        """|coro|
+
+        This method will update your current reading status for the specified manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID associated with the manga you wish to update.
+        status: Optional[:class:`~mangadex.types.ReadingStatus`]
+            The reading status you wish to update this manga with.
+
+
+        .. note::
+            Leaving ``status`` as the default will remove the manga reading status from the API.
+            Please provide a value if you do not wish for this to happen.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were invalid.
+        NotFound
+            The specified manga cannot be found, likely due to incorrect ID.
+
+        Returns
+        --------
+        Dict[Literal[``""result""``], Literal[``""ok""``]]
+            The raw payload from the API.
+        """
+
+        return await self._http._update_manga_reading_status(manga_id, status=status)
