@@ -166,14 +166,14 @@ class HTTPClient:
         """
         return aiohttp.ClientSession()
 
-    async def close(self) -> None:
+    async def _close(self) -> None:
         """|coro|
 
         This method will close the internal client session to ensure a clean exit.
         """
 
         if self.__session is not None:
-            await self.logout()
+            await self._logout()
             await self.__session.close()
 
     async def _get_token(self) -> str:
@@ -308,7 +308,7 @@ class HTTPClient:
         LOGGER.debug("Token fetched: %s", self._token[:20])
         return self._token
 
-    async def logout(self) -> None:
+    async def _logout(self) -> None:
         """|coro|
 
         This performs the logout request, also done in :meth:`Client.close` for convenience.

@@ -74,6 +74,22 @@ class Client:
     def __init__(self, login: str, password: str, session: Optional[ClientSession] = None) -> None:
         self._http = HTTPClient(login=login, password=password, session=session)
 
+    async def logout(self) -> None:
+        """|coro|
+
+        Logs the client out. This process will invalidate the current authorization token in the process.
+        """
+
+        return await self._http._close()
+
+    async def close(self) -> None:
+        """|coro|
+
+        An alias for :meth:`Client.logout`.
+        """
+
+        return await self.logout()
+
     async def update_tags(self) -> None:
         """|coro|
 
