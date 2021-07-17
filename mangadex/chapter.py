@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 
 if TYPE_CHECKING:
-    from .http import Client
+    from .http import HTTPClient
     from .types.chapter import GetChapterResponse
 
 
@@ -80,7 +80,7 @@ class Chapter:
         "_published_at",
     )
 
-    def __init__(self, http: Client, payload: GetChapterResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: GetChapterResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]

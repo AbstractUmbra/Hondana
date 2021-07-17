@@ -22,27 +22,30 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict
+from typing import TypedDict
 
 
-__all__ = ("GetUserFeedQuery",)
+__all__ = ("LocalizedString", "LocalisedString")
 
 
-class GetUserFeedQuery(TypedDict, total=False):
+class LocalizedString(TypedDict):
     """
-    createdAt: Literal[``"asc"``, ``"desc"``]
+    Examples
+    ---------
+    A localised string: ::
 
-    updatedAt: Literal[``"asc"``, ``"desc"``]
+        {"en": "An english string"}
+        {"fr": "Une corde française"}
 
-    publishAt: Literal[``"asc"``, ``"desc"``]
 
-    volume: Literal[``"asc"``, ``"desc"``]
-
-    chapter: Literal[``"asc"``, ``"desc"``]
+    language_code: :class:`str`
+        The shorthand language code for the target item.
+    item: :class:`str`
+        The localized item.
     """
 
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    publishAt: Literal["asc", "desc"]
-    volume: Literal["asc", "desc"]
-    chapter: Literal["asc", "desc"]
+    language_code: str
+    item: str
+
+
+LocalisedString = LocalizedString

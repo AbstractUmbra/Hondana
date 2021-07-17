@@ -50,20 +50,20 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Create Manga                                          | [x]          | Done. Unsure if I can test this... |
 | Get Manga Volumes & Chapters                          | [x]          | Done.                              |
 | View Manga                                            | [x]          | Done.                              |
-| Update Manga                                          | [x]          | Done.                              |
-| Delete Manga                                          | [x]          | Done.                              |
+| Update Manga                                          | [x]          | Done. Unsure if I can test this... |
+| Delete Manga                                          | [x]          | Done. Unsure if I can test this... |
 | Add Manga to CustomList                               | [ ]          | Soon:tm:                           |
 | Remove Manga from CustomList                          | [ ]          | Soon:tm:                           |
 | Get logged in User followed Manga feed (Chapter list) | [x]          | Done.                              |
 | Unfollow Manga                                        | [x]          | Done.                              |
 | Follow Manga                                          | [x]          | Done.                              |
-| Manga Feed                                            | [x]          | Soon:tm:                           |
-| Manga Read Markers                                    | [ ]          | Soon:tm:                           |
-| Manga Read Markers (grouped)                          | [ ]          | Soon:tm:                           |
-| Get a random Manga                                    | [x]          | Soon:tm:                           |
-| Tag list                                              | [x]          | Soon:tm:                           |
-| Get a Manga reading status                            | [ ]          | Soon:tm:                           |
-| Update Manga reading status                           | [ ]          | Soon:tm:                           |
+| Manga Feed                                            | [x]          | Done.                              |
+| Manga Read Markers                                    | [x]          | Done.                              |
+| Manga Read Markers (grouped)                          | [x]          | Done.                              |
+| Get a random Manga                                    | [x]          | Done.                              |
+| Tag list                                              | [x]          | Done.                              |
+| Get a Manga reading status                            | [x]          | Done.                              |
+| Update Manga reading status                           | [x]          | Done.                              |
 
 ## Examples
 Please take a look at the [examples](../mangadex.py/mangadex/examples/) directory for working examples.
@@ -72,5 +72,5 @@ Please take a look at the [examples](../mangadex.py/mangadex/examples/) director
 
 ### API caveats to note
 
-- There are no API endpoints for Artist. Currently if you query a manga without the `"artist"` query includes then you will not recieve artist data.
+- There are no API endpoints for Artist. Currently, if you query a manga without the `"artist"` query includes then you will not receive artist data.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorise those), there's a convenience method for updating the local cache as `Client.update_tags`

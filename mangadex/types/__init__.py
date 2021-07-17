@@ -26,6 +26,7 @@ from .artist import *
 from .auth import *
 from .author import *
 from .chapter import *
+from .common import *
 from .cover import *
 from .manga import *
 from .query import *

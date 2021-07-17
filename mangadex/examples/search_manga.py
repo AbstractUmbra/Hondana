@@ -36,7 +36,7 @@ async def more_refined_search() -> list[mangadex.Manga]:
     # and we probably just want shounen... right?
     demographic = ["shounen"]
 
-    # lets try a search
+    # let's try a search
     search = await client.manga_list(
         limit=10,
         offset=0,
@@ -46,7 +46,7 @@ async def more_refined_search() -> list[mangadex.Manga]:
         created_at_since=seven_days_ago,
     )
 
-    # this search was empty for me at the time of writing, but the fact you get a repsonse at all means it worked.
+    # this search was empty for me at the time of writing, but the fact you get a response at all means it worked.
     print(search)
 
     return search

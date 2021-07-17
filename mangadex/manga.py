@@ -35,9 +35,10 @@ from .utils import MISSING
 
 if TYPE_CHECKING:
     from .author import Author
-    from .http import Client
+    from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
+    from .types.common import LocalisedString
 
 
 __all__ = ("Manga",)
@@ -95,7 +96,7 @@ class Manga:
         "_relationships",
     )
 
-    def __init__(self, http: Client, payload: manga.ViewMangaResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: manga.ViewMangaResponse) -> None:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
@@ -170,7 +171,8 @@ class Manga:
         if "attributes" in author:
             return Author(self._http, author)  # type: ignore #TODO: typing.Protocol or abcs here.
 
-        return await self._http.get_author(author["id"])
+        data = await self._http._get_author(author["id"])
+        return Author(self._http, data["data"])
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
@@ -192,7 +194,8 @@ class Manga:
         if cover_key is None:
             return None
 
-        return await self._http.get_cover(cover_key["id"])
+        data = await self._http._get_cover(cover_key["id"], ["manga"])
+        return Cover(self._http, data)
 
     def cover_url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
@@ -254,9 +257,9 @@ class Manga:
     async def update(
         self,
         *,
-        title: Optional[dict[str, str]] = None,
-        alt_titles: Optional[list[dict[str, str]]] = None,
-        description: Optional[dict[str, str]] = None,
+        title: Optional[LocalisedString] = None,
+        alt_titles: Optional[list[LocalisedString]] = None,
+        description: Optional[LocalisedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -442,7 +445,7 @@ class Manga:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_langauges: List[:class:`str`]
+        translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -480,3 +483,68 @@ class Manga:
         )
 
         return [Chapter(self._http, item) for item in data["results"]]
+
+    async def manga_read_markers(self) -> manga.MangaReadMarkersResponse:
+        """|coro|
+
+        This method will return the read chapters of the current manga.
+
+        Returns
+        --------
+        Union[Dict[Literal[``"ok"``], List[:class:`str`]]]
+            The raw payload of the API.
+            Contains a list of read chapter UUIDs.
+
+        """
+        return await self._http._manga_read_markers([self.id], grouped=False)
+
+    async def get_reading_status(self) -> manga.MangaReadingStatusResponse:
+        """|coro|
+
+        This method will return the current reading status for the current manga.
+
+        Raises
+        -------
+        Forbidden
+            You are not authenticated to perform this action.
+        NotFound
+            The specified manga does not exist, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`~mangadex.types.MangaReadingStatusResponse`
+            The raw payload from the API response.
+        """
+        return await self._http._get_manga_reading_status(self.id)
+
+    async def update_reading_status(
+        self, *, status: Optional[manga.ReadingStatus]
+    ) -> dict[Literal["result"], Literal["ok"]]:
+        """|coro|
+
+        This method will update your current reading status for the current manga.
+
+        Parameters
+        -----------
+        status: Optional[:class:`~mangadex.types.ReadingStatus`]
+            The reading status you wish to update this manga with.
+
+
+        .. note::
+            Leaving ``status`` as the default will remove the manga reading status from the API.
+            Please provide a value if you do not wish for this to happen.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were invalid.
+        NotFound
+            The specified manga cannot be found, likely due to incorrect ID.
+
+        Returns
+        --------
+        Dict[Literal[``""result""``], Literal[``""ok""``]]
+            The raw payload from the API.
+        """
+
+        return await self._http._update_manga_reading_status(self.id, status=status)

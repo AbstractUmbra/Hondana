@@ -24,20 +24,44 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, Optional, TypedDict
 
+from .common import LocalisedString
+
 
 __all__ = ("ArtistResponse", "ArtistAttributesResponse")
 
 
 class ArtistAttributesResponse(TypedDict):
+    """
+    name: :class:`str`
+
+    imageUrl: Optional[:class:`str`]
+
+    biography: Dict[:class:`str`, :class:`str`]
+
+    version: :class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+    """
+
     name: str
     imageUrl: Optional[str]
-    biography: dict[str, str]
+    biography: LocalisedString
     version: int
     createdAt: str
     updatedAt: str
 
 
 class ArtistResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"artist"``]
+
+    attributes: :class:`ArtistAttributesResponse`
+    """
+
     id: str
     type: Literal["artist"]
     attributes: ArtistAttributesResponse
