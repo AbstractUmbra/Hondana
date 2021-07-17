@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 
 if TYPE_CHECKING:
@@ -84,16 +84,16 @@ class Chapter:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
-        self.id = data["id"]
-        self.title = attributes["title"]
-        self.volume = attributes["volume"]
-        self.chapter = attributes["chapter"]
-        self.translated_language = attributes["translatedLanguage"]
-        self.hash = attributes["hash"]
-        self.data = attributes["data"]
-        self.data_saver = attributes["dataSaver"]
-        self.uploader = attributes.get("uploader", None)
-        self.version = attributes["version"]
+        self.id: str = data["id"]
+        self.title: Optional[str] = attributes["title"]
+        self.volume: Optional[str] = attributes["volume"]
+        self.chapter: Optional[str] = attributes["chapter"]
+        self.translated_language: str = attributes["translatedLanguage"]
+        self.hash: str = attributes["hash"]
+        self.data: list[str] = attributes["data"]
+        self.data_saver: list[str] = attributes["dataSaver"]
+        self.uploader: Optional[str] = attributes.get("uploader", None)
+        self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
         self._published_at = attributes["publishAt"]

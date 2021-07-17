@@ -69,12 +69,12 @@ class Cover:
         self._http = http
         data = payload["data"]
         self._data = data
-        self.id = data["id"]
         attributes = data["attributes"]
-        self.volume = attributes["volume"]
-        self.file_name = attributes["fileName"]
-        self.description = attributes["description"]
-        self.version = attributes["version"]
+        self.id: str = data["id"]
+        self.volume: Optional[str] = attributes["volume"]
+        self.file_name: str = attributes["fileName"]
+        self.description: str = attributes["description"]
+        self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
         self._relationships = payload["relationships"]

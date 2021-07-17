@@ -69,6 +69,6 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     return "&".join(fmt)
 
 
-path = _PROJECT_DIR.parent / "extras" / "tags.json"
-with open(path, "r") as fp:
-    TAGS: dict[str, list[str]] = json.load(fp)
+path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
+with open(path, "r") as _fp:
+    TAGS: dict[str, list[str]] = json.load(_fp)

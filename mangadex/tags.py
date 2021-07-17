@@ -21,9 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from typing import Optional
+from typing import Optional, Literal
 
 from .types.tags import TagResponse
+from .types.common import LocalisedString
 from .utils import TAGS
 
 
@@ -62,11 +63,11 @@ class Tag:
         self._data = payload
         attributes = payload["attributes"]
         self._name = attributes["name"]
-        self.id = payload["id"]
-        self.type = "tag"
-        self.description = attributes["description"]
-        self.group = attributes["group"]
-        self.version = attributes["version"]
+        self.id: str = payload["id"]
+        self.type: Literal["tag"] = "tag"
+        self.description: list[LocalisedString] = attributes["description"]
+        self.group: str = attributes["group"]
+        self.version: int = attributes["version"]
 
     @property
     def name(self) -> str:
@@ -101,7 +102,7 @@ class QueryTags:
     def __init__(self, *tags: str, mode: str = "AND"):
         self._tags = list(tags)
         self.tags: Optional[list[str]] = None
-        self.mode = mode.upper()
+        self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
             raise TypeError("Tags mode has to be 'AND' or 'OR'.")
         self.set_tags()

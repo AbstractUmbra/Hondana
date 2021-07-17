@@ -32,7 +32,7 @@ import pkg_resources
 import mangadex
 
 
-def show_version():
+def show_version() -> None:
     entries: list[str] = []
 
     version_info = sys.version_info
@@ -65,12 +65,12 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
     return parser, parser.parse_args()
 
 
-def core(parser: argparse.ArgumentParser, args: argparse.Namespace):
+def core(parser: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     if args.version:
         show_version()
 
 
-def main():
+def main() -> None:
     parser, args = parse_args()
     args.func(parser, args)
 

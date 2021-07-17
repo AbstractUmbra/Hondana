@@ -24,12 +24,13 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.author import AuthorResponse
+    from .types.common import LocalisedString
 
 __all__ = ("Author",)
 
@@ -56,12 +57,12 @@ class Author:
     def __init__(self, http: HTTPClient, data: AuthorResponse) -> None:
         self._http = http
         self._data = data
-        self.id = data["id"]
         attributes = data["attributes"]
-        self.name = attributes["name"]
-        self.image_url = attributes["imageUrl"]
-        self.biography = attributes["biography"]
-        self.version = attributes["version"]
+        self.id: str = data["id"]
+        self.name: str = attributes["name"]
+        self.image_url: Optional[str] = attributes["imageUrl"]
+        self.biography: LocalisedString = attributes["biography"]
+        self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
 

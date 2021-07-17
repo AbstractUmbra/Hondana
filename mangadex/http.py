@@ -42,7 +42,7 @@ from urllib.parse import quote as _uriquote
 
 import aiohttp
 
-from . import __version__, utils
+from . import __version__
 from .errors import (
     APIException,
     BadRequest,
@@ -52,7 +52,7 @@ from .errors import (
     RefreshError,
     Unauthorized,
 )
-from .utils import MISSING
+from .utils import MISSING, php_query_builder, TAGS, to_json
 
 
 if TYPE_CHECKING:
@@ -74,7 +74,9 @@ __all__ = ("HTTPClient", "Route")
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel("DEBUG")
 EPOCH = datetime.datetime.fromtimestamp(0)
-TAGS = utils.TAGS
+TAGS = TAGS
+
+__all__ = ("json_or_text", "Route", "HTTPClient")
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
@@ -143,8 +145,8 @@ class HTTPClient:
                 "You did not provide appropriate login information, a login (username) and password combination is required."
             )
 
-        self.login = login
-        self.password = password
+        self.login: str = login
+        self.password: str = password
         self.__session = session
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
@@ -354,7 +356,7 @@ class HTTPClient:
 
         if "json" in kwargs:
             headers["Content-Type"] = "application/json"
-            kwargs["data"] = utils.to_json(kwargs.pop("json"))
+            kwargs["data"] = to_json(kwargs.pop("json"))
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
@@ -387,7 +389,7 @@ class HTTPClient:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
-        resolved_query = utils.php_query_builder(query)
+        resolved_query = php_query_builder(query)
 
         return self.request(route, params=resolved_query)
 
@@ -422,7 +424,7 @@ class HTTPClient:
         if order:
             query["order"] = order
 
-        resolved_query = utils.php_query_builder(query)
+        resolved_query = php_query_builder(query)
 
         return self.request(route, params=resolved_query)
 
@@ -500,7 +502,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = utils.php_query_builder(query)
+        resolved_query = php_query_builder(query)
 
         LOGGER.debug(resolved_query)
 
@@ -584,7 +586,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
         if translated_languages:
-            query = utils.php_query_builder({"translatedLanguage": translated_languages})
+            query = php_query_builder({"translatedLanguage": translated_languages})
             return self.request(route, params=query)
         return self.request(route)
 
@@ -592,7 +594,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         includes = includes or ["artist", "cover_url", "author"]
-        query = utils.php_query_builder({"includes": includes})
+        query = php_query_builder({"includes": includes})
         data = self.request(route, params=query)
 
         return data
@@ -720,7 +722,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = utils.php_query_builder(query)
+        resolved_query = php_query_builder(query)
 
         return self.request(route, params=resolved_query)
 
@@ -729,7 +731,7 @@ class HTTPClient:
 
         if includes:
             query = {"includes": includes}
-            resolved_query = utils.php_query_builder(query)
+            resolved_query = php_query_builder(query)
             return self.request(route, params=resolved_query)
 
         return self.request(route)
@@ -757,7 +759,7 @@ class HTTPClient:
 
         route = Route("GET", "/manga/read")
         query = {"ids": manga_ids, "grouped": True}
-        resolved_query = utils.php_query_builder(query)
+        resolved_query = php_query_builder(query)
         return self.request(route, params=resolved_query)
 
     def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaReadingStatusResponse]:
@@ -768,7 +770,7 @@ class HTTPClient:
         self, manga_id: str, /, status: Optional[manga.ReadingStatus]
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
-        resolved_query = utils.php_query_builder({"status": status})
+        resolved_query = php_query_builder({"status": status})
         return self.request(route, params=resolved_query)
 
     def _add_manga_to_custom_list(

@@ -24,13 +24,14 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from .types.artist import ArtistResponse
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.common import LocalisedString
 
 
 __all__ = ("Artist",)
@@ -56,15 +57,15 @@ class Artist:
     __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
-        self._http = http
-        self.id = payload["id"]
         attributes = payload["attributes"]
-        self.name = attributes["name"]
-        self.image_url = attributes["imageUrl"]
-        self.biography = attributes["biography"]
+        self._http = http
+        self.id: str = payload["id"]
+        self.name: str = attributes["name"]
+        self.image_url: Optional[str] = attributes["imageUrl"]
+        self.biography: Optional[LocalisedString] = attributes["biography"]
+        self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
-        self.version = attributes["version"]
 
     def __repr__(self) -> str:
         return f"<Artist id={self.id} name='{self.name}'>"
