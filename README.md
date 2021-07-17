@@ -1,6 +1,6 @@
-<h1 align="center">Hondana</h1>
-
 <div align="center">
+    <h1>Hondana 『本棚』</h1>
+    <p>Hondana is the Japanese word for "bookshelf".</p>
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
@@ -11,14 +11,6 @@
         <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Build status' />
     </a>
 </div>
-
-<h1></h1>
-
-<div align="center">
-    <h2>Hondana　『本棚』</h2>
-    <p>Hondana is the Japanese word for "bookshelf".</p>
-</div>
-
 <br>
 
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
