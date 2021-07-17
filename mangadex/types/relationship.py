@@ -34,5 +34,18 @@ class _RelationshipOptionalResponse(TypedDict, total=False):
 
 
 class RelationshipResponse(_RelationshipOptionalResponse):
+    """
+    id: :class:`str`
+
+    type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``]
+
+    attributes: Dict[:class:`str`, :class:`str`]
+        This key is optional
+
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+
+    """
+
     id: str
     type: Literal["manga", "chapter", "scanlation_group", "author", "cover_art", "artist"]

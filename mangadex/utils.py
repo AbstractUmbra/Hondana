@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 import json
 import pathlib
-from typing import Any, Mapping, Union
+from typing import Any, Mapping, Optional, Union
 
 
 __all__ = ("MISSING", "to_json", "php_query_builder", "TAGS")
@@ -49,7 +49,7 @@ def to_json(obj: Any) -> str:
     return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
 
 
-def php_query_builder(obj: Mapping[str, Union[str, int, bool, list[str], dict[str, str]]]) -> str:
+def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]) -> str:
     """
     {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
     ->
@@ -57,8 +57,10 @@ def php_query_builder(obj: Mapping[str, Union[str, int, bool, list[str], dict[st
     """
     fmt = []
     for key, value in obj.items():
+        if value is None or value is MISSING:
+            fmt.append(f"{key}=null")
         if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={value}".lower())
+            fmt.append(f"{key}={str(value).lower()}")
         elif isinstance(value, list):
             fmt.extend(f"{key}[]={item}" for item in value)
         elif isinstance(value, dict):

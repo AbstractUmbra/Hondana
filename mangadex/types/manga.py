@@ -22,8 +22,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, Optional, TypedDict, TypeVar
+from typing import Literal, Optional, TypedDict
 
+from .common import LocalisedString
 from .relationship import RelationshipResponse
 from .tags import TagResponse
 
@@ -33,15 +34,19 @@ __all__ = (
     "PublicationDemographic",
     "ContentRating",
     "MangaIncludes",
+    "ReadingStatus",
     "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaResponse",
     "ViewMangaResponse",
     "MangaSearchResponse",
+    "ChaptersResponse",
+    "VolumesAndChaptersResponse",
     "GetMangaVolumesAndChaptersResponse",
     "MangaReadMarkersResponse",
     "MangaGroupedReadMarkersResponse",
+    "MangaReadingStatusResponse",
 )
 
 
@@ -49,6 +54,7 @@ MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 MangaIncludes = Literal["author", "artist", "cover_art"]
+ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
 
 
 class MangaOrderQuery(TypedDict, total=False):
@@ -57,6 +63,34 @@ class MangaOrderQuery(TypedDict, total=False):
 
 
 class MangaLinks(TypedDict, total=False):
+    """
+    Please see here for more explicit info on these:-
+        https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
+
+
+    al: Optional[:class:`str`]
+
+    ap: Optional[:class:`str`]
+
+    bw: Optional[:class:`str`]
+
+    mu: Optional[:class:`str`]
+
+    nu: Optional[:class:`str`]
+
+    kt: Optional[:class:`str`]
+
+    amz: Optional[:class:`str`]
+
+    ebj: Optional[:class:`str`]
+
+    mal: Optional[:class:`str`]
+
+    raw: Optional[:class:`str`]
+
+    engtl: Optional[:class:`str`]
+    """
+
     al: Optional[str]
     ap: Optional[str]
     bw: Optional[str]
@@ -71,13 +105,52 @@ class MangaLinks(TypedDict, total=False):
 
 
 class MangaAttributesResponseOptional(TypedDict, total=False):
+    """
+    isLocked: :class:`bool`
+    """
+
     isLocked: bool
 
 
 class MangaAttributesResponse(MangaAttributesResponseOptional):
-    title: dict[str, str]
-    altTitles: list[dict[str, str]]
-    description: dict[str, str]
+    """
+    title: :class:`LocalisedString`
+
+    altTitle: List[:class:`LocalisedString`]
+
+    description: :class:`LocalisedString`
+
+    links: :class:`MangaLinks`
+
+    originalLanguage: :class:`str`
+
+    lastVolume: Optional[:class:`str`]
+
+    lastChapter: Optional[:class:`str`]
+
+    publicationDemographic: Optional[:class:`PublicationDemographic`]
+
+    status: Optional[:class:`MangaStatus`]
+
+    year: Optional[:class:`int`]
+
+    contentRating: Optional[:class:`ContentRating`]
+
+    tags: List[:class:`TagResponse`]
+
+    version: class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+
+    isLocked: Optional[:class:`bool`]
+        This key is optional
+    """
+
+    title: LocalisedString
+    altTitles: list[LocalisedString]
+    description: LocalisedString
     links: MangaLinks
     originalLanguage: str
     lastVolume: Optional[str]
@@ -93,45 +166,117 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 
 
 class MangaResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"manga"``]
+
+    attributes: :class:`MangaAttributesResponse`
+    """
+
     id: str
     type: Literal["manga"]
     attributes: MangaAttributesResponse
 
 
 class ViewMangaResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    data: :class:`MangaResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+    """
+
     result: Literal["ok", "error"]
     data: MangaResponse
     relationships: list[RelationshipResponse]
 
 
 class MangaSearchResponse(TypedDict):
+    """
+    results: List[:class:`ViewMangaResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
     results: list[ViewMangaResponse]
     limit: int
     offset: int
     total: int
 
 
-class _ChaptersResponse(TypedDict):
+class ChaptersResponse(TypedDict):
+    """
+    chapter: :class:`str`
+
+    count: :class:`str`
+    """
+
     chapter: str
     count: str
 
 
-class _VolumesAndChaptersResponse(TypedDict, total=False):
-    chapters: dict[str, _ChaptersResponse]
+class VolumesAndChaptersResponse(TypedDict, total=False):
+    """
+    chapters: Dict[:class:`str`, :class:`ChaptersResponse`]
+
+    count: :class:`int`
+
+    volume: :class:`str`
+    """
+
+    chapters: dict[str, ChaptersResponse]
     count: int
     volume: str
 
 
 class GetMangaVolumesAndChaptersResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    volumes: Optional[Dict[:class:`str`, :class:`VolumesAndChaptersResponse`]]
+
+    """
+
     result: Literal["ok", "error"]
-    volumes: Optional[dict[str, _VolumesAndChaptersResponse]]
+    volumes: Optional[dict[str, VolumesAndChaptersResponse]]
 
 
 class MangaReadMarkersResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    data: List[:class:`str`]
+
+    """
+
     result: Literal["ok"]
     data: list[str]
 
 
 class MangaGroupedReadMarkersResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    data: Dict[:class:`str`, List[:class:`str`]]
+    """
+
     result: Literal["ok"]
     data: dict[str, list[str]]
+
+
+class MangaReadingStatusResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    status: :class:`ReadingStatus`
+
+    """
+
+    result: Literal["ok"]
+    status: ReadingStatus

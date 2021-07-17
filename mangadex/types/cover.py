@@ -31,6 +31,20 @@ __all__ = ("GetCoverResponse", "CoverResponse", "CoverAttributesResponse")
 
 
 class CoverAttributesResponse(TypedDict):
+    """
+    volume: Optional[:class:`str`]
+
+    fileName: :class:`str`
+
+    description: :class:`str`
+
+    version: :class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+    """
+
     volume: Optional[str]
     fileName: str
     description: str
@@ -40,12 +54,30 @@ class CoverAttributesResponse(TypedDict):
 
 
 class CoverResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"cover_art"``]
+
+    attributes: :class:`CoverAttributesResponse`
+    """
+
     id: str
     type: Literal["cover_art"]
     attributes: CoverAttributesResponse
 
 
 class GetCoverResponse(TypedDict):
+    """
+    result: :class:`str`
+
+    data: :class:`CoverResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+    """
+
     result: str
     data: CoverResponse
     relationships: list[RelationshipResponse]
