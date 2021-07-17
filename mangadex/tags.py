@@ -54,7 +54,6 @@ class Tag:
 
     .. note::
         All tag names currently only have the ``"en"`` key attributed to their localization, so we return this by default.
-
     """
 
     __slots__ = ("_data", "_name", "id", "type", "description", "group", "version")

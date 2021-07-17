@@ -240,7 +240,6 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
     result: Literal[``"ok"``, ``"error"``]
 
     volumes: Optional[Dict[:class:`str`, :class:`VolumesAndChaptersResponse`]]
-
     """
 
     result: Literal["ok", "error"]
@@ -252,7 +251,6 @@ class MangaReadMarkersResponse(TypedDict):
     result: Literal[``"ok"``]
 
     data: List[:class:`str`]
-
     """
 
     result: Literal["ok"]
@@ -275,7 +273,6 @@ class MangaReadingStatusResponse(TypedDict):
     result: Literal[``"ok"``]
 
     status: :class:`ReadingStatus`
-
     """
 
     result: Literal["ok"]

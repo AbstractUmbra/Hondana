@@ -130,6 +130,10 @@ class Manga:
         return self._title.get("en", next(iter(self._title)))
 
     @property
+    def chapter(self) -> str:
+        return f"https://mangadex.org/title/{self.id}"
+
+    @property
     def tags(self) -> list[Tag]:
         """The tags associated with this manga."""
         return [Tag(tag) for tag in self._tags]
@@ -183,7 +187,6 @@ class Manga:
         --------
         Optional[:class:`Cover`]
             The Cover associated with this Manga.
-
         """
         cover_key = None
         for item in self._relationships:
@@ -379,7 +382,7 @@ class Manga:
 
         Returns
         --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]:
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]:
             The response payload.
         """
 
@@ -399,7 +402,7 @@ class Manga:
 
         Returns
         --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
             The response payload.
         """
         return await self._http._unfollow_manga(self.id)
@@ -418,7 +421,7 @@ class Manga:
 
         Returns
         --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]
+        Dict[Literal[``"ok"``], Literal[``"ok"``, ``"error"``]]
             The response payload.
         """
         return await self._http._follow_manga(self.id)
@@ -494,7 +497,6 @@ class Manga:
         Union[Dict[Literal[``"ok"``], List[:class:`str`]]]
             The raw payload of the API.
             Contains a list of read chapter UUIDs.
-
         """
         return await self._http._manga_read_markers([self.id], grouped=False)
 
@@ -548,3 +550,53 @@ class Manga:
         """
 
         return await self._http._update_manga_reading_status(self.id, status=status)
+
+    async def add_to_custom_list(self, *, custom_list_id: str) -> dict[Literal["result"], Literal["ok", "error"]]:
+        """|coro|
+
+        This method will add the current manga to the specified custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID associated with the custom list you wish to add the manga to.
+
+        Raises
+        -------
+        Forbidden
+            You are not authorised to add manga to this custom list.
+        NotFound
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+
+        Returns
+        --------
+        Dict[Literal[``"result"``, Literal[``"ok"``, ``"error"``]
+            The raw response from the API on the request.
+        """
+
+        return await self._http._add_manga_to_custom_list(self.id, custom_list_id=custom_list_id)
+
+    async def remove_from_custom_list(self, *, custom_list_id: str) -> dict[Literal["result"], Literal["ok", "error"]]:
+        """|coro|
+
+        This method will remove the current manga from the specified custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            THe UUID associated with the custom list you wish to add the manga to.
+
+        Raises
+        -------
+        Forbidden
+            You are not authorised to remove a manga from the specified custom list.
+        NotFound
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+
+        Returns
+        --------
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
+            The raw response from the API on the request result.
+        """
+
+        return await self._http._remove_manga_from_custom_list(self.id, custom_list_id=custom_list_id)

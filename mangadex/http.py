@@ -521,7 +521,7 @@ class HTTPClient:
         publication_demographic: Optional[manga.PublicationDemographic],
         status: Optional[manga.MangaStatus],
         year: Optional[int],
-        content_rating: Optional[manga.ContentRating],
+        content_rating: manga.ContentRating,
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
         version: int,
@@ -573,10 +573,9 @@ class HTTPClient:
         if mod_notes:
             query["modNotes"] = mod_notes
 
-        resolved_query = utils.php_query_builder(query)
-
         route = Route("POST", "/manga")
-        return self.request(route, params=resolved_query)
+        print(query)
+        return self.request(route, json=query)
 
     def _get_manga_volumes_and_chapters(
         self, *, manga_id: str, translated_languages: Optional[list[str]] = None
@@ -670,9 +669,7 @@ class HTTPClient:
         if mod_notes is not MISSING:
             query["modNotes"] = mod_notes
 
-        resolved_query = utils.php_query_builder(query)
-
-        return self.request(route, json=resolved_query)
+        return self.request(route, json=query)
 
     def _delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
@@ -774,3 +771,15 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
         resolved_query = utils.php_query_builder({"status": status})
         return self.request(route, params=resolved_query)
+
+    def _add_manga_to_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _remove_manga_from_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        return self.request(route)

@@ -44,7 +44,6 @@ class RelationshipResponse(_RelationshipOptionalResponse):
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
-
     """
 
     id: str

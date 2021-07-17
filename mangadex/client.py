@@ -358,7 +358,7 @@ class Client:
         publication_demographic: Optional[manga.PublicationDemographic] = None,
         status: Optional[manga.MangaStatus] = None,
         year: Optional[int] = None,
-        content_rating: Optional[manga.ContentRating] = None,
+        content_rating: manga.ContentRating,
         tags: Optional[QueryTags] = None,
         mod_notes: Optional[str] = None,
         version: int,
@@ -397,7 +397,7 @@ class Client:
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
+        content_rating: Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -625,7 +625,7 @@ class Client:
 
         Returns
         --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
             The response payload.
         """
         return await self._http._unfollow_manga(manga_id)
@@ -649,7 +649,7 @@ class Client:
 
         Returns
         --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
             The response payload.
         """
         return await self._http._follow_manga(manga_id)
@@ -733,8 +733,7 @@ class Client:
 
         Returns
         --------
-        Union[Dict[]]
-
+        Union[:class:`~mangadex.types.MangaReadMarkersResponse`, :class:`~mangadex.types.MangaGroupedReadMarkersResponse`]
         """
         if len(manga_ids) == 1:
             return await self._http._manga_read_markers(manga_ids, grouped=False)
@@ -752,7 +751,6 @@ class Client:
         includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
             The optional includes for the manga payload.
             Defaults to all three.
-
         """
         data = await self._http._get_random_manga(includes=includes)
 
@@ -778,7 +776,7 @@ class Client:
         Returns
         --------
         :class:`~mangadex.types.MangaReadingStatusResponse`
-            The raw payload from the API response.
+            The raw response from the API on the request.
         """
         return await self._http._get_manga_reading_status(manga_id)
 
@@ -811,7 +809,65 @@ class Client:
         Returns
         --------
         Dict[Literal[``""result""``], Literal[``""ok""``]]
-            The raw payload from the API.
+            The raw response from the API on the request.
         """
 
         return await self._http._update_manga_reading_status(manga_id, status=status)
+
+    async def add_manga_to_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> dict[Literal["result"], Literal["ok", "error"]]:
+        """|coro|
+
+        This method will add the specified manga to the specified custom list.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID associated with the manga you wish to add to the custom list.
+        custom_list_id: :class:`str`
+            The UUID associated with the custom list you wish to add the manga to.
+
+        Raises
+        -------
+        Forbidden
+            You are not authorised to add manga to this custom list.
+        NotFound
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+
+        Returns
+        --------
+        Dict[Literal[``"result"``, Literal[``"ok"``, ``"error"``]
+            The raw response from the API on the request.
+        """
+
+        return await self._http._add_manga_to_custom_list(manga_id, custom_list_id=custom_list_id)
+
+    async def remove_manga_from_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> dict[Literal["result"], Literal["ok", "error"]]:
+        """|coro|
+
+        This method will remove the specified manga from the specified custom list.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID associated with the manga you wish to remove from the specified custom list.
+        custom_list_id: :class:`str`
+            THe UUID associated with the custom list you wish to add the manga to.
+
+        Raises
+        -------
+        Forbidden
+            You are not authorised to remove a manga from the specified custom list.
+        NotFound
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+
+        Returns
+        --------
+        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
+            The raw response from the API on the request result.
+        """
+
+        return await self._http._remove_manga_from_custom_list(manga_id, custom_list_id=custom_list_id)

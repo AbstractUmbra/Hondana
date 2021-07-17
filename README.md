@@ -24,7 +24,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Feature          | Implemented? | Notes                                              |
 | ---------------- | ------------ | -------------------------------------------------- |
 | Chapter Upload   | [ ]          | Soon:tm:                                           |
-| Manga            | [/]          | Partially implemented.                             |
+| Manga            | [x]          | Done. (pending tests on some endpoints)            |
 | Cover            | [/]          | Soon:tm:                                           |
 | Author           | [/]          | Soon:tm:                                           |
 | Search           | [ ]          | Soon:tm:                                           |
@@ -43,27 +43,24 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Manga
-| Endpoint                                              | Implemented? | Notes                              |
-| ----------------------------------------------------- | ------------ | ---------------------------------- |
-| Manga List                                            | [x]          | Done.                              |
-| Create Manga                                          | [x]          | Done. Unsure if I can test this... |
-| Get Manga Volumes & Chapters                          | [x]          | Done.                              |
-| View Manga                                            | [x]          | Done.                              |
-| Update Manga                                          | [x]          | Done. Unsure if I can test this... |
-| Delete Manga                                          | [x]          | Done. Unsure if I can test this... |
-| Add Manga to CustomList                               | [ ]          | Soon:tm:                           |
-| Remove Manga from CustomList                          | [ ]          | Soon:tm:                           |
-| Get logged in User followed Manga feed (Chapter list) | [x]          | Done.                              |
-| Unfollow Manga                                        | [x]          | Done.                              |
-| Follow Manga                                          | [x]          | Done.                              |
-| Manga Feed                                            | [x]          | Done.                              |
-| Manga Read Markers                                    | [x]          | Done.                              |
-| Manga Read Markers (grouped)                          | [x]          | Done.                              |
-| Get a random Manga                                    | [x]          | Done.                              |
-| Tag list                                              | [x]          | Done.                              |
-| Get a Manga reading status                            | [x]          | Done.                              |
-| Update Manga reading status                           | [x]          | Done.                              |
+### In Progress: Chapter
+| Endpoint                                              | Implemented? | Notes    |
+| ----------------------------------------------------- | ------------ | -------- |
+| Chapter list                                          | [ ]          | Soon:tm: |
+| Get Chapter                                           | [ ]          | Soon:tm: |
+| Update Chapter                                        | [ ]          | Soon:tm: |
+| Delete Chapter                                        | [ ]          | Soon:tm: |
+| Get logged in User followed Manga feed (Chapter list) | [ ]          | Soon:tm: |
+| Mark Chapter read                                     | [ ]          | Soon:tm: |
+| Mark Chapter unread                                   | [ ]          | Soon:tm: |
+
+
+#### To Test: Manga
+| Endpoint     | Tested? | Notes                              |
+| ------------ | ------- | ---------------------------------- |
+| Create Manga | [ ]     | Done. Unsure if I can test this... |
+| Update Manga | [ ]     | Done. Unsure if I can test this... |
+| Delete Manga | [ ]     | Done. Unsure if I can test this... |
 
 ## Examples
 Please take a look at the [examples](../mangadex.py/mangadex/examples/) directory for working examples.
