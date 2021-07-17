@@ -52,7 +52,7 @@ from .errors import (
     RefreshError,
     Unauthorized,
 )
-from .utils import MISSING, php_query_builder, TAGS, to_json
+from .utils import MISSING, TAGS, php_query_builder, to_json
 
 
 if TYPE_CHECKING:
