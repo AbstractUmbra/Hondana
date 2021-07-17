@@ -72,5 +72,5 @@ Please take a look at the [examples](../mangadex.py/mangadex/examples/) director
 
 ### API caveats to note
 
-- There are no API endpoints for Artist. Currently if you query a manga without the `"artist"` query includes then you will not recieve artist data.
+- There are no API endpoints for Artist. Currently, if you query a manga without the `"artist"` query includes then you will not receive artist data.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorise those), there's a convenience method for updating the local cache as `Client.update_tags`

@@ -460,7 +460,7 @@ class Manga:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_langauges: List[:class:`str`]
+        translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
