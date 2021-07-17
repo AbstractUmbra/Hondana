@@ -678,32 +678,6 @@ class HTTPClient:
         route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    async def delete_manga(self, manga_id: str, /) -> dict[str, Literal["ok", "error"]]:
-        """|coro|
-
-        This method will delete a Manga from the MangaDex API.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to delete.
-
-        Raises
-        -------
-        Forbidden
-            The update errored due to authentication failure.
-        NotFound
-            The specified manga does not exist.
-
-        Returns
-        --------
-        Dict[str, Literal[``"ok"``, ``"error"``]]:
-            The response payload.
-        """
-        data = await self._delete_manga(manga_id)
-
-        return data
-
     def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
