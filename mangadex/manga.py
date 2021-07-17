@@ -368,7 +368,7 @@ class Manga:
 
         return self.__class__(self._http, data)
 
-    async def delete(self) -> dict[str, Literal["ok", "error"]]:
+    async def delete(self) -> None:
         """|coro|
 
         This method will delete a Manga from the MangaDex API.
@@ -379,16 +379,11 @@ class Manga:
             The update errored due to authentication failure.
         NotFound
             The specified manga does not exist.
-
-        Returns
-        --------
-        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]:
-            The response payload.
         """
 
-        return await self._http._delete_manga(self.id)
+        await self._http._delete_manga(self.id)
 
-    async def unfollow(self) -> dict[str, Literal["ok", "error"]]:
+    async def unfollow(self) -> None:
         """|coro|
 
         This method will unfollow the current Manga for the logged in user in the MangaDex API.
@@ -399,15 +394,10 @@ class Manga:
             The request errored due to authentication failure.
         NotFound
             The specified manga does not exist.
-
-        Returns
-        --------
-        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
-            The response payload.
         """
-        return await self._http._unfollow_manga(self.id)
+        await self._http._unfollow_manga(self.id)
 
-    async def follow(self) -> dict[str, Literal["ok", "error"]]:
+    async def follow(self) -> None:
         """|coro|
 
         This method will follow the current Manga for the logged in user in the MangaDex API.
@@ -418,13 +408,8 @@ class Manga:
             The request errored due to authentication failure.
         NotFound
             The specified manga does not exist.
-
-        Returns
-        --------
-        Dict[Literal[``"ok"``], Literal[``"ok"``, ``"error"``]]
-            The response payload.
         """
-        return await self._http._follow_manga(self.id)
+        await self._http._follow_manga(self.id)
 
     async def feed(
         self,
@@ -519,9 +504,7 @@ class Manga:
         """
         return await self._http._get_manga_reading_status(self.id)
 
-    async def update_reading_status(
-        self, *, status: Optional[manga.ReadingStatus]
-    ) -> dict[Literal["result"], Literal["ok"]]:
+    async def update_reading_status(self, *, status: Optional[manga.ReadingStatus]) -> None:
         """|coro|
 
         This method will update your current reading status for the current manga.
@@ -542,16 +525,11 @@ class Manga:
             The query parameters were invalid.
         NotFound
             The specified manga cannot be found, likely due to incorrect ID.
-
-        Returns
-        --------
-        Dict[Literal[``""result""``], Literal[``""ok""``]]
-            The raw payload from the API.
         """
 
-        return await self._http._update_manga_reading_status(self.id, status=status)
+        await self._http._update_manga_reading_status(self.id, status=status)
 
-    async def add_to_custom_list(self, *, custom_list_id: str) -> dict[Literal["result"], Literal["ok", "error"]]:
+    async def add_to_custom_list(self, *, custom_list_id: str) -> None:
         """|coro|
 
         This method will add the current manga to the specified custom list.
@@ -567,16 +545,11 @@ class Manga:
             You are not authorised to add manga to this custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-
-        Returns
-        --------
-        Dict[Literal[``"result"``, Literal[``"ok"``, ``"error"``]
-            The raw response from the API on the request.
         """
 
-        return await self._http._add_manga_to_custom_list(self.id, custom_list_id=custom_list_id)
+        await self._http._add_manga_to_custom_list(self.id, custom_list_id=custom_list_id)
 
-    async def remove_from_custom_list(self, *, custom_list_id: str) -> dict[Literal["result"], Literal["ok", "error"]]:
+    async def remove_from_custom_list(self, *, custom_list_id: str) -> None:
         """|coro|
 
         This method will remove the current manga from the specified custom list.
@@ -592,11 +565,6 @@ class Manga:
             You are not authorised to remove a manga from the specified custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-
-        Returns
-        --------
-        Dict[Literal[``"result"``], Literal[``"ok"``, ``"error"``]]
-            The raw response from the API on the request result.
         """
 
-        return await self._http._remove_manga_from_custom_list(self.id, custom_list_id=custom_list_id)
+        await self._http._remove_manga_from_custom_list(self.id, custom_list_id=custom_list_id)
