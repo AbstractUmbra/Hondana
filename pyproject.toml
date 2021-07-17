@@ -33,17 +33,17 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 aiohttp = "^3.7.4"
-
-sphinx = "^4.0.0"
-sphinxcontrib-trio = "*"
-furo = "*"
-
-[tool.poetry.extras]
-docs = ["sphinx sphinxcontrib-trio furo"]
+sphinx = { version = "^4.0.0", optional = true }
+sphinxcontrib-trio = { version = "*", optional = true }
+furo = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
 isort = "^5.9.2"
+rstcheck = "^3.3.1"
+
+[tool.poetry.extras]
+docs = ["sphinx sphinxcontrib-trio furo"]
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"

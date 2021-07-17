@@ -96,7 +96,7 @@ class QueryTags:
 
     .. note::
         The tags passed need to match the *local* cache of the tags.
-        If you feel this is out of date, you can try the helper method :meth:`~mangadex.Client.update_tags`
+        If you feel this is out of date, you can try the helper method :meth:`~hondana.Client.update_tags`
     """
 
     def __init__(self, *tags: str, mode: str = "AND"):

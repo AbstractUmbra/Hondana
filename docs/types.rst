@@ -1,7 +1,7 @@
 Response Types and Payloads
 ===========================
 
-.. currentmodule:: mangadex.types
+.. currentmodule:: hondana.types
 
 
 Common

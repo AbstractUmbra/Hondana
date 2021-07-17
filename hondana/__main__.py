@@ -57,7 +57,7 @@ def show_version() -> None:
 
 
 def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
-    parser = argparse.ArgumentParser(prog="mangadex", description="Tools for helping with Hondana")
+    parser = argparse.ArgumentParser(prog="hondana", description="Tools for helping with Hondana")
     parser.add_argument("-v", "--version", action="store_true", help="shows the wrapper version")
 
     parser.set_defaults(func=core)

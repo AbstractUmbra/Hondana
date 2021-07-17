@@ -1,10 +1,7 @@
 Exceptions
 ==========
 
-.. currentmodule:: mangadex
-
-Exceptions
-----------
+.. currentmodule:: hondana
 
 APIException
 ~~~~~~~~~~~~

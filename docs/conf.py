@@ -26,7 +26,7 @@ author = "Alex Nørgaard"
 # The full version, including alpha/beta/rc tags
 version = ""
 
-with open("../mangadex/__init__.py") as f:
+with open("../hondana/__init__.py") as f:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 release = version

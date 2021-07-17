@@ -499,7 +499,7 @@ class Manga:
 
         Returns
         --------
-        :class:`~mangadex.types.MangaReadingStatusResponse`
+        :class:`~hondana.types.MangaReadingStatusResponse`
             The raw payload from the API response.
         """
         return await self._http._get_manga_reading_status(self.id)
@@ -511,7 +511,7 @@ class Manga:
 
         Parameters
         -----------
-        status: Optional[:class:`~mangadex.types.ReadingStatus`]
+        status: Optional[:class:`~hondana.types.ReadingStatus`]
             The reading status you wish to update this manga with.
 
 

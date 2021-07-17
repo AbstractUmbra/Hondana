@@ -2,10 +2,10 @@
 
 <div align="center">
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
-        <img src='https://readthedocs.org/projects/mangadexpy/badge/?version=latest' alt='Documentation Status' />
+        <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'>
-        <img src='https://github.com/AbstractUmbra/mystbin.py/workflows/Build/badge.svg' alt='Build status' />
+        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Build/badge.svg' alt='Build status' />
     </a>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/lint.yaml'>
         <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Build status' />
@@ -68,7 +68,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Delete Manga | [ ]     | Done. Unsure if I can test this... |
 
 ## Examples
-Please take a look at the [examples](../Hondana/mangadex/examples/) directory for working examples.
+Please take a look at the [examples](../Hondana/examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
 

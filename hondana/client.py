@@ -275,9 +275,9 @@ class Client:
         year: Optional[:class:`int`]
             The release year of the manga to include in the search.
         included_tags: Optional[:class:`QueryTags`]
-            An instance of mangadex.Tags to include in the search.
+            An instance of :class:`hondana.QueryTags` to include in the search.
         excluded_tags: Optional[:class:`QueryTags`]
-            An instance of mangadex.Tags to include in the search.
+            An instance of :class:`hondana.QueryTags` to include in the search.
         status: Optional[list[Dict[:class:`str`, Any]]]
             The status(es) of manga to include in the search.
         original_language: Optional[:class:`str`]
@@ -369,13 +369,13 @@ class Client:
 
         Parameters
         -----------
-        title: :class:`~mangadex.types.LocalisedString`
+        title: :class:`~hondana.types.LocalisedString`
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~mangadex.types.LocalisedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[:class:`~mangadex.types.LocalisedString`]
+        description: Optional[:class:`~hondana.types.LocalisedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
@@ -527,11 +527,11 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga to update.
-        title: Optional[:class:`~mangadex.types.LocalisedString`]
+        title: Optional[:class:`~hondana.types.LocalisedString`]
             The manga titles in the format of ``language_key: title``
-        alt_titles: Optional[List[:class:`~mangadex.types.LocalisedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
             The alternative titles in the format of ``language_key: title``
-        description: Optional[:class:`~mangadex.types.LocalisedString`]
+        description: Optional[:class:`~hondana.types.LocalisedString`]
             The manga description in the format of ``language_key: description``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
@@ -723,7 +723,7 @@ class Client:
 
         Returns
         --------
-        Union[:class:`~mangadex.types.MangaReadMarkersResponse`, :class:`~mangadex.types.MangaGroupedReadMarkersResponse`]
+        Union[:class:`~hondana.types.MangaReadMarkersResponse`, :class:`~hondana.types.MangaGroupedReadMarkersResponse`]
         """
         if len(manga_ids) == 1:
             return await self._http._manga_read_markers(manga_ids, grouped=False)
@@ -765,7 +765,7 @@ class Client:
 
         Returns
         --------
-        :class:`~mangadex.types.MangaReadingStatusResponse`
+        :class:`~hondana.types.MangaReadingStatusResponse`
             The raw response from the API on the request.
         """
         return await self._http._get_manga_reading_status(manga_id)
@@ -779,7 +779,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to update.
-        status: Optional[:class:`~mangadex.types.ReadingStatus`]
+        status: Optional[:class:`~hondana.types.ReadingStatus`]
             The reading status you wish to update this manga with.
 
 
