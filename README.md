@@ -1,22 +1,27 @@
-<h1 align="center">mangadex.py</h1>
+<h1 align="center">Hondana</h1>
 
 <div align="center">
-    <a href='https://mangadexpy.readthedocs.io/en/latest/?badge=latest'>
+    <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/mangadexpy/badge/?version=latest' alt='Documentation Status' />
     </a>
-    <a href='https://github.com/AbstractUmbra/mangadex.py/actions/workflows/build.yaml'>
+    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'>
         <img src='https://github.com/AbstractUmbra/mystbin.py/workflows/Build/badge.svg' alt='Build status' />
     </a>
-    <a href='https://github.com/AbstractUmbra/mangadex.py/actions/workflows/lint.yaml'>
-        <img src='https://github.com/AbstractUmbra/mangadex.py/workflows/Lint/badge.svg' alt='Build status' />
+    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/lint.yaml'>
+        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Build status' />
     </a>
+</div>
+
+<h1></h1>
+
+<div align="center">
+    <h2>Hondana　『本棚』</h2>
+    <p>Hondana is the Japanese word for "bookshelf".</p>
 </div>
 
 <br>
 
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
-
-<br>
 
 ## Features
 **NOTE** This library is still in development, I will list off the API methods and their progress here:
@@ -63,7 +68,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Delete Manga | [ ]     | Done. Unsure if I can test this... |
 
 ## Examples
-Please take a look at the [examples](../mangadex.py/mangadex/examples/) directory for working examples.
+Please take a look at the [examples](../Hondana/mangadex/examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
 

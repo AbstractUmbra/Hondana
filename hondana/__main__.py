@@ -29,7 +29,7 @@ import sys
 import aiohttp
 import pkg_resources
 
-import mangadex
+import hondana
 
 
 def show_version() -> None:
@@ -38,16 +38,16 @@ def show_version() -> None:
     version_info = sys.version_info
     entries.append(f"- Python v{version_info.major}.{version_info.minor}.{version_info.micro}-{version_info.releaselevel}")
 
-    md_version_info = mangadex.version_info
+    md_version_info = hondana.version_info
     entries.append(
-        f"- mangadex.py v{md_version_info.major}.{md_version_info.minor}."
+        f"- Hondana v{md_version_info.major}.{md_version_info.minor}."
         f"{md_version_info.micro}-{md_version_info.releaselevel}"
     )
 
     if md_version_info.releaselevel != "final":
-        pkg = pkg_resources.get_distribution("mangadex.py")
+        pkg = pkg_resources.get_distribution("Hondana")
         if pkg:
-            entries.append(f"    - mangadex.py pkg_resources: v{pkg.version}")
+            entries.append(f"    - Hondana pkg_resources: v{pkg.version}")
 
     entries.append(f" - aiohttp {aiohttp.__version__}")
     uname = platform.uname()
@@ -57,7 +57,7 @@ def show_version() -> None:
 
 
 def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
-    parser = argparse.ArgumentParser(prog="mangadex", description="Tools for helping with mangadex.py")
+    parser = argparse.ArgumentParser(prog="mangadex", description="Tools for helping with Hondana")
     parser.add_argument("-v", "--version", action="store_true", help="shows the wrapper version")
 
     parser.set_defaults(func=core)

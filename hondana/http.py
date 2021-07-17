@@ -151,7 +151,7 @@ class HTTPClient:
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
         self.__last_refresh: Optional[datetime.datetime] = None
-        user_agent = "MangaDex.py (https://github.com/AbstractUmbra/mangadex.py {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
+        user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
     async def _generate_session(self) -> aiohttp.ClientSession:

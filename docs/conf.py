@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = "MangaDex.py"
+project = "Hondana"
 copyright = "2021, Alex Nørgaard"
 author = "Alex Nørgaard"
 

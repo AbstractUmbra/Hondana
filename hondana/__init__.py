@@ -22,7 +22,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-__title__ = "mangadex"
+__title__ = "Hondana"
 __author__ = "AbstractUmbra"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"

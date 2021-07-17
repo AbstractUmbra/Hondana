@@ -1,14 +1,14 @@
 import datetime
 
-import mangadex
+import hondana
 
 
 # We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
 # We instead use our credentials to login and fetch an expiring auth token
-client = mangadex.Client(login="my login username", password="my login password")
+client = hondana.Client(login="my login username", password="my login password")
 
 
-async def get_my_feed() -> list[mangadex.Chapter]:
+async def get_my_feed() -> list[hondana.Chapter]:
     # Let's get the last 15 minutes of released manga
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 
