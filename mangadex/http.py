@@ -574,7 +574,6 @@ class HTTPClient:
             query["modNotes"] = mod_notes
 
         route = Route("POST", "/manga")
-        print(query)
         return self.request(route, json=query)
 
     def _get_manga_volumes_and_chapters(
