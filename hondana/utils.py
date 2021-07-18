@@ -31,7 +31,7 @@ __all__ = ("MISSING", "to_json", "php_query_builder", "TAGS")
 _PROJECT_DIR = pathlib.Path(__file__)
 
 
-class MissingSentinal:
+class MissingSentinel:
     def __eq__(self, other: Any) -> bool:
         return False
 
@@ -42,7 +42,7 @@ class MissingSentinal:
         return "..."
 
 
-MISSING: Any = MissingSentinal()
+MISSING: Any = MissingSentinel()
 
 
 def to_json(obj: Any) -> str:

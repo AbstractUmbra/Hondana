@@ -40,7 +40,7 @@ class Tag:
         The UUID associated with this tag.
     type: Literal[:class:`str`]
         The type of the object, literally "tag".
-    description: List[Dict[:class:`str`, :class:`str`]]
+    description: List[:class:`~hondana.types.LocalisedString`]
         The description(s) of the tag.
     group: :class:`str`
         The group (or kind) of tag.

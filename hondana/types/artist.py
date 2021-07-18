@@ -36,7 +36,7 @@ class ArtistAttributesResponse(TypedDict):
 
     imageUrl: Optional[:class:`str`]
 
-    biography: Dict[:class:`str`, :class:`str`]
+    biography: :class:`~hondana.types.LocalisedString`
 
     version: :class:`int`
 

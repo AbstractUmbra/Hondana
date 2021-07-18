@@ -51,7 +51,7 @@ class Manga:
     -----------
     id: :class:`str`
         The UUID associated to this manga.
-    alternate_titles: Dict[:class:`str`, :class:`str`]
+    alternate_titles: :class:`~hondana.types.LocalisedString`
         The alternative title mapping for the Manga.
         i.e. ``{"en": "Some Other Title"}``
     locked: :class:`bool`
@@ -283,20 +283,20 @@ class Manga:
 
         Parameters
         -----------
-        title: Optional[Dict[:class:`str`, :class:`str`]]
+        title: Optional[:class:`~hondana.types.LocalisedString`]
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[Dict[:class:`str`, :class:`str`]]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[Dict[:class:`str`, :class:`str`]]
+        description: Optional[:class:`~hondana.types.LocalisedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[Dict[str, Any]]
+        links: Optional[:class:`~hondana.types.MangaLinks`]
             The links relevant to the manga.
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
@@ -305,13 +305,13 @@ class Manga:
             The last volume to attribute to this manga.
         last_chapter: :class:`str`
             The last chapter to attribute to this manga.
-        publication_demographic: Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]
+        publication_demographic: :class:`hondana.types.PublicationDemographic`
             The target publication demographic of this manga.
-        status: Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]
+        status: :class:`~hondana.types.MangaStatus`
             The status of the manga.
         year: :class:`int`
             The release year of the manga.
-        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
+        content_rating: Optional[:class:`~hondana.types.ContentRating`]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -336,7 +336,7 @@ class Manga:
             The query parameters were not valid.
 
         Forbidden
-            The update errored due to authentication failure.
+            The update returned an error due to authentication failure.
 
         NotFound
             The specified manga does not exist.
@@ -376,7 +376,7 @@ class Manga:
         Raises
         -------
         Forbidden
-            The update errored due to authentication failure.
+            The update returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """
@@ -391,7 +391,7 @@ class Manga:
         Raises
         -------
         Forbidden
-            The request errored due to authentication failure.
+            The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """
@@ -405,7 +405,7 @@ class Manga:
         Raises
         -------
         Forbidden
-            The request errored due to authentication failure.
+            The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """

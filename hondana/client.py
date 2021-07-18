@@ -281,7 +281,7 @@ class Client:
         status: Optional[list[Dict[:class:`str`, Any]]]
             The status(es) of manga to include in the search.
         original_language: Optional[:class:`str`]
-            A list of language codes to include for the Manga's original language.
+            A list of language codes to include for the manga's original language.
             i.e. ``["en"]``
         publication_demographic: Optional[List[Dict[:class:`str`, Any]]]
             The publication demographic(s) to limit the search to.
@@ -391,13 +391,13 @@ class Client:
             The last volume to attribute to this manga.
         last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: Optional[Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]]
+        publication_demographic: Optional[:class:`~hondana.types.PublicationDemographic`]
             The target publication demographic of this manga.
-        status: Optional[Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]]
+        status: Optional[:class:`~hondana.types.MangaStatus`]
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]
+        content_rating: :class:`~hondana.types.ContentRating`
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -546,13 +546,13 @@ class Client:
             The last volume to attribute to this manga.
         last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: Literal[``"shounen"``, ``"shoujo"``, ``"josei"``, ``"seinen"``]
+        publication_demographic: :class:`~hondana.types.PublicationDemographic`
             The target publication demographic of this manga.
-        status: Optional[Literal[``"ongoing"``, ``"completed"``, ``"hiatus"``, ``"cancelled"``]]
+        status: Optional[:class:`~hondana.types.MangaStatus`]
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: Optional[Literal[``"safe"``, ``"suggestive"``, ``"erotica"``, ``"pornographic"``]]
+        content_rating: Optional[:class:`~hondana.types.ContentRating`]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -575,7 +575,7 @@ class Client:
         BadRequest
             The query parameters were not valid.
         Forbidden
-            The update errored due to authentication failure.
+            The returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
 
@@ -619,7 +619,7 @@ class Client:
         Raises
         -------
         Forbidden
-            The request errored due to authentication failure.
+            The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """
@@ -638,7 +638,7 @@ class Client:
         Raises
         -------
         Forbidden
-            The request errored due to authentication failure.
+            The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """
@@ -749,7 +749,7 @@ class Client:
     async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
         """|coro|
 
-        This method will return the current reading status for the specifed manga.
+        This method will return the current reading status for the specified manga.
 
         Parameters
         -----------
