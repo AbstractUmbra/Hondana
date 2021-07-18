@@ -32,7 +32,7 @@ _PROJECT_DIR = pathlib.Path(__file__)
 
 
 class MissingSentinel:
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, _: Any) -> bool:
         return False
 
     def __bool__(self) -> bool:

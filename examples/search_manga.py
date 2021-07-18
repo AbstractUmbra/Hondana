@@ -18,7 +18,7 @@ async def search_for_tags() -> list[hondana.Manga]:
     # and using our predefined tags earlier.
     manga_response = await client.manga_list(limit=10, offset=0, included_tags=tags)
 
-    # `manga_response` will be a list of upto 10 manga that match the search criteria above.
+    # `manga_response` will be a list of up to 10 manga that match the search criteria above.
     return manga_response
 
 
