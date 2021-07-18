@@ -49,15 +49,17 @@ class Client:
     Attributes
     -----------
     login: :class:`str`
-        Your login username for the API. Used in conjunction with your password to generate an authentication token.
-    password: :class:`str`
-        Your login password for the API. Used in conjunction with your username to generate an authentication token.
+        Your login username for the API / site. Used in conjunction with your password to generate an authentication token.
+    email: :class:`str`
+        Your login email for the API / site. Used in conjunction with your password to generate an authentication token.
+    password: :class:`str`3
+        Your login password for the API / site. Used in conjunction with your username to generate an authentication token.
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
 
 
     .. note::
-        If you do not pass a login and password then we cannot actually login and will error.
+        If you do not pass a login/email and password then we cannot actually login and will error.
 
     .. note::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
@@ -67,13 +69,20 @@ class Client:
     Raises
     -------
     ValueError
-        You failed to pass appropriate login information (login and password).
+        You failed to pass appropriate login information (login/email and password).
     """
 
     __slots__ = ("_http",)
 
-    def __init__(self, login: str, password: str, session: Optional[ClientSession] = None) -> None:
-        self._http = HTTPClient(login=login, password=password, session=session)
+    def __init__(
+        self,
+        *,
+        login: Optional[str] = None,
+        email: Optional[str] = None,
+        password: str,
+        session: Optional[ClientSession] = None,
+    ) -> None:
+        self._http = HTTPClient(login=login, email=email, password=password, session=session)
 
     async def logout(self) -> None:
         """|coro|

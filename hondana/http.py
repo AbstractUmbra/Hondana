@@ -124,6 +124,7 @@ class Route:
 class HTTPClient:
     __slots__ = (
         "login",
+        "email",
         "password",
         "__session",
         "_token",
@@ -136,16 +137,18 @@ class HTTPClient:
     def __init__(
         self,
         *,
-        login: str,
+        login: Optional[str],
+        email: Optional[str],
         password: str,
         session: Optional[aiohttp.ClientSession] = None,
     ) -> None:
-        if not (login and password):
+        if not ((login or email) and password):
             raise ValueError(
-                "You did not provide appropriate login information, a login (username) and password combination is required."
+                "You did not provide appropriate login information, a login (username) or email and password combination is required."
             )
 
-        self.login: str = login
+        self.login: Optional[str] = login
+        self.email: Optional[str] = email
         self.password: str = password
         self.__session = session
         self._token: Optional[str] = None
@@ -339,6 +342,14 @@ class HTTPClient:
 
         Raises
         -------
+        BadRequest
+            A request was malformed
+        Unauthorized
+            You attempted to use an endpoint you have no authorization for.
+        Forbidden
+            Your auth was not sufficient to perform this action.
+        NotFound
+            The specified item, endpoint or resource was not found.
         APIException
             A generic exception raised when the HTTP response code is non 2xx.
 
