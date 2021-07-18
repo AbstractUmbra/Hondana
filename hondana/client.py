@@ -26,45 +26,23 @@ from __future__ import annotations
 import datetime
 import json
 import pathlib
-from functools import wraps
-from typing import TYPE_CHECKING, Callable, Optional, TypeVar, Union, overload
+from typing import Optional, Union, overload
 
 from aiohttp import ClientSession
 
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
-from .errors import AuthenticationRequired
 from .http import HTTPClient
 from .manga import Manga
 from .tags import QueryTags
 from .types import manga
 from .types.common import LocalisedString
 from .types.query import GetUserFeedQuery
-from .utils import MISSING
-
-
-if TYPE_CHECKING:
-    from typing_extensions import Concatenate, ParamSpec
+from .utils import MISSING, require_authentication
 
 
 _PROJECT_DIR = pathlib.Path(__file__)
-
-C = TypeVar("C", bound="Client")
-T = TypeVar("T")
-if TYPE_CHECKING:
-    B = ParamSpec("B")
-
-
-def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
-    @wraps(func)
-    def wrapper(client: C, *args: B.args, **kwargs: B.kwargs) -> T:
-        if not client._http._authenticated:
-            raise AuthenticationRequired("This method requires you to be authenticated to the API.")
-
-        return func(client, *args, **kwargs)
-
-    return wrapper
 
 
 class Client:
@@ -142,14 +120,14 @@ class Client:
         self._http = HTTPClient(username=username, email=email, password=password, session=session)
 
     @overload
-    def login(self, *, login: str = ..., email: None = ..., password: str) -> None:
+    def login(self, *, username: str = ..., email: None = ..., password: str) -> None:
         ...
 
     @overload
-    def login(self, *, login: None = ..., email: str = ..., password: str) -> None:
+    def login(self, *, username: None = ..., email: str = ..., password: str) -> None:
         ...
 
-    def login(self, *, login: Optional[str] = None, email: Optional[str] = None, password: str) -> None:
+    def login(self, *, username: Optional[str] = None, email: Optional[str] = None, password: str) -> None:
         """A method to add authentication details to the client post-creation.
 
         Parameters
@@ -161,11 +139,14 @@ class Client:
         password: :class:`str`
             The password to authenticate to the API.
         """
-        self._http.username = login
+        if username is None and email is None:
+            raise ValueError("An email or username must be passed.")
+        self._http.username = username
         self._http.email = email
         self._http.password = password
         self._http._authenticated = True
 
+    @require_authentication
     async def logout(self) -> None:
         """|coro|
 
@@ -437,6 +418,7 @@ class Client:
 
         return manga
 
+    @require_authentication
     async def create_manga(
         self,
         *,
@@ -592,6 +574,7 @@ class Client:
 
         return Manga(self._http, data)
 
+    @require_authentication
     async def update_manga(
         self,
         manga_id: str,
@@ -700,6 +683,7 @@ class Client:
 
         return Manga(self._http, data)
 
+    @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
         """|coro|
 
@@ -719,6 +703,7 @@ class Client:
         """
         await self._http._unfollow_manga(manga_id)
 
+    @require_authentication
     async def follow_manga(self, manga_id: str, /) -> None:
         """|coro|
 
@@ -803,6 +788,7 @@ class Client:
 
         return [Chapter(self._http, item) for item in data["results"]]
 
+    @require_authentication
     async def manga_read_markers(
         self, *, manga_ids: list[str]
     ) -> Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]:
@@ -840,6 +826,7 @@ class Client:
 
         return Manga(self._http, data)
 
+    @require_authentication
     async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
         """|coro|
 
@@ -864,6 +851,7 @@ class Client:
         """
         return await self._http._get_manga_reading_status(manga_id)
 
+    @require_authentication
     async def update_manga_reading_status(self, manga_id: str, /, *, status: Optional[manga.ReadingStatus]) -> None:
         """|coro|
 
@@ -891,6 +879,7 @@ class Client:
 
         await self._http._update_manga_reading_status(manga_id, status=status)
 
+    @require_authentication
     async def add_manga_to_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
         """|coro|
 
@@ -913,6 +902,7 @@ class Client:
 
         await self._http._add_manga_to_custom_list(manga_id, custom_list_id=custom_list_id)
 
+    @require_authentication
     async def remove_manga_from_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
         """|coro|
 

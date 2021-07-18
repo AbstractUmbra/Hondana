@@ -21,9 +21,25 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
+
 import json
 import pathlib
-from typing import Any, Mapping, Optional, Union
+from functools import wraps
+from typing import TYPE_CHECKING, Any, Callable, Mapping, Optional, TypeVar, Union
+
+from .errors import AuthenticationRequired
+
+
+if TYPE_CHECKING:
+    from typing_extensions import Concatenate, ParamSpec
+
+    from .client import Client
+
+C = TypeVar("C", bound="Client")
+T = TypeVar("T")
+if TYPE_CHECKING:
+    B = ParamSpec("B")
 
 
 __all__ = ("MISSING", "to_json", "php_query_builder", "TAGS")
@@ -43,6 +59,17 @@ class MissingSentinel:
 
 
 MISSING: Any = MissingSentinel()
+
+
+def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
+    @wraps(func)
+    def wrapper(client: C, *args: B.args, **kwargs: B.kwargs) -> T:
+        if not client._http._authenticated:
+            raise AuthenticationRequired("This method requires you to be authenticated to the API.")
+
+        return func(client, *args, **kwargs)
+
+    return wrapper
 
 
 def to_json(obj: Any) -> str:

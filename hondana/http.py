@@ -180,7 +180,8 @@ class HTTPClient:
         """
 
         if self.__session is not None:
-            await self._logout()
+            if self._authenticated:
+                await self._logout()
             await self.__session.close()
 
     async def _get_token(self) -> str:

@@ -30,7 +30,7 @@ from .artist import Artist
 from .chapter import Chapter
 from .cover import Cover
 from .tags import Tag
-from .utils import MISSING
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
@@ -257,6 +257,7 @@ class Manga:
         if "attributes" in artist:
             return Artist(self._http, artist)  # type: ignore #TODO: Investigate typing.Protocol or abcs here.
 
+    @require_authentication
     async def update(
         self,
         *,
@@ -368,6 +369,7 @@ class Manga:
 
         return self.__class__(self._http, data)
 
+    @require_authentication
     async def delete(self) -> None:
         """|coro|
 
@@ -383,6 +385,7 @@ class Manga:
 
         await self._http._delete_manga(self.id)
 
+    @require_authentication
     async def unfollow(self) -> None:
         """|coro|
 
@@ -397,6 +400,7 @@ class Manga:
         """
         await self._http._unfollow_manga(self.id)
 
+    @require_authentication
     async def follow(self) -> None:
         """|coro|
 
@@ -472,6 +476,7 @@ class Manga:
 
         return [Chapter(self._http, item) for item in data["results"]]
 
+    @require_authentication
     async def manga_read_markers(self) -> manga.MangaReadMarkersResponse:
         """|coro|
 
@@ -485,6 +490,7 @@ class Manga:
         """
         return await self._http._manga_read_markers([self.id], grouped=False)
 
+    @require_authentication
     async def get_reading_status(self) -> manga.MangaReadingStatusResponse:
         """|coro|
 
@@ -504,6 +510,7 @@ class Manga:
         """
         return await self._http._get_manga_reading_status(self.id)
 
+    @require_authentication
     async def update_reading_status(self, *, status: Optional[manga.ReadingStatus]) -> None:
         """|coro|
 
@@ -529,6 +536,7 @@ class Manga:
 
         await self._http._update_manga_reading_status(self.id, status=status)
 
+    @require_authentication
     async def add_to_custom_list(self, *, custom_list_id: str) -> None:
         """|coro|
 
@@ -549,6 +557,7 @@ class Manga:
 
         await self._http._add_manga_to_custom_list(self.id, custom_list_id=custom_list_id)
 
+    @require_authentication
     async def remove_from_custom_list(self, *, custom_list_id: str) -> None:
         """|coro|
 
