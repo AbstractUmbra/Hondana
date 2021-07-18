@@ -226,7 +226,8 @@ class Client:
         if offset < 0:
             offset = 0
 
-        data = await self._http._get_my_feed(
+        data = await self._http._manga_feed(
+            None,
             limit=limit,
             offset=offset,
             translated_languages=translated_languages,
@@ -234,6 +235,7 @@ class Client:
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
             order=order,
+            includes=None,
         )
 
         chapters: list[Chapter] = []

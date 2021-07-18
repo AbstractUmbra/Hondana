@@ -404,41 +404,6 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _get_my_feed(
-        self,
-        *,
-        limit: int,
-        offset: int,
-        translated_languages: Optional[list[str]] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[GetUserFeedQuery] = None,
-    ) -> Response[GetChapterFeedResponse]:
-        route = Route("GET", "/user/follows/manga/feed")
-
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
-        if translated_languages:
-            query["translatedLanguage"] = translated_languages
-
-        if created_at_since:
-            query["createdAtSince"] = to_iso_format(created_at_since)
-
-        if updated_at_since:
-            query["updatedAtSince"] = to_iso_format(updated_at_since)
-
-        if published_at_since:
-            query["publishAtSince"] = to_iso_format(published_at_since)
-
-        if order:
-            query["order"] = order
-
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
-
     def _manga_list(
         self,
         *,
@@ -687,17 +652,21 @@ class HTTPClient:
         route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
-        route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
+    def _add_manga_to_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _follow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
-        route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
+    def _remove_manga_from_custom_list(
+        self, manga_id: str, /, *, custom_list_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
     def _manga_feed(
         self,
-        manga_id: str,
+        manga_id: Optional[str],
         /,
         *,
         limit: int,
@@ -709,7 +678,10 @@ class HTTPClient:
         order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
     ) -> Response[GetChapterFeedResponse]:
-        route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
+        if manga_id is None:
+            route = Route("GET", "/manga/follows/manga/feed")
+        else:
+            route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
         query = {}
         query["limit"] = limit
@@ -737,6 +709,14 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
+    def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
+        return self.request(route)
+
+    def _follow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
+        return self.request(route)
+
     def _get_random_manga(self, *, includes: Optional[list[manga.MangaIncludes]]) -> Response[manga.ViewMangaResponse]:
         route = Route("GET", "/manga/random")
 
@@ -749,14 +729,14 @@ class HTTPClient:
 
     @overload
     def _manga_read_markers(
-        self, manga_ids: list[str], /, *, grouped: Literal[True]
-    ) -> Response[manga.MangaGroupedReadMarkersResponse]:
+        self, manga_ids: list[str], /, *, grouped: Literal[False]
+    ) -> Response[manga.MangaReadMarkersResponse]:
         ...
 
     @overload
     def _manga_read_markers(
-        self, manga_ids: list[str], /, *, grouped: Literal[False]
-    ) -> Response[manga.MangaReadMarkersResponse]:
+        self, manga_ids: list[str], /, *, grouped: Literal[True]
+    ) -> Response[manga.MangaGroupedReadMarkersResponse]:
         ...
 
     def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: bool = False):
@@ -783,15 +763,3 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
         resolved_query = php_query_builder({"status": status})
         return self.request(route, params=resolved_query)
-
-    def _add_manga_to_custom_list(
-        self, manga_id: str, /, *, custom_list_id: str
-    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
-        return self.request(route)
-
-    def _remove_manga_from_custom_list(
-        self, manga_id: str, /, *, custom_list_id: str
-    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
-        return self.request(route)
