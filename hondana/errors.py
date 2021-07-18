@@ -26,7 +26,20 @@ import datetime
 import aiohttp
 
 
-__all__ = ("APIException", "LoginError", "RefreshError", "NotFound", "BadRequest", "Unauthorized", "Forbidden")
+__all__ = (
+    "AuthenticationRequired",
+    "APIException",
+    "LoginError",
+    "RefreshError",
+    "NotFound",
+    "BadRequest",
+    "Unauthorized",
+    "Forbidden",
+)
+
+
+class AuthenticationRequired(Exception):
+    """An exception to be raised when authentication is required to use this endpoint."""
 
 
 class APIException(Exception):

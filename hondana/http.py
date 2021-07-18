@@ -123,9 +123,10 @@ class Route:
 
 class HTTPClient:
     __slots__ = (
-        "login",
+        "username",
         "email",
         "password",
+        "_authenticated",
         "__session",
         "_token",
         "__refresh_token",
@@ -137,19 +138,19 @@ class HTTPClient:
     def __init__(
         self,
         *,
-        login: Optional[str],
+        username: Optional[str],
         email: Optional[str],
-        password: str,
+        password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
     ) -> None:
-        if not ((login or email) and password):
-            raise ValueError(
-                "You did not provide appropriate login information, a login (username) or email and password combination is required."
-            )
+        if not ((username or email) and password):
+            self._authenticated = False
+        else:
+            self._authenticated = True
 
-        self.login: Optional[str] = login
+        self.username: Optional[str] = username
         self.email: Optional[str] = email
-        self.password: str = password
+        self.password: Optional[str] = password
         self.__session = session
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
@@ -204,8 +205,15 @@ class HTTPClient:
         if self.__session is None:
             self.__session = await self._generate_session()
 
+        if self.username:
+            auth = {"username": self.username, "password": self.password}
+        elif self.email:
+            auth = {"email": self.email, "password": self.password}
+        else:
+            raise ValueError("No authentication methods set before attempting an API request.")
+
         route = Route("POST", "/auth/login")
-        async with self.__session.post(route.url, json={"username": self.login, "password": self.password}) as response:
+        async with self.__session.post(route.url, json=auth) as response:
             data: LoginPayload = await response.json()
 
         if data["result"] == "error":
@@ -329,6 +337,8 @@ class HTTPClient:
         if not (300 > response.status >= 200) or data["result"] != "ok":
             raise APIException(response, "Unable to logout", response.status)
 
+        self._authenticated = False
+
     async def request(self, route: Route, **kwargs: Any) -> Any:
         """|coro|
 
@@ -361,8 +371,11 @@ class HTTPClient:
         if self.__session is None:
             self.__session = await self._generate_session()
 
-        token = await self._try_token()
-        headers = kwargs.pop("headers", None) or {"Authorization": f"Bearer {token}"}
+        headers = kwargs.pop("headers", {})
+        token = await self._try_token() if self._authenticated else None
+
+        if token is not None:
+            headers["Authorization"] = f"Bearer {token}"
         headers["User-Agent"] = self.user_agent
 
         if "json" in kwargs:
@@ -679,7 +692,7 @@ class HTTPClient:
         includes: Optional[list[manga.MangaIncludes]],
     ) -> Response[GetChapterFeedResponse]:
         if manga_id is None:
-            route = Route("GET", "/manga/follows/manga/feed")
+            route = Route("GET", "/user/follows/manga/feed")
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 

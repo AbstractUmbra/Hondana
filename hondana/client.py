@@ -21,16 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
+
 import datetime
 import json
 import pathlib
-from typing import Literal, Optional, Union
+from functools import wraps
+from typing import TYPE_CHECKING, Callable, Optional, TypeVar, Union, overload
 
 from aiohttp import ClientSession
 
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
+from .errors import AuthenticationRequired
 from .http import HTTPClient
 from .manga import Manga
 from .tags import QueryTags
@@ -40,7 +44,27 @@ from .types.query import GetUserFeedQuery
 from .utils import MISSING
 
 
+if TYPE_CHECKING:
+    from typing_extensions import Concatenate, ParamSpec
+
+
 _PROJECT_DIR = pathlib.Path(__file__)
+
+C = TypeVar("C", bound="Client")
+T = TypeVar("T")
+if TYPE_CHECKING:
+    B = ParamSpec("B")
+
+
+def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
+    @wraps(func)
+    def wrapper(client: C, *args: B.args, **kwargs: B.kwargs) -> T:
+        if not client._http._authenticated:
+            raise AuthenticationRequired("This method requires you to be authenticated to the API.")
+
+        return func(client, *args, **kwargs)
+
+    return wrapper
 
 
 class Client:
@@ -48,18 +72,18 @@ class Client:
 
     Attributes
     -----------
-    login: :class:`str`
+    username: Optional[:class:`str`]
         Your login username for the API / site. Used in conjunction with your password to generate an authentication token.
-    email: :class:`str`
+    email: Optional[:class:`str`]
         Your login email for the API / site. Used in conjunction with your password to generate an authentication token.
-    password: :class:`str`3
+    password: Optional[:class:`str`]
         Your login password for the API / site. Used in conjunction with your username to generate an authentication token.
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
 
 
     .. note::
-        If you do not pass a login/email and password then we cannot actually login and will error.
+        The Client will work without authentication, and all authenticated endpoints will fail before attempting a request.
 
     .. note::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
@@ -74,15 +98,73 @@ class Client:
 
     __slots__ = ("_http",)
 
+    @overload
     def __init__(
         self,
         *,
-        login: Optional[str] = None,
+        username: None = ...,
+        email: None = ...,
+        password: None = ...,
+        session: Optional[ClientSession] = ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: None = ...,
+        email: str = ...,
+        password: str = ...,
+        session: Optional[ClientSession] = ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: str = ...,
+        email: None = ...,
+        password: str = ...,
+        session: Optional[ClientSession] = ...,
+    ) -> None:
+        ...
+
+    def __init__(
+        self,
+        *,
+        username: Optional[str] = None,
         email: Optional[str] = None,
-        password: str,
+        password: Optional[str] = None,
         session: Optional[ClientSession] = None,
     ) -> None:
-        self._http = HTTPClient(login=login, email=email, password=password, session=session)
+        self._http = HTTPClient(username=username, email=email, password=password, session=session)
+
+    @overload
+    def login(self, *, login: str = ..., email: None = ..., password: str) -> None:
+        ...
+
+    @overload
+    def login(self, *, login: None = ..., email: str = ..., password: str) -> None:
+        ...
+
+    def login(self, *, login: Optional[str] = None, email: Optional[str] = None, password: str) -> None:
+        """A method to add authentication details to the client post-creation.
+
+        Parameters
+        -----------
+        login: Optional[:class:`str`]
+            The login username to authenticate to the API.
+        email: Optional[:class:`str`]
+            The login email to authenticate to the API.
+        password: :class:`str`
+            The password to authenticate to the API.
+        """
+        self._http.username = login
+        self._http.email = email
+        self._http.password = password
+        self._http._authenticated = True
 
     async def logout(self) -> None:
         """|coro|
@@ -90,15 +172,15 @@ class Client:
         Logs the client out. This process will invalidate the current authorization token in the process.
         """
 
-        return await self._http._close()
+        return await self._http._logout()
 
     async def close(self) -> None:
         """|coro|
 
-        An alias for :meth:`Client.logout`.
+        Logs the client out of the API and closes the internal http session.
         """
 
-        return await self.logout()
+        return await self._http._close()
 
     async def update_tags(self) -> None:
         """|coro|
@@ -172,6 +254,7 @@ class Client:
 
         return Cover(self._http, data)
 
+    @require_authentication
     async def get_my_feed(
         self,
         *,

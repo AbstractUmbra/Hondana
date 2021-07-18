@@ -3,6 +3,10 @@ Exceptions
 
 .. currentmodule:: hondana
 
+AuthenticationRequired
+~~~~~~~~~~~~~~~~~~~~~~
+.. autoexception:: AuthenticationRequired()
+
 APIException
 ~~~~~~~~~~~~
 .. autoexception:: APIException()
