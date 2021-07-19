@@ -14,6 +14,7 @@
 <div align="center">
     <a href='https://api.mangadex.org/'>
         <img src='https://img.shields.io/website?down_color=red&down_message=offline&label=API%20Status&logo=MangaDex%20API&up_color=lime&up_message=online&url=https%3A%2F%2Fapi.mangadex.org%2Fping' alt='API Status'/>
+    </a>
 </div>
 <br>
 
