@@ -67,3 +67,18 @@ class User:
 
     def __str__(self) -> str:
         return self.username
+
+    async def delete(self) -> None:
+        """|coro|
+
+        This method will delete a user from the MangaDex API.
+
+        Raises
+        -------
+        Forbidden
+            The response returned an error due to authentication failure.
+        NotFound
+            The user specified cannot be found.
+        """
+
+        await self._http._delete_user(self.id)

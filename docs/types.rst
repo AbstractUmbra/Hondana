@@ -175,6 +175,14 @@ Tags
 User
 ----
 
+.. autoclass:: UserOrderQuery
+    :members:
+    :undoc-members:
+
+.. autoclass:: GetUserListResponse
+
 .. autoclass:: GetUserResponse
+
+.. autoclass:: UserResponse
 
 .. autoclass:: GetUserAttributesResponse

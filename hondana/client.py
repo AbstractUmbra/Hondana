@@ -30,18 +30,20 @@ from typing import TYPE_CHECKING, Optional, Union, overload
 
 from aiohttp import ClientSession
 
+from . import errors
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
 from .http import HTTPClient
 from .manga import Manga
 from .scanlator_group import ScanlatorGroup
+from .user import User
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import author, chapter, cover, manga, scanlator_group
+    from .types import author, chapter, cover, manga, scanlator_group, user
     from .types.common import LocalisedString
     from .types.query import OrderQuery
 
@@ -1333,3 +1335,304 @@ class Client:
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
 
         return [Author(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def user_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        username: Optional[str] = None,
+        order: Optional[user.UserOrderQuery] = None,
+    ) -> list[User]:
+        """|coro|
+
+        This method will return a list of Users from the MangaDex API.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. This specifies the amount of users to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+        ids: Optional[List[:class:`str`]]
+            A list of User UUID(s) to limit the request to.
+        username: Optional[:class:`str`]
+            The username to limit this request to.
+        order: Optional[:class:`~hondana.types.UserOrderQuery`]
+            The optional query param on how the response will be ordered.
+
+        Raises
+        -------
+        BadRequest
+            The request parameters were malformed
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`User`]
+            The list of users returned via this request.
+        """
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
+
+        return [User(self._http, payload) for payload in data["results"]]
+
+    async def get_user(self, user_id: str, /) -> User:
+        """|coro|
+
+        This method will fetch a user from the MangaDex API.
+
+        Parameters
+        -----------
+        user_id: :class:`str`
+            The UUID of the user you wish to fetch
+
+        Returns
+        --------
+        :class:`User`
+            The user returned from the API.
+        """
+        data = await self._http._get_user(user_id)
+
+        return User(self._http, data)
+
+    @require_authentication
+    async def delete_user(self, user_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a user from the MangaDex API.
+
+        Parameters
+        -----------
+        user_id: :class:`str`
+            The UUID of the user you wish to delete.
+
+        Raises
+        -------
+        Forbidden
+            The response returned an error due to authentication failure.
+        NotFound
+            The user specified cannot be found.
+        """
+
+        await self._http._delete_user(user_id)
+
+    async def approve_user_deletion(self, approval_code: str, /) -> None:
+        """|coro|
+
+        This method will approve a user deletion in the MangaDex API.
+
+        Parameters
+        -----------
+        approval_code: :class:`str`
+            The UUID representing the approval code to delete the user.
+        """
+
+        await self._http._approve_user_deletion(approval_code)
+
+    @require_authentication
+    async def update_user_password(self, *, old_password: str, new_password: str) -> None:
+        """|coro|
+
+        This method will change the current authenticated user's password.
+
+        Parameters
+        -----------
+        old_password: :class:`str`
+            The current (old) password we will be changing from.
+        new_password: :class:`str`
+            The new password we will be changing to.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to an authentication issue.
+        """
+
+        await self._http._update_user_password(old_password=old_password, new_password=new_password)
+
+    @require_authentication
+    async def update_user_email(self, email: str, /) -> None:
+        """|coro|
+
+        This method will update the current authenticated user's email.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The new email address to change to.
+
+        Raises
+        -------
+        Forbidden
+            The API returned an error due to authentication failure.
+        """
+
+        await self._http._update_user_email(email)
+
+    @require_authentication
+    async def get_my_details(self) -> User:
+        """|coro|
+
+        This method will return the current authenticated user's details.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to authentication failure.
+        """
+        data = await self._http._get_my_details()
+
+        return User(self._http, data)
+
+    @require_authentication
+    async def get_my_followed_groups(self, limit: int = 10, offset: int = 0) -> list[ScanlatorGroup]:
+        """|coro|
+
+        This method will return a list of scanlation groups the current authenticated user follows.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. The amount of groups to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`ScanlatorGroup`]
+            The list of groups that are being followed.
+        """
+
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
+
+        return [ScanlatorGroup(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def check_if_following_group(self, group_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the current authenticated user is following a scanlation group.
+
+        Parameters
+        -----------
+        group_id: :class:`str`
+            The UUID representing the scanlation group you wish to check.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether the passed scanlation group is followed or not.
+        """
+
+        try:
+            await self._http._check_if_following_group(group_id)
+        except errors.NotFound:
+            return False
+        else:
+            return True
+
+    @require_authentication
+    async def get_my_followed_users(self, *, limit: int = 10, offset: int = 0) -> list[User]:
+        """|coro|
+
+        This method will return the current authenticated user's followed users.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. The amount of users to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`User`]
+            The list of groups that are being followed.
+        """
+
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._get_my_followed_users(limit=limit, offset=offset)
+
+        return [User(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def check_if_following_user(self, user_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the current authenticated user is following the specified user.
+
+        Parameters
+        -----------
+        user_id: :class:`str`
+            The UUID relating to the user you wish to query against.
+
+        Raises
+        -------
+        Forbidden
+            The requested returned an error due to authentication failure.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether the target user is followed or not.
+        """
+
+        try:
+            await self._http._check_if_following_user(user_id)
+        except errors.NotFound:
+            return False
+        else:
+            return True
+
+    @require_authentication
+    async def check_if_following_manga(self, manga_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the current authenticated user is following the specified manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The UUID relating to the manga you wish to query against.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether the target manga is followed or not.
+        """
+
+        try:
+            await self._http._check_if_following_manga(manga_id)
+        except errors.NotFound:
+            return False
+        else:
+            return True

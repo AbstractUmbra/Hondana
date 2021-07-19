@@ -57,7 +57,7 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import author, chapter, cover, manga, scanlator_group
+    from .types import author, chapter, cover, manga, scanlator_group, user
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.common import LocalisedString
     from .types.query import OrderQuery
@@ -1013,3 +1013,82 @@ class HTTPClient:
         resolved_query = php_query_builder(query)
 
         return self.request(route, params=resolved_query)
+
+    def _user_list(
+        self,
+        limit: int,
+        offset: int,
+        ids: Optional[list[str]],
+        username: Optional[str],
+        order: Optional[user.UserOrderQuery],
+    ) -> Response[user.GetUserListResponse]:
+        route = Route("GET", "/user")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if ids:
+            query["ids"] = ids
+
+        if username:
+            query["username"] = username
+
+        if order:
+            query["order"] = order
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _get_user(self, user_id: str, /) -> Response[user.GetUserResponse]:
+        route = Route("GET", "/user/{user_id}", user_id=user_id)
+        return self.request(route)
+
+    def _delete_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/user/{user_id}", user_id=user_id)
+        return self.request(route)
+
+    def _approve_user_deletion(self, approval_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/user/delete/{approval_code}", approval_code=approval_code)
+        return self.request(route)
+
+    def _update_user_password(
+        self, *, old_password: str, new_password: str
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/user/password")
+        query = {"oldPassword": old_password, "newPassword": new_password}
+        return self.request(route, json=query)
+
+    def _update_user_email(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/user/email")
+        query = {"email": email}
+        return self.request(route, json=query)
+
+    def _get_my_details(self) -> Response[user.GetUserResponse]:
+        route = Route("GET", "/user/me")
+        return self.request(route)
+
+    def _get_my_followed_groups(
+        self, *, limit: int, offset: int
+    ) -> Response[scanlator_group.GetScanlationGroupListResponse]:
+        route = Route("GET", "/user/follows/group")
+        query = php_query_builder({"limit": limit, "offset": offset})
+        return self.request(route, params=query)
+
+    def _check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id)
+        return self.request(route)
+
+    def _get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetUserListResponse]:
+        route = Route("GET", "/user/follows/user")
+        query = php_query_builder({"limit": limit, "offset": offset})
+        return self.request(route, params=query)
+
+    def _check_if_following_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id)
+        return self.request(route)
+
+    def _check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
+        return self.request(route)

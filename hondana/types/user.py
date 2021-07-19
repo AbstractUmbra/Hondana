@@ -27,7 +27,7 @@ from typing import Literal, TypedDict
 from .relationship import RelationshipResponse
 
 
-__all__ = ("UserOrderQuery", "GetUserAttributesResponse", "GetUserResponse", "GetUserListResponse")
+__all__ = ("UserOrderQuery", "GetUserAttributesResponse", "UserResponse", "GetUserResponse", "GetUserListResponse")
 
 
 class UserOrderQuery(TypedDict):

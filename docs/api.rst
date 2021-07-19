@@ -37,6 +37,8 @@ Manga
 .. autoclass:: Manga
     :members:
 
+Scanlation Group
+~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroup
     :members:
 
@@ -48,6 +50,11 @@ Tag
 QueryTags
 ~~~~~~~~~
 .. autoclass:: QueryTags
+    :members:
+
+User
+~~~~
+.. autoclass:: User
     :members:
 
 

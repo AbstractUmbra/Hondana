@@ -34,28 +34,20 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Infrastructure   | [ ]          | Soon:tm:                                           |
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [ ]          | Soon:tm:                                           |
-| User             | [ ]          | Soon:tm:                                           |
+| User             | [x]          | Done. (pending tests on some endpoints)            |
 | Chapter          | [x]          | Done. (pending tests on some endpoints)            |
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: User
-| Endpoint                                | Implemented? | Notes    |
-| --------------------------------------- | ------------ | -------- |
-| User List                               | [ ]          | Soon:tm: |
-| Get User                                | [ ]          | Soon:tm: |
-| Delete User                             | [ ]          | Soon:tm: |
-| Approve User Deletion                   | [ ]          | Soon:tm: |
-| Update User Password                    | [ ]          | Soon:tm: |
-| Update User Email                       | [ ]          | Soon:tm: |
-| Logged User details                     | [ ]          | Soon:tm: |
-| Get Logged In User Followed Groups      | [ ]          | Soon:tm: |
-| Check if Logged In User Follows a Group | [ ]          | Soon:tm: |
-| Get Logged In User Followed User List   | [ ]          | Soon:tm: |
-| Check if Logged In User follows a User  | [ ]          | Soon:tm: |
-| Get Logged In User Followed Manga List  | [x]          | Done     |
-| Check if Logged In User follows a Manga | [ ]          | Soon:tm: |
+### In Progress: Account
+| Endpoint                 | Implemented? | Notes    |
+| ------------------------ | ------------ | -------- |
+| Create Account           | [ ]          | Soon:tm: |
+| Activate Account         | [ ]          | Soon:tm: |
+| Resend Activation Code   | [ ]          | Soon:tm: |
+| Recover Given Account    | [ ]          | Soon:tm: |
+| Complete Account Recover | [ ]          | Soon:tm: |
 
 
 #### To Test: Manga
@@ -78,6 +70,15 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | ---------- | ------- | ---------------------------------- |
 | Edit Cover | [ ]     | Done. Unsure if I can test this... |
 
+
+#### To Test: User
+
+| Endpoint              | Tested? | Notes                              |
+| --------------------- | ------- | ---------------------------------- |
+| User List             | [ ]     | Done. Unsure if I can test this... |
+| Get User              | [ ]     | Done.                              |
+| Delete User           | [ ]     | Done. Unsure if I can test this... |
+| Approve User Deletion | [ ]     | Done. Unsure if I can test this... |
 
 ## Examples
 Please take a look at the [examples](../Hondana/examples/) directory for working examples.

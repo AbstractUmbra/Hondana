@@ -42,6 +42,7 @@ from .http import Route as Route
 from .manga import Manga as Manga
 from .scanlator_group import ScanlatorGroup as ScanlatorGroup
 from .tags import *
+from .user import User as User
 from .utils import TAGS as MANGA_TAGS
 
 
