@@ -44,11 +44,20 @@ Auth
 Author
 ------
 
+.. autoclass:: AuthorIncludes
+    :members:
+    :undoc-members:
+
+.. autoclass:: AuthorOrderQuery
+
 .. autoclass:: GetAuthorResponse
 
 .. autoclass:: AuthorResponse
 
 .. autoclass:: AuthorAttributesResponse
+
+.. autoclass:: GetAuthorListResponse
+
 
 
 Chapter
@@ -71,6 +80,12 @@ Chapter
 
 Cover
 -----
+
+.. autoclass:: CoverIncludes
+    :members:
+    :undoc-members:
+
+.. autoclass:: CoverOrderQuery
 
 .. autoclass:: GetCoverResponse
 
@@ -131,6 +146,22 @@ Relationship
 .. autoclass:: RelationshipResponse
 
 
+Scanlator Group
+---------------
+
+.. autoclass:: ScanlatorGroupIncludes
+    :members:
+    :undoc-members:
+
+.. autoclass:: GetScanlationGroupListResponse
+
+.. autoclass:: GetScanlationGroupResponse
+
+.. autoclass:: ScanlationGroupResponse
+
+.. autoclass:: ScanlationGroupAttributesResponse
+
+
 Tags
 ----
 
@@ -139,3 +170,11 @@ Tags
 .. autoclass:: TagResponse
 
 .. autoclass:: TagAttributesResponse
+
+
+User
+----
+
+.. autoclass:: GetUserResponse
+
+.. autoclass:: GetUserAttributesResponse

@@ -176,7 +176,7 @@ class Manga:
             return Author(self._http, author)  # type: ignore #TODO: typing.Protocol or abcs here.
 
         data = await self._http._get_author(author["id"])
-        return Author(self._http, data["data"])
+        return Author(self._http, data)
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|

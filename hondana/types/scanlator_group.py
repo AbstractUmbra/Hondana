@@ -24,93 +24,61 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, Optional, TypedDict
 
-from .common import LocalisedString
 from .relationship import RelationshipResponse
+from .user import GetUserResponse
 
 
 __all__ = (
-    "AuthorIncludes",
-    "AuthorOrderQuery",
-    "AuthorAttributesResponse",
-    "AuthorResponse",
-    "GetAuthorResponse",
-    "GetAuthorListResponse",
+    "ScanlatorGroupIncludes",
+    "ScanlationGroupAttributesResponse",
+    "ScanlationGroupResponse",
+    "GetScanlationGroupResponse",
+    "GetScanlationGroupListResponse",
 )
 
-
-AuthorIncludes = Literal["manga"]
-
-
-class AuthorOrderQuery(TypedDict):
-    """
-    name: Literal[``"asc"``, ``"desc"``]
-    """
-
-    name: Literal["asc", "desc"]
+ScanlatorGroupIncludes = Literal["user"]
 
 
-class AuthorAttributesResponse(TypedDict):
-    """
-    name: :class:`str`
-
-    imageUrl: Optional[:class:`str`]
-
-    biography: :class:`~hondana.types.LocalisedString`
-
-    version: :class:`int`
-
-    createdAt: :class:`str`
-
-    updatedAt: :class:`str`
-    """
-
+class ScanlationGroupAttributesResponse(TypedDict):
     name: str
-    imageUrl: Optional[str]
-    biography: LocalisedString
+    leader: Optional[GetUserResponse]  # thanks api
+    members: Optional[list[GetUserResponse]]  # thanks api
+    website: Optional[str]
+    ircServer: Optional[str]
+    ircChannel: Optional[str]
+    discord: Optional[str]
+    contactEmail: Optional[str]
+    description: Optional[str]
+    locked: bool
     version: int
     createdAt: str
     updatedAt: str
 
 
-class AuthorResponse(TypedDict):
-    """
-    id: :class:`str`
-
-    type: Literal[``"author"``]
-
-    attributes: :class:`AuthorAttributesResponse`
-    """
-
+class ScanlationGroupResponse(TypedDict):
     id: str
-    type: Literal["author"]
-    attributes: AuthorAttributesResponse
+    type: Literal["scanlation_group"]
+    attributes: ScanlationGroupAttributesResponse
 
 
-class GetAuthorResponse(TypedDict):
-    """
-    result: Literal[``"ok"``, ``"error"``]
-
-    data: :class:`AuthorResponse`
-
-    relationships: List[:class:`RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
-    """
-
+class GetScanlationGroupResponse(TypedDict):
     result: Literal["ok", "error"]
-    data: AuthorResponse
+    data: ScanlationGroupResponse
     relationships: list[RelationshipResponse]
 
 
-class GetAuthorListResponse(TypedDict):
+class GetScanlationGroupListResponse(TypedDict):
     """
-    results: List[:class:`GetAuthorResponse`]
+    results: List[:class:`GetScanlationGroupResponse`]
+
     limit: :class:`int`
+
     offset: :class:`int`
+
     total: :class:`int`
     """
 
-    results: list[GetAuthorResponse]
+    results: list[GetScanlationGroupResponse]
     limit: int
     offset: int
     total: int

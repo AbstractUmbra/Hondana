@@ -35,12 +35,13 @@ from .chapter import Chapter
 from .cover import Cover
 from .http import HTTPClient
 from .manga import Manga
+from .scanlator_group import ScanlatorGroup
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import chapter, cover, manga
+    from .types import author, chapter, cover, manga, scanlator_group
     from .types.common import LocalisedString
     from .types.query import OrderQuery
 
@@ -203,9 +204,7 @@ class Client:
         """
         data = await self._http._get_author(author_id)
 
-        author_data = data["data"]
-
-        return Author(self._http, author_data)
+        return Author(self._http, data)
 
     @require_authentication
     async def get_my_feed(
@@ -1121,6 +1120,39 @@ class Client:
         order: Optional[cover.CoverOrderQuery] = None,
         includes: Optional[list[cover.CoverIncludes]] = None,
     ) -> list[Cover]:
+        """|coro|
+
+        This method will fetch a list of cover arts from the MangaDex API.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. This specifies the amount of scanlator groups to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+        manga: Optional[List[:class:`str`]]
+            A list of manga UUID(s) to limit the request to.
+        ids: Optional[List[:class:`str`]]
+            A list of cover art UUID(s) to limit the request to.
+        uploaders: Optional[List[:class:`str`]]
+            A list of uploader UUID(s) to limit the request to.
+        order: Optional[:class:`~hondana.types.CoverOrderQuery`]
+            A query parameter to choose how the responses are ordered.
+        includes: Optional[List[:class:`~hondana.types.CoverIncludes`]]
+            An optional list of includes to request increased payloads during the request.
+
+        Raises
+        -------
+        BadRequest
+            The request parameters were malformed.
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`Cover`]
+            A list of Cover instances returned from the API.
+        """
         limit = min(max(1, limit), 10)
         if offset < 0:
             offset = 0
@@ -1222,3 +1254,82 @@ class Client:
             The request returned an error due to authentication.
         """
         await self._http._delete_cover(cover_id)
+
+    async def scanlation_group_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        name: Optional[str] = None,
+        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = None,
+    ) -> list[ScanlatorGroup]:
+        """|coro|
+
+        This method will return a list of scanlator groups from the MangaDex API.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. This specifies the amount of scanlator groups to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+        ids: Optional[List[:class:`str`]]
+            A list of scanlator group UUID(s) to limit the request to.
+        name: Optional[:class:`str`]
+            A name to limit the request to.
+        includes: Optional[List[:class:`~hondana.types.ScanlatorGroupIncludes`]]
+            An optional list of includes to request increased payloads during the request.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were malformed
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`ScanlatorGroup`]
+            A list of scanlator groups returned in the request.
+        """
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._scanlation_group_list(limit=limit, offset=offset, ids=ids, name=name, includes=includes)
+
+        return [ScanlatorGroup(self._http, payload) for payload in data["results"]]
+
+    async def author_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        name: Optional[str] = None,
+        order: Optional[author.AuthorOrderQuery],
+        includes: Optional[list[author.AuthorIncludes]],
+    ) -> list[Author]:
+        """|coro|
+
+        This method will fetch a list of authors from the MangaDex API.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. This specifies the amount of scanlator groups to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+        ids: Optional[List[:class:`str`]]
+            A list of author UUID(s) to limit the request to.
+        name: Optional[:class:`str`]
+            A name to limit the request to.
+        order: Optional[:class:`~hondana.types.AuthorOrderQuery`]
+            A query parameter to choose how the responses are ordered.
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
+            An optional list of includes to request increased payloads during the request.
+        """
+        data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
+
+        return [Author(self._http, payload) for payload in data["results"]]

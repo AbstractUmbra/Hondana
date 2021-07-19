@@ -21,38 +21,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
 
-__title__ = "Hondana"
-__author__ = "AbstractUmbra"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.1.0a"
-
-import logging
-from typing import Literal, NamedTuple
-
-from . import utils as utils
-from .artist import Artist as Artist
-from .author import Author as Author
-from .chapter import Chapter as Chapter
-from .client import Client as Client
-from .cover import Cover as Cover
-from .errors import *
-from .http import Route as Route
-from .manga import Manga as Manga
-from .scanlator_group import ScanlatorGroup as ScanlatorGroup
-from .tags import *
-from .utils import TAGS as MANGA_TAGS
+from typing import TYPE_CHECKING, Literal, Optional
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+if TYPE_CHECKING:
+    from .http import HTTPClient
+    from .types import user
+
+__all__ = ("User",)
 
 
-version_info: VersionInfo = VersionInfo(major=0, minor=1, micro=0, releaselevel="alpha", serial=0)
+class User:
+    def __init__(self, http: HTTPClient, payload: user.GetUserResponse) -> None:
+        self._http = http
+        attributes = payload["attributes"]
+        self._attributes = attributes
+        self.id = payload["id"]
+        self.type: Literal["user"] = payload["type"]
+        self.username = attributes["username"]
+        self.version = attributes["version"]
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+    def __repr__(self) -> str:
+        return f"<User id='{self.id}' username='{self.username}'>"
+
+    def __str__(self) -> str:
+        return self.username

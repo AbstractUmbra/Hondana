@@ -29,7 +29,7 @@ from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.author import AuthorResponse
+    from .types.author import GetAuthorResponse
     from .types.common import LocalisedString
 
 __all__ = ("Author",)
@@ -52,13 +52,28 @@ class Author:
         The version revision of this author.
     """
 
-    __slots__ = ("_http", "_data", "id", "name", "image_url", "biography", "version", "_created_at", "_updated_at")
+    __slots__ = (
+        "_http",
+        "_payload",
+        "_data",
+        "_relationships",
+        "id",
+        "name",
+        "image_url",
+        "biography",
+        "version",
+        "_created_at",
+        "_updated_at",
+    )
 
-    def __init__(self, http: HTTPClient, data: AuthorResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: GetAuthorResponse) -> None:
         self._http = http
+        self._payload = payload
+        data = payload["data"]
         self._data = data
         attributes = data["attributes"]
-        self.id: str = data["id"]
+        self._relationships = payload["relationships"]
+        self.id = data["id"]
         self.name: str = attributes["name"]
         self.image_url: Optional[str] = attributes["imageUrl"]
         self.biography: LocalisedString = attributes["biography"]

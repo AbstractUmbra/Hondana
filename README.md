@@ -24,7 +24,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Manga            | [x]          | Done. (pending tests on some endpoints)            |
 | Cover            | [x]          | Done. (pending tests on some endpoints)            |
 | Author           | [/]          | Soon:tm:                                           |
-| Search           | [ ]          | Soon:tm:                                           |
+| Search           | [x]          | Done.                                              |
 | Auth             | [x]          | Authentication is done per request, token handled. |
 | Scanlation Group | [ ]          | Soon:tm:                                           |
 | Feed             | [ ]          | Soon:tm:                                           |
@@ -40,14 +40,22 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Search
-| Endpoint              | Implemented? | Notes |
-| --------------------- | ------------ | ----- |
-| Manga List            | [x]          | Done. |
-| Scanlation Group List | [ ]          |       |
-| Chapter List          | [x]          | Done. |
-| CoverArt List         | [x]          | Done. |
-| Author List           | [ ]          |       |
+### In Progress: User
+| Endpoint                                | Implemented? | Notes    |
+| --------------------------------------- | ------------ | -------- |
+| User List                               | [ ]          | Soon:tm: |
+| Get User                                | [ ]          | Soon:tm: |
+| Delete User                             | [ ]          | Soon:tm: |
+| Approve User Deletion                   | [ ]          | Soon:tm: |
+| Update User Password                    | [ ]          | Soon:tm: |
+| Update User Email                       | [ ]          | Soon:tm: |
+| Logged User details                     | [ ]          | Soon:tm: |
+| Get Logged In User Followed Groups      | [ ]          | Soon:tm: |
+| Check if Logged In User Follows a Group | [ ]          | Soon:tm: |
+| Get Logged In User Followed User List   | [ ]          | Soon:tm: |
+| Check if Logged In User follows a User  | [ ]          | Soon:tm: |
+| Get Logged In User Followed Manga List  | [x]          | Done     |
+| Check if Logged In User follows a Manga | [ ]          | Soon:tm: |
 
 
 #### To Test: Manga

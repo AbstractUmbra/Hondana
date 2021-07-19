@@ -37,6 +37,9 @@ Manga
 .. autoclass:: Manga
     :members:
 
+.. autoclass:: ScanlatorGroup
+    :members:
+
 Tag
 ~~~
 .. autoclass:: Tag

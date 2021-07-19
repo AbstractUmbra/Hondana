@@ -22,37 +22,18 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-__title__ = "Hondana"
-__author__ = "AbstractUmbra"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.1.0a"
-
-import logging
-from typing import Literal, NamedTuple
-
-from . import utils as utils
-from .artist import Artist as Artist
-from .author import Author as Author
-from .chapter import Chapter as Chapter
-from .client import Client as Client
-from .cover import Cover as Cover
-from .errors import *
-from .http import Route as Route
-from .manga import Manga as Manga
-from .scanlator_group import ScanlatorGroup as ScanlatorGroup
-from .tags import *
-from .utils import TAGS as MANGA_TAGS
+from typing import Literal, TypedDict
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+__all__ = ("GetUserAttributesResponse", "GetUserResponse")
 
 
-version_info: VersionInfo = VersionInfo(major=0, minor=1, micro=0, releaselevel="alpha", serial=0)
+class GetUserAttributesResponse(TypedDict):
+    username: str
+    version: int
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+
+class GetUserResponse(TypedDict):
+    id: str
+    type: Literal["user"]
+    attributes: GetUserAttributesResponse

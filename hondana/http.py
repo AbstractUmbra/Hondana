@@ -57,9 +57,8 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import chapter, cover, manga
+    from .types import author, chapter, cover, manga, scanlator_group
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
-    from .types.author import GetAuthorResponse
     from .types.common import LocalisedString
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
@@ -404,7 +403,7 @@ class HTTPClient:
         route = Route("GET", "/manga/tag")
         return self.request(route)
 
-    def _get_author(self, author_id: str) -> Response[GetAuthorResponse]:
+    def _get_author(self, author_id: str) -> Response[author.GetAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
@@ -956,3 +955,61 @@ class HTTPClient:
     def _delete_cover(self, cover_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/cover/{cover_id}", cover_id=cover_id)
         return self.request(route)
+
+    def _scanlation_group_list(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        ids: Optional[list[str]],
+        name: Optional[str],
+        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]],
+    ) -> Response[scanlator_group.GetScanlationGroupListResponse]:
+        route = Route("GET", "/group")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if ids:
+            query["ids"] = ids
+
+        if name:
+            query["name"] = name
+
+        if includes:
+            query["includes"] = includes
+
+        return self.request(route)
+
+    def _author_list(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        ids: Optional[list[str]],
+        name: Optional[str],
+        order: Optional[author.AuthorOrderQuery],
+        includes: Optional[list[author.AuthorIncludes]],
+    ) -> Response[author.GetAuthorListResponse]:
+        route = Route("GET", "/author")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if ids:
+            query["ids"] = ids
+
+        if name:
+            query["name"] = name
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
