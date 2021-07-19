@@ -26,6 +26,8 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
+from .utils import MISSING, require_authentication
+
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -130,3 +132,57 @@ class Cover:
             fmt = ""
 
         return f"https://uploads.mangadex.org/covers/{parent_manga_id}/{self.file_name}{fmt}"
+
+    @require_authentication
+    async def edit_cover(
+        self, *, volume: Optional[str] = MISSING, description: Optional[str] = MISSING, version: int
+    ) -> Cover:
+        """|coro|
+
+        This method will edit the current cover on the MangaDex API.
+
+        Parameters
+        -----------
+        volume: :class:`str`
+            The volume identifier relating the cover will represent.
+        description: Optional[:class:`str`]
+            The description of the cover.
+        version: :class:`int`
+            The version revision of the cover.
+
+
+        .. note::
+            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API but it must have a value.
+
+        Raises
+        -------
+        TypeError
+            The volume key was not given a value. This is required.
+        BadRequest
+            The request body was malformed.
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        :class:`Cover`
+            The returned cover after the edit.
+        """
+        data = await self._http._edit_cover(self.id, volume=volume, description=description, version=version)
+
+        return Cover(self._http, data)
+
+    @require_authentication
+    async def delete(self) -> None:
+        """|coro|
+
+        This method will delete the current cover from the MangaDex API.
+
+        Raises
+        -------
+        BadRequest
+            The request payload was malformed.
+        Forbidden
+            The request returned an error due to authentication.
+        """
+        await self._http._delete_cover(self.id)

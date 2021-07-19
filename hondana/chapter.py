@@ -25,7 +25,8 @@ from __future__ import annotations
 
 import datetime
 from typing import TYPE_CHECKING, Optional
-from .utils import require_authentication, MISSING
+
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:

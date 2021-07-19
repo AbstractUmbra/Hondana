@@ -57,11 +57,10 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import chapter, manga
+    from .types import chapter, cover, manga
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.author import GetAuthorResponse
     from .types.common import LocalisedString
-    from .types.cover import GetCoverResponse
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
 
@@ -408,14 +407,6 @@ class HTTPClient:
     def _get_author(self, author_id: str) -> Response[GetAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
         return self.request(route)
-
-    def _get_cover(self, cover_id: str, includes: list[str]) -> Response[GetCoverResponse]:
-        route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
-
-        query = {"includes": includes}
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
 
     def _manga_list(
         self,
@@ -898,4 +889,70 @@ class HTTPClient:
 
     def _mark_chapter_as_unread(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
+        return self.request(route)
+
+    def _cover_art_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        manga: Optional[list[str]],
+        ids: Optional[list[str]],
+        uploaders: Optional[list[str]],
+        order: Optional[cover.CoverOrderQuery],
+        includes: Optional[list[cover.CoverIncludes]],
+    ) -> Response[cover.GetCoverListResponse]:
+        route = Route("GET", "/cover")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if manga:
+            query["manga"] = manga
+
+        if ids:
+            query["ids"] = ids
+
+        if uploaders:
+            query["uploaders"] = uploaders
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _get_cover(self, cover_id: str, includes: list[str]) -> Response[cover.GetCoverResponse]:
+        route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
+
+        query = {"includes": includes}
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _edit_cover(
+        self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str], version: int
+    ) -> Response[cover.GetCoverResponse]:
+        route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
+
+        query = {}
+        query["version"] = version
+
+        if volume is not MISSING:
+            query["volume"] = volume
+        elif volume is MISSING:
+            raise TypeError("`volume` key must be a value of some sort.")
+
+        if description is not MISSING:
+            query["description"] = description
+
+        return self.request(route, json=query)
+
+    def _delete_cover(self, cover_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/cover/{cover_id}", cover_id=cover_id)
         return self.request(route)

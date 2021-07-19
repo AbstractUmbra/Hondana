@@ -40,7 +40,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import chapter, manga
+    from .types import chapter, cover, manga
     from .types.common import LocalisedString
     from .types.query import OrderQuery
 
@@ -206,37 +206,6 @@ class Client:
         author_data = data["data"]
 
         return Author(self._http, author_data)
-
-    async def get_cover(self, cover_id: str, includes: list[str] = ["manga"]) -> Cover:
-        """|coro|
-
-        The method will fetch a Cover from the MangaDex API.
-
-        Parameters
-        -----------
-        cover_id: :class:`str`
-            The id of the cover we are fetching from the API.
-        includes: List[:class:`str`]
-            A list of the additional information to gather related to the Cover.
-            defaults to ``["manga"]``
-
-
-        .. note::
-            If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
-
-        Raises
-        -------
-        NotFound
-            The passed cover ID was not found, likely due to an incorrect ID.
-
-        Returns
-        --------
-        :class:`Cover`
-            The Cover returned from the API.
-        """
-        data = await self._http._get_cover(cover_id, includes=includes)
-
-        return Cover(self._http, data)
 
     @require_authentication
     async def get_my_feed(
@@ -1140,3 +1109,116 @@ class Client:
             The UUID of the chapter you wish to mark as unread.
         """
         await self._http._mark_chapter_as_unread(chapter_id)
+
+    async def cover_art_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        manga: Optional[list[str]] = None,
+        ids: Optional[list[str]] = None,
+        uploaders: Optional[list[str]] = None,
+        order: Optional[cover.CoverOrderQuery] = None,
+        includes: Optional[list[cover.CoverIncludes]] = None,
+    ) -> list[Cover]:
+        limit = min(max(1, limit), 10)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._cover_art_list(
+            limit=limit, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
+        )
+
+        return [Cover(self._http, payload) for payload in data["results"]]
+
+    async def get_cover(self, cover_id: str, includes: list[str] = ["manga"]) -> Cover:
+        """|coro|
+
+        The method will fetch a Cover from the MangaDex API.
+
+        Parameters
+        -----------
+        cover_id: :class:`str`
+            The id of the cover we are fetching from the API.
+        includes: List[:class:`str`]
+            A list of the additional information to gather related to the Cover.
+            defaults to ``["manga"]``
+
+
+        .. note::
+            If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
+
+        Raises
+        -------
+        NotFound
+            The passed cover ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Cover`
+            The Cover returned from the API.
+        """
+        data = await self._http._get_cover(cover_id, includes=includes)
+
+        return Cover(self._http, data)
+
+    @require_authentication
+    async def edit_cover(
+        self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str] = MISSING, version: int
+    ) -> Cover:
+        """|coro|
+
+        This method will edit a cover on the MangaDex API.
+
+        Parameters
+        -----------
+        cover_id: :class:`str`
+            The UUID relating to the cover you wish to edit.
+        volume: :class:`str`
+            The volume identifier relating the cover will represent.
+        description: Optional[:class:`str`]
+            The description of the cover.
+        version: :class:`int`
+            The version revision of the cover.
+
+
+        .. note::
+            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API but it must have a value.
+
+        Raises
+        -------
+        TypeError
+            The volume key was not given a value. This is required.
+        BadRequest
+            The request body was malformed.
+        Forbidden
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        :class:`Cover`
+            The returned cover after the edit.
+        """
+        data = await self._http._edit_cover(cover_id, volume=volume, description=description, version=version)
+
+        return Cover(self._http, data)
+
+    @require_authentication
+    async def delete_cover(self, cover_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a cover from the MangaDex API.
+
+        Parameters
+        -----------
+        cover_id: :class:`str`
+            The UUID relating to the cover you wish to delete.
+
+        Raises
+        -------
+        BadRequest
+            The request payload was malformed.
+        Forbidden
+            The request returned an error due to authentication.
+        """
+        await self._http._delete_cover(cover_id)

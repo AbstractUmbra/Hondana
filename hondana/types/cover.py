@@ -27,7 +27,30 @@ from typing import Literal, Optional, TypedDict
 from .relationship import RelationshipResponse
 
 
-__all__ = ("GetCoverResponse", "CoverResponse", "CoverAttributesResponse")
+__all__ = (
+    "CoverIncludes",
+    "CoverOrderQuery",
+    "GetCoverResponse",
+    "CoverResponse",
+    "CoverAttributesResponse",
+    "GetCoverListResponse",
+)
+
+CoverIncludes = Literal["manga", "user"]
+
+
+class CoverOrderQuery(TypedDict, total=False):
+    """
+    createdAt: Literal[``"asc"``, ``"desc"``]
+
+    updatedAt: Literal[``"asc"``, ``"desc"``]
+
+    volume: Literal[``"asc"``, ``"desc"``]
+    """
+
+    createdAt: Literal["asc", "desc"]
+    updatedAt: Literal["asc", "desc"]
+    volume: Literal["asc", "desc"]
 
 
 class CoverAttributesResponse(TypedDict):
@@ -81,3 +104,20 @@ class GetCoverResponse(TypedDict):
     result: str
     data: CoverResponse
     relationships: list[RelationshipResponse]
+
+
+class GetCoverListResponse(TypedDict):
+    """
+    results: List[:class:`GetCoverResponse`]
+
+    limit: :class:`int`
+
+    offset: class:`int`
+
+    total: class:`int`
+    """
+
+    results: list[GetCoverResponse]
+    limit: int
+    offset: int
+    total: int

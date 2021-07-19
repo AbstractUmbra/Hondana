@@ -22,7 +22,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | ---------------- | ------------ | -------------------------------------------------- |
 | Chapter Upload   | [ ]          | Soon:tm:                                           |
 | Manga            | [x]          | Done. (pending tests on some endpoints)            |
-| Cover            | [/]          | Soon:tm:                                           |
+| Cover            | [x]          | Done. (pending tests on some endpoints)            |
 | Author           | [/]          | Soon:tm:                                           |
 | Search           | [ ]          | Soon:tm:                                           |
 | Auth             | [x]          | Authentication is done per request, token handled. |
@@ -35,18 +35,19 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [ ]          | Soon:tm:                                           |
 | User             | [ ]          | Soon:tm:                                           |
-| Chapter          | [x]          | Done.                                              |
+| Chapter          | [x]          | Done. (pending tests on some endpoints)            |
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Cover
-| Endpoint      | Implemented? | Notes    |
-| ------------- | ------------ | -------- |
-| CoverArt List | [ ]          | Soon:tm: |
-| Get Cover     | [x]          | Done.    |
-| Edit Cover    | [ ]          | Soon:tm: |
-| Delete Cover  | [ ]          | Soon:tm: |
+### In Progress: Search
+| Endpoint              | Implemented? | Notes |
+| --------------------- | ------------ | ----- |
+| Manga List            | [x]          | Done. |
+| Scanlation Group List | [ ]          |       |
+| Chapter List          | [x]          | Done. |
+| CoverArt List         | [x]          | Done. |
+| Author List           | [ ]          |       |
 
 
 #### To Test: Manga
@@ -56,11 +57,19 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Update Manga | [ ]     | Done. Unsure if I can test this... |
 | Delete Manga | [ ]     | Done. Unsure if I can test this... |
 
+
 #### To Test: Chapter
 | Endpoint       | Tested? | Notes                               |
 | -------------- | ------- | ----------------------------------- |
 | Update Chapter | [ ]     | Done. Unsure if I can test this ... |
 | Delete Chapter | [ ]     | Done. Unsure if I can test this ... |
+
+
+#### To Test: Cover
+| Endpoint   | Tested? | Notes                              |
+| ---------- | ------- | ---------------------------------- |
+| Edit Cover | [ ]     | Done. Unsure if I can test this... |
+
 
 ## Examples
 Please take a look at the [examples](../Hondana/examples/) directory for working examples.
