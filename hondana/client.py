@@ -1636,3 +1636,106 @@ class Client:
             return False
         else:
             return True
+
+    async def create_account(self, *, username: str, password: str, email: str) -> User:
+        """|coro|
+
+        This method will create an account with the passed parameters within the MangaDex API.
+
+        Parameters
+        -----------
+        username: :class:`str`
+            The username you wish to use in the new account.
+        password: :class:`str`
+            The password to use in the new account.
+        email: :class:`str`
+            The email address to use in the new account.
+
+
+        .. note::
+            The created account will still need to be activated.
+
+        Raises
+        -------
+        BadRequest
+            The parameters passed were malformed.
+
+        Returns
+        --------
+        :class:`User`
+            The created user.
+        """
+        data = await self._http._create_account(username=username, password=password, email=email)
+        return User(self._http, data)
+
+    async def activate_account(self, activation_code: str, /) -> None:
+        """|coro|
+
+        This method will activate an account on the MangaDex API.
+
+        Parameters
+        -----------
+        activation_code: :class:`str`
+            The activation code for the account.
+
+        Raises
+        -------
+        BadRequest
+            The query was malformed.
+        NotFound
+            The activation code passed was not a valid one.
+        """
+        await self._http._activate_account(activation_code)
+
+    async def resend_activation_code(self, email: str, /) -> None:
+        """|coro|
+
+        This method will resend an activation code to the specified email.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The email to resend the activation code to.
+
+        Raises
+        -------
+        BadRequest
+            The email passed is not pending activation.
+        """
+        await self._http._resend_activation_code(email)
+
+    async def recover_account(self, email: str, /) -> None:
+        """|coro|
+
+        This method will start an account recovery process on the given account.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The email address belonging to the account you wish to recover.
+
+        Raises
+        -------
+        BadRequest
+            The email does not belong to a matching account.
+        """
+        await self._http._recover_account(email)
+
+    async def complete_account_recovery(self, recovery_code: str, /, *, new_password: str) -> None:
+        """|coro|
+
+        This method will complete an account recovery process.
+
+        Parameters
+        -----------
+        recovery_code: :class:`str`
+            The recovery code given during the recovery process.
+        new_password: :class:`str`
+            The new password to use for the recovered account.
+
+        Raises
+        -------
+        BadRequest
+            The recovery code given was not found or the password was greater than 1024 characters.
+        """
+        await self._http._complete_account_recovery(recovery_code, new_password=new_password)

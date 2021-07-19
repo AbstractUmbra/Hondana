@@ -1092,3 +1092,29 @@ class HTTPClient:
     def _check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
+
+    def _create_account(self, *, username: str, password: str, email: str) -> Response[user.GetUserResponse]:
+        route = Route("POST", "/account/create")
+        query = {"username": username, "password": password, "email": email}
+        return self.request(route, json=query)
+
+    def _activate_account(self, activation_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/activate/{activation_code}", activation_code=activation_code)
+        return self.request(route)
+
+    def _resend_activation_code(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/activate/resend")
+        query = {"email": email}
+        return self.request(route, json=query)
+
+    def _recover_account(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/recover")
+        query = {"email": email}
+        return self.request(route, json=query)
+
+    def _complete_account_recovery(
+        self, recovery_code: str, /, *, new_password: str
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/recover/{recovery_code}", recovery_code=recovery_code)
+        query = {"newPassword": new_password}
+        return self.request(route, json=query)

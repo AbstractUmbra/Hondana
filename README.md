@@ -33,22 +33,17 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Legacy           | [ ]          | Soon:tm:                                           |
 | Infrastructure   | [ ]          | Soon:tm:                                           |
 | Upload           | [ ]          | Soon:tm:                                           |
-| Account          | [ ]          | Soon:tm:                                           |
+| Account          | [x]          | Done.                                              |
 | User             | [x]          | Done. (pending tests on some endpoints)            |
 | Chapter          | [x]          | Done. (pending tests on some endpoints)            |
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Account
-| Endpoint                 | Implemented? | Notes    |
-| ------------------------ | ------------ | -------- |
-| Create Account           | [ ]          | Soon:tm: |
-| Activate Account         | [ ]          | Soon:tm: |
-| Resend Activation Code   | [ ]          | Soon:tm: |
-| Recover Given Account    | [ ]          | Soon:tm: |
-| Complete Account Recover | [ ]          | Soon:tm: |
-
+### In Progress: Infrastructure
+| Endpoint        | Implemented? | Notes    |
+| --------------- | ------------ | -------- |
+| Ping the Server | [ ]          | Soon:tm: |
 
 #### To Test: Manga
 | Endpoint     | Tested? | Notes                              |
