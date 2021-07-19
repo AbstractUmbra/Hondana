@@ -134,7 +134,7 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 
     tags: List[:class:`TagResponse`]
 
-    version: class:`int`
+    version: :class:`int`
 
     createdAt: :class:`str`
 

@@ -112,9 +112,9 @@ class GetCoverListResponse(TypedDict):
 
     limit: :class:`int`
 
-    offset: class:`int`
+    offset: :class:`int`
 
-    total: class:`int`
+    total: :class:`int`
     """
 
     results: list[GetCoverResponse]

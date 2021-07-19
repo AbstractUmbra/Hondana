@@ -932,7 +932,7 @@ class Client:
             The chapter title query to limit the request with.
         groups: Optional[List[:class:`str`]]
             The scanlation group UUID(s) to limit the request with.
-        uploader: Optional[class:`str`]
+        uploader: Optional[:class:`str`]
             The uploader UUID to limit the request with.
         manga: Optional[:class:`str`]
             The manga UUID to limit the request with.
@@ -942,11 +942,11 @@ class Client:
             The chapter UUID or UUIDs to limit the request with.
         translated_language: Optional[List[:class:`str`]]
             The list of languages codes to filter the request with.
-        created_at_since: Optional[class:`datetime.datetime`]
+        created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
-        updated_at_since: Optional[class:`datetime.datetime`]
+        updated_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their updated at date.
-        published_at_since: Optional[class:`datetime.datetime`]
+        published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
         order: Optional[:class:`~hondana.types.OrderQuery`]
             A query parameter to choose how the responses are ordered.
@@ -1025,11 +1025,11 @@ class Client:
             The volume identity that this chapter belongs to, if any.
         chapter: Optional[:class:`str`]
             The chapter identity marking this chapter, if any.
-        translated_language: Optional[class:`str`]
+        translated_language: Optional[:class:`str`]
             The language code this chapter is translated to.
         groups: Optional[:class:`str`]
             The UUIDs representing credited scanlation groups for this chapter.
-        version: class:`int`
+        version: :class:`int`
             The version revision of this chapter.
 
 

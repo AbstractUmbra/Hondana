@@ -61,7 +61,7 @@ class Chapter:
         A list of chapter page URLs (data saver quality).
     uploader: Optional[:class:`str`]
         The UUID of the uploader attributed to this chapter, if any.
-    version: class:`int`
+    version: :class:`int`
         The revision version of this chapter.
     """
 
@@ -146,11 +146,11 @@ class Chapter:
             The volume identity that this chapter belongs to, if any.
         chapter: Optional[:class:`str`]
             The chapter identity marking this chapter, if any.
-        translated_language: Optional[class:`str`]
+        translated_language: Optional[:class:`str`]
             The language code this chapter is translated to.
         groups: Optional[:class:`str`]
             The UUIDs representing credited scanlation groups for this chapter.
-        version: class:`int`
+        version: :class:`int`
             The version revision of this chapter.
 
 
