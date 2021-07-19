@@ -34,12 +34,31 @@ __all__ = ("User",)
 
 
 class User:
+    """
+    A class representing a user from the MangaDex API.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        The user's UUID.
+    type: Literal[``"user"``]
+        The raw type from the API.
+    username: :class:`str`
+        The user's username.
+    version: :class:`int`
+        The user's version revision.
+    """
+
+    __slots__ = ("_http", "_data", "_attributes", "id", "type", "username", "version")
+
     def __init__(self, http: HTTPClient, payload: user.GetUserResponse) -> None:
         self._http = http
-        attributes = payload["attributes"]
+        data = payload["data"]
+        self._data = data
+        attributes = data["attributes"]
         self._attributes = attributes
-        self.id = payload["id"]
-        self.type: Literal["user"] = payload["type"]
+        self.id = data["id"]
+        self.type: Literal["user"] = data["type"]
         self.username = attributes["username"]
         self.version = attributes["version"]
 

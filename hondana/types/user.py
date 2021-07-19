@@ -24,8 +24,14 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
+from .relationship import RelationshipResponse
 
-__all__ = ("GetUserAttributesResponse", "GetUserResponse")
+
+__all__ = ("UserOrderQuery", "GetUserAttributesResponse", "GetUserResponse", "GetUserListResponse")
+
+
+class UserOrderQuery(TypedDict):
+    username: Literal["asc", "desc"]
 
 
 class GetUserAttributesResponse(TypedDict):
@@ -33,7 +39,20 @@ class GetUserAttributesResponse(TypedDict):
     version: int
 
 
-class GetUserResponse(TypedDict):
+class UserResponse(TypedDict):
     id: str
     type: Literal["user"]
     attributes: GetUserAttributesResponse
+
+
+class GetUserResponse(TypedDict):
+    result: Literal["ok"]
+    data: UserResponse
+    relationships: list[RelationshipResponse]
+
+
+class GetUserListResponse(TypedDict):
+    results: list[GetUserResponse]
+    limit: int
+    offset: int
+    total: int
