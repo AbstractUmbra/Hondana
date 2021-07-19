@@ -26,7 +26,7 @@ from __future__ import annotations
 import datetime
 import json
 import pathlib
-from typing import Optional, Union, overload
+from typing import TYPE_CHECKING, Optional, Union, overload
 
 from aiohttp import ClientSession
 
@@ -35,12 +35,14 @@ from .chapter import Chapter
 from .cover import Cover
 from .http import HTTPClient
 from .manga import Manga
-from .tags import QueryTags
-from .types import manga
-from .types.common import LocalisedString
-from .types.query import GetUserFeedQuery
 from .utils import MISSING, require_authentication
 
+
+if TYPE_CHECKING:
+    from .tags import QueryTags
+    from .types import chapter, manga
+    from .types.common import LocalisedString
+    from .types.query import OrderQuery
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
@@ -141,6 +143,7 @@ class Client:
         """
         if username is None and email is None:
             raise ValueError("An email or username must be passed.")
+
         self._http.username = username
         self._http.email = email
         self._http.password = password
@@ -245,7 +248,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[GetUserFeedQuery] = None,
+        order: Optional[OrderQuery] = None,
     ) -> list[Chapter]:
         """|coro|
 
@@ -267,7 +270,7 @@ class Client:
             A start point to return chapters from based on their update date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published date.
-        order: Optional[Dict[:class:`str`, :class:`str`]]
+        order: Optional[:class:`~hondana.types.OrderQuery`]
             A query parameter to choose the 'order by' response from the API.
 
 
@@ -326,7 +329,7 @@ class Client:
         content_rating: Optional[list[manga.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
-        order: Optional[GetUserFeedQuery] = None,
+        order: Optional[OrderQuery] = None,
         includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
     ) -> list[Manga]:
         """|coro|
@@ -353,16 +356,16 @@ class Client:
             An instance of :class:`hondana.QueryTags` to include in the search.
         excluded_tags: Optional[:class:`QueryTags`]
             An instance of :class:`hondana.QueryTags` to include in the search.
-        status: Optional[list[Dict[:class:`str`, Any]]]
+        status: Optional[List[:class:`~hondana.types.MangaStatus`]]
             The status(es) of manga to include in the search.
         original_language: Optional[:class:`str`]
             A list of language codes to include for the manga's original language.
             i.e. ``["en"]``
-        publication_demographic: Optional[List[Dict[:class:`str`, Any]]]
+        publication_demographic: Optional[List[:class:`~hondana.types.PublicationDemographic`]]
             The publication demographic(s) to limit the search to.
         ids: Optional[:class:`str`]
             A list of manga UUID(s) to limit the search to.
-        content_rating: Optional[list[Dict[:class:`str`, Any]]]
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating(s) to filter the search to.
         created_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
@@ -370,10 +373,10 @@ class Client:
         updated_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
             Used for returning manga updated *after* this date.
-        order: Optional[]
+        order: Optional[:class:`~hondana.types.OrderQuery`]
             A query parameter to choose the ordering of the response
             i.e. ``{"createdAt": "desc"}``
-        includes: Optional[List[Dict[:class:`str`, Any]]]
+        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
             Defaults to these values.
@@ -458,7 +461,7 @@ class Client:
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[Dict[str, Any]]
+        links: Optional[:class:`~hondana.types.MangaLinks`]
             The links relevant to the manga.
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
@@ -532,12 +535,12 @@ class Client:
         -----------
         manga_id: :class:`str`
             The manga UUID we are querying against.
-        translated_language: Optional[Dict[:class:`str`, List[:class:`str`]]]
+        translated_language: Optional[List[:class:`str`]]
             The list of language codes you want to limit the search to.
 
         Returns
         --------
-        Dict[str, Any]
+        :class:`hondana.types.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is not guarantee of the keys here.
         """
         data = await self._http._get_manga_volumes_and_chapters(manga_id=manga_id, translated_languages=translated_language)
@@ -614,9 +617,8 @@ class Client:
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[Dict[str, Any]]
+        links: Optional[:class:`~hondana.types.MangaLinks`]
             The links relevant to the manga.
-            See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
             The language key for the original language of the manga.
         last_volume: Optional[:class:`str`]
@@ -757,10 +759,10 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
@@ -924,3 +926,217 @@ class Client:
         """
 
         await self._http._remove_manga_from_custom_list(manga_id, custom_list_id=custom_list_id)
+
+    async def chapter_list(
+        self,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        title: Optional[str] = None,
+        groups: Optional[list[str]] = None,
+        uploader: Optional[str] = None,
+        manga: Optional[str] = None,
+        volume: Optional[Union[str, list[str]]] = None,
+        chapter: Optional[Union[str, list[str]]] = None,
+        translated_language: Optional[list[str]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[chapter.ChapterOrderQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = None,
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method will return a list of published chapters.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 100. This specifies the amount of chapters to return in one request.
+        offset: :class:`int`
+            Defaults to 0. This specifies the pagination offset.
+        ids: Optional[List[:class:`str`]]
+            The list of chapter UUIDs to filter the request with.
+        title: Optional[:class:`str`]
+            The chapter title query to limit the request with.
+        groups: Optional[List[:class:`str`]]
+            The scanlation group UUID(s) to limit the request with.
+        uploader: Optional[class:`str`]
+            The uploader UUID to limit the request with.
+        manga: Optional[:class:`str`]
+            The manga UUID to limit the request with.
+        volume: Optional[Union[:class:`str`, List[:class:`str`]]]
+            The volume UUID or UUIDs to limit the request with.
+        chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
+            The chapter UUID or UUIDs to limit the request with.
+        translated_language: Optional[List[:class:`str`]]
+            The list of languages codes to filter the request with.
+        created_at_since: Optional[class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[class:`datetime.datetime`]
+            A start point to return chapters from based on their updated at date.
+        published_at_since: Optional[class:`datetime.datetime`]
+            A start point to return chapters from based on their published at date.
+        order: Optional[:class:`~hondana.types.OrderQuery`]
+            A query parameter to choose how the responses are ordered.
+            i.e. ``{"chapters": "desc"}``
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+            The list of options to include increased payloads for per chapter.
+            Defaults to these values.
+
+
+        .. note::
+            If `order` is not specified then the API will return results first based on their creation date,
+            which could lead to unexpected results.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were malformed
+        Forbidden
+            The request returned an error to due authentication failure.
+
+        Returns
+        --------
+        List[:class:`Chapter`]
+            The returned chapters from the endpoint.
+        """
+
+        data = await self._http._chapter_list(
+            limit=limit,
+            offset=offset,
+            ids=ids,
+            title=title,
+            groups=groups,
+            uploader=uploader,
+            manga=manga,
+            volume=volume,
+            chapter=chapter,
+            translated_language=translated_language,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+            includes=includes,
+        )
+
+        return [Chapter(self._http, payload) for payload in data["results"]]
+
+    async def get_chapter(self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]] = None) -> Chapter:
+        data = await self._http._get_chapter(chapter_id, includes=includes)
+
+        return Chapter(self._http, data)
+
+    @require_authentication
+    async def update_chapter(
+        self,
+        chapter_id: str,
+        /,
+        *,
+        title: Optional[str] = None,
+        volume: str = MISSING,
+        chapter: str = MISSING,
+        translated_language: Optional[str] = None,
+        groups: Optional[list[str]] = None,
+        version: int,
+    ) -> Chapter:
+        """|coro|
+
+        This method will update a chapter in the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID representing the chapter we are going to update.
+        title: Optional[:class:`str`]
+            The title to rename the chapter to, if given.
+        volume: Optional[:class:`str`]
+            The volume identity that this chapter belongs to, if any.
+        chapter: Optional[:class:`str`]
+            The chapter identity marking this chapter, if any.
+        translated_language: Optional[class:`str`]
+            The language code this chapter is translated to.
+        groups: Optional[:class:`str`]
+            The UUIDs representing credited scanlation groups for this chapter.
+        version: class:`int`
+            The version revision of this chapter.
+
+
+        .. note::
+            The ``volume`` and ``chapter`` keys are nullable,
+            pass ``None`` to them to send ``null`` to the API
+
+        Raises
+        -------
+        BadRequest
+            The request body was malformed.
+        Forbidden
+            You are not authorized to update this chapter.
+        NotFound
+            One or more UUIDs given were not found.
+
+        Returns
+        --------
+        :class:`Chapter`
+            The chapter after being updated.
+        """
+        data = await self._http._update_chapter(
+            chapter_id,
+            title=title,
+            volume=volume,
+            chapter=chapter,
+            translated_language=translated_language,
+            groups=groups,
+            version=version,
+        )
+
+        return Chapter(self._http, data)
+
+    @require_authentication
+    async def delete_chapter(self, chapter_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a chapter from the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID of the chapter you wish to delete.
+
+        Raises
+        -------
+        BadRequest
+            The query was malformed.
+        Forbidden
+            You are not authorized to delete this chapter.
+        NotFound
+            The UUID passed for this chapter does not related to a chapter in the API.
+        """
+        await self._http._delete_chapter(chapter_id)
+
+    @require_authentication
+    async def mark_chapter_as_read(self, chapter_id: str, /) -> None:
+        """|coro|
+
+        This method will mark a chapter as read for the current authenticated user in the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID of the chapter you wish to mark as read.
+        """
+        await self._http._mark_chapter_as_read(chapter_id)
+
+    @require_authentication
+    async def mark_chapter_as_unread(self, chapter_id: str, /) -> None:
+        """|coro|
+
+        This method will mark a chapter as unread for the current authenticated user in the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID of the chapter you wish to mark as unread.
+        """
+        await self._http._mark_chapter_as_unread(chapter_id)

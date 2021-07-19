@@ -24,15 +24,13 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, Optional, TypedDict
 
-from .common import LocalisedString
+from .common import ContentRating, LocalisedString, PublicationDemographic
 from .relationship import RelationshipResponse
 from .tags import TagResponse
 
 
 __all__ = (
     "MangaStatus",
-    "PublicationDemographic",
-    "ContentRating",
     "MangaIncludes",
     "ReadingStatus",
     "MangaOrderQuery",
@@ -51,8 +49,6 @@ __all__ = (
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
-ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 MangaIncludes = Literal["author", "artist", "cover_art"]
 ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
 

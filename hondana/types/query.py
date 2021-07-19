@@ -25,10 +25,10 @@ DEALINGS IN THE SOFTWARE.
 from typing import Literal, TypedDict
 
 
-__all__ = ("GetUserFeedQuery",)
+__all__ = ("OrderQuery",)
 
 
-class GetUserFeedQuery(TypedDict, total=False):
+class OrderQuery(TypedDict, total=False):
     """
     createdAt: Literal[``"asc"``, ``"desc"``]
 

@@ -57,13 +57,12 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import manga
+    from .types import chapter, manga
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.author import GetAuthorResponse
-    from .types.chapter import GetChapterFeedResponse
     from .types.common import LocalisedString
     from .types.cover import GetCoverResponse
-    from .types.query import GetUserFeedQuery
+    from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
 
     T = TypeVar("T")
@@ -436,7 +435,7 @@ class HTTPClient:
         content_rating: Optional[list[manga.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
-        order: Optional[GetUserFeedQuery],
+        order: Optional[OrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
@@ -691,7 +690,7 @@ class HTTPClient:
         published_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
-    ) -> Response[GetChapterFeedResponse]:
+    ) -> Response[chapter.GetChapterFeedResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed")
         else:
@@ -777,3 +776,126 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
         resolved_query = php_query_builder({"status": status})
         return self.request(route, params=resolved_query)
+
+    def _chapter_list(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        ids: Optional[list[str]],
+        title: Optional[str],
+        groups: Optional[list[str]],
+        uploader: Optional[str],
+        manga: Optional[str],
+        volume: Optional[Union[str, list[str]]],
+        chapter: Optional[Union[str, list[str]]],
+        translated_language: Optional[list[str]],
+        created_at_since: Optional[datetime.datetime],
+        updated_at_since: Optional[datetime.datetime],
+        published_at_since: Optional[datetime.datetime],
+        order: Optional[chapter.ChapterOrderQuery],
+        includes: Optional[list[manga.MangaIncludes]],
+    ) -> Response[chapter.GetChapterFeedResponse]:
+        route = Route("GET", "/chapter")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if ids:
+            query["ids"] = ids
+
+        if title:
+            query["title"] = title
+
+        if groups:
+            query["groups"] = groups
+
+        if uploader:
+            query["uploader"] = uploader
+
+        if manga:
+            query["manga"] = manga
+
+        if volume:
+            query["volume"] = volume
+
+        if chapter:
+            query["chapter"] = chapter
+
+        if translated_language:
+            query["translatedLanguage"] = translated_language
+
+        if created_at_since:
+            query["createdAtSince"] = to_iso_format(created_at_since)
+
+        if updated_at_since:
+            query["updatedAtSince"] = to_iso_format(updated_at_since)
+
+        if published_at_since:
+            query["publishedAtSince"] = to_iso_format(published_at_since)
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _get_chapter(
+        self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]]
+    ) -> Response[chapter.GetChapterResponse]:
+        route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
+
+        if includes:
+            return self.request(route, params=php_query_builder({"includes": includes}))
+        return self.request(route)
+
+    def _update_chapter(
+        self,
+        chapter_id: str,
+        /,
+        *,
+        title: Optional[str],
+        volume: Optional[str],
+        chapter: Optional[str],
+        translated_language: Optional[str],
+        groups: Optional[list[str]],
+        version: int,
+    ) -> Response[chapter.GetChapterResponse]:
+        route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
+
+        query = {}
+        query["version"] = version
+
+        if title:
+            query["title"] = title
+
+        if volume is not MISSING:
+            query["volume"] = volume
+
+        if chapter is not MISSING:
+            query["chapter"] = chapter
+
+        if translated_language:
+            query["translatedLanguage"] = translated_language
+
+        if groups:
+            query["groups"] = groups
+
+        return self.request(route, json=query)
+
+    def _delete_chapter(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/chapter/{chapter_id}", chapter_id=chapter_id)
+        return self.request(route)
+
+    def _mark_chapter_as_read(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
+        return self.request(route)
+
+    def _mark_chapter_as_unread(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
+        return self.request(route)

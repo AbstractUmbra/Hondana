@@ -35,21 +35,18 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [ ]          | Soon:tm:                                           |
 | User             | [ ]          | Soon:tm:                                           |
-| Chapter          | [ ]          | Soon:tm:                                           |
+| Chapter          | [x]          | Done.                                              |
 | Report           | [ ]          | Soon:tm:                                           |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Chapter
-| Endpoint                                              | Implemented? | Notes    |
-| ----------------------------------------------------- | ------------ | -------- |
-| Chapter list                                          | [ ]          | Soon:tm: |
-| Get Chapter                                           | [ ]          | Soon:tm: |
-| Update Chapter                                        | [ ]          | Soon:tm: |
-| Delete Chapter                                        | [ ]          | Soon:tm: |
-| Get logged in User followed Manga feed (Chapter list) | [ ]          | Soon:tm: |
-| Mark Chapter read                                     | [ ]          | Soon:tm: |
-| Mark Chapter unread                                   | [ ]          | Soon:tm: |
+### In Progress: Cover
+| Endpoint      | Implemented? | Notes    |
+| ------------- | ------------ | -------- |
+| CoverArt List | [ ]          | Soon:tm: |
+| Get Cover     | [x]          | Done.    |
+| Edit Cover    | [ ]          | Soon:tm: |
+| Delete Cover  | [ ]          | Soon:tm: |
 
 
 #### To Test: Manga
@@ -58,6 +55,12 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Create Manga | [ ]     | Done. Unsure if I can test this... |
 | Update Manga | [ ]     | Done. Unsure if I can test this... |
 | Delete Manga | [ ]     | Done. Unsure if I can test this... |
+
+#### To Test: Chapter
+| Endpoint       | Tested? | Notes                               |
+| -------------- | ------- | ----------------------------------- |
+| Update Chapter | [ ]     | Done. Unsure if I can test this ... |
+| Delete Chapter | [ ]     | Done. Unsure if I can test this ... |
 
 ## Examples
 Please take a look at the [examples](../Hondana/examples/) directory for working examples.

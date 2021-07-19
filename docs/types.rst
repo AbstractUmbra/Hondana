@@ -7,6 +7,14 @@ Response Types and Payloads
 Common
 ------
 
+.. autoclass:: PublicationDemographic
+    :members:
+    :undoc-members:
+
+.. autoclass:: ContentRating
+    :members:
+    :undoc-members:
+
 .. autoclass:: LocalizedString
 
 .. autoclass:: LocalisedString
@@ -46,6 +54,12 @@ Author
 Chapter
 -------
 
+.. autoclass:: ChapterIncludes
+    :members:
+    :undoc-members:
+
+.. autoclass:: ChapterOrderQuery
+
 .. autoclass:: GetChapterFeedResponse
 
 .. autoclass:: GetChapterResponse
@@ -72,14 +86,6 @@ Manga
     :members:
     :undoc-members:
 
-.. autoclass:: PublicationDemographic
-    :members:
-    :undoc-members:
-
-.. autoclass:: ContentRating
-    :members:
-    :undoc-members:
-
 .. autoclass:: MangaIncludes
     :members:
     :undoc-members:
@@ -87,6 +93,8 @@ Manga
 .. autoclass:: ReadingStatus
     :members:
     :undoc-members:
+
+.. autoclass:: MangaOrderQuery
 
 .. autoclass:: MangaLinks
 
@@ -114,7 +122,7 @@ Manga
 Query
 -----
 
-.. autoclass:: GetUserFeedQuery
+.. autoclass:: OrderQuery
 
 
 Relationship

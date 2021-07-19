@@ -22,10 +22,13 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import TypedDict
+from typing import Literal, TypedDict
 
 
-__all__ = ("LocalizedString", "LocalisedString")
+__all__ = ("PublicationDemographic", "ContentRating", "LocalizedString", "LocalisedString")
+
+PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
+ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 
 
 class LocalizedString(TypedDict):

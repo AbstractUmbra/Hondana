@@ -56,7 +56,7 @@ class Manga:
         i.e. ``{"en": "Some Other Title"}``
     locked: :class:`bool`
         If the Manga is considered 'locked' or not in the API.
-    links: Dict[:class:`str`, Any]
+    links: :class:`~hondana.types.MangaLinks`
         The mapping of links the API has attributed to the Manga.
         (see: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data)
     original_language: :class:`str`
@@ -65,11 +65,11 @@ class Manga:
         The last volume attributed to the manga, if any.
     last_chapter: Optional[:class:`str`]
         The last chapter attributed to the manga, if any.
-    publication_demographic: Optional[Dict[:class:`str`, Any]]
+    publication_demographic: Optional[:class:`~hondana.types.PublicationDemographic`]
         The attributed publication demographic(s) for the manga, if any.
     year: Optional[:class:`int`]
         The year the manga was release, if the key exists.
-    content_rating: Optional[Dict[:class:`str`, Any]]
+    content_rating: Optional[:class:`~hondana.types.ContentRating`]
         The content rating attributed to the manga, if any.
     version: :class:`int`
         The version revision of this manga.
@@ -445,7 +445,7 @@ class Manga:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[Dict[Literal[``"volume"``, ``"chapter"``], Literal[``"asc"``, ``"desc"``]]]
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
         includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]

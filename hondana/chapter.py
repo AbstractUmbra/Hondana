@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import datetime
 from typing import TYPE_CHECKING, Optional
+from .utils import require_authentication, MISSING
 
 
 if TYPE_CHECKING:
@@ -118,3 +119,99 @@ class Chapter:
     def published_at(self) -> datetime.datetime:
         """When this chapter was published."""
         return datetime.datetime.fromisoformat(self._published_at)
+
+    @require_authentication
+    async def update(
+        self,
+        *,
+        title: Optional[str] = None,
+        volume: str = MISSING,
+        chapter: str = MISSING,
+        translated_language: Optional[str] = None,
+        groups: Optional[list[str]] = None,
+        version: int,
+    ) -> Chapter:
+        """|coro|
+
+        This method will update the current chapter in the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID representing the chapter we are going to update.
+        title: Optional[:class:`str`]
+            The title to rename the chapter to, if given.
+        volume: Optional[:class:`str`]
+            The volume identity that this chapter belongs to, if any.
+        chapter: Optional[:class:`str`]
+            The chapter identity marking this chapter, if any.
+        translated_language: Optional[class:`str`]
+            The language code this chapter is translated to.
+        groups: Optional[:class:`str`]
+            The UUIDs representing credited scanlation groups for this chapter.
+        version: class:`int`
+            The version revision of this chapter.
+
+
+        .. note::
+            The ``volume`` and ``chapter`` keys are nullable,
+            pass ``None`` to them to send ``null`` to the API
+
+        Raises
+        -------
+        BadRequest
+            The request body was malformed.
+        Forbidden
+            You are not authorized to update this chapter.
+        NotFound
+            One or more UUIDs given were not found.
+
+        Returns
+        --------
+        :class:`Chapter`
+            The chapter after being updated.
+        """
+        data = await self._http._update_chapter(
+            self.id,
+            title=title,
+            volume=volume,
+            chapter=chapter,
+            translated_language=translated_language,
+            groups=groups,
+            version=version,
+        )
+
+        return Chapter(self._http, data)
+
+    @require_authentication
+    async def delete(self) -> None:
+        """|coro|
+
+        This method will delete the current chapter from the MangaDex API.
+
+        Raises
+        -------
+        BadRequest
+            The query was malformed.
+        Forbidden
+            You are not authorized to delete this chapter.
+        NotFound
+            The UUID passed for this chapter does not related to a chapter in the API.
+        """
+        await self._http._delete_chapter(self.id)
+
+    @require_authentication
+    async def mark_as_read(self) -> None:
+        """|coro|
+
+        This method will mark the current chapter as read for the current authenticated user in the MangaDex API.
+        """
+        await self._http._mark_chapter_as_read(self.id)
+
+    @require_authentication
+    async def mark_chapter_as_unread(self) -> None:
+        """|coro|
+
+        This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
+        """
+        await self._http._mark_chapter_as_unread(self.id)
