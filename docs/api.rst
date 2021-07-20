@@ -32,6 +32,12 @@ Cover
 .. autoclass:: Cover
     :members:
 
+Legacy
+~~~~~~
+
+.. autoclass:: LegacyItem
+    :members:
+
 Manga
 ~~~~~
 .. autoclass:: Manga

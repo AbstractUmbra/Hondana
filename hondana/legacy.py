@@ -21,12 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-from typing import TYPE_CHECKING
 
-
-if TYPE_CHECKING:
-    from .http import HTTPClient
-    from .types.legacy import LegacyMappingResponse
+from .http import HTTPClient
+from .types.legacy import LegacyMappingResponse
 
 
 __all__ = ("LegacyItem",)
@@ -35,8 +32,8 @@ __all__ = ("LegacyItem",)
 class LegacyItem:
     """A generic class representing a legacy ID mapping from the previous MangaDex API to the new.
 
-    Attributes:
-    ------------
+    Attributes
+    -----------
     id: :class:`str`
         The legacy mapping UUID (NOT the new item UUID).
     type: Literal[``"mapping_id"``]
@@ -45,7 +42,8 @@ class LegacyItem:
         The target item's new UUID.
     obj_legacy_id: :class:`int`
         The target item's old API integer ID.
-    obj_type: :class:`~hondana.types.common.LegacyMappingType`
+    obj_type: :class:`~hondana.types.LegacyMappingType`
+        The type of the legacy item we resolved.
     """
 
     __slots__ = ("_http", "id", "type", "_attributes", "obj_new_id", "obj_legacy_id", "obj_type")

@@ -15,19 +15,10 @@ Common
     :members:
     :undoc-members:
 
-.. autoclass:: LegacyMappingType
-    :members:
-    :undoc-members:
-
 .. autoclass:: LocalizedString
 
 .. autoclass:: LocalisedString
 
-.. autoclass:: LegacyMappingAttributesResponse
-
-.. autoclass:: LegacyMappingResponse
-
-.. autoclass:: GetLegacyMappingResponse
 
 Artist
 ------
@@ -101,6 +92,20 @@ Cover
 .. autoclass:: CoverResponse
 
 .. autoclass:: CoverAttributesResponse
+
+
+Legacy
+------
+
+.. autoclass:: LegacyMappingType
+    :members:
+    :undoc-members:
+
+.. autoclass:: LegacyMappingAttributesResponse
+
+.. autoclass:: LegacyMappingResponse
+
+.. autoclass:: GetLegacyMappingResponse
 
 
 Manga

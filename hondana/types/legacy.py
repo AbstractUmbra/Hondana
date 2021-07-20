@@ -22,11 +22,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import TYPE_CHECKING, Literal, TypedDict
+from typing import Literal, TypedDict
 
-
-if TYPE_CHECKING:
-    from .relationship import RelationshipResponse
+from .relationship import RelationshipResponse
 
 
 __all__ = (

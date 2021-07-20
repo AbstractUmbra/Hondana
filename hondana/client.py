@@ -1758,6 +1758,16 @@ class Client:
         await self._http._complete_account_recovery(recovery_code, new_password=new_password)
 
     async def ping_the_server(self) -> bool:
+        """|coro|
+
+        This method will return a simple 'pong' response from the API.
+        Mainly a small endpoint to check the API is alive and responding.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether and 'pong' response was received.
+        """
         data = await self._http._ping_the_server()
         if data == "pong":
             return True
@@ -1765,5 +1775,51 @@ class Client:
         return False
 
     async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> list[LegacyItem]:
+        """|coro|
+
+        This method will return a small response from the API to retrieve a legacy MangaDex's new details.
+
+        Parameters
+        -----------
+        type: :class:`~hondana.types.LegacyMappingType`
+            The type of the object we are querying.
+        item_ids: List[:class:`int`]
+            The legacy integer IDs of MangaDex items.
+
+        Raises
+        --------
+        :exc:`BadRequest`
+            The query was malformed.
+
+        Returns
+        ---------
+        List[:class:`LegacyItem`]
+            The list of returned items from this query.
+        """
         data = await self._http._legacy_id_mapping(type, item_ids=item_ids)
         return [LegacyItem(self._http, payload["data"]) for payload in data]
+
+    async def get_at_home_url(self, chapter_id: str, /, *, ssl: bool = True) -> str:
+        """|coro|
+
+        This method will retrieve a MangaDex@Home URL fpr accessing a chapter.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID of the chapter we are retrieving a URL for.
+        ssl: :class:`bool`
+            Defaults to ``True``. Whether we request a server/url that uses HTTPS or not.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The specified chapter ID was not found.
+
+        Returns
+        --------
+        :class:`str`
+            Returns the URL we requested.
+        """
+        data = await self._http._get_at_home_url(chapter_id, ssl=ssl)
+        return data["baseUrl"]

@@ -1140,3 +1140,8 @@ class HTTPClient:
         route = Route("POST", "/legacy/mapping")
         query = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
+
+    def _get_at_home_url(self, chapter_id: str, /, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
+        route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
+        query = php_query_builder({"forcePort443": str(ssl).lower()})
+        return self.request(route, params=query)

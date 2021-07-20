@@ -38,6 +38,7 @@ from .chapter import Chapter as Chapter
 from .client import Client as Client
 from .cover import Cover as Cover
 from .errors import *
+from .legacy import *
 from .manga import Manga as Manga
 from .scanlator_group import ScanlatorGroup as ScanlatorGroup
 from .tags import *

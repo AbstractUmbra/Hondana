@@ -34,7 +34,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Scanlation Group | [ ]          | Soon:tm:                                           |
 | Feed             | [ ]          | Soon:tm:                                           |
 | CustomList       | [ ]          | Soon:tm:                                           |
-| AtHome           | [ ]          | Soon:tm:                                           |
+| AtHome           | [x]          | Done.                                              |
 | Legacy           | [x]          | Done.                                              |
 | Infrastructure   | [x]          | Done.                                              |
 | Upload           | [ ]          | Soon:tm:                                           |
@@ -45,11 +45,18 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: AtHome
-| Endpoint                     | Implemented? | Notes    |
-| ---------------------------- | ------------ | -------- |
-| Get MangaDex@Home Server URL | [ ]          | Soon:tm: |
-
+### In Progress: CustomList
+| Endpoint                           | Implemented? | Notes    |
+| ---------------------------------- | ------------ | -------- |
+| Create CustomList                  | [ ]          | Soon:tm: |
+| Get CustomList                     | [ ]          | Soon:tm: |
+| Update CustomList                  | [ ]          | Soon:tm: |
+| Delete CustomList                  | [ ]          | Soon:tm: |
+| Add Manga in CustomList            | [ ]          | Soon:tm: |
+| Remove Manga in CustomList         | [ ]          | Soon:tm: |
+| Get logged in User CustomList list | [ ]          | Soon:tm: |
+| Get User's CustomList list         | [ ]          | Soon:tm: |
+| CustomList Manga feed              | [ ]          | Soon:tm: |
 #### To Test: Manga
 | Endpoint     | Tested? | Notes                              |
 | ------------ | ------- | ---------------------------------- |
