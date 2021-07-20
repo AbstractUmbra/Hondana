@@ -34,3 +34,7 @@ jobs:
       - name: Install Python deps
         run: |
           poetry install --no-dev
+
+      - name: Check it imports
+        run: |
+          poetry run python -c 'import hondana'
