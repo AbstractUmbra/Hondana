@@ -60,5 +60,5 @@ User
 
 Utilities
 ---------
-.. autoclass:: Route
+.. autoclass:: hondana.http.Route
     :members:
