@@ -62,6 +62,7 @@ if TYPE_CHECKING:
         chapter,
         common,
         cover,
+        custom_list,
         legacy,
         manga,
         scanlator_group,
@@ -666,18 +667,6 @@ class HTTPClient:
         route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _add_manga_to_custom_list(
-        self, manga_id: str, /, *, custom_list_id: str
-    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
-        return self.request(route)
-
-    def _remove_manga_from_custom_list(
-        self, manga_id: str, /, *, custom_list_id: str
-    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
-        return self.request(route)
-
     def _manga_feed(
         self,
         manga_id: Optional[str],
@@ -1145,3 +1134,125 @@ class HTTPClient:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
         query = php_query_builder({"forcePort443": str(ssl).lower()})
         return self.request(route, params=query)
+
+    def _create_custom_list(
+        self,
+        *,
+        name: str,
+        visibility: Optional[custom_list.CustomListVisibility],
+        manga: Optional[list[str]],
+        version: Optional[int],
+    ) -> Response[custom_list.GetCustomListResponse]:
+        route = Route("POST", "/list")
+
+        query = {}
+        query["name"] = name
+
+        if visibility:
+            query["visibility"] = visibility
+
+        if manga:
+            query["manga"] = manga
+
+        if version:
+            query["version"] = version
+
+        return self.request(route, json=query)
+
+    def _get_custom_list(self, custom_list_id: str, /) -> Response[custom_list.GetCustomListResponse]:
+        route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _update_custom_list(
+        self,
+        custom_list_id,
+        /,
+        *,
+        name: Optional[str],
+        visibility: Optional[custom_list.CustomListVisibility],
+        manga: Optional[list[str]],
+        version: int,
+    ) -> Response[custom_list.GetCustomListResponse]:
+        route = Route("POST", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+
+        query = {}
+        query["version"] = version
+
+        if name:
+            query["name"] = name
+
+        if visibility:
+            query["visibility"] = visibility
+
+        if manga:
+            query["manga"] = manga
+
+        return self.request(route, json=query)
+
+    def _delete_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _add_manga_to_custom_list(
+        self, *, custom_list_id: str, manga_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _remove_manga_from_custom_list(
+        self, *, manga_id: str, custom_list_id: str
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetCustomListListResponse]:
+        route = Route("GET", "/user/list")
+        query = {"limit": limit, "offset": offset}
+        resolved_query = php_query_builder(query)
+        return self.request(route, params=resolved_query)
+
+    def _get_users_custom_lists(
+        self, user_id: str, /, *, limit: int, offset: int
+    ) -> Response[custom_list.GetCustomListListResponse]:
+        route = Route("GET", "/user/{user_id}/list", user_id=user_id)
+        query = {"limit": limit, "offset": offset}
+        resolved_query = php_query_builder(query)
+        return self.request(route, params=resolved_query)
+
+    def _custom_list_manga_feed(
+        self,
+        custom_list_id: str,
+        /,
+        *,
+        limit: int,
+        offset: int,
+        translated_language: Optional[list[str]],
+        created_at_since: Optional[datetime.datetime],
+        updated_at_since: Optional[datetime.datetime],
+        published_at_since: Optional[datetime.datetime],
+        order: Optional[OrderQuery],
+    ) -> Response[chapter.GetChapterFeedResponse]:
+        route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if translated_language:
+            query["translatedLanguage"] = translated_language
+
+        if created_at_since:
+            query["createdAtSince"] = to_iso_format(created_at_since)
+
+        if updated_at_since:
+            query["updatedAtSince"] = to_iso_format(updated_at_since)
+
+        if published_at_since:
+            query["publishAtSince"] = to_iso_format(published_at_since)
+
+        if order:
+            query["order"] = order
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)

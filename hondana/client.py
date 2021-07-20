@@ -34,6 +34,7 @@ from . import errors
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
+from .custom_list import CustomList
 from .http import HTTPClient
 from .legacy import LegacyItem
 from .manga import Manga
@@ -49,6 +50,7 @@ if TYPE_CHECKING:
         chapter,
         common,
         cover,
+        custom_list,
         legacy,
         manga,
         scanlator_group,
@@ -889,7 +891,7 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._add_manga_to_custom_list(manga_id, custom_list_id=custom_list_id)
+        await self._http._add_manga_to_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
 
     @require_authentication
     async def remove_manga_from_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
@@ -912,7 +914,7 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._remove_manga_from_custom_list(manga_id, custom_list_id=custom_list_id)
+        await self._http._remove_manga_from_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
 
     async def chapter_list(
         self,
@@ -1172,7 +1174,7 @@ class Client:
         List[:class:`Cover`]
             A list of Cover instances returned from the API.
         """
-        limit = min(max(1, limit), 10)
+        limit = min(max(1, limit), 100)
         if offset < 0:
             offset = 0
 
@@ -1823,3 +1825,276 @@ class Client:
         """
         data = await self._http._get_at_home_url(chapter_id, ssl=ssl)
         return data["baseUrl"]
+
+    @require_authentication
+    async def create_custom_list(
+        self,
+        *,
+        name: str,
+        visibility: Optional[custom_list.CustomListVisibility] = None,
+        manga: Optional[list[str]] = None,
+        version: Optional[int] = None,
+    ) -> CustomList:
+        """|coro|
+
+        This method will create a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        name: :class:`str`
+            The name of this custom list.
+        visibility: Optional[:class:`~hondana.types.CustomListVisibility`]
+            The visibility of this custom list.
+        manga: Optional[List[:class:`str`]]
+            A list of manga ids to add to this custom list.
+        version: Optional[:class:`int`]
+            The version revision of this custom list.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The payload was malformed.
+        :exc:`NotFound`
+            One of the passed Manga IDs was not found.
+
+        Returns
+        --------
+        :class:`CustomList`
+            The custom list that was created.
+        """
+        data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga, version=version)
+
+        return CustomList(self._http, data["data"])
+
+    async def get_custom_list(self, custom_list_id: str, /) -> CustomList:
+        """|coro|
+
+        This method will retrieve a custom list from the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID associated with the custom list we wish to retrieve.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The custom list with this ID was not found.
+
+        Returns
+        --------
+        :class:`CustomList`
+            The retrieved custom list.
+        """
+        data = await self._http._get_custom_list(custom_list_id)
+
+        return CustomList(self._http, data["data"])
+
+    @require_authentication
+    async def update_custom_list(
+        self,
+        custom_list_id: str,
+        /,
+        *,
+        name: Optional[str] = None,
+        visibility: Optional[custom_list.CustomListVisibility] = None,
+        manga: Optional[list[str]] = None,
+        version: int,
+    ) -> CustomList:
+        """|coro|
+
+        This method will update a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The custom list ID we wish to update.
+        name: Optional[:class:`str`]
+            The name we wish to edit the custom list with.
+        visibility: Optional[:class:`~hondana.types.CustomListVisibility`]
+            The visibility we wish to edit the custom list with.
+        manga: Optional[List[:class:`str`]]
+            The list of manga IDs to edit this custom list with.
+        version: :class:`int`
+            The version revision of this custom list.
+
+
+        .. note::
+            Updating a custom list is an atomic action.
+            Passing the ``manga`` key here will overwrite the manga in this custom list.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            You are not authorized to edit this custom list.
+        :exc:`NotFound`
+            The custom list was not found, or one of the manga passed was not found.
+
+        Returns
+        --------
+        :class:`CustomList`
+            The returned custom list after it was updated.
+        """
+        data = await self._http._update_custom_list(
+            custom_list_id, name=name, visibility=visibility, manga=manga, version=version
+        )
+
+        return CustomList(self._http, data["data"])
+
+    @require_authentication
+    async def delete_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a custom list from the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID relating to the custom list we wish to delete.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to delete this custom list.
+        :exc:`NotFound`
+            The custom list with this UUID was not found.
+        """
+        await self._http._delete_custom_list(custom_list_id)
+
+    @require_authentication
+    async def get_my_custom_lists(self, *, limit: int = 10, offset: int = 0) -> list[CustomList]:
+        """|coro|
+
+        This method will get the current authenticated user's custom list.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. The amount of custom lists to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`CustomList`]
+            The list of custom lists retuned from the API.
+        """
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
+        return [CustomList(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def get_users_custom_lists(self, user_id: str, /, *, limit: int = 10, offset: int = 0) -> list[CustomList]:
+        """|coro|
+
+        This method will retrieve another user's custom lists.
+
+        Parameters
+        -----------
+        user_id: :class:`str`
+            The UUID of the user whose lists we wish to retrieve.
+        limit: :class:`int`
+            Defaults to 10. The amount of custom lists to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        List[:class:`CustomList`]
+            The list of custom lists retuned from the API.
+        """
+        limit = min(max(1, limit), 100)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
+        return [CustomList(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def get_custom_list_manga_feed(
+        self,
+        custom_list_id: str,
+        /,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        translated_language: Optional[list[str]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[OrderQuery] = None,
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method returns the specified manga's chapter feed.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID of the custom list whose feed we are requesting.
+        limit: :class:`int`
+            Defaults to 100. The maximum amount of chapters to return in the response.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset for the request.
+        translated_langauges: List[:class:`str`]
+            A list of language codes to filter the returned chapters with.
+        created_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their updated at date.
+        published_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their published at date.
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+            A query parameter to choose how the responses are ordered.
+            i.e. ``{"chapters": "desc"}``
+        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+            The list of options to include increased payloads for per chapter.
+            Defaults to these values.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The query parameters were malformed.
+        :exc:`Unauthorized`
+            The request was performed with no authorization.
+        :exc:`Forbidden`
+            You are not authorized to request this feed.
+        :exc:`NotFound`
+            The specified custom list was not found.
+
+        Returns
+        --------
+        List[:class:`Chapter`]
+            The list of chapters returned from this request.
+        """
+        limit = min(max(1, limit), 500)
+        if offset < 0:
+            offset = 0
+
+        data = await self._http._custom_list_manga_feed(
+            custom_list_id,
+            limit=limit,
+            offset=offset,
+            translated_language=translated_language,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+        )
+
+        return [Chapter(self._http, payload) for payload in data["results"]]

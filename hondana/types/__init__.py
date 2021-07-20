@@ -28,6 +28,7 @@ from .author import *
 from .chapter import *
 from .common import *
 from .cover import *
+from .custom_list import *
 from .legacy import *
 from .manga import *
 from .query import *

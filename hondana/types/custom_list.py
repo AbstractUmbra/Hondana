@@ -22,39 +22,44 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-__title__ = "Hondana"
-__author__ = "AbstractUmbra"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.1.0a"
+from typing import Literal, TypedDict
 
-import logging
-from typing import Literal, NamedTuple
-
-from . import utils as utils
-from .artist import Artist as Artist
-from .author import Author as Author
-from .chapter import Chapter as Chapter
-from .client import Client as Client
-from .cover import Cover as Cover
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import Manga as Manga
-from .scanlator_group import ScanlatorGroup as ScanlatorGroup
-from .tags import *
-from .user import User as User
-from .utils import TAGS as MANGA_TAGS
+from .relationship import RelationshipResponse
+from .user import GetUserResponse
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+__all__ = (
+    "CustomListVisibility",
+    "CustomListAttributesResponse",
+    "CustomListResponse",
+    "GetCustomListResponse",
+    "GetCustomListListResponse",
+)
+
+CustomListVisibility = Literal["public", "private"]
 
 
-version_info: VersionInfo = VersionInfo(major=0, minor=1, micro=0, releaselevel="alpha", serial=0)
+class CustomListAttributesResponse(TypedDict):
+    name: str
+    visibility: Literal["public", "private"]
+    owner: GetUserResponse
+    version: int
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+
+class CustomListResponse(TypedDict):
+    id: str
+    type: Literal["custom_list"]
+    attributes: CustomListAttributesResponse
+
+
+class GetCustomListResponse(TypedDict):
+    result: Literal["ok", "error"]
+    data: CustomListResponse
+    relationships: list[RelationshipResponse]
+
+
+class GetCustomListListResponse(TypedDict):
+    results: list[CustomListResponse]
+    limit: int
+    offset: int
+    total: int

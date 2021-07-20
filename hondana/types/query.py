@@ -28,21 +28,35 @@ from typing import Literal, TypedDict
 __all__ = ("OrderQuery",)
 
 
-class OrderQuery(TypedDict, total=False):
+class _OptionalOrderQuery(TypedDict):
     """
     createdAt: Literal[``"asc"``, ``"desc"``]
 
     updatedAt: Literal[``"asc"``, ``"desc"``]
 
     publishAt: Literal[``"asc"``, ``"desc"``]
+    """
+
+    createdAt: Literal["asc", "desc"]
+    updatedAt: Literal["asc", "desc"]
+    publishAt: Literal["asc", "desc"]
+
+
+class OrderQuery(_OptionalOrderQuery, total=False):
+    """
+    createdAt: Literal[``"asc"``, ``"desc"``]
+        This key is optional.
+
+    updatedAt: Literal[``"asc"``, ``"desc"``]
+        This key is optional.
+
+    publishAt: Literal[``"asc"``, ``"desc"``]
+        This key is optional
 
     volume: Literal[``"asc"``, ``"desc"``]
 
     chapter: Literal[``"asc"``, ``"desc"``]
     """
 
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    publishAt: Literal["asc", "desc"]
     volume: Literal["asc", "desc"]
     chapter: Literal["asc", "desc"]

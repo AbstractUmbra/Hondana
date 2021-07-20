@@ -69,6 +69,12 @@ class Tag:
         self.group: str = attributes["group"]
         self.version: int = attributes["version"]
 
+    def __repr__(self) -> str:
+        return f"<Tag id='{self.id}' name='{self.name}'>"
+
+    def __str__(self) -> str:
+        return self.name
+
     @property
     def name(self) -> str:
         return self._name.get("en", next(iter(self._name)))

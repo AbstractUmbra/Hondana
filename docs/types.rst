@@ -6,7 +6,6 @@ Response Types and Payloads
 
 Common
 ------
-
 .. autoclass:: PublicationDemographic
     :members:
     :undoc-members:
@@ -22,7 +21,6 @@ Common
 
 Artist
 ------
-
 .. autoclass:: ArtistResponse
 
 .. autoclass:: ArtistAttributesResponse
@@ -30,7 +28,6 @@ Artist
 
 Auth
 ----
-
 .. autoclass:: TokenResponse
 
 .. autoclass:: CheckPayload
@@ -40,10 +37,8 @@ Auth
 .. autoclass:: LoginPayload
 
 
-
 Author
 ------
-
 .. autoclass:: AuthorIncludes
     :members:
     :undoc-members:
@@ -59,10 +54,8 @@ Author
 .. autoclass:: GetAuthorListResponse
 
 
-
 Chapter
 -------
-
 .. autoclass:: ChapterIncludes
     :members:
     :undoc-members:
@@ -80,7 +73,6 @@ Chapter
 
 Cover
 -----
-
 .. autoclass:: CoverIncludes
     :members:
     :undoc-members:
@@ -94,9 +86,23 @@ Cover
 .. autoclass:: CoverAttributesResponse
 
 
+CustomList
+----------
+.. autoclass:: CustomListVisibility
+    :members:
+    :undoc-members:
+
+.. autoclass:: GetCustomListListResponse
+
+.. autoclass:: GetCustomListResponse
+
+.. autoclass:: CustomListResponse
+
+.. autoclass:: CustomListAttributesResponse
+
+
 Legacy
 ------
-
 .. autoclass:: LegacyMappingType
     :members:
     :undoc-members:
@@ -110,7 +116,6 @@ Legacy
 
 Manga
 -----
-
 .. autoclass:: MangaStatus
     :members:
     :undoc-members:
@@ -150,19 +155,16 @@ Manga
 
 Query
 -----
-
 .. autoclass:: OrderQuery
 
 
 Relationship
 ------------
-
 .. autoclass:: RelationshipResponse
 
 
 Scanlator Group
 ---------------
-
 .. autoclass:: ScanlatorGroupIncludes
     :members:
     :undoc-members:
@@ -178,7 +180,6 @@ Scanlator Group
 
 Tags
 ----
-
 .. autoclass:: GetTagListResponse
 
 .. autoclass:: TagResponse
@@ -188,7 +189,6 @@ Tags
 
 User
 ----
-
 .. autoclass:: UserOrderQuery
     :members:
     :undoc-members:

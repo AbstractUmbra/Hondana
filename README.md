@@ -32,8 +32,8 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Search           | [x]          | Done.                                              |
 | Auth             | [x]          | Authentication is done per request, token handled. |
 | Scanlation Group | [ ]          | Soon:tm:                                           |
-| Feed             | [ ]          | Soon:tm:                                           |
-| CustomList       | [ ]          | Soon:tm:                                           |
+| Feed             | [x]          | Done                                               |
+| CustomList       | [x]          | Done.                                              |
 | AtHome           | [x]          | Done.                                              |
 | Legacy           | [x]          | Done.                                              |
 | Infrastructure   | [x]          | Done.                                              |
@@ -45,18 +45,18 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: CustomList
-| Endpoint                           | Implemented? | Notes    |
-| ---------------------------------- | ------------ | -------- |
-| Create CustomList                  | [ ]          | Soon:tm: |
-| Get CustomList                     | [ ]          | Soon:tm: |
-| Update CustomList                  | [ ]          | Soon:tm: |
-| Delete CustomList                  | [ ]          | Soon:tm: |
-| Add Manga in CustomList            | [ ]          | Soon:tm: |
-| Remove Manga in CustomList         | [ ]          | Soon:tm: |
-| Get logged in User CustomList list | [ ]          | Soon:tm: |
-| Get User's CustomList list         | [ ]          | Soon:tm: |
-| CustomList Manga feed              | [ ]          | Soon:tm: |
+### In Progress: ScanlationGroup
+| Endpoint                            | Implemented? | Notes    |
+| ----------------------------------- | ------------ | -------- |
+| Scanlation Group List               | [ ]          | Soon:tm: |
+| Create Scanlation Group             | [ ]          | Soon:tm: |
+| View Scanlation Group               | [ ]          | Soon:tm: |
+| Update Scanlation Group             | [ ]          | Soon:tm: |
+| Delete Scanlation Group             | [ ]          | Soon:tm: |
+| Follow Scanlation Group             | [ ]          | Soon:tm: |
+| Unfollow Scanlation Group           | [ ]          | Soon:tm: |
+| Get logged in Users Followed Groups | [ ]          | Soon:tm: |
+
 #### To Test: Manga
 | Endpoint     | Tested? | Notes                              |
 | ------------ | ------- | ---------------------------------- |
@@ -83,9 +83,10 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Endpoint              | Tested? | Notes                              |
 | --------------------- | ------- | ---------------------------------- |
 | User List             | [ ]     | Done. Unsure if I can test this... |
-| Get User              | [ ]     | Done.                              |
+| Get User              | [ ]     | Done. Unsure if I can test this... |
 | Delete User           | [ ]     | Done. Unsure if I can test this... |
 | Approve User Deletion | [ ]     | Done. Unsure if I can test this... |
+
 
 ## Examples
 Please take a look at the [examples](../Hondana/examples/) directory for working examples.

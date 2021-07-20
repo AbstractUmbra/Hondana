@@ -32,9 +32,12 @@ Cover
 .. autoclass:: Cover
     :members:
 
+CustomList
+~~~~~~~~~~
+.. autoclass:: CustomList
+
 Legacy
 ~~~~~~
-
 .. autoclass:: LegacyItem
     :members:
 
