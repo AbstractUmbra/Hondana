@@ -2098,3 +2098,203 @@ class Client:
         )
 
         return [Chapter(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def create_scanlation_group(
+        self, *, name: str, leader: Optional[str] = None, members: Optional[list[str]] = None, version: Optional[int] = None
+    ) -> ScanlatorGroup:
+        """|coro|
+
+        This method will create a scanlation group within the MangaDex API.
+
+        Parameters
+        -----------
+        name: :class:`str`
+            The name of the scanlation group.
+        leader: Optional[:class:`str`]
+            The UUID relating to the leader of the scanlation group.
+        members: Optional[List[:class:`str`]]
+            A list of UUIDs for the members of the scanlation group.
+        version: Optional[:class:`int`]
+            The version revision of this scanlation group.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            You are not authorized to create scanlation groups.
+
+        Returns
+        --------
+        :class:`ScanlatorGroup`
+            The group returned from the API on creation.
+        """
+        data = await self._http._create_scanlation_group(name=name, leader=leader, members=members, version=version)
+        return ScanlatorGroup(self._http, data)
+
+    async def get_scanlation_group(self, scanlation_group_id: str, /) -> ScanlatorGroup:
+        """|coro|
+
+        This method will get a scanlation group from the MangaDex API.
+
+        Parameters
+        -----------
+        scanlation_group_id: :class:`str`
+            The UUID relating to the scanlation group you wish to fetch.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to view this scanlation group.
+        :exc:`NotFound`
+            The scanlation group was not found.
+
+        Returns
+        --------
+        :class:`ScanlatorGroup`
+            The group returned from the API.
+        """
+        data = await self._http._view_scanlation_group(scanlation_group_id)
+        return ScanlatorGroup(self._http, data)
+
+    @require_authentication
+    async def update_scanlation_group(
+        self,
+        scanlation_group_id: str,
+        /,
+        *,
+        name: Optional[str] = None,
+        leader: Optional[str] = None,
+        members: Optional[list[str]] = None,
+        website: Optional[str] = MISSING,
+        irc_server: Optional[str] = MISSING,
+        irc_channel: Optional[str] = MISSING,
+        discord: Optional[str] = MISSING,
+        contact_email: Optional[str] = MISSING,
+        description: Optional[str] = MISSING,
+        locked: Optional[bool] = None,
+        version: int,
+    ) -> ScanlatorGroup:
+        """|coro|
+
+        This method will update a scanlation group within the MangaDex API.
+
+        Parameters
+        -----------
+        scanlation_group_id: :class:`str`
+            The UUID relating to the scanlation group we are updating.
+        name: Optional[:class:`str`]
+            The name to update the group with.
+        leader: Optional[:class:`str`]
+            The UUID of the leader to update the group with.
+        members: Optional[:class:`str`]
+            A list of UUIDs relating to the members to update the group with.
+        website: Optional[:class:`str`]
+            The website to update the group with.
+        irc_server: Optiona[:class:`str`]
+            The IRC Server to update the group with.
+        irc_channel: Optional[:class:`str`]
+            The IRC Channel to update the group with.
+        discord: Optional[:class:`str`]
+            The discord server to update the group with.
+        contact_email: Optional[:class:`str`]
+            The contact email to update the group with.
+        description: Optional[:class:`str`]
+            The new description to update the group with.
+        locked: Optional[:class:`bool`]
+            Update the lock status of this scanlator group.
+        version: :class:`int`
+            The version revision of this scanlator group.
+
+
+        .. note::
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, and ``description``
+            keys are all nullable in the API. To do so please pass ``None`` to these keys.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed
+        :exc:`Forbidden`
+            You are not authorized to update this scanlation group.
+        :exc:`NotFound`
+            The passed scanlation group ID cannot be found.
+
+        Returns
+        --------
+        :class:`ScanlatorGroup`
+            The group returned from the API after its update.
+        """
+        data = await self._http._update_scanlation_group(
+            scanlation_group_id,
+            name=name,
+            leader=leader,
+            members=members,
+            website=website,
+            irc_server=irc_server,
+            irc_channel=irc_channel,
+            discord=discord,
+            contact_email=contact_email,
+            description=description,
+            locked=locked,
+            version=version,
+        )
+
+        return ScanlatorGroup(self._http, data)
+
+    @require_authentication
+    async def delete_scanlation_group(self, scanlation_group_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a scanlation group.
+
+        Parameters
+        -----------
+        scanlation_group_id: :class:`str`
+            The UUID relating to the scanlation group you wish to delete.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to delete this scanlation group.
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._delete_scanlation_group(scanlation_group_id)
+
+    @require_authentication
+    async def follow_scanlation_group(self, scanlation_group_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a scanlation group.
+
+        Parameters
+        -----------
+        scanlation_group_id: :class:`str`
+            The UUID relating to the scanlation group you wish to follow.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._follow_scanlation_group(scanlation_group_id)
+
+    @require_authentication
+    async def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a scanlation group.
+
+        Parameters
+        -----------
+        scanlation_group_id: :class:`str`
+            The UUID relating to the scanlation group you wish to unfollow.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._unfollow_scanlation_group(scanlation_group_id)

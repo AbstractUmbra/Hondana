@@ -27,6 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
 from .user import User
+from .utils import require_authentication
 
 
 if TYPE_CHECKING:
@@ -134,3 +135,44 @@ class ScanlatorGroup:
         if self._members:
             return [User(self._http, payload) for payload in self._members]
         return None
+
+    @require_authentication
+    async def delete(self) -> None:
+        """|coro|
+
+        This method will delete the current scanlation group.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to delete this scanlation group.
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._delete_scanlation_group(self.id)
+
+    @require_authentication
+    async def follow(self) -> None:
+        """|coro|
+
+        This method will follow the current scanlation group.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._follow_scanlation_group(self.id)
+
+    @require_authentication
+    async def unfollow(self) -> None:
+        """|coro|
+
+        This method will unfollow the current scanlation group.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The scanlation group cannot be found, likely due to an incorrect ID.
+        """
+        await self._http._unfollow_scanlation_group(self.id)

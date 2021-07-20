@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Hondana 『本棚』</h1>
+    <h1>Hondana - 本棚　『ほんだな』</h1>
     <p>Hondana is the Japanese word for "bookshelf".</p>
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
@@ -31,7 +31,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Author           | [/]          | Soon:tm:                                           |
 | Search           | [x]          | Done.                                              |
 | Auth             | [x]          | Authentication is done per request, token handled. |
-| Scanlation Group | [ ]          | Soon:tm:                                           |
+| Scanlation Group | [x]          | Done. (pending tests on some endpoints)            |
 | Feed             | [x]          | Done                                               |
 | CustomList       | [x]          | Done.                                              |
 | AtHome           | [x]          | Done.                                              |
@@ -45,47 +45,9 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: ScanlationGroup
-| Endpoint                            | Implemented? | Notes    |
-| ----------------------------------- | ------------ | -------- |
-| Scanlation Group List               | [ ]          | Soon:tm: |
-| Create Scanlation Group             | [ ]          | Soon:tm: |
-| View Scanlation Group               | [ ]          | Soon:tm: |
-| Update Scanlation Group             | [ ]          | Soon:tm: |
-| Delete Scanlation Group             | [ ]          | Soon:tm: |
-| Follow Scanlation Group             | [ ]          | Soon:tm: |
-| Unfollow Scanlation Group           | [ ]          | Soon:tm: |
-| Get logged in Users Followed Groups | [ ]          | Soon:tm: |
-
-#### To Test: Manga
-| Endpoint     | Tested? | Notes                              |
-| ------------ | ------- | ---------------------------------- |
-| Create Manga | [ ]     | Done. Unsure if I can test this... |
-| Update Manga | [ ]     | Done. Unsure if I can test this... |
-| Delete Manga | [ ]     | Done. Unsure if I can test this... |
-
-
-#### To Test: Chapter
-| Endpoint       | Tested? | Notes                               |
-| -------------- | ------- | ----------------------------------- |
-| Update Chapter | [ ]     | Done. Unsure if I can test this ... |
-| Delete Chapter | [ ]     | Done. Unsure if I can test this ... |
-
-
-#### To Test: Cover
-| Endpoint   | Tested? | Notes                              |
-| ---------- | ------- | ---------------------------------- |
-| Edit Cover | [ ]     | Done. Unsure if I can test this... |
-
-
-#### To Test: User
-
-| Endpoint              | Tested? | Notes                              |
-| --------------------- | ------- | ---------------------------------- |
-| User List             | [ ]     | Done. Unsure if I can test this... |
-| Get User              | [ ]     | Done. Unsure if I can test this... |
-| Delete User           | [ ]     | Done. Unsure if I can test this... |
-| Approve User Deletion | [ ]     | Done. Unsure if I can test this... |
+### In Progress: Author
+| Endpoint | Implemented? | Notes |
+| -------- | ------------ | ----- |
 
 
 ## Examples

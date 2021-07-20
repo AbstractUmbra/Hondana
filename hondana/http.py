@@ -1256,3 +1256,92 @@ class HTTPClient:
         resolved_query = php_query_builder(query)
 
         return self.request(route, params=resolved_query)
+
+    def _create_scanlation_group(
+        self, *, name: str, leader: Optional[str], members: Optional[list[str]], version: Optional[int]
+    ) -> Response[scanlator_group.GetScanlationGroupResponse]:
+        route = Route("POST", "/group")
+
+        query = {}
+        query["name"] = name
+
+        if leader:
+            query["leader"] = leader
+
+        if members:
+            query["members"] = members
+
+        if version:
+            query["version"] = version
+
+        return self.request(route, json=query)
+
+    def _view_scanlation_group(self, scanlation_group_id: str, /) -> Response[scanlator_group.GetScanlationGroupResponse]:
+        route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+        return self.request(route)
+
+    def _update_scanlation_group(
+        self,
+        scanlation_group_id: str,
+        /,
+        *,
+        name: Optional[str],
+        leader: Optional[str],
+        members: Optional[list[str]],
+        website: Optional[str],
+        irc_server: Optional[str],
+        irc_channel: Optional[str],
+        discord: Optional[str],
+        contact_email: Optional[str],
+        description: Optional[str],
+        locked: Optional[bool],
+        version: int,
+    ) -> Response[scanlator_group.GetScanlationGroupResponse]:
+        route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+
+        query = {}
+        query["version"] = version
+
+        if name:
+            query["name"] = name
+
+        if leader:
+            query["leader"] = leader
+
+        if members:
+            query["members"] = members
+
+        if website is not MISSING:
+            query["website"] = website
+
+        if irc_server is not MISSING:
+            query["ircServer"] = irc_server
+
+        if irc_channel is not MISSING:
+            query["ircChannel"] = irc_channel
+
+        if discord is not MISSING:
+            query["discord"] = discord
+
+        if contact_email is not MISSING:
+            query["contactEmail"] = contact_email
+
+        if description is not MISSING:
+            query["description"] = description
+
+        if locked:
+            query["locked"] = str(locked).lower()
+
+        return self.request(route, json=query)
+
+    def _delete_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+        return self.request(route)
+
+    def _follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+        return self.request(route)
+
+    def _unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+        return self.request(route)
