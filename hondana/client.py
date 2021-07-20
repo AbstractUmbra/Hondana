@@ -35,6 +35,7 @@ from .author import Author
 from .chapter import Chapter
 from .cover import Cover
 from .http import HTTPClient
+from .legacy import LegacyItem
 from .manga import Manga
 from .scanlator_group import ScanlatorGroup
 from .user import User
@@ -43,8 +44,16 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import author, chapter, cover, manga, scanlator_group, user
-    from .types.common import LocalisedString
+    from .types import (
+        author,
+        chapter,
+        common,
+        cover,
+        legacy,
+        manga,
+        scanlator_group,
+        user,
+    )
     from .types.query import OrderQuery
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -403,9 +412,9 @@ class Client:
     async def create_manga(
         self,
         *,
-        title: LocalisedString,
-        alt_titles: Optional[list[LocalisedString]] = None,
-        description: Optional[LocalisedString] = None,
+        title: common.LocalisedString,
+        alt_titles: Optional[list[common.LocalisedString]] = None,
+        description: Optional[common.LocalisedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -560,9 +569,9 @@ class Client:
         self,
         manga_id: str,
         *,
-        title: Optional[LocalisedString] = None,
-        alt_titles: Optional[list[LocalisedString]] = None,
-        description: Optional[LocalisedString] = None,
+        title: Optional[common.LocalisedString] = None,
+        alt_titles: Optional[list[common.LocalisedString]] = None,
+        description: Optional[common.LocalisedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -1754,3 +1763,7 @@ class Client:
             return True
 
         return False
+
+    async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> list[LegacyItem]:
+        data = await self._http._legacy_id_mapping(type, item_ids=item_ids)
+        return [LegacyItem(self._http, payload["data"]) for payload in data]

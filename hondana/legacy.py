@@ -1,0 +1,61 @@
+"""
+The MIT License (MIT)
+
+Copyright (c) 2021-Present AbstractUmbra
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+"""
+from typing import TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from .http import HTTPClient
+    from .types.legacy import LegacyMappingResponse
+
+
+__all__ = ("LegacyItem",)
+
+
+class LegacyItem:
+    """A generic class representing a legacy ID mapping from the previous MangaDex API to the new.
+
+    Attributes:
+    ------------
+    id: :class:`str`
+        The legacy mapping UUID (NOT the new item UUID).
+    type: Literal[``"mapping_id"``]
+        The raw type from the API.
+    obj_new_id: :class:`str`
+        The target item's new UUID.
+    obj_legacy_id: :class:`int`
+        The target item's old API integer ID.
+    obj_type: :class:`~hondana.types.common.LegacyMappingType`
+    """
+
+    __slots__ = ("_http", "id", "type", "_attributes", "obj_new_id", "obj_legacy_id", "obj_type")
+
+    def __init__(self, http: HTTPClient, payload: LegacyMappingResponse):
+        self._http = http
+        self.id = payload["id"]
+        self.type = payload["type"]
+        attributes = payload["attributes"]
+        self._attributes = attributes
+        self.obj_new_id = attributes["newId"]
+        self.obj_legacy_id = attributes["legacyId"]
+        self.obj_type = attributes["type"]

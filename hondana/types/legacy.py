@@ -22,40 +22,37 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict
+from typing import TYPE_CHECKING, Literal, TypedDict
 
-from .relationship import RelationshipResponse
+
+if TYPE_CHECKING:
+    from .relationship import RelationshipResponse
 
 
 __all__ = (
-    "PublicationDemographic",
-    "ContentRating",
-    "LocalizedString",
-    "LocalisedString",
+    "LegacyMappingType",
+    "LegacyMappingAttributesResponse",
+    "LegacyMappingResponse",
+    "GetLegacyMappingResponse",
 )
 
-PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
-ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
+
+LegacyMappingType = Literal["group", "manga", "chapter", "tag"]
 
 
-class LocalizedString(TypedDict):
-    """
-    Examples
-    ---------
-    A localised string: ::
-
-        {"en": "An english string"}
-        {"fr": "Une corde française"}
+class LegacyMappingAttributesResponse(TypedDict):
+    type: LegacyMappingType
+    legacyId: int
+    newId: str
 
 
-    language_code: :class:`str`
-        The shorthand language code for the target item.
-    item: :class:`str`
-        The localized item.
-    """
-
-    language_code: str
-    item: str
+class LegacyMappingResponse(TypedDict):
+    id: str
+    type: Literal["mapping_id"]
+    attributes: LegacyMappingAttributesResponse
 
 
-LocalisedString = LocalizedString
+class GetLegacyMappingResponse(TypedDict):
+    result: Literal["ok"]
+    data: LegacyMappingResponse
+    relationships: list[RelationshipResponse]

@@ -15,10 +15,19 @@ Common
     :members:
     :undoc-members:
 
+.. autoclass:: LegacyMappingType
+    :members:
+    :undoc-members:
+
 .. autoclass:: LocalizedString
 
 .. autoclass:: LocalisedString
 
+.. autoclass:: LegacyMappingAttributesResponse
+
+.. autoclass:: LegacyMappingResponse
+
+.. autoclass:: GetLegacyMappingResponse
 
 Artist
 ------

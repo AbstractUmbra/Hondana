@@ -35,7 +35,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Feed             | [ ]          | Soon:tm:                                           |
 | CustomList       | [ ]          | Soon:tm:                                           |
 | AtHome           | [ ]          | Soon:tm:                                           |
-| Legacy           | [ ]          | Soon:tm:                                           |
+| Legacy           | [x]          | Done.                                              |
 | Infrastructure   | [x]          | Done.                                              |
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [x]          | Done.                                              |
@@ -45,10 +45,10 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Legacy
-| Endpoint          | Implemented? | Notes    |
-| ----------------- | ------------ | -------- |
-| Legacy ID Mapping | [ ]          | Soon:tm: |
+### In Progress: AtHome
+| Endpoint                     | Implemented? | Notes    |
+| ---------------------------- | ------------ | -------- |
+| Get MangaDex@Home Server URL | [ ]          | Soon:tm: |
 
 #### To Test: Manga
 | Endpoint     | Tested? | Notes                              |

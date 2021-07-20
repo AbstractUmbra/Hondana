@@ -57,9 +57,17 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import author, chapter, cover, manga, scanlator_group, user
+    from .types import (
+        author,
+        chapter,
+        common,
+        cover,
+        legacy,
+        manga,
+        scanlator_group,
+        user,
+    )
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
-    from .types.common import LocalisedString
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
 
@@ -493,9 +501,9 @@ class HTTPClient:
     def _create_manga(
         self,
         *,
-        title: LocalisedString,
-        alt_titles: Optional[list[LocalisedString]],
-        description: Optional[LocalisedString],
+        title: common.LocalisedString,
+        alt_titles: Optional[list[common.LocalisedString]],
+        description: Optional[common.LocalisedString],
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         links: Optional[manga.MangaLinks],
@@ -585,9 +593,9 @@ class HTTPClient:
         self,
         manga_id: str,
         *,
-        title: Optional[LocalisedString],
-        alt_titles: Optional[list[LocalisedString]],
-        description: Optional[LocalisedString],
+        title: Optional[common.LocalisedString],
+        alt_titles: Optional[list[common.LocalisedString]],
+        description: Optional[common.LocalisedString],
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         links: Optional[manga.MangaLinks],
@@ -1125,3 +1133,10 @@ class HTTPClient:
     def _ping_the_server(self) -> Response[str]:
         route = Route("GET", "/ping")
         return self.request(route)
+
+    def _legacy_id_mapping(
+        self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]
+    ) -> Response[list[legacy.GetLegacyMappingResponse]]:
+        route = Route("POST", "/legacy/mapping")
+        query = {"type": type, "ids": item_ids}
+        return self.request(route, json=query)
