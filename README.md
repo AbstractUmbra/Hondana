@@ -28,7 +28,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Chapter Upload   | [ ]          | Soon:tm:                                           |
 | Manga            | [x]          | Done. (pending tests on some endpoints)            |
 | Cover            | [x]          | Done. (pending tests on some endpoints)            |
-| Author           | [/]          | Soon:tm:                                           |
+| Author           | [x]          | Done. (pending tests on some endpoints)            |
 | Search           | [x]          | Done.                                              |
 | Auth             | [x]          | Authentication is done per request, token handled. |
 | Scanlation Group | [x]          | Done. (pending tests on some endpoints)            |
@@ -45,7 +45,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Author
+### In Progress: Report
 | Endpoint | Implemented? | Notes |
 | -------- | ------------ | ----- |
 

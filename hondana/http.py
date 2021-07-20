@@ -415,10 +415,6 @@ class HTTPClient:
         route = Route("GET", "/manga/tag")
         return self.request(route)
 
-    def _get_author(self, author_id: str) -> Response[author.GetAuthorResponse]:
-        route = Route("GET", "/author/{author_id}", author_id=author_id)
-        return self.request(route)
-
     def _manga_list(
         self,
         *,
@@ -982,38 +978,6 @@ class HTTPClient:
 
         return self.request(route)
 
-    def _author_list(
-        self,
-        *,
-        limit: int,
-        offset: int,
-        ids: Optional[list[str]],
-        name: Optional[str],
-        order: Optional[author.AuthorOrderQuery],
-        includes: Optional[list[author.AuthorIncludes]],
-    ) -> Response[author.GetAuthorListResponse]:
-        route = Route("GET", "/author")
-
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
-
-        if ids:
-            query["ids"] = ids
-
-        if name:
-            query["name"] = name
-
-        if order:
-            query["order"] = order
-
-        if includes:
-            query["includes"] = includes
-
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
-
     def _user_list(
         self,
         limit: int,
@@ -1344,4 +1308,65 @@ class HTTPClient:
 
     def _unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+        return self.request(route)
+
+    def _author_list(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        ids: Optional[list[str]],
+        name: Optional[str],
+        order: Optional[author.AuthorOrderQuery],
+        includes: Optional[list[author.AuthorIncludes]],
+    ) -> Response[author.GetAuthorListResponse]:
+        route = Route("GET", "/author")
+
+        query = {}
+        query["limit"] = limit
+        query["offset"] = offset
+
+        if ids:
+            query["ids"] = ids
+
+        if name:
+            query["name"] = name
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.GetAuthorResponse]:
+        route = Route("POST", "/author")
+        query = {}
+
+        query["name"] = name
+        if version:
+            query["version"] = version
+
+        return self.request(route, json=query)
+
+    def _get_author(self, author_id: str) -> Response[author.GetAuthorResponse]:
+        route = Route("GET", "/author/{author_id}", author_id=author_id)
+        return self.request(route)
+
+    def _update_author(self, author_id, /, *, name: Optional[str], version: int) -> Response[author.GetAuthorResponse]:
+        route = Route("PUT", "/author/{author_id}", author_id=author_id)
+
+        query = {}
+        query["version"] = version
+
+        if name:
+            query["name"] = name
+
+        return self.request(route, json=query)
+
+    def _delete_author(self, author_id: str) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)

@@ -208,25 +208,6 @@ class Client:
 
         return tags
 
-    async def get_author(self, author_id: str) -> Author:
-        """|coro|
-
-        The method will fetch an Author from the MangaDex API.
-
-        Raises
-        -------
-        NotFound
-            The passed author ID was not found, likely due to an incorrect ID.
-
-        Returns
-        --------
-        :class:`Author`
-            The Author returned from the API.
-        """
-        data = await self._http._get_author(author_id)
-
-        return Author(self._http, data)
-
     @require_authentication
     async def get_my_feed(
         self,
@@ -1322,39 +1303,6 @@ class Client:
 
         return [ScanlatorGroup(self._http, payload) for payload in data["results"]]
 
-    async def author_list(
-        self,
-        *,
-        limit: int = 10,
-        offset: int = 0,
-        ids: Optional[list[str]] = None,
-        name: Optional[str] = None,
-        order: Optional[author.AuthorOrderQuery],
-        includes: Optional[list[author.AuthorIncludes]],
-    ) -> list[Author]:
-        """|coro|
-
-        This method will fetch a list of authors from the MangaDex API.
-
-        Parameters
-        -----------
-        limit: :class:`int`
-            Defaults to 10. This specifies the amount of scanlator groups to return in one request.
-        offset: :class:`int`
-            Defaults to 0. The pagination offset.
-        ids: Optional[List[:class:`str`]]
-            A list of author UUID(s) to limit the request to.
-        name: Optional[:class:`str`]
-            A name to limit the request to.
-        order: Optional[:class:`~hondana.types.AuthorOrderQuery`]
-            A query parameter to choose how the responses are ordered.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
-            An optional list of includes to request increased payloads during the request.
-        """
-        data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
-
-        return [Author(self._http, payload) for payload in data["results"]]
-
     @require_authentication
     async def user_list(
         self,
@@ -2298,3 +2246,135 @@ class Client:
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
         await self._http._unfollow_scanlation_group(scanlation_group_id)
+
+    async def author_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        name: Optional[str] = None,
+        order: Optional[author.AuthorOrderQuery],
+        includes: Optional[list[author.AuthorIncludes]],
+    ) -> list[Author]:
+        """|coro|
+
+        This method will fetch a list of authors from the MangaDex API.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 10. This specifies the amount of scanlator groups to return in one request.
+        offset: :class:`int`
+            Defaults to 0. The pagination offset.
+        ids: Optional[List[:class:`str`]]
+            A list of author UUID(s) to limit the request to.
+        name: Optional[:class:`str`]
+            A name to limit the request to.
+        order: Optional[:class:`~hondana.types.AuthorOrderQuery`]
+            A query parameter to choose how the responses are ordered.
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
+            An optional list of includes to request increased payloads during the request.
+        """
+        data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
+
+        return [Author(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def create_author(self, *, name: str, version: Optional[int] = None) -> Author:
+        """|coro|
+
+        This method will create an author within the MangaDex API.
+
+        Parameters
+        -----------
+        name: :class:`str`
+            The name of the author we are creating.
+        version: Optional[:class:`int`]
+            The version revision of this author.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            You are not authorized to create authors.
+
+        Returns
+        --------
+        :class:`Author`
+            The author created within the API.
+        """
+        data = await self._http._create_author(name=name, version=version)
+        return Author(self._http, data)
+
+    async def get_author(self, author_id: str) -> Author:
+        """|coro|
+
+        The method will fetch an Author from the MangaDex API.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The passed author ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Author`
+            The Author returned from the API.
+        """
+        data = await self._http._get_author(author_id)
+
+        return Author(self._http, data)
+
+    @require_authentication
+    async def update_author(self, author_id: str, /, *, name: Optional[str] = None, version: int) -> Author:
+        """|coro|
+
+        This method will update an author on the MangaDex API.
+
+        Parameters
+        -----------
+        author_id: :class:`str`
+            The UUID relating to the author we wish to update.
+        name: Optional[:class:`str`]
+            The new name to update the author with.
+        version: :class:`int`
+            The version revision of this author.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            You are not authorized to update this author.
+        :exc:`NotFound`
+            The author UUID given was not found.
+
+        Returns
+        --------
+        :class:`Author`
+            The updated author from the API.
+        """
+        data = await self._http._update_author(author_id, name=name, version=version)
+        return Author(self._http, data)
+
+    @require_authentication
+    async def delete_author(self, author_id: str, /) -> None:
+        """|coro|
+
+        This method will delete an author from the MangaDex API.
+
+        Parameters
+        -----------
+        author_id: :class:`str`
+            The UUID relating the author you wish to delete.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to delete this author.
+        :exc:`NotFound`
+            The UUID given for the author was not found.
+        """
+        await self._http._delete_author(author_id)
