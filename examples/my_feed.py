@@ -1,14 +1,16 @@
+import asyncio
 import datetime
 
 import hondana
 
 
-# We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to login and fetch an expiring auth token
-client = hondana.Client(username="my login username", password="my login password")
+# We need to login with username/email and password since MangaDex does not let you create user based API tokens.
+# We instead use our credentials to login and fetch an expiring auth token.
+# NOTE: You can also use the client with no credentials.
+client = hondana.Client(username="my-username", password="my-password")
 
 
-async def get_my_feed() -> list[hondana.Chapter]:
+async def main() -> list[hondana.Chapter]:
     # Let's get the last 15 minutes of released manga
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 
@@ -20,4 +22,10 @@ async def get_my_feed() -> list[hondana.Chapter]:
         limit=20, offset=0, translated_languages=["en"], created_at_since=fifteen_minutes_ago, order=order  # type: ignore # because typecheckers can't __eq__ a dict and TypedDict
     )
 
+    # Let's view the responses.
+    print(feed)
+
     return feed
+
+
+asyncio.run(main())

@@ -1,3 +1,4 @@
+import asyncio
 import datetime
 
 import hondana
@@ -41,12 +42,23 @@ async def more_refined_search() -> list[hondana.Manga]:
         limit=10,
         offset=0,
         included_tags=tags,
-        publication_demographic=demographic,  # type: ignore # typecheckers won't eval a list[str] and list[Literal[]]
+        publication_demographic=demographic,  # type: ignore # typecheckers won't eval a list[str] and list[Literal[...]]
         status=status,  # type: ignore # see above
         created_at_since=seven_days_ago,
     )
 
-    # this search was empty for me at the time of writing, but the fact you get a response at all means it worked.
-    print(search)
-
     return search
+
+
+async def main():
+    manga = await search_for_tags()
+    print(manga)
+
+    other_manga = await more_refined_search()
+    # this search was empty for me at the time of writing, but the fact you get a response at all means it worked.
+    print(other_manga)
+
+    await client.close()
+
+
+asyncio.run(main())
