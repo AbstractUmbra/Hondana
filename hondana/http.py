@@ -80,7 +80,10 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
     text = await response.text(encoding="utf-8")
     try:
         if response.headers["content-type"] == "application/json":
-            return json.loads(text)
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError:
+                pass
     except KeyError:
         pass
 
@@ -1118,3 +1121,7 @@ class HTTPClient:
         route = Route("POST", "/account/recover/{recovery_code}", recovery_code=recovery_code)
         query = {"newPassword": new_password}
         return self.request(route, json=query)
+
+    def _ping_the_server(self) -> Response[str]:
+        route = Route("GET", "/ping")
+        return self.request(route)
