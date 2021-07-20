@@ -169,13 +169,19 @@ class Client:
 
         return await self._http._close()
 
-    async def update_tags(self) -> None:
+    async def update_tags(self) -> dict[str, str]:
         """|coro|
 
         Convenience method for updating the local cache of tags.
 
         This should ideally not need to be called by the end user but nevertheless it exists in the event MangaDex
-        add a new tag or similar."""
+        add a new tag or similar.
+
+        Returns
+        --------
+        Dict[:class:`str`, :class:`str`]
+            The new tags from the API.
+        """
         data = await self._http._update_tags()
 
         tags: dict[str, str] = {}
@@ -188,6 +194,8 @@ class Client:
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
         with open(path, "w") as fp:
             json.dump(tags, fp, indent=4)
+
+        return tags
 
     async def get_author(self, author_id: str) -> Author:
         """|coro|
@@ -1739,3 +1747,10 @@ class Client:
             The recovery code given was not found or the password was greater than 1024 characters.
         """
         await self._http._complete_account_recovery(recovery_code, new_password=new_password)
+
+    async def ping_the_server(self) -> bool:
+        data = await self._http._ping_the_server()
+        if data == "pong":
+            return True
+
+        return False

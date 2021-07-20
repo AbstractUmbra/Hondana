@@ -36,7 +36,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | CustomList       | [ ]          | Soon:tm:                                           |
 | AtHome           | [ ]          | Soon:tm:                                           |
 | Legacy           | [ ]          | Soon:tm:                                           |
-| Infrastructure   | [ ]          | Soon:tm:                                           |
+| Infrastructure   | [x]          | Done.                                              |
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [x]          | Done.                                              |
 | User             | [x]          | Done. (pending tests on some endpoints)            |
@@ -45,10 +45,10 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Infrastructure
-| Endpoint        | Implemented? | Notes    |
-| --------------- | ------------ | -------- |
-| Ping the Server | [ ]          | Soon:tm: |
+### In Progress: Legacy
+| Endpoint          | Implemented? | Notes    |
+| ----------------- | ------------ | -------- |
+| Legacy ID Mapping | [ ]          | Soon:tm: |
 
 #### To Test: Manga
 | Endpoint     | Tested? | Notes                              |
@@ -89,3 +89,4 @@ Please take a look at the [examples](../Hondana/examples/) directory for working
 
 - There are no API endpoints for Artist. Currently, if you query a manga without the `"artist"` query includes then you will not receive artist data.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorise those), there's a convenience method for updating the local cache as `Client.update_tags`
+  - I have added [an example](../Hondana/../hondana/examples/updating_local_tags.py) on how to do the above.

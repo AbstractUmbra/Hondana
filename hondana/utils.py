@@ -87,7 +87,7 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
         if value is None or value is MISSING:
             fmt.append(f"{key}=null")
         if isinstance(value, (str, int, bool)):
-            fmt.append(f"{key}={str(value).lower()}")
+            fmt.append(f"{key}={str(value)}")
         elif isinstance(value, list):
             fmt.extend(f"{key}[]={item}" for item in value)
         elif isinstance(value, dict):
