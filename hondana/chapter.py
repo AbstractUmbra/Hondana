@@ -31,7 +31,9 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .manga import Manga
     from .types.chapter import GetChapterResponse
+    from .types.relationship import RelationshipResponse
 
 
 __all__ = ("Chapter",)
@@ -67,6 +69,8 @@ class Chapter:
 
     __slots__ = (
         "_http",
+        "_attributes",
+        "_relationships",
         "id",
         "title",
         "volume",
@@ -86,6 +90,8 @@ class Chapter:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
+        self._attributes = attributes
+        self._relationships = payload["relationships"]
         self.id: str = data["id"]
         self.title: Optional[str] = attributes["title"]
         self.volume: Optional[str] = attributes["volume"]
@@ -120,6 +126,19 @@ class Chapter:
     def published_at(self) -> datetime.datetime:
         """When this chapter was published."""
         return datetime.datetime.fromisoformat(self._published_at)
+
+    async def get_parent_manga(self) -> Optional[Manga]:
+        manga_id = None
+        for item in self._relationships:
+            if item["type"] == "manga":
+                manga_id = item["id"]
+                break
+
+        if manga_id is None:
+            return
+
+        manga = await self._http._view_manga(manga_id, includes=["author", "artist", "cover_art"])
+        return Manga(self._http, manga)
 
     @require_authentication
     async def update(

@@ -277,11 +277,7 @@ class Client:
             includes=None,
         )
 
-        chapters: list[Chapter] = []
-        for item in data["results"]:
-            chapters.append(Chapter(self._http, item))
-
-        return chapters
+        return [Chapter(self._http, payload) for payload in data["results"]]
 
     async def manga_list(
         self,
@@ -545,7 +541,7 @@ class Client:
         :class:`Manga`
             The Manga that was returned from the API.
         """
-        data = await self._http._view_manga(manga_id, includes)
+        data = await self._http._view_manga(manga_id, includes=includes)
 
         return Manga(self._http, data)
 
