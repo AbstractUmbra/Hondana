@@ -15,6 +15,13 @@ Welcome to Hondana's documentation!
    exceptions
 
 
+Manuals
+=======
+
+.. toctree::
+    :maxdepth: 1
+
+    logging
 
 Indices and tables
 ==================

@@ -53,12 +53,14 @@ body:
     attributes:
       label: Checklist
       description: >
-        Let's make sure you've properly done due dilligence when reporting this issue!
+        Let's make sure you've properly done due diligence when reporting this issue!
       options:
         - label: I have searched the open issues for duplicates.
           required: true
         - label: I have shown the entire traceback, if possible.
           required: true
+        - label: I have included debug logging (with my latest token remove), if applicable.
+          required: false
   - type: textarea
     attributes:
       label: Additional Context
