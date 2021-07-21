@@ -24,36 +24,50 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
+from .common import LocalisedString
 
-__all__ = ("OrderQuery",)
+
+__all__ = ("ReportCategory", "GetReportReasonAttributesResponse", "GetReportReasonResponse", "GetReportReasonListResponse")
 
 
-class _OptionalOrderQuery(TypedDict):
+ReportCategory = Literal["manga", "chapter", "scanlation_group", "user"]
+
+
+class GetReportReasonAttributesResponse(TypedDict):
     """
-    createdAt: Literal[``"asc"``, ``"desc"``]
-    updatedAt: Literal[``"asc"``, ``"desc"``]
-    publishAt: Literal[``"asc"``, ``"desc"``]
-    """
-
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    publishAt: Literal["asc", "desc"]
-
-
-class OrderQuery(_OptionalOrderQuery, total=False):
-    """
-    createdAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional.
-
-    updatedAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional.
-
-    publishAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional
-
-    volume: Literal[``"asc"``, ``"desc"``]
-    chapter: Literal[``"asc"``, ``"desc"``]
+    reason: :class:`~hondana.types.LocalisedString`
+    detailsRequired: :class:`bool`
+    category: :class:`~hondana.types.ReportCategory`
+    version: :class:`int`
     """
 
-    volume: Literal["asc", "desc"]
-    chapter: Literal["asc", "desc"]
+    reason: LocalisedString
+    detailsRequired: bool
+    category: ReportCategory
+    version: int
+
+
+class GetReportReasonResponse(TypedDict):
+    """
+    id: :class:`str`
+    type: Literal[``"report_reason"``]
+    attributes: :class:`~hondana.types.GetReportReasonAttributesResponse`
+    """
+
+    id: str
+    type: Literal["report_reason"]
+    attributes: GetReportReasonAttributesResponse
+
+
+class GetReportReasonListResponse(TypedDict):
+    """
+    results: List[:class:`~hondana.types.GetReportReasonResponse`]
+    limit: :class:`int`
+    offset: :class:`int`
+    total: :class:`int`
+    """
+
+    results: list[GetReportReasonResponse]
+    limit: int
+    offset: int
+    total: int

@@ -65,6 +65,7 @@ if TYPE_CHECKING:
         custom_list,
         legacy,
         manga,
+        report,
         scanlator_group,
         user,
     )
@@ -1370,3 +1371,35 @@ class HTTPClient:
     def _delete_author(self, author_id: str) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)
+
+    def _get_report_reason_list(
+        self, report_category: report.ReportCategory
+    ) -> Response[report.GetReportReasonListResponse]:
+        route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)
+        return self.request(route)
+
+    def _create_report(
+        self,
+        *,
+        report_category: Optional[report.ReportCategory],
+        reason: Optional[str],
+        object_id: Optional[str],
+        details: Optional[str],
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/report")
+
+        query = {}
+
+        if report_category:
+            query["category"] = report_category
+
+        if reason:
+            query["reason"] = reason
+
+        if object_id:
+            query["objectId"] = object_id
+
+        if details:
+            query["details"] = details
+
+        return self.request(route, json=query)

@@ -22,38 +22,32 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict
+from typing import Literal
+
+from .http import HTTPClient
+from .types.common import LocalisedString
+from .types.report import GetReportReasonResponse, ReportCategory
 
 
-__all__ = ("OrderQuery",)
+__all__ = ("Report",)
 
 
-class _OptionalOrderQuery(TypedDict):
-    """
-    createdAt: Literal[``"asc"``, ``"desc"``]
-    updatedAt: Literal[``"asc"``, ``"desc"``]
-    publishAt: Literal[``"asc"``, ``"desc"``]
-    """
+class Report:
+    __slots__ = ("_http", "id", "type", "_attributes", "reason", "details_required", "category", "version")
 
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    publishAt: Literal["asc", "desc"]
+    def __init__(self, http: HTTPClient, payload: GetReportReasonResponse) -> None:
+        self._http = http
+        self.id: str = payload["id"]
+        self.type: Literal["report_reason"] = payload["type"]
+        attributes = payload["attributes"]
+        self._attributes = attributes
+        self.reason: LocalisedString = attributes["reason"]
+        self.details_required: bool = attributes["detailsRequired"]
+        self.category: ReportCategory = attributes["category"]
+        self.version: int = attributes["version"]
 
+    def __repr__(self) -> str:
+        return f"<Report id='{self.id}'>"
 
-class OrderQuery(_OptionalOrderQuery, total=False):
-    """
-    createdAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional.
-
-    updatedAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional.
-
-    publishAt: Literal[``"asc"``, ``"desc"``]
-        This key is optional
-
-    volume: Literal[``"asc"``, ``"desc"``]
-    chapter: Literal[``"asc"``, ``"desc"``]
-    """
-
-    volume: Literal["asc", "desc"]
-    chapter: Literal["asc", "desc"]
+    def __str__(self) -> str:
+        return f"Report for {self.category.title()} and reason: {self.reason}"

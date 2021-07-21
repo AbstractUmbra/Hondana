@@ -38,6 +38,7 @@ from .custom_list import CustomList
 from .http import HTTPClient
 from .legacy import LegacyItem
 from .manga import Manga
+from .report import Report
 from .scanlator_group import ScanlatorGroup
 from .user import User
 from .utils import MISSING, require_authentication
@@ -53,6 +54,7 @@ if TYPE_CHECKING:
         custom_list,
         legacy,
         manga,
+        report,
         scanlator_group,
         user,
     )
@@ -2378,3 +2380,66 @@ class Client:
             The UUID given for the author was not found.
         """
         await self._http._delete_author(author_id)
+
+    @require_authentication
+    async def get_report_list(self, report_category: report.ReportCategory, /) -> list[Report]:
+        """|coro|
+
+        This method will retrieve a list of reports from the MangaDex API.
+
+        Parameters
+        -----------
+        report_category: :class:`~hondana.types.ReportCategory`
+            The category of which to retrieve a list of reports.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The category was an incorrect value.
+        :exc:`Forbidden`
+            The request returned an error due to an authentication failure.
+        :exc:`NotFound`
+            The specified category has no reports.
+
+        Returns
+        --------
+        List[:class:`Report`]
+            The list of reports returned from the API.
+        """
+        data = await self._http._get_report_reason_list(report_category)
+        return [Report(self._http, payload) for payload in data["results"]]
+
+    @require_authentication
+    async def create_report(
+        self,
+        *,
+        report_category: Optional[report.ReportCategory] = None,
+        reason: Optional[str] = None,
+        object_id: Optional[str] = None,
+        details: Optional[str] = None,
+    ) -> None:
+        """|coro|
+
+        This method will create a report for moderator review in the MangaDex API.
+
+        Parameters
+        -----------
+        report_category: Optional[:class:`~hondana.types.ReportCategory`]
+            The category for which the report is for.
+        reason: Optional[:class:`str`]
+            The UUID representing the reason for this report.
+        object_id: Optional[:class:`str`]
+            The UUID of the object to which this report is referencing.
+        details: Optional[:class:`str`]
+            The details of the report.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            The request returned a response due to authentication failure.
+        :exc:`NotFound`
+            The specified report UUID or object UUID does not exist.
+        """
+        await self._http._create_report(report_category=report_category, reason=reason, object_id=object_id, details=details)

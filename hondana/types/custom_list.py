@@ -40,25 +40,51 @@ CustomListVisibility = Literal["public", "private"]
 
 
 class CustomListAttributesResponse(TypedDict):
+    """
+    name: :class:`str`
+    visibility: :class:`~hondana.types.CustomListVisibility`
+    owner: :class:`~hondana.types.GetUserResponse`
+    version: :class:`int`
+    """
+
     name: str
-    visibility: Literal["public", "private"]
+    visibility: CustomListVisibility
     owner: GetUserResponse
     version: int
 
 
 class CustomListResponse(TypedDict):
+    """
+    id: class:`str`
+    type: Literal[``"custom_list"``]
+    attributes: :class:`~hondana.types.CustomListAttributesResponse`
+    """
+
     id: str
     type: Literal["custom_list"]
     attributes: CustomListAttributesResponse
 
 
 class GetCustomListResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+    data: :class:`~hondana.types.CustomListResponse`
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    """
+
     result: Literal["ok", "error"]
     data: CustomListResponse
     relationships: list[RelationshipResponse]
 
 
 class GetCustomListListResponse(TypedDict):
+    """
+    results: List[:class:`~hondana.types.CustomListResponse`]
+    limit: :class:`int`
+    offset: :class:`int`
+    total: :class:`int`
+    """
+
     results: list[CustomListResponse]
     limit: int
     offset: int

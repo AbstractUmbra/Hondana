@@ -46,6 +46,11 @@ Manga
 .. autoclass:: Manga
     :members:
 
+Report
+~~~~~~
+.. autoclass:: Report
+    :members:
+
 Scanlation Group
 ~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroup

@@ -26,12 +26,12 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Feature          | Implemented? | Notes                                              |
 | ---------------- | ------------ | -------------------------------------------------- |
 | Chapter Upload   | [ ]          | Soon:tm:                                           |
-| Manga            | [x]          | Done. (pending tests on some endpoints)            |
-| Cover            | [x]          | Done. (pending tests on some endpoints)            |
-| Author           | [x]          | Done. (pending tests on some endpoints)            |
+| Manga            | [x]          | Done.                                              |
+| Cover            | [x]          | Done.                                              |
+| Author           | [x]          | Done.                                              |
 | Search           | [x]          | Done.                                              |
 | Auth             | [x]          | Authentication is done per request, token handled. |
-| Scanlation Group | [x]          | Done. (pending tests on some endpoints)            |
+| Scanlation Group | [x]          | Done.                                              |
 | Feed             | [x]          | Done                                               |
 | CustomList       | [x]          | Done.                                              |
 | AtHome           | [x]          | Done.                                              |
@@ -39,16 +39,22 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | Infrastructure   | [x]          | Done.                                              |
 | Upload           | [ ]          | Soon:tm:                                           |
 | Account          | [x]          | Done.                                              |
-| User             | [x]          | Done. (pending tests on some endpoints)            |
-| Chapter          | [x]          | Done. (pending tests on some endpoints)            |
-| Report           | [ ]          | Soon:tm:                                           |
+| User             | [x]          | Done.                                              |
+| Chapter          | [x]          | Done.                                              |
+| Report           | [x]          | Done.                                              |
 | Ratelimits?      | [ ]          | Not part of the API spec but might be handy.       |
 
 
-### In Progress: Report
+### In Progress: Upload
 | Endpoint | Implemented? | Notes |
 | -------- | ------------ | ----- |
 
+
+## Note about authentication
+Sadly (thankfully?) I am not an author on MangaDex, meaning I cannot test the creation endpoints for things like scanlators, artists, authors, manga or chapters.
+I have followed the API guidelines to the letter for these but they may not work.
+
+Any help in testing them is greatly appreciated.
 
 ## Examples
 Please take a look at the [examples](../Hondana/examples/) directory for working examples.

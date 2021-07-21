@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Literal, Optional
 
 from .user import User
 from .utils import require_authentication
@@ -61,13 +61,13 @@ class CustomList:
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
         self._http = http
         attributes = payload["attributes"]
-        self.id = payload["id"]
-        self.type = payload["type"]
+        self.id: str = payload["id"]
+        self.type: Literal["custom_list"] = payload["type"]
         self._attributes = attributes
-        self.name = attributes["name"]
-        self.visibility = attributes["visibility"]
-        self.owner = User(http, attributes["owner"])
-        self.version = attributes["version"]
+        self.name: str = attributes["name"]
+        self.visibility: CustomListVisibility = attributes["visibility"]
+        self.owner: User = User(http, attributes["owner"])
+        self.version: int = attributes["version"]
 
     def __repr__(self) -> str:
         return f"<CustomList id='{self.id}' name='{self.name}'>"

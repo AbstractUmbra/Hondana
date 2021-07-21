@@ -22,8 +22,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
+from typing import Literal
+
 from .http import HTTPClient
-from .types.legacy import LegacyMappingResponse
+from .types.legacy import LegacyMappingResponse, LegacyMappingType
 
 
 __all__ = ("LegacyItem",)
@@ -50,10 +52,10 @@ class LegacyItem:
 
     def __init__(self, http: HTTPClient, payload: LegacyMappingResponse):
         self._http = http
-        self.id = payload["id"]
-        self.type = payload["type"]
+        self.id: str = payload["id"]
+        self.type: Literal["mapping_id"] = payload["type"]
         attributes = payload["attributes"]
         self._attributes = attributes
-        self.obj_new_id = attributes["newId"]
-        self.obj_legacy_id = attributes["legacyId"]
-        self.obj_type = attributes["type"]
+        self.obj_new_id: str = attributes["newId"]
+        self.obj_legacy_id: int = attributes["legacyId"]
+        self.obj_type: LegacyMappingType = attributes["type"]

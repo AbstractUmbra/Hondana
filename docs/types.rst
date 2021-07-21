@@ -163,6 +163,19 @@ Relationship
 .. autoclass:: RelationshipResponse
 
 
+Report
+------
+.. autoclass:: ReportCategory
+    :members:
+    :undoc-members:
+
+.. autoclass:: GetReportReasonListResponse
+
+.. autoclass:: GetReportReasonResponse
+
+.. autoclass:: GetReportReasonAttributesResponse
+
+
 Scanlator Group
 ---------------
 .. autoclass:: ScanlatorGroupIncludes

@@ -96,17 +96,17 @@ class ScanlatorGroup:
         self.type: Literal["scanlation_group"] = data["type"]
         self._data = data
         self._attributes = attributes
-        self.name = attributes["name"]
+        self.name: str = attributes["name"]
         self._leader = attributes.get("leader", None)
         self._members = attributes.get("members", None)
-        self.website = attributes["website"]
-        self.irc_server = attributes["ircServer"]
-        self.irc_channel = attributes["ircServer"]
-        self.discord = attributes["discord"]
-        self.contact_email = attributes["contactEmail"]
-        self.description = attributes["description"]
-        self.locked = attributes.get("locked", False)
-        self.version = attributes["version"]
+        self.website: Optional[str] = attributes["website"]
+        self.irc_server: Optional[str] = attributes["ircServer"]
+        self.irc_channel: Optional[str] = attributes["ircServer"]
+        self.discord: Optional[str] = attributes["discord"]
+        self.contact_email: Optional[str] = attributes["contactEmail"]
+        self.description: Optional[str] = attributes["description"]
+        self.locked: bool = attributes.get("locked", False)
+        self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
 

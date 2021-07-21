@@ -52,15 +52,10 @@ class AuthorOrderQuery(TypedDict):
 class AuthorAttributesResponse(TypedDict):
     """
     name: :class:`str`
-
     imageUrl: Optional[:class:`str`]
-
     biography: :class:`~hondana.types.LocalisedString`
-
     version: :class:`int`
-
     createdAt: :class:`str`
-
     updatedAt: :class:`str`
     """
 
@@ -75,9 +70,7 @@ class AuthorAttributesResponse(TypedDict):
 class AuthorResponse(TypedDict):
     """
     id: :class:`str`
-
     type: Literal[``"author"``]
-
     attributes: :class:`AuthorAttributesResponse`
     """
 
@@ -89,7 +82,6 @@ class AuthorResponse(TypedDict):
 class GetAuthorResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
-
     data: :class:`AuthorResponse`
 
     relationships: List[:class:`RelationshipResponse`]

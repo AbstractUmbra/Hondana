@@ -34,11 +34,8 @@ __all__ = ("TagResponse", "GetTagListResponse", "TagAttributesResponse")
 class TagAttributesResponse(TypedDict):
     """
     name: :class:`LocalisedString`
-
     description: List[:class:`LocalisedString`]
-
     group: :class:`str`
-
     version: :class:`int`
     """
 
@@ -51,9 +48,7 @@ class TagAttributesResponse(TypedDict):
 class TagResponse(TypedDict):
     """
     id: :class:`str`
-
     type: Literal[``"tag"``]
-
     attributes: :class:`TagAttributesResponse`
     """
 
@@ -65,7 +60,6 @@ class TagResponse(TypedDict):
 class GetTagListResponse(TypedDict):
     """
     result: Literal[``"ok"``]
-
     data: :class:`TagResponse`
 
     relationships: List[:class:`RelationshipResponse`]

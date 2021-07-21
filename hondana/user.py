@@ -57,10 +57,10 @@ class User:
         self._data = data
         attributes = data["attributes"]
         self._attributes = attributes
-        self.id = data["id"]
+        self.id: str = data["id"]
         self.type: Literal["user"] = data["type"]
-        self.username = attributes["username"]
-        self.version = attributes["version"]
+        self.username: str = attributes["username"]
+        self.version: int = attributes["version"]
 
     def __repr__(self) -> str:
         return f"<User id='{self.id}' username='{self.username}'>"

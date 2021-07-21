@@ -55,25 +55,15 @@ class _ChapterAttributesOptionalResponse(TypedDict, total=False):
 class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     """
     title: Optional[:class:`str`]
-
     volume: Optional[:class:`str`]
-
     chapter: Optional[:class:`str`]
-
     translatedLanguage: :class:`str`
-
     hash: :class:`str`
-
     data: List[:class:`str`]
-
     dataSaver: List[:class:`str`]
-
     version: :class:`int`
-
     createdAt: :class:`str`
-
     updatedAt: :class:`str`
-
     publishAt: :class:`str`
 
     uploader: :class:`str`
@@ -96,9 +86,7 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
 class ChapterResponse(TypedDict):
     """
     id: :class:`str`
-
     type: Literal[``"chapter"``]
-
     attributes: :class:`ChapterAttributesResponse`
     """
 
@@ -110,7 +98,6 @@ class ChapterResponse(TypedDict):
 class GetChapterResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
-
     data: :class:`ChapterResponse`
 
     relationships: List[:class:`RelationshipResponse`]
@@ -126,11 +113,8 @@ class GetChapterResponse(TypedDict):
 class GetChapterFeedResponse(TypedDict):
     """
     results: List[:class:`GetChapterResponse`]
-
     limit: :class:`int`
-
     offset: :class:`int`
-
     total: :class:`int`
     """
 
