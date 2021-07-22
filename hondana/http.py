@@ -1187,7 +1187,7 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_language: Optional[list[str]],
+        translated_languages: Optional[list[str]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -1199,8 +1199,8 @@ class HTTPClient:
         query["limit"] = limit
         query["offset"] = offset
 
-        if translated_language:
-            query["translatedLanguage"] = translated_language
+        if translated_languages:
+            query["translatedLanguage"] = translated_languages
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)

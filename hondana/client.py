@@ -1970,7 +1970,7 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_language: Optional[list[str]] = None,
+        translated_languages: Optional[list[str]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -1988,7 +1988,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_language: List[:class:`str`]
+        translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -2024,7 +2024,7 @@ class Client:
             custom_list_id,
             limit=limit,
             offset=offset,
-            translated_language=translated_language,
+            translated_languages=translated_languages,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
