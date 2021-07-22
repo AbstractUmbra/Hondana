@@ -33,7 +33,6 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .manga import Manga
     from .types.chapter import GetChapterResponse
-    from .types.relationship import RelationshipResponse
 
 
 __all__ = ("Chapter",)
@@ -159,8 +158,6 @@ class Chapter:
 
         Parameters
         -----------
-        chapter_id: :class:`str`
-            The UUID representing the chapter we are going to update.
         title: Optional[:class:`str`]
             The title to rename the chapter to, if given.
         volume: Optional[:class:`str`]

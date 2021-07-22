@@ -5,7 +5,7 @@ import logging
 import hondana
 
 
-## This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
+# This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
 
 
 # We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.

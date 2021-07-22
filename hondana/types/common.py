@@ -24,8 +24,6 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
-from .relationship import RelationshipResponse
-
 
 __all__ = (
     "PublicationDemographic",
