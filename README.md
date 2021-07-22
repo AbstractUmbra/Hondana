@@ -57,7 +57,7 @@ I have followed the API guidelines to the letter for these but they may not work
 Any help in testing them is greatly appreciated.
 
 ## Examples
-Please take a look at the [examples](../Hondana/examples/) directory for working examples.
+Please take a look at the [examples](../examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
 
@@ -65,4 +65,4 @@ Please take a look at the [examples](../Hondana/examples/) directory for working
 
 - There are no API endpoints for Artist. Currently, if you query a manga without the `"artist"` query includes then you will not receive artist data.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorise those), there's a convenience method for updating the local cache as `Client.update_tags`
-  - I have added [an example](../Hondana/../hondana/examples/updating_local_tags.py) on how to do the above.
+  - I have added [an example](../examples/updating_local_tags.py) on how to do the above.
