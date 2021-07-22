@@ -26,12 +26,12 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
+from .manga import Manga
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .manga import Manga
     from .types.chapter import GetChapterResponse
     from .types.relationship import RelationshipResponse
 
