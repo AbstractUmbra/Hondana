@@ -76,7 +76,6 @@ if TYPE_CHECKING:
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
 
-__all__ = ("HTTPClient", "Route")
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel("DEBUG")
@@ -153,11 +152,7 @@ class HTTPClient:
         password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
     ) -> None:
-        if not ((username or email) and password):
-            self._authenticated = False
-        else:
-            self._authenticated = True
-
+        self._authenticated = bool(((username or email) and password))
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
@@ -168,7 +163,8 @@ class HTTPClient:
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
-    async def _generate_session(self) -> aiohttp.ClientSession:
+    @staticmethod
+    async def _generate_session() -> aiohttp.ClientSession:
         """|coro|
 
         Creates an :class:`aiohttp.ClientSession` for use in the http client.

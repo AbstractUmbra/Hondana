@@ -150,7 +150,7 @@ class Client:
 
         Parameters
         -----------
-        login: Optional[:class:`str`]
+        username: Optional[:class:`str`]
             The login username to authenticate to the API.
         email: Optional[:class:`str`]
             The login email to authenticate to the API.
@@ -262,8 +262,7 @@ class Client:
         """
 
         limit = min(max(1, limit), 500)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._manga_feed(
             None,
@@ -360,8 +359,7 @@ class Client:
             Returns a list of Manga instances.
         """
         limit = min(max(1, limit), 500)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._manga_list(
             limit=limit,
@@ -524,6 +522,8 @@ class Client:
 
         Parameters
         -----------
+        manga_id: :class:`str`
+            The UUID of the manga to view.
         includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
             This is a list of items to include in the query.
             Be default we request all optionals (artist, cover_art and author).
@@ -719,7 +719,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_langauges: List[:class:`str`]
+        translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -1154,11 +1154,10 @@ class Client:
             A list of Cover instances returned from the API.
         """
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._cover_art_list(
-            limit=limit, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
+            limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
         )
 
         return [Cover(self._http, payload) for payload in data["results"]]
@@ -1294,8 +1293,7 @@ class Client:
             A list of scanlator groups returned in the request.
         """
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._scanlation_group_list(limit=limit, offset=offset, ids=ids, name=name, includes=includes)
 
@@ -1341,8 +1339,7 @@ class Client:
             The list of users returned via this request.
         """
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
 
@@ -1481,8 +1478,7 @@ class Client:
         """
 
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
 
@@ -1537,8 +1533,7 @@ class Client:
         """
 
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._get_my_followed_users(limit=limit, offset=offset)
 
@@ -1717,10 +1712,7 @@ class Client:
             Whether and 'pong' response was received.
         """
         data = await self._http._ping_the_server()
-        if data == "pong":
-            return True
-
-        return False
+        return data == "pong"
 
     async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> list[LegacyItem]:
         """|coro|
@@ -1930,11 +1922,10 @@ class Client:
         Returns
         --------
         List[:class:`CustomList`]
-            The list of custom lists retuned from the API.
+            The list of custom lists returned from the API.
         """
         limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
+        offset = max(offset, 0)
 
         data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
         return [CustomList(self._http, payload) for payload in data["results"]]
@@ -1962,7 +1953,7 @@ class Client:
         Returns
         --------
         List[:class:`CustomList`]
-            The list of custom lists retuned from the API.
+            The list of custom lists returned from the API.
         """
         limit = min(max(1, limit), 100)
         if offset < 0:
@@ -1997,7 +1988,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_langauges: List[:class:`str`]
+        translated_language: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -2008,9 +1999,6 @@ class Client:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
-            The list of options to include increased payloads for per chapter.
-            Defaults to these values.
 
         Raises
         -------
@@ -2138,7 +2126,7 @@ class Client:
             A list of UUIDs relating to the members to update the group with.
         website: Optional[:class:`str`]
             The website to update the group with.
-        irc_server: Optiona[:class:`str`]
+        irc_server: Optional[:class:`str`]
             The IRC Server to update the group with.
         irc_channel: Optional[:class:`str`]
             The IRC Channel to update the group with.

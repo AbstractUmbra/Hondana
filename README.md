@@ -52,7 +52,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 
 ## Note about authentication
 Sadly (thankfully?) I am not an author on MangaDex, meaning I cannot test the creation endpoints for things like scanlators, artists, authors, manga or chapters.
-I have followed the API guidelines to the letter for these but they may not work.
+I have followed the API guidelines to the letter for these, but they may not work.
 
 Any help in testing them is greatly appreciated.
 
