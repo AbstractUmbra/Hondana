@@ -28,6 +28,7 @@ import pathlib
 from functools import wraps
 from typing import TYPE_CHECKING, Any, Callable, Mapping, Optional, TypeVar, Union
 
+from .client import Client
 from .errors import AuthenticationRequired
 
 

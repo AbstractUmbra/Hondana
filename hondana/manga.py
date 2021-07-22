@@ -125,6 +125,11 @@ class Manga:
         return self.title
 
     @property
+    def url(self) -> str:
+        """The URL to this manga."""
+        return f"https://mangadex.org/title/{self.id}"
+
+    @property
     def title(self) -> str:
         """The manga's title."""
         return self._title.get("en", next(iter(self._title)))

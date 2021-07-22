@@ -112,6 +112,11 @@ class Chapter:
         return self.title or "No title for this chapter..."
 
     @property
+    def url(self) -> str:
+        """The URL to this chapter."""
+        return f"https://mangadex.org/chapter/{self.id}"
+
+    @property
     def created_at(self) -> datetime.datetime:
         """When this chapter was created."""
         return datetime.datetime.fromisoformat(self._created_at)
