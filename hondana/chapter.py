@@ -26,12 +26,12 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
-from .manga import Manga
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .manga import Manga
     from .types.chapter import GetChapterResponse
     from .types.relationship import RelationshipResponse
 
@@ -138,6 +138,8 @@ class Chapter:
             return
 
         manga = await self._http._view_manga(manga_id, includes=["author", "artist", "cover_art"])
+        from . import Manga  # No more circular imports
+
         return Manga(self._http, manga)
 
     @require_authentication
