@@ -23,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import json
 import logging
@@ -190,6 +191,25 @@ class HTTPClient:
                 await self._logout()
             await self.__session.close()
 
+    async def _handle_ratelimits(self, response: aiohttp.ClientResponse) -> None:
+        """|coro|
+
+        A private method to fetch the potential ratelimits on a request, and sleep until they end.
+        """
+        headers = response.headers
+
+        # Requests remaining before ratelimit
+        remaining = headers.get("x-ratelimit-remaining", None)
+        # Time until current ratelimit session(?) expires
+        retry = headers.get("x-ratelimit-remaining", None)
+        # The total ratelimit session hits
+        limit = headers.get("x-ratelimit-limit", None)
+
+        if remaining == "0":
+            assert retry is not None
+            LOGGER.warning("Hit a ratelimit, sleeping for: %d", retry)
+            await asyncio.sleep(int(retry))
+
     async def _get_token(self) -> str:
         """|coro|
 
@@ -221,6 +241,7 @@ class HTTPClient:
 
         route = Route("POST", "/auth/login")
         async with self.__session.post(route.url, json=auth) as response:
+            await self._handle_ratelimits(response)
             data: LoginPayload = await response.json()
 
         if data["result"] == "error":
@@ -229,7 +250,7 @@ class HTTPClient:
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
-        self.__last_refresh = datetime.datetime.utcnow() - datetime.timedelta(seconds=30)
+        self.__last_refresh = datetime.datetime.utcnow() - datetime.timedelta(seconds=15)
         self.__refresh_token = refresh_token
         return token
 
@@ -258,6 +279,7 @@ class HTTPClient:
 
         route = Route("POST", "/auth/refresh")
         async with self.__session.post(route.url, json={"token": self.__refresh_token}) as response:
+            await self._handle_ratelimits(response)
             data: RefreshPayload = await response.json()
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
@@ -315,6 +337,7 @@ class HTTPClient:
             self.__session = await self._generate_session()
 
         async with self.__session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
+            await self._handle_ratelimits(response)
             data: CheckPayload = await response.json()
 
         if not (300 > response.status >= 200) or data["result"] == "error":
@@ -394,6 +417,7 @@ class HTTPClient:
         LOGGER.debug("Current request headers: %s", headers)
 
         async with self.__session.request(route.verb, route.url, **kwargs) as response:
+            await self._handle_ratelimits(response)
             data = await json_or_text(response)
 
             if 300 > response.status >= 200:

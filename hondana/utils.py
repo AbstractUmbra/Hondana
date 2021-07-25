@@ -32,8 +32,9 @@ from .errors import AuthenticationRequired
 
 
 if TYPE_CHECKING:
-    from .client import Client
     from typing_extensions import Concatenate, ParamSpec
+
+    from .client import Client
 
 
 C = TypeVar("C", bound="Client")
