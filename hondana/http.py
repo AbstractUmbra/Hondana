@@ -271,6 +271,7 @@ class HTTPClient:
             raise RefreshError(response, "The API reported an error when refreshing the token", 200, self.__last_refresh)
 
         self._token = data["token"]["session"]
+        self.__last_refresh = datetime.datetime.now()
         return self._token
 
     async def _try_token(self) -> str:
