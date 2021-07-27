@@ -250,7 +250,7 @@ class HTTPClient:
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
-        self.__last_refresh = datetime.datetime.utcnow() - datetime.timedelta(seconds=15)
+        self.__last_refresh = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(seconds=15)
         self.__refresh_token = refresh_token
         return token
 
@@ -293,7 +293,7 @@ class HTTPClient:
             raise RefreshError(response, "The API reported an error when refreshing the token", 200, self.__last_refresh)
 
         self._token = data["token"]["session"]
-        self.__last_refresh = datetime.datetime.now()
+        self.__last_refresh = datetime.datetime.now(datetime.timezone.utc)
         return self._token
 
     async def _try_token(self) -> str:
@@ -321,7 +321,7 @@ class HTTPClient:
             return self._token
 
         if self.__last_refresh is not None:
-            now = datetime.datetime.utcnow()
+            now = datetime.datetime.now(datetime.timezone.utc)
             if (now - datetime.timedelta(minutes=15)) > self.__last_refresh:
                 refreshed = await self._refresh_token()
                 if refreshed:
@@ -415,6 +415,7 @@ class HTTPClient:
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
+        LOGGER.debug("Current request url and params: %s", route.url)
 
         async with self.__session.request(route.verb, route.url, **kwargs) as response:
             await self._handle_ratelimits(response)
