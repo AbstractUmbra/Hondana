@@ -322,7 +322,8 @@ class HTTPClient:
 
         if self.__last_refresh is not None:
             now = datetime.datetime.now(datetime.timezone.utc)
-            if (now - datetime.timedelta(minutes=15)) > self.__last_refresh:
+            # To avoid a race condition we're gonna check this for 14 minutes, since it can re-auth anytime, but post 15m it will error
+            if (now - datetime.timedelta(minutes=14)) > self.__last_refresh:
                 refreshed = await self._refresh_token()
                 if refreshed:
                     return self._token
