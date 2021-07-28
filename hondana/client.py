@@ -250,6 +250,10 @@ class Client:
             If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
             then the API will return oldest first based on creation date.
 
+
+        .. note::
+            For some reason this endpoint does not support the ``includes`` query parameter. Meaning all chapters will have minimal payloads.
+
         Raises
         -------
         BadRequest
