@@ -36,6 +36,7 @@ class _RelationshipOptionalResponse(TypedDict, total=False):
 class RelationshipResponse(_RelationshipOptionalResponse):
     """
     id: :class:`str`
+
     type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``]
 
     attributes: Dict[:class:`str`, :class:`str`]

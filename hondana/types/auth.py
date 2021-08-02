@@ -53,7 +53,9 @@ class LoginPayload(TypedDict):
 class RefreshPayload(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
+
     token: :class:`TokenResponse`
+
     message: :class:`str`
     """
 
@@ -65,8 +67,11 @@ class RefreshPayload(TypedDict):
 class CheckPayload(TypedDict):
     """
     result: Literal[``"ok"``]
+
     isAuthenticated: :class:`bool`
+
     roles: List[:class:`str`]
+
     permissions: List[:class:`str`]
     """
 

@@ -48,6 +48,7 @@ class LocalizedString(TypedDict):
 
     language_code: :class:`str`
         The shorthand language code for the target item.
+
     item: :class:`str`
         The localized item.
     """

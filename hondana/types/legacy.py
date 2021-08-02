@@ -41,7 +41,9 @@ LegacyMappingType = Literal["group", "manga", "chapter", "tag"]
 class LegacyMappingAttributesResponse(TypedDict):
     """
     type: :class:`~hondana.types.LegacyMappingType`
+
     legacyId: :class:`int`
+
     newId: :class:`str`
     """
 
@@ -53,7 +55,9 @@ class LegacyMappingAttributesResponse(TypedDict):
 class LegacyMappingResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"mapping_id"``]
+
     attributes: :class:`~hondana.types.LegacyMappingAttributesResponse`
     """
 
@@ -65,7 +69,9 @@ class LegacyMappingResponse(TypedDict):
 class GetLegacyMappingResponse(TypedDict):
     """
     result: Literal[``"ok"``]
+
     data: :class:`~hondana.types.LegacyMappingResponse`
+
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
     """
 

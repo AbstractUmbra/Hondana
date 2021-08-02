@@ -33,10 +33,15 @@ __all__ = ("ArtistResponse", "ArtistAttributesResponse")
 class ArtistAttributesResponse(TypedDict):
     """
     name: :class:`str`
+
     imageUrl: Optional[:class:`str`]
+
     biography: :class:`~hondana.types.LocalisedString`
+
     version: :class:`int`
+
     createdAt: :class:`str`
+
     updatedAt: :class:`str`
     """
 
@@ -51,7 +56,9 @@ class ArtistAttributesResponse(TypedDict):
 class ArtistResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"artist"``]
+
     attributes: :class:`ArtistAttributesResponse`
     """
 

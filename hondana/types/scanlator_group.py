@@ -42,17 +42,29 @@ ScanlatorGroupIncludes = Literal["user"]
 class ScanlationGroupAttributesResponse(TypedDict):
     """
     name: :class:`str`
+
     leader: Optional[:class:`~hondana.types.GetUserResponse`]
+
     members: Optional[List[:class:`~hondana.types.GetUserResponse`]]
+
     website: Optional[:class:`str`]
+
     ircServer: Optional[:class:`str`]
+
     ircChannel: Optional[:class:`str`]
+
     discord: Optional[:class:`str`]
+
     contactEmail: Optional[:class:`str`]
+
     description: Optional[:class:`str`]
+
     locked: :class:`bool`
+
     version: :class:`int`
+
     createdAt: :class:`str`
+
     updatedAt: :class:`str`
     """
 
@@ -74,7 +86,9 @@ class ScanlationGroupAttributesResponse(TypedDict):
 class ScanlationGroupResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"scanlation_group"``]
+
     attributes: :class:`~hondana.types.ScanlationGroupAttributesResponse`
     """
 
@@ -86,7 +100,9 @@ class ScanlationGroupResponse(TypedDict):
 class GetScanlationGroupResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
+
     data: :class:`~hondana.types.ScanlationGroupResponse`
+
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
     """
 
@@ -98,8 +114,11 @@ class GetScanlationGroupResponse(TypedDict):
 class GetScanlationGroupListResponse(TypedDict):
     """
     results: List[:class:`GetScanlationGroupResponse`]
+
     limit: :class:`int`
+
     offset: :class:`int`
+
     total: :class:`int`
     """
 

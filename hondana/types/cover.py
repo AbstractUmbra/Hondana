@@ -42,7 +42,9 @@ CoverIncludes = Literal["manga", "user"]
 class CoverOrderQuery(TypedDict, total=False):
     """
     createdAt: Literal[``"asc"``, ``"desc"``]
+
     updatedAt: Literal[``"asc"``, ``"desc"``]
+
     volume: Literal[``"asc"``, ``"desc"``]
     """
 
@@ -54,10 +56,15 @@ class CoverOrderQuery(TypedDict, total=False):
 class CoverAttributesResponse(TypedDict):
     """
     volume: Optional[:class:`str`]
+
     fileName: :class:`str`
+
     description: :class:`str`
+
     version: :class:`int`
+
     createdAt: :class:`str`
+
     updatedAt: :class:`str`
     """
 
@@ -72,7 +79,9 @@ class CoverAttributesResponse(TypedDict):
 class CoverResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"cover_art"``]
+
     attributes: :class:`CoverAttributesResponse`
     """
 
@@ -84,6 +93,7 @@ class CoverResponse(TypedDict):
 class GetCoverResponse(TypedDict):
     """
     result: :class:`str`
+
     data: :class:`CoverResponse`
 
     relationships: List[:class:`RelationshipResponse`]
@@ -99,8 +109,11 @@ class GetCoverResponse(TypedDict):
 class GetCoverListResponse(TypedDict):
     """
     results: List[:class:`GetCoverResponse`]
+
     limit: :class:`int`
+
     offset: :class:`int`
+
     total: :class:`int`
     """
 

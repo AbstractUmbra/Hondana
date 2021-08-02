@@ -37,6 +37,7 @@ class UserOrderQuery(TypedDict):
 class GetUserAttributesResponse(TypedDict):
     """
     username: :class:`str`
+
     version: :class:`int`
     """
 
@@ -47,7 +48,9 @@ class GetUserAttributesResponse(TypedDict):
 class UserResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"user"``]
+
     attributes: :class:`~hondana.types.GetUserAttributesResponse`
     """
 
@@ -59,7 +62,9 @@ class UserResponse(TypedDict):
 class GetUserResponse(TypedDict):
     """
     result: Literal[``"ok"``]
+
     data: :class:`~hondana.types.UserResponse`
+
     relationships: List[`~hondana.types.RelationshipResponse`]
     """
 
@@ -71,8 +76,11 @@ class GetUserResponse(TypedDict):
 class GetUserListResponse(TypedDict):
     """
     results: List[:class:`~hondana.types.GetUserResponse`]
+
     limit: :class:`int`
+
     offset: :class:`int`
+
     total: :class:`int`
     """
 

@@ -65,15 +65,25 @@ class MangaLinks(TypedDict, total=False):
 
 
     al: Optional[:class:`str`]
+
     ap: Optional[:class:`str`]
+
     bw: Optional[:class:`str`]
+
     mu: Optional[:class:`str`]
+
     nu: Optional[:class:`str`]
+
     kt: Optional[:class:`str`]
+
     amz: Optional[:class:`str`]
+
     ebj: Optional[:class:`str`]
+
     mal: Optional[:class:`str`]
+
     raw: Optional[:class:`str`]
+
     engtl: Optional[:class:`str`]
     """
 
@@ -101,19 +111,33 @@ class MangaAttributesResponseOptional(TypedDict, total=False):
 class MangaAttributesResponse(MangaAttributesResponseOptional):
     """
     title: :class:`LocalisedString`
+
     altTitle: List[:class:`LocalisedString`]
+
     description: :class:`LocalisedString`
+
     links: :class:`MangaLinks`
+
     originalLanguage: :class:`str`
+
     lastVolume: Optional[:class:`str`]
+
     lastChapter: Optional[:class:`str`]
+
     publicationDemographic: Optional[:class:`PublicationDemographic`]
+
     status: Optional[:class:`MangaStatus`]
+
     year: Optional[:class:`int`]
+
     contentRating: Optional[:class:`ContentRating`]
+
     tags: List[:class:`TagResponse`]
+
     version: :class:`int`
+
     createdAt: :class:`str`
+
     updatedAt: :class:`str`
 
     isLocked: Optional[:class:`bool`]
@@ -140,7 +164,9 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 class MangaResponse(TypedDict):
     """
     id: :class:`str`
+
     type: Literal[``"manga"``]
+
     attributes: :class:`MangaAttributesResponse`
     """
 
@@ -152,7 +178,9 @@ class MangaResponse(TypedDict):
 class ViewMangaResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
+
     data: :class:`MangaResponse`
+
     relationships: List[:class:`RelationshipResponse`]
     """
 
@@ -164,8 +192,11 @@ class ViewMangaResponse(TypedDict):
 class MangaSearchResponse(TypedDict):
     """
     results: List[:class:`ViewMangaResponse`]
+
     limit: :class:`int`
+
     offset: :class:`int`
+
     total: :class:`int`
     """
 
@@ -178,6 +209,7 @@ class MangaSearchResponse(TypedDict):
 class ChaptersResponse(TypedDict):
     """
     chapter: :class:`str`
+
     count: :class:`str`
     """
 
@@ -188,7 +220,9 @@ class ChaptersResponse(TypedDict):
 class VolumesAndChaptersResponse(TypedDict, total=False):
     """
     chapters: Dict[:class:`str`, :class:`ChaptersResponse`]
+
     count: :class:`int`
+
     volume: :class:`str`
     """
 
@@ -200,6 +234,7 @@ class VolumesAndChaptersResponse(TypedDict, total=False):
 class GetMangaVolumesAndChaptersResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
+
     volumes: Optional[Dict[:class:`str`, :class:`VolumesAndChaptersResponse`]]
     """
 
@@ -210,6 +245,7 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
 class MangaReadMarkersResponse(TypedDict):
     """
     result: Literal[``"ok"``]
+
     data: List[:class:`str`]
     """
 
@@ -220,6 +256,7 @@ class MangaReadMarkersResponse(TypedDict):
 class MangaGroupedReadMarkersResponse(TypedDict):
     """
     result: Literal[``"ok"``]
+
     data: Dict[:class:`str`, List[:class:`str`]]
     """
 
@@ -230,6 +267,7 @@ class MangaGroupedReadMarkersResponse(TypedDict):
 class MangaReadingStatusResponse(TypedDict):
     """
     result: Literal[``"ok"``]
+
     status: :class:`ReadingStatus`
     """
 

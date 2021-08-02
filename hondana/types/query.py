@@ -31,7 +31,9 @@ __all__ = ("OrderQuery",)
 class _OptionalOrderQuery(TypedDict):
     """
     createdAt: Literal[``"asc"``, ``"desc"``]
+
     updatedAt: Literal[``"asc"``, ``"desc"``]
+
     publishAt: Literal[``"asc"``, ``"desc"``]
     """
 
@@ -52,6 +54,7 @@ class OrderQuery(_OptionalOrderQuery, total=False):
         This key is optional
 
     volume: Literal[``"asc"``, ``"desc"``]
+
     chapter: Literal[``"asc"``, ``"desc"``]
     """
 
