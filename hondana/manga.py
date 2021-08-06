@@ -79,6 +79,7 @@ class Manga:
         "_http",
         "_data",
         "_title",
+        "_description",
         "alternate_titles",
         "locked",
         "links",
@@ -103,6 +104,7 @@ class Manga:
         self.id: str = data["id"]
         self._data = data
         self._title = attributes["title"]
+        self._description = attributes["description"]
         self.alternate_titles: list[LocalisedString] = attributes["altTitles"]
         self.locked: bool = attributes.get("isLocked", False)
         self.links: manga.MangaLinks = attributes["links"]
@@ -133,6 +135,11 @@ class Manga:
     def title(self) -> str:
         """The manga's title."""
         return self._title.get("en", next(iter(self._title)))
+
+    @property
+    def description(self) -> str:
+        """The manga's description/synopsis."""
+        return self._description.get("en", next(iter(self._description)))
 
     @property
     def chapter(self) -> str:
