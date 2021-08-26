@@ -28,8 +28,8 @@ async def more_refined_search() -> list[hondana.Manga]:
 
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="and")
 
-    # Let's say we only way to show manga created in the last week, lets make a naive utc datetime for one week ago
-    seven_days_ago = datetime.datetime.utcnow() - datetime.timedelta(days=7)
+    # Let's say we only way to show manga created in the last week, lets make an aware utc datetime for one week ago
+    seven_days_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=7)
 
     # and we don't want anything but ongoing manga
     status = ["ongoing"]
