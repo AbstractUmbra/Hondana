@@ -35,6 +35,8 @@ __all__ = (
     "BadRequest",
     "Unauthorized",
     "Forbidden",
+    "UploadInProgress",
+    "UploadMangaNotFound",
 )
 
 
@@ -103,3 +105,19 @@ class Forbidden(APIException):
         self.response: aiohttp.ClientResponse = response
         self.message: str = message
         super().__init__(response, message, 403)
+
+
+class UploadInProgress(Exception):
+    def __init__(self, message: str) -> None:
+        self.message = message
+
+    def __str__(self) -> str:
+        return self.message
+
+
+class UploadMangaNotFound(Exception):
+    def __init__(self, message: str) -> None:
+        self.message = message
+
+    def __str__(self) -> str:
+        return self.message

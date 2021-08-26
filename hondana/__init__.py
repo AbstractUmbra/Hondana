@@ -44,6 +44,7 @@ from .manga import Manga as Manga
 from .report import *
 from .scanlator_group import ScanlatorGroup as ScanlatorGroup
 from .tags import *
+from .upload import ChapterUpload as ChapterUpload
 from .user import User as User
 from .utils import TAGS as MANGA_TAGS
 

@@ -142,10 +142,6 @@ class Manga:
         return self._description.get("en", next(iter(self._description)))
 
     @property
-    def chapter(self) -> str:
-        return f"https://mangadex.org/title/{self.id}"
-
-    @property
     def tags(self) -> list[Tag]:
         """The tags associated with this manga."""
         return [Tag(tag) for tag in self._tags]
@@ -212,7 +208,7 @@ class Manga:
         data = await self._http._get_cover(cover_key["id"], ["manga"])
         return Cover(self._http, data)
 
-    def cover_url(self, type: Optional[Literal["256", "512"]] = None, /) -> Optional[str]:
+    def cover_url(self, /, type: Optional[Literal[256, 512]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
@@ -230,9 +226,9 @@ class Manga:
         if cover is None:
             return
 
-        if type == "256":
+        if type == 256:
             fmt = ".256.jpg"
-        elif type == "512":
+        elif type == 512:
             fmt = ".512.jpg"
         else:
             fmt = ""

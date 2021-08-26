@@ -31,7 +31,7 @@ from .utils import TAGS
 
 __all__ = ("Tag", "QueryTags")
 
-logger = logging.getLogger()
+logger: logging.Logger = logging.getLogger()
 
 
 class Tag:
