@@ -97,7 +97,7 @@ class Cover:
         """When this cover was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    def url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
+    def url(self, type: Optional[Literal["256", "512"]] = None, /) -> Optional[str]:
         """Method to return the Cover url.
 
         Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.

@@ -613,6 +613,7 @@ class HTTPClient:
     def _update_manga(
         self,
         manga_id: str,
+        /,
         *,
         title: Optional[common.LocalisedString],
         alt_titles: Optional[list[common.LocalisedString]],
@@ -946,7 +947,7 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _get_cover(self, cover_id: str, includes: list[str]) -> Response[cover.GetCoverResponse]:
+    def _get_cover(self, cover_id: str, /, includes: list[str]) -> Response[cover.GetCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
@@ -1004,6 +1005,7 @@ class HTTPClient:
 
     def _user_list(
         self,
+        *,
         limit: int,
         offset: int,
         ids: Optional[list[str]],
@@ -1118,7 +1120,7 @@ class HTTPClient:
         query = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
 
-    def _get_at_home_url(self, chapter_id: str, /, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
+    def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
         query = php_query_builder({"forcePort443": str(ssl).lower()})
         return self.request(route, params=query)
@@ -1376,7 +1378,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_author(self, author_id: str) -> Response[author.GetAuthorResponse]:
+    def _get_author(self, author_id: str, /) -> Response[author.GetAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
@@ -1391,12 +1393,12 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_author(self, author_id: str) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def _delete_author(self, author_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
     def _get_report_reason_list(
-        self, report_category: report.ReportCategory
+        self, report_category: report.ReportCategory, /
     ) -> Response[report.GetReportReasonListResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)
         return self.request(route)
