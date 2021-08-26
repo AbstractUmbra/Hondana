@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+import logging
 from typing import Literal, Optional
 
 from .types.common import LocalisedString
@@ -29,6 +30,8 @@ from .utils import TAGS
 
 
 __all__ = ("Tag", "QueryTags")
+
+logger = logging.getLogger()
 
 
 class Tag:
@@ -106,7 +109,7 @@ class QueryTags:
     """
 
     def __init__(self, *tags: str, mode: str = "AND"):
-        self._tags = list(tags)
+        self._tags = tags
         self.tags: Optional[list[str]] = None
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
@@ -114,12 +117,15 @@ class QueryTags:
         self.set_tags()
 
     def __repr__(self) -> str:
-        return f"<Tags mode={self.mode}>"
+        return f"<Tags mode={self.mode} number_of_tags={len(self._tags)}>"
 
     def set_tags(self) -> list[str]:
         tags = []
         for tag in self._tags:
-            tags.append(TAGS.get(tag.title()))
+            if tag_ := TAGS.get(tag.title()):
+                tags.append(tag_)
+            else:
+                logger.warning("Tag '%s' cannot be found in the local tag cache, skipping." % tag)
 
         if not tags:
             raise ValueError("No tags passed matched any valid MangaDex tags.")
