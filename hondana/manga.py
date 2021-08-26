@@ -212,7 +212,7 @@ class Manga:
         data = await self._http._get_cover(cover_key["id"], ["manga"])
         return Cover(self._http, data)
 
-    def cover_url(self, type: Optional[Literal["256", "512"]] = None) -> Optional[str]:
+    def cover_url(self, type: Optional[Literal["256", "512"]] = None, /) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.

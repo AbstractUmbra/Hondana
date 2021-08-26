@@ -518,7 +518,7 @@ class Client:
         return data
 
     async def view_manga(
-        self, manga_id: str, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
+        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
     ) -> Manga:
         """|coro|
 
@@ -553,6 +553,7 @@ class Client:
     async def update_manga(
         self,
         manga_id: str,
+        /,
         *,
         title: Optional[common.LocalisedString] = None,
         alt_titles: Optional[list[common.LocalisedString]] = None,

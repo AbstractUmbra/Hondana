@@ -61,7 +61,7 @@ intersphinx_mapping = {
     "aio": ("https://docs.aiohttp.org/en/stable/", None),
 }
 
-# Prolog for asynchonous functions
+# Prolog for asynchronous functions
 rst_prolog = """
 .. |coro| replace:: This function is a |coroutine_link|_.
 .. |maybecoro| replace:: This function *could be a* |coroutine_link|_.
