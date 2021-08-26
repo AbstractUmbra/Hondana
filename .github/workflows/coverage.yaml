@@ -1,0 +1,45 @@
+name: Coverage and Linting
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+          # fetch-depth: 0
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.1.1
+
+      - name: Setup node.js (pyright)
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - name: Install Python deps
+        run: |
+          poetry install --no-dev
+
+      - name: Type Coverage
+        run: |
+          npm install -g pyright
+          pyright --lib --ignoreexternal --verifytypes hondana
+
+      - name: Lint
+        uses: github/super-linter@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_ISORT: true
