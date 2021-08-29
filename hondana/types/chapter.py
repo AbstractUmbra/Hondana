@@ -56,9 +56,9 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     """
     title: Optional[:class:`str`]
 
-    volume: Optional[:class:`str`]
+    volume: :class:`str`
 
-    chapter: Optional[:class:`str`]
+    chapter: :class:`str`
 
     translatedLanguage: :class:`str`
 
@@ -81,8 +81,8 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     """
 
     title: Optional[str]
-    volume: Optional[str]
-    chapter: Optional[str]
+    volume: str
+    chapter: str
     translatedLanguage: str
     hash: str
     data: list[str]
