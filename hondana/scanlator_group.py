@@ -83,6 +83,7 @@ class ScanlatorGroup:
         "contact_email",
         "description",
         "locked",
+        "official",
         "version",
         "_created_at",
         "_updated_at",
@@ -106,6 +107,7 @@ class ScanlatorGroup:
         self.contact_email: Optional[str] = attributes["contactEmail"]
         self.description: Optional[str] = attributes["description"]
         self.locked: bool = attributes.get("locked", False)
+        self.official: bool = attributes["official"]
         self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
