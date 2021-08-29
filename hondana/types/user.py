@@ -39,10 +39,13 @@ class GetUserAttributesResponse(TypedDict):
     username: :class:`str`
 
     version: :class:`int`
+
+    roles: List[:class:`str`]
     """
 
     username: str
     version: int
+    roles: list[str]
 
 
 class UserResponse(TypedDict):

@@ -49,7 +49,7 @@ class User:
         The user's version revision.
     """
 
-    __slots__ = ("_http", "_data", "_attributes", "id", "type", "username", "version")
+    __slots__ = ("_http", "_data", "_attributes", "id", "type", "username", "version", "roles")
 
     def __init__(self, http: HTTPClient, payload: user.GetUserResponse) -> None:
         self._http = http
@@ -61,6 +61,7 @@ class User:
         self.type: Literal["user"] = data["type"]
         self.username: str = attributes["username"]
         self.version: int = attributes["version"]
+        self.roles: list[str] = attributes["roles"]
 
     def __repr__(self) -> str:
         return f"<User id='{self.id}' username='{self.username}'>"
