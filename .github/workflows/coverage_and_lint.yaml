@@ -7,7 +7,8 @@ on:
     branches: [main, develop]
 
 jobs:
-  setup:
+  job:
+    name: Type Coverage and Linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
