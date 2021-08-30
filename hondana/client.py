@@ -237,7 +237,7 @@ class Client:
             If set lower than 0 then it is set to 0.
         translated_languages: Optional[List[:class:`str`]]
             A list of language codes to return chapters for.
-        content_rating: Optional[List[:class:`~hondana.types.common.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -731,7 +731,7 @@ class Client:
             Defaults to 0. The pagination offset for the request.
         translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.common.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
@@ -954,7 +954,7 @@ class Client:
             The chapter UUID or UUIDs to limit the request with.
         translated_language: Optional[List[:class:`str`]]
             The list of languages codes to filter the request with.
-        content_rating: Optional[List[:class:`~hondana.types.common.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.

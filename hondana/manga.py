@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
-    from .types.common import LocalisedString, ContentRating
+    from .types.common import ContentRating, LocalisedString
 
 
 __all__ = ("Manga",)
@@ -448,7 +448,7 @@ class Manga:
             Defaults to 0. The pagination offset for the request.
         translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.common.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
