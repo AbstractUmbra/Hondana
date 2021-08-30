@@ -88,6 +88,7 @@ class CoverResponse(TypedDict):
     id: str
     type: Literal["cover_art"]
     attributes: CoverAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetCoverResponse(TypedDict):
@@ -103,7 +104,6 @@ class GetCoverResponse(TypedDict):
 
     result: str
     data: CoverResponse
-    relationships: list[RelationshipResponse]
 
 
 class GetCoverListResponse(TypedDict):

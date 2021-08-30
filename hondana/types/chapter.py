@@ -105,6 +105,7 @@ class ChapterResponse(TypedDict):
     id: str
     type: Literal["chapter"]
     attributes: ChapterAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetChapterResponse(TypedDict):
@@ -120,7 +121,6 @@ class GetChapterResponse(TypedDict):
 
     result: Literal["ok", "error"]
     data: ChapterResponse
-    relationships: list[RelationshipResponse]
 
 
 class GetChapterFeedResponse(TypedDict):

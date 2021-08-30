@@ -79,7 +79,7 @@ class Cover:
         self.version: int = attributes["version"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
-        self._relationships = payload["relationships"]
+        self._relationships = data["relationships"]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id} filename={self.file_name}>"

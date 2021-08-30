@@ -98,6 +98,7 @@ class ScanlationGroupResponse(TypedDict):
     id: str
     type: Literal["scanlation_group"]
     attributes: ScanlationGroupAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetScanlationGroupResponse(TypedDict):
@@ -111,7 +112,6 @@ class GetScanlationGroupResponse(TypedDict):
 
     result: Literal["ok", "error"]
     data: ScanlationGroupResponse
-    relationships: list[RelationshipResponse]
 
 
 class GetScanlationGroupListResponse(TypedDict):

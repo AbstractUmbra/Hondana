@@ -118,7 +118,7 @@ class Manga:
         self._tags = attributes["tags"]
         self._created_at = attributes["createdAt"]
         self._updated_at = attributes["updatedAt"]
-        self._relationships = payload["relationships"]
+        self._relationships = data["relationships"]
 
     def __repr__(self) -> str:
         return f"<Manga id={self.id} title='{self.title}'>"

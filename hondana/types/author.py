@@ -84,6 +84,7 @@ class AuthorResponse(TypedDict):
     id: str
     type: Literal["author"]
     attributes: AuthorAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetAuthorResponse(TypedDict):
@@ -99,7 +100,6 @@ class GetAuthorResponse(TypedDict):
 
     result: Literal["ok", "error"]
     data: AuthorResponse
-    relationships: list[RelationshipResponse]
 
 
 class GetAuthorListResponse(TypedDict):

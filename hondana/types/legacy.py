@@ -64,6 +64,7 @@ class LegacyMappingResponse(TypedDict):
     id: str
     type: Literal["mapping_id"]
     attributes: LegacyMappingAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetLegacyMappingResponse(TypedDict):
@@ -77,4 +78,3 @@ class GetLegacyMappingResponse(TypedDict):
 
     result: Literal["ok"]
     data: LegacyMappingResponse
-    relationships: list[RelationshipResponse]

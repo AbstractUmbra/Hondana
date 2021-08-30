@@ -74,7 +74,7 @@ class Author:
         data = payload["data"]
         self._data = data
         attributes = data["attributes"]
-        self._relationships = payload["relationships"]
+        self._relationships = data["relationships"]
         self.id: str = data["id"]
         self.name: str = attributes["name"]
         self.image_url: Optional[str] = attributes["imageUrl"]

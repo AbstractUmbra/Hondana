@@ -73,6 +73,7 @@ class ScanlatorGroup:
         "type",
         "_data",
         "_attributes",
+        "_relationships",
         "name",
         "_leader",
         "_members",
@@ -93,10 +94,12 @@ class ScanlatorGroup:
         self._http = http
         data = payload["data"]
         attributes = data["attributes"]
+        relationships = data["relationships"]
         self.id: str = data["id"]
         self.type: Literal["scanlation_group"] = data["type"]
         self._data = data
         self._attributes = attributes
+        self._relationships = relationships
         self.name: str = attributes["name"]
         self._leader = attributes.get("leader", None)
         self._members = attributes.get("members", None)

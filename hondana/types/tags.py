@@ -60,6 +60,7 @@ class TagResponse(TypedDict):
     id: str
     type: Literal["tag"]
     attributes: TagAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetTagListResponse(TypedDict):
@@ -75,4 +76,3 @@ class GetTagListResponse(TypedDict):
 
     result: Literal["ok"]
     data: TagResponse
-    relationships: list[RelationshipResponse]

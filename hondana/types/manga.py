@@ -173,6 +173,7 @@ class MangaResponse(TypedDict):
     id: str
     type: Literal["manga"]
     attributes: MangaAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class ViewMangaResponse(TypedDict):
@@ -186,7 +187,6 @@ class ViewMangaResponse(TypedDict):
 
     result: Literal["ok", "error"]
     data: MangaResponse
-    relationships: list[RelationshipResponse]
 
 
 class MangaSearchResponse(TypedDict):

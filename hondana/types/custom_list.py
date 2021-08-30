@@ -68,6 +68,7 @@ class CustomListResponse(TypedDict):
     id: str
     type: Literal["custom_list"]
     attributes: CustomListAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetCustomListResponse(TypedDict):
@@ -81,7 +82,6 @@ class GetCustomListResponse(TypedDict):
 
     result: Literal["ok", "error"]
     data: CustomListResponse
-    relationships: list[RelationshipResponse]
 
 
 class GetCustomListListResponse(TypedDict):

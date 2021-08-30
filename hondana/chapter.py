@@ -90,7 +90,7 @@ class Chapter:
         data = payload["data"]
         attributes = data["attributes"]
         self._attributes = attributes
-        self._relationships = payload["relationships"]
+        self._relationships = data["relationships"]
         self.id: str = data["id"]
         self.title: Optional[str] = attributes["title"]
         self.volume: Optional[str] = attributes["volume"]
