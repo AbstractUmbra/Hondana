@@ -696,6 +696,7 @@ class HTTPClient:
         limit: int,
         offset: int,
         translated_languages: Optional[list[str]],
+        content_rating: Optional[list[common.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -713,6 +714,9 @@ class HTTPClient:
 
         if translated_languages:
             query["translatedLanguage"] = translated_languages
+
+        if content_rating:
+            query["contentRating"] = content_rating
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)
@@ -801,6 +805,7 @@ class HTTPClient:
         volume: Optional[Union[str, list[str]]],
         chapter: Optional[Union[str, list[str]]],
         translated_language: Optional[list[str]],
+        content_rating: Optional[list[common.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -836,6 +841,9 @@ class HTTPClient:
 
         if translated_language:
             query["translatedLanguage"] = translated_language
+
+        if content_rating:
+            query["contentRating"] = content_rating
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)
