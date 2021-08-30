@@ -625,7 +625,7 @@ class HTTPClient:
         last_volume: Optional[str],
         last_chapter: Optional[str],
         publication_demographic: Optional[manga.PublicationDemographic],
-        status: Optional[manga.MangaStatus],
+        status: manga.MangaStatus,
         year: Optional[int],
         content_rating: Optional[manga.ContentRating],
         tags: Optional[QueryTags],
@@ -636,6 +636,7 @@ class HTTPClient:
 
         query = {}
         query["version"] = version
+        query["status"] = status
 
         if title:
             query["title"] = title
@@ -666,9 +667,6 @@ class HTTPClient:
 
         if publication_demographic is not MISSING:
             query["publicationDemographic"] = publication_demographic
-
-        if status is not MISSING:
-            query["status"] = status
 
         if year is not MISSING:
             query["year"] = year

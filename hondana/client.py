@@ -569,7 +569,7 @@ class Client:
         last_volume: Optional[str] = MISSING,
         last_chapter: Optional[str] = MISSING,
         publication_demographic: Optional[manga.PublicationDemographic] = MISSING,
-        status: Optional[manga.MangaStatus] = MISSING,
+        status: manga.MangaStatus,
         year: Optional[int] = MISSING,
         content_rating: Optional[manga.ContentRating] = None,
         tags: Optional[QueryTags] = None,
