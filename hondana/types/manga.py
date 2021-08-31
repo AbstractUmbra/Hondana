@@ -56,6 +56,9 @@ ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_rea
 class MangaOrderQuery(TypedDict, total=False):
     volume: Literal["asc", "desc"]
     chapter: Literal["asc", "desc"]
+    createdAt: Literal["asc", "desc"]
+    updatedAt: Literal["asc", "desc"]
+    latestUploadedChapter: Literal["asc", "desc"]
 
 
 class MangaLinks(TypedDict, total=False):

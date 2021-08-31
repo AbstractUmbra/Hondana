@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
-    from .types.common import ContentRating, LocalisedString
+    from .types.common import ContentRating, LanguageCode, LocalisedString
 
 
 __all__ = ("Manga",)
@@ -428,7 +428,9 @@ class Manga:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[str]] = None,
+        translated_languages: Optional[list[LanguageCode]] = None,
+        original_language: Optional[list[LanguageCode]] = None,
+        excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
@@ -478,6 +480,8 @@ class Manga:
             limit=limit,
             offset=offset,
             translated_languages=translated_languages,
+            original_language=original_language,
+            excluded_original_language=excluded_original_language,
             content_rating=content_rating,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,

@@ -457,7 +457,7 @@ class HTTPClient:
         content_rating: Optional[list[manga.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
-        order: Optional[OrderQuery],
+        order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
@@ -693,7 +693,9 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_languages: Optional[list[str]],
+        translated_languages: Optional[list[common.LanguageCode]],
+        original_language: Optional[list[common.LanguageCode]],
+        excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
@@ -712,6 +714,12 @@ class HTTPClient:
 
         if translated_languages:
             query["translatedLanguage"] = translated_languages
+
+        if original_language:
+            query["originalLanguage"] = original_language
+
+        if excluded_original_language:
+            query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
             query["contentRating"] = content_rating
@@ -1222,7 +1230,10 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_languages: Optional[list[str]],
+        translated_languages: Optional[list[common.LanguageCode]],
+        original_language: Optional[list[common.LanguageCode]],
+        excluded_original_language: Optional[list[common.LanguageCode]],
+        content_rating: Optional[list[common.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -1236,6 +1247,15 @@ class HTTPClient:
 
         if translated_languages:
             query["translatedLanguage"] = translated_languages
+
+        if original_language:
+            query["originalLanguage"] = original_language
+
+        if excluded_original_language:
+            query["excludedOriginalLanguage"] = excluded_original_language
+
+        if content_rating:
+            query["contentRating"] = content_rating
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)

@@ -28,12 +28,56 @@ from typing import Literal, TypedDict
 __all__ = (
     "PublicationDemographic",
     "ContentRating",
+    "LanguageCode",
     "LocalizedString",
     "LocalisedString",
 )
 
 PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
 ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
+LanguageCode = Literal[
+    "en",
+    "ja",
+    "pl",
+    "sh",
+    "nl",
+    "it",
+    "ru",
+    "de",
+    "hu",
+    "fr",
+    "fi",
+    "vi",
+    "el",
+    "bg",
+    "es",
+    "pt-br",
+    "pt",
+    "sv",
+    "ar",
+    "da",
+    "zh",
+    "bn",
+    "ro",
+    "cs",
+    "mn",
+    "tr",
+    "id",
+    "ko",
+    "es-la",
+    "fa",
+    "ms",
+    "th",
+    "ca",
+    "tl",
+    "zh-hk",
+    "uk",
+    "my",
+    "lt",
+    "he",
+    "hi",
+    "no",
+]
 
 
 class LocalizedString(TypedDict):

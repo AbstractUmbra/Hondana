@@ -14,6 +14,10 @@ Common
     :members:
     :undoc-members:
 
+.. autoclass:: LanguageCode
+    :members:
+    :undoc-members:
+
 .. autoclass:: LocalizedString
 
 .. autoclass:: LocalisedString

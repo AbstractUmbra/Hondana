@@ -216,12 +216,14 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[str]] = None,
+        translated_languages: Optional[list[common.LanguageCode]] = None,
+        original_language: Optional[list[common.LanguageCode]] = None,
+        excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[OrderQuery] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
     ) -> list[Chapter]:
         """|coro|
 
@@ -235,8 +237,12 @@ class Client:
         offset: :class:`int`
             Defaults to 0. This is the pagination offset, the number must be greater than 0.
             If set lower than 0 then it is set to 0.
-        translated_languages: Optional[List[:class:`str`]]
-            A list of language codes to return chapters for.
+        translated_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to filter the returned chapters with.
+        original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to filter the original language of the returned chapters with.
+        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -245,7 +251,7 @@ class Client:
             A start point to return chapters from based on their update date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published date.
-        order: Optional[:class:`~hondana.types.OrderQuery`]
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose the 'order by' response from the API.
 
 
@@ -276,6 +282,8 @@ class Client:
             limit=limit,
             offset=offset,
             translated_languages=translated_languages,
+            original_language=original_language,
+            excluded_original_language=excluded_original_language,
             content_rating=content_rating,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
@@ -304,7 +312,7 @@ class Client:
         content_rating: Optional[list[manga.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
-        order: Optional[OrderQuery] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
         includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
     ) -> list[Manga]:
         """|coro|
@@ -333,7 +341,7 @@ class Client:
             An instance of :class:`hondana.QueryTags` to include in the search.
         status: Optional[List[:class:`~hondana.types.MangaStatus`]]
             The status(es) of manga to include in the search.
-        original_language: Optional[:class:`str`]
+        original_language: Optional[:class:`~hondana.types.LanguageCode`]
             A list of language codes to include for the manga's original language.
             i.e. ``["en"]``
         publication_demographic: Optional[List[:class:`~hondana.types.PublicationDemographic`]]
@@ -348,7 +356,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
             Used for returning manga updated *after* this date.
-        order: Optional[:class:`~hondana.types.OrderQuery`]
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose the ordering of the response
             i.e. ``{"createdAt": "desc"}``
         includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
@@ -709,7 +717,9 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[str]] = None,
+        translated_languages: Optional[list[common.LanguageCode]] = None,
+        original_language: Optional[list[common.LanguageCode]] = None,
+        excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
@@ -729,8 +739,12 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_languages: List[:class:`str`]
+        translated_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
+        original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to filter the original language of the returned chapters with.
+        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -761,6 +775,8 @@ class Client:
             limit=limit,
             offset=offset,
             translated_languages=translated_languages,
+            original_language=original_language,
+            excluded_original_language=excluded_original_language,
             content_rating=content_rating,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
@@ -1987,7 +2003,10 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[str]] = None,
+        translated_languages: Optional[list[common.LanguageCode]] = None,
+        original_language: Optional[list[common.LanguageCode]] = None,
+        excluded_original_language: Optional[list[common.LanguageCode]] = None,
+        content_rating: Optional[list[common.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -2005,8 +2024,12 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_languages: List[:class:`str`]
+        translated_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
+        original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to filter the original language of the returned chapters with.
+        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to negate filter the original language of the returned chapters with.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -2042,6 +2065,9 @@ class Client:
             limit=limit,
             offset=offset,
             translated_languages=translated_languages,
+            original_language=original_language,
+            excluded_original_language=excluded_original_language,
+            content_rating=content_rating,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
