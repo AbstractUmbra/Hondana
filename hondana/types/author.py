@@ -79,6 +79,10 @@ class AuthorResponse(TypedDict):
     type: Literal[``"author"``]
 
     attributes: :class:`AuthorAttributesResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     id: str
@@ -92,10 +96,6 @@ class GetAuthorResponse(TypedDict):
     result: Literal[``"ok"``, ``"error"``]
 
     data: :class:`AuthorResponse`
-
-    relationships: List[:class:`RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     result: Literal["ok", "error"]

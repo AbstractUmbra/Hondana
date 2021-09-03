@@ -27,7 +27,6 @@ import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
 from .artist import Artist
-from .chapter import Chapter
 from .cover import Cover
 from .tags import Tag
 from .utils import MISSING, require_authentication
@@ -35,10 +34,12 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .author import Author
+    from .chapter import Chapter
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
     from .types.common import ContentRating, LanguageCode, LocalisedString
+    from .types.relationship import RelationshipResponse
 
 
 __all__ = ("Manga",)
@@ -78,6 +79,8 @@ class Manga:
     __slots__ = (
         "_http",
         "_data",
+        "_attributes",
+        "_relationships",
         "_title",
         "_description",
         "alternate_titles",
@@ -94,31 +97,29 @@ class Manga:
         "_created_at",
         "_updated_at",
         "id",
-        "_relationships",
     )
 
-    def __init__(self, http: HTTPClient, payload: manga.ViewMangaResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
-        data = payload["data"]
-        attributes = data["attributes"]
-        self.id: str = data["id"]
-        self._data = data
-        self._title = attributes["title"]
-        self._description = attributes["description"]
-        self.alternate_titles: list[LocalisedString] = attributes["altTitles"]
-        self.locked: bool = attributes.get("isLocked", False)
-        self.links: manga.MangaLinks = attributes["links"]
-        self.original_language: str = attributes["originalLanguage"]
-        self.last_volume: Optional[str] = attributes["lastVolume"]
-        self.last_chapter: Optional[str] = attributes["lastChapter"]
-        self.publication_demographic: Optional[manga.PublicationDemographic] = attributes["publicationDemographic"]
-        self.year: Optional[int] = attributes["year"]
-        self.content_rating: Optional[manga.ContentRating] = attributes["contentRating"]
-        self.version: int = attributes["version"]
-        self._tags = attributes["tags"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
-        self._relationships = data["relationships"]
+        self._data = payload
+        self._attributes = payload["attributes"]
+        self.id: str = payload["id"]
+        self._title = self._attributes["title"]
+        self._description = self._attributes["description"]
+        self.alternate_titles: list[LocalisedString] = self._attributes["altTitles"]
+        self.locked: bool = self._attributes.get("isLocked", False)
+        self.links: manga.MangaLinks = self._attributes["links"]
+        self.original_language: str = self._attributes["originalLanguage"]
+        self.last_volume: Optional[str] = self._attributes["lastVolume"]
+        self.last_chapter: Optional[str] = self._attributes["lastChapter"]
+        self.publication_demographic: Optional[manga.PublicationDemographic] = self._attributes["publicationDemographic"]
+        self.year: Optional[int] = self._attributes["year"]
+        self.content_rating: Optional[manga.ContentRating] = self._attributes["contentRating"]
+        self.version: int = self._attributes["version"]
+        self._tags = self._attributes["tags"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
+        self._relationships: list[RelationshipResponse] = payload.get("relationships", [])
 
     def __repr__(self) -> str:
         return f"<Manga id={self.id} title='{self.title}'>"
@@ -172,19 +173,19 @@ class Manga:
             then this method will not make an extra API call to retrieve the Author data.
         """
         author = None
-        for item in self._relationships:
-            if item["type"] == "author":
-                author = item
+        for relationship in self._relationships:
+            if relationship["type"] == "author":
+                author = relationship
                 break
 
         if author is None:
             return None
 
         if "attributes" in author:
-            return Author(self._http, author)  # type: ignore #TODO: typing.Protocol or abcs here.
+            return Author(self._http, author)
 
-        data = await self._http._get_author(author["id"])
-        return Author(self._http, data)
+        data = await self._http._get_author(author["id"], includes=[])
+        return Author(self._http, data["data"])
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
@@ -263,7 +264,7 @@ class Manga:
             return None
 
         if "attributes" in artist:
-            return Artist(self._http, artist)  # type: ignore #TODO: Investigate typing.Protocol or abcs here.
+            return Artist(self._http, artist)
 
     @require_authentication
     async def update(
@@ -375,7 +376,7 @@ class Manga:
             version=version,
         )
 
-        return self.__class__(self._http, data)
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

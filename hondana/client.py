@@ -31,6 +31,7 @@ from typing import TYPE_CHECKING, Optional, Union, overload
 from aiohttp import ClientSession
 
 from . import errors
+from .artist import Artist
 from .author import Author
 from .chapter import Chapter
 from .cover import Cover
@@ -47,6 +48,7 @@ from .utils import MISSING, require_authentication
 if TYPE_CHECKING:
     from .tags import QueryTags
     from .types import (
+        artist,
         author,
         chapter,
         common,
@@ -399,7 +401,7 @@ class Client:
 
         manga: list[Manga] = []
         for item in data["results"]:
-            manga.append(Manga(self._http, item))
+            manga.append(Manga(self._http, item["data"]))
 
         return manga
 
@@ -504,7 +506,7 @@ class Client:
             version=version,
         )
 
-        return Manga(self._http, data)
+        return Manga(self._http, data["data"])
 
     async def get_manga_volumes_and_chapters(
         self, *, manga_id: str, translated_language: Optional[list[str]] = None
@@ -559,7 +561,7 @@ class Client:
         """
         data = await self._http._view_manga(manga_id, includes=includes)
 
-        return Manga(self._http, data)
+        return Manga(self._http, data["data"])
 
     @require_authentication
     async def update_manga(
@@ -668,7 +670,7 @@ class Client:
             version=version,
         )
 
-        return Manga(self._http, data)
+        return Manga(self._http, data["data"])
 
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
@@ -823,7 +825,7 @@ class Client:
         """
         data = await self._http._get_random_manga(includes=includes)
 
-        return Manga(self._http, data)
+        return Manga(self._http, data["data"])
 
     @require_authentication
     async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
@@ -1330,7 +1332,7 @@ class Client:
 
         data = await self._http._scanlation_group_list(limit=limit, offset=offset, ids=ids, name=name, includes=includes)
 
-        return [ScanlatorGroup(self._http, payload) for payload in data["results"]]
+        return [ScanlatorGroup(self._http, payload["data"]) for payload in data["results"]]
 
     @require_authentication
     async def user_list(
@@ -1376,7 +1378,7 @@ class Client:
 
         data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
 
-        return [User(self._http, payload) for payload in data["results"]]
+        return [User(self._http, payload["data"]) for payload in data["results"]]
 
     async def get_user(self, user_id: str, /) -> User:
         """|coro|
@@ -1395,7 +1397,7 @@ class Client:
         """
         data = await self._http._get_user(user_id)
 
-        return User(self._http, data)
+        return User(self._http, data["data"])
 
     @require_authentication
     async def delete_user(self, user_id: str, /) -> None:
@@ -1484,7 +1486,7 @@ class Client:
         """
         data = await self._http._get_my_details()
 
-        return User(self._http, data)
+        return User(self._http, data["data"])
 
     @require_authentication
     async def get_my_followed_groups(self, limit: int = 10, offset: int = 0) -> list[ScanlatorGroup]:
@@ -1515,7 +1517,7 @@ class Client:
 
         data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
 
-        return [ScanlatorGroup(self._http, payload) for payload in data["results"]]
+        return [ScanlatorGroup(self._http, payload["data"]) for payload in data["results"]]
 
     @require_authentication
     async def check_if_following_group(self, group_id: str, /) -> bool:
@@ -1570,7 +1572,7 @@ class Client:
 
         data = await self._http._get_my_followed_users(limit=limit, offset=offset)
 
-        return [User(self._http, payload) for payload in data["results"]]
+        return [User(self._http, payload["data"]) for payload in data["results"]]
 
     @require_authentication
     async def check_if_following_user(self, user_id: str, /) -> bool:
@@ -1659,7 +1661,7 @@ class Client:
             The created user.
         """
         data = await self._http._create_account(username=username, password=password, email=email)
-        return User(self._http, data)
+        return User(self._http, data["data"])
 
     async def activate_account(self, activation_code: str, /) -> None:
         """|coro|
@@ -1837,7 +1839,9 @@ class Client:
 
         return CustomList(self._http, data["data"])
 
-    async def get_custom_list(self, custom_list_id: str, /) -> CustomList:
+    async def get_custom_list(
+        self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes] = ["manga", "user"]
+    ) -> CustomList:
         """|coro|
 
         This method will retrieve a custom list from the MangaDex API.
@@ -1846,6 +1850,8 @@ class Client:
         -----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list we wish to retrieve.
+        includes: List[:class:`~hondana.types.CustomListIncludes`]
+            The list of additional data to request in the payload.
 
         Raises
         -------
@@ -1857,7 +1863,7 @@ class Client:
         :class:`CustomList`
             The retrieved custom list.
         """
-        data = await self._http._get_custom_list(custom_list_id)
+        data = await self._http._get_custom_list(custom_list_id, includes=includes)
 
         return CustomList(self._http, data["data"])
 
@@ -2108,7 +2114,7 @@ class Client:
             The group returned from the API on creation.
         """
         data = await self._http._create_scanlation_group(name=name, leader=leader, members=members, version=version)
-        return ScanlatorGroup(self._http, data)
+        return ScanlatorGroup(self._http, data["data"])
 
     async def get_scanlation_group(self, scanlation_group_id: str, /) -> ScanlatorGroup:
         """|coro|
@@ -2133,7 +2139,7 @@ class Client:
             The group returned from the API.
         """
         data = await self._http._view_scanlation_group(scanlation_group_id)
-        return ScanlatorGroup(self._http, data)
+        return ScanlatorGroup(self._http, data["data"])
 
     @require_authentication
     async def update_scanlation_group(
@@ -2218,7 +2224,7 @@ class Client:
             version=version,
         )
 
-        return ScanlatorGroup(self._http, data)
+        return ScanlatorGroup(self._http, data["data"])
 
     @require_authentication
     async def delete_scanlation_group(self, scanlation_group_id: str, /) -> None:
@@ -2307,7 +2313,7 @@ class Client:
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
 
-        return [Author(self._http, payload) for payload in data["results"]]
+        return [Author(self._http, payload["data"]) for payload in data["results"]]
 
     @require_authentication
     async def create_author(self, *, name: str, version: Optional[int] = None) -> Author:
@@ -2335,12 +2341,15 @@ class Client:
             The author created within the API.
         """
         data = await self._http._create_author(name=name, version=version)
-        return Author(self._http, data)
+        return Author(self._http, data["data"])
 
-    async def get_author(self, author_id: str) -> Author:
+    async def get_author(self, author_id: str, *, includes: list[author.AuthorIncludes] = ["manga"]) -> Author:
         """|coro|
 
         The method will fetch an Author from the MangaDex API.
+
+        .. note::
+            MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
 
         Raises
         -------
@@ -2352,9 +2361,31 @@ class Client:
         :class:`Author`
             The Author returned from the API.
         """
-        data = await self._http._get_author(author_id)
+        data = await self._http._get_author(author_id, includes=includes)
 
-        return Author(self._http, data)
+        return Author(self._http, data["data"])
+
+    async def get_artist(self, artist_id: str, *, includes: list[artist.ArtistIncludes] = ["manga"]) -> Artist:
+        """|coro|
+
+        The method will fetch an artist from the MangaDex API.
+
+        .. note::
+            MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
+
+        Raises
+        -------
+        :exc:`NotFound`
+            The passed artist ID was not found, likely due to an incorrect ID.
+
+        Returns
+        --------
+        :class:`Artist`
+            The Author returned from the API.
+        """
+        data = await self._http._get_artist(artist_id, includes=includes)
+
+        return Artist(self._http, data["data"])
 
     @require_authentication
     async def update_author(self, author_id: str, /, *, name: Optional[str] = None, version: int) -> Author:
@@ -2386,7 +2417,7 @@ class Client:
             The updated author from the API.
         """
         data = await self._http._update_author(author_id, name=name, version=version)
-        return Author(self._http, data)
+        return Author(self._http, data["data"])
 
     @require_authentication
     async def delete_author(self, author_id: str, /) -> None:

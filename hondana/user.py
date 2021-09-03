@@ -24,11 +24,12 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal
+from .utils import require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types import user
+    from .types.user import UserResponse
 
 __all__ = ("User",)
 
@@ -41,8 +42,6 @@ class User:
     -----------
     id: :class:`str`
         The user's UUID.
-    type: Literal[``"user"``]
-        The raw type from the API.
     username: :class:`str`
         The user's username.
     version: :class:`int`
@@ -51,17 +50,14 @@ class User:
 
     __slots__ = ("_http", "_data", "_attributes", "id", "type", "username", "version", "roles")
 
-    def __init__(self, http: HTTPClient, payload: user.GetUserResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: UserResponse) -> None:
         self._http = http
-        data = payload["data"]
-        self._data = data
-        attributes = data["attributes"]
-        self._attributes = attributes
-        self.id: str = data["id"]
-        self.type: Literal["user"] = data["type"]
-        self.username: str = attributes["username"]
-        self.version: int = attributes["version"]
-        self.roles: list[str] = attributes["roles"]
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self.id: str = self._data["id"]
+        self.username: str = self._attributes["username"]
+        self.version: int = self._attributes["version"]
+        self.roles: list[str] = self._attributes["roles"]
 
     def __repr__(self) -> str:
         return f"<User id='{self.id}' username='{self.username}'>"
@@ -69,6 +65,7 @@ class User:
     def __str__(self) -> str:
         return self.username
 
+    @require_authentication
     async def delete(self) -> None:
         """|coro|
 

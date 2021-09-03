@@ -21,12 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
-import logging
-from typing import Literal, Optional
+from __future__ import annotations
 
-from .types.common import LocalisedString
-from .types.tags import TagResponse
+import logging
+from typing import TYPE_CHECKING, Literal, Optional
+
 from .utils import TAGS
+
+
+if TYPE_CHECKING:
+    from .types.common import LocalisedString
+    from .types.tags import TagResponse
 
 
 __all__ = ("Tag", "QueryTags")
@@ -60,17 +65,26 @@ class Tag:
         All tag names currently only have the ``"en"`` key attributed to their localization, so we return this by default.
     """
 
-    __slots__ = ("_data", "_name", "id", "type", "description", "group", "version")
+    __slots__ = (
+        "_data",
+        "_attributes",
+        "_name",
+        "id",
+        "type",
+        "description",
+        "group",
+        "version",
+    )
 
     def __init__(self, payload: TagResponse) -> None:
         self._data = payload
-        attributes = payload["attributes"]
-        self._name = attributes["name"]
+        self._attributes = payload["attributes"]
+        self._name = self._attributes["name"]
         self.id: str = payload["id"]
         self.type: Literal["tag"] = "tag"
-        self.description: list[LocalisedString] = attributes["description"]
-        self.group: str = attributes["group"]
-        self.version: int = attributes["version"]
+        self.description: list[LocalisedString] = self._attributes["description"]
+        self.group: str = self._attributes["group"]
+        self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
         return f"<Tag id='{self.id}' name='{self.name}'>"

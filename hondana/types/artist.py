@@ -22,12 +22,15 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, Optional, TypedDict
+from typing import Literal, TypedDict, Optional
 
+from .relationship import RelationshipResponse
 from .common import LocalisedString
 
 
-__all__ = ("ArtistResponse", "ArtistAttributesResponse")
+__all__ = ("ArtistIncludes", "GetArtistResponse", "ArtistResponse", "ArtistAttributesResponse")
+
+ArtistIncludes = Literal["manga"]
 
 
 class ArtistAttributesResponse(TypedDict):
@@ -60,8 +63,41 @@ class ArtistResponse(TypedDict):
     type: Literal[``"artist"``]
 
     attributes: :class:`ArtistAttributesResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     id: str
     type: Literal["artist"]
     attributes: ArtistAttributesResponse
+    relationships: list[RelationshipResponse]
+
+
+class GetArtistResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    data: :class:`ArtistResponse`
+    """
+
+    result: Literal["ok", "error"]
+    data: ArtistResponse
+
+
+class GetArtistListResponse(TypedDict):
+    """
+    results: List[:class:`GetArtistResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    results: list[GetArtistResponse]
+    limit: int
+    offset: int
+    total: int

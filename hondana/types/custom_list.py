@@ -30,6 +30,7 @@ from .user import GetUserResponse
 
 __all__ = (
     "CustomListVisibility",
+    "CustomListIncludes",
     "CustomListAttributesResponse",
     "CustomListResponse",
     "GetCustomListResponse",
@@ -37,6 +38,7 @@ __all__ = (
 )
 
 CustomListVisibility = Literal["public", "private"]
+CustomListIncludes = Literal["manga", "user"]
 
 
 class CustomListAttributesResponse(TypedDict):

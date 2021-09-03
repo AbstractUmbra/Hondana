@@ -23,7 +23,9 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import Literal, TypedDict
+from typing import TYPE_CHECKING, Literal, TypedDict, Union
+
+from . import chapter, manga, artist, author
 
 
 __all__ = ("RelationshipResponse",)
@@ -31,9 +33,10 @@ __all__ = ("RelationshipResponse",)
 
 class _RelationshipOptionalResponse(TypedDict, total=False):
     attributes: dict[str, str]
+    relationships: list[dict[str, str]]
 
 
-class RelationshipResponse(_RelationshipOptionalResponse):
+class _RelationshipResponse(_RelationshipOptionalResponse):
     """
     id: :class:`str`
 
@@ -44,7 +47,15 @@ class RelationshipResponse(_RelationshipOptionalResponse):
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+
+    relationships: List[Dict[:class:`str`, :class:`str`]]
+        This key is optional
+
+        This key will be a one level nested list of relationships for each object in the relationship.
     """
 
     id: str
     type: Literal["manga", "chapter", "scanlation_group", "author", "cover_art", "artist"]
+
+
+RelationshipResponse = Union[manga.MangaResponse, chapter.ChapterResponse, artist.ArtistResponse, author.AuthorResponse]

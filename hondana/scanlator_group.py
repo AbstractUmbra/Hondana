@@ -32,7 +32,7 @@ from .utils import require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types import scanlator_group
+    from .types.scanlator_group import ScanlationGroupResponse
 
 __all__ = ("ScanlatorGroup",)
 
@@ -69,11 +69,11 @@ class ScanlatorGroup:
 
     __slots__ = (
         "_http",
-        "id",
-        "type",
         "_data",
         "_attributes",
         "_relationships",
+        "id",
+        "type",
         "name",
         "_leader",
         "_members",
@@ -90,30 +90,28 @@ class ScanlatorGroup:
         "_updated_at",
     )
 
-    def __init__(self, http: HTTPClient, payload: scanlator_group.GetScanlationGroupResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: ScanlationGroupResponse) -> None:
         self._http = http
-        data = payload["data"]
-        attributes = data["attributes"]
-        relationships = data["relationships"]
-        self.id: str = data["id"]
-        self.type: Literal["scanlation_group"] = data["type"]
-        self._data = data
-        self._attributes = attributes
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        relationships = self._data["relationships"]
+        self.id: str = self._data["id"]
+        self.type: Literal["scanlation_group"] = self._data["type"]
         self._relationships = relationships
-        self.name: str = attributes["name"]
-        self._leader = attributes.get("leader", None)
-        self._members = attributes.get("members", None)
-        self.website: Optional[str] = attributes["website"]
-        self.irc_server: Optional[str] = attributes["ircServer"]
-        self.irc_channel: Optional[str] = attributes["ircServer"]
-        self.discord: Optional[str] = attributes["discord"]
-        self.contact_email: Optional[str] = attributes["contactEmail"]
-        self.description: Optional[str] = attributes["description"]
-        self.locked: bool = attributes.get("locked", False)
-        self.official: bool = attributes["official"]
-        self.version: int = attributes["version"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
+        self.name: str = self._attributes["name"]
+        self._leader = self._attributes.get("leader", None)
+        self._members = self._attributes.get("members", None)
+        self.website: Optional[str] = self._attributes["website"]
+        self.irc_server: Optional[str] = self._attributes["ircServer"]
+        self.irc_channel: Optional[str] = self._attributes["ircServer"]
+        self.discord: Optional[str] = self._attributes["discord"]
+        self.contact_email: Optional[str] = self._attributes["contactEmail"]
+        self.description: Optional[str] = self._attributes["description"]
+        self.locked: bool = self._attributes.get("locked", False)
+        self.official: bool = self._attributes["official"]
+        self.version: int = self._attributes["version"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
 
     def __repr__(self) -> str:
         return f"<ScanlatorGroup id='{self.id}' name='{self.name}'>"
@@ -132,13 +130,13 @@ class ScanlatorGroup:
     @property
     def leader(self) -> Optional[User]:
         if self._leader:
-            return User(self._http, self._leader)
+            return User(self._http, self._leader["data"])
         return None
 
     @property
     def members(self) -> Optional[list[User]]:
         if self._members:
-            return [User(self._http, payload) for payload in self._members]
+            return [User(self._http, payload["data"]) for payload in self._members]
         return None
 
     @require_authentication

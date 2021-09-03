@@ -21,30 +21,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
 
-from typing import Literal
+from typing import TYPE_CHECKING
 
 from .http import HTTPClient
-from .types.common import LocalisedString
-from .types.report import GetReportReasonResponse, ReportCategory
+
+
+if TYPE_CHECKING:
+    from .types.common import LocalisedString
+    from .types.report import GetReportReasonResponse, ReportCategory
 
 
 __all__ = ("Report",)
 
 
 class Report:
-    __slots__ = ("_http", "id", "type", "_attributes", "reason", "details_required", "category", "version")
+    __slots__ = (
+        "_http",
+        "_attributes",
+        "id",
+        "type",
+        "reason",
+        "details_required",
+        "category",
+        "version",
+    )
 
     def __init__(self, http: HTTPClient, payload: GetReportReasonResponse) -> None:
         self._http = http
         self.id: str = payload["id"]
-        self.type: Literal["report_reason"] = payload["type"]
-        attributes = payload["attributes"]
-        self._attributes = attributes
-        self.reason: LocalisedString = attributes["reason"]
-        self.details_required: bool = attributes["detailsRequired"]
-        self.category: ReportCategory = attributes["category"]
-        self.version: int = attributes["version"]
+        self._attributes = payload["attributes"]
+        self.reason: LocalisedString = self._attributes["reason"]
+        self.details_required: bool = self._attributes["detailsRequired"]
+        self.category: ReportCategory = self._attributes["category"]
+        self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
         return f"<Report id='{self.id}'>"

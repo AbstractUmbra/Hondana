@@ -26,11 +26,10 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
-from .types.artist import ArtistResponse
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.artist import ArtistResponse
     from .types.common import LocalisedString
 
 
@@ -54,18 +53,32 @@ class Artist:
         The version revision of this artist.
     """
 
-    __slots__ = ("_http", "id", "name", "image_url", "biography", "_created_at", "_updated_at", "version")
+    __slots__ = (
+        "_http",
+        "_data",
+        "_attributes",
+        "_relationships",
+        "id",
+        "name",
+        "image_url",
+        "biography",
+        "_created_at",
+        "_updated_at",
+        "version",
+    )
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
-        attributes = payload["attributes"]
         self._http = http
-        self.id: str = payload["id"]
-        self.name: str = attributes["name"]
-        self.image_url: Optional[str] = attributes["imageUrl"]
-        self.biography: Optional[LocalisedString] = attributes["biography"]
-        self.version: int = attributes["version"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self._relationships = self._data["relationships"]
+        self.id: str = self._data["id"]
+        self.name: str = self._attributes["name"]
+        self.image_url: Optional[str] = self._attributes["imageUrl"]
+        self.biography: Optional[LocalisedString] = self._attributes["biography"]
+        self.version: int = self._attributes["version"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
 
     def __repr__(self) -> str:
         return f"<Artist id={self.id} name='{self.name}'>"

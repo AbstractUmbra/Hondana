@@ -93,6 +93,8 @@ class ScanlationGroupResponse(TypedDict):
     type: Literal[``"scanlation_group"``]
 
     attributes: :class:`~hondana.types.ScanlationGroupAttributesResponse`
+
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
     """
 
     id: str
@@ -106,8 +108,6 @@ class GetScanlationGroupResponse(TypedDict):
     result: Literal[``"ok"``, ``"error"``]
 
     data: :class:`~hondana.types.ScanlationGroupResponse`
-
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
     """
 
     result: Literal["ok", "error"]

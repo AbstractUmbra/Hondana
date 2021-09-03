@@ -31,7 +31,7 @@ from .utils import require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.author import GetAuthorResponse
+    from .types.author import AuthorResponse
     from .types.common import LocalisedString
 
 __all__ = ("Author",)
@@ -58,6 +58,7 @@ class Author:
         "_http",
         "_payload",
         "_data",
+        "_attributes",
         "_relationships",
         "id",
         "name",
@@ -68,20 +69,18 @@ class Author:
         "_updated_at",
     )
 
-    def __init__(self, http: HTTPClient, payload: GetAuthorResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: AuthorResponse) -> None:
         self._http = http
-        self._payload = payload
-        data = payload["data"]
-        self._data = data
-        attributes = data["attributes"]
-        self._relationships = data["relationships"]
-        self.id: str = data["id"]
-        self.name: str = attributes["name"]
-        self.image_url: Optional[str] = attributes["imageUrl"]
-        self.biography: LocalisedString = attributes["biography"]
-        self.version: int = attributes["version"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self._relationships = self._data["relationships"]
+        self.id: str = self._data["id"]
+        self.name: str = self._attributes["name"]
+        self.image_url: Optional[str] = self._attributes["imageUrl"]
+        self.biography: LocalisedString = self._attributes["biography"]
+        self.version: int = self._attributes["version"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
 
     def __repr__(self) -> str:
         return f"<Author id={self.id} name='{self.name}'>"
@@ -127,7 +126,7 @@ class Author:
             The updated author from the API.
         """
         data = await self._http._update_author(self.id, name=name, version=version)
-        return Author(self._http, data)
+        return Author(self._http, data["data"])
 
     @require_authentication
     async def delete(self, author_id: str, /) -> None:

@@ -59,6 +59,7 @@ from .utils import MISSING, TAGS, php_query_builder, to_json
 if TYPE_CHECKING:
     from .tags import QueryTags
     from .types import (
+        artist,
         author,
         chapter,
         common,
@@ -1163,9 +1164,19 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_custom_list(self, custom_list_id: str, /) -> Response[custom_list.GetCustomListResponse]:
+    def _get_custom_list(
+        self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes]
+    ) -> Response[custom_list.GetCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
-        return self.request(route)
+
+        query = {}
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
 
     def _update_custom_list(
         self,
@@ -1404,9 +1415,33 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_author(self, author_id: str, /) -> Response[author.GetAuthorResponse]:
+    def _get_author(
+        self, author_id: str, /, *, includes: Optional[list[author.AuthorIncludes]]
+    ) -> Response[author.GetAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
-        return self.request(route)
+
+        query = {}
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
+
+    def _get_artist(
+        self, author_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
+    ) -> Response[artist.GetArtistResponse]:
+        route = Route("GET", "/author/{author_id}", author_id=author_id)
+
+        query = {}
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+
+        return self.request(route, params=resolved_query)
 
     def _update_author(self, author_id, /, *, name: Optional[str], version: int) -> Response[author.GetAuthorResponse]:
         route = Route("PUT", "/author/{author_id}", author_id=author_id)

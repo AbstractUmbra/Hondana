@@ -26,12 +26,12 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
+from .manga import Manga
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .manga import Manga
     from .types.chapter import GetChapterResponse
 
 
@@ -68,6 +68,7 @@ class Chapter:
 
     __slots__ = (
         "_http",
+        "_data",
         "_attributes",
         "_relationships",
         "id",
@@ -87,11 +88,11 @@ class Chapter:
 
     def __init__(self, http: HTTPClient, payload: GetChapterResponse) -> None:
         self._http = http
-        data = payload["data"]
-        attributes = data["attributes"]
+        self._data = payload["data"]
+        attributes = self._data["attributes"]
         self._attributes = attributes
-        self._relationships = data["relationships"]
-        self.id: str = data["id"]
+        self._relationships = self._data["relationships"]
+        self.id: str = self._data["id"]
         self.title: Optional[str] = attributes["title"]
         self.volume: Optional[str] = attributes["volume"]
         self.chapter: Optional[str] = attributes["chapter"]
@@ -131,6 +132,23 @@ class Chapter:
         """When this chapter was published."""
         return datetime.datetime.fromisoformat(self._published_at)
 
+    @property
+    def manga(self) -> Optional[Manga]:
+        """"""
+        if not self._relationships:
+            return
+
+        resolved = None
+        for relationship in self._relationships:
+            if relationship["type"] == "manga":
+                resolved = relationship
+                break
+
+        if resolved is None:
+            return
+
+        return Manga(self._http, resolved)
+
     async def get_parent_manga(self) -> Optional[Manga]:
         manga_id = None
         for item in self._relationships:
@@ -142,9 +160,8 @@ class Chapter:
             return
 
         manga = await self._http._view_manga(manga_id, includes=["author", "artist", "cover_art"])
-        from . import Manga  # No more circular imports
 
-        return Manga(self._http, manga)
+        return Manga(self._http, manga["data"])
 
     @require_authentication
     async def update(

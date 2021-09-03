@@ -57,6 +57,8 @@ class Cover:
     __slots__ = (
         "_http",
         "_data",
+        "_attributes",
+        "_relationships",
         "id",
         "volume",
         "file_name",
@@ -64,21 +66,20 @@ class Cover:
         "version",
         "_created_at",
         "_updated_at",
-        "_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: GetCoverResponse) -> None:
         self._http = http
         data = payload["data"]
         self._data = data
-        attributes = data["attributes"]
+        self._attributes = data["attributes"]
         self.id: str = data["id"]
-        self.volume: Optional[str] = attributes["volume"]
-        self.file_name: str = attributes["fileName"]
-        self.description: str = attributes["description"]
-        self.version: int = attributes["version"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
+        self.volume: Optional[str] = self._attributes["volume"]
+        self.file_name: str = self._attributes["fileName"]
+        self.description: str = self._attributes["description"]
+        self.version: int = self._attributes["version"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
         self._relationships = data["relationships"]
 
     def __repr__(self) -> str:

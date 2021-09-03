@@ -44,8 +44,6 @@ class CustomList:
     -----------
     id: :class:`str`
         The UUID relating to this custom list.
-    type: Literal[``"custom_list"``]
-        The raw type returned from the API.
     name: :class:`str`
         The name of this custom list.
     visibility: :class:`~hondana.types.CustomListVisibility`
@@ -56,18 +54,26 @@ class CustomList:
         The version revision of this custom list.
     """
 
-    __slots__ = ("_http", "id", "type", "_relationships", "_attributes", "name", "visibility", "owner", "version")
+    __slots__ = (
+        "_http",
+        "_attributes",
+        "_relationships",
+        "id",
+        "name",
+        "visibility",
+        "owner",
+        "version",
+    )
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
         self._http = http
-        attributes = payload["attributes"]
+        self._attributes = payload["attributes"]
+        self._relationships = payload["relationships"]
         self.id: str = payload["id"]
-        self.type: Literal["custom_list"] = payload["type"]
-        self._attributes = attributes
-        self.name: str = attributes["name"]
-        self.visibility: CustomListVisibility = attributes["visibility"]
-        self.owner: User = User(http, attributes["owner"])
-        self.version: int = attributes["version"]
+        self.name: str = self._attributes["name"]
+        self.visibility: CustomListVisibility = self._attributes["visibility"]
+        self.owner: User = User(http, self._attributes["owner"]["data"])
+        self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
         return f"<CustomList id='{self.id}' name='{self.name}'>"
