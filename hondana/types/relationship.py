@@ -23,39 +23,32 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, TypedDict, Union
+from typing import TYPE_CHECKING, Union
 
-from . import chapter, manga, artist, author
+
+if TYPE_CHECKING:
+    from . import artist, author, chapter, manga
 
 
 __all__ = ("RelationshipResponse",)
 
 
-class _RelationshipOptionalResponse(TypedDict, total=False):
-    attributes: dict[str, str]
-    relationships: list[dict[str, str]]
+RelationshipResponse = Union[
+    "manga.MangaResponse", "chapter.ChapterResponse", "artist.ArtistResponse", "author.AuthorResponse"
+]
+"""
+id: :class:`str`
 
+type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``]
 
-class _RelationshipResponse(_RelationshipOptionalResponse):
-    """
-    id: :class:`str`
+attributes: Dict[:class:`str`, :class:`str`]
+    This key is optional
 
-    type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``]
+    This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+    See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
 
-    attributes: Dict[:class:`str`, :class:`str`]
-        This key is optional
+relationships: List[Dict[:class:`str`, :class:`str`]]
+    This key is optional
 
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
-
-    relationships: List[Dict[:class:`str`, :class:`str`]]
-        This key is optional
-
-        This key will be a one level nested list of relationships for each object in the relationship.
-    """
-
-    id: str
-    type: Literal["manga", "chapter", "scanlation_group", "author", "cover_art", "artist"]
-
-
-RelationshipResponse = Union[manga.MangaResponse, chapter.ChapterResponse, artist.ArtistResponse, author.AuthorResponse]
+    This key will be a one level nested list of relationships for each object in the relationship.
+"""

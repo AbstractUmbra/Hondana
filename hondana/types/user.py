@@ -22,15 +22,23 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict
+from __future__ import annotations
 
-from .relationship import RelationshipResponse
+from typing import TYPE_CHECKING, Literal, TypedDict
+
+
+if TYPE_CHECKING:
+    from .relationship import RelationshipResponse
 
 
 __all__ = ("UserOrderQuery", "GetUserAttributesResponse", "UserResponse", "GetUserResponse", "GetUserListResponse")
 
 
 class UserOrderQuery(TypedDict):
+    """
+    username: Literal[``"asc"``, ``"desc"``]
+    """
+
     username: Literal["asc", "desc"]
 
 
@@ -55,6 +63,8 @@ class UserResponse(TypedDict):
     type: Literal[``"user"``]
 
     attributes: :class:`~hondana.types.GetUserAttributesResponse`
+
+    relationships: List[`~hondana.types.RelationshipResponse`]
     """
 
     id: str
@@ -68,8 +78,6 @@ class GetUserResponse(TypedDict):
     result: Literal[``"ok"``]
 
     data: :class:`~hondana.types.UserResponse`
-
-    relationships: List[`~hondana.types.RelationshipResponse`]
     """
 
     result: Literal["ok"]

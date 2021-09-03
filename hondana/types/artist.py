@@ -22,10 +22,14 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from typing import Literal, TypedDict, Optional
+from __future__ import annotations
 
-from .relationship import RelationshipResponse
-from .common import LocalisedString
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict
+
+
+if TYPE_CHECKING:
+    from .common import LocalisedString
+    from .relationship import RelationshipResponse
 
 
 __all__ = ("ArtistIncludes", "GetArtistResponse", "ArtistResponse", "ArtistAttributesResponse")

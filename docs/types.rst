@@ -96,6 +96,10 @@ CustomList
     :members:
     :undoc-members:
 
+.. autoclass:: CustomListIncludes
+    :members:
+    :undoc-members:
+
 .. autoclass:: GetCustomListListResponse
 
 .. autoclass:: GetCustomListResponse
@@ -207,8 +211,6 @@ Tags
 User
 ----
 .. autoclass:: UserOrderQuery
-    :members:
-    :undoc-members:
 
 .. autoclass:: GetUserListResponse
 
