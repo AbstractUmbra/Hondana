@@ -104,6 +104,10 @@ class ChapterResponse(TypedDict):
     type: Literal[``"chapter"``]
 
     attributes: :class:`ChapterAttributesResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     id: str
@@ -117,10 +121,6 @@ class GetChapterResponse(TypedDict):
     result: Literal[``"ok"``, ``"error"``]
 
     data: :class:`ChapterResponse`
-
-    relationships: List[:class:`RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     result: Literal["ok", "error"]

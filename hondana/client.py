@@ -294,7 +294,7 @@ class Client:
             includes=None,
         )
 
-        return [Chapter(self._http, payload) for payload in data["results"]]
+        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
 
     async def manga_list(
         self,
@@ -787,7 +787,7 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, item) for item in data["results"]]
+        return [Chapter(self._http, item["data"]) for item in data["results"]]
 
     @require_authentication
     async def manga_read_markers(
@@ -1024,12 +1024,12 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, payload) for payload in data["results"]]
+        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
 
     async def get_chapter(self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]] = None) -> Chapter:
         data = await self._http._get_chapter(chapter_id, includes=includes)
 
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def update_chapter(
@@ -1094,7 +1094,7 @@ class Client:
             version=version,
         )
 
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def delete_chapter(self, chapter_id: str, /) -> None:
@@ -2080,7 +2080,7 @@ class Client:
             order=order,
         )
 
-        return [Chapter(self._http, payload) for payload in data["results"]]
+        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
 
     @require_authentication
     async def create_scanlation_group(

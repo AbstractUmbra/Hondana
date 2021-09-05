@@ -32,7 +32,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.chapter import GetChapterResponse
+    from .types.chapter import ChapterResponse
 
 
 __all__ = ("Chapter",)
@@ -86,25 +86,24 @@ class Chapter:
         "_published_at",
     )
 
-    def __init__(self, http: HTTPClient, payload: GetChapterResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
         self._http = http
-        self._data = payload["data"]
-        attributes = self._data["attributes"]
-        self._attributes = attributes
+        self._data = payload
+        self._attributes = self._data["attributes"]
         self._relationships = self._data["relationships"]
         self.id: str = self._data["id"]
-        self.title: Optional[str] = attributes["title"]
-        self.volume: Optional[str] = attributes["volume"]
-        self.chapter: Optional[str] = attributes["chapter"]
-        self.translated_language: str = attributes["translatedLanguage"]
-        self.hash: str = attributes["hash"]
-        self.data: list[str] = attributes["data"]
-        self.data_saver: list[str] = attributes["dataSaver"]
-        self.uploader: Optional[str] = attributes.get("uploader", None)
-        self.version: int = attributes["version"]
-        self._created_at = attributes["createdAt"]
-        self._updated_at = attributes["updatedAt"]
-        self._published_at = attributes["publishAt"]
+        self.title: Optional[str] = self._attributes["title"]
+        self.volume: Optional[str] = self._attributes["volume"]
+        self.chapter: Optional[str] = self._attributes["chapter"]
+        self.translated_language: str = self._attributes["translatedLanguage"]
+        self.hash: str = self._attributes["hash"]
+        self.data: list[str] = self._attributes["data"]
+        self.data_saver: list[str] = self._attributes["dataSaver"]
+        self.uploader: Optional[str] = self._attributes.get("uploader", None)
+        self.version: int = self._attributes["version"]
+        self._created_at = self._attributes["createdAt"]
+        self._updated_at = self._attributes["updatedAt"]
+        self._published_at = self._attributes["publishAt"]
 
     def __repr__(self) -> str:
         return f"<Chapter id={self.id} title='{self.title}'>"
@@ -114,33 +113,63 @@ class Chapter:
 
     @property
     def url(self) -> str:
-        """The URL to this chapter."""
+        """The URL to this chapter.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the chapter.
+        """
         return f"https://mangadex.org/chapter/{self.id}"
 
     @property
     def created_at(self) -> datetime.datetime:
-        """When this chapter was created."""
+        """When this chapter was created.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC timestamp of when this chapter was created.
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
-        """When this chapter was last updated."""
+        """When this chapter was last updated.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC timestamp of when this chapter was last updated.
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
     def published_at(self) -> datetime.datetime:
-        """When this chapter was published."""
+        """When this chapter was published.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC timestamp of when this chapter was published.
+        """
         return datetime.datetime.fromisoformat(self._published_at)
 
     @property
     def manga(self) -> Optional[Manga]:
-        """"""
+        """The parent Manga of the chapter.
+
+        Returns
+        --------
+        Optional[:class:`Manga`]
+            The manga within the Chapter's payload, usually the parent manga.
+        """
         if not self._relationships:
             return
 
         resolved = None
         for relationship in self._relationships:
-            if relationship["type"] == "manga":
+            if relationship["type"] == "manga" and relationship.get("attributes", False):
                 resolved = relationship
                 break
 
@@ -150,6 +179,15 @@ class Chapter:
         return Manga(self._http, resolved)
 
     async def get_parent_manga(self) -> Optional[Manga]:
+        """|coro|
+
+        This method will fetch the parent manga from a chapter's relationships.
+
+        Returns
+        --------
+        Optional[:class:`Manga`]
+            The Manga that was fetched from the API.
+        """
         manga_id = None
         for item in self._relationships:
             if item["type"] == "manga":
@@ -222,7 +260,7 @@ class Chapter:
             version=version,
         )
 
-        return Chapter(self._http, data)
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

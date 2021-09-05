@@ -491,7 +491,7 @@ class Manga:
             includes=includes,
         )
 
-        return [Chapter(self._http, item) for item in data["results"]]
+        return [Chapter(self._http, item["data"]) for item in data["results"]]
 
     @require_authentication
     async def manga_read_markers(self) -> manga.MangaReadMarkersResponse:
