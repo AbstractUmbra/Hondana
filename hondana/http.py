@@ -788,6 +788,21 @@ class HTTPClient:
         resolved_query = php_query_builder(query)
         return self.request(route, params=resolved_query)
 
+    def _manga_read_markers_batch(
+        self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
+
+        body = {}
+
+        if read_chapters:
+            body["chapterIdsRead"] = read_chapters
+
+        if unread_chapters:
+            body["chapterIdsUnread"] = unread_chapters
+
+        return self.request(route, json=body)
+
     def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaReadingStatusResponse]:
         route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
         return self.request(route)

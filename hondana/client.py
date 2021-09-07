@@ -810,6 +810,34 @@ class Client:
             return await self._http._manga_read_markers(manga_ids, grouped=False)
         return await self._http._manga_read_markers(manga_ids, grouped=True)
 
+    @require_authentication
+    async def manga_update_read_markers(
+        self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+    ) -> None:
+        """|coro|
+
+        This method will batch update your read chapters for a given Manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The Manga we are updating read chapters for.
+        read_chapters: Optional[List[:class:`str`]]
+            The read chapters for this Manga.
+        unread_chapters: Optional[List[:class:`str`]]
+            The unread chapters for this Manga.
+
+
+        Raises
+        -------
+        :exc:`TypeError`
+            You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
+        """
+        if not read_chapters and not unread_chapters:
+            raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
+
+        await self._http._manga_read_markers_batch(manga_id, read_chapters=read_chapters, unread_chapters=unread_chapters)
+
     async def get_random_manga(
         self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
     ) -> Manga:
@@ -822,6 +850,11 @@ class Client:
         includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
             The optional includes for the manga payload.
             Defaults to all three.
+
+        Returns
+        --------
+        :class:`Manga`
+            The random Manga that was returned.
         """
         data = await self._http._get_random_manga(includes=includes)
 
