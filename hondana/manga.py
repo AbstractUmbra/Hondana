@@ -494,18 +494,43 @@ class Manga:
         return [Chapter(self._http, item["data"]) for item in data["results"]]
 
     @require_authentication
-    async def manga_read_markers(self) -> manga.MangaReadMarkersResponse:
+    async def update_read_markers(self) -> manga.MangaReadMarkersResponse:
         """|coro|
 
         This method will return the read chapters of the current manga.
 
         Returns
         --------
-        Union[Dict[Literal[``"ok"``], List[:class:`str`]]]
+        :class:`hondana.types.MangaReadMarkersResponse`
             The raw payload of the API.
             Contains a list of read chapter UUIDs.
         """
         return await self._http._manga_read_markers([self.id], grouped=False)
+
+    @require_authentication
+    async def bulk_update_read_markers(
+        self, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+    ) -> None:
+        """|coro|
+
+        This method will batch update your read chapters for a given Manga.
+
+        Parameters
+        -----------
+        read_chapters: Optional[List[:class:`str`]]
+            The read chapters for this Manga.
+        unread_chapters: Optional[List[:class:`str`]]
+            The unread chapters for this Manga.
+
+        Raises
+        -------
+        :exc:`TypeError`
+            You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
+        """
+        if not read_chapters and not unread_chapters:
+            raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
+
+        await self._http._manga_read_markers_batch(self.id, read_chapters=read_chapters, unread_chapters=unread_chapters)
 
     @require_authentication
     async def get_reading_status(self) -> manga.MangaReadingStatusResponse:

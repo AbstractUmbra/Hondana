@@ -811,7 +811,7 @@ class Client:
         return await self._http._manga_read_markers(manga_ids, grouped=True)
 
     @require_authentication
-    async def manga_update_read_markers(
+    async def batch_update_manga_read_markers(
         self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
     ) -> None:
         """|coro|
@@ -826,7 +826,6 @@ class Client:
             The read chapters for this Manga.
         unread_chapters: Optional[List[:class:`str`]]
             The unread chapters for this Manga.
-
 
         Raises
         -------
