@@ -1,5 +1,5 @@
 <div align="center">
-    <h1>Hondana - 本棚</h1>
+    <h1><a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</h1>
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
