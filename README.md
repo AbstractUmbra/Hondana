@@ -1,6 +1,5 @@
 <div align="center">
-    <h1>Hondana - 本棚　『ほんだな』</h1>
-    <p>Hondana is the Japanese word for "bookshelf".</p>
+    <h1>Hondana - 本棚</h1>
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
