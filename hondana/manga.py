@@ -433,6 +433,40 @@ class Manga:
         """
         await self._http._follow_manga(self.id)
 
+    def localized_title(self, language_code: LanguageCode, /) -> Optional[str]:
+        """
+        This method will attempt to return the current manga's title in the provided language code.
+        Falling back to the :attr:`title`
+
+        Parameters
+        -----------
+        language_code: :class:`~hondana.types.LanguageCode`
+            The language code to attempt to return the manga name in.
+
+        Returns
+        --------
+        Optional[:class:`str`]
+            The manga name in the provided language, if found.
+        """
+        return self._title.get(language_code, self.title)
+
+    def localized_description(self, language_code: LanguageCode, /) -> Optional[str]:
+        """
+        This method will attempt to return the current manga's description in the provided language code.
+        Falling back to the :attr:`description`
+
+        Parameters
+        -----------
+        language_code: :class:`~hondana.types.LanguageCode`
+            The language code to attempt to return the manga description in.
+
+        Returns
+        --------
+        Optional[:class:`str`]
+            The manga description in the provided language, if found.
+        """
+        return self._description.get(language_code, self.description)
+
     async def feed(
         self,
         *,
