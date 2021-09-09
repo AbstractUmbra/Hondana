@@ -203,7 +203,10 @@ class Client:
 
         for tag in data:
             name_key = tag["data"]["attributes"]["name"]
-            name = name_key.get("en", next(iter(name_key))).title()
+            name = name_key.get("en", None)
+            if name is None:
+                key = next(iter(name_key))
+                name = name_key[key]
             tags[name] = tag["data"]["id"]
 
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
@@ -970,13 +973,15 @@ class Client:
         manga: Optional[str] = None,
         volume: Optional[Union[str, list[str]]] = None,
         chapter: Optional[Union[str, list[str]]] = None,
-        translated_language: Optional[list[str]] = None,
+        translated_language: Optional[list[common.LanguageCode]] = None,
+        excluded_language: Optional[list[common.LanguageCode]] = None,
+        excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[chapter.ChapterOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = None,
+        includes: Optional[list[chapter.ChapterIncludes]] = None,
     ) -> list[Chapter]:
         """|coro|
 
@@ -1002,8 +1007,12 @@ class Client:
             The volume UUID or UUIDs to limit the request with.
         chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
             The chapter UUID or UUIDs to limit the request with.
-        translated_language: Optional[List[:class:`str`]]
+        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The list of languages codes to filter the request with.
+        original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The list of languages to specifically target in the request.
+        excluded_original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -1048,6 +1057,8 @@ class Client:
             volume=volume,
             chapter=chapter,
             translated_language=translated_language,
+            original_language=excluded_language,
+            excluded_original_language=excluded_original_language,
             content_rating=content_rating,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,

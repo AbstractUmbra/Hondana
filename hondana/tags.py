@@ -94,7 +94,11 @@ class Tag:
 
     @property
     def name(self) -> str:
-        return self._name.get("en", next(iter(self._name)))
+        name = self._name.get("en", None)
+        if name is None:
+            key = next(iter(self._name))
+            return self._name[key]
+        return name
 
 
 class QueryTags:

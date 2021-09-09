@@ -23,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from functools import wraps
@@ -43,7 +44,7 @@ if TYPE_CHECKING:
     B = ParamSpec("B")
 
 
-__all__ = ("MISSING", "to_json", "php_query_builder", "TAGS")
+__all__ = ("MISSING", "to_json", "to_iso_format", "php_query_builder", "TAGS")
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
@@ -75,6 +76,10 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
 
 def to_json(obj: Any) -> str:
     return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+
+
+def to_iso_format(in_: datetime.datetime) -> str:
+    return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
 def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]) -> str:

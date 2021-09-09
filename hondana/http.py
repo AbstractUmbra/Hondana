@@ -53,7 +53,7 @@ from .errors import (
     RefreshError,
     Unauthorized,
 )
-from .utils import MISSING, TAGS, php_query_builder, to_json
+from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json
 
 
 if TYPE_CHECKING:
@@ -99,10 +99,6 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
         pass
 
     return text
-
-
-def to_iso_format(in_: datetime.datetime) -> str:
-    return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
 class Route:
@@ -826,13 +822,15 @@ class HTTPClient:
         manga: Optional[str],
         volume: Optional[Union[str, list[str]]],
         chapter: Optional[Union[str, list[str]]],
-        translated_language: Optional[list[str]],
+        translated_language: Optional[list[common.LanguageCode]],
+        original_language: Optional[list[common.LanguageCode]] = None,
+        excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[chapter.ChapterOrderQuery],
-        includes: Optional[list[manga.MangaIncludes]],
+        includes: Optional[list[chapter.ChapterIncludes]],
     ) -> Response[chapter.GetChapterFeedResponse]:
         route = Route("GET", "/chapter")
 
@@ -863,6 +861,12 @@ class HTTPClient:
 
         if translated_language:
             query["translatedLanguage"] = translated_language
+
+        if original_language:
+            query["originalLanguage"] = original_language
+
+        if excluded_original_language:
+            query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
             query["contentRating"] = content_rating

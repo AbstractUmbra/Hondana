@@ -41,7 +41,7 @@ __all__ = (
 )
 
 
-ChapterIncludes = Literal["manga", "artist", "author"]
+ChapterIncludes = Literal["manga", "user", "scanlation_group"]
 
 
 class ChapterOrderQuery(TypedDict, total=False):

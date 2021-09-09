@@ -38,6 +38,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
+    from .types.chapter import ChapterIncludes, ChapterOrderQuery
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
 
@@ -135,12 +136,20 @@ class Manga:
     @property
     def title(self) -> str:
         """The manga's title."""
-        return self._title.get("en", next(iter(self._title)))
+        title = self._title.get("en", None)
+        if title is None:
+            key = next(iter(self._title))
+            return self._title[key]
+        return title
 
     @property
     def description(self) -> str:
         """The manga's description/synopsis."""
-        return self._description.get("en", next(iter(self._description)))
+        desc = self._description.get("en", None)
+        if desc is None:
+            key = next(iter(self._description))
+            return self._description[key]
+        return desc
 
     @property
     def tags(self) -> list[Tag]:
@@ -619,3 +628,108 @@ class Manga:
         """
 
         await self._http._remove_manga_from_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
+
+    async def get_chapters(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        ids: Optional[list[str]] = None,
+        title: Optional[str] = None,
+        groups: Optional[list[str]] = None,
+        uploader: Optional[str] = None,
+        volumes: Optional[list[str]] = None,
+        chapters: Optional[list[str]] = None,
+        translated_language: Optional[list[LanguageCode]] = None,
+        original_language: Optional[list[LanguageCode]] = None,
+        excluded_original_language: Optional[list[LanguageCode]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
+        created_at_since: Optional[datetime.datetime] = None,
+        updated_at_since: Optional[datetime.datetime] = None,
+        published_at_since: Optional[datetime.datetime] = None,
+        order: Optional[ChapterOrderQuery] = None,
+        includes: Optional[list[ChapterIncludes]] = None,
+    ) -> list[Chapter]:
+        """|coro|
+
+        This method will return a list of published chapters.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            Defaults to 100. This specifies the amount of chapters to return in one request.
+        offset: :class:`int`
+            Defaults to 0. This specifies the pagination offset.
+        ids: Optional[List[:class:`str`]]
+            The list of chapter UUIDs to filter the request with.
+        title: Optional[:class:`str`]
+            The chapter title query to limit the request with.
+        groups: Optional[List[:class:`str`]]
+            The scanlation group UUID(s) to limit the request with.
+        uploader: Optional[:class:`str`]
+            The uploader UUID to limit the request with.
+        manga: Optional[:class:`str`]
+            The manga UUID to limit the request with.
+        volume: Optional[Union[:class:`str`, List[:class:`str`]]]
+            The volume UUID or UUIDs to limit the request with.
+        chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
+            The chapter UUID or UUIDs to limit the request with.
+        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The list of languages codes to filter the request with.
+        original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The list of languages to specifically target in the request.
+        excluded_original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The list of original languages to exclude from the request.
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+            The content rating to filter the feed by.
+        created_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their creation date.
+        updated_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their updated at date.
+        published_at_since: Optional[:class:`datetime.datetime`]
+            A start point to return chapters from based on their published at date.
+        order: Optional[:class:`~hondana.types.OrderQuery`]
+            A query parameter to choose how the responses are ordered.
+            i.e. ``{"chapters": "desc"}``
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+            The list of options to include increased payloads for per chapter.
+            Defaults to these values.
+
+
+        .. note::
+            If `order` is not specified then the API will return results first based on their creation date,
+            which could lead to unexpected results.
+
+        Raises
+        -------
+        BadRequest
+            The query parameters were malformed
+
+        Returns
+        --------
+        List[:class:`Chapter`]
+            The returned chapters from the endpoint.
+        """
+        data = await self._http._chapter_list(
+            limit=limit,
+            offset=offset,
+            manga=self.id,
+            ids=ids,
+            title=title,
+            groups=groups,
+            uploader=uploader,
+            volume=volumes,
+            chapter=chapters,
+            translated_language=translated_language,
+            original_language=original_language,
+            excluded_original_language=excluded_original_language,
+            content_rating=content_rating,
+            created_at_since=created_at_since,
+            updated_at_since=updated_at_since,
+            published_at_since=published_at_since,
+            order=order,
+            includes=includes,
+        )
+        from .chapter import Chapter  # FIXME: circular?
+
+        return [Chapter(self._http, item["data"]) for item in data["results"]]

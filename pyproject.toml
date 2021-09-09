@@ -59,6 +59,9 @@ lines_after_imports = 2
 
 [tool.pyright]
 ignore = ["docs/conf.py"]
+useLibraryCodeForTypes = true
+typeCheckingMode = "basic"
+pythonVersion = "3.9"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
