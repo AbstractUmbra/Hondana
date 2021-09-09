@@ -26,6 +26,7 @@ from __future__ import annotations
 import datetime
 import json
 import pathlib
+from base64 import b64decode
 from typing import TYPE_CHECKING, Optional, Union, overload
 
 from aiohttp import ClientSession
@@ -141,21 +142,6 @@ class Client:
     ) -> None:
         self._http = HTTPClient(username=username, email=email, password=password, session=session)
 
-    @property
-    def permissions(self) -> Optional[Permissions]:
-        if not self._http._authenticated:
-            return None
-
-        token = self._http._token
-        if token is None:
-            return None
-
-        # The JWT stores payload in the second block
-        payload = token.split(".")[1]
-        parsed_payload: TokenPayload = json.loads(payload)
-
-        return Permissions(parsed_payload)
-
     @overload
     def login(self, *, username: str = ..., email: None = ..., password: str) -> None:
         ...
@@ -183,6 +169,24 @@ class Client:
         self._http.email = email
         self._http.password = password
         self._http._authenticated = True
+
+    async def _static_login(self) -> None:
+        await self._http._try_token()
+
+    @property
+    def permissions(self) -> Optional[Permissions]:
+        if not self._http._authenticated:
+            return None
+
+        token = self._http._token
+        if token is None:
+            return None
+
+        # The JWT stores payload in the second block
+        payload = token.split(".")[1]
+        parsed_payload: TokenPayload = json.loads(b64decode(payload))
+
+        return Permissions(parsed_payload)
 
     @require_authentication
     async def logout(self) -> None:
