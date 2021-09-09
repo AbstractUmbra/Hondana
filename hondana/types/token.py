@@ -22,41 +22,44 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-__title__ = "Hondana"
-__author__ = "AbstractUmbra"
-__license__ = "MIT"
-__copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.2.2"
+from __future__ import annotations
 
-import logging
-from typing import Literal, NamedTuple
-
-from . import utils as utils
-from .artist import Artist as Artist
-from .author import Author as Author
-from .chapter import Chapter as Chapter
-from .client import Client as Client
-from .cover import Cover as Cover
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import Manga as Manga
-from .report import *
-from .scanlator_group import ScanlatorGroup as ScanlatorGroup
-from .tags import *
-from .token import *
-from .user import User as User
-from .utils import TAGS as MANGA_TAGS
+from typing import Literal, TypedDict
 
 
-class VersionInfo(NamedTuple):
-    major: int
-    minor: int
-    micro: int
-    releaselevel: Literal["alpha", "beta", "candidate", "final"]
-    serial: int
+__all__ = ("TokenPayload",)
 
 
-version_info: VersionInfo = VersionInfo(major=0, minor=2, micro=2, releaselevel="final", serial=0)
+class TokenPayload(TypedDict):
+    """
+    type: Literal[``session``]
 
-logging.getLogger(__name__).addHandler(logging.NullHandler())
+    iss: Literal[``mangadex.org``]
+
+    aud: Literal[``mangadex.org``]
+
+    iat: :class:`int`
+
+    nbf: :class:`int`
+
+    exp: :class:`int`
+
+    uid: :class:`str`
+
+    rol: List[:class:`str`]
+
+    prm: List[:class:`str`]
+
+    sid: :class:`str`
+    """
+
+    typ: Literal["session"]
+    iss: Literal["mangadex.org"]
+    aud: Literal["mangadex.org"]
+    iat: int
+    nbf: int
+    exp: int
+    uid: str
+    rol: list[str]
+    prm: list[str]
+    sid: str

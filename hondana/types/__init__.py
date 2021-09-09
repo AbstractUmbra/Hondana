@@ -38,4 +38,5 @@ from .relationship import *
 from .report import *
 from .scanlator_group import *
 from .tags import *
+from .token import *
 from .user import *

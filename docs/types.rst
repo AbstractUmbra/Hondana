@@ -207,6 +207,9 @@ Tags
 
 .. autoclass:: TagAttributesResponse
 
+Token
+-----
+.. autoclass:: TokenPayload
 
 User
 ----

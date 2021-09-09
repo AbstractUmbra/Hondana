@@ -28,6 +28,7 @@ import datetime
 import json
 import logging
 import sys
+from base64 import b64decode
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -74,6 +75,7 @@ if TYPE_CHECKING:
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
+    from .types.token import TokenPayload
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -247,9 +249,18 @@ class HTTPClient:
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
-        self.__last_refresh = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(seconds=15)
+        self.__last_refresh = self._get_expiry(token)
         self.__refresh_token = refresh_token
         return token
+
+    def _get_expiry(self, token: str) -> datetime.datetime:
+        payload = token.split(".")[1]
+        payload = b64decode(payload)
+        data: TokenPayload = json.loads(payload)
+        timestamp = data["exp"]
+
+        expires = datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
+        return expires
 
     async def _refresh_token(self) -> str:
         """|coro|
@@ -320,7 +331,7 @@ class HTTPClient:
         if self.__last_refresh is not None:
             now = datetime.datetime.now(datetime.timezone.utc)
             # To avoid a race condition we're gonna check this for 14 minutes, since it can re-auth anytime, but post 15m it will error
-            if (now - datetime.timedelta(minutes=14, seconds=30)) > self.__last_refresh:
+            if now > self.__last_refresh:
                 refreshed = await self._refresh_token()
                 if refreshed:
                     return self._token

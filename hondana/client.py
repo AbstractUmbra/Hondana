@@ -41,6 +41,7 @@ from .legacy import LegacyItem
 from .manga import Manga
 from .report import Report
 from .scanlator_group import ScanlatorGroup
+from .token import Permissions
 from .user import User
 from .utils import MISSING, require_authentication
 
@@ -61,6 +62,7 @@ if TYPE_CHECKING:
         user,
     )
     from .types.query import OrderQuery
+    from .types.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
@@ -138,6 +140,21 @@ class Client:
         session: Optional[ClientSession] = None,
     ) -> None:
         self._http = HTTPClient(username=username, email=email, password=password, session=session)
+
+    @property
+    def permissions(self) -> Optional[Permissions]:
+        if not self._http._authenticated:
+            return None
+
+        token = self._http._token
+        if token is None:
+            return None
+
+        # The JWT stores payload in the second block
+        payload = token.split(".")[1]
+        parsed_payload: TokenPayload = json.loads(payload)
+
+        return Permissions(parsed_payload)
 
     @overload
     def login(self, *, username: str = ..., email: None = ..., password: str) -> None:
