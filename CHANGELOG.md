@@ -1,6 +1,7 @@
 # Hondana Changelog
 
-## Updates
+## Added
+- `includeFutureUpdates` key has been added to chapter feed endpoints.
 
 ## Changes
 
