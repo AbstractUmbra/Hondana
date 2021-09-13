@@ -56,5 +56,17 @@ jobs:
     #   make bootstrap
     #   make release
 
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+
+    - name: Set up Poetry
+      uses: Gr1N/setup-poetry@v4
+
+    - name: Install Python deps
+      run: |
+          poetry install --no-dev
+
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1

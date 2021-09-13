@@ -11,7 +11,7 @@ on:
       - main
 
 jobs:
-  job:
+  build:
     name: Build
     runs-on: ubuntu-latest
 
@@ -38,3 +38,53 @@ jobs:
       - name: Check it imports
         run: |
           poetry run python -c 'import hondana'
+
+      - name: Build wheels
+        run: |
+          poetry build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifacts@v2
+        with:
+          name: distributions
+          path: dist/*
+
+  # Credits to most of this step go to Gorialis (Devon R [https://github.com/Gorialis])
+  # as I found them in their Jishaku builds (https://github.com/Gorialis/jishaku/blob/d3f50749b5a977b544e5fd14894585f656247486/.github/workflows/deploy.yml#L82-L119)
+  create_release:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      - name: Download Artifacts
+        uses: actions/download-artifcats@v2
+        with:
+          name: distributions
+          path: dist
+
+      - name: Create GitHub release
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -x
+          assets=()
+          for asset in ./dist/*.{whl,egg,tar.gz}; do
+            assets+=("-a", "$asset")
+          done
+          tag_name="${GITHUB_REF##*/}"
+          hub release create "${assets[@]}" -F "CHANGELOG.md" "$tag_name"
+
+      - name: Publish to PyPi
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry publish --build
