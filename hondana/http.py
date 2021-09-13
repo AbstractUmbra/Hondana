@@ -705,6 +705,7 @@ class HTTPClient:
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -731,6 +732,10 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if include_future_updates:
+            resolved = str(include_future_updates).lower()
+            query["includeFutureUpdates"] = resolved
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)
@@ -834,9 +839,10 @@ class HTTPClient:
         volume: Optional[Union[str, list[str]]],
         chapter: Optional[Union[str, list[str]]],
         translated_language: Optional[list[common.LanguageCode]],
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
+        original_language: Optional[list[common.LanguageCode]],
+        excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -881,6 +887,10 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if include_future_updates:
+            resolved = str(include_future_updates).lower()
+            query["includeFutureUpdates"] = resolved
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)
@@ -1275,6 +1285,7 @@ class HTTPClient:
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -1297,6 +1308,10 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if include_future_updates:
+            resolved = str(include_future_updates).lower()
+            query["includeFutureUpdates"] = resolved
 
         if created_at_since:
             query["createdAtSince"] = to_iso_format(created_at_since)

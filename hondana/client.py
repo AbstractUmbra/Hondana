@@ -27,7 +27,7 @@ import datetime
 import json
 import pathlib
 from base64 import b64decode
-from typing import TYPE_CHECKING, Optional, Union, overload
+from typing import TYPE_CHECKING, Literal, Optional, Union, overload
 
 from aiohttp import ClientSession
 
@@ -246,6 +246,7 @@ class Client:
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -271,6 +272,8 @@ class Client:
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future release chapters from the feeds, defaults to ``"1"`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -311,6 +314,7 @@ class Client:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
@@ -743,6 +747,7 @@ class Client:
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -769,6 +774,8 @@ class Client:
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future chapters from this feed. Defaults to ``"1"`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -800,6 +807,7 @@ class Client:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
@@ -994,6 +1002,7 @@ class Client:
         excluded_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -1032,6 +1041,8 @@ class Client:
             The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -1077,6 +1088,7 @@ class Client:
             original_language=excluded_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
@@ -2073,6 +2085,7 @@ class Client:
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -2094,8 +2107,12 @@ class Client:
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
+        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+            The content rating to filter this query with.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -2134,6 +2151,7 @@ class Client:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,

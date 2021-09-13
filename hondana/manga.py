@@ -476,6 +476,7 @@ class Manga:
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -494,8 +495,14 @@ class Manga:
             Defaults to 0. The pagination offset for the request.
         translated_languages: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
+        original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to filter the original language of the returned chapters with.
+        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+            A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -527,6 +534,7 @@ class Manga:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
@@ -678,6 +686,7 @@ class Manga:
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
+        include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -716,6 +725,8 @@ class Manga:
             The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        include_future_updates: Optional[:class:`bool`]
+            Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -758,6 +769,7 @@ class Manga:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
