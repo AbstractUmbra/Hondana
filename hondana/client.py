@@ -1925,7 +1925,7 @@ class Client:
         """
         data = await self._http._get_custom_list(custom_list_id, includes=includes)
 
-        return CustomList(self._http, data)
+        return CustomList(self._http, data["data"])
 
     @require_authentication
     async def update_custom_list(

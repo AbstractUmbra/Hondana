@@ -37,7 +37,8 @@ __all__ = (
     "CustomListIncludes",
     "CustomListAttributesResponse",
     "CustomListResponse",
-    "GetCustomListListResponse",
+    "GetSingleCustomListResponse",
+    "GetMultiCustomListResponse",
 )
 
 CustomListVisibility = Literal["public", "private"]
@@ -50,14 +51,11 @@ class CustomListAttributesResponse(TypedDict):
 
     visibility: :class:`~hondana.types.CustomListVisibility`
 
-    owner: :class:`~hondana.types.UserResponse`
-
     version: :class:`int`
     """
 
     name: str
     visibility: CustomListVisibility
-    owner: UserResponse
     version: int
 
 
@@ -76,7 +74,21 @@ class CustomListResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetCustomListListResponse(TypedDict):
+class GetSingleCustomListResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: :class:`~hondana.types.CustomListResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: CustomListResponse
+
+
+class GetMultiCustomListResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 

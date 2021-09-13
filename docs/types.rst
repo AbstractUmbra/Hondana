@@ -94,7 +94,9 @@ CustomList
     :members:
     :undoc-members:
 
-.. autoclass:: GetCustomListListResponse
+.. autoclass:: GetSingleCustomListResponse
+
+.. autoclass:: GetMultiCustomListResponse
 
 .. autoclass:: CustomListResponse
 

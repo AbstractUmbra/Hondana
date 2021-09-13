@@ -1196,7 +1196,7 @@ class HTTPClient:
 
     def _get_custom_list(
         self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes]
-    ) -> Response[custom_list.CustomListResponse]:
+    ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         query = {}
@@ -1250,7 +1250,7 @@ class HTTPClient:
         route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetCustomListListResponse]:
+    def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
         query = {"limit": limit, "offset": offset}
         resolved_query = php_query_builder(query)
@@ -1258,7 +1258,7 @@ class HTTPClient:
 
     def _get_users_custom_lists(
         self, user_id: str, /, *, limit: int, offset: int
-    ) -> Response[custom_list.GetCustomListListResponse]:
+    ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
         query = {"limit": limit, "offset": offset}
         resolved_query = php_query_builder(query)

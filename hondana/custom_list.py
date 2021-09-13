@@ -61,7 +61,6 @@ class CustomList:
         "id",
         "name",
         "visibility",
-        "_owner",
         "version",
     )
 
@@ -72,7 +71,6 @@ class CustomList:
         self.id: str = payload["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = self._attributes["visibility"]
-        self._owner = self._attributes["owner"]
         self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
