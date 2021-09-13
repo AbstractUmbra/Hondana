@@ -34,7 +34,6 @@ if TYPE_CHECKING:
 __all__ = (
     "CoverIncludes",
     "CoverOrderQuery",
-    "GetCoverResponse",
     "CoverResponse",
     "CoverAttributesResponse",
     "GetCoverListResponse",
@@ -95,24 +94,13 @@ class CoverResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetCoverResponse(TypedDict):
-    """
-    result: :class:`str`
-
-    data: :class:`CoverResponse`
-
-    relationships: List[:class:`RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
-    """
-
-    result: str
-    data: CoverResponse
-
-
 class GetCoverListResponse(TypedDict):
     """
-    results: List[:class:`GetCoverResponse`]
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`GetCoverResponse`]
 
     limit: :class:`int`
 
@@ -121,7 +109,9 @@ class GetCoverListResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetCoverResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[CoverResponse]
     limit: int
     offset: int
     total: int

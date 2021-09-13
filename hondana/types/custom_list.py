@@ -29,7 +29,7 @@ from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
-    from .user import GetUserResponse
+    from .user import UserResponse
 
 
 __all__ = (
@@ -37,12 +37,11 @@ __all__ = (
     "CustomListIncludes",
     "CustomListAttributesResponse",
     "CustomListResponse",
-    "GetCustomListResponse",
     "GetCustomListListResponse",
 )
 
 CustomListVisibility = Literal["public", "private"]
-CustomListIncludes = Literal["manga", "user"]
+CustomListIncludes = Literal["manga", "user", "owner"]
 
 
 class CustomListAttributesResponse(TypedDict):
@@ -51,14 +50,14 @@ class CustomListAttributesResponse(TypedDict):
 
     visibility: :class:`~hondana.types.CustomListVisibility`
 
-    owner: :class:`~hondana.types.GetUserResponse`
+    owner: :class:`~hondana.types.UserResponse`
 
     version: :class:`int`
     """
 
     name: str
     visibility: CustomListVisibility
-    owner: GetUserResponse
+    owner: UserResponse
     version: int
 
 
@@ -77,31 +76,15 @@ class CustomListResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetCustomListResponse(TypedDict):
+class GetCustomListListResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`~hondana.types.CustomListResponse`
+    response: Literal[``"collection"``]
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    data: List[:class:`~hondana.types.CustomListResponse`]
     """
 
     result: Literal["ok", "error"]
-    data: CustomListResponse
-
-
-class GetCustomListListResponse(TypedDict):
-    """
-    results: List[:class:`~hondana.types.CustomListResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
-    """
-
-    results: list[CustomListResponse]
-    limit: int
-    offset: int
-    total: int
+    response: Literal["collection"]
+    data: list[CustomListResponse]

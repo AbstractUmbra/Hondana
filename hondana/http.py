@@ -546,7 +546,7 @@ class HTTPClient:
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
         version: int,
-    ) -> Response[manga.ViewMangaResponse]:
+    ) -> Response[manga.MangaResponse]:
 
         query = {}
         query["title"] = title
@@ -609,7 +609,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _view_manga(self, manga_id: str, /, *, includes: Optional[list[str]]) -> Response[manga.ViewMangaResponse]:
+    def _view_manga(self, manga_id: str, /, *, includes: Optional[list[str]]) -> Response[manga.MangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         includes = includes or ["artist", "cover_url", "author"]
@@ -639,7 +639,7 @@ class HTTPClient:
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
         version: int,
-    ) -> Response[manga.ViewMangaResponse]:
+    ) -> Response[manga.MangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
 
         query = {}
@@ -759,7 +759,7 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
 
-    def _get_random_manga(self, *, includes: Optional[list[manga.MangaIncludes]]) -> Response[manga.ViewMangaResponse]:
+    def _get_random_manga(self, *, includes: Optional[list[manga.MangaIncludes]]) -> Response[manga.MangaResponse]:
         route = Route("GET", "/manga/random")
 
         if includes:
@@ -903,7 +903,7 @@ class HTTPClient:
 
     def _get_chapter(
         self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]]
-    ) -> Response[chapter.GetChapterResponse]:
+    ) -> Response[chapter.ChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         if includes:
@@ -921,7 +921,7 @@ class HTTPClient:
         translated_language: Optional[str],
         groups: Optional[list[str]],
         version: int,
-    ) -> Response[chapter.GetChapterResponse]:
+    ) -> Response[chapter.ChapterResponse]:
         route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         query = {}
@@ -992,7 +992,7 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _get_cover(self, cover_id: str, /, includes: list[str]) -> Response[cover.GetCoverResponse]:
+    def _get_cover(self, cover_id: str, /, includes: list[str]) -> Response[cover.CoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
@@ -1002,7 +1002,7 @@ class HTTPClient:
 
     def _edit_cover(
         self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str], version: int
-    ) -> Response[cover.GetCoverResponse]:
+    ) -> Response[cover.CoverResponse]:
         route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {}
@@ -1076,7 +1076,7 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _get_user(self, user_id: str, /) -> Response[user.GetUserResponse]:
+    def _get_user(self, user_id: str, /) -> Response[user.UserResponse]:
         route = Route("GET", "/user/{user_id}", user_id=user_id)
         return self.request(route)
 
@@ -1100,7 +1100,7 @@ class HTTPClient:
         query = {"email": email}
         return self.request(route, json=query)
 
-    def _get_my_details(self) -> Response[user.GetUserResponse]:
+    def _get_my_details(self) -> Response[user.UserResponse]:
         route = Route("GET", "/user/me")
         return self.request(route)
 
@@ -1128,7 +1128,7 @@ class HTTPClient:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _create_account(self, *, username: str, password: str, email: str) -> Response[user.GetUserResponse]:
+    def _create_account(self, *, username: str, password: str, email: str) -> Response[user.UserResponse]:
         route = Route("POST", "/account/create")
         query = {"username": username, "password": password, "email": email}
         return self.request(route, json=query)
@@ -1160,7 +1160,7 @@ class HTTPClient:
 
     def _legacy_id_mapping(
         self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]
-    ) -> Response[list[legacy.GetLegacyMappingResponse]]:
+    ) -> Response[legacy.GetLegacyMappingResponse]:
         route = Route("POST", "/legacy/mapping")
         query = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
@@ -1177,7 +1177,7 @@ class HTTPClient:
         visibility: Optional[custom_list.CustomListVisibility],
         manga: Optional[list[str]],
         version: Optional[int],
-    ) -> Response[custom_list.GetCustomListResponse]:
+    ) -> Response[custom_list.CustomListResponse]:
         route = Route("POST", "/list")
 
         query = {}
@@ -1196,7 +1196,7 @@ class HTTPClient:
 
     def _get_custom_list(
         self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes]
-    ) -> Response[custom_list.GetCustomListResponse]:
+    ) -> Response[custom_list.CustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         query = {}
@@ -1217,7 +1217,7 @@ class HTTPClient:
         visibility: Optional[custom_list.CustomListVisibility],
         manga: Optional[list[str]],
         version: int,
-    ) -> Response[custom_list.GetCustomListResponse]:
+    ) -> Response[custom_list.CustomListResponse]:
         route = Route("POST", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         query = {}
@@ -1316,7 +1316,7 @@ class HTTPClient:
 
     def _create_scanlation_group(
         self, *, name: str, leader: Optional[str], members: Optional[list[str]], version: Optional[int]
-    ) -> Response[scanlator_group.GetScanlationGroupResponse]:
+    ) -> Response[scanlator_group.ScanlationGroupResponse]:
         route = Route("POST", "/group")
 
         query = {}
@@ -1333,7 +1333,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _view_scanlation_group(self, scanlation_group_id: str, /) -> Response[scanlator_group.GetScanlationGroupResponse]:
+    def _view_scanlation_group(self, scanlation_group_id: str, /) -> Response[scanlator_group.ScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
@@ -1353,7 +1353,7 @@ class HTTPClient:
         description: Optional[str],
         locked: Optional[bool],
         version: int,
-    ) -> Response[scanlator_group.GetScanlationGroupResponse]:
+    ) -> Response[scanlator_group.ScanlationGroupResponse]:
         route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
 
         query = {}
@@ -1435,7 +1435,7 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.GetAuthorResponse]:
+    def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.AuthorResponse]:
         route = Route("POST", "/author")
         query = {}
 
@@ -1447,7 +1447,7 @@ class HTTPClient:
 
     def _get_author(
         self, author_id: str, /, *, includes: Optional[list[author.AuthorIncludes]]
-    ) -> Response[author.GetAuthorResponse]:
+    ) -> Response[author.AuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         query = {}
@@ -1461,7 +1461,7 @@ class HTTPClient:
 
     def _get_artist(
         self, author_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
-    ) -> Response[artist.GetArtistResponse]:
+    ) -> Response[artist.ArtistResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         query = {}
@@ -1473,7 +1473,7 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _update_author(self, author_id, /, *, name: Optional[str], version: int) -> Response[author.GetAuthorResponse]:
+    def _update_author(self, author_id, /, *, name: Optional[str], version: int) -> Response[author.AuthorResponse]:
         route = Route("PUT", "/author/{author_id}", author_id=author_id)
 
         query = {}

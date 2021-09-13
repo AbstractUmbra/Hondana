@@ -31,7 +31,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.cover import GetCoverResponse
+    from .types.cover import CoverResponse
 
 
 __all__ = ("Cover",)
@@ -68,19 +68,18 @@ class Cover:
         "_updated_at",
     )
 
-    def __init__(self, http: HTTPClient, payload: GetCoverResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: CoverResponse) -> None:
         self._http = http
-        data = payload["data"]
-        self._data = data
-        self._attributes = data["attributes"]
-        self.id: str = data["id"]
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self.id: str = self._data["id"]
         self.volume: Optional[str] = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
         self.description: str = self._attributes["description"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._relationships = data["relationships"]
+        self._relationships = self._data["relationships"]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id} filename={self.file_name}>"

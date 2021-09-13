@@ -194,7 +194,7 @@ class Manga:
             return Author(self._http, author)
 
         data = await self._http._get_author(author["id"], includes=[])
-        return Author(self._http, data["data"])
+        return Author(self._http, data)
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
@@ -385,7 +385,7 @@ class Manga:
             version=version,
         )
 
-        return self.__class__(self._http, data["data"])
+        return self.__class__(self._http, data)
 
     @require_authentication
     async def delete(self) -> None:
@@ -534,7 +534,7 @@ class Manga:
             includes=includes,
         )
 
-        return [Chapter(self._http, item["data"]) for item in data["results"]]
+        return [Chapter(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def update_read_markers(self) -> manga.MangaReadMarkersResponse:
@@ -766,4 +766,4 @@ class Manga:
         )
         from .chapter import Chapter  # FIXME: circular?
 
-        return [Chapter(self._http, item["data"]) for item in data["results"]]
+        return [Chapter(self._http, item) for item in data["data"]]

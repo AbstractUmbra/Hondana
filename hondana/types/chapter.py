@@ -35,7 +35,6 @@ __all__ = (
     "ChapterIncludes",
     "ChapterOrderQuery",
     "GetChapterFeedResponse",
-    "GetChapterResponse",
     "ChapterResponse",
     "ChapterAttributesResponse",
 )
@@ -103,7 +102,7 @@ class ChapterResponse(TypedDict):
 
     type: Literal[``"chapter"``]
 
-    attributes: :class:`ChapterAttributesResponse`
+    attributes: :class:`~hondana.types.ChapterAttributesResponse`
 
     relationships: List[:class:`RelationshipResponse`]
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
@@ -116,20 +115,13 @@ class ChapterResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetChapterResponse(TypedDict):
+class GetChapterFeedResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`ChapterResponse`
-    """
+    response: Literal[``"collection"``]
 
-    result: Literal["ok", "error"]
-    data: ChapterResponse
-
-
-class GetChapterFeedResponse(TypedDict):
-    """
-    results: List[:class:`GetChapterResponse`]
+    data: List[:class:`~hondana.types.ChapterResponse`]
 
     limit: :class:`int`
 
@@ -138,7 +130,9 @@ class GetChapterFeedResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetChapterResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[ChapterResponse]
     limit: int
     offset: int
     total: int

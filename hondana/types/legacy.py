@@ -73,12 +73,22 @@ class LegacyMappingResponse(TypedDict):
 
 class GetLegacyMappingResponse(TypedDict):
     """
-    result: Literal[``"ok"``]
+    result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`~hondana.types.LegacyMappingResponse`
+    response: Literal[``"collection"``]
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    data: List[:class:`~hondana.types.LegacyMappingResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
-    result: Literal["ok"]
-    data: LegacyMappingResponse
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[LegacyMappingResponse]
+    limit: int
+    offset: int
+    total: int

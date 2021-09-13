@@ -37,7 +37,6 @@ __all__ = (
     "AuthorOrderQuery",
     "AuthorAttributesResponse",
     "AuthorResponse",
-    "GetAuthorResponse",
     "GetAuthorListResponse",
 )
 
@@ -82,7 +81,7 @@ class AuthorResponse(TypedDict):
 
     type: Literal[``"author"``]
 
-    attributes: :class:`AuthorAttributesResponse`
+    attributes: :class:`~hondana.types.AuthorAttributesResponse`
 
     relationships: List[:class:`RelationshipResponse`]
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
@@ -95,20 +94,13 @@ class AuthorResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetAuthorResponse(TypedDict):
-    """
-    result: Literal[``"ok"``, ``"error"``]
-
-    data: :class:`AuthorResponse`
-    """
-
-    result: Literal["ok", "error"]
-    data: AuthorResponse
-
-
 class GetAuthorListResponse(TypedDict):
     """
-    results: List[:class:`GetAuthorResponse`]
+    result: Literal[``ok``, ``error``]
+
+    response: Literal[``collection``]
+
+    data: List[:class:`~hondana.types.AuthorResponse`]
 
     limit: :class:`int`
 
@@ -117,7 +109,9 @@ class GetAuthorListResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetAuthorResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[AuthorResponse]
     limit: int
     offset: int
     total: int

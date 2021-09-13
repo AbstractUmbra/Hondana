@@ -70,7 +70,11 @@ class GetReportReasonResponse(TypedDict):
 
 class GetReportReasonListResponse(TypedDict):
     """
-    results: List[:class:`~hondana.types.GetReportReasonResponse`]
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`~hondana.types.GetReportReasonResponse`]
 
     limit: :class:`int`
 
@@ -79,7 +83,9 @@ class GetReportReasonListResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetReportReasonResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[GetReportReasonResponse]
     limit: int
     offset: int
     total: int

@@ -41,7 +41,6 @@ __all__ = (
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaResponse",
-    "ViewMangaResponse",
     "MangaSearchResponse",
     "ChaptersResponse",
     "VolumesAndChaptersResponse",
@@ -189,20 +188,13 @@ class MangaResponse(_OptionalMangaResponse):
     attributes: MangaAttributesResponse
 
 
-class ViewMangaResponse(TypedDict):
+class MangaSearchResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`MangaResponse`
-    """
+    response: Literal[``"collection"``]
 
-    result: Literal["ok", "error"]
-    data: MangaResponse
-
-
-class MangaSearchResponse(TypedDict):
-    """
-    results: List[:class:`ViewMangaResponse`]
+    data: List[:class:`MangaResponse`]
 
     limit: :class:`int`
 
@@ -211,7 +203,9 @@ class MangaSearchResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[ViewMangaResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[MangaResponse]
     limit: int
     offset: int
     total: int

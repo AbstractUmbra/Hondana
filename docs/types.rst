@@ -49,8 +49,6 @@ Author
 
 .. autoclass:: AuthorOrderQuery
 
-.. autoclass:: GetAuthorResponse
-
 .. autoclass:: AuthorResponse
 
 .. autoclass:: AuthorAttributesResponse
@@ -68,8 +66,6 @@ Chapter
 
 .. autoclass:: GetChapterFeedResponse
 
-.. autoclass:: GetChapterResponse
-
 .. autoclass:: ChapterResponse
 
 .. autoclass:: ChapterAttributesResponse
@@ -82,8 +78,6 @@ Cover
     :undoc-members:
 
 .. autoclass:: CoverOrderQuery
-
-.. autoclass:: GetCoverResponse
 
 .. autoclass:: CoverResponse
 
@@ -101,8 +95,6 @@ CustomList
     :undoc-members:
 
 .. autoclass:: GetCustomListListResponse
-
-.. autoclass:: GetCustomListResponse
 
 .. autoclass:: CustomListResponse
 
@@ -139,8 +131,6 @@ Manga
 .. autoclass:: MangaOrderQuery
 
 .. autoclass:: MangaLinks
-
-.. autoclass:: ViewMangaResponse
 
 .. autoclass:: MangaResponse
 
@@ -192,8 +182,6 @@ Scanlator Group
 
 .. autoclass:: GetScanlationGroupListResponse
 
-.. autoclass:: GetScanlationGroupResponse
-
 .. autoclass:: ScanlationGroupResponse
 
 .. autoclass:: ScanlationGroupAttributesResponse
@@ -216,8 +204,6 @@ User
 .. autoclass:: UserOrderQuery
 
 .. autoclass:: GetUserListResponse
-
-.. autoclass:: GetUserResponse
 
 .. autoclass:: UserResponse
 

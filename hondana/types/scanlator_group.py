@@ -29,27 +29,21 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
-    from .user import GetUserResponse
 
 
 __all__ = (
     "ScanlatorGroupIncludes",
     "ScanlationGroupAttributesResponse",
     "ScanlationGroupResponse",
-    "GetScanlationGroupResponse",
     "GetScanlationGroupListResponse",
 )
 
-ScanlatorGroupIncludes = Literal["user"]
+ScanlatorGroupIncludes = Literal["leader", "member"]
 
 
 class ScanlationGroupAttributesResponse(TypedDict):
     """
     name: :class:`str`
-
-    leader: Optional[:class:`~hondana.types.GetUserResponse`]
-
-    members: Optional[List[:class:`~hondana.types.GetUserResponse`]]
 
     website: Optional[:class:`str`]
 
@@ -75,8 +69,6 @@ class ScanlationGroupAttributesResponse(TypedDict):
     """
 
     name: str
-    leader: Optional[GetUserResponse]  # thanks api
-    members: Optional[list[GetUserResponse]]  # thanks api
     website: Optional[str]
     ircServer: Optional[str]
     ircChannel: Optional[str]
@@ -107,20 +99,13 @@ class ScanlationGroupResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetScanlationGroupResponse(TypedDict):
+class GetScanlationGroupListResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`~hondana.types.ScanlationGroupResponse`
-    """
+    response: Literal[``"collection"``]
 
-    result: Literal["ok", "error"]
-    data: ScanlationGroupResponse
-
-
-class GetScanlationGroupListResponse(TypedDict):
-    """
-    results: List[:class:`GetScanlationGroupResponse`]
+    data: List[:class:`ScanlationGroupResponse`]
 
     limit: :class:`int`
 
@@ -129,7 +114,9 @@ class GetScanlationGroupListResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetScanlationGroupResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[ScanlationGroupResponse]
     limit: int
     offset: int
     total: int

@@ -31,7 +31,12 @@ if TYPE_CHECKING:
     from .relationship import RelationshipResponse
 
 
-__all__ = ("UserOrderQuery", "GetUserAttributesResponse", "UserResponse", "GetUserResponse", "GetUserListResponse")
+__all__ = (
+    "UserOrderQuery",
+    "GetUserAttributesResponse",
+    "UserResponse",
+    "GetUserListResponse",
+)
 
 
 class UserOrderQuery(TypedDict):
@@ -73,20 +78,13 @@ class UserResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetUserResponse(TypedDict):
-    """
-    result: Literal[``"ok"``]
-
-    data: :class:`~hondana.types.UserResponse`
-    """
-
-    result: Literal["ok"]
-    data: UserResponse
-
-
 class GetUserListResponse(TypedDict):
     """
-    results: List[:class:`~hondana.types.GetUserResponse`]
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`~hondana.types.UserResponse`]
 
     limit: :class:`int`
 
@@ -95,7 +93,9 @@ class GetUserListResponse(TypedDict):
     total: :class:`int`
     """
 
-    results: list[GetUserResponse]
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[UserResponse]
     limit: int
     offset: int
     total: int

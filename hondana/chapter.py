@@ -199,7 +199,7 @@ class Chapter:
 
         manga = await self._http._view_manga(manga_id, includes=["author", "artist", "cover_art"])
 
-        return Manga(self._http, manga["data"])
+        return Manga(self._http, manga)
 
     @require_authentication
     async def update(
@@ -260,7 +260,7 @@ class Chapter:
             version=version,
         )
 
-        return self.__class__(self._http, data["data"])
+        return self.__class__(self._http, data)
 
     @require_authentication
     async def delete(self) -> None:

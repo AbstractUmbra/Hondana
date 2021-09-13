@@ -318,7 +318,7 @@ class Client:
             includes=None,
         )
 
-        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
+        return [Chapter(self._http, payload) for payload in data["data"]]
 
     async def manga_list(
         self,
@@ -423,11 +423,7 @@ class Client:
             includes=includes,
         )
 
-        manga: list[Manga] = []
-        for item in data["results"]:
-            manga.append(Manga(self._http, item["data"]))
-
-        return manga
+        return [Manga(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def create_manga(
@@ -530,7 +526,7 @@ class Client:
             version=version,
         )
 
-        return Manga(self._http, data["data"])
+        return Manga(self._http, data)
 
     async def get_manga_volumes_and_chapters(
         self, *, manga_id: str, translated_language: Optional[list[str]] = None
@@ -585,7 +581,7 @@ class Client:
         """
         data = await self._http._view_manga(manga_id, includes=includes)
 
-        return Manga(self._http, data["data"])
+        return Manga(self._http, data)
 
     @require_authentication
     async def update_manga(
@@ -694,7 +690,7 @@ class Client:
             version=version,
         )
 
-        return Manga(self._http, data["data"])
+        return Manga(self._http, data)
 
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
@@ -811,7 +807,7 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, item["data"]) for item in data["results"]]
+        return [Chapter(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def manga_read_markers(
@@ -881,7 +877,7 @@ class Client:
         """
         data = await self._http._get_random_manga(includes=includes)
 
-        return Manga(self._http, data["data"])
+        return Manga(self._http, data)
 
     @require_authentication
     async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
@@ -1088,12 +1084,12 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
+        return [Chapter(self._http, item) for item in data["data"]]
 
     async def get_chapter(self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]] = None) -> Chapter:
         data = await self._http._get_chapter(chapter_id, includes=includes)
 
-        return Chapter(self._http, data["data"])
+        return Chapter(self._http, data)
 
     @require_authentication
     async def update_chapter(
@@ -1158,7 +1154,7 @@ class Client:
             version=version,
         )
 
-        return Chapter(self._http, data["data"])
+        return Chapter(self._http, data)
 
     @require_authentication
     async def delete_chapter(self, chapter_id: str, /) -> None:
@@ -1259,7 +1255,7 @@ class Client:
             limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
         )
 
-        return [Cover(self._http, payload) for payload in data["results"]]
+        return [Cover(self._http, item) for item in data["data"]]
 
     async def get_cover(self, cover_id: str, includes: list[str] = ["manga"]) -> Cover:
         """|coro|
@@ -1396,7 +1392,7 @@ class Client:
 
         data = await self._http._scanlation_group_list(limit=limit, offset=offset, ids=ids, name=name, includes=includes)
 
-        return [ScanlatorGroup(self._http, payload["data"]) for payload in data["results"]]
+        return [ScanlatorGroup(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def user_list(
@@ -1442,7 +1438,7 @@ class Client:
 
         data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
 
-        return [User(self._http, payload["data"]) for payload in data["results"]]
+        return [User(self._http, item) for item in data["data"]]
 
     async def get_user(self, user_id: str, /) -> User:
         """|coro|
@@ -1461,7 +1457,7 @@ class Client:
         """
         data = await self._http._get_user(user_id)
 
-        return User(self._http, data["data"])
+        return User(self._http, data)
 
     @require_authentication
     async def delete_user(self, user_id: str, /) -> None:
@@ -1550,7 +1546,7 @@ class Client:
         """
         data = await self._http._get_my_details()
 
-        return User(self._http, data["data"])
+        return User(self._http, data)
 
     @require_authentication
     async def get_my_followed_groups(self, limit: int = 10, offset: int = 0) -> list[ScanlatorGroup]:
@@ -1581,7 +1577,7 @@ class Client:
 
         data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
 
-        return [ScanlatorGroup(self._http, payload["data"]) for payload in data["results"]]
+        return [ScanlatorGroup(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def check_if_following_group(self, group_id: str, /) -> bool:
@@ -1636,7 +1632,7 @@ class Client:
 
         data = await self._http._get_my_followed_users(limit=limit, offset=offset)
 
-        return [User(self._http, payload["data"]) for payload in data["results"]]
+        return [User(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def check_if_following_user(self, user_id: str, /) -> bool:
@@ -1725,7 +1721,7 @@ class Client:
             The created user.
         """
         data = await self._http._create_account(username=username, password=password, email=email)
-        return User(self._http, data["data"])
+        return User(self._http, data)
 
     async def activate_account(self, activation_code: str, /) -> None:
         """|coro|
@@ -1836,7 +1832,7 @@ class Client:
             The list of returned items from this query.
         """
         data = await self._http._legacy_id_mapping(type, item_ids=item_ids)
-        return [LegacyItem(self._http, payload["data"]) for payload in data]
+        return [LegacyItem(self._http, item) for item in data["data"]]
 
     async def get_at_home_url(self, chapter_id: str, /, *, ssl: bool = True) -> str:
         """|coro|
@@ -1901,7 +1897,7 @@ class Client:
         """
         data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga, version=version)
 
-        return CustomList(self._http, data["data"])
+        return CustomList(self._http, data)
 
     async def get_custom_list(
         self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes] = ["manga", "user"]
@@ -1929,7 +1925,7 @@ class Client:
         """
         data = await self._http._get_custom_list(custom_list_id, includes=includes)
 
-        return CustomList(self._http, data["data"])
+        return CustomList(self._http, data)
 
     @require_authentication
     async def update_custom_list(
@@ -1982,7 +1978,7 @@ class Client:
             custom_list_id, name=name, visibility=visibility, manga=manga, version=version
         )
 
-        return CustomList(self._http, data["data"])
+        return CustomList(self._http, data)
 
     @require_authentication
     async def delete_custom_list(self, custom_list_id: str, /) -> None:
@@ -2031,7 +2027,7 @@ class Client:
         offset = max(offset, 0)
 
         data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
-        return [CustomList(self._http, payload) for payload in data["results"]]
+        return [CustomList(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def get_users_custom_lists(self, user_id: str, /, *, limit: int = 10, offset: int = 0) -> list[CustomList]:
@@ -2063,7 +2059,7 @@ class Client:
             offset = 0
 
         data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
-        return [CustomList(self._http, payload) for payload in data["results"]]
+        return [CustomList(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def get_custom_list_manga_feed(
@@ -2144,7 +2140,7 @@ class Client:
             order=order,
         )
 
-        return [Chapter(self._http, payload["data"]) for payload in data["results"]]
+        return [Chapter(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def create_scanlation_group(
@@ -2178,7 +2174,7 @@ class Client:
             The group returned from the API on creation.
         """
         data = await self._http._create_scanlation_group(name=name, leader=leader, members=members, version=version)
-        return ScanlatorGroup(self._http, data["data"])
+        return ScanlatorGroup(self._http, data)
 
     async def get_scanlation_group(self, scanlation_group_id: str, /) -> ScanlatorGroup:
         """|coro|
@@ -2203,7 +2199,7 @@ class Client:
             The group returned from the API.
         """
         data = await self._http._view_scanlation_group(scanlation_group_id)
-        return ScanlatorGroup(self._http, data["data"])
+        return ScanlatorGroup(self._http, data)
 
     @require_authentication
     async def update_scanlation_group(
@@ -2288,7 +2284,7 @@ class Client:
             version=version,
         )
 
-        return ScanlatorGroup(self._http, data["data"])
+        return ScanlatorGroup(self._http, data)
 
     @require_authentication
     async def delete_scanlation_group(self, scanlation_group_id: str, /) -> None:
@@ -2377,7 +2373,7 @@ class Client:
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
 
-        return [Author(self._http, payload["data"]) for payload in data["results"]]
+        return [Author(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def create_author(self, *, name: str, version: Optional[int] = None) -> Author:
@@ -2405,7 +2401,7 @@ class Client:
             The author created within the API.
         """
         data = await self._http._create_author(name=name, version=version)
-        return Author(self._http, data["data"])
+        return Author(self._http, data)
 
     async def get_author(self, author_id: str, *, includes: list[author.AuthorIncludes] = ["manga"]) -> Author:
         """|coro|
@@ -2427,7 +2423,7 @@ class Client:
         """
         data = await self._http._get_author(author_id, includes=includes)
 
-        return Author(self._http, data["data"])
+        return Author(self._http, data)
 
     async def get_artist(self, artist_id: str, *, includes: list[artist.ArtistIncludes] = ["manga"]) -> Artist:
         """|coro|
@@ -2449,7 +2445,7 @@ class Client:
         """
         data = await self._http._get_artist(artist_id, includes=includes)
 
-        return Artist(self._http, data["data"])
+        return Artist(self._http, data)
 
     @require_authentication
     async def update_author(self, author_id: str, /, *, name: Optional[str] = None, version: int) -> Author:
@@ -2481,7 +2477,7 @@ class Client:
             The updated author from the API.
         """
         data = await self._http._update_author(author_id, name=name, version=version)
-        return Author(self._http, data["data"])
+        return Author(self._http, data)
 
     @require_authentication
     async def delete_author(self, author_id: str, /) -> None:
@@ -2529,7 +2525,7 @@ class Client:
             The list of reports returned from the API.
         """
         data = await self._http._get_report_reason_list(report_category)
-        return [Report(self._http, payload) for payload in data["results"]]
+        return [Report(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def create_report(

@@ -61,7 +61,7 @@ class CustomList:
         "id",
         "name",
         "visibility",
-        "owner",
+        "_owner",
         "version",
     )
 
@@ -72,7 +72,7 @@ class CustomList:
         self.id: str = payload["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = self._attributes["visibility"]
-        self.owner: User = User(http, self._attributes["owner"]["data"])
+        self._owner = self._attributes["owner"]
         self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
@@ -80,6 +80,22 @@ class CustomList:
 
     def __str__(self) -> str:
         return self.name
+
+    async def get_owner(self) -> Optional[User]:
+        owner_key = None
+        for relationship in self._relationships:
+            if relationship["type"] == "user":
+                owner_key = relationship
+                break
+
+        if owner_key is None:
+            return None
+
+        if owner_key.get("attributes", []):
+            return User(self._http, owner_key)
+
+        data = await self._http._get_user(owner_key["id"])
+        return User(self._http, data)
 
     @require_authentication
     async def update(
@@ -126,7 +142,7 @@ class CustomList:
         """
         data = await self._http._update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
 
-        return CustomList(self._http, data["data"])
+        return CustomList(self._http, data)
 
     @require_authentication
     async def delete_custom_list(self) -> None:
