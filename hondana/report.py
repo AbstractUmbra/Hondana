@@ -41,7 +41,6 @@ class Report:
         "_http",
         "_attributes",
         "id",
-        "type",
         "reason",
         "details_required",
         "category",

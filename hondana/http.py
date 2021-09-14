@@ -609,7 +609,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _view_manga(self, manga_id: str, /, *, includes: Optional[list[str]]) -> Response[manga.MangaResponse]:
+    def _view_manga(self, manga_id: str, /, *, includes: Optional[list[str]]) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         includes = includes or ["artist", "cover_url", "author"]

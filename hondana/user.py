@@ -49,7 +49,15 @@ class User:
         The user's version revision.
     """
 
-    __slots__ = ("_http", "_data", "_attributes", "id", "type", "username", "version", "roles")
+    __slots__ = (
+        "_http",
+        "_data",
+        "_attributes",
+        "id",
+        "username",
+        "version",
+        "roles",
+    )
 
     def __init__(self, http: HTTPClient, payload: UserResponse) -> None:
         self._http = http

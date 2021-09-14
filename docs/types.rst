@@ -136,6 +136,8 @@ Manga
 
 .. autoclass:: MangaResponse
 
+.. autoclass:: GetMangaResponse
+
 .. autoclass:: MangaAttributesResponse
 
 .. autoclass:: MangaSearchResponse

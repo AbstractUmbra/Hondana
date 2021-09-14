@@ -585,7 +585,7 @@ class Client:
         """
         data = await self._http._view_manga(manga_id, includes=includes)
 
-        return Manga(self._http, data)
+        return Manga(self._http, data["data"])
 
     @require_authentication
     async def update_manga(

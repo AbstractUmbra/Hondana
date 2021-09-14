@@ -76,13 +76,13 @@ class Permissions:
     )
 
     def __init__(self, payload: TokenPayload) -> None:
-        self.type = payload["typ"]
-        self.issuer = payload["iss"]
-        self.audience = payload["aud"]
-        self.issued_at = datetime.datetime.fromtimestamp(payload["iat"], datetime.timezone.utc)
-        self.not_before = datetime.datetime.fromtimestamp(payload["nbf"], datetime.timezone.utc)
-        self.expires = datetime.datetime.fromtimestamp(payload["exp"], datetime.timezone.utc)
-        self.user_id = payload["uid"]
-        self.roles = payload["rol"]
-        self.permissions = payload["prm"]
-        self.sid = payload["sid"]  # TODO: what is this?
+        self.type: str = payload["typ"]
+        self.issuer: str = payload["iss"]
+        self.audience: str = payload["aud"]
+        self.issued_at: datetime.datetime = datetime.datetime.fromtimestamp(payload["iat"], datetime.timezone.utc)
+        self.not_before: datetime.datetime = datetime.datetime.fromtimestamp(payload["nbf"], datetime.timezone.utc)
+        self.expires: datetime.datetime = datetime.datetime.fromtimestamp(payload["exp"], datetime.timezone.utc)
+        self.user_id: str = payload["uid"]
+        self.roles: list[str] = payload["rol"]
+        self.permissions: list[str] = payload["prm"]
+        self.sid: str = payload["sid"]  # TODO: what is this?

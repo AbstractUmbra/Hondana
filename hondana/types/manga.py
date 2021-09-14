@@ -41,6 +41,7 @@ __all__ = (
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaResponse",
+    "GetMangaResponse",
     "MangaSearchResponse",
     "ChaptersResponse",
     "VolumesAndChaptersResponse",
@@ -186,6 +187,20 @@ class MangaResponse(_OptionalMangaResponse):
     id: str
     type: Literal["manga"]
     attributes: MangaAttributesResponse
+
+
+class GetMangaResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`~hondana.types.MangaResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: MangaResponse
 
 
 class MangaSearchResponse(TypedDict):

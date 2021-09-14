@@ -109,7 +109,7 @@ class Forbidden(APIException):
 
 class UploadInProgress(Exception):
     def __init__(self, message: str) -> None:
-        self.message = message
+        self.message: str = message
 
     def __str__(self) -> str:
         return self.message
@@ -117,7 +117,7 @@ class UploadInProgress(Exception):
 
 class UploadMangaNotFound(Exception):
     def __init__(self, message: str) -> None:
-        self.message = message
+        self.message: str = message
 
     def __str__(self) -> str:
         return self.message
