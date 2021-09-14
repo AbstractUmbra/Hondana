@@ -260,7 +260,7 @@ class Chapter:
             version=version,
         )
 
-        return self.__class__(self._http, data)
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

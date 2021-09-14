@@ -711,7 +711,7 @@ class HTTPClient:
         published_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
-    ) -> Response[chapter.GetChapterFeedResponse]:
+    ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed")
         else:
@@ -848,7 +848,7 @@ class HTTPClient:
         published_at_since: Optional[datetime.datetime],
         order: Optional[chapter.ChapterOrderQuery],
         includes: Optional[list[chapter.ChapterIncludes]],
-    ) -> Response[chapter.GetChapterFeedResponse]:
+    ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
 
         query = {}
@@ -913,7 +913,7 @@ class HTTPClient:
 
     def _get_chapter(
         self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]]
-    ) -> Response[chapter.ChapterResponse]:
+    ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         if includes:
@@ -931,7 +931,7 @@ class HTTPClient:
         translated_language: Optional[str],
         groups: Optional[list[str]],
         version: int,
-    ) -> Response[chapter.ChapterResponse]:
+    ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         query = {}
@@ -1290,7 +1290,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[OrderQuery],
-    ) -> Response[chapter.GetChapterFeedResponse]:
+    ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
         query = {}

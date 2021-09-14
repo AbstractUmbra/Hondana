@@ -1099,9 +1099,25 @@ class Client:
         return [Chapter(self._http, item) for item in data["data"]]
 
     async def get_chapter(self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]] = None) -> Chapter:
+        """|coro|
+
+        This method will retrieve a single chapter from the MangaDex API.
+
+        Parameters
+        -----------
+        chapter_id: :class:`str`
+            The UUID representing the chapter we are fetching.
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+            The reference expansion includes we are requesting with this payload.
+
+        Returns
+        --------
+        :class:`Chapter`
+            The Chapter we fetched from the API.
+        """
         data = await self._http._get_chapter(chapter_id, includes=includes)
 
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def update_chapter(
@@ -1166,7 +1182,7 @@ class Client:
             version=version,
         )
 
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def delete_chapter(self, chapter_id: str, /) -> None:

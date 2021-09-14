@@ -34,9 +34,10 @@ if TYPE_CHECKING:
 __all__ = (
     "ChapterIncludes",
     "ChapterOrderQuery",
-    "GetChapterFeedResponse",
-    "ChapterResponse",
     "ChapterAttributesResponse",
+    "ChapterResponse",
+    "GetSingleChapterResponse",
+    "GetMultiChapterResponse",
 )
 
 
@@ -115,24 +116,29 @@ class ChapterResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetChapterFeedResponse(TypedDict):
+class GetSingleChapterResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`~hondana.types.ChapterResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: ChapterResponse
+
+
+class GetMultiChapterResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
     response: Literal[``"collection"``]
 
     data: List[:class:`~hondana.types.ChapterResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ChapterResponse]
-    limit: int
-    offset: int
-    total: int
