@@ -79,7 +79,7 @@ jobs:
           set -x
           assets=()
           for asset in ./dist/*.{whl,egg,tar.gz}; do
-            assets+=("-a", "$asset")
+            assets+=("-a" "$asset")
           done
           tag_name="${GITHUB_REF##*/}"
           hub release create "${assets[@]}" -F "CHANGELOG.md" "$tag_name"
