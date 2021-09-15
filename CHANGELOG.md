@@ -1,11 +1,12 @@
 # Hondana Changelog
 
 ## Added
-- `includeFutureUpdates` key has been added to chapter feed endpoints.
+- `ScanlationGroup.leader` is now nullable.
+- `ScanlationGroup.description` is now nullable.
 
 ## Changes
 
 ## Fixes
-- Fix issue during CustomList inits because the payload was incorrectly typed (by me).
+- Fix issues with the rest of the payloads being incorrectly typed and now all endpoints test correctly.
 
 ### Notes
