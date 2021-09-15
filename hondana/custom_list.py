@@ -93,7 +93,7 @@ class CustomList:
             return User(self._http, owner_key)
 
         data = await self._http._get_user(owner_key["id"])
-        return User(self._http, data)
+        return User(self._http, data["data"])
 
     @require_authentication
     async def update(
@@ -140,7 +140,7 @@ class CustomList:
         """
         data = await self._http._update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
 
-        return CustomList(self._http, data)
+        return CustomList(self._http, data["data"])
 
     @require_authentication
     async def delete_custom_list(self) -> None:

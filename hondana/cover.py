@@ -97,14 +97,14 @@ class Cover:
         """When this cover was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    def url(self, type: Optional[Literal["256", "512"]] = None, /) -> Optional[str]:
+    def url(self, type: Optional[Literal[256, 512]] = None, /) -> Optional[str]:
         """Method to return the Cover url.
 
         Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
 
         Parameters
         -----------
-        type: Optional[Literal[``"256"``, ``"512"``]]
+        type: Optional[Literal[``256``, ``512``]]
             Defaults to ``None`` to return original quality.
             Specifies the return image dimensions.
 
@@ -124,9 +124,9 @@ class Cover:
 
         parent_manga_id = parent_manga["id"]
 
-        if type == "256":
+        if type == 256:
             fmt = ".256.jpg"
-        elif type == "512":
+        elif type == 512:
             fmt = ".512.jpg"
         else:
             fmt = ""
@@ -170,7 +170,7 @@ class Cover:
         """
         data = await self._http._edit_cover(self.id, volume=volume, description=description, version=version)
 
-        return Cover(self._http, data)
+        return Cover(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

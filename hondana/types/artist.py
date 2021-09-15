@@ -32,7 +32,13 @@ if TYPE_CHECKING:
     from .relationship import RelationshipResponse
 
 
-__all__ = ("ArtistIncludes", "ArtistResponse", "ArtistAttributesResponse")
+__all__ = (
+    "ArtistIncludes",
+    "ArtistResponse",
+    "ArtistAttributesResponse",
+    "GetSingleArtistResponse",
+    "GetMultiArtistResponse",
+)
 
 ArtistIncludes = Literal["manga"]
 
@@ -79,24 +85,29 @@ class ArtistResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetArtistListResponse(TypedDict):
+class GetSingleArtistResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: List[:class:`ArtistResponse`]
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: ArtistResponse
+
+
+class GetMultiArtistResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
     response: Literal[``"collection"``]
 
     data: List[:class:`ArtistResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ArtistResponse]
-    limit: int
-    offset: int
-    total: int

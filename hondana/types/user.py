@@ -35,7 +35,8 @@ __all__ = (
     "UserOrderQuery",
     "GetUserAttributesResponse",
     "UserResponse",
-    "GetUserListResponse",
+    "GetSingleUserResponse",
+    "GetMultiUserResponse",
 )
 
 
@@ -78,7 +79,27 @@ class UserResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetUserListResponse(TypedDict):
+class GetSingleUserResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`~hondana.types.UserResponse`
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: UserResponse
+
+
+class GetMultiUserResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 

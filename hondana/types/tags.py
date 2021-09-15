@@ -59,6 +59,10 @@ class TagResponse(TypedDict):
     type: Literal[``"tag"``]
 
     attributes: :class:`TagAttributesResponse`
+
+    relationships: List[:class:`RelationshipResponse`]
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 
     id: str
@@ -69,14 +73,22 @@ class TagResponse(TypedDict):
 
 class GetTagListResponse(TypedDict):
     """
-    result: Literal[``"ok"``]
+    result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`TagResponse`
+    response: Literal[``"collection"``]
 
-    relationships: List[:class:`RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
-        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+    data: List[:class:`~hondana.types.TagResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
-    result: Literal["ok"]
-    data: TagResponse
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[TagResponse]
+    limit: int
+    offset: int
+    total: int

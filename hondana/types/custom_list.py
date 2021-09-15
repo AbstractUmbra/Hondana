@@ -78,13 +78,13 @@ class GetSingleCustomListResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    response: Literal[``"collection"``]
+    response: Literal[``"entity"``]
 
     data: :class:`~hondana.types.CustomListResponse`
     """
 
     result: Literal["ok", "error"]
-    response: Literal["collection"]
+    response: Literal["entity"]
     data: CustomListResponse
 
 

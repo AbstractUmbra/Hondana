@@ -36,7 +36,8 @@ __all__ = (
     "CoverOrderQuery",
     "CoverResponse",
     "CoverAttributesResponse",
-    "GetCoverListResponse",
+    "GetSingleCoverResponse",
+    "GetMultiCoverResponse",
 )
 
 CoverIncludes = Literal["manga", "user"]
@@ -94,24 +95,29 @@ class CoverResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetCoverListResponse(TypedDict):
+class GetSingleCoverResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`GetCoverResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: CoverResponse
+
+
+class GetMultiCoverResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
     response: Literal[``"collection"``]
 
     data: List[:class:`GetCoverResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[CoverResponse]
-    limit: int
-    offset: int
-    total: int

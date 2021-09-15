@@ -37,7 +37,8 @@ __all__ = (
     "AuthorOrderQuery",
     "AuthorAttributesResponse",
     "AuthorResponse",
-    "GetAuthorListResponse",
+    "GetSingleAuthorResponse",
+    "GetMultiAuthorResponse",
 )
 
 
@@ -94,24 +95,29 @@ class AuthorResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetAuthorListResponse(TypedDict):
+class GetSingleAuthorResponse(TypedDict):
+    """
+    result: Literal[``ok``, ``error``]
+
+    response: Literal[``entity``]
+
+    data: :class:`~hondana.types.AuthorResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: AuthorResponse
+
+
+class GetMultiAuthorResponse(TypedDict):
     """
     result: Literal[``ok``, ``error``]
 
     response: Literal[``collection``]
 
     data: List[:class:`~hondana.types.AuthorResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[AuthorResponse]
-    limit: int
-    offset: int
-    total: int

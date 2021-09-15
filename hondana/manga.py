@@ -194,7 +194,7 @@ class Manga:
             return Author(self._http, author)
 
         data = await self._http._get_author(author["id"], includes=[])
-        return Author(self._http, data)
+        return Author(self._http, data["data"])
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
@@ -216,7 +216,7 @@ class Manga:
             return None
 
         data = await self._http._get_cover(cover_key["id"], ["manga"])
-        return Cover(self._http, data)
+        return Cover(self._http, data["data"])
 
     def cover_url(self, /, *, type: Optional[Literal[256, 512]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
@@ -385,7 +385,7 @@ class Manga:
             version=version,
         )
 
-        return self.__class__(self._http, data)
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

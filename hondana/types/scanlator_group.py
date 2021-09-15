@@ -35,7 +35,8 @@ __all__ = (
     "ScanlatorGroupIncludes",
     "ScanlationGroupAttributesResponse",
     "ScanlationGroupResponse",
-    "GetScanlationGroupListResponse",
+    "GetSingleScanlationGroupResponse",
+    "GetMultiScanlationGroupResponse",
 )
 
 ScanlatorGroupIncludes = Literal["leader", "member"]
@@ -99,24 +100,29 @@ class ScanlationGroupResponse(TypedDict):
     relationships: list[RelationshipResponse]
 
 
-class GetScanlationGroupListResponse(TypedDict):
+class GetSingleScanlationGroupResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`ScanlationGroupResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: ScanlationGroupResponse
+
+
+class GetMultiScanlationGroupResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
     response: Literal[``"collection"``]
 
     data: List[:class:`ScanlationGroupResponse`]
-
-    limit: :class:`int`
-
-    offset: :class:`int`
-
-    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ScanlationGroupResponse]
-    limit: int
-    offset: int
-    total: int
