@@ -101,7 +101,7 @@ class GetSingleCoverResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`GetCoverResponse`
+    data: :class:`CoverResponse`
     """
 
     result: Literal["ok", "error"]
@@ -115,7 +115,7 @@ class GetMultiCoverResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`GetCoverResponse`]
+    data: List[:class:`CoverResponse`]
     """
 
     result: Literal["ok", "error"]

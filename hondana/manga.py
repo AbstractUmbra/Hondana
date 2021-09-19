@@ -497,7 +497,7 @@ class Manga:
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
@@ -541,6 +541,8 @@ class Manga:
             order=order,
             includes=includes,
         )
+
+        from .chapter import Chapter  # TODO: fix circular
 
         return [Chapter(self._http, item) for item in data["data"]]
 

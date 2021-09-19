@@ -76,6 +76,7 @@ if TYPE_CHECKING:
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
+    from .utils import DownloadRoute
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -379,14 +380,14 @@ class HTTPClient:
 
         self._authenticated = False
 
-    async def request(self, route: Route, **kwargs: Any) -> Any:
+    async def request(self, route: Union[Route, DownloadRoute], **kwargs: Any) -> Any:
         """|coro|
 
         This performs the HTTP request, handling authentication tokens when doing it.
 
         Parameters
         -----------
-        route: :class:`Route`
+        route: Union[:class:`Route`, :class:`DownloadRoute`]
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
@@ -428,7 +429,10 @@ class HTTPClient:
 
         async with self.__session.request(route.verb, route.url, **kwargs) as response:
             await self._handle_ratelimits(response)
-            data = await json_or_text(response)
+            if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
+                data = (await response.read(), response.status)
+            else:
+                data = await json_or_text(response)
 
             if 300 > response.status >= 200:
                 return data
@@ -1513,11 +1517,16 @@ class HTTPClient:
         route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
-    def _get_report_reason_list(
-        self, report_category: report.ReportCategory, /
-    ) -> Response[report.GetReportReasonListResponse]:
+    def _get_report_reason_list(self, report_category: report.ReportCategory, /) -> Response[report.GetReportReasonResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)
         return self.request(route)
+
+    def _at_home_report(self, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
+        route = Route("POST", "/report")
+
+        query = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
+
+        return self.request(route, json=query)
 
     def _create_report(
         self,

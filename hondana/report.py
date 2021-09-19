@@ -30,7 +30,7 @@ from .http import HTTPClient
 
 if TYPE_CHECKING:
     from .types.common import LocalisedString
-    from .types.report import GetReportReasonResponse, ReportCategory
+    from .types.report import ReportCategory, ReportReasonResponse
 
 
 __all__ = ("Report",)
@@ -47,7 +47,7 @@ class Report:
         "version",
     )
 
-    def __init__(self, http: HTTPClient, payload: GetReportReasonResponse) -> None:
+    def __init__(self, http: HTTPClient, payload: ReportReasonResponse) -> None:
         self._http = http
         self.id: str = payload["id"]
         self._attributes = payload["attributes"]

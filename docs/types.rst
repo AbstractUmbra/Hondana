@@ -25,10 +25,17 @@ Common
 
 Artist
 ------
+.. autoclass:: ArtistIncludes
+    :members:
+    :undoc-members:
+
 .. autoclass:: ArtistResponse
 
 .. autoclass:: ArtistAttributesResponse
 
+.. autoclass:: GetSingleArtistResponse
+
+.. autoclass:: GetMultiArtistResponse
 
 Auth
 ----
@@ -53,8 +60,9 @@ Author
 
 .. autoclass:: AuthorAttributesResponse
 
-.. autoclass:: GetAuthorListResponse
+.. autoclass:: GetSingleAuthorResponse
 
+.. autoclass:: GetMultiAuthorResponse
 
 Chapter
 -------
@@ -64,11 +72,13 @@ Chapter
 
 .. autoclass:: ChapterOrderQuery
 
-.. autoclass:: GetChapterFeedResponse
-
 .. autoclass:: ChapterResponse
 
 .. autoclass:: ChapterAttributesResponse
+
+.. autoclass:: GetSingleChapterResponse
+
+.. autoclass:: GetMultiChapterResponse
 
 
 Cover
@@ -83,6 +93,10 @@ Cover
 
 .. autoclass:: CoverAttributesResponse
 
+.. autoclass:: GetSingleCoverResponse
+
+.. autoclass:: GetMultiCoverResponse
+
 
 CustomList
 ----------
@@ -94,13 +108,13 @@ CustomList
     :members:
     :undoc-members:
 
-.. autoclass:: GetSingleCustomListResponse
-
-.. autoclass:: GetMultiCustomListResponse
-
 .. autoclass:: CustomListResponse
 
 .. autoclass:: CustomListAttributesResponse
+
+.. autoclass:: GetSingleCustomListResponse
+
+.. autoclass:: GetMultiCustomListResponse
 
 
 Legacy
@@ -109,9 +123,9 @@ Legacy
     :members:
     :undoc-members:
 
-.. autoclass:: LegacyMappingAttributesResponse
-
 .. autoclass:: LegacyMappingResponse
+
+.. autoclass:: LegacyMappingAttributesResponse
 
 .. autoclass:: GetLegacyMappingResponse
 
@@ -171,11 +185,11 @@ Report
     :members:
     :undoc-members:
 
-.. autoclass:: GetReportReasonListResponse
-
-.. autoclass:: GetReportReasonResponse
+.. autoclass:: ReportReasonResponse
 
 .. autoclass:: GetReportReasonAttributesResponse
+
+.. autoclass:: GetReportReasonResponse
 
 
 Scanlator Group
@@ -184,31 +198,37 @@ Scanlator Group
     :members:
     :undoc-members:
 
-.. autoclass:: GetScanlationGroupListResponse
-
 .. autoclass:: ScanlationGroupResponse
 
 .. autoclass:: ScanlationGroupAttributesResponse
 
+.. autoclass:: GetSingleScanlationGroupResponse
+
+.. autoclass:: GetMultiScanlationGroupResponse
+
 
 Tags
 ----
-.. autoclass:: GetTagListResponse
-
 .. autoclass:: TagResponse
 
 .. autoclass:: TagAttributesResponse
+
+.. autoclass:: GetTagListResponse
+
 
 Token
 -----
 .. autoclass:: TokenPayload
 
+
 User
 ----
 .. autoclass:: UserOrderQuery
 
-.. autoclass:: GetUserListResponse
-
 .. autoclass:: UserResponse
 
 .. autoclass:: GetUserAttributesResponse
+
+.. autoclass:: GetSingleUserResponse
+
+.. autoclass:: GetMultiUserResponse

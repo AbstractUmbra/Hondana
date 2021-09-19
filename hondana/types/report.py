@@ -31,7 +31,12 @@ if TYPE_CHECKING:
     from .common import LocalisedString
 
 
-__all__ = ("ReportCategory", "GetReportReasonAttributesResponse", "GetReportReasonResponse", "GetReportReasonListResponse")
+__all__ = (
+    "ReportCategory",
+    "GetReportReasonAttributesResponse",
+    "ReportReasonResponse",
+    "GetReportReasonResponse",
+)
 
 
 ReportCategory = Literal["manga", "chapter", "scanlation_group", "user"]
@@ -54,7 +59,7 @@ class GetReportReasonAttributesResponse(TypedDict):
     version: int
 
 
-class GetReportReasonResponse(TypedDict):
+class ReportReasonResponse(TypedDict):
     """
     id: :class:`str`
 
@@ -68,7 +73,7 @@ class GetReportReasonResponse(TypedDict):
     attributes: GetReportReasonAttributesResponse
 
 
-class GetReportReasonListResponse(TypedDict):
+class GetReportReasonResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
@@ -85,7 +90,7 @@ class GetReportReasonListResponse(TypedDict):
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
-    data: list[GetReportReasonResponse]
+    data: list[ReportReasonResponse]
     limit: int
     offset: int
     total: int

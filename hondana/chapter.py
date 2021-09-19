@@ -24,18 +24,25 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+import logging
+import pathlib
+import time
+from typing import TYPE_CHECKING, AsyncGenerator, Optional, Union
 
 from .manga import Manga
-from .utils import MISSING, require_authentication
+from .utils import MISSING, DownloadRoute, require_authentication
 
 
 if TYPE_CHECKING:
+    from os import PathLike
+
     from .http import HTTPClient
     from .types.chapter import ChapterResponse
 
 
 __all__ = ("Chapter",)
+
+LOGGER: logging.Logger = logging.getLogger(__name__)
 
 
 class Chapter:
@@ -84,6 +91,7 @@ class Chapter:
         "_created_at",
         "_updated_at",
         "_published_at",
+        "_at_home_url",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
@@ -104,12 +112,17 @@ class Chapter:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
+        self._at_home_url: Optional[str] = None
 
     def __repr__(self) -> str:
         return f"<Chapter id={self.id} title='{self.title}'>"
 
     def __str__(self) -> str:
         return self.title or "No title for this chapter..."
+
+    async def _get_at_home_url(self, ssl: bool) -> str:
+        url = await self._http._get_at_home_url(self.id, ssl=ssl)
+        return url["baseUrl"]
 
     @property
     def url(self) -> str:
@@ -294,3 +307,67 @@ class Chapter:
         This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
         """
         await self._http._mark_chapter_as_unread(self.id)
+
+    async def _pages(self, *, start: int, data_saver: bool, ssl: bool) -> AsyncGenerator[tuple[bytes, str], None]:
+        if self._at_home_url is None:
+            self._at_home_url = await self._get_at_home_url(ssl=ssl)
+
+        _pages = self.data_saver if data_saver else self.data
+        for i, url in enumerate(_pages[start:], start=1):
+            route = DownloadRoute(self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
+            LOGGER.info("Attempting to download: %s" % route.url)
+            _start = time.monotonic()
+            page_resp: tuple[bytes, int] = await self._http.request(route)
+            _end = time.monotonic()
+            _total = _end - _start
+            LOGGER.info("Downloaded: %s" % route.url)
+
+            # await self._http._at_home_report(
+            #     download_url,
+            #     page_resp.status == 200,
+            #     "X-Cache" in page_resp.headers,
+            #     (page_resp.content_length or 0),
+            #     int(_total * 1000),
+            # ) # TODO: Fix the reporting?
+            if page_resp[1] != 200:
+                self._at_home_url = None
+                break
+            else:
+                data = page_resp
+                yield (data[0], url.rsplit(".")[-1])
+
+        else:
+            return
+
+        async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl):
+            yield page
+
+    async def download(
+        self, path: Union[PathLike[str], str] = None, start_page: int = 0, data_saver: bool = False, ssl: bool = False
+    ) -> None:
+        """|coro|
+
+        This method will attempt to download a chapter for you using the MangaDex process.
+
+        Parameters
+        -----------
+        path: Union[:class:`os.PathLike`, :class:`str`]
+            The path at which to use (or create) a directory to save the pages of the chapter.
+        start_page: :class:`int`
+            The page at which to start downloading, leave at 0 (default) to download all.
+        data_saver: :class:`bool`
+            Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to ``False``.
+        ssl: :class:`bool`
+            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting a HTTP url.
+            Defaults to ``False``.
+        """
+        path = path or f"{self.id} - {self.title}"
+        path_ = pathlib.Path(path)
+        if not path_.exists():
+            path_.mkdir(exist_ok=True)
+
+        idx = 1
+        async for page in self._pages(start=start_page, data_saver=data_saver, ssl=ssl):
+            with open(f"{path_}/{idx}.{page[1]}", "wb") as f:
+                f.write(page[0])
+            idx += 1

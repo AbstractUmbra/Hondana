@@ -32,7 +32,11 @@ if TYPE_CHECKING:
     from .relationship import RelationshipResponse
 
 
-__all__ = ("TagResponse", "GetTagListResponse", "TagAttributesResponse")
+__all__ = (
+    "TagResponse",
+    "GetTagListResponse",
+    "TagAttributesResponse",
+)
 
 
 class TagAttributesResponse(TypedDict):
