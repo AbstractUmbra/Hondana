@@ -29,6 +29,8 @@ import pathlib
 import time
 from typing import TYPE_CHECKING, AsyncGenerator, Optional, Union
 
+import aiofiles
+
 from .manga import Manga
 from .utils import MISSING, DownloadRoute, require_authentication
 
@@ -361,13 +363,13 @@ class Chapter:
             Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting a HTTP url.
             Defaults to ``False``.
         """
-        path = path or f"{self.id} - {self.title}"
+        path = path or f"{self.chapter} - {self.title}"
         path_ = pathlib.Path(path)
         if not path_.exists():
-            path_.mkdir(exist_ok=True)
+            path_.mkdir(parents=True, exist_ok=True)
 
         idx = 1
         async for page in self._pages(start=start_page, data_saver=data_saver, ssl=ssl):
-            with open(f"{path_}/{idx}.{page[1]}", "wb") as f:
-                f.write(page[0])
+            async with aiofiles.open(f"{path_}/{idx}.{page[1]}", "wb") as f:
+                await f.write(page[0])
             idx += 1

@@ -730,7 +730,7 @@ class HTTPClient:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
         query = {}
-        query["limit"] = limit
+        query["limit"] = min(max(1, limit), 500)
         query["offset"] = offset
 
         if translated_languages:
