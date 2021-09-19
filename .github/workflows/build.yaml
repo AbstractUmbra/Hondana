@@ -84,6 +84,9 @@ jobs:
           tag_name="${GITHUB_REF##*/}"
           hub release create "${assets[@]}" -F "CHANGELOG.md" "$tag_name"
 
+      - name: Set up Poetry
+        uses: Gr1N/setup-poetry@v4
+
       - name: Publish to PyPI
         env:
           PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
