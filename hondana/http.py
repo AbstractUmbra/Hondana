@@ -39,8 +39,10 @@ from typing import (
     TypeVar,
     Union,
     overload,
+    Type,
 )
 from urllib.parse import quote as _uriquote
+import weakref
 
 import aiohttp
 
@@ -77,9 +79,12 @@ if TYPE_CHECKING:
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
     from .utils import DownloadRoute
+    from types import TracebackType
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
+    MU = TypeVar("MU", bound="MaybeUnlock")
+    BE = TypeVar("BE", bound=BaseException)
 
 
 LOGGER = logging.getLogger(__name__)
@@ -131,6 +136,27 @@ class Route:
         self.url: str = url
 
 
+class MaybeUnlock:
+    def __init__(self, lock: asyncio.Lock) -> None:
+        self.lock: asyncio.Lock = lock
+        self._unlock: bool = True
+
+    def __enter__(self: MU) -> MU:
+        return self
+
+    def defer(self) -> None:
+        self._unlock = False
+
+    def __exit__(
+        self,
+        exc_type: Optional[Type[BE]],
+        exc: Optional[BE],
+        traceback: Optional[TracebackType],
+    ) -> None:
+        if self._unlock:
+            self.lock.release()
+
+
 class HTTPClient:
     __slots__ = (
         "username",
@@ -138,6 +164,7 @@ class HTTPClient:
         "password",
         "_authenticated",
         "__session",
+        "_locks",
         "_token",
         "__refresh_token",
         "__last_refresh",
@@ -157,7 +184,8 @@ class HTTPClient:
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
-        self.__session = session
+        self.__session: Optional[aiohttp.ClientSession] = session
+        self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
         self.__last_refresh: Optional[datetime.datetime] = None
@@ -191,25 +219,6 @@ class HTTPClient:
                 await self._logout()
             await self.__session.close()
 
-    async def _handle_ratelimits(self, response: aiohttp.ClientResponse) -> None:
-        """|coro|
-
-        A private method to fetch the potential ratelimits on a request, and sleep until they end.
-        """
-        headers = response.headers
-
-        # Requests remaining before ratelimit
-        remaining = headers.get("x-ratelimit-remaining", None)
-        # Time until current ratelimit session(?) expires
-        retry = headers.get("x-ratelimit-remaining", None)
-        # The total ratelimit session hits
-        limit = headers.get("x-ratelimit-limit", None)
-
-        if remaining == "0":
-            assert retry is not None
-            LOGGER.warning("Hit a ratelimit, sleeping for: %d", retry)
-            await asyncio.sleep(int(retry))
-
     async def _get_token(self) -> str:
         """|coro|
 
@@ -241,7 +250,6 @@ class HTTPClient:
 
         route = Route("POST", "/auth/login")
         async with self.__session.post(route.url, json=auth) as response:
-            await self._handle_ratelimits(response)
             data: LoginPayload = await response.json()
 
         if data["result"] == "error":
@@ -288,7 +296,6 @@ class HTTPClient:
 
         route = Route("POST", "/auth/refresh")
         async with self.__session.post(route.url, json={"token": self.__refresh_token}) as response:
-            await self._handle_ratelimits(response)
             data: RefreshPayload = await response.json()
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
@@ -347,7 +354,6 @@ class HTTPClient:
             self.__session = await self._generate_session()
 
         async with self.__session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
-            await self._handle_ratelimits(response)
             data: CheckPayload = await response.json()
 
         if not (300 > response.status >= 200) or data["result"] == "error":
@@ -412,6 +418,12 @@ class HTTPClient:
         if self.__session is None:
             self.__session = await self._generate_session()
 
+        bucket = route.path
+        lock = self._locks.get(bucket)
+        if lock is None:
+            lock = asyncio.Lock()
+            self._locks[bucket] = lock
+
         headers = kwargs.pop("headers", {})
         token = await self._try_token() if self._authenticated else None
 
@@ -427,25 +439,62 @@ class HTTPClient:
         LOGGER.debug("Current request headers: %s", headers)
         LOGGER.debug("Current request url and params: %s", route.url)
 
-        async with self.__session.request(route.verb, route.url, **kwargs) as response:
-            await self._handle_ratelimits(response)
-            if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
-                data = (await response.read(), response.status)
-            else:
-                data = await json_or_text(response)
+        await lock.acquire()
+        with MaybeUnlock(lock) as maybe_lock:
+            for tries in range(5):
+                async with self.__session.request(route.verb, route.url, **kwargs) as response:
+                    # Requests remaining before ratelimit
+                    remaining = response.headers.get("x-ratelimit-remaining", None)
+                    LOGGER.debug("remaining is: %s", remaining)
+                    # Timestamp for when current ratelimit session(?) expires
+                    retry = response.headers.get("x-ratelimit-retry-after", None)
+                    LOGGER.debug("retry is: %s", retry)
+                    if retry is not None:
+                        retry = datetime.datetime.fromtimestamp(int(retry))
+                    # The total ratelimit session hits
+                    limit = response.headers.get("x-ratelimit-limit", None)
+                    LOGGER.debug("limit is: %s", limit)
 
-            if 300 > response.status >= 200:
-                return data
+                    if remaining == "0" and response.status != 429:
+                        assert retry is not None
+                        delta = retry - datetime.datetime.now()
+                        sleep = delta.total_seconds() + 1
+                        LOGGER.warning("A ratelimit has been exhausted, sleeping for: %d", sleep)
+                        maybe_lock.defer()
+                        loop = asyncio.get_running_loop()
+                        loop.call_later(sleep, lock.release)
 
-            if response.status == 400:
-                raise BadRequest(response, str(data))
-            elif response.status == 401:
-                raise Unauthorized(response, str(data))
-            elif response.status == 403:
-                raise Forbidden(response, str(data))
-            elif response.status == 404:
-                raise NotFound(response, str(data))
-            raise APIException(response, str(data), response.status)
+                    if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
+                        data = (await response.read(), response.status)
+                    else:
+                        data = await json_or_text(response)
+
+                    if 300 > response.status >= 200:
+                        return data
+
+                    if response.status == 429:
+                        assert retry is not None
+                        delta = retry - datetime.datetime.now()
+                        sleep = delta.total_seconds() + 1
+                        LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
+                        await asyncio.sleep(sleep)
+                        continue
+
+                    if response.status in {500, 502, 504}:
+                        sleep_ = 1 + tries * 2
+                        LOGGER.warning("Hit an API error, trying again in: %d", sleep_)
+                        await asyncio.sleep(sleep_)
+                        continue
+
+                    if response.status == 400:
+                        raise BadRequest(response, str(data))
+                    elif response.status == 401:
+                        raise Unauthorized(response, str(data))
+                    elif response.status == 403:
+                        raise Forbidden(response, str(data))
+                    elif response.status == 404:
+                        raise NotFound(response, str(data))
+                    raise APIException(response, str(data), response.status)
 
     def _update_tags(self) -> Response[GetTagListResponse]:
         route = Route("GET", "/manga/tag")
