@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "0.3.2"
+version = "0.4.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 

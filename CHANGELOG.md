@@ -1,14 +1,14 @@
-0.3.2
+0.4.0
 
 # Hondana Changelog
 
 ## Added
-- `Chapter.download` coroutine to download chapters.
-- Automated builds and releases.
+- `Chapter.download` now for downloading chapters.
+- Example for the above
 
 ## Changes
 
 ## Fixes
-- Docs having old unusable links.
+- Ratelimit handling now works.
 
 ### Notes
