@@ -507,7 +507,7 @@ class HTTPClient:
                         if response.status != 429:
                             bucket.update(response.headers)
                         elif bucket.remaining == 0:
-                            LOGGER.debug("A ratelimit bucker has been exhausted (%r)", route._key)
+                            LOGGER.warning("A ratelimit bucker has been exhausted (%r)", route._key)
 
                     if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
                         data = (await response.read(), response.status)
@@ -516,6 +516,9 @@ class HTTPClient:
 
                     if 300 > response.status >= 200:
                         return data
+
+                    if response.status == 429:
+                        LOGGER.warning("A ratelimit has been hit, sleeping for: %d", bucket.retry_after)
 
                     if response.status in {500, 502, 504}:
                         sleep_ = 1 + tries * 2
