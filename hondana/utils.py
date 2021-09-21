@@ -62,7 +62,23 @@ URL_REGEX = re.compile(
 )
 
 
-class DownloadRoute:
+class BaseRoute:
+
+    def __init__(self, base: str, verb: str, path: str, **parameters: Any) -> None:
+        self.verb: str = verb
+        self.base: str = base
+        self.path: str = path
+        url = self.base + self.path
+        if parameters:
+            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
+        self.url: str = url
+    
+    @property
+    def _key(self) -> str:
+        return f"{self.verb}:{self.path}"
+
+
+class DownloadRoute(BaseRoute):
     """A helper class for instantiating a HTTP method to download from MangaDex.
 
     Parameters
@@ -79,13 +95,7 @@ class DownloadRoute:
     """
 
     def __init__(self, base: str, path: str, **parameters: Any) -> None:
-        self.verb = "GET"
-        self.base: str = base
-        self.path: str = path
-        url = self.base + self.path
-        if parameters:
-            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: str = url
+        super().__init__(base, "GET", path, **parameters)
 
 
 class MissingSentinel:
