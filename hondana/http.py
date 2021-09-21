@@ -230,7 +230,6 @@ class HTTPClient:
         "__last_refresh",
         "user_agent",
         "_connection",
-        "use_clock",
     )
 
     def __init__(
