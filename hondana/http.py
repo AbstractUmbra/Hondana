@@ -188,7 +188,7 @@ class RateLimitBucket:
         self.expires = None
         self.retry_after = 0.0
 
-    def update(self, headers: CIMultiDictProxy[str]) -> None:
+    def update(self, headers: CIMultiDictProxy[str], use_clock: bool = False) -> None:
         self.limit = int(headers.get('x-ratelimit-limit', 1))
         if self.dirty:
             self.remaining = min(int(headers.get('x-ratelimit-remaining', 0)), self.limit - self.outgoing)
@@ -196,7 +196,15 @@ class RateLimitBucket:
             self.remaining = int(headers.get('x-ratelimit-remaining', 0))
             self.dirty = True
         
-        self.retry_after = float(headers.get('x-ratelimit-retry-rfter', 0))
+        retry_after = headers.get('retry-after')
+        if use_clock or not retry_after:
+            utc = datetime.timezone.utc
+            now = datetime.datetime.now(utc)
+            reset =  datetime.datetime.fromtimestamp(float(headers["x-ratelimit-retry-after"]), utc)
+            self.retry_after = (reset - now).total_seconds()
+        else:
+            self.retry_after = float(retry_after)
+
         self.expires = self._loop.time() + self.retry_after
 
     async def __aenter__(self):
@@ -230,6 +238,7 @@ class HTTPClient:
         "__last_refresh",
         "user_agent",
         "_connection",
+        "use_clock",
     )
 
     def __init__(
@@ -239,6 +248,7 @@ class HTTPClient:
         email: Optional[str],
         password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
+        unsync_clock: bool = True,
     ) -> None:
         self._authenticated = bool(((username or email) and password))
         self.username: Optional[str] = username
@@ -251,6 +261,7 @@ class HTTPClient:
         self.__last_refresh: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
+        self.use_clock: bool = not unsync_clock
 
     @staticmethod
     async def _generate_session() -> aiohttp.ClientSession:
@@ -504,9 +515,9 @@ class HTTPClient:
                     
                     if "x-ratelimit-limit" in response.headers:
                         if response.status != 429:
-                            bucket.update(response.headers)
+                            bucket.update(response.headers, use_clock=self.use_clock)
                         elif bucket.remaining == 0:
-                            LOGGER.warning("A ratelimit bucker has been exhausted (%r)", route._key)
+                            LOGGER.warning("A ratelimit has been exhausted (%r)", route._key)
 
                     if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
                         data = (await response.read(), response.status)
@@ -517,7 +528,10 @@ class HTTPClient:
                         return data
 
                     if response.status == 429:
-                        LOGGER.warning("A ratelimit has been hit, sleeping for: %d", bucket.retry_after)
+                        sleep = float(response.headers["retry-after"])
+                        LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
+                        await asyncio.sleep(sleep)
+                        continue
 
                     if response.status in {500, 502, 504}:
                         sleep_ = 1 + tries * 2
