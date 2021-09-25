@@ -28,6 +28,7 @@ import datetime
 import json
 import logging
 import sys
+import weakref
 from base64 import b64decode
 from typing import (
     TYPE_CHECKING,
@@ -36,13 +37,12 @@ from typing import (
     Coroutine,
     Literal,
     Optional,
+    Type,
     TypeVar,
     Union,
     overload,
-    Type,
 )
 from urllib.parse import quote as _uriquote
-import weakref
 
 import aiohttp
 
@@ -60,6 +60,8 @@ from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json
 
 
 if TYPE_CHECKING:
+    from types import TracebackType
+
     from .tags import QueryTags
     from .types import (
         artist,
@@ -79,7 +81,6 @@ if TYPE_CHECKING:
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
     from .utils import DownloadRoute
-    from types import TracebackType
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
