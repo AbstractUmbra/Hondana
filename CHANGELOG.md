@@ -1,14 +1,14 @@
-0.4.0
+0.4.1
 
 # Hondana Changelog
 
 ## Added
-- `Chapter.download` now for downloading chapters.
-- Example for the above
+- Many attributes for `Artist`/`Author` for social media URLs.
+- `ScanlatorGroup.alt_names` for alternate names of a scanlation group.
+- `ScanlatorGroup.focused_language` for the optional focused languages of the scanaltion group.
 
 ## Changes
 
 ## Fixes
-- Ratelimit handling now works.
 
 ### Notes

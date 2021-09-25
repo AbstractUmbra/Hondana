@@ -51,6 +51,28 @@ class ArtistAttributesResponse(TypedDict):
 
     biography: :class:`~hondana.types.LocalisedString`
 
+    twitter: Optional[:class:`str`]
+
+    pixiv: Optional[:class:`str`]
+
+    melonBook: Optional[:class:`str`]
+
+    fanBox: Optional[:class:`str`]
+
+    booth: Optional[:class:`str`]
+
+    nicoVideo: Optional[:class:`str`]
+
+    skeb: Optional[:class:`str`]
+
+    fantia: Optional[:class:`str`]
+
+    tumblr: Optional[:class:`str`]
+
+    youtube: Optional[:class:`str`]
+
+    website: Optional[:class:`str`]
+
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -61,6 +83,17 @@ class ArtistAttributesResponse(TypedDict):
     name: str
     imageUrl: Optional[str]
     biography: LocalisedString
+    twitter: Optional[str]
+    pixiv: Optional[str]
+    melonBook: Optional[str]
+    fanBox: Optional[str]
+    booth: Optional[str]
+    nicoVideo: Optional[str]
+    skeb: Optional[str]
+    fantia: Optional[str]
+    tumblr: Optional[str]
+    youtube: Optional[str]
+    website: Optional[str]
     version: int
     createdAt: str
     updatedAt: str

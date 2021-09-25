@@ -49,6 +49,8 @@ class ScanlatorGroup:
         The raw type of item from the API.
     name: :class:`str`
         The name of the scanlator group.
+    alt_names: List[:class:`str`]
+        The alternate names for this group, if any.
     website: :class:`str`
         The website of this scanlator group.
     irc_server: :class:`str`
@@ -57,6 +59,8 @@ class ScanlatorGroup:
         The IRC channel for this scanlator group.
     discord: :class:`str`
         The Discord server for this scanlator group.
+    focused_language: Optional[List[str]]
+        The scanlator group's focused languages, if any.
     contact_email: :class:`str`
         The contact email for this scanlator group.
     description: :class:`str`
@@ -75,12 +79,14 @@ class ScanlatorGroup:
         "id",
         "type",
         "name",
+        "alt_names",
         "_leader",
         "_members",
         "website",
         "irc_server",
         "irc_channel",
         "discord",
+        "focused_language",
         "contact_email",
         "description",
         "locked",
@@ -99,12 +105,14 @@ class ScanlatorGroup:
         self.type: Literal["scanlation_group"] = self._data["type"]
         self._relationships = relationships
         self.name: str = self._attributes["name"]
+        self.alt_names: list[str] = self._attributes["altNames"]
         self._leader = self._attributes.get("leader", None)
         self._members = self._attributes.get("members", None)
         self.website: Optional[str] = self._attributes["website"]
         self.irc_server: Optional[str] = self._attributes["ircServer"]
         self.irc_channel: Optional[str] = self._attributes["ircServer"]
         self.discord: Optional[str] = self._attributes["discord"]
+        self.focused_language: Optional[list[str]] = self._attributes["focusedLanguage"]
         self.contact_email: Optional[str] = self._attributes["contactEmail"]
         self.description: Optional[str] = self._attributes["description"]
         self.locked: bool = self._attributes.get("locked", False)

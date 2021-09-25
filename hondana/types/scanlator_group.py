@@ -46,6 +46,8 @@ class ScanlationGroupAttributesResponse(TypedDict):
     """
     name: :class:`str`
 
+    altNames: List[:class:`str`]
+
     website: Optional[:class:`str`]
 
     ircServer: Optional[:class:`str`]
@@ -57,6 +59,8 @@ class ScanlationGroupAttributesResponse(TypedDict):
     contactEmail: Optional[:class:`str`]
 
     description: Optional[:class:`str`]
+
+    focusedLanguage: Optional[List[:class:`str`]]
 
     locked: :class:`bool`
 
@@ -70,12 +74,14 @@ class ScanlationGroupAttributesResponse(TypedDict):
     """
 
     name: str
+    altNames: list[str]
     website: Optional[str]
     ircServer: Optional[str]
     ircChannel: Optional[str]
     discord: Optional[str]
     contactEmail: Optional[str]
     description: Optional[str]
+    focusedLanguage: Optional[list[str]]
     locked: bool
     official: bool
     version: int

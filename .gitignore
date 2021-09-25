@@ -4,5 +4,5 @@ build/
 dist/
 docs/build
 docs/_build
-test.py
+*test.py
 hondana.log

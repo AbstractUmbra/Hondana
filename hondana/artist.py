@@ -49,6 +49,26 @@ class Artist:
         The artist's image url, if any.
     biography: Optional[:class:`str`]
         The artist's biography, if any.
+    twitter: Optional[:class:`str`]
+        The artist's Twitter url, if any.
+    pixiv: Optional[:class:`str`]
+        The artist's Pixiv url, if any.
+    melon_book: Optional[:class:`str`]
+        The artist's Melon Book url, if any.
+    booth: Optional[:class:`str`]
+        The artist's Booth url, if any.
+    nico_video: Optional[:class:`str`]
+        The artist's Nico Video url, if any.
+    skeb: Optional[:class:`str`]
+        The artist's Skeb url, if any.
+    fantia: Optional[:class:`str`]
+        The artist's Fantia url, if any.
+    tumblr: Optional[:class:`str`]
+        The artist's Tumblr url, if any.
+    youtube: Optional[:class:`str`]
+        The artist's Youtube url, if any.
+    website: Optional[:class:`str`]
+        The artist's website url, if any.
     version: :class:`int`
         The version revision of this artist.
     """
@@ -62,6 +82,16 @@ class Artist:
         "name",
         "image_url",
         "biography",
+        "twitter",
+        "pixiv",
+        "melon_book",
+        "booth",
+        "nico_video",
+        "skeb",
+        "fantia",
+        "tumblr",
+        "youtube",
+        "website",
         "_created_at",
         "_updated_at",
         "version",
@@ -76,6 +106,16 @@ class Artist:
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
         self.biography: Optional[LocalisedString] = self._attributes["biography"]
+        self.twitter: Optional[str] = self._attributes["twitter"]
+        self.pixiv: Optional[str] = self._attributes["pixiv"]
+        self.melon_book: Optional[str] = self._attributes["melonBook"]
+        self.booth: Optional[str] = self._attributes["booth"]
+        self.nico_video: Optional[str] = self._attributes["nicoVideo"]
+        self.skeb: Optional[str] = self._attributes["skeb"]
+        self.fantia: Optional[str] = self._attributes["fantia"]
+        self.tumblr: Optional[str] = self._attributes["tumblr"]
+        self.youtube: Optional[str] = self._attributes["youtube"]
+        self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
