@@ -185,7 +185,9 @@ class Chapter:
         resolved = None
         for relationship in self._relationships:
             if relationship["type"] == "manga":
-                if relationship.get("attributes", False):  # FIXME: This line breaks pyright when used with `and` on the line before
+                if relationship.get(
+                    "attributes", False
+                ):  # FIXME: This line breaks pyright when used with `and` on the line before
                     resolved = relationship
                     break
 

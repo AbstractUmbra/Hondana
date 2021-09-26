@@ -54,7 +54,7 @@ __all__ = (
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-MangaIncludes = Literal["author", "artist", "cover_art"]
+MangaIncludes = Literal["author", "artist", "cover_art", "manga"]
 ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
 MangaRelated = Literal[
     "monochrome",

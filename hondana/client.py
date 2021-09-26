@@ -345,7 +345,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
     ) -> list[Manga]:
         """|coro|
 
@@ -566,7 +566,7 @@ class Client:
         return data
 
     async def view_manga(
-        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
+        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"]
     ) -> Manga:
         """|coro|
 
@@ -762,7 +762,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
     ) -> list[Chapter]:
         """|coro|
 
@@ -876,7 +876,7 @@ class Client:
         await self._http._manga_read_markers_batch(manga_id, read_chapters=read_chapters, unread_chapters=unread_chapters)
 
     async def get_random_manga(
-        self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"]
+        self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"]
     ) -> Manga:
         """|coro|
 

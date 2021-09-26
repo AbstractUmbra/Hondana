@@ -481,7 +481,7 @@ class Manga:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art"],
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
     ) -> list[Chapter]:
         """|coro|
 
