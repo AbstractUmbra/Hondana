@@ -79,7 +79,7 @@ class DownloadRoute:
     """
 
     def __init__(self, base: str, path: str, **parameters: Any) -> None:
-        self.verb = "GET"
+        self.verb: str = "GET"
         self.base: str = base
         self.path: str = path
         url = self.base + self.path

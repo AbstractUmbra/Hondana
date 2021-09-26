@@ -37,6 +37,7 @@ __all__ = (
     "MangaStatus",
     "MangaIncludes",
     "ReadingStatus",
+    "MangaRelated",
     "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
@@ -55,6 +56,23 @@ __all__ = (
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 MangaIncludes = Literal["author", "artist", "cover_art"]
 ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
+MangaRelated = Literal[
+    "monochrome",
+    "main_story",
+    "adapted_from",
+    "based_on",
+    "prequel",
+    "side_story",
+    "doujinshi",
+    "same_franchise",
+    "shared_universe",
+    "sequel",
+    "spin_off",
+    "alternate_story",
+    "preserialization",
+    "colored",
+    "serialization",
+]
 
 
 class MangaOrderQuery(TypedDict, total=False):
