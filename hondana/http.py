@@ -30,11 +30,14 @@ import logging
 import sys
 import weakref
 from base64 import b64decode
+from collections import deque
 from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
     Coroutine,
+    Deque,
+    Dict,
     Literal,
     Optional,
     Type,
@@ -56,7 +59,7 @@ from .errors import (
     RefreshError,
     Unauthorized,
 )
-from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json
+from .utils import MISSING, TAGS, BaseRoute, php_query_builder, to_iso_format, to_json
 
 
 if TYPE_CHECKING:
@@ -82,9 +85,10 @@ if TYPE_CHECKING:
     from .types.token import TokenPayload
     from .utils import DownloadRoute
 
+    from multidict import CIMultiDictProxy
+
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
-    MU = TypeVar("MU", bound="MaybeUnlock")
     BE = TypeVar("BE", bound=BaseException)
 
 
@@ -108,7 +112,7 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
     return text
 
 
-class Route:
+class Route(BaseRoute):
     """A helper class for instantiating a HTTP method to MangaDex.
 
     Parameters
@@ -127,33 +131,98 @@ class Route:
     BASE: ClassVar[str] = "https://api.mangadex.org"
 
     def __init__(self, verb: str, path: str, **parameters: Any) -> None:
-        self.verb: str = verb
-        self.path: str = path
-        url = self.BASE + self.path
-        if parameters:
-            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: str = url
+        super().__init__(self.BASE, verb, path, **parameters)
 
+class RateLimitBucket:
 
-class MaybeUnlock:
-    def __init__(self, lock: asyncio.Lock) -> None:
-        self.lock: asyncio.Lock = lock
-        self._unlock: bool = True
+    def __init__(self, key: str) -> None:
+        self._loop: asyncio.AbstractEventLoop = asyncio.get_event_loop()
+        self.key: str = key
+        
+        self._waiters: Deque[asyncio.Future] = deque()
 
-    def __enter__(self: MU) -> MU:
+        self.limit: int = 1
+        self.remaining: int = self.limit
+        self.outgoing: int = 0
+
+        self.retry_after: float = 0.0
+        self.expires: Optional[float] = None
+        
+        self.dirty: bool = False
+
+    def __repr__(self) -> str:
+        return f'<RateLimitBucket key={self.key!r} limit={self.limit} remaining={self.remaining}>'
+
+    def _wake_up_next(self) -> None:
+        try:
+            future = self._waiters.popleft()
+        except IndexError:
+            return
+        future.set_result(None)
+
+    def _wake_up(self, count: int = 1) -> None:
+        while count and self._waiters:
+            self._wake_up_next()
+            count -= 1
+
+    async def acquire(self) -> None:
+        if self.expires and self._loop.time() > self.expires:
+            self.reset()
+        
+        while self.remaining <= 0:
+            future = self._loop.create_future()
+            self._waiters.append(future)
+            try:
+                await future
+            except:
+                future.cancel()
+                if self.remaining > 0 and not future.cancelled():
+                    self._wake_up_next()
+                raise
+
+        self.remaining -= 1
+        self.outgoing += 1
+
+    def reset(self) -> None:
+        self.remaining = self.limit - self.outgoing
+        self.expires = None
+        self.retry_after = 0.0
+
+    def update(self, headers: CIMultiDictProxy[str], use_clock: bool = False) -> None:
+        self.limit = int(headers.get('x-ratelimit-limit', 1))
+        if self.dirty:
+            self.remaining = min(int(headers.get('x-ratelimit-remaining', 0)), self.limit - self.outgoing)
+        else:
+            self.remaining = int(headers.get('x-ratelimit-remaining', 0))
+            self.dirty = True
+        
+        retry_after = headers.get('retry-after')
+        if use_clock or not retry_after:
+            utc = datetime.timezone.utc
+            now = datetime.datetime.now(utc)
+            reset =  datetime.datetime.fromtimestamp(float(headers["x-ratelimit-retry-after"]), utc)
+            self.retry_after = (reset - now).total_seconds()
+        else:
+            self.retry_after = float(retry_after)
+
+        self.expires = self._loop.time() + self.retry_after
+
+    async def __aenter__(self):
+        await self.acquire()
         return self
 
-    def defer(self) -> None:
-        self._unlock = False
-
-    def __exit__(
-        self,
-        exc_type: Optional[Type[BE]],
-        exc: Optional[BE],
-        traceback: Optional[TracebackType],
-    ) -> None:
-        if self._unlock:
-            self.lock.release()
+    async def __aexit__(self, type: Type[BE], value: BE, traceback: TracebackType) -> None:
+        tokens = self.remaining - self.outgoing - 1
+        if tokens <= 0:
+            await asyncio.sleep(self.retry_after)
+            self.outgoing -= 1
+            self.reset()
+            self._wake_up(self.remaining)
+        elif self._waiters:
+            self.outgoing -= 1
+            self._wake_up(self.remaining)
+        else:
+            self.outgoing -= 1
 
 
 class HTTPClient:
@@ -163,12 +232,13 @@ class HTTPClient:
         "password",
         "_authenticated",
         "__session",
-        "_locks",
+        "_buckets",
         "_token",
         "__refresh_token",
         "__last_refresh",
         "user_agent",
         "_connection",
+        "use_clock",
     )
 
     def __init__(
@@ -178,18 +248,20 @@ class HTTPClient:
         email: Optional[str],
         password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
+        unsync_clock: bool = True,
     ) -> None:
         self._authenticated = bool(((username or email) and password))
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
         self.__session: Optional[aiohttp.ClientSession] = session
-        self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
+        self._buckets: Dict[str, RateLimitBucket] = {}
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
         self.__last_refresh: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
+        self.use_clock: bool = not unsync_clock
 
     @staticmethod
     async def _generate_session() -> aiohttp.ClientSession:
@@ -417,11 +489,10 @@ class HTTPClient:
         if self.__session is None:
             self.__session = await self._generate_session()
 
-        bucket = route.path
-        lock = self._locks.get(bucket)
-        if lock is None:
-            lock = asyncio.Lock()
-            self._locks[bucket] = lock
+        try:
+            bucket = self._buckets[route._key]
+        except KeyError:
+            bucket = self._buckets[route._key] = RateLimitBucket(route._key)
 
         headers = kwargs.pop("headers", {})
         token = await self._try_token() if self._authenticated else None
@@ -438,30 +509,15 @@ class HTTPClient:
         LOGGER.debug("Current request headers: %s", headers)
         LOGGER.debug("Current request url and params: %s", route.url)
 
-        await lock.acquire()
-        with MaybeUnlock(lock) as maybe_lock:
+        async with bucket:
             for tries in range(5):
                 async with self.__session.request(route.verb, route.url, **kwargs) as response:
-                    # Requests remaining before ratelimit
-                    remaining = response.headers.get("x-ratelimit-remaining", None)
-                    LOGGER.debug("remaining is: %s", remaining)
-                    # Timestamp for when current ratelimit session(?) expires
-                    retry = response.headers.get("x-ratelimit-retry-after", None)
-                    LOGGER.debug("retry is: %s", retry)
-                    if retry is not None:
-                        retry = datetime.datetime.fromtimestamp(int(retry))
-                    # The total ratelimit session hits
-                    limit = response.headers.get("x-ratelimit-limit", None)
-                    LOGGER.debug("limit is: %s", limit)
-
-                    if remaining == "0" and response.status != 429:
-                        assert retry is not None
-                        delta = retry - datetime.datetime.now()
-                        sleep = delta.total_seconds() + 1
-                        LOGGER.warning("A ratelimit has been exhausted, sleeping for: %d", sleep)
-                        maybe_lock.defer()
-                        loop = asyncio.get_running_loop()
-                        loop.call_later(sleep, lock.release)
+                    
+                    if "x-ratelimit-limit" in response.headers:
+                        if response.status != 429:
+                            bucket.update(response.headers, use_clock=self.use_clock)
+                        elif bucket.remaining == 0:
+                            LOGGER.warning("A ratelimit has been exhausted (%r)", route._key)
 
                     if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
                         data = (await response.read(), response.status)
@@ -472,9 +528,7 @@ class HTTPClient:
                         return data
 
                     if response.status == 429:
-                        assert retry is not None
-                        delta = retry - datetime.datetime.now()
-                        sleep = delta.total_seconds() + 1
+                        sleep = float(response.headers["retry-after"])
                         LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
                         await asyncio.sleep(sleep)
                         continue
