@@ -14,7 +14,7 @@ client = hondana.Client(username="my-username", password="...")
 logging.basicConfig(level=logging.DEBUG)  # <---- This is the important line. It will enable logging to the CLI.
 
 # Alternatively you can use this to log to a file, or have more control over it.
-logger = logging.getLogger("hondana")
+logger = logging.getLogger("hondana.http")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename="hondana.log", encoding="utf-8", mode="w")
 handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(message)s"))

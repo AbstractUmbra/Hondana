@@ -89,8 +89,6 @@ if TYPE_CHECKING:
 
 
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel("DEBUG")
-EPOCH = datetime.datetime.fromtimestamp(0)
 TAGS = TAGS
 
 __all__ = ("json_or_text", "Route", "HTTPClient")
