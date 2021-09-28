@@ -74,7 +74,7 @@ class UserResponse(TypedDict):
     """
 
     id: str
-    type: Literal["user"]
+    type: Literal["user", "leader", "member"]
     attributes: GetUserAttributesResponse
     relationships: list[RelationshipResponse]
 

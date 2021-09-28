@@ -1409,10 +1409,11 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _view_scanlation_group(
-        self, scanlation_group_id: str, /
+        self, scanlation_group_id: str, /, *, includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]]
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
+        query = php_query_builder({"includes": includes})
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
-        return self.request(route)
+        return self.request(route, params=query)
 
     def _update_scanlation_group(
         self,

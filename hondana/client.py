@@ -2220,7 +2220,13 @@ class Client:
         data = await self._http._create_scanlation_group(name=name, leader=leader, members=members, version=version)
         return ScanlatorGroup(self._http, data["data"])
 
-    async def get_scanlation_group(self, scanlation_group_id: str, /) -> ScanlatorGroup:
+    async def get_scanlation_group(
+        self,
+        scanlation_group_id: str,
+        /,
+        *,
+        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = ["leader", "member"],
+    ) -> ScanlatorGroup:
         """|coro|
 
         This method will get a scanlation group from the MangaDex API.
@@ -2229,6 +2235,8 @@ class Client:
         -----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to fetch.
+        includes: Optional[List[:class:`~hondana.types.ScanlatorGroupIncludes`]]
+            The list of optional includes we request the data for.
 
         Raises
         -------
@@ -2242,7 +2250,7 @@ class Client:
         :class:`ScanlatorGroup`
             The group returned from the API.
         """
-        data = await self._http._view_scanlation_group(scanlation_group_id)
+        data = await self._http._view_scanlation_group(scanlation_group_id, includes=includes)
         return ScanlatorGroup(self._http, data["data"])
 
     @require_authentication

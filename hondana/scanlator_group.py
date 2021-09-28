@@ -33,6 +33,7 @@ from .utils import require_authentication
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.scanlator_group import ScanlationGroupResponse
+    from .types.user import UserResponse
 
 __all__ = ("ScanlatorGroup",)
 
@@ -80,8 +81,6 @@ class ScanlatorGroup:
         "type",
         "name",
         "alt_names",
-        "_leader",
-        "_members",
         "website",
         "irc_server",
         "irc_channel",
@@ -100,19 +99,16 @@ class ScanlatorGroup:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships = self._data["relationships"]
         self.id: str = self._data["id"]
         self.type: Literal["scanlation_group"] = self._data["type"]
-        self._relationships = relationships
+        self._relationships = self._data["relationships"]
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
-        self._leader = self._attributes.get("leader", None)
-        self._members = self._attributes.get("members", None)
         self.website: Optional[str] = self._attributes["website"]
         self.irc_server: Optional[str] = self._attributes["ircServer"]
         self.irc_channel: Optional[str] = self._attributes["ircServer"]
         self.discord: Optional[str] = self._attributes["discord"]
-        self.focused_language: Optional[list[str]] = self._attributes["focusedLanguage"]
+        self.focused_language: Optional[list[str]] = self._attributes.get("focusedLanguage")
         self.contact_email: Optional[str] = self._attributes["contactEmail"]
         self.description: Optional[str] = self._attributes["description"]
         self.locked: bool = self._attributes.get("locked", False)
@@ -129,23 +125,97 @@ class ScanlatorGroup:
 
     @property
     def created_at(self) -> datetime.datetime:
+        """
+        Returns the time when the ScanlatorGroup was created.
+
+        Returns
+        ---------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
+        """
+        Returns the time when the ScanlatorGroup was last updated.
+
+        Returns
+        ---------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    @property
-    def leader(self) -> Optional[User]:
-        if self._leader:
-            return User(self._http, self._leader["data"])
-        return None
+    async def get_leader(self) -> Optional[User]:
+        """|coro|
 
-    @property
-    def members(self) -> Optional[list[User]]:
-        if self._members:
-            return [User(self._http, payload["data"]) for payload in self._members]
-        return None
+        This method will return the User representing the leader of the scanlation group.
+
+        .. note::
+            If the ScanlatorGroup was requested with the `leader` includes, then this method will not make an API call.
+
+
+        Returns
+        --------
+        Optional[User]
+            The leader of the ScanlatorGroup, if present.
+        """
+        leader_key = None
+        for relationship in self._relationships:
+            if relationship["type"] == "leader":
+                leader_key = relationship
+                break
+
+        if leader_key is None:
+            return
+
+        if leader_key.get("attributes", None):
+            return User(self._http, leader_key)
+
+        leader_id = leader_key["id"]
+        leader = await self._http._get_user(leader_id)
+        return User(self._http, leader["data"])
+
+    async def members(self) -> Optional[list[User]]:
+        """|coro|
+
+        This method will return a list of members of the scanlation group, if present.
+
+        .. note::
+            If the ScanlatorGroup was requested with the ``member`` includes, this method will not make API calls.
+
+
+        .. danger::
+            Due to the nature of this request, this is N many API calls depending on the amount of members.
+            It is *strongly* suggested you request the ScanlatorGroup with the ``member`` includes.
+
+
+        Returns
+        --------
+        Optional[List[User]]
+            The list of members of the scanlation group.
+        """
+        members: list[User] = []
+        _keys: list[UserResponse] = []
+
+        for relationship in self._relationships:
+            if relationship["type"] == "member":
+                _keys.append(relationship)
+
+        if not _keys:
+            return None
+
+        for key in _keys:
+            if key.get("attributes", None):
+                members.append(User(self._http, key))
+
+        if members:
+            return members
+
+        for key in _keys:
+            user = await self._http._get_user(key["id"])
+            members.append(User(self._http, user["data"]))
+
+        return members
 
     @require_authentication
     async def delete(self) -> None:
