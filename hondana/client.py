@@ -2471,6 +2471,7 @@ class Client:
 
         The method will fetch an Author from the MangaDex API.
 
+
         .. note::
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
 
@@ -2478,7 +2479,7 @@ class Client:
         -----------
         author_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes~]]
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
             The optional extra data we are requesting from the API.
 
         Raises
@@ -2500,6 +2501,7 @@ class Client:
 
         The method will fetch an artist from the MangaDex API.
 
+
         .. note::
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
 
@@ -2507,7 +2509,7 @@ class Client:
         -----------
         artist_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes~]]
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
             The optional extra data we are requesting from the API.
 
         Raises

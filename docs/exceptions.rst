@@ -11,14 +11,6 @@ APIException
 ~~~~~~~~~~~~
 .. autoexception:: APIException()
 
-LoginError
-~~~~~~~~~~
-.. autoexception:: LoginError()
-
-RefreshError
-~~~~~~~~~~~~
-.. autoexception:: RefreshError()
-
 NotFound
 ~~~~~~~~
 .. autoexception:: NotFound()

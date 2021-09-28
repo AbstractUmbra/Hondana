@@ -22,22 +22,33 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from __future__ import annotations
+from typing import Literal, TypedDict
 
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .query import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .tags import *
-from .token import *
-from .user import *
+
+__all__ = ("ErrorType", "APIError")
+
+
+class ErrorType(TypedDict):
+    """
+    id: :class:`str`
+        The ID of the error.
+
+    status: :class:`int`
+        The http status code of the error.
+
+    title: :class:`str`
+        The error title.
+
+    detail: :class:`str`
+        The details of the error.
+    """
+
+    id: str
+    status: int
+    title: str
+    detail: str
+
+
+class APIError(TypedDict):
+    result: Literal["error"]
+    errors: list[ErrorType]

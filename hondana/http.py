@@ -40,6 +40,7 @@ from typing import (
     Type,
     TypeVar,
     Union,
+    cast,
     overload,
 )
 from urllib.parse import quote as _uriquote
@@ -47,15 +48,7 @@ from urllib.parse import quote as _uriquote
 import aiohttp
 
 from . import __version__
-from .errors import (
-    APIException,
-    BadRequest,
-    Forbidden,
-    LoginError,
-    NotFound,
-    RefreshError,
-    Unauthorized,
-)
+from .errors import APIException, BadRequest, Forbidden, NotFound, Unauthorized
 from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json
 
 
@@ -63,19 +56,9 @@ if TYPE_CHECKING:
     from types import TracebackType
 
     from .tags import QueryTags
-    from .types import (
-        artist,
-        author,
-        chapter,
-        common,
-        cover,
-        custom_list,
-        legacy,
-        manga,
-        report,
-        scanlator_group,
-        user,
-    )
+    from .types import artist, author, chapter, common, cover, custom_list
+    from .types import errors as error_types
+    from .types import legacy, manga, report, scanlator_group, user
     from .types.auth import CheckPayload, LoginPayload, RefreshPayload
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
@@ -249,11 +232,16 @@ class HTTPClient:
 
         route = Route("POST", "/auth/login")
         async with self.__session.post(route.url, json=auth) as response:
-            data: LoginPayload = await response.json()
+            data = await response.json()
 
-        if data["result"] == "error":
-            text = await response.text()
-            raise LoginError(response, text, response.status)
+        if response.status == 400:
+            data = cast(error_types.APIError, data)
+            raise BadRequest(response, errors=data["errors"])
+        elif response.status == 401:
+            data = cast(error_types.APIError, data)
+            raise Unauthorized(response, errors=data["errors"])
+        else:
+            data = cast(LoginPayload, data)
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
@@ -295,17 +283,19 @@ class HTTPClient:
 
         route = Route("POST", "/auth/refresh")
         async with self.__session.post(route.url, json={"token": self.__refresh_token}) as response:
-            data: RefreshPayload = await response.json()
+            data = await response.json()
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
 
-        if not (300 > response.status >= 200):
-            text = await response.text()
-            LOGGER.debug("Error (code %d) when trying to refresh a token: %s", text, response.status)
-            raise RefreshError(response, text, response.status, self.__last_refresh)
-
-        if data["result"] == "error":
-            raise RefreshError(response, "The API reported an error when refreshing the token", 200, self.__last_refresh)
+        data = cast(error_types.APIError, data)
+        if response.status == 400:
+            raise BadRequest(response, errors=data["errors"])
+        elif response.status == 401:
+            raise Unauthorized(response, errors=data["errors"])
+        elif response.status == 403:
+            raise Forbidden(response, errors=data["errors"])
+        else:
+            data = cast(RefreshPayload, data)
 
         self._token = data["token"]["session"]
         self.__last_refresh = datetime.datetime.now(datetime.timezone.utc)
@@ -355,11 +345,6 @@ class HTTPClient:
         async with self.__session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
             data: CheckPayload = await response.json()
 
-        if not (300 > response.status >= 200) or data["result"] == "error":
-            text = await response.text()
-            LOGGER.debug("Hit an error (code %d) when checking token auth: %s", text, response.status)
-            raise APIException(response, text, response.status)
-
         if data["isAuthenticated"] is True:
             LOGGER.debug("Token is still valid: %s", self._token[:20])
             return self._token
@@ -378,11 +363,13 @@ class HTTPClient:
 
         route = Route("POST", "/auth/logout")
         async with self.__session.request(route.verb, route.url) as response:
-            data: dict[str, str] = await response.json()
+            data = await response.json()
 
+        data = cast(error_types.APIError, data)
         if not (300 > response.status >= 200) or data["result"] != "ok":
-            raise APIException(response, "Unable to logout", response.status)
+            raise APIException(response, status_code=503, errors=data["errors"])
 
+        data = cast(dict[Literal["result"], Literal["ok"]], data)
         self._authenticated = False
 
     async def request(self, route: Union[Route, DownloadRoute], **kwargs: Any) -> Any:
@@ -485,15 +472,20 @@ class HTTPClient:
                         await asyncio.sleep(sleep_)
                         continue
 
+                    data = cast(error_types.APIError, data)
                     if response.status == 400:
-                        raise BadRequest(response, str(data))
+                        raise BadRequest(response, errors=data["errors"])
                     elif response.status == 401:
-                        raise Unauthorized(response, str(data))
+                        raise Unauthorized(response, errors=data["errors"])
                     elif response.status == 403:
-                        raise Forbidden(response, str(data))
+                        raise Forbidden(response, errors=data["errors"])
                     elif response.status == 404:
-                        raise NotFound(response, str(data))
-                    raise APIException(response, str(data), response.status)
+                        raise NotFound(response, errors=data["errors"])
+                    raise APIException(
+                        response,
+                        status_code=response.status,
+                        errors=data["errors"],
+                    )
 
     def _update_tags(self) -> Response[GetTagListResponse]:
         route = Route("GET", "/manga/tag")

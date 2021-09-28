@@ -116,6 +116,12 @@ CustomList
 
 .. autoclass:: GetMultiCustomListResponse
 
+Errors
+------
+.. autoclass:: ErrorType
+
+.. autoclass:: APIError
+
 
 Legacy
 ------
