@@ -235,13 +235,9 @@ class HTTPClient:
             data = await response.json()
 
         if response.status == 400:
-            data = cast(error_types.APIError, data)
             raise BadRequest(response, errors=data["errors"])
         elif response.status == 401:
-            data = cast(error_types.APIError, data)
             raise Unauthorized(response, errors=data["errors"])
-        else:
-            data = cast(LoginPayload, data)
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
@@ -287,15 +283,12 @@ class HTTPClient:
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
 
-        data = cast(error_types.APIError, data)
         if response.status == 400:
             raise BadRequest(response, errors=data["errors"])
         elif response.status == 401:
             raise Unauthorized(response, errors=data["errors"])
         elif response.status == 403:
             raise Forbidden(response, errors=data["errors"])
-        else:
-            data = cast(RefreshPayload, data)
 
         self._token = data["token"]["session"]
         self.__last_refresh = datetime.datetime.now(datetime.timezone.utc)
@@ -365,11 +358,9 @@ class HTTPClient:
         async with self.__session.request(route.verb, route.url) as response:
             data = await response.json()
 
-        data = cast(error_types.APIError, data)
         if not (300 > response.status >= 200) or data["result"] != "ok":
             raise APIException(response, status_code=503, errors=data["errors"])
 
-        data = cast(dict[Literal["result"], Literal["ok"]], data)
         self._authenticated = False
 
     async def request(self, route: Union[Route, DownloadRoute], **kwargs: Any) -> Any:
@@ -472,7 +463,7 @@ class HTTPClient:
                         await asyncio.sleep(sleep_)
                         continue
 
-                    data = cast(error_types.APIError, data)
+                    assert isinstance(data, dict)
                     if response.status == 400:
                         raise BadRequest(response, errors=data["errors"])
                     elif response.status == 401:
