@@ -1017,7 +1017,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[chapter.ChapterOrderQuery] = None,
-        includes: Optional[list[chapter.ChapterIncludes]] = None,
+        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
     ) -> list[Chapter]:
         """|coro|
 
@@ -1108,7 +1108,13 @@ class Client:
 
         return [Chapter(self._http, item) for item in data["data"]]
 
-    async def get_chapter(self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]] = None) -> Chapter:
+    async def get_chapter(
+        self,
+        chapter_id: str,
+        /,
+        *,
+        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+    ) -> Chapter:
         """|coro|
 
         This method will retrieve a single chapter from the MangaDex API.
@@ -1251,7 +1257,7 @@ class Client:
         ids: Optional[list[str]] = None,
         uploaders: Optional[list[str]] = None,
         order: Optional[cover.CoverOrderQuery] = None,
-        includes: Optional[list[cover.CoverIncludes]] = None,
+        includes: Optional[list[cover.CoverIncludes]] = ["manga", "user"],
     ) -> list[Cover]:
         """|coro|
 
@@ -1295,7 +1301,9 @@ class Client:
 
         return [Cover(self._http, item) for item in data["data"]]
 
-    async def get_cover(self, cover_id: str, /, *, includes: list[str] = ["manga"]) -> Cover:
+    async def get_cover(
+        self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]] = ["manga", "user"]
+    ) -> Cover:
         """|coro|
 
         The method will fetch a Cover from the MangaDex API.
@@ -1304,9 +1312,8 @@ class Client:
         -----------
         cover_id: :class:`str`
             The id of the cover we are fetching from the API.
-        includes: List[:class:`str`]
+        includes: Optional[List[:class:`~hondana.types.CoverIncludes`]]
             A list of the additional information to gather related to the Cover.
-            defaults to ``["manga"]``
 
 
         .. note::
@@ -1394,7 +1401,7 @@ class Client:
         offset: int = 0,
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
-        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = None,
+        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = ["leader", "member"],
     ) -> list[ScanlatorGroup]:
         """|coro|
 
@@ -1938,7 +1945,11 @@ class Client:
         return CustomList(self._http, data["data"])
 
     async def get_custom_list(
-        self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes] = ["manga", "user"]
+        self,
+        custom_list_id: str,
+        /,
+        *,
+        includes: Optional[list[custom_list.CustomListIncludes]] = ["manga", "user", "owner"],
     ) -> CustomList:
         """|coro|
 
@@ -1948,7 +1959,7 @@ class Client:
         -----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list we wish to retrieve.
-        includes: List[:class:`~hondana.types.CustomListIncludes`]
+        includes: Optional[List[:class:`~hondana.types.CustomListIncludes`]]
             The list of additional data to request in the payload.
 
         Raises
@@ -2455,13 +2466,20 @@ class Client:
         data = await self._http._create_author(name=name, version=version)
         return Author(self._http, data["data"])
 
-    async def get_author(self, author_id: str, /, *, includes: list[author.AuthorIncludes] = ["manga"]) -> Author:
+    async def get_author(self, author_id: str, /, *, includes: Optional[list[author.AuthorIncludes]] = ["manga"]) -> Author:
         """|coro|
 
         The method will fetch an Author from the MangaDex API.
 
         .. note::
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
+
+        Parameters
+        -----------
+        author_id: :class:`str`
+            The ID of the author we are fetching.
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes~]]
+            The optional extra data we are requesting from the API.
 
         Raises
         -------
@@ -2477,13 +2495,20 @@ class Client:
 
         return Author(self._http, data["data"])
 
-    async def get_artist(self, artist_id: str, /, *, includes: list[artist.ArtistIncludes] = ["manga"]) -> Artist:
+    async def get_artist(self, artist_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]] = ["manga"]) -> Artist:
         """|coro|
 
         The method will fetch an artist from the MangaDex API.
 
         .. note::
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
+
+        Parameters
+        -----------
+        artist_id: :class:`str`
+            The ID of the author we are fetching.
+        includes: Optional[List[:class:`~hondana.types.AuthorIncludes~]]
+            The optional extra data we are requesting from the API.
 
         Raises
         -------

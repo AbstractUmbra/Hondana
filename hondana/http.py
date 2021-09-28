@@ -1062,7 +1062,9 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _get_cover(self, cover_id: str, /, includes: list[str]) -> Response[cover.GetSingleCoverResponse]:
+    def _get_cover(
+        self, cover_id: str, /, includes: Optional[list[cover.CoverIncludes]]
+    ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
@@ -1265,7 +1267,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _get_custom_list(
-        self, custom_list_id: str, /, *, includes: list[custom_list.CustomListIncludes]
+        self, custom_list_id: str, /, *, includes: Optional[list[custom_list.CustomListIncludes]]
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 

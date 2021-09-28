@@ -693,7 +693,7 @@ class Manga:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[ChapterOrderQuery] = None,
-        includes: Optional[list[ChapterIncludes]] = None,
+        includes: Optional[list[ChapterIncludes]] = ["manga", "user", "scanlation_group"],
     ) -> list[Chapter]:
         """|coro|
 
