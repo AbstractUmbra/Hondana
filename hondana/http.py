@@ -1046,7 +1046,7 @@ class HTTPClient:
         return self.request(route, params=resolved_query)
 
     def _get_cover(
-        self, cover_id: str, /, includes: Optional[list[cover.CoverIncludes]]
+        self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]]
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
@@ -1522,6 +1522,23 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
+    def _update_author(
+        self, author_id: str, /, *, name: Optional[str], version: int
+    ) -> Response[author.GetSingleAuthorResponse]:
+        route = Route("PUT", "/author/{author_id}", author_id=author_id)
+
+        query = {}
+        query["version"] = version
+
+        if name:
+            query["name"] = name
+
+        return self.request(route, json=query)
+
+    def _delete_author(self, author_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/author/{author_id}", author_id=author_id)
+        return self.request(route)
+
     def _get_artist(
         self, author_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
     ) -> Response[artist.GetSingleArtistResponse]:
@@ -1536,8 +1553,10 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
-    def _update_author(self, author_id, /, *, name: Optional[str], version: int) -> Response[author.GetSingleAuthorResponse]:
-        route = Route("PUT", "/author/{author_id}", author_id=author_id)
+    def _update_artist(
+        self, artist_id: str, /, *, name: Optional[str], version: int
+    ) -> Response[artist.GetSingleArtistResponse]:
+        route = Route("PUT", "/author/{author_id}", artist_id=artist_id)
 
         query = {}
         query["version"] = version
@@ -1546,10 +1565,6 @@ class HTTPClient:
             query["name"] = name
 
         return self.request(route, json=query)
-
-    def _delete_author(self, author_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("DELETE", "/author/{author_id}", author_id=author_id)
-        return self.request(route)
 
     def _get_report_reason_list(self, report_category: report.ReportCategory, /) -> Response[report.GetReportReasonResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)

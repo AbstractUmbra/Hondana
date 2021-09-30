@@ -215,7 +215,7 @@ class Manga:
         if cover_key is None:
             return None
 
-        data = await self._http._get_cover(cover_key["id"], ["manga"])
+        data = await self._http._get_cover(cover_key["id"], includes=["manga"])
         return Cover(self._http, data["data"])
 
     def cover_url(self, /, *, type: Optional[Literal[256, 512]] = None) -> Optional[str]:

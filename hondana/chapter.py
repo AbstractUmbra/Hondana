@@ -185,13 +185,10 @@ class Chapter:
         resolved = None
         for relationship in self._relationships:
             if relationship["type"] == "manga":
-                if relationship.get(
-                    "attributes", False
-                ):  # FIXME: This line breaks pyright when used with `and` on the line before
-                    resolved = relationship
-                    break
+                resolved = relationship
+                break
 
-        if resolved is None:
+        if resolved is None or not resolved.get("attributes"):
             return
 
         return Manga(self._http, resolved)
@@ -207,9 +204,9 @@ class Chapter:
             The Manga that was fetched from the API.
         """
         manga_id = None
-        for item in self._relationships:
-            if item["type"] == "manga":
-                manga_id = item["id"]
+        for relationship in self._relationships:
+            if relationship["type"] == "manga":
+                manga_id = relationship["id"]
                 break
 
         if manga_id is None:

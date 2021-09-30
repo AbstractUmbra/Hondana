@@ -26,6 +26,8 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
+from .utils import require_authentication
+
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -135,3 +137,48 @@ class Artist:
     def updated_at(self) -> datetime.datetime:
         """When this artist was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    @require_authentication
+    async def update(self, *, name: Optional[str] = None, version: int) -> Artist:
+        """|coro|
+
+        This method will update the current author on the MangaDex API.
+
+        Parameters
+        -----------
+        name: Optional[:class:`str`]
+            The new name to update the author with.
+        version: :class:`int`
+            The version revision of this author.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed.
+        :exc:`Forbidden`
+            You are not authorized to update this author.
+        :exc:`NotFound`
+            The author UUID given was not found.
+
+        Returns
+        --------
+        :class:`Author`
+            The updated author from the API.
+        """
+        data = await self._http._update_artist(self.id, name=name, version=version)
+        return self.__class__(self._http, data["data"])
+
+    @require_authentication
+    async def delete(self) -> None:
+        """|coro|
+
+        This method will delete the current author from the MangaDex API.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to delete this author.
+        :exc:`NotFound`
+            The UUID given for the author was not found.
+        """
+        await self._http._delete_author(self.id)

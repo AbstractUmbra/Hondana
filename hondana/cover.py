@@ -170,7 +170,7 @@ class Cover:
         """
         data = await self._http._edit_cover(self.id, volume=volume, description=description, version=version)
 
-        return Cover(self._http, data["data"])
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self) -> None:

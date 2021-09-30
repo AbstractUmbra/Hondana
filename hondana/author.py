@@ -165,7 +165,7 @@ class Author:
             The updated author from the API.
         """
         data = await self._http._update_author(self.id, name=name, version=version)
-        return Author(self._http, data["data"])
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self, author_id: str, /) -> None:

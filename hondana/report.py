@@ -39,6 +39,7 @@ __all__ = ("Report",)
 class Report:
     __slots__ = (
         "_http",
+        "_data",
         "_attributes",
         "id",
         "reason",
@@ -49,8 +50,9 @@ class Report:
 
     def __init__(self, http: HTTPClient, payload: ReportReasonResponse) -> None:
         self._http = http
-        self.id: str = payload["id"]
-        self._attributes = payload["attributes"]
+        self._data = payload
+        self.id: str = self._data["id"]
+        self._attributes = self._data["attributes"]
         self.reason: LocalisedString = self._attributes["reason"]
         self.details_required: bool = self._attributes["detailsRequired"]
         self.category: ReportCategory = self._attributes["category"]

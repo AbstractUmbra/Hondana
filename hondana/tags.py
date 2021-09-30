@@ -34,9 +34,12 @@ if TYPE_CHECKING:
     from .types.tags import TagResponse
 
 
-__all__ = ("Tag", "QueryTags")
+__all__ = (
+    "Tag",
+    "QueryTags",
+)
 
-logger: logging.Logger = logging.getLogger()
+logger: logging.Logger = logging.getLogger("hondana")
 
 
 class Tag:

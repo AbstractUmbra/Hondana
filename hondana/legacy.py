@@ -52,14 +52,23 @@ class LegacyItem:
         The type of the legacy item we resolved.
     """
 
-    __slots__ = ("_http", "id", "type", "_attributes", "obj_new_id", "obj_legacy_id", "obj_type")
+    __slots__ = (
+        "_http",
+        "_data",
+        "id",
+        "type",
+        "_attributes",
+        "obj_new_id",
+        "obj_legacy_id",
+        "obj_type",
+    )
 
     def __init__(self, http: HTTPClient, payload: LegacyMappingResponse):
         self._http = http
-        self.id: str = payload["id"]
-        self.type: Literal["mapping_id"] = payload["type"]
-        attributes = payload["attributes"]
-        self._attributes = attributes
-        self.obj_new_id: str = attributes["newId"]
-        self.obj_legacy_id: int = attributes["legacyId"]
-        self.obj_type: LegacyMappingType = attributes["type"]
+        self._data = payload
+        self.id: str = self._data["id"]
+        self.type: Literal["mapping_id"] = self._data["type"]
+        self._attributes = self._data["attributes"]
+        self.obj_new_id: str = self._attributes["newId"]
+        self.obj_legacy_id: int = self._attributes["legacyId"]
+        self.obj_type: LegacyMappingType = self._attributes["type"]

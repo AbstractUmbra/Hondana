@@ -168,7 +168,7 @@ class ScanlatorGroup:
         if leader_key is None:
             return
 
-        if leader_key.get("attributes", None):
+        if "attributes" in leader_key:
             return User(self._http, leader_key)
 
         leader_id = leader_key["id"]
@@ -205,7 +205,7 @@ class ScanlatorGroup:
             return None
 
         for key in _keys:
-            if key.get("attributes", None):
+            if "attributes" in key:
                 members.append(User(self._http, key))
 
         if members:

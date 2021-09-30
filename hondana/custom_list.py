@@ -56,6 +56,7 @@ class CustomList:
 
     __slots__ = (
         "_http",
+        "_data",
         "_attributes",
         "_relationships",
         "id",
@@ -66,9 +67,10 @@ class CustomList:
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
         self._http = http
-        self._attributes = payload["attributes"]
-        self._relationships = payload["relationships"]
-        self.id: str = payload["id"]
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self._relationships = self._data["relationships"]
+        self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = self._attributes["visibility"]
         self.version: int = self._attributes["version"]
@@ -89,7 +91,7 @@ class CustomList:
         if owner_key is None:
             return None
 
-        if owner_key.get("attributes", []):
+        if "attributes" in owner_key:
             return User(self._http, owner_key)
 
         data = await self._http._get_user(owner_key["id"])
@@ -140,7 +142,7 @@ class CustomList:
         """
         data = await self._http._update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
 
-        return CustomList(self._http, data["data"])
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete_custom_list(self) -> None:
