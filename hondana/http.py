@@ -1107,6 +1107,13 @@ class HTTPClient:
 
         return self.request(route, params=resolved_query)
 
+    def _upload_cover(
+        self, manga_id: str, /, *, cover: bytes, volume: Optional[str]
+    ) -> Response[cover.GetSingleCoverResponse]:
+        route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
+        query = {"file": cover, "volume": volume}
+        return self.request(route, json=query)
+
     def _get_cover(
         self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]]
     ) -> Response[cover.GetSingleCoverResponse]:

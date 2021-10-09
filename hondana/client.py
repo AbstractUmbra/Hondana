@@ -449,11 +449,11 @@ class Client:
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
-        original_language: Optional[str] = None,
+        original_language: str,
         last_volume: Optional[str] = None,
         last_chapter: Optional[str] = None,
         publication_demographic: Optional[manga.PublicationDemographic] = None,
-        status: Optional[manga.MangaStatus] = None,
+        status: manga.MangaStatus,
         year: Optional[int] = None,
         content_rating: manga.ContentRating,
         tags: Optional[QueryTags] = None,
@@ -482,7 +482,7 @@ class Client:
         links: Optional[:class:`~hondana.types.MangaLinks`]
             The links relevant to the manga.
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
-        original_language: Optional[:class:`str`]
+        original_language: :class:`str`
             The language key for the original language of the manga.
         last_volume: Optional[:class:`str`]
             The last volume to attribute to this manga.
@@ -490,7 +490,7 @@ class Client:
             The last chapter to attribute to this manga.
         publication_demographic: Optional[:class:`~hondana.types.PublicationDemographic`]
             The target publication demographic of this manga.
-        status: Optional[:class:`~hondana.types.MangaStatus`]
+        status: :class:`~hondana.types.MangaStatus`
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
@@ -989,7 +989,7 @@ class Client:
         return Manga(self._http, data["data"])
 
     @require_authentication
-    async def _submit_manga_draft(self, manga_id: str, /, *, version: Optional[int] = None) -> Manga:
+    async def submit_manga_draft(self, manga_id: str, /, *, version: Optional[int] = None) -> Manga:
         """|coro|
 
         This method will submit a draft for a manga.
@@ -1016,7 +1016,6 @@ class Client:
         """
         data = await self._http._submit_manga_draft(manga_id, version=version)
         return Manga(self._http, data["data"])
-        # TODO: Figure this out...
 
     @require_authentication
     async def get_manga_draft_list(
@@ -1476,6 +1475,36 @@ class Client:
         )
 
         return [Cover(self._http, item) for item in data["data"]]
+
+    @require_authentication
+    async def upload_cover(self, manga_id: str, /, *, cover: bytes, volume: Optional[str] = None) -> Cover:
+        """|coro|
+
+        This method will upload a cover to the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID relating to the manga this cover belongs to.
+        cover: :class:`bytes`
+            THe raw bytes of the image.
+        volume: Optional[:class:`str`]
+            The volume this cover relates to.
+
+        Raises
+        -------
+        BadRequest
+            The volume parameter was malformed or the file was a bad format.
+        Forbidden
+            You are not permitted for this action.
+
+        Returns
+        --------
+        :class:`~hondana.Cover`
+        """
+        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume)
+
+        return Cover(self._http, data["data"])
 
     async def get_cover(
         self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]] = ["manga", "user"]

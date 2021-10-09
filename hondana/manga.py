@@ -796,7 +796,7 @@ class Manga:
         data = await self._http._get_manga_draft(self.id)
         return self.__class__(self._http, data["data"])
 
-    async def _submit_draft(self, *, version: Optional[int] = None) -> Manga:
+    async def submit_draft(self, *, version: Optional[int] = None) -> Manga:
         """|coro|
 
         This method will submit a draft for a manga.
@@ -821,7 +821,6 @@ class Manga:
         """
         data = await self._http._submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
-        # TODO: make this public when its fleshed out.
 
     async def get_relations(self) -> list[MangaRelation]:
         """|coro|
@@ -839,6 +838,33 @@ class Manga:
         """
         data = await self._http._get_manga_relation_list(self.id)
         return [MangaRelation(self._http, self.id, item) for item in data["data"]]
+
+    @require_authentication
+    async def upload_cover(self, *, cover: bytes, volume: Optional[str] = None) -> Cover:
+        """|coro|
+
+        This method will upload a cover to the MangaDex API.
+
+        Parameters
+        -----------
+        cover: :class:`bytes`
+            THe raw bytes of the image.
+        volume: Optional[:class:`str`]
+            The volume this cover relates to.
+
+        Raises
+        -------
+        BadRequest
+            The volume parameter was malformed or the file was a bad format.
+        Forbidden
+            You are not permitted for this action.
+
+        Returns
+        --------
+        :class:`~hondana.Cover`
+        """
+        data = await self._http._upload_cover(self.id, cover=cover, volume=volume)
+        return Cover(self._http, data["data"])
 
     @require_authentication
     async def create_relation(self, *, target_manga: str, relation_type: manga.MangaRelationType) -> MangaRelation:

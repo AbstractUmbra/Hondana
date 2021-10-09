@@ -99,7 +99,7 @@ class LocalizedString(TypedDict):
         The localized item.
     """
 
-    language_code: str
+    language_code: LanguageCode
     item: str
 
 
