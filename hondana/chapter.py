@@ -40,6 +40,7 @@ if TYPE_CHECKING:
 
     from .http import HTTPClient
     from .types.chapter import ChapterResponse
+    from .types.relationship import RelationshipResponse
 
 
 __all__ = ("Chapter",)
@@ -100,7 +101,7 @@ class Chapter:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = self._data["relationships"]
+        self._relationships: list[RelationshipResponse] = self._data["relationships"]
         self.id: str = self._data["id"]
         self.title: Optional[str] = self._attributes["title"]
         self.volume: Optional[str] = self._attributes["volume"]

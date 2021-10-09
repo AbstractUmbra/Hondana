@@ -43,7 +43,7 @@ if TYPE_CHECKING:
     from .types.relationship import RelationshipResponse
 
 
-__all__ = ("Manga",)
+__all__ = ("Manga", "MangaRelation")
 
 
 class Manga:
@@ -166,6 +166,33 @@ class Manga:
         """The date this manga was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
 
+    @property
+    def artist(self) -> Optional[Artist]:
+        """The artist of the parent Manga.
+
+        Returns
+        --------
+        Optional[:class:`Artist`]
+            The artist associated with this Manga.
+
+
+        .. note::
+            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
+            then this method will return ``None``.
+        """
+
+        artist = None
+        for item in self._relationships:
+            if item["type"] == "artist":
+                artist = item
+                break
+
+        if artist is None:
+            return None
+
+        if "attributes" in artist:
+            return Artist(self._http, artist)
+
     async def get_author(self) -> Optional[Author]:
         """|coro|
 
@@ -248,32 +275,6 @@ class Manga:
             return None
 
         return f"https://uploads.mangadex.org/covers/{self.id}/{attributes['fileName']}{fmt}"
-
-    def get_artist(self) -> Optional[Artist]:
-        """This method will return the artist of the parent Manga.
-
-        Returns
-        --------
-        Optional[:class:`Artist`]
-            The artist associated with this Manga.
-
-
-        .. note::
-            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
-            then this method will return ``None``.
-        """
-
-        artist = None
-        for item in self._relationships:
-            if item["type"] == "artist":
-                artist = item
-                break
-
-        if artist is None:
-            return None
-
-        if "attributes" in artist:
-            return Artist(self._http, artist)
 
     @require_authentication
     async def update(
@@ -542,7 +543,7 @@ class Manga:
             includes=includes,
         )
 
-        from .chapter import Chapter  # TODO: fix circular
+        from .chapter import Chapter
 
         return [Chapter(self._http, item) for item in data["data"]]
 
@@ -586,7 +587,7 @@ class Manga:
         await self._http._manga_read_markers_batch(self.id, read_chapters=read_chapters, unread_chapters=unread_chapters)
 
     @require_authentication
-    async def get_reading_status(self) -> manga.MangaReadingStatusResponse:
+    async def get_reading_status(self) -> manga.MangaSingleReadingStatusResponse:
         """|coro|
 
         This method will return the current reading status for the current manga.
@@ -600,7 +601,7 @@ class Manga:
 
         Returns
         --------
-        :class:`~hondana.types.MangaReadingStatusResponse`
+        :class:`~hondana.types.MangaSingleReadingStatusResponse`
             The raw payload from the API response.
         """
         return await self._http._get_manga_reading_status(self.id)
@@ -778,6 +779,137 @@ class Manga:
             order=order,
             includes=includes,
         )
-        from .chapter import Chapter  # FIXME: circular?
+        from .chapter import Chapter
 
         return [Chapter(self._http, item) for item in data["data"]]
+
+    async def get_draft(self) -> Manga:
+        """|coro|
+
+        This method will return a manga draft from MangaDex.
+
+        Returns
+        --------
+        :class:`~hondana.Manga`
+            The Manga returned from the API.
+        """
+        data = await self._http._get_manga_draft(self.id)
+        return self.__class__(self._http, data["data"])
+
+    async def _submit_draft(self, *, version: Optional[int] = None) -> Manga:
+        """|coro|
+
+        This method will submit a draft for a manga.
+
+        Parameters
+        -----------
+        version: Optional[:class:`int`]
+            The version of the manga we're attributing this submission to.
+
+        Returns
+        --------
+        :class:`~hondana.Manga`
+
+        Raises
+        -------
+        BadRequest
+            The request parameters were incorrect or malformed.
+        Forbidden
+            You are not authorised to perform this action.
+        NotFound
+            The manga was not found.
+        """
+        data = await self._http._submit_manga_draft(self.id, version=version)
+        return self.__class__(self._http, data["data"])
+        # TODO: make this public when its fleshed out.
+
+    async def get_relations(self) -> list[MangaRelation]:
+        """|coro|
+
+        This method will return a list of all relations to a given manga.
+
+        Returns
+        --------
+        List[:class:`~hondana.MangaRelation`]
+
+        Raises
+        -------
+        BadRequest
+            The manga ID passed is malformed
+        """
+        data = await self._http._get_manga_relation_list(self.id)
+        return [MangaRelation(self._http, self.id, item) for item in data["data"]]
+
+    @require_authentication
+    async def create_relation(self, *, target_manga: str, relation_type: manga.MangaRelationType) -> MangaRelation:
+        """|coro|
+
+        This method will create a manga relation.
+
+        Parameters
+        ------------
+        target_id: :class:`str`
+            The manga ID of the related manga.
+        relation_type: :class:`~hondana.types.MangaRelationType`
+
+        Returns
+        --------
+        :class:`~hondana.MangaRelation`
+
+        Raises
+        -------
+        BadRequest
+            The parameters were malformed
+        Forbidden
+            You are not authorised for this action.
+        """
+        data = await self._http._create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
+        return MangaRelation(self._http, self.id, data["data"])
+
+    @require_authentication
+    async def delete_relation(self, relation_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a manga relation.
+
+        Parameters
+        -----------
+        relation_id: :class:`str`
+            The ID of the related manga.
+        """
+        await self._http._delete_manga_relation(self.id, relation_id)
+
+
+class MangaRelation:
+    """A class representing a MangaRelation returned from the MangaDex API.
+
+    Attributes
+    -----------
+    source_manga_id: :class:`str`
+        The UUID associated to the parent manga of this relation.
+    id: :class:`str`
+        The UUID associated to this manga relation.
+    version: :class:`int`
+        The version revision of this manga relation.
+    relation_type: :class:`~hondana.types.MangaRelationType`
+        The type of relationship to the source manga.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "_attributes",
+        "source_manga_id",
+        "id",
+        "version",
+        "relation_type",
+    )
+
+    def __init__(self, http: HTTPClient, parent_id: str, payload: manga.MangaRelation, /) -> None:
+        self._http = http
+        self._data = payload
+        self._attributes = self._data["attributes"]
+        self.source_manga_id: str = parent_id
+        self.id: str = self._data["id"]
+        self.version: int = self._attributes["version"]
+        self.relation_type: manga.MangaRelationType = self._attributes["relation"]

@@ -85,4 +85,4 @@ class Permissions:
         self.user_id: str = payload["uid"]
         self.roles: list[str] = payload["rol"]
         self.permissions: list[str] = payload["prm"]
-        self.sid: str = payload["sid"]  # TODO: what is this?
+        self.sid: str = payload["sid"]

@@ -46,6 +46,9 @@ Manga
 .. autoclass:: Manga
     :members:
 
+.. autoclass:: MangaRelation
+    :members:
+
 Report
 ~~~~~~
 .. autoclass:: Report

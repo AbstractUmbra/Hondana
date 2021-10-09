@@ -37,25 +37,50 @@ __all__ = (
     "MangaStatus",
     "MangaIncludes",
     "ReadingStatus",
+    "MangaState",
+    "MangaRelationType",
     "MangaRelated",
     "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
+    "MangaRelationAttributesResponse",
     "MangaResponse",
     "GetMangaResponse",
+    "MangaRelationCreateResponse",
     "MangaSearchResponse",
+    "MangaRelation",
+    "MangaRelationResponse",
     "ChaptersResponse",
     "VolumesAndChaptersResponse",
     "GetMangaVolumesAndChaptersResponse",
     "MangaReadMarkersResponse",
     "MangaGroupedReadMarkersResponse",
-    "MangaReadingStatusResponse",
+    "MangaSingleReadingStatusResponse",
+    "MangaMultipleReadingStatusResponse",
 )
 
 
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 MangaIncludes = Literal["author", "artist", "cover_art", "manga"]
 ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
+MangaState = Literal["draft", "submitted", "rejected"]
+MangaRelationType = Literal[
+    "monochrome",
+    "main_story",
+    "adapted_from",
+    "based_on",
+    "prequel",
+    "side_story",
+    "doujinshi",
+    "same_franchise",
+    "shared_universe",
+    "sequel",
+    "spin_off",
+    "alternate_story",
+    "preserialization",
+    "colored",
+    "serialization",
+]
 MangaRelated = Literal[
     "monochrome",
     "main_story",
@@ -186,6 +211,17 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
     updatedAt: str
 
 
+class MangaRelationAttributesResponse(TypedDict):
+    """
+    relation: :class:`MangaRelationType`
+
+    version: int
+    """
+
+    relation: MangaRelationType
+    version: int
+
+
 class _OptionalMangaResponse(TypedDict, total=False):
     relationships: list[RelationshipResponse]
 
@@ -221,6 +257,20 @@ class GetMangaResponse(TypedDict):
     data: MangaResponse
 
 
+class MangaRelationCreateResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:`~hondana.types.MangaRelation`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: MangaRelation
+
+
 class MangaSearchResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
@@ -239,6 +289,46 @@ class MangaSearchResponse(TypedDict):
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[MangaResponse]
+    limit: int
+    offset: int
+    total: int
+
+
+class MangaRelation(_OptionalMangaResponse):
+    """
+    id: :class:`str`
+
+    type: Literal[``"manga_relation"``]
+
+    attributes: :class:`MangaRelationAttributesResponse`
+
+    relationships: :class:`RelationshipResponse`
+        The key is optional.
+    """
+
+    id: str
+    type: Literal["manga_relation"]
+    attributes: MangaRelationAttributesResponse
+
+
+class MangaRelationResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`MangaRelation`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[MangaRelation]
     limit: int
     offset: int
     total: int
@@ -302,7 +392,7 @@ class MangaGroupedReadMarkersResponse(TypedDict):
     data: dict[str, list[str]]
 
 
-class MangaReadingStatusResponse(TypedDict):
+class MangaSingleReadingStatusResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
@@ -311,3 +401,15 @@ class MangaReadingStatusResponse(TypedDict):
 
     result: Literal["ok"]
     status: ReadingStatus
+
+
+class MangaMultipleReadingStatusResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    statuses: Dict[str, :class:`~hondana.types.ReadingStatus`]
+        Mapping of [``manga_id``: :class:`~hondana.types.ReadingStatus`]
+    """
+
+    result: Literal["ok"]
+    statuses: dict[str, ReadingStatus]

@@ -39,7 +39,7 @@ from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
 from .legacy import LegacyItem
-from .manga import Manga
+from .manga import Manga, MangaRelation
 from .report import Report
 from .scanlator_group import ScanlatorGroup
 from .token import Permissions
@@ -898,7 +898,27 @@ class Client:
         return Manga(self._http, data["data"])
 
     @require_authentication
-    async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaReadingStatusResponse:
+    async def get_all_manga_reading_status(
+        self, *, status: Optional[manga.ReadingStatus] = None
+    ) -> manga.MangaMultipleReadingStatusResponse:
+        """|coro|
+
+        This method will return the currnt reading status of all manga in the logged in user's library.
+
+        Parameters
+        -----------
+        status: Optional[:class:`~hondana.types.ReadingStatus`]
+            The reading status to filter the response with.
+
+        Returns
+        --------
+        :class:`~hondana.types.MangaMultipleReadingStatusResponse`
+            The payload returned from MangaDex.
+        """
+        return await self._http._get_all_manga_reading_status(status=status)
+
+    @require_authentication
+    async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaSingleReadingStatusResponse:
         """|coro|
 
         This method will return the current reading status for the specified manga.
@@ -917,7 +937,7 @@ class Client:
 
         Returns
         --------
-        :class:`~hondana.types.MangaReadingStatusResponse`
+        :class:`~hondana.types.MangaSingleReadingStatusResponse`
             The raw response from the API on the request.
         """
         return await self._http._get_manga_reading_status(manga_id)
@@ -949,6 +969,162 @@ class Client:
         """
 
         await self._http._update_manga_reading_status(manga_id, status=status)
+
+    async def get_manga_draft(self, manga_id: str, /) -> Manga:
+        """|coro|
+
+        This method will return a manga draft from MangaDex.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID relation to the manga draft.
+
+        Returns
+        --------
+        :class:`~hondana.Manga`
+            The Manga returned from the API.
+        """
+        data = await self._http._get_manga_draft(manga_id)
+        return Manga(self._http, data["data"])
+
+    @require_authentication
+    async def _submit_manga_draft(self, manga_id: str, /, *, version: Optional[int] = None) -> Manga:
+        """|coro|
+
+        This method will submit a draft for a manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID relating to the manga we are submitting to.
+        version: Optional[:class:`int`]
+            The version of the manga we're attributing this submission to.
+
+        Returns
+        --------
+        :class:`~hondana.Manga`
+
+        Raises
+        -------
+        BadRequest
+            The request parameters were incorrect or malformed.
+        Forbidden
+            You are not authorised to perform this action.
+        NotFound
+            The manga was not found.
+        """
+        data = await self._http._submit_manga_draft(manga_id, version=version)
+        return Manga(self._http, data["data"])
+        # TODO: Figure this out...
+
+    @require_authentication
+    async def get_manga_draft_list(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        user: Optional[str] = None,
+        state: Optional[manga.MangaState] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = None,
+    ) -> Manga:
+        """|coro|
+
+        This method will return all drafts for a given manga.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            The limit of objects to return.
+            Defaults to 10.
+        offset: :class:`int`
+            The pagination offset.
+            Defaults to 0.
+        user: Optional[:class:`str`]
+            The ID relating to the submitting user to filter by.
+        state: Optional[:class:`~hondana.types.MangaState`]
+            The state of the submission to filter by.
+        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+            The order parameter for order the responses.
+        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+            The optoinal includes to request in the responses.
+
+        Returns
+        --------
+        :class:`~hondana.Manga`
+        """
+        data = await self._http._get_manga_draft_list(
+            limit=limit, offset=offset, user=user, state=state, order=order, includes=includes
+        )
+        return Manga(self._http, data["data"])
+
+    async def get_manga_relation_list(self, manga_id: str, /) -> list[MangaRelation]:
+        """|coro|
+
+        This method will return a list of all relations to a given manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID for the manga we wish to query against.
+
+        Returns
+        --------
+        List[:class:`~hondana.MangaRelation`]
+
+        Raises
+        -------
+        BadRequest
+            The manga ID passed is malformed
+        """
+        data = await self._http._get_manga_relation_list(manga_id)
+        return [MangaRelation(self._http, manga_id, item) for item in data["data"]]
+
+    @require_authentication
+    async def create_manga_relation(
+        self, manga_id: str, /, *, target_manga: str, relation_type: manga.MangaRelationType
+    ) -> MangaRelation:
+        """|coro|
+
+        This method will create a manga relation.
+
+        Parameters
+        ------------
+        manga_id: :class:`str`
+            The manga ID we are creating a relation to.
+        target_id: :class:`str`
+            The manga ID of the related manga.
+        relation_type: :class:`~hondana.types.MangaRelationType`
+
+        Returns
+        --------
+        :class:`~hondana.MangaRelation`
+
+        Raises
+        -------
+        BadRequest
+            The parameters were malformed
+        Forbidden
+            You are not authorised for this action.
+        """
+        data = await self._http._create_manga_relation(manga_id, target_manga=target_manga, relation_type=relation_type)
+        return MangaRelation(self._http, manga_id, data["data"])
+
+    @require_authentication
+    async def delete_manga_relation(self, manga_id: str, relation_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a manga relation.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID of the source manga.
+        relation_id: :class:`str`
+            The ID of the related manga.
+        """
+        await self._http._delete_manga_relation(manga_id, relation_id)
 
     @require_authentication
     async def add_manga_to_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:

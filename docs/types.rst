@@ -150,6 +150,14 @@ Manga
     :members:
     :undoc-members:
 
+.. autoclass:: MangaState
+    :members:
+    :undoc-members:
+
+.. autoclass:: MangaRelationType
+    :members:
+    :undoc-members:
+
 .. autoclass:: MangaRelated
     :members:
     :undoc-members:
@@ -164,7 +172,15 @@ Manga
 
 .. autoclass:: MangaAttributesResponse
 
+.. autoclass:: MangaRelationAttributesResponse
+
+.. autoclass:: MangaRelationCreateResponse
+
 .. autoclass:: MangaSearchResponse
+
+.. autoclass:: MangaRelation
+
+.. autoclass:: MangaRelationResponse
 
 .. autoclass:: VolumesAndChaptersResponse
 
@@ -176,7 +192,9 @@ Manga
 
 .. autoclass:: MangaGroupedReadMarkersResponse
 
-.. autoclass:: MangaReadingStatusResponse
+.. autoclass:: MangaSingleReadingStatusResponse
+
+.. autoclass:: MangaMultipleReadingStatusResponse
 
 
 Query

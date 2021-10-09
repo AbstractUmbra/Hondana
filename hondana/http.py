@@ -858,7 +858,14 @@ class HTTPClient:
 
         return self.request(route, json=body)
 
-    def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaReadingStatusResponse]:
+    def _get_all_manga_reading_status(
+        self, *, status: Optional[manga.ReadingStatus] = None
+    ) -> Response[manga.MangaMultipleReadingStatusResponse]:
+        route = Route("GET", "/manga/status")
+        query = php_query_builder({"status": status})
+        return self.request(route, params=query)
+
+    def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaSingleReadingStatusResponse]:
         route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
         return self.request(route)
 
@@ -868,6 +875,61 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
         resolved_query = php_query_builder({"status": status})
         return self.request(route, params=resolved_query)
+
+    def _get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
+        route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id)
+        return self.request(route)
+
+    def _submit_manga_draft(self, manga_id: str, /, version: Optional[int]) -> Response[manga.GetMangaResponse]:
+        route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
+        query = {"version": version}
+        return self.request(route, json=query)
+        # TODO: Make this public when fleshed out.
+
+    def _get_manga_draft_list(
+        self,
+        *,
+        limit: int,
+        offset: int,
+        user: Optional[str] = None,
+        state: Optional[manga.MangaState] = None,
+        order: Optional[manga.MangaOrderQuery] = None,
+        includes: Optional[list[manga.MangaIncludes]] = None,
+    ) -> Response[manga.GetMangaResponse]:
+        route = Route("GET", "/manga/draft")
+        limit = max(min(limit, 100), 0)
+        offset = max(min(offset, (10000 - limit)), 0)
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if user:
+            query["user"] = user
+
+        if state:
+            query["state"] = state
+
+        if order:
+            query["order"] = order
+
+        if includes:
+            query["includes"] = includes
+
+        resolved_query = php_query_builder(query)
+        return self.request(route, params=resolved_query)
+
+    def _get_manga_relation_list(self, manga_id: str, /) -> Response[manga.MangaRelationResponse]:
+        route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
+        return self.request(route)
+
+    def _create_manga_relation(
+        self, manga_id: str, /, *, target_manga: str, relation_type: manga.MangaRelationType
+    ) -> Response[manga.MangaRelationCreateResponse]:
+        route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id)
+        query = {"targetManga": target_manga, "relation": relation_type}
+        return self.request(route, json=query)
+
+    def _delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/manga/{manga_id}/relation/{relation_id}", manga_id=manga_id, relation_id=relation_id)
+        return self.request(route)
 
     def _chapter_list(
         self,
