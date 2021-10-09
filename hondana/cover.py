@@ -165,7 +165,7 @@ class Cover:
 
         Returns
         --------
-        :class:`Cover`
+        :class:`~hondana.Cover`
             The returned cover after the edit.
         """
         data = await self._http._edit_cover(self.id, volume=volume, description=description, version=version)

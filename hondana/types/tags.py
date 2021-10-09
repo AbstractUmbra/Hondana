@@ -41,9 +41,9 @@ __all__ = (
 
 class TagAttributesResponse(TypedDict):
     """
-    name: :class:`LocalisedString`
+    name: :class:`~hondana.types.LocalisedString`
 
-    description: List[:class:`LocalisedString`]
+    description: List[:class:`~hondana.types.LocalisedString`]
 
     group: :class:`str`
 
@@ -62,9 +62,9 @@ class TagResponse(TypedDict):
 
     type: Literal[``"tag"``]
 
-    attributes: :class:`TagAttributesResponse`
+    attributes: :class:`~hondana.types.TagAttributesResponse`
 
-    relationships: List[:class:`RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """

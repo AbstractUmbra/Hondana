@@ -29,7 +29,6 @@ from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
-    from .user import UserResponse
 
 
 __all__ = (

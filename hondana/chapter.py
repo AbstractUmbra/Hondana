@@ -177,7 +177,7 @@ class Chapter:
 
         Returns
         --------
-        Optional[:class:`Manga`]
+        Optional[:class:`~hondana.Manga`]
             The manga within the Chapter's payload, usually the parent manga.
         """
         if not self._relationships:
@@ -201,7 +201,7 @@ class Chapter:
 
         Returns
         --------
-        Optional[:class:`Manga`]
+        Optional[:class:`~hondana.Manga`]
             The Manga that was fetched from the API.
         """
         manga_id = None
@@ -263,7 +263,7 @@ class Chapter:
 
         Returns
         --------
-        :class:`Chapter`
+        :class:`~hondana.Chapter`
             The chapter after being updated.
         """
         data = await self._http._update_chapter(

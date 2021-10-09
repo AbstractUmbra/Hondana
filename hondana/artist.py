@@ -162,7 +162,7 @@ class Artist:
 
         Returns
         --------
-        :class:`Author`
+        :class:`~hondana.Artist`
             The updated author from the API.
         """
         data = await self._http._update_artist(self.id, name=name, version=version)

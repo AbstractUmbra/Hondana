@@ -299,7 +299,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             Returns a list of Chapter instances.
         """
 
@@ -409,7 +409,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Manga`]
+        List[:class:`~hondana.Manga`]
             Returns a list of Manga instances.
         """
         limit = min(max(1, limit), 500)
@@ -517,7 +517,7 @@ class Client:
 
         Returns
         --------
-        :class:`Manga`
+        :class:`~hondana.Manga`
             The manga that was returned after creation.
         """
 
@@ -590,7 +590,7 @@ class Client:
 
         Returns
         --------
-        :class:`Manga`
+        :class:`~hondana.Manga`
             The Manga that was returned from the API.
         """
         data = await self._http._view_manga(manga_id, includes=includes)
@@ -654,7 +654,7 @@ class Client:
             The release year of the manga.
         content_rating: Optional[:class:`~hondana.types.ContentRating`]
             The content rating of the manga.
-        tags: Optional[:class:`QueryTags`]
+        tags: Optional[:class:`~hondana.QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
         mod_notes: Optional[:class:`str`]
             The moderator notes to add to this Manga.
@@ -681,7 +681,7 @@ class Client:
 
         Returns
         --------
-        :class:`Manga`
+        :class:`~hondana.Manga`
             The manga that was returned after creation.
         """
         data = await self._http._update_manga(
@@ -806,7 +806,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             The list of chapters returned from this request.
         """
         data = await self._http._manga_feed(
@@ -890,7 +890,7 @@ class Client:
 
         Returns
         --------
-        :class:`Manga`
+        :class:`~hondana.Manga`
             The random Manga that was returned.
         """
         data = await self._http._get_random_manga(includes=includes)
@@ -1255,7 +1255,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             The returned chapters from the endpoint.
         """
 
@@ -1303,7 +1303,7 @@ class Client:
 
         Returns
         --------
-        :class:`Chapter`
+        :class:`~hondana.Chapter`
             The Chapter we fetched from the API.
         """
         data = await self._http._get_chapter(chapter_id, includes=includes)
@@ -1360,7 +1360,7 @@ class Client:
 
         Returns
         --------
-        :class:`Chapter`
+        :class:`~hondana.Chapter`
             The chapter after being updated.
         """
         data = await self._http._update_chapter(
@@ -1464,7 +1464,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Cover`]
+        List[:class:`~hondana.Cover`]
             A list of Cover instances returned from the API.
         """
         limit = min(max(1, limit), 100)
@@ -1531,7 +1531,7 @@ class Client:
 
         Returns
         --------
-        :class:`Cover`
+        :class:`~hondana.Cover`
             The Cover returned from the API.
         """
         data = await self._http._get_cover(cover_id, includes=includes)
@@ -1572,7 +1572,7 @@ class Client:
 
         Returns
         --------
-        :class:`Cover`
+        :class:`~hondana.Cover`
             The returned cover after the edit.
         """
         data = await self._http._edit_cover(cover_id, volume=volume, description=description, version=version)
@@ -2378,7 +2378,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             The list of chapters returned from this request.
         """
         limit = min(max(1, limit), 500)
@@ -2665,7 +2665,7 @@ class Client:
 
         Returns
         --------
-        :class:`Author`
+        :class:`~hondana.Author`
             The author created within the API.
         """
         data = await self._http._create_author(name=name, version=version)
@@ -2694,7 +2694,7 @@ class Client:
 
         Returns
         --------
-        :class:`Author`
+        :class:`~hondana.Author`
             The Author returned from the API.
         """
         data = await self._http._get_author(author_id, includes=includes)
@@ -2724,7 +2724,7 @@ class Client:
 
         Returns
         --------
-        :class:`Artist`
+        :class:`~hondana.Artist`
             The Author returned from the API.
         """
         data = await self._http._get_artist(artist_id, includes=includes)
@@ -2757,7 +2757,7 @@ class Client:
 
         Returns
         --------
-        :class:`Author`
+        :class:`~hondana.Author`
             The updated author from the API.
         """
         data = await self._http._update_author(author_id, name=name, version=version)

@@ -172,7 +172,7 @@ class Manga:
 
         Returns
         --------
-        Optional[:class:`Artist`]
+        Optional[:class:`~hondana.Artist`]
             The artist associated with this Manga.
 
 
@@ -180,6 +180,8 @@ class Manga:
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter
             then this method will return ``None``.
         """
+        if not self._relationships:
+            return
 
         artist = None
         for item in self._relationships:
@@ -200,7 +202,7 @@ class Manga:
 
         Returns
         --------
-        Optional[:class:`Author`]
+        Optional[:class:`~hondana.Author`]
             The author of the manga.
 
 
@@ -208,6 +210,9 @@ class Manga:
             If the parent manga was requested with the "author" `includes[]` query parameter,
             then this method will not make an extra API call to retrieve the Author data.
         """
+        if not self._relationships:
+            return
+
         author = None
         for relationship in self._relationships:
             if relationship["type"] == "author":
@@ -230,9 +235,12 @@ class Manga:
 
         Returns
         --------
-        Optional[:class:`Cover`]
+        Optional[:class:`~hondana.Cover`]
             The Cover associated with this Manga.
         """
+        if not self._relationships:
+            return
+
         cover_key = None
         for item in self._relationships:
             if item["type"] == "cover_art":
@@ -252,7 +260,7 @@ class Manga:
 
 
         .. note::
-            For a more stable cover return, try :meth:`Manga.get_cover`
+            For a more stable cover return, try :meth:`~hondana.Manga.get_cover`
         """
         cover = None
         for item in self._relationships:
@@ -363,7 +371,7 @@ class Manga:
 
         Returns
         --------
-        :class:`Manga`
+        :class:`~hondana.Manga`
             The manga that was returned after creation.
         """
         data = await self._http._update_manga(
@@ -524,7 +532,7 @@ class Manga:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             The list of chapters returned from this request.
         """
         data = await self._http._manga_feed(
@@ -755,7 +763,7 @@ class Manga:
 
         Returns
         --------
-        List[:class:`Chapter`]
+        List[:class:`~hondana.Chapter`]
             The returned chapters from the endpoint.
         """
         data = await self._http._chapter_list(

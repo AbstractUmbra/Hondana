@@ -114,7 +114,7 @@ class GetSingleScanlationGroupResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`ScanlationGroupResponse`
+    data: :class:`~hondana.types.ScanlationGroupResponse`
     """
 
     result: Literal["ok", "error"]
@@ -128,7 +128,7 @@ class GetMultiScanlationGroupResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`ScanlationGroupResponse`]
+    data: List[:class:`~hondana.types.ScanlationGroupResponse`]
     """
 
     result: Literal["ok", "error"]

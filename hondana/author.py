@@ -161,7 +161,7 @@ class Author:
 
         Returns
         --------
-        :class:`Author`
+        :class:`~hondana.Author`
             The updated author from the API.
         """
         data = await self._http._update_author(self.id, name=name, version=version)

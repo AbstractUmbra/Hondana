@@ -86,7 +86,7 @@ class CoverResponse(TypedDict):
 
     type: Literal[``"cover_art"``]
 
-    attributes: :class:`CoverAttributesResponse`
+    attributes: :class:`~hondana.types.CoverAttributesResponse`
     """
 
     id: str
@@ -101,7 +101,7 @@ class GetSingleCoverResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`CoverResponse`
+    data: :class:`~hondana.types.CoverResponse`
     """
 
     result: Literal["ok", "error"]
@@ -115,7 +115,7 @@ class GetMultiCoverResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`CoverResponse`]
+    data: List[:class:`~hondana.types.CoverResponse`]
     """
 
     result: Literal["ok", "error"]

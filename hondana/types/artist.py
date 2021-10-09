@@ -105,9 +105,9 @@ class ArtistResponse(TypedDict):
 
     type: Literal[``"artist"``]
 
-    attributes: :class:`ArtistAttributesResponse`
+    attributes: :class:`~hondana.types.ArtistAttributesResponse`
 
-    relationships: List[:class:`RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
         This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
@@ -124,7 +124,7 @@ class GetSingleArtistResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: List[:class:`ArtistResponse`]
+    data: List[:class:`~hondana.types.ArtistResponse`]
     """
 
     result: Literal["ok", "error"]
@@ -138,7 +138,7 @@ class GetMultiArtistResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`ArtistResponse`]
+    data: List[:class:`~hondana.types.ArtistResponse`]
     """
 
     result: Literal["ok", "error"]

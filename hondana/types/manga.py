@@ -160,13 +160,13 @@ class MangaAttributesResponseOptional(TypedDict, total=False):
 
 class MangaAttributesResponse(MangaAttributesResponseOptional):
     """
-    title: :class:`LocalisedString`
+    title: :class:`~hondana.types.LocalisedString`
 
-    altTitle: List[:class:`LocalisedString`]
+    altTitle: List[:class:`~hondana.types.LocalisedString`]
 
-    description: :class:`LocalisedString`
+    description: :class:`~hondana.types.LocalisedString`
 
-    links: :class:`MangaLinks`
+    links: :class:`~hondana.types.MangaLinks`
 
     originalLanguage: :class:`str`
 
@@ -174,15 +174,15 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 
     lastChapter: Optional[:class:`str`]
 
-    publicationDemographic: Optional[:class:`PublicationDemographic`]
+    publicationDemographic: Optional[:class:`~hondana.types.PublicationDemographic`]
 
-    status: Optional[:class:`MangaStatus`]
+    status: Optional[:class:`~hondana.types.MangaStatus`]
 
     year: Optional[:class:`int`]
 
-    contentRating: Optional[:class:`ContentRating`]
+    contentRating: Optional[:class:`~hondana.types.ContentRating`]
 
-    tags: List[:class:`TagResponse`]
+    tags: List[:class:`~hondana.types.TagResponse`]
 
     version: :class:`int`
 
@@ -213,7 +213,7 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 
 class MangaRelationAttributesResponse(TypedDict):
     """
-    relation: :class:`MangaRelationType`
+    relation: :class:`~hondana.types.MangaRelationType`
 
     version: int
     """
@@ -232,9 +232,9 @@ class MangaResponse(_OptionalMangaResponse):
 
     type: Literal[``"manga"``]
 
-    attributes: :class:`MangaAttributesResponse`
+    attributes: :class:`~hondana.types.MangaAttributesResponse`
 
-    relationships: List[:class:`RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
         This key is optional.
     """
 
@@ -277,7 +277,7 @@ class MangaSearchResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`MangaResponse`]
+    data: List[:class:`~hondana.types.MangaResponse`]
 
     limit: :class:`int`
 
@@ -300,9 +300,9 @@ class MangaRelation(_OptionalMangaResponse):
 
     type: Literal[``"manga_relation"``]
 
-    attributes: :class:`MangaRelationAttributesResponse`
+    attributes: :class:`~hondana.types.MangaRelationAttributesResponse`
 
-    relationships: :class:`RelationshipResponse`
+    relationships: :class:`~hondana.types.RelationshipResponse`
         The key is optional.
     """
 
@@ -317,7 +317,7 @@ class MangaRelationResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`MangaRelation`]
+    data: List[:class:`~hondana.types.MangaRelation`]
 
     limit: :class:`int`
 
@@ -347,7 +347,7 @@ class ChaptersResponse(TypedDict):
 
 class VolumesAndChaptersResponse(TypedDict, total=False):
     """
-    chapters: Dict[:class:`str`, :class:`ChaptersResponse`]
+    chapters: Dict[:class:`str`, :class:`~hondana.types.ChaptersResponse`]
 
     count: :class:`int`
 
@@ -363,7 +363,7 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    volumes: Optional[Dict[:class:`str`, :class:`VolumesAndChaptersResponse`]]
+    volumes: Optional[Dict[:class:`str`, :class:`~hondana.types.VolumesAndChaptersResponse`]]
     """
 
     result: Literal["ok", "error"]
@@ -396,7 +396,7 @@ class MangaSingleReadingStatusResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    status: :class:`ReadingStatus`
+    status: :class:`~hondana.types.ReadingStatus`
     """
 
     result: Literal["ok"]
