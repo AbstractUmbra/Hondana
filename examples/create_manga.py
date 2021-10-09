@@ -1,7 +1,11 @@
 import asyncio
 
+from typing import TYPE_CHECKING
+
 import hondana
 
+if TYPE_CHECKING:
+    from hondana.types.common import LocalizedString
 
 # Create your client, auth is needed for this.
 client = hondana.Client(username="my username", password="my password")
@@ -15,7 +19,7 @@ async def main():
     """
 
     # Outline the needed attributes for this manga here
-    manga_title = {"en": "Some neat manga!", "jp": "本棚"}
+    manga_title: LocalizedString = {"en": "Some neat manga!", "ja": "本棚"}
     original_language = "en"
     status = "ongoing"
     content_rating = "safe"
@@ -29,7 +33,6 @@ async def main():
     # This manga is now created in "draft" state. This is outlined more here:
     # https://api.mangadex.org/docs.html#section/Manga-Creation
     # tl;dr it's to remove the spam creations and to ensure there's a cover on the manga... so let's do that now.
-
     with open("our_cover.png", "rb") as file:
         cover = file.read()
 
@@ -40,3 +43,6 @@ async def main():
     submitted_manga = await draft_manga.submit_draft(version=version)
 
     # NOTE: Something to note is that the version of draft MUST match the version of submitted manga during the approval stage.
+
+
+asyncio.run(main())

@@ -443,7 +443,7 @@ class Client:
     async def create_manga(
         self,
         *,
-        title: common.LocalisedString,
+        title: common.LocalizedString,
         alt_titles: Optional[list[common.LocalisedString]] = None,
         description: Optional[common.LocalisedString] = None,
         authors: Optional[list[str]] = None,

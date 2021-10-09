@@ -81,26 +81,60 @@ LanguageCode = Literal[
     "no",
 ]
 
+LocalizedString = TypedDict(
+    "LocalizedString",
+    {
+        "en": str,
+        "ja": str,
+        "pl": str,
+        "sh": str,
+        "nl": str,
+        "it": str,
+        "ru": str,
+        "de": str,
+        "hu": str,
+        "fr": str,
+        "fi": str,
+        "vi": str,
+        "el": str,
+        "bg": str,
+        "es": str,
+        "pt-br": str,
+        "pt": str,
+        "sv": str,
+        "ar": str,
+        "da": str,
+        "zh": str,
+        "bn": str,
+        "ro": str,
+        "cs": str,
+        "mn": str,
+        "tr": str,
+        "id": str,
+        "ko": str,
+        "es-la": str,
+        "fa": str,
+        "ms": str,
+        "th": str,
+        "ca": str,
+        "tl": str,
+        "zh-hk": str,
+        "uk": str,
+        "my": str,
+        "lt": str,
+        "he": str,
+        "hi": str,
+        "no": str,
+    },
+    total=False,
+)
+"""
+Examples
+---------
+A localised string: ::
 
-class LocalizedString(TypedDict):
-    """
-    Examples
-    ---------
-    A localised string: ::
+    {"en": "An english string"}
+    {"fr": "Une corde française"}
 
-        {"en": "An english string"}
-        {"fr": "Une corde française"}
-
-
-    language_code: :class:`str`
-        The shorthand language code for the target item.
-
-    item: :class:`str`
-        The localized item.
-    """
-
-    language_code: LanguageCode
-    item: str
-
-
+"""
 LocalisedString = LocalizedString
