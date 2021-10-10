@@ -184,6 +184,8 @@ class Client:
 
         # The JWT stores payload in the second block
         payload = token.split(".")[1]
+        padding = len(payload) % 4
+        payload = payload + ("=" * padding)
         parsed_payload: TokenPayload = json.loads(b64decode(payload))
 
         return Permissions(parsed_payload)

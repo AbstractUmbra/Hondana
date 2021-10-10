@@ -247,7 +247,8 @@ class HTTPClient:
 
     def _get_expiry(self, token: str) -> datetime.datetime:
         payload = token.split(".")[1]
-        payload = b64decode(payload)
+        padding = len(payload) % 4
+        payload = b64decode(payload + "="*padding)
         data: TokenPayload = json.loads(payload)
         timestamp = data["exp"]
 
@@ -1111,8 +1112,10 @@ class HTTPClient:
         self, manga_id: str, /, *, cover: bytes, volume: Optional[str]
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
-        query = {"file": cover, "volume": volume}
-        return self.request(route, json=query)
+        form_data = aiohttp.FormData()
+        form_data.add_field(name="file", filename="cover.png", value=cover)
+        form_data.add_field(name="volume", value=volume)
+        return self.request(route, data=form_data)
 
     def _get_cover(
         self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]]
