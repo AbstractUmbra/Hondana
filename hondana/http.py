@@ -248,7 +248,7 @@ class HTTPClient:
     def _get_expiry(self, token: str) -> datetime.datetime:
         payload = token.split(".")[1]
         padding = len(payload) % 4
-        payload = b64decode(payload + "="*padding)
+        payload = b64decode(payload + "=" * padding)
         data: TokenPayload = json.loads(payload)
         timestamp = data["exp"]
 
