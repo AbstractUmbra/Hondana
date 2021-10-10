@@ -141,6 +141,19 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     return "&".join(fmt)
 
 
+def _get_image_mime_type(data: bytes):
+    if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
+        return "image/png"
+    elif data[0:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
+        return "image/jpeg"
+    elif data.startswith((b"\x47\x49\x46\x38\x37\x61", b"\x47\x49\x46\x38\x39\x61")):
+        return "image/gif"
+    elif data.startswith(b"RIFF") and data[8:12] == b"WEBP":
+        return "image/webp"
+    else:
+        raise ValueError("Unsupported image type given")
+
+
 path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
 with open(path, "r") as _fp:
     TAGS: dict[str, list[str]] = json.load(_fp)

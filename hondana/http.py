@@ -49,7 +49,7 @@ import aiohttp
 
 from . import __version__
 from .errors import APIException, BadRequest, Forbidden, NotFound, Unauthorized
-from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json
+from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json, _get_image_mime_type
 
 
 if TYPE_CHECKING:
@@ -1112,8 +1112,10 @@ class HTTPClient:
         self, manga_id: str, /, *, cover: bytes, volume: Optional[str]
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
+        content_type = _get_image_mime_type(cover)
+        ext = content_type.split("/")[-1]
         form_data = aiohttp.FormData()
-        form_data.add_field(name="file", filename="cover.png", value=cover)
+        form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
         form_data.add_field(name="volume", value=volume)
         return self.request(route, data=form_data)
 
