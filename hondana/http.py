@@ -49,7 +49,14 @@ import aiohttp
 
 from . import __version__
 from .errors import APIException, BadRequest, Forbidden, NotFound, Unauthorized
-from .utils import MISSING, TAGS, php_query_builder, to_iso_format, to_json, _get_image_mime_type
+from .utils import (
+    MISSING,
+    TAGS,
+    _get_image_mime_type,
+    php_query_builder,
+    to_iso_format,
+    to_json,
+)
 
 
 if TYPE_CHECKING:
