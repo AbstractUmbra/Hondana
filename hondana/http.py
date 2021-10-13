@@ -885,7 +885,6 @@ class HTTPClient:
         route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
         query = {"version": version}
         return self.request(route, json=query)
-        # TODO: Make this public when fleshed out.
 
     def _get_manga_draft_list(
         self,

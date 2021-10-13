@@ -50,8 +50,8 @@ class APIException(Exception):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
-        self.status_code = status_code
-        self.errors = errors
+        self.status_code: int = status_code
+        self.errors: list[ErrorType] = errors
         super().__init__(self.response, self.status_code, self.errors)
 
 
@@ -60,8 +60,8 @@ class BadRequest(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
-        self.status_code = 400
-        self.errors = errors
+        self.status_code: int = 400
+        self.errors: list[ErrorType] = errors
         super().__init__(response, status_code=self.status_code, errors=errors)
 
 
@@ -70,8 +70,8 @@ class Unauthorized(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
-        self.status_code = 401
-        self.errors = errors
+        self.status_code: int = 401
+        self.errors: list[ErrorType] = errors
         super().__init__(response, status_code=self.status_code, errors=errors)
 
 
@@ -80,8 +80,8 @@ class Forbidden(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
-        self.status_code = 403
-        self.errors = errors
+        self.status_code: int = 403
+        self.errors: list[ErrorType] = errors
         super().__init__(response, status_code=self.status_code, errors=errors)
 
 
@@ -90,6 +90,6 @@ class NotFound(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
-        self.status_code = 404
-        self.errors = errors
+        self.status_code: int = 404
+        self.errors: list[ErrorType] = errors
         super().__init__(response, status_code=self.status_code, errors=errors)
