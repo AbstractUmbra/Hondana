@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
 __all__ = (
     "AuthenticationRequired",
+    "MangaDexServerError",
     "APIException",
     "NotFound",
     "BadRequest",
@@ -43,6 +44,15 @@ __all__ = (
 
 class AuthenticationRequired(Exception):
     """An exception to be raised when authentication is required to use this endpoint."""
+
+
+class MangaDexServerError(Exception):
+    """Generic exception type for when MangaDex is down."""
+
+    def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int) -> None:
+        self.response: aiohttp.ClientResponse = response
+        self.status_code: int = status_code
+        super().__init__(self.response, self.status_code)
 
 
 class APIException(Exception):

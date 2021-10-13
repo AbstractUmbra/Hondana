@@ -487,7 +487,7 @@ class Manga:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[LanguageCode]] = None,
+        translated_language: Optional[list[LanguageCode]] = None,
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
@@ -508,7 +508,7 @@ class Manga:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_languages: List[:class:`str`]
+        translated_language: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
@@ -545,7 +545,7 @@ class Manga:
             self.id,
             limit=limit,
             offset=offset,
-            translated_languages=translated_languages,
+            translated_language=translated_language,
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
@@ -621,7 +621,7 @@ class Manga:
         return await self._http._get_manga_reading_status(self.id)
 
     @require_authentication
-    async def update_reading_status(self, *, status: Optional[manga.ReadingStatus]) -> None:
+    async def update_reading_status(self, *, status: manga.ReadingStatus) -> None:
         """|coro|
 
         This method will update your current reading status for the current manga.

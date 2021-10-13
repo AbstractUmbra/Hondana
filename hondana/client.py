@@ -244,7 +244,7 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[common.LanguageCode]] = None,
+        translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
@@ -266,7 +266,7 @@ class Client:
         offset: :class:`int`
             Defaults to 0. This is the pagination offset, the number must be greater than 0.
             If set lower than 0 then it is set to 0.
-        translated_languages: List[:class:`~hondana.types.LanguageCode`]
+        translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
@@ -312,7 +312,7 @@ class Client:
             None,
             limit=limit,
             offset=offset,
-            translated_languages=translated_languages,
+            translated_language=translated_language,
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
@@ -563,7 +563,7 @@ class Client:
         :class:`hondana.types.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is not guarantee of the keys here.
         """
-        data = await self._http._get_manga_volumes_and_chapters(manga_id=manga_id, translated_languages=translated_language)
+        data = await self._http._get_manga_volumes_and_chapters(manga_id=manga_id, translated_language=translated_language)
 
         return data
 
@@ -755,7 +755,7 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[common.LanguageCode]] = None,
+        translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
@@ -778,7 +778,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_languages: List[:class:`~hondana.types.LanguageCode`]
+        translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
@@ -815,7 +815,7 @@ class Client:
             manga_id,
             limit=limit,
             offset=offset,
-            translated_languages=translated_languages,
+            translated_language=translated_language,
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
@@ -945,7 +945,7 @@ class Client:
         return await self._http._get_manga_reading_status(manga_id)
 
     @require_authentication
-    async def update_manga_reading_status(self, manga_id: str, /, *, status: Optional[manga.ReadingStatus]) -> None:
+    async def update_manga_reading_status(self, manga_id: str, /, *, status: manga.ReadingStatus) -> None:
         """|coro|
 
         This method will update your current reading status for the specified manga.
@@ -2325,7 +2325,7 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        translated_languages: Optional[list[common.LanguageCode]] = None,
+        translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[common.ContentRating]] = None,
@@ -2347,7 +2347,7 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_languages: List[:class:`~hondana.types.LanguageCode`]
+        translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
@@ -2391,7 +2391,7 @@ class Client:
             custom_list_id,
             limit=limit,
             offset=offset,
-            translated_languages=translated_languages,
+            translated_language=translated_language,
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,

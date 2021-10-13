@@ -48,7 +48,14 @@ from urllib.parse import quote as _uriquote
 import aiohttp
 
 from . import __version__
-from .errors import APIException, BadRequest, Forbidden, NotFound, Unauthorized
+from .errors import (
+    APIException,
+    BadRequest,
+    Forbidden,
+    MangaDexServerError,
+    NotFound,
+    Unauthorized,
+)
 from .utils import (
     MISSING,
     TAGS,
@@ -419,11 +426,20 @@ class HTTPClient:
         if "json" in kwargs:
             headers["Content-Type"] = "application/json"
             kwargs["data"] = to_json(kwargs.pop("json"))
+
+        if "params" in kwargs:
+            params = kwargs["params"]
+            resolved_params = php_query_builder(params)
+            kwargs["params"] = resolved_params
+
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
         LOGGER.debug("Current request url and params: %s", route.url)
+        if "params" in kwargs:
+            LOGGER.debug("Current request parameters: %s", kwargs["params"])
 
+        response: Optional[aiohttp.ClientResponse] = None
         await lock.acquire()
         with MaybeUnlock(lock) as maybe_lock:
             for tries in range(5):
@@ -485,6 +501,13 @@ class HTTPClient:
                         status_code=response.status,
                         errors=data["errors"],
                     )
+            if response is not None:
+                if response.status >= 500:
+                    raise MangaDexServerError(response, status_code=response.status)
+
+                raise APIException(response, status_code=response.status, errors=[])
+
+            raise RuntimeError("Unreachable code in HTTP handling.")
 
     def _update_tags(self) -> Response[GetTagListResponse]:
         route = Route("GET", "/manga/tag")
@@ -515,10 +538,11 @@ class HTTPClient:
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
 
-        query = {}
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
 
-        query["limit"] = limit
-        query["offset"] = offset
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
         if title:
             query["title"] = title
 
@@ -572,11 +596,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        LOGGER.debug(resolved_query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _create_manga(
         self,
@@ -599,9 +619,7 @@ class HTTPClient:
         version: int,
     ) -> Response[manga.GetMangaResponse]:
 
-        query = {}
-        query["title"] = title
-        query["version"] = version
+        query: dict[str, Any] = {"title": title, "version": version}
 
         if alt_titles:
             query["altTitles"] = alt_titles
@@ -649,25 +667,24 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _get_manga_volumes_and_chapters(
-        self, *, manga_id: str, translated_languages: Optional[list[str]] = None
+        self, *, manga_id: str, translated_language: Optional[list[str]] = None
     ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
-        ...
-
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
-        if translated_languages:
-            query = php_query_builder({"translatedLanguage": translated_languages})
+        if translated_language:
+            query = {"translatedLanguage": translated_language}
             return self.request(route, params=query)
         return self.request(route)
 
-    def _view_manga(self, manga_id: str, /, *, includes: Optional[list[str]]) -> Response[manga.GetMangaResponse]:
+    def _view_manga(
+        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]]
+    ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
-        includes = includes or ["artist", "cover_url", "author"]
-        query = php_query_builder({"includes": includes})
-        data = self.request(route, params=query)
-
-        return data
+        if includes:
+            query = {"includes": includes}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _update_manga(
         self,
@@ -693,9 +710,7 @@ class HTTPClient:
     ) -> Response[manga.GetMangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
 
-        query = {}
-        query["version"] = version
-        query["status"] = status
+        query: dict[str, Any] = {"version": version, "status": status}
 
         if title:
             query["title"] = title
@@ -752,7 +767,7 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_languages: Optional[list[common.LanguageCode]],
+        translated_language: Optional[list[common.LanguageCode]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
@@ -768,12 +783,13 @@ class HTTPClient:
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
-        query = {}
-        query["limit"] = min(max(1, limit), 500)
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
 
-        if translated_languages:
-            query["translatedLanguage"] = translated_languages
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if translated_language:
+            query["translatedLanguage"] = translated_language
 
         if original_language:
             query["originalLanguage"] = original_language
@@ -803,9 +819,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
@@ -820,9 +834,7 @@ class HTTPClient:
 
         if includes:
             query = {"includes": includes}
-            resolved_query = php_query_builder(query)
-            return self.request(route, params=resolved_query)
-
+            return self.request(route, params=query)
         return self.request(route)
 
     @overload
@@ -848,8 +860,7 @@ class HTTPClient:
 
         route = Route("GET", "/manga/read")
         query = {"ids": manga_ids, "grouped": True}
-        resolved_query = php_query_builder(query)
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _manga_read_markers_batch(
         self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
@@ -870,19 +881,21 @@ class HTTPClient:
         self, *, status: Optional[manga.ReadingStatus] = None
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
-        query = php_query_builder({"status": status})
-        return self.request(route, params=query)
+        if status:
+            query = {"status": status}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaSingleReadingStatusResponse]:
         route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
         return self.request(route)
 
     def _update_manga_reading_status(
-        self, manga_id: str, /, status: Optional[manga.ReadingStatus]
+        self, manga_id: str, /, status: manga.ReadingStatus
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
-        resolved_query = php_query_builder({"status": status})
-        return self.request(route, params=resolved_query)
+        query = {"status": status}
+        return self.request(route, params=query)
 
     def _get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id)
@@ -904,8 +917,10 @@ class HTTPClient:
         includes: Optional[list[manga.MangaIncludes]] = None,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft")
-        limit = max(min(limit, 100), 0)
-        offset = max(min(offset, (10000 - limit)), 0)
+
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if user:
@@ -920,8 +935,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _get_manga_relation_list(self, manga_id: str, /) -> Response[manga.MangaRelationResponse]:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
@@ -963,9 +977,10 @@ class HTTPClient:
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1019,9 +1034,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _get_chapter(
         self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]]
@@ -1029,7 +1042,7 @@ class HTTPClient:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         if includes:
-            return self.request(route, params=php_query_builder({"includes": includes}))
+            return self.request(route, params={"includes": includes})
         return self.request(route)
 
     def _update_chapter(
@@ -1046,8 +1059,7 @@ class HTTPClient:
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
         if title:
             query["title"] = title
@@ -1091,9 +1103,10 @@ class HTTPClient:
     ) -> Response[cover.GetMultiCoverResponse]:
         route = Route("GET", "/cover")
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if manga:
             query["manga"] = manga
@@ -1110,9 +1123,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _upload_cover(
         self, manga_id: str, /, *, cover: bytes, volume: Optional[str]
@@ -1131,22 +1142,20 @@ class HTTPClient:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         query = {"includes": includes}
-        resolved_query = php_query_builder(query)
 
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _edit_cover(
         self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str], version: int
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
-        if volume is not MISSING:
-            query["volume"] = volume
-        elif volume is MISSING:
-            raise TypeError("`volume` key must be a value of some sort.")
+        if volume is MISSING:
+            raise TypeError("`volume` key must be a value of `str` or `NoneType`.")
+
+        query["volume"] = volume
 
         if description is not MISSING:
             query["description"] = description
@@ -1168,9 +1177,10 @@ class HTTPClient:
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1181,7 +1191,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        return self.request(route)
+        return self.request(route, params=query)
 
     def _user_list(
         self,
@@ -1194,9 +1204,10 @@ class HTTPClient:
     ) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user")
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1207,9 +1218,7 @@ class HTTPClient:
         if order:
             query["order"] = order
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _get_user(self, user_id: str, /) -> Response[user.GetSingleUserResponse]:
         route = Route("GET", "/user/{user_id}", user_id=user_id)
@@ -1243,7 +1252,11 @@ class HTTPClient:
         self, *, limit: int, offset: int
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/user/follows/group")
-        query = php_query_builder({"limit": limit, "offset": offset})
+
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
 
     def _check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1252,7 +1265,12 @@ class HTTPClient:
 
     def _get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user/follows/user")
-        query = php_query_builder({"limit": limit, "offset": offset})
+
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
         return self.request(route, params=query)
 
     def _check_if_following_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1302,7 +1320,7 @@ class HTTPClient:
 
     def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
-        query = php_query_builder({"forcePort443": str(ssl).lower()})
+        query = {"forcePort443": str(ssl).lower()}
         return self.request(route, params=query)
 
     def _create_custom_list(
@@ -1339,9 +1357,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _update_custom_list(
         self,
@@ -1387,17 +1403,19 @@ class HTTPClient:
 
     def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
+
         query = {"limit": limit, "offset": offset}
-        resolved_query = php_query_builder(query)
-        return self.request(route, params=resolved_query)
+
+        return self.request(route, params=query)
 
     def _get_users_custom_lists(
         self, user_id: str, /, *, limit: int, offset: int
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
+
         query = {"limit": limit, "offset": offset}
-        resolved_query = php_query_builder(query)
-        return self.request(route, params=resolved_query)
+
+        return self.request(route, params=query)
 
     def _custom_list_manga_feed(
         self,
@@ -1406,7 +1424,7 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_languages: Optional[list[common.LanguageCode]],
+        translated_language: Optional[list[common.LanguageCode]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
@@ -1418,12 +1436,13 @@ class HTTPClient:
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
 
-        if translated_languages:
-            query["translatedLanguage"] = translated_languages
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if translated_language:
+            query["translatedLanguage"] = translated_language
 
         if original_language:
             query["originalLanguage"] = original_language
@@ -1450,9 +1469,7 @@ class HTTPClient:
         if order:
             query["order"] = order
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _create_scanlation_group(
         self, *, name: str, leader: Optional[str], members: Optional[list[str]], version: Optional[int]
@@ -1476,8 +1493,8 @@ class HTTPClient:
     def _view_scanlation_group(
         self, scanlation_group_id: str, /, *, includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]]
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
-        query = php_query_builder({"includes": includes})
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+        query = {"includes": includes}
         return self.request(route, params=query)
 
     def _update_scanlation_group(
@@ -1558,9 +1575,10 @@ class HTTPClient:
     ) -> Response[author.GetMultiAuthorResponse]:
         route = Route("GET", "/author")
 
-        query = {}
-        query["limit"] = limit
-        query["offset"] = offset
+        limit = min(max(1, limit), 100)
+        offset = min(max(0, offset), 10000 - limit)
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1574,9 +1592,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.GetSingleAuthorResponse]:
         route = Route("POST", "/author")
@@ -1598,9 +1614,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _update_author(
         self, author_id: str, /, *, name: Optional[str], version: int
@@ -1629,9 +1643,7 @@ class HTTPClient:
         if includes:
             query["includes"] = includes
 
-        resolved_query = php_query_builder(query)
-
-        return self.request(route, params=resolved_query)
+        return self.request(route, params=query)
 
     def _update_artist(
         self, artist_id: str, /, *, name: Optional[str], version: int

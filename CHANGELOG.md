@@ -1,19 +1,14 @@
-0.4.4
+0.4.5
 
 # Hondana Changelog
-Updated for MangaDex API version 5.3.4
 
 ## Added
-- `Manga.upload_cover` for uploading a Cover to a manga.
-- `Manga.submit_draft` for submitting a created manga draft for approval.
-- `Client.upload_cover` for uploading a cover to a manga.
-- `Client.submit_manga_draft` for submitted a created manga draft for approval.
-- New example for the creation process!
+
 
 ## Changes
+- `translated_languages` parameter in some places has been renamed to `translated_language` to be inline with the API.
 
 ## Fixes
-- Some types were a bit unrefined, cleared them up.
+- Properly clamps pagination values now.
 
 ### Notes
-Manga creation is now done!
