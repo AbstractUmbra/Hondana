@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
@@ -127,6 +127,12 @@ class Manga:
 
     def __str__(self) -> str:
         return self.title
+
+    def __eq__(self, other: Union[Manga, MangaRelation]) -> bool:
+        return self.id == other.id
+
+    def __ne__(self, other: Union[Manga, MangaRelation]) -> bool:
+        return not self.__eq__(other)
 
     @property
     def url(self) -> str:
@@ -938,6 +944,12 @@ class MangaRelation:
         "version",
         "relation_type",
     )
+
+    def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
+        return self.id == other.id
+
+    def __ne__(self, other: Union[MangaRelation, Manga]) -> bool:
+        return not self.__eq__(other)
 
     def __init__(self, http: HTTPClient, parent_id: str, payload: manga.MangaRelation, /) -> None:
         self._http = http
