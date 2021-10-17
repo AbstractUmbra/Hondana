@@ -2817,10 +2817,10 @@ class Client:
     async def create_report(
         self,
         *,
-        report_category: Optional[report.ReportCategory] = None,
-        reason: Optional[str] = None,
-        object_id: Optional[str] = None,
-        details: Optional[str] = None,
+        report_category: report.ReportCategory,
+        reason: str,
+        object_id: str,
+        details: str,
     ) -> None:
         """|coro|
 
@@ -2828,13 +2828,13 @@ class Client:
 
         Parameters
         -----------
-        report_category: Optional[:class:`~hondana.types.ReportCategory`]
+        report_category: :class:`~hondana.types.ReportCategory`
             The category for which the report is for.
-        reason: Optional[:class:`str`]
+        reason: :class:`str`
             The UUID representing the reason for this report.
-        object_id: Optional[:class:`str`]
+        object_id: :class:`str`
             The UUID of the object to which this report is referencing.
-        details: Optional[:class:`str`]
+        details: :class:`str`
             The details of the report.
 
         Raises

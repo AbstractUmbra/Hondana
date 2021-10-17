@@ -66,6 +66,8 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     official: :class:`bool`
 
+    verified: :class:`bool`
+
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -84,6 +86,7 @@ class ScanlationGroupAttributesResponse(TypedDict):
     focusedLanguage: Optional[list[str]]
     locked: bool
     official: bool
+    verified: bool
     version: int
     createdAt: str
     updatedAt: str

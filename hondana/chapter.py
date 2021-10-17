@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING, AsyncGenerator, Optional, Union
 import aiofiles
 
 from .manga import Manga
+from .scanlator_group import ScanlatorGroup
 from .utils import MISSING, DownloadRoute, require_authentication
 
 
@@ -193,6 +194,29 @@ class Chapter:
             return
 
         return Manga(self._http, resolved)
+
+    @property
+    def scanlator_group(self) -> Optional[ScanlatorGroup]:
+        """The Scanlator Group that handled this chapter.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.ScanlatorGroup`]
+            The ScanlatorGroup that handled this chapter.
+        """
+        if not self._relationships:
+            return
+
+        resolved = None
+        for relationship in self._relationships:
+            if relationship["type"] == "scanlation_group":
+                resolved = relationship
+                break
+
+        if resolved is None or not resolved.get("attributes"):
+            return
+
+        return ScanlatorGroup(self._http, resolved)
 
     async def get_parent_manga(self) -> Optional[Manga]:
         """|coro|

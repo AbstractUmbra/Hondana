@@ -1333,8 +1333,7 @@ class HTTPClient:
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("POST", "/list")
 
-        query = {}
-        query["name"] = name
+        query: dict[str, Any] = {"name": name}
 
         if visibility:
             query["visibility"] = visibility
@@ -1352,12 +1351,10 @@ class HTTPClient:
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
-        query = {}
-
         if includes:
-            query["includes"] = includes
-
-        return self.request(route, params=query)
+            query = {"includes": includes}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _update_custom_list(
         self,
@@ -1371,8 +1368,7 @@ class HTTPClient:
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("POST", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
         if name:
             query["name"] = name
@@ -1476,8 +1472,7 @@ class HTTPClient:
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("POST", "/group")
 
-        query = {}
-        query["name"] = name
+        query: dict[str, Any] = {"name": name}
 
         if leader:
             query["leader"] = leader
@@ -1516,8 +1511,7 @@ class HTTPClient:
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
         if name:
             query["name"] = name
@@ -1596,9 +1590,9 @@ class HTTPClient:
 
     def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.GetSingleAuthorResponse]:
         route = Route("POST", "/author")
-        query = {}
 
-        query["name"] = name
+        query: dict[str, Any] = {"name": name}
+
         if version:
             query["version"] = version
 
@@ -1609,20 +1603,18 @@ class HTTPClient:
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
-        query = {}
-
         if includes:
+            query = {}
             query["includes"] = includes
-
-        return self.request(route, params=query)
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _update_author(
         self, author_id: str, /, *, name: Optional[str], version: int
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("PUT", "/author/{author_id}", author_id=author_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
         if name:
             query["name"] = name
@@ -1638,20 +1630,17 @@ class HTTPClient:
     ) -> Response[artist.GetSingleArtistResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
-        query = {}
-
         if includes:
-            query["includes"] = includes
-
-        return self.request(route, params=query)
+            query = {"includes": includes}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _update_artist(
         self, artist_id: str, /, *, name: Optional[str], version: int
     ) -> Response[artist.GetSingleArtistResponse]:
         route = Route("PUT", "/author/{author_id}", artist_id=artist_id)
 
-        query = {}
-        query["version"] = version
+        query: dict[str, Any] = {"version": version}
 
         if name:
             query["name"] = name
@@ -1672,25 +1661,13 @@ class HTTPClient:
     def _create_report(
         self,
         *,
-        report_category: Optional[report.ReportCategory],
-        reason: Optional[str],
-        object_id: Optional[str],
-        details: Optional[str],
+        report_category: report.ReportCategory,
+        reason: str,
+        object_id: str,
+        details: str,
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/report")
 
-        query = {}
-
-        if report_category:
-            query["category"] = report_category
-
-        if reason:
-            query["reason"] = reason
-
-        if object_id:
-            query["objectId"] = object_id
-
-        if details:
-            query["details"] = details
+        query = {"category": report_category, "reason": reason, "objectId": object_id, "details": details}
 
         return self.request(route, json=query)

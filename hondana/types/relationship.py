@@ -27,14 +27,19 @@ from typing import TYPE_CHECKING, Union
 
 
 if TYPE_CHECKING:
-    from . import artist, author, chapter, manga, user
+    from . import artist, author, chapter, manga, user, scanlator_group
 
 
 __all__ = ("RelationshipResponse",)
 
 
 RelationshipResponse = Union[
-    "manga.MangaResponse", "chapter.ChapterResponse", "artist.ArtistResponse", "author.AuthorResponse", "user.UserResponse"
+    "manga.MangaResponse",
+    "chapter.ChapterResponse",
+    "artist.ArtistResponse",
+    "author.AuthorResponse",
+    "user.UserResponse",
+    "scanlator_group.ScanlationGroupResponse",
 ]
 """
 id: :class:`str`

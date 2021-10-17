@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
+    from .types.relationship import RelationshipResponse
 
 __all__ = ("ScanlatorGroup",)
 
@@ -85,11 +86,12 @@ class ScanlatorGroup:
         "irc_server",
         "irc_channel",
         "discord",
-        "focused_language",
+        "focused_languages",
         "contact_email",
         "description",
         "locked",
         "official",
+        "verified",
         "version",
         "_created_at",
         "_updated_at",
@@ -100,19 +102,19 @@ class ScanlatorGroup:
         self._data = payload
         self._attributes = self._data["attributes"]
         self.id: str = self._data["id"]
-        self.type: Literal["scanlation_group"] = self._data["type"]
-        self._relationships = self._data["relationships"]
+        self._relationships: Optional[list[RelationshipResponse]] = self._data.get("relationships")
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
         self.website: Optional[str] = self._attributes["website"]
         self.irc_server: Optional[str] = self._attributes["ircServer"]
         self.irc_channel: Optional[str] = self._attributes["ircServer"]
         self.discord: Optional[str] = self._attributes["discord"]
-        self.focused_language: Optional[list[str]] = self._attributes.get("focusedLanguage")
+        self.focused_languages: Optional[list[str]] = self._attributes.get("focusedLanguages")
         self.contact_email: Optional[str] = self._attributes["contactEmail"]
         self.description: Optional[str] = self._attributes["description"]
         self.locked: bool = self._attributes.get("locked", False)
         self.official: bool = self._attributes["official"]
+        self.verified: bool = self._attributes["verified"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
@@ -154,11 +156,19 @@ class ScanlatorGroup:
             If the ScanlatorGroup was requested with the `leader` includes, then this method will not make an API call.
 
 
+        .. note::
+            If this object was created as part of another object's ``includes`` then this will return None.
+            This is due to having no relationship data.
+
+
         Returns
         --------
         Optional[User]
             The leader of the ScanlatorGroup, if present.
         """
+        if not self._relationships:
+            return
+
         leader_key = None
         for relationship in self._relationships:
             if relationship["type"] == "leader":
@@ -175,13 +185,18 @@ class ScanlatorGroup:
         leader = await self._http._get_user(leader_id)
         return User(self._http, leader["data"])
 
-    async def members(self) -> Optional[list[User]]:
+    async def get_members(self) -> Optional[list[User]]:
         """|coro|
 
         This method will return a list of members of the scanlation group, if present.
 
         .. note::
             If the ScanlatorGroup was requested with the ``member`` includes, this method will not make API calls.
+
+
+        .. note::
+            If this object was created as part of another object's ``includes`` then this will return None.
+            This is due to having no relationship data.
 
 
         .. danger::
@@ -194,6 +209,9 @@ class ScanlatorGroup:
         Optional[List[User]]
             The list of members of the scanlation group.
         """
+        if not self._relationships:
+            return
+
         members: list[User] = []
         _keys: list[UserResponse] = []
 
