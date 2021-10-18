@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Optional
 
 from .user import User
 from .utils import require_authentication
@@ -48,8 +48,6 @@ class CustomList:
         The name of this custom list.
     visibility: :class:`~hondana.types.CustomListVisibility`
         The visibility of this custom list.
-    owner: :class:`User`
-        The owner of this custom list.
     version: :class:`int`
         The version revision of this custom list.
     """

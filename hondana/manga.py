@@ -142,7 +142,7 @@ class Manga:
     @property
     def title(self) -> str:
         """The manga's title."""
-        title = self._title.get("en", None)
+        title = self._title.get("en")
         if title is None:
             key = next(iter(self._title))
             return self._title[key]
@@ -151,7 +151,7 @@ class Manga:
     @property
     def description(self) -> str:
         """The manga's description/synopsis."""
-        desc = self._description.get("en", None)
+        desc = self._description.get("en")
         if desc is None:
             key = next(iter(self._description))
             return self._description[key]
@@ -356,8 +356,8 @@ class Manga:
 
 
         .. note::
-            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
-            Leave this as the default unless you fit this criteria.
+            The ``mod_notes`` parameter requires the logged-in user to be a MangaDex moderator.
+            Leave this as the default unless you fit these criteria.
 
         .. note::
             With the ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
@@ -422,7 +422,7 @@ class Manga:
     async def unfollow(self) -> None:
         """|coro|
 
-        This method will unfollow the current Manga for the logged in user in the MangaDex API.
+        This method will unfollow the current Manga for the logged-in user in the MangaDex API.
 
         Raises
         -------
@@ -437,7 +437,7 @@ class Manga:
     async def follow(self) -> None:
         """|coro|
 
-        This method will follow the current Manga for the logged in user in the MangaDex API.
+        This method will follow the current Manga for the logged-in user in the MangaDex API.
 
         Raises
         -------
@@ -505,7 +505,7 @@ class Manga:
         Parameters
         -----------
         limit: :class:`int`
-            Defaults to 100. The maximum amount of chapters to return in the response.
+            Defaults to 100. The maximum amount of chapters to return-in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
         translated_language: List[:class:`str`]

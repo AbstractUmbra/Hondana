@@ -152,7 +152,7 @@ class Cover:
 
 
         .. note::
-            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API but it must have a value.
+            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API, but it must have a value.
 
         Raises
         -------

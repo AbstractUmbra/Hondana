@@ -101,7 +101,7 @@ class ScanlationGroupResponse(TypedDict):
     attributes: :class:`~hondana.types.ScanlationGroupAttributesResponse`
 
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
-        This key can contain minimal or full data depending on the ``includes[]`` parameter of it's request.
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
 

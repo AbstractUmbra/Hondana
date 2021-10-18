@@ -65,7 +65,7 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
     return parser, parser.parse_args()
 
 
-def core(parser: argparse.ArgumentParser, args: argparse.Namespace) -> None:
+def core(_: argparse.ArgumentParser, args: argparse.Namespace) -> None:
     if args.version:
         show_version()
 

@@ -111,7 +111,7 @@ class Chapter:
         self.hash: str = self._attributes["hash"]
         self.data: list[str] = self._attributes["data"]
         self.data_saver: list[str] = self._attributes["dataSaver"]
-        self.uploader: Optional[str] = self._attributes.get("uploader", None)
+        self.uploader: Optional[str] = self._attributes.get("uploader")
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
@@ -315,7 +315,7 @@ class Chapter:
         Forbidden
             You are not authorized to delete this chapter.
         NotFound
-            The UUID passed for this chapter does not related to a chapter in the API.
+            The UUID passed for this chapter does not relate to a chapter in the API.
         """
         await self._http._delete_chapter(self.id)
 
@@ -361,7 +361,7 @@ class Chapter:
                 break
             else:
                 data = page_resp
-                yield (data[0], url.rsplit(".")[-1])
+                yield data[0], url.rsplit(".")[-1]
 
         else:
             return

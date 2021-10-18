@@ -4,8 +4,8 @@ import datetime
 import hondana
 
 
-# We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to login and fetch an expiring auth token
+# We need to log in with user and password (for now?) since MangaDex does not let you create user based API tokens.
+# We instead use our credentials to log in and fetch an expiring auth token
 client = hondana.Client(username="my login username", password="my login password")
 
 
@@ -42,7 +42,7 @@ async def more_refined_search() -> list[hondana.Manga]:
         limit=10,
         offset=0,
         included_tags=tags,
-        publication_demographic=demographic,  # type: ignore # typecheckers won't eval a list[str] and list[Literal[...]]
+        publication_demographic=demographic,  # type: ignore # type-checkers won't eval a list[str] and list[Literal[...]]
         status=status,  # type: ignore # see above
         created_at_since=seven_days_ago,
     )

@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Optional
 
 from .user import User
 from .utils import require_authentication
@@ -47,8 +47,6 @@ class ScanlatorGroup:
     -----------
     id: :class:`str`
         The UUID relating to this scanlator group.
-    type: Literal[``"scanlation_group"``]
-        The raw type of item from the API.
     name: :class:`str`
         The name of the scanlator group.
     alt_names: List[:class:`str`]
@@ -61,7 +59,7 @@ class ScanlatorGroup:
         The IRC channel for this scanlator group.
     discord: :class:`str`
         The Discord server for this scanlator group.
-    focused_language: Optional[List[str]]
+    focused_languages: Optional[List[str]]
         The scanlator group's focused languages, if any.
     contact_email: :class:`str`
         The contact email for this scanlator group.
@@ -79,7 +77,6 @@ class ScanlatorGroup:
         "_attributes",
         "_relationships",
         "id",
-        "type",
         "name",
         "alt_names",
         "website",

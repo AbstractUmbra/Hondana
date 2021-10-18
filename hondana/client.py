@@ -185,7 +185,7 @@ class Client:
         # The JWT stores payload in the second block
         payload = token.split(".")[1]
         padding = len(payload) % 4
-        payload = payload + ("=" * padding)
+        payload += "=" * padding
         parsed_payload: TokenPayload = json.loads(b64decode(payload))
 
         return Permissions(parsed_payload)
@@ -256,7 +256,7 @@ class Client:
     ) -> list[Chapter]:
         """|coro|
 
-        This method will retrieve the logged in user's followed manga chapter feed.
+        This method will retrieve the logged-in user's followed manga chapter feed.
 
         Parameters
         -----------
@@ -270,7 +270,7 @@ class Client:
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
@@ -507,8 +507,8 @@ class Client:
 
 
         .. note::
-            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
-            Leave this as ``None`` unless you fit this criteria.
+            The ``mod_notes`` parameter requires the logged-in user to be a MangaDex moderator.
+            Leave this as ``None`` unless you fit these criteria.
 
         Raises
         -------
@@ -561,7 +561,7 @@ class Client:
         Returns
         --------
         :class:`hondana.types.GetMangaVolumesAndChaptersResponse`
-            The raw payload from mangadex. There is not guarantee of the keys here.
+            The raw payload from mangadex. There is no guarantee of the keys here.
         """
         data = await self._http._get_manga_volumes_and_chapters(manga_id=manga_id, translated_language=translated_language)
 
@@ -665,8 +665,8 @@ class Client:
 
 
         .. note::
-            The ``mod_notes`` parameter requires the logged in user to be a MangaDex moderator.
-            Leave this as the default unless you fit this criteria.
+            The ``mod_notes`` parameter requires the logged-in user to be a MangaDex moderator.
+            Leave this as the default unless you fit these criteria.
 
         .. note::
             The ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
@@ -712,7 +712,7 @@ class Client:
     async def unfollow_manga(self, manga_id: str, /) -> None:
         """|coro|
 
-        This method will unfollow a Manga for the logged in user in the MangaDex API.
+        This method will unfollow a Manga for the logged-in user in the MangaDex API.
 
         Parameters
         -----------
@@ -732,7 +732,7 @@ class Client:
     async def follow_manga(self, manga_id: str, /) -> None:
         """|coro|
 
-        This method will follow a Manga for the logged in user in the MangaDex API.
+        This method will follow a Manga for the logged-in user in the MangaDex API.
 
         Parameters
         -----------
@@ -782,7 +782,7 @@ class Client:
             A list of language codes to filter the returned chapters with.
         original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excludede_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
@@ -905,7 +905,7 @@ class Client:
     ) -> manga.MangaMultipleReadingStatusResponse:
         """|coro|
 
-        This method will return the currnt reading status of all manga in the logged in user's library.
+        This method will return the current reading status of all manga in the logged-in user's library.
 
         Parameters
         -----------
@@ -1049,7 +1049,7 @@ class Client:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             The order parameter for order the responses.
         includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
-            The optoinal includes to request in the responses.
+            The optional includes to request in the responses.
 
         Returns
         --------
@@ -1253,7 +1253,7 @@ class Client:
         BadRequest
             The query parameters were malformed
         Forbidden
-            The request returned an error to due authentication failure.
+            The request returned an error due to authentication failure.
 
         Returns
         --------
@@ -1395,7 +1395,7 @@ class Client:
         Forbidden
             You are not authorized to delete this chapter.
         NotFound
-            The UUID passed for this chapter does not related to a chapter in the API.
+            The UUID passed for this chapter does not relate to a chapter in the API.
         """
         await self._http._delete_chapter(chapter_id)
 
@@ -1561,7 +1561,7 @@ class Client:
 
 
         .. note::
-            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API but it must have a value.
+            The ``volume`` key is mandatory. You can pass ``None`` to null it in the API, but it must have a value.
 
         Raises
         -------

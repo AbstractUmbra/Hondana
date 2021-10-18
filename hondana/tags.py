@@ -97,7 +97,7 @@ class Tag:
 
     @property
     def name(self) -> str:
-        name = self._name.get("en", None)
+        name = self._name.get("en")
         if name is None:
             key = next(iter(self._name))
             return self._name[key]

@@ -8,8 +8,8 @@ import hondana
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
 
 
-# We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to login and fetch an expiring auth token
+# We need to log in with user and password (for now?) since MangaDex does not let you create user based API tokens.
+# We instead use our credentials to log in and fetch an expiring auth token
 client = hondana.Client(username="my-username", password="...")
 logging.basicConfig(level=logging.DEBUG)  # <---- This is the important line. It will enable logging to the CLI.
 
@@ -30,7 +30,7 @@ async def main() -> list[hondana.Chapter]:
 
     # `feed` will return a list of Chapter instances.
     feed = await client.get_my_feed(
-        limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order  # type: ignore # because typecheckers can't __eq__ a dict and TypedDict
+        limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order  # type: ignore # because type-checkers can't __eq__ a dict and TypedDict
     )
 
     # Let's view the responses.
