@@ -28,6 +28,7 @@ jobs:
       - name: Install Python deps
         run: |
           poetry install --no-dev
+          poetry run pip install .
 
       - name: Type Coverage
         run: |
