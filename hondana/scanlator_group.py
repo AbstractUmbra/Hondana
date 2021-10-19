@@ -79,7 +79,6 @@ class ScanlatorGroup:
         "_attributes",
         "_relationships",
         "id",
-        "type",
         "name",
         "alt_names",
         "website",
