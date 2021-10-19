@@ -32,9 +32,9 @@ from .utils import require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.relationship import RelationshipResponse
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
-    from .types.relationship import RelationshipResponse
 
 __all__ = ("ScanlatorGroup",)
 

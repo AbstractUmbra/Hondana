@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING, Union
 
 
 if TYPE_CHECKING:
-    from . import artist, author, chapter, manga, user, scanlator_group
+    from . import artist, author, chapter, manga, scanlator_group, user
 
 
 __all__ = ("RelationshipResponse",)
