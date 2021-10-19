@@ -683,7 +683,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
         if translated_language:
-            query = {"translatedLanguage": translated_language}
+            query: dict[str, Any] = {"translatedLanguage": translated_language}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -693,7 +693,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         if includes:
-            query = {"includes": includes}
+            query: dict[str, Any] = {"includes": includes}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -844,7 +844,7 @@ class HTTPClient:
         route = Route("GET", "/manga/random")
 
         if includes:
-            query = {"includes": includes}
+            query: dict[str, Any] = {"includes": includes}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -870,7 +870,7 @@ class HTTPClient:
             return self.request(route)
 
         route = Route("GET", "/manga/read")
-        query = {"ids": manga_ids, "grouped": True}
+        query: dict[str, Any] = {"ids": manga_ids, "grouped": True}
         return self.request(route, params=query)
 
     def _manga_read_markers_batch(
@@ -893,7 +893,7 @@ class HTTPClient:
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
         if status:
-            query = {"status": status}
+            query: dict[str, Any] = {"status": status}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -905,7 +905,7 @@ class HTTPClient:
         self, manga_id: str, /, status: manga.ReadingStatus
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
-        query = {"status": status}
+        query: dict[str, Any] = {"status": status}
         return self.request(route, params=query)
 
     def _get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
@@ -914,7 +914,7 @@ class HTTPClient:
 
     def _submit_manga_draft(self, manga_id: str, /, version: Optional[int]) -> Response[manga.GetMangaResponse]:
         route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
-        query = {"version": version}
+        query: dict[str, Any] = {"version": version}
         return self.request(route, json=query)
 
     def _get_manga_draft_list(
@@ -956,7 +956,7 @@ class HTTPClient:
         self, manga_id: str, /, *, target_manga: str, relation_type: manga.MangaRelationType
     ) -> Response[manga.MangaRelationCreateResponse]:
         route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id)
-        query = {"targetManga": target_manga, "relation": relation_type}
+        query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type}
         return self.request(route, json=query)
 
     def _delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1152,7 +1152,7 @@ class HTTPClient:
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
-        query = {"includes": includes}
+        query: dict[str, Any] = {"includes": includes}
 
         return self.request(route, params=query)
 
@@ -1247,12 +1247,12 @@ class HTTPClient:
         self, *, old_password: str, new_password: str
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/user/password")
-        query = {"oldPassword": old_password, "newPassword": new_password}
+        query: dict[str, Any] = {"oldPassword": old_password, "newPassword": new_password}
         return self.request(route, json=query)
 
     def _update_user_email(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/user/email")
-        query = {"email": email}
+        query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
     def _get_my_details(self) -> Response[user.GetSingleUserResponse]:
@@ -1306,7 +1306,7 @@ class HTTPClient:
 
     def _create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
         route = Route("POST", "/account/create")
-        query = {"username": username, "password": password, "email": email}
+        query: dict[str, Any] = {"username": username, "password": password, "email": email}
         return self.request(route, json=query)
 
     def _activate_account(self, activation_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1315,19 +1315,19 @@ class HTTPClient:
 
     def _resend_activation_code(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/activate/resend")
-        query = {"email": email}
+        query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
     def _recover_account(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/recover")
-        query = {"email": email}
+        query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
     def _complete_account_recovery(
         self, recovery_code: str, /, *, new_password: str
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/recover/{recovery_code}", recovery_code=recovery_code)
-        query = {"newPassword": new_password}
+        query: dict[str, Any] = {"newPassword": new_password}
         return self.request(route, json=query)
 
     def _ping_the_server(self) -> Response[str]:
@@ -1338,12 +1338,12 @@ class HTTPClient:
         self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]
     ) -> Response[legacy.GetLegacyMappingResponse]:
         route = Route("POST", "/legacy/mapping")
-        query = {"type": type, "ids": item_ids}
+        query: dict[str, Any] = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
 
     def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
-        query = {"forcePort443": str(ssl).lower()}
+        query: dict[str, Any] = {"forcePort443": str(ssl).lower()}
         return self.request(route, params=query)
 
     def _create_custom_list(
@@ -1375,7 +1375,7 @@ class HTTPClient:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         if includes:
-            query = {"includes": includes}
+            query: dict[str, Any] = {"includes": includes}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1423,7 +1423,7 @@ class HTTPClient:
     def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
 
-        query = {"limit": limit, "offset": offset}
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1432,7 +1432,7 @@ class HTTPClient:
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
 
-        query = {"limit": limit, "offset": offset}
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1512,7 +1512,7 @@ class HTTPClient:
         self, scanlation_group_id: str, /, *, includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]]
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
-        query = {"includes": includes}
+        query: dict[str, Any] = {"includes": includes}
         return self.request(route, params=query)
 
     def _update_scanlation_group(
@@ -1681,7 +1681,7 @@ class HTTPClient:
     def _at_home_report(self, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
         route = Route("POST", "/report")
 
-        query = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
+        query: dict[str, Any] = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
 
         return self.request(route, json=query)
 
@@ -1695,6 +1695,6 @@ class HTTPClient:
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/report")
 
-        query = {"category": report_category, "reason": reason, "objectId": object_id, "details": details}
+        query: dict[str, Any] = {"category": report_category, "reason": reason, "objectId": object_id, "details": details}
 
         return self.request(route, json=query)
