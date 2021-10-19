@@ -618,6 +618,7 @@ class HTTPClient:
         mod_notes: Optional[str],
         version: int,
     ) -> Response[manga.GetMangaResponse]:
+        route = Route("POST", "/manga")
 
         query: dict[str, Any] = {"title": title, "version": version}
 
@@ -663,7 +664,6 @@ class HTTPClient:
         if mod_notes:
             query["modNotes"] = mod_notes
 
-        route = Route("POST", "/manga")
         return self.request(route, json=query)
 
     def _get_manga_volumes_and_chapters(
@@ -1638,12 +1638,12 @@ class HTTPClient:
         return self.request(route)
 
     def _get_artist(
-        self, author_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
+        self, artist_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
     ) -> Response[artist.GetSingleArtistResponse]:
-        route = Route("GET", "/author/{author_id}", author_id=author_id)
+        route = Route("GET", "/author/{artist_id}", artist_id=artist_id)
 
         if includes:
-            query = {"includes": includes}
+            query: dict[str, Any] = {"includes": includes}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1658,6 +1658,10 @@ class HTTPClient:
             query["name"] = name
 
         return self.request(route, json=query)
+
+    def _delete_artist(self, artist_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/author/{artist_id}", artist_id=artist_id)
+        return self.request(route)
 
     def _get_report_reason_list(self, report_category: report.ReportCategory, /) -> Response[report.GetReportReasonResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)
