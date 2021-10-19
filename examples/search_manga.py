@@ -1,7 +1,14 @@
+from __future__ import annotations
+
+
 import asyncio
 import datetime
+from typing import TYPE_CHECKING
 
 import hondana
+
+if TYPE_CHECKING:
+    from hondana.types.manga import MangaStatus, PublicationDemographic
 
 
 # We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
@@ -32,18 +39,18 @@ async def more_refined_search() -> list[hondana.Manga]:
     seven_days_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=7)
 
     # and we don't want anything but ongoing manga
-    status = ["ongoing"]
+    status: list[MangaStatus] = ["ongoing"]
 
     # and we probably just want shounen... right?
-    demographic = ["shounen"]
+    demographic: list[PublicationDemographic] = ["shounen"]
 
     # let's try a search
     search = await client.manga_list(
         limit=10,
         offset=0,
         included_tags=tags,
-        publication_demographic=demographic,  # type: ignore # typecheckers won't eval a list[str] and list[Literal[...]]
-        status=status,  # type: ignore # see above
+        publication_demographic=demographic,
+        status=status,
         created_at_since=seven_days_ago,
     )
 
