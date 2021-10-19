@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 import hondana
 
+
 if TYPE_CHECKING:
     from hondana.types.manga import MangaOrderQuery
 

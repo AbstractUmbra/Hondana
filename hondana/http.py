@@ -69,8 +69,19 @@ if TYPE_CHECKING:
     from types import TracebackType
 
     from .tags import QueryTags
-    from .types import artist, author, chapter, common, cover, custom_list
-    from .types import legacy, manga, report, scanlator_group, user
+    from .types import (
+        artist,
+        author,
+        chapter,
+        common,
+        cover,
+        custom_list,
+        legacy,
+        manga,
+        report,
+        scanlator_group,
+        user,
+    )
     from .types.auth import CheckPayload
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse

@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-
 import asyncio
 import datetime
 from typing import TYPE_CHECKING
 
 import hondana
+
 
 if TYPE_CHECKING:
     from hondana.types.manga import MangaStatus, PublicationDemographic
