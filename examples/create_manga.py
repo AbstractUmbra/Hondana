@@ -17,7 +17,7 @@ async def main():
     """
     Here we will create a Manga in MangaDex.
 
-    The process is multi-stage so I will attempt to outline them here.
+    The process is multi-stage, so I will attempt to outline them here.
     """
 
     # Outline the needed attributes for this manga here

@@ -1,5 +1,5 @@
 <div align="center">
-    <h1><a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</h1>
+    <h1><a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</a></h1>
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
@@ -62,5 +62,5 @@ Please take a look at the [examples](./examples/) directory for working examples
 ### API caveats to note
 
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
-- The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorise those), there's a convenience method for updating the local cache as `Client.update_tags`
+- The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags`
   - I have added [an example](./examples/updating_local_tags.py) on how to do the above.

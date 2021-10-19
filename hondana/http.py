@@ -40,7 +40,6 @@ from typing import (
     Type,
     TypeVar,
     Union,
-    cast,
     overload,
 )
 from urllib.parse import quote as _uriquote
@@ -71,9 +70,8 @@ if TYPE_CHECKING:
 
     from .tags import QueryTags
     from .types import artist, author, chapter, common, cover, custom_list
-    from .types import errors as error_types
     from .types import legacy, manga, report, scanlator_group, user
-    from .types.auth import CheckPayload, LoginPayload, RefreshPayload
+    from .types.auth import CheckPayload
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
@@ -218,7 +216,7 @@ class HTTPClient:
     async def _get_token(self) -> str:
         """|coro|
 
-        This private method will login to MangaDex with the login username and password to retrieve a JWT auth token.
+        This private method will log in to MangaDex with the login username and password to retrieve a JWT auth token.
 
         Raises
         -------
@@ -1618,9 +1616,9 @@ class HTTPClient:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         if includes:
-            query = {}
-            query["includes"] = includes
+            query: dict[str, Any] = {"includes": includes}
             return self.request(route, params=query)
+
         return self.request(route)
 
     def _update_author(
