@@ -852,7 +852,7 @@ class Client:
 
     @require_authentication
     async def batch_update_manga_read_markers(
-        self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+        self, manga_id: str, /, *, read_chapters: Optional[list[str]] = None, unread_chapters: Optional[list[str]] = None
     ) -> None:
         """|coro|
 
@@ -898,6 +898,18 @@ class Client:
         data = await self._http._get_random_manga(includes=includes)
 
         return Manga(self._http, data["data"])
+
+    @require_authentication
+    async def get_my_followed_manga(
+        self,
+        *,
+        limit: int = 100,
+        offset: int = 0,
+        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+    ) -> list[Manga]:
+        data = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
+
+        return [Manga(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def get_all_manga_reading_status(

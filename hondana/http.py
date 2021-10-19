@@ -438,6 +438,8 @@ class HTTPClient:
         LOGGER.debug("Current request url and params: %s", route.url)
         if "params" in kwargs:
             LOGGER.debug("Current request parameters: %s", kwargs["params"])
+        if "data" in kwargs:
+            LOGGER.debug("Current json body is: %s", str(kwargs["data"]))
 
         response: Optional[aiohttp.ClientResponse] = None
         await lock.acquire()
@@ -1280,6 +1282,18 @@ class HTTPClient:
     def _check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
+
+    def _get_user_followed_manga(
+        self, limit: int, offset: int, includes: Optional[list[manga.MangaIncludes]]
+    ) -> Response[manga.MangaSearchResponse]:
+        route = Route("GET", "/user/follows/manga")
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if includes:
+            query["includes"] = includes
+
+        return self.request(route, params=query)
 
     def _create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
         route = Route("POST", "/account/create")
