@@ -36,7 +36,7 @@ __all__ = ("Permissions",)
 
 class Permissions:
     """
-    A helper class for the permission attributes of the logged in user's token details.
+    A helper class for the permission attributes of the logged-in user's token details.
 
     Attributes
     -----------
@@ -53,9 +53,9 @@ class Permissions:
     expires: :class:`datetime.datetime`
         When the token expires.
     user_id: :class:`str`
-        The logged in user's UUID.
+        The logged-in user's UUID.
     roles: List[:class:`str`]
-        The list of roles the logged in user has.
+        The list of roles the logged-in user has.
     permissions: List[:class:`str`]
         The list of permissions this user has.
     sid: :class:`str`

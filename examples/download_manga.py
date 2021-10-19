@@ -1,5 +1,5 @@
-### NOTE: To preface, you should probably respect the ratelimits of MangaDex and do this sparingly.
-# The library does it's best to handle ratelimits but... c'est la vie.
+# NOTE: To preface, you should probably respect the rate-limits of MangaDex and do this sparingly.
+# The library does its best to handle rate-limits but... c'est la vie.
 
 import asyncio
 

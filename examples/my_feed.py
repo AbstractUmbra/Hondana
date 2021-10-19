@@ -9,8 +9,8 @@ import hondana
 if TYPE_CHECKING:
     from hondana.types.manga import MangaOrderQuery
 
-# We need to login with username/email and password since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to login and fetch an expiring auth token.
+# We need to log in with username/email and password since MangaDex does not let you create user based API tokens.
+# We instead use our credentials to log in and fetch an expiring auth token.
 # NOTE: You can also use the client with no credentials.
 client = hondana.Client(username="my-username", password="my-password")
 

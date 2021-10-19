@@ -14,8 +14,8 @@ if TYPE_CHECKING:
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
 
 
-# We need to login with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to login and fetch an expiring auth token
+# We need to log in with user and password (for now?) since MangaDex does not let you create user based API tokens.
+# We instead use our credentials to log in and fetch an expiring auth token
 client = hondana.Client(username="my-username", password="...")
 logging.basicConfig(level=logging.DEBUG)  # <---- This is the important line. It will enable logging to the CLI.
 
