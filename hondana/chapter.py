@@ -370,7 +370,7 @@ class Chapter:
             yield page
 
     async def download(
-        self, path: Union[PathLike[str], str] = None, start_page: int = 0, data_saver: bool = False, ssl: bool = False
+        self, path: Union[PathLike[str], str] = None, *, start_page: int = 0, data_saver: bool = False, ssl: bool = False
     ) -> None:
         """|coro|
 
