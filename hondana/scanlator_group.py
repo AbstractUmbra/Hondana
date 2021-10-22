@@ -86,6 +86,7 @@ class ScanlatorGroup:
         "focused_languages",
         "contact_email",
         "description",
+        "twitter",
         "locked",
         "official",
         "verified",
@@ -109,6 +110,7 @@ class ScanlatorGroup:
         self.focused_languages: Optional[list[str]] = self._attributes.get("focusedLanguages")
         self.contact_email: Optional[str] = self._attributes["contactEmail"]
         self.description: Optional[str] = self._attributes["description"]
+        self.twitter: Optional[str] = self._attributes.get("twitter")  # TODO: Make a key lookup when the data exists.
         self.locked: bool = self._attributes.get("locked", False)
         self.official: bool = self._attributes["official"]
         self.verified: bool = self._attributes["verified"]

@@ -60,6 +60,8 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     description: Optional[:class:`str`]
 
+    twittier: Optional[:class:`str`]
+
     focusedLanguage: Optional[List[:class:`str`]]
 
     locked: :class:`bool`
@@ -83,6 +85,7 @@ class ScanlationGroupAttributesResponse(TypedDict):
     discord: Optional[str]
     contactEmail: Optional[str]
     description: Optional[str]
+    twitter: Optional[str]
     focusedLanguage: Optional[list[str]]
     locked: bool
     official: bool
