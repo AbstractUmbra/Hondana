@@ -1,17 +1,15 @@
-0.4.5
+0.4.6
 
 # Hondana Changelog
 
 ## Added
-- `ScanlatorGroup.verified` attribute.
-- `Chapter.scanlator_group` property.
+- `ScanlatorGroup.twitter` attribute.
 
 ## Changes
-- `translated_languages` parameter in some places has been renamed to `translated_language` to be inline with the API.
-- `Client.create_report` - all parameters are now required, not optional.
-
+- `Chapter.download` method now takes kwarg after the path.
 ## Fixes
-- Properly clamps pagination values now.
-- `ScanlatorGroup.focused_language` -> `ScanlatorGroup.focused_languages`.
+- Misc CI fixes.
+- Typo fixes through the library and comments.
+- Example corrections.
 
 ### Notes
