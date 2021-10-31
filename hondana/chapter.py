@@ -27,7 +27,7 @@ import datetime
 import logging
 import pathlib
 import time
-from typing import TYPE_CHECKING, AsyncGenerator, Optional, Union
+from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Union
 
 import aiofiles
 
@@ -123,6 +123,17 @@ class Chapter:
 
     def __str__(self) -> str:
         return self.title or "No title for this chapter..."
+
+    def to_dict(self) -> dict[str, Any]:
+        fmt = {}
+        names = self.__slots__ if hasattr(self, "__slots__") else self.__dict__
+        for name in dir(self):
+            if name.startswith("_"):
+                continue
+            value = getattr(self.__class__, name, None)
+            if isinstance(value, property) or name in names:
+                fmt[name] = getattr(self, name)
+        return fmt
 
     async def _get_at_home_url(self, ssl: bool) -> str:
         url = await self._http._get_at_home_url(self.id, ssl=ssl)
