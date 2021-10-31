@@ -805,14 +805,15 @@ class HTTPClient:
         if original_language:
             query["originalLanguage"] = original_language
 
-        if excluded_original_language:
-            query["excludedOriginalLanguage"] = excluded_original_language
+        # if excluded_original_language:
+        #     query["excludedOriginalLanguage"] = excluded_original_language
+        # TODO: Add again when MD fixes it.
 
         if content_rating:
             query["contentRating"] = content_rating
 
         if include_future_updates:
-            resolved = str(include_future_updates).lower()
+            resolved = str(int(include_future_updates))
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
@@ -1027,7 +1028,7 @@ class HTTPClient:
             query["contentRating"] = content_rating
 
         if include_future_updates:
-            resolved = str(include_future_updates).lower()
+            resolved = str(int(include_future_updates))
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
@@ -1473,7 +1474,7 @@ class HTTPClient:
             query["contentRating"] = content_rating
 
         if include_future_updates:
-            resolved = str(include_future_updates).lower()
+            resolved = str(int(include_future_updates))
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
