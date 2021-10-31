@@ -125,6 +125,13 @@ class Chapter:
         return self.title or "No title for this chapter..."
 
     def to_dict(self) -> dict[str, Any]:
+        """
+        Method to dump the chapter to a dictionary.
+
+        Returns
+        --------
+        Dict[:class:`str`, Any]
+        """
         fmt = {}
         names = self.__slots__ if hasattr(self, "__slots__") else self.__dict__
         for name in dir(self):
