@@ -1,15 +1,14 @@
-0.4.6
+0.4.7
 
 # Hondana Changelog
 
 ## Added
-- `ScanlatorGroup.twitter` attribute.
+- `Chapter.to_dict` was added.
+- Language Codes are now updated as per MangaDex's new guidelines in 5.3.10.
 
 ## Changes
-- `Chapter.download` method now takes kwarg after the path.
+
 ## Fixes
-- Misc CI fixes.
-- Typo fixes through the library and comments.
-- Example corrections.
+- `includes_futures_updates` key in some endpoints now handled properly (it's a bool but the API uses stringed ints...)
 
 ### Notes
