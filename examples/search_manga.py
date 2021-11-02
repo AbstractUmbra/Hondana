@@ -32,7 +32,6 @@ async def search_for_tags() -> list[hondana.Manga]:
 
 async def more_refined_search() -> list[hondana.Manga]:
     # let's do a more refined search using many of the query parameters...
-
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="and")
 
     # Let's say we only way to show manga created in the last week, lets make an aware utc datetime for one week ago
