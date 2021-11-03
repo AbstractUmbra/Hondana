@@ -39,6 +39,8 @@ from .utils import MISSING, DownloadRoute, require_authentication
 if TYPE_CHECKING:
     from os import PathLike
 
+    from aiohttp import ClientResponse
+
     from .http import HTTPClient
     from .types.chapter import ChapterResponse
     from .types.relationship import RelationshipResponse
@@ -362,18 +364,18 @@ class Chapter:
             route = DownloadRoute(self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
             LOGGER.info("Attempting to download: %s" % route.url)
             _start = time.monotonic()
-            page_resp: tuple[bytes, int] = await self._http.request(route)
+            page_resp: tuple[bytes, ClientResponse] = await self._http.request(route)
             _end = time.monotonic()
             _total = _end - _start
             LOGGER.info("Downloaded: %s" % route.url)
 
             # await self._http._at_home_report(
-            #     download_url,
-            #     page_resp.status == 200,
-            #     "X-Cache" in page_resp.headers,
-            #     (page_resp.content_length or 0),
+            #     route.url,
+            #     page_resp[1].status == 200,
+            #     "X-Cache" in page_resp[1].headers,
+            #     (page_resp[1].content_length or 0),
             #     int(_total * 1000),
-            # ) # TODO: Fix the reporting?
+            # )  # Unable to fix really. DDOS Guard makes this impossible.
             if page_resp[1] != 200:
                 self._at_home_url = None
                 break

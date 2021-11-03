@@ -477,7 +477,7 @@ class HTTPClient:
                         loop.call_later(sleep, lock.release)
 
                     if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
-                        data = (await response.read(), response.status)
+                        data = (await response.read(), response)
                     else:
                         data = await json_or_text(response)
 
@@ -491,6 +491,14 @@ class HTTPClient:
                         LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
                         await asyncio.sleep(sleep)
                         continue
+
+                    if response.status == 412:
+                        assert retry is not None
+                        captcha = response.headers.get("x-captcha-sitekey")
+                        if captcha is not None:
+                            LOGGER.warning("Captcha required, key is: %s - trying now.", captcha)
+                            kwargs["headers"]["X-Captcha-Result"] = captcha
+                            continue
 
                     if response.status in {500, 502, 504}:
                         sleep_ = 1 + tries * 2
@@ -805,9 +813,8 @@ class HTTPClient:
         if original_language:
             query["originalLanguage"] = original_language
 
-        # if excluded_original_language:
-        #     query["excludedOriginalLanguage"] = excluded_original_language
-        # TODO: Add again when MD fixes it.
+        if excluded_original_language:
+            query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
             query["contentRating"] = content_rating
