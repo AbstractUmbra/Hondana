@@ -33,7 +33,7 @@ import aiofiles
 
 from .manga import Manga
 from .scanlator_group import ScanlatorGroup
-from .utils import MISSING, DownloadRoute, require_authentication
+from .utils import MISSING, CustomRoute, require_authentication
 
 
 if TYPE_CHECKING:
@@ -355,28 +355,32 @@ class Chapter:
         """
         await self._http._mark_chapter_as_unread(self.id)
 
-    async def _pages(self, *, start: int, data_saver: bool, ssl: bool) -> AsyncGenerator[tuple[bytes, str], None]:
+    async def _pages(
+        self, *, start: int, data_saver: bool, ssl: bool, report: bool
+    ) -> AsyncGenerator[tuple[bytes, str], None]:
         if self._at_home_url is None:
             self._at_home_url = await self._get_at_home_url(ssl=ssl)
 
         _pages = self.data_saver if data_saver else self.data
         for i, url in enumerate(_pages[start:], start=1):
-            route = DownloadRoute(self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
-            LOGGER.info("Attempting to download: %s" % route.url)
+            route = CustomRoute("GET", self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
+            LOGGER.debug("Attempting to download: %s" % route.url)
             _start = time.monotonic()
             page_resp: tuple[bytes, ClientResponse] = await self._http.request(route)
             _end = time.monotonic()
             _total = _end - _start
-            LOGGER.info("Downloaded: %s" % route.url)
+            LOGGER.debug("Downloaded: %s" % route.url)
 
-            # await self._http._at_home_report(
-            #     route.url,
-            #     page_resp[1].status == 200,
-            #     "X-Cache" in page_resp[1].headers,
-            #     (page_resp[1].content_length or 0),
-            #     int(_total * 1000),
-            # )  # Unable to fix really. DDOS Guard makes this impossible.
-            if page_resp[1] != 200:
+            if report is True:
+                await self._http._at_home_report(
+                    route.url,
+                    page_resp[1].status == 200,
+                    "X-Cache" in page_resp[1].headers,
+                    (page_resp[1].content_length or 0),
+                    int(_total * 1000),
+                )
+
+            if page_resp[1].status != 200:
                 self._at_home_url = None
                 break
             else:
@@ -386,11 +390,17 @@ class Chapter:
         else:
             return
 
-        async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl):
+        async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl, report=report):
             yield page
 
     async def download(
-        self, path: Union[PathLike[str], str] = None, *, start_page: int = 0, data_saver: bool = False, ssl: bool = False
+        self,
+        path: Union[PathLike[str], str] = None,
+        *,
+        start_page: int = 0,
+        data_saver: bool = False,
+        ssl: bool = False,
+        report: bool = True,
     ) -> None:
         """|coro|
 
@@ -400,6 +410,7 @@ class Chapter:
         -----------
         path: Union[:class:`os.PathLike`, :class:`str`]
             The path at which to use (or create) a directory to save the pages of the chapter.
+            Defaults to ``"chapter number - chapter title"``
         start_page: :class:`int`
             The page at which to start downloading, leave at 0 (default) to download all.
         data_saver: :class:`bool`
@@ -407,6 +418,9 @@ class Chapter:
         ssl: :class:`bool`
             Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting a HTTP url.
             Defaults to ``False``.
+        report: :class:`bool`
+            Whether to report success or failures to MangaDex per page download.
+            The API guidelines ask us to do this, so it defaults to ``True``.
         """
         path = path or f"{self.chapter} - {self.title}"
         path_ = pathlib.Path(path)
@@ -414,7 +428,9 @@ class Chapter:
             path_.mkdir(parents=True, exist_ok=True)
 
         idx = 1
-        async for page in self._pages(start=start_page, data_saver=data_saver, ssl=ssl):
-            async with aiofiles.open(f"{path_}/{idx}.{page[1]}", "wb") as f:
-                await f.write(page[0])
+        async for page_data, page_ext in self._pages(start=start_page, data_saver=data_saver, ssl=ssl, report=report):
+            download_path = f"{path_}/{idx}.{page_ext}"
+            async with aiofiles.open(download_path, "wb") as f:
+                await f.write(page_data)
+                LOGGER.info("Downloaded to: %s", download_path)
             idx += 1
