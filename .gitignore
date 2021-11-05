@@ -7,3 +7,7 @@ docs/_build
 *test.py
 hondana.log
 target/
+*.png
+*.jpg
+*.gif
+*.jpeg
