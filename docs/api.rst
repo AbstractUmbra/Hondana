@@ -83,5 +83,8 @@ User
 
 Utilities
 ---------
-.. autoclass:: hondana.http.Route
+.. autoclass:: hondana.utils.Route
+    :members:
+
+.. autoclass:: hondana.utils.CustomRoute
     :members:
