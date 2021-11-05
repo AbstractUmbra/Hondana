@@ -28,7 +28,16 @@ import json
 import pathlib
 import re
 from functools import wraps
-from typing import TYPE_CHECKING, Any, Callable, Mapping, Optional, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    ClassVar,
+    Mapping,
+    Optional,
+    TypeVar,
+    Union,
+)
 from urllib.parse import quote as _uriquote
 
 from .errors import AuthenticationRequired
@@ -48,8 +57,9 @@ if TYPE_CHECKING:
 
 __all__ = (
     "URL_REGEX",
-    "DownloadRoute",
     "MISSING",
+    "CustomRoute",
+    "Route",
     "to_json",
     "to_iso_format",
     "php_query_builder",
@@ -62,11 +72,40 @@ URL_REGEX = re.compile(
 )
 
 
-class DownloadRoute:
+class Route:
+    """A helper class for instantiating a HTTP method to MangaDex.
+
+    Parameters
+    -----------
+    verb: :class:`str`
+        The HTTP verb you wish to perform, e.g. ``"POST"``
+    path: :class:`str`
+        The prepended path to the API endpoint you with to target.
+        e.g. ``"/manga/{manga_id}"``
+    parameters: Any
+        This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
+        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
+        making ``"manga/..."``
+    """
+
+    BASE: ClassVar[str] = "https://api.mangadex.org"
+
+    def __init__(self, verb: str, path: str, **parameters: Any) -> None:
+        self.verb: str = verb
+        self.path: str = path
+        url = self.BASE + self.path
+        if parameters:
+            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
+        self.url: str = url
+
+
+class CustomRoute(Route):
     """A helper class for instantiating a HTTP method to download from MangaDex.
 
     Parameters
     -----------
+    verb: :class:`str`
+        The HTTP verb you wish to perform. E.g. ``"POST"``
     base: :class:`str`
         The base URL for the download path.
     path: :class:`str`
@@ -78,8 +117,8 @@ class DownloadRoute:
         making ``"manga/..."``
     """
 
-    def __init__(self, base: str, path: str, **parameters: Any) -> None:
-        self.verb: str = "GET"
+    def __init__(self, verb: str, base: str, path: str, **parameters: Any) -> None:
+        self.verb: str = verb
         self.base: str = base
         self.path: str = path
         url = self.base + self.path

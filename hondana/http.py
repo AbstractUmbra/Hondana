@@ -58,6 +58,8 @@ from .errors import (
 from .utils import (
     MISSING,
     TAGS,
+    CustomRoute,
+    Route,
     _get_image_mime_type,
     php_query_builder,
     to_iso_format,
@@ -86,7 +88,7 @@ if TYPE_CHECKING:
     from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
-    from .utils import DownloadRoute
+    from .utils import CustomRoute
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -112,33 +114,6 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
         pass
 
     return text
-
-
-class Route:
-    """A helper class for instantiating a HTTP method to MangaDex.
-
-    Parameters
-    -----------
-    verb: :class:`str`
-        The HTTP verb you wish to perform, e.g. ``"POST"``
-    path: :class:`str`
-        The prepended path to the API endpoint you with to target.
-        e.g. ``"/manga/{manga_id}"``
-    parameters: Any
-        This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
-        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
-        making ``"manga/..."``
-    """
-
-    BASE: ClassVar[str] = "https://api.mangadex.org"
-
-    def __init__(self, verb: str, path: str, **parameters: Any) -> None:
-        self.verb: str = verb
-        self.path: str = path
-        url = self.BASE + self.path
-        if parameters:
-            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: str = url
 
 
 class MaybeUnlock:
@@ -387,7 +362,7 @@ class HTTPClient:
 
         self._authenticated = False
 
-    async def request(self, route: Union[Route, DownloadRoute], **kwargs: Any) -> Any:
+    async def request(self, route: Union[Route, CustomRoute], **kwargs: Any) -> Any:
         """|coro|
 
         This performs the HTTP request, handling authentication tokens when doing it.
@@ -1687,7 +1662,7 @@ class HTTPClient:
         return self.request(route)
 
     def _at_home_report(self, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
-        route = Route("POST", "/report")
+        route = CustomRoute("POST", "https://api.mangadex.network", "/report")
 
         query: dict[str, Any] = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
 
