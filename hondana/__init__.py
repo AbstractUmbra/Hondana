@@ -31,6 +31,7 @@ __version__ = "0.4.8"
 import logging
 from typing import Literal, NamedTuple
 
+from . import types as types
 from . import utils as utils
 from .artist import Artist as Artist
 from .author import Author as Author
