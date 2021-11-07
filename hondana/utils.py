@@ -56,18 +56,18 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "URL_REGEX",
+    "MANGADEX_URL_REGEX",
     "MISSING",
     "CustomRoute",
     "Route",
     "to_json",
     "to_iso_format",
     "php_query_builder",
-    "TAGS",
+    "MANGA_TAGS",
 )
 
 _PROJECT_DIR = pathlib.Path(__file__)
-URL_REGEX = re.compile(
+MANGADEX_URL_REGEX = re.compile(
     r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
 )
 
@@ -195,4 +195,4 @@ def _get_image_mime_type(data: bytes):
 
 path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
 with open(path, "r") as _fp:
-    TAGS: dict[str, list[str]] = json.load(_fp)
+    MANGA_TAGS: dict[str, list[str]] = json.load(_fp)

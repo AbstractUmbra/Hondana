@@ -26,7 +26,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Literal, Optional
 
-from .utils import TAGS
+from .utils import MANGA_TAGS
 
 
 if TYPE_CHECKING:
@@ -143,7 +143,7 @@ class QueryTags:
     def set_tags(self) -> list[str]:
         tags = []
         for tag in self._tags:
-            if tag_ := TAGS.get(tag.title()):
+            if tag_ := MANGA_TAGS.get(tag.title()):
                 tags.append(tag_)
             else:
                 logger.warning("Tag '%s' cannot be found in the local tag cache, skipping." % tag)

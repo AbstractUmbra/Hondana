@@ -33,7 +33,6 @@ from base64 import b64decode
 from typing import (
     TYPE_CHECKING,
     Any,
-    ClassVar,
     Coroutine,
     Literal,
     Optional,
@@ -56,8 +55,8 @@ from .errors import (
     Unauthorized,
 )
 from .utils import (
+    MANGA_TAGS,
     MISSING,
-    TAGS,
     CustomRoute,
     Route,
     _get_image_mime_type,
@@ -97,9 +96,13 @@ if TYPE_CHECKING:
 
 
 LOGGER = logging.getLogger(__name__)
-TAGS = TAGS
+TAGS = MANGA_TAGS
 
-__all__ = ("json_or_text", "Route", "HTTPClient")
+__all__ = (
+    "json_or_text",
+    "Route",
+    "HTTPClient",
+)
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:

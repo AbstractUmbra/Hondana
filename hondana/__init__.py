@@ -47,8 +47,8 @@ from .scanlator_group import *
 from .tags import *
 from .token import *
 from .user import User as User
-from .utils import TAGS as MANGA_TAGS
-from .utils import URL_REGEX as MANGADEX_URL_REGEX
+from .utils import MANGA_TAGS as MANGA_TAGS
+from .utils import MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
 
 
 class VersionInfo(NamedTuple):
