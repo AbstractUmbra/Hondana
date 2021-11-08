@@ -1,15 +1,14 @@
-0.4.9
+0.4.10
 
 # Hondana Changelog
 
 ## Added
-
+- `Client.upload_cover`/`Manga.upload_cover` now has a `description` kwarg (26f4610)
+- `Client.manga_list` now has a `has_available_chapters` kwarg (26f4610)
 ## Changes
-- `utils.CustomRoute` added to aid with custom paths from MangaDex.
-- `http.Route` removed and now exists in `utils.Route`
+
 
 ## Fixes
-- Fixed issue where `Chapter.download()` wouldn't work.
-- Added `report` kwarg to `Chapter.download()` to make reporting success/failures optional.
+- `hondana.MANGADEX_URL_REGEX` and `hondana.TAGS` now exported in compliance with PEP-0484. (65e17ee8)
 
 ### Notes
