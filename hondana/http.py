@@ -532,6 +532,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
+        has_available_chapters: Optional[bool],
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
 
@@ -592,6 +593,9 @@ class HTTPClient:
 
         if includes:
             query["includes"] = includes
+
+        if has_available_chapters is not None:
+            query["hasAvailableChapters"] = has_available_chapters
 
         return self.request(route, params=query)
 
@@ -1123,7 +1127,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _upload_cover(
-        self, manga_id: str, /, *, cover: bytes, volume: Optional[str]
+        self, manga_id: str, /, *, cover: bytes, volume: Optional[str], description: Optional[str]
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
         content_type = _get_image_mime_type(cover)
@@ -1131,6 +1135,7 @@ class HTTPClient:
         form_data = aiohttp.FormData()
         form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
         form_data.add_field(name="volume", value=volume)
+        form_data.add_field(name="description", value=description)
         return self.request(route, data=form_data)
 
     def _get_cover(

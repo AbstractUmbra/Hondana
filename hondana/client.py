@@ -348,6 +348,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
         includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+        has_available_chapters: Optional[bool] = None,
     ) -> list[Manga]:
         """|coro|
 
@@ -403,6 +404,8 @@ class Client:
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
             Defaults to these values.
+        has_available_chapters: Optional[:class:`bool`]
+            Filter the manga list to only those that have chapters.
 
         Raises
         -------
@@ -437,6 +440,7 @@ class Client:
             updated_at_since=updated_at_since,
             order=order,
             includes=includes,
+            has_available_chapters=has_available_chapters,
         )
 
         return [Manga(self._http, item) for item in data["data"]]
@@ -1491,7 +1495,9 @@ class Client:
         return [Cover(self._http, item) for item in data["data"]]
 
     @require_authentication
-    async def upload_cover(self, manga_id: str, /, *, cover: bytes, volume: Optional[str] = None) -> Cover:
+    async def upload_cover(
+        self, manga_id: str, /, *, cover: bytes, volume: Optional[str] = None, description: Optional[str] = None
+    ) -> Cover:
         """|coro|
 
         This method will upload a cover to the MangaDex API.
@@ -1504,6 +1510,8 @@ class Client:
             THe raw bytes of the image.
         volume: Optional[:class:`str`]
             The volume this cover relates to.
+        description: Optional[:class:`str`]
+            The description of this cover.
 
         Raises
         -------
@@ -1516,7 +1524,7 @@ class Client:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume)
+        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume, description=description)
 
         return Cover(self._http, data["data"])
 

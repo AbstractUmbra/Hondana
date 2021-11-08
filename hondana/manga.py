@@ -854,7 +854,7 @@ class Manga:
         return [MangaRelation(self._http, self.id, item) for item in data["data"]]
 
     @require_authentication
-    async def upload_cover(self, *, cover: bytes, volume: Optional[str] = None) -> Cover:
+    async def upload_cover(self, *, cover: bytes, volume: Optional[str] = None, description: Optional[str] = None) -> Cover:
         """|coro|
 
         This method will upload a cover to the MangaDex API.
@@ -865,6 +865,8 @@ class Manga:
             THe raw bytes of the image.
         volume: Optional[:class:`str`]
             The volume this cover relates to.
+        description: Optional[:class:`str`]
+            The description of this cover.
 
         Raises
         -------
@@ -877,7 +879,7 @@ class Manga:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(self.id, cover=cover, volume=volume)
+        data = await self._http._upload_cover(self.id, cover=cover, volume=volume, description=description)
         return Cover(self._http, data["data"])
 
     @require_authentication
