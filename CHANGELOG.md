@@ -1,14 +1,15 @@
-0.4.10
+0.4.11
 
 # Hondana Changelog
 
 ## Added
-- `Client.upload_cover`/`Manga.upload_cover` now has a `description` kwarg (26f4610)
-- `Client.manga_list` now has a `has_available_chapters` kwarg (26f4610)
+- Now sets a manga's reading status on follow (with ability to disable) (2e0aaf9c1aa0c3c41a58ebd965e5fe61f39b6d2b)
+- Retry handling in HTTP request code for `aiohttp` client errors.
+
 ## Changes
 
 
 ## Fixes
-- `hondana.MANGADEX_URL_REGEX` and `hondana.TAGS` now exported in compliance with PEP-0484. (65e17ee8)
+- Typing inaccuracy, which was highlighed after a pyright update.
 
 ### Notes
