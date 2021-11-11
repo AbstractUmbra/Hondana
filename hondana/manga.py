@@ -434,10 +434,20 @@ class Manga:
         await self._http._unfollow_manga(self.id)
 
     @require_authentication
-    async def follow(self) -> None:
+    async def follow(self, *, set_status: bool = True, status: manga.ReadingStatus = "reading") -> None:
         """|coro|
 
         This method will follow the current Manga for the logged-in user in the MangaDex API.
+
+        Parameters
+        -----------
+        set_status: :class:`bool`
+            Whether to set the reading status of the manga you follow.
+            Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
+            Defaults to ``True``
+        status: :class:`~hondana.types.ReadingStatus`
+            The status to apply to the newly followed manga.
+            Irrelevant if ``set_status`` is ``False``.
 
         Raises
         -------
@@ -447,6 +457,8 @@ class Manga:
             The specified manga does not exist.
         """
         await self._http._follow_manga(self.id)
+        if set_status:
+            await self.update_reading_status(status=status)
 
     def localized_title(self, language_code: LanguageCode, /) -> Optional[str]:
         """

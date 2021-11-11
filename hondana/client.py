@@ -733,7 +733,9 @@ class Client:
         await self._http._unfollow_manga(manga_id)
 
     @require_authentication
-    async def follow_manga(self, manga_id: str, /) -> None:
+    async def follow_manga(
+        self, manga_id: str, /, *, set_status: bool = True, status: manga.ReadingStatus = "reading"
+    ) -> None:
         """|coro|
 
         This method will follow a Manga for the logged-in user in the MangaDex API.
@@ -741,7 +743,14 @@ class Client:
         Parameters
         -----------
         manga_id: :class:`str`
-            The UUID of the manga to unfollow.
+            The UUID of the manga to follow.
+        set_status: :class:`bool`
+            Whether to set the reading status of the manga you follow.
+            Due to he current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
+            Defaults to ``True``
+        status: :class:`~hondana.types.ReadingStatus`
+            The status to apply to the newly followed manga.
+            Irrelevant if ``set_status`` is ``False``.
 
         Raises
         -------
@@ -751,6 +760,8 @@ class Client:
             The specified manga does not exist.
         """
         await self._http._follow_manga(manga_id)
+        if set_status:
+            await self._http._update_manga_reading_status(manga_id, status=status)
 
     async def manga_feed(
         self,
