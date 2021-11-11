@@ -432,72 +432,78 @@ class HTTPClient:
         await lock.acquire()
         with MaybeUnlock(lock) as maybe_lock:
             for tries in range(5):
-                async with self.__session.request(route.verb, route.url, **kwargs) as response:
-                    # Requests remaining before ratelimit
-                    remaining = response.headers.get("x-ratelimit-remaining", None)
-                    LOGGER.debug("remaining is: %s", remaining)
-                    # Timestamp for when current ratelimit session(?) expires
-                    retry = response.headers.get("x-ratelimit-retry-after", None)
-                    LOGGER.debug("retry is: %s", retry)
-                    if retry is not None:
-                        retry = datetime.datetime.fromtimestamp(int(retry))
-                    # The total ratelimit session hits
-                    limit = response.headers.get("x-ratelimit-limit", None)
-                    LOGGER.debug("limit is: %s", limit)
+                try:
+                    async with self.__session.request(route.verb, route.url, **kwargs) as response:
+                        # Requests remaining before ratelimit
+                        remaining = response.headers.get("x-ratelimit-remaining", None)
+                        LOGGER.debug("remaining is: %s", remaining)
+                        # Timestamp for when current ratelimit session(?) expires
+                        retry = response.headers.get("x-ratelimit-retry-after", None)
+                        LOGGER.debug("retry is: %s", retry)
+                        if retry is not None:
+                            retry = datetime.datetime.fromtimestamp(int(retry))
+                        # The total ratelimit session hits
+                        limit = response.headers.get("x-ratelimit-limit", None)
+                        LOGGER.debug("limit is: %s", limit)
 
-                    if remaining == "0" and response.status != 429:
-                        assert retry is not None
-                        delta = retry - datetime.datetime.now()
-                        sleep = delta.total_seconds() + 1
-                        LOGGER.warning("A ratelimit has been exhausted, sleeping for: %d", sleep)
-                        maybe_lock.defer()
-                        loop = asyncio.get_running_loop()
-                        loop.call_later(sleep, lock.release)
+                        if remaining == "0" and response.status != 429:
+                            assert retry is not None
+                            delta = retry - datetime.datetime.now()
+                            sleep = delta.total_seconds() + 1
+                            LOGGER.warning("A ratelimit has been exhausted, sleeping for: %d", sleep)
+                            maybe_lock.defer()
+                            loop = asyncio.get_running_loop()
+                            loop.call_later(sleep, lock.release)
 
-                    if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
-                        data = (await response.read(), response)
-                    else:
-                        data = await json_or_text(response)
+                        if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
+                            data = (await response.read(), response)
+                        else:
+                            data = await json_or_text(response)
 
-                    if 300 > response.status >= 200:
-                        return data
+                        if 300 > response.status >= 200:
+                            return data
 
-                    if response.status == 429:
-                        assert retry is not None
-                        delta = retry - datetime.datetime.now()
-                        sleep = delta.total_seconds() + 1
-                        LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
-                        await asyncio.sleep(sleep)
-                        continue
-
-                    if response.status == 412:
-                        assert retry is not None
-                        captcha = response.headers.get("x-captcha-sitekey")
-                        if captcha is not None:
-                            LOGGER.warning("Captcha required, key is: %s - trying now.", captcha)
-                            kwargs["headers"]["X-Captcha-Result"] = captcha
+                        if response.status == 429:
+                            assert retry is not None
+                            delta = retry - datetime.datetime.now()
+                            sleep = delta.total_seconds() + 1
+                            LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
+                            await asyncio.sleep(sleep)
                             continue
 
-                    if response.status in {500, 502, 504}:
-                        sleep_ = 1 + tries * 2
-                        LOGGER.warning("Hit an API error, trying again in: %d", sleep_)
-                        await asyncio.sleep(sleep_)
-                        continue
+                        if response.status == 412:
+                            assert retry is not None
+                            captcha = response.headers.get("x-captcha-sitekey")
+                            if captcha is not None:
+                                LOGGER.warning("Captcha required, key is: %s - trying now.", captcha)
+                                kwargs["headers"]["X-Captcha-Result"] = captcha
+                                continue
 
-                    assert isinstance(data, dict)
-                    if response.status == 400:
-                        raise BadRequest(response, errors=data["errors"])
-                    elif response.status == 401:
-                        raise Unauthorized(response, errors=data["errors"])
-                    elif response.status == 403:
-                        raise Forbidden(response, errors=data["errors"])
-                    elif response.status == 404:
-                        raise NotFound(response, errors=data["errors"])
-                    raise APIException(
-                        response,
-                        status_code=response.status,
-                        errors=data["errors"],
-                    )
+                        if response.status in {500, 502, 504}:
+                            sleep_ = 1 + tries * 2
+                            LOGGER.warning("Hit an API error, trying again in: %d", sleep_)
+                            await asyncio.sleep(sleep_)
+                            continue
+
+                        assert isinstance(data, dict)
+                        if response.status == 400:
+                            raise BadRequest(response, errors=data["errors"])
+                        elif response.status == 401:
+                            raise Unauthorized(response, errors=data["errors"])
+                        elif response.status == 403:
+                            raise Forbidden(response, errors=data["errors"])
+                        elif response.status == 404:
+                            raise NotFound(response, errors=data["errors"])
+                        raise APIException(
+                            response,
+                            status_code=response.status,
+                            errors=data["errors"],
+                        )
+                except (aiohttp.ServerDisconnectedError, aiohttp.ServerTimeoutError) as error:
+                    LOGGER.exception("Network error occurred: %s", error)
+                    await asyncio.sleep(5)
+                    continue
+
             if response is not None:
                 if response.status >= 500:
                     raise MangaDexServerError(response, status_code=response.status)
