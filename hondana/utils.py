@@ -141,11 +141,11 @@ MISSING: Any = MissingSentinel()
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
     @wraps(func)
-    def wrapper(client: C, *args: B.args, **kwargs: B.kwargs) -> T:
-        if not client._http._authenticated:
+    def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
+        if not item._http._authenticated:
             raise AuthenticationRequired("This method requires you to be authenticated to the API.")
 
-        return func(client, *args, **kwargs)
+        return func(item, *args, **kwargs)
 
     return wrapper
 
