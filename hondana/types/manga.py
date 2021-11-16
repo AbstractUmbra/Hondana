@@ -106,6 +106,8 @@ class MangaOrderQuery(TypedDict, total=False):
     createdAt: Literal["asc", "desc"]
     updatedAt: Literal["asc", "desc"]
     latestUploadedChapter: Literal["asc", "desc"]
+    followedCount: Literal["asc", "desc"]
+    relevance: Literal["asc", "desc"]
 
 
 class MangaLinks(TypedDict, total=False):

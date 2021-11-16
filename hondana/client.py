@@ -549,7 +549,12 @@ class Client:
         return Manga(self._http, data["data"])
 
     async def get_manga_volumes_and_chapters(
-        self, manga_id: str, /, *, translated_language: Optional[list[str]] = None
+        self,
+        manga_id: str,
+        /,
+        *,
+        translated_language: Optional[list[str]] = None,
+        groups: Optional[list[str]] = None,
     ) -> manga.GetMangaVolumesAndChaptersResponse:
         """|coro|
 
@@ -561,13 +566,17 @@ class Client:
             The manga UUID we are querying against.
         translated_language: Optional[List[:class:`str`]]
             The list of language codes you want to limit the search to.
+        groups: Optional[List[:class:`str`]]
+            A list of scanlator groups to filter the results by.
 
         Returns
         --------
         :class:`hondana.types.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
-        data = await self._http._get_manga_volumes_and_chapters(manga_id=manga_id, translated_language=translated_language)
+        data = await self._http._get_manga_volumes_and_chapters(
+            manga_id=manga_id, translated_language=translated_language, groups=groups
+        )
 
         return data
 
@@ -711,6 +720,26 @@ class Client:
         )
 
         return Manga(self._http, data["data"])
+
+    @require_authentication
+    async def delete_manga(self, manga_id: str, /) -> None:
+        """|coro|
+
+        This method will delete a manga within the MangaDex API.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID of the manga we are deleting.
+
+        Raises
+        -------
+        Forbidden
+            The request returned an error due to authentication failure.
+        NotFound
+            The specified manga doesn't exist.
+        """
+        await self._http._delete_manga(manga_id)
 
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
@@ -901,7 +930,7 @@ class Client:
 
         Parameters
         -----------
-        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
             The optional includes for the manga payload.
             Defaults to all three.
 

@@ -674,12 +674,23 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _get_manga_volumes_and_chapters(
-        self, *, manga_id: str, translated_language: Optional[list[str]] = None
+        self,
+        *,
+        manga_id: str,
+        translated_language: Optional[list[str]],
+        groups: Optional[list[str]],
     ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
+        query: dict[str, Any] = {}
+
         if translated_language:
-            query: dict[str, Any] = {"translatedLanguage": translated_language}
+            query["translatedLanguage"] = translated_language
+
+        if groups:
+            query["groups"] = groups
+
+        if query:
             return self.request(route, params=query)
         return self.request(route)
 
@@ -763,10 +774,6 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
-        route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
-        return self.request(route)
-
     def _manga_feed(
         self,
         manga_id: Optional[str],
@@ -827,6 +834,10 @@ class HTTPClient:
             query["includes"] = includes
 
         return self.request(route, params=query)
+
+    def _delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+        route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
+        return self.request(route)
 
     def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
