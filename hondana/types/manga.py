@@ -226,6 +226,7 @@ class MangaRelationAttributesResponse(TypedDict):
 
 class _OptionalMangaResponse(TypedDict, total=False):
     relationships: list[RelationshipResponse]
+    related: MangaRelationType
 
 
 class MangaResponse(_OptionalMangaResponse):
@@ -237,6 +238,9 @@ class MangaResponse(_OptionalMangaResponse):
     attributes: :class:`~hondana.types.MangaAttributesResponse`
 
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
+        This key is optional.
+
+    related: :class:`~hondana.types.MangaRelationType`
         This key is optional.
     """
 

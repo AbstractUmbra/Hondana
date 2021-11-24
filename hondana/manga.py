@@ -41,6 +41,8 @@ if TYPE_CHECKING:
     from .types.chapter import ChapterIncludes, ChapterOrderQuery
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
+    from .types.author import AuthorResponse
+    from .types.artist import ArtistResponse
 
 
 __all__ = ("Manga", "MangaRelation")
@@ -53,6 +55,9 @@ class Manga:
     -----------
     id: :class:`str`
         The UUID associated to this manga.
+    relation_type: Optional[:class:`~hondana.types.MangaRelationType`]
+        The type of relation this is, to the parent manga requested.
+        Only available when :meth:`get_related_manga` is called.
     alternate_titles: :class:`~hondana.types.LocalisedString`
         The alternative title mapping for the Manga.
         i.e. ``{"en": "Some Other Title"}``
@@ -84,6 +89,7 @@ class Manga:
         "_relationships",
         "_title",
         "_description",
+        "relation_type",
         "alternate_titles",
         "locked",
         "links",
@@ -98,6 +104,10 @@ class Manga:
         "_created_at",
         "_updated_at",
         "id",
+        "__authors",
+        "__artists",
+        "__cover",
+        "__related_manga",
     )
 
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
@@ -107,6 +117,7 @@ class Manga:
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
         self._description = self._attributes["description"]
+        self.relation_type: Optional[manga.MangaRelationType] = payload.get("related", None)
         self.alternate_titles: list[LocalisedString] = self._attributes["altTitles"]
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
@@ -121,6 +132,10 @@ class Manga:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._relationships: list[RelationshipResponse] = payload.get("relationships", [])
+        self.__authors: Optional[list[Author]] = None
+        self.__artists: Optional[list[Artist]] = None
+        self.__cover: Optional[Cover] = None
+        self.__related_manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
         return f"<Manga id={self.id} title='{self.title}'>"
@@ -173,77 +188,262 @@ class Manga:
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
-    def artist(self) -> Optional[Artist]:
-        """The artist of the parent Manga.
+    def artists(self) -> Optional[list[Artist]]:
+        """The artists of the parent Manga.
 
         Returns
         --------
-        Optional[:class:`~hondana.Artist`]
-            The artist associated with this Manga.
+        Optional[List[:class:`~hondana.Artist`]]
+            The artists associated with this Manga.
 
 
         .. note::
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter
             then this method will return ``None``.
         """
+        if self.__artists is not None:
+            return self.__artists
+
         if not self._relationships:
             return
 
-        artist = None
+        artists = []
         for item in self._relationships:
             if item["type"] == "artist":
-                artist = item
-                break
+                artists.append(item)
 
-        if artist is None:
+        if not artists:
             return None
 
-        if "attributes" in artist:
-            return Artist(self._http, artist)
+        formatted: list[Artist] = []
+        for artist in artists:
+            if "attributes" in artist:
+                formatted.append(Artist(self._http, artist))
 
-    async def get_author(self) -> Optional[Author]:
-        """|coro|
+        return formatted
 
-        This method will return the author of the manga.
+    @artists.setter
+    def artists(self, value: list[Artist]) -> None:
+        fmt = []
+        for item in value:
+            if isinstance(item, Artist):
+                fmt.append(item)
+
+        self.__artists = fmt
+
+    @property
+    def authors(self) -> Optional[list[Author]]:
+        """The artists of the parent Manga.
 
         Returns
         --------
-        Optional[:class:`~hondana.Author`]
-            The author of the manga.
+        Optional[List[:class:`~hondana.Artist`]]
+            The artists associated with this Manga.
+
+
+        .. note::
+            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
+            then this method will return ``None``.
+        """
+        if self.__authors is not None:
+            return self.__authors
+
+        if not self._relationships:
+            return
+
+        artists = []
+        for item in self._relationships:
+            if item["type"] == "author":
+                artists.append(item)
+
+        if not artists:
+            return None
+
+        formatted: list[Author] = []
+        for artist in artists:
+            if "attributes" in artist:
+                formatted.append(Author(self._http, artist))
+
+        return formatted
+
+    @authors.setter
+    def authors(self, value: list[Author]) -> None:
+        fmt = []
+        for item in value:
+            if isinstance(item, Author):
+                fmt.append(item)
+
+        self.__authors = fmt
+
+    @property
+    def cover(self) -> Optional[Cover]:
+        """The cover of the manga.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.Cover`]
+            The cover of the manga.
+
+
+        .. note::
+            If the parent manga was **not** requested with the "cover" `includes[]` query parameter
+            then this method will return ``None``.
+        """
+        if self.__cover is not None:
+            return self.__cover
+
+        if not self._relationships:
+            return
+
+        cover_key = None
+        for item in self._relationships:
+            if item["type"] == "cover_art":
+                cover_key = item
+                break
+
+        if cover_key is None:
+            return None
+
+        if "attributes" in cover_key:
+            return Cover(self._http, cover_key)
+
+    @cover.setter
+    def cover(self, value: Cover) -> None:
+        if isinstance(value, Cover):
+            self.__cover = value
+
+    @property
+    def related_manga(self) -> Optional[list[Manga]]:
+        """The related manga of the parent Manga.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+            The related manga of the parent manga.
+        """
+        if self.__related_manga is not None:
+            return self.__related_manga
+
+        if not self._relationships:
+            return
+
+        related_manga: list[manga.MangaResponse] = []
+        for item in self._relationships:
+            if item["type"] == "manga":
+                related_manga.append(item)
+
+        if not related_manga:
+            return
+
+        formatted = []
+        for item in related_manga:
+            if "attributes" in item:
+                formatted.append(self.__class__(self._http, item))
+
+        return formatted
+
+    @related_manga.setter
+    def related_manga(self, value: list[Manga]) -> None:
+        fmt = []
+        for item in value:
+            if isinstance(item, self.__class__):
+                fmt.append(item)
+
+        self.__related_manga = fmt
+
+    async def get_artists(self) -> Optional[list[Artist]]:
+        """|coro|
+
+        This method will return the artists of the manga and caches the response.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Author`]]
+            The artists of the manga.
+
+
+        .. note::
+            If the parent manga was requested with the "artist" `includes[]` query parameter,
+            then this method will not make extra API calls to retrieve the artist data.
+        """
+        if self.artists is not None:
+            return self.artists
+
+        if not self._relationships:
+            return
+
+        artists: list[ArtistResponse] = []
+        for item in self._relationships:
+            if item["type"] == "artist":
+                artists.append(item)
+
+        if not artists:
+            return None
+
+        formatted: list[Artist] = []
+        for author in artists:
+            if "attributes" in author:
+                formatted.append(Artist(self._http, author))
+            else:
+                data = await self._http._get_artist(author["id"], includes=["manga"])
+                formatted.append(Artist(self._http, data["data"]))
+
+        self.artists = formatted
+        return formatted
+
+    async def get_authors(self) -> Optional[list[Author]]:
+        """|coro|
+
+        This method will return the authors of the manga and caches the response.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Author`]]
+            The authors of the manga.
 
 
         .. note::
             If the parent manga was requested with the "author" `includes[]` query parameter,
-            then this method will not make an extra API call to retrieve the Author data.
+            then this method will not make extra API calls to retrieve the author data.
         """
+        if self.authors is not None:
+            return self.authors
+
         if not self._relationships:
             return
 
-        author = None
-        for relationship in self._relationships:
-            if relationship["type"] == "author":
-                author = relationship
-                break
+        authors: list[AuthorResponse] = []
+        for item in self._relationships:
+            if item["type"] == "author":
+                authors.append(item)
 
-        if author is None:
+        if not authors:
             return None
 
-        if "attributes" in author:
-            return Author(self._http, author)
+        formatted: list[Author] = []
+        for author in authors:
+            if "attributes" in author:
+                formatted.append(Author(self._http, author))
+            else:
+                data = await self._http._get_author(author["id"], includes=["manga"])
+                formatted.append(Author(self._http, data["data"]))
 
-        data = await self._http._get_author(author["id"], includes=[])
-        return Author(self._http, data["data"])
+        self.authors = formatted
+        return formatted
 
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
 
-        This method will return the cover URL of the parent Manga if it exists.
+        This method will return the cover URL of the parent Manga if it exists anc caches the response.
 
         Returns
         --------
         Optional[:class:`~hondana.Cover`]
             The Cover associated with this Manga.
         """
+        if self.cover is not None:
+            return self.cover
+
         if not self._relationships:
             return
 
@@ -257,7 +457,8 @@ class Manga:
             return None
 
         data = await self._http._get_cover(cover_key["id"], includes=["manga"])
-        return Cover(self._http, data["data"])
+        self.cover = Cover(self._http, data["data"])
+        return self.cover
 
     def cover_url(self, /, *, type: Optional[Literal[256, 512]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
@@ -289,6 +490,43 @@ class Manga:
             return None
 
         return f"https://uploads.mangadex.org/covers/{self.id}/{attributes['fileName']}{fmt}"
+
+    async def get_related_manga(self) -> Optional[list[Manga]]:
+        """|coro|
+
+        This method will return all of the related manga and cache their response.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+            The related manga of the parent.
+
+
+        .. note::
+            If the parent manga was requested with the "manga" `includes[]` query parameter,
+            then this method will not make extra API calls to retrieve manga data.
+        """
+        if self.related_manga is not None:
+            return self.related_manga
+
+        if not self._relationships:
+            return
+
+        related_manga: list[manga.MangaResponse] = []
+        for item in self._relationships:
+            if item["type"] == "manga":
+                related_manga.append(item)
+
+        if not related_manga:
+            return
+
+        formatted: list[Manga] = []
+        for item in related_manga:
+            if "attributes" in item:
+                formatted.append(self.__class__(self._http, item))
+
+        self.__related_manga = formatted
+        return formatted
 
     @require_authentication
     async def update(
