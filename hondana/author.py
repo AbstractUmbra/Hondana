@@ -30,9 +30,11 @@ from .utils import require_authentication
 
 
 if TYPE_CHECKING:
+    from .manga import Manga
     from .http import HTTPClient
     from .types.author import AuthorResponse
     from .types.common import LocalisedString
+    from .types.manga import MangaResponse
 
 __all__ = ("Author",)
 
@@ -96,6 +98,7 @@ class Author:
         "_created_at",
         "_updated_at",
         "version",
+        "__manga",
     )
 
     def __init__(self, http: HTTPClient, payload: AuthorResponse) -> None:
@@ -120,6 +123,7 @@ class Author:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
+        self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
         return f"<Author id={self.id} name='{self.name}'>"
@@ -136,6 +140,75 @@ class Author:
     def updated_at(self) -> datetime.datetime:
         """When this author was last updated."""
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    @property
+    def manga(self) -> Optional[list[Manga]]:
+        if self.__manga is not None:
+            return self.__manga
+
+        if not self._relationships:
+            return None
+
+        manga_: list[MangaResponse] = []
+        for item in self._relationships:
+            if item["type"] == "manga":
+                manga_.append(item)
+
+        if not manga_:
+            return None
+
+        formatted: list[Manga] = []
+        from .manga import Manga
+
+        for item in manga_:
+            if "attributes" in item:
+                formatted.append(Manga(self._http, item))
+
+        if not formatted:
+            return
+
+        self.__manga = formatted
+        return self.__manga
+
+    @manga.setter
+    def manga(self, value: list[Manga]) -> None:
+        fmt = []
+        for item in value:
+            if isinstance(item, Manga):
+                fmt.append(item)
+
+        self.__manga = fmt
+
+    async def get_manga(self) -> Optional[list[Manga]]:
+        if self.manga is not None:
+            return self.manga
+
+        if not self._relationships:
+            return
+
+        manga_relationships: list[MangaResponse] = []
+        for item in self._relationships:
+            if item["type"] == "manga":
+                manga_relationships.append(item)
+
+        if not manga_relationships:
+            return
+
+        formatted: list[Manga] = []
+        from .manga import Manga  # TODO: Fix circular.
+
+        for manga in manga_relationships:
+            if "attributes" in manga:
+                formatted.append(Manga(self._http, manga))
+            else:
+                data = await self._http._view_manga(manga["id"], includes=["author", "artist", "cover_art", "manga"])
+                formatted.append(Manga(self._http, data["data"]))
+
+        if not formatted:
+            return
+
+        self.__manga = formatted
+        return self.__manga
 
     @require_authentication
     async def update(self, *, name: Optional[str] = None, version: int) -> Author:
