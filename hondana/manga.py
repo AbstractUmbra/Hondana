@@ -38,14 +38,17 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
+    from .types.artist import ArtistResponse
+    from .types.author import AuthorResponse
     from .types.chapter import ChapterIncludes, ChapterOrderQuery
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
-    from .types.author import AuthorResponse
-    from .types.artist import ArtistResponse
 
 
-__all__ = ("Manga", "MangaRelation")
+__all__ = (
+    "Manga",
+    "MangaRelation",
+)
 
 
 class Manga:
@@ -220,7 +223,8 @@ class Manga:
             if "attributes" in artist:
                 formatted.append(Artist(self._http, artist))
 
-        return formatted
+        self.__artists = formatted
+        return self.__artists
 
     @artists.setter
     def artists(self, value: list[Artist]) -> None:
@@ -264,7 +268,11 @@ class Manga:
             if "attributes" in artist:
                 formatted.append(Author(self._http, artist))
 
-        return formatted
+        if not formatted:
+            return
+
+        self.__authors = formatted
+        return self.__authors
 
     @authors.setter
     def authors(self, value: list[Author]) -> None:
@@ -305,7 +313,8 @@ class Manga:
             return None
 
         if "attributes" in cover_key:
-            return Cover(self._http, cover_key)
+            self.__cover = Cover(self._http, cover_key)
+            return self.__cover
 
     @cover.setter
     def cover(self, value: Cover) -> None:
@@ -340,7 +349,11 @@ class Manga:
             if "attributes" in item:
                 formatted.append(self.__class__(self._http, item))
 
-        return formatted
+        if not formatted:
+            return
+
+        self.__related_manga = formatted
+        return self.__related_manga
 
     @related_manga.setter
     def related_manga(self, value: list[Manga]) -> None:
@@ -388,6 +401,9 @@ class Manga:
                 data = await self._http._get_artist(author["id"], includes=["manga"])
                 formatted.append(Artist(self._http, data["data"]))
 
+        if not formatted:
+            return
+
         self.artists = formatted
         return formatted
 
@@ -427,6 +443,9 @@ class Manga:
             else:
                 data = await self._http._get_author(author["id"], includes=["manga"])
                 formatted.append(Author(self._http, data["data"]))
+
+        if not formatted:
+            return
 
         self.authors = formatted
         return formatted
@@ -524,6 +543,9 @@ class Manga:
         for item in related_manga:
             if "attributes" in item:
                 formatted.append(self.__class__(self._http, item))
+
+        if not formatted:
+            return
 
         self.__related_manga = formatted
         return formatted
