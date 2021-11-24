@@ -366,7 +366,8 @@ class Chapter:
             route = CustomRoute("GET", self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
             LOGGER.debug("Attempting to download: %s" % route.url)
             _start = time.monotonic()
-            page_resp: tuple[bytes, ClientResponse] = await self._http.request(route)
+            response: tuple[bytes, ClientResponse] = await self._http.request(route)
+            data, page_resp = response
             _end = time.monotonic()
             _total = _end - _start
             LOGGER.debug("Downloaded: %s" % route.url)
@@ -374,18 +375,17 @@ class Chapter:
             if report is True:
                 await self._http._at_home_report(
                     route.url,
-                    page_resp[1].status == 200,
-                    "X-Cache" in page_resp[1].headers,
-                    (page_resp[1].content_length or 0),
+                    page_resp.status == 200,
+                    "X-Cache" in page_resp.headers,
+                    (page_resp.content_length or 0),
                     int(_total * 1000),
                 )
 
-            if page_resp[1].status != 200:
+            if page_resp.status != 200:
                 self._at_home_url = None
                 break
             else:
-                data = page_resp
-                yield data[0], url.rsplit(".")[-1]
+                yield data, url.rsplit(".")[-1]
 
         else:
             return
