@@ -237,8 +237,6 @@ class Author:
 
         Parameters
         -----------
-        author_id: :class:`str`
-            The UUID relating to the author we wish to update.
         name: Optional[:class:`str`]
             The new name to update the author with.
         biography: Optional[:class:`~hondana.types.LocalisedString`]
@@ -299,7 +297,7 @@ class Author:
             website=website,
             version=version,
         )
-        return Author(self._http, data["data"])
+        return self.__class__(self._http, data["data"])
 
     @require_authentication
     async def delete(self, author_id: str, /) -> None:

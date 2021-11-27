@@ -1783,14 +1783,69 @@ class HTTPClient:
         return self.request(route)
 
     def _update_artist(
-        self, artist_id: str, /, *, name: Optional[str], version: int
+        self,
+        author_id: str,
+        *,
+        name: Optional[str],
+        biography: Optional[common.LocalisedString],
+        twitter: Optional[str],
+        pixiv: Optional[str],
+        melon_book: Optional[str],
+        fan_box: Optional[str],
+        booth: Optional[str],
+        nico_video: Optional[str],
+        skeb: Optional[str],
+        fantia: Optional[str],
+        tumblr: Optional[str],
+        youtube: Optional[str],
+        website: Optional[str],
+        version: Optional[int],
     ) -> Response[artist.GetSingleArtistResponse]:
-        route = Route("PUT", "/author/{author_id}", artist_id=artist_id)
+        route = Route("POST", "/author/{author_id}", author_id=author_id)
 
-        query: dict[str, Any] = {"version": version}
+        query: dict[str, Any] = {"name": name}
 
-        if name:
+        if name is not None:
             query["name"] = name
+
+        if biography is not None:
+            query["biography"] = biography
+
+        if twitter is not MISSING:
+            query["twitter"] = twitter
+
+        if pixiv is not MISSING:
+            query["pixiv"] = pixiv
+
+        if melon_book is not MISSING:
+            query["melonBook"] = melon_book
+
+        if fan_box is not MISSING:
+            query["fanBox"] = fan_box
+
+        if booth is not MISSING:
+            query["booth"] = booth
+
+        if nico_video is not MISSING:
+            query["nicoVideo"] = nico_video
+
+        if skeb is not MISSING:
+            query["skeb"] = skeb
+
+        if fantia is not MISSING:
+            query["fantia"] = fantia
+
+        if tumblr is not MISSING:
+            query["tumblr"] = tumblr
+
+        if youtube is not MISSING:
+            query["youtube"] = youtube
+
+        if website is not MISSING:
+            query["website"] = website
+
+        if version:
+            query["version"] = version
 
         return self.request(route, json=query)
 

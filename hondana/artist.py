@@ -26,7 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
-from .utils import require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
@@ -213,33 +213,91 @@ class Artist:
         return self.__manga
 
     @require_authentication
-    async def update(self, *, name: Optional[str] = None, version: int) -> Artist:
+    async def update_author(
+        self,
+        /,
+        *,
+        name: Optional[str] = None,
+        biography: LocalisedString = None,
+        twitter: str = MISSING,
+        pixiv: str = MISSING,
+        melon_book: str = MISSING,
+        fan_box: str = MISSING,
+        booth: str = MISSING,
+        nico_video: str = MISSING,
+        skeb: str = MISSING,
+        fantia: str = MISSING,
+        tumblr: str = MISSING,
+        youtube: str = MISSING,
+        website: str = MISSING,
+        version: int,
+    ) -> Artist:
         """|coro|
 
-        This method will update the current author on the MangaDex API.
+        This method will update an artist on the MangaDex API.
 
         Parameters
         -----------
         name: Optional[:class:`str`]
-            The new name to update the author with.
+            The new name to update the artist with.
+        biography: Optional[:class:`~hondana.types.LocalisedString`]
+            The biography of the artist we are creating.
+        twitter: Optional[:class:`str`]
+            The twitter URL of the artist.
+        pixiv: Optional[:class:`str`]
+            The pixiv URL of the artist.
+        melon_book: Optional[:class:`str`]
+            The melon book URL of the artist.
+        fan_box: Optional[:class:`str`]
+            The fan box URL of the artist.
+        booth: Optional[:class:`str`]
+            The booth URL of the artist.
+        nico_video: Optional[:class:`str`]
+            The nico video URL of the artist.
+        skeb: Optional[:class:`str`]
+            The skeb URL of the artist.
+        fantia: Optional[:class:`str`]
+            The fantia URL of the artist.
+        tumblr: Optional[:class:`str`]
+            The tumblr URL of the artist.
+        youtube: Optional[:class:`str`]
+            The youtube  URL of the artist.
+        website: Optional[:class:`str`]
+            The website URL of the artist.
         version: :class:`int`
-            The version revision of this author.
+            The version revision of this artist.
 
         Raises
         -------
         :exc:`BadRequest`
             The request body was malformed.
         :exc:`Forbidden`
-            You are not authorized to update this author.
+            You are not authorized to update this artist.
         :exc:`NotFound`
-            The author UUID given was not found.
+            The artist UUID given was not found.
 
         Returns
         --------
         :class:`~hondana.Artist`
-            The updated author from the API.
+            The updated artist from the API.
         """
-        data = await self._http._update_artist(self.id, name=name, version=version)
+        data = await self._http._update_artist(
+            self.id,
+            name=name,
+            biography=biography,
+            twitter=twitter,
+            pixiv=pixiv,
+            melon_book=melon_book,
+            fan_box=fan_box,
+            booth=booth,
+            nico_video=nico_video,
+            skeb=skeb,
+            fantia=fantia,
+            tumblr=tumblr,
+            youtube=youtube,
+            website=website,
+            version=version,
+        )
         return self.__class__(self._http, data["data"])
 
     @require_authentication
