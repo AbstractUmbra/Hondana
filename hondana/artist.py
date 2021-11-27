@@ -30,8 +30,8 @@ from .utils import require_authentication
 
 
 if TYPE_CHECKING:
-    from .manga import Manga
     from .http import HTTPClient
+    from .manga import Manga
     from .types.artist import ArtistResponse
     from .types.common import LocalisedString
     from .types.manga import MangaResponse

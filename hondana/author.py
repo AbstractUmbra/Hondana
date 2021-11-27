@@ -26,15 +26,16 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
-from .utils import require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
-    from .manga import Manga
     from .http import HTTPClient
+    from .manga import Manga
     from .types.author import AuthorResponse
     from .types.common import LocalisedString
     from .types.manga import MangaResponse
+    from .types.relationship import RelationshipResponse
 
 __all__ = ("Author",)
 
@@ -105,7 +106,7 @@ class Author:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = self._data["relationships"]
+        self._relationships: list[RelationshipResponse] = self._data["relationships"]
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
@@ -211,15 +212,59 @@ class Author:
         return self.__manga
 
     @require_authentication
-    async def update(self, *, name: Optional[str] = None, version: int) -> Author:
+    async def update_author(
+        self,
+        /,
+        *,
+        name: Optional[str] = None,
+        biography: LocalisedString = None,
+        twitter: str = MISSING,
+        pixiv: str = MISSING,
+        melon_book: str = MISSING,
+        fan_box: str = MISSING,
+        booth: str = MISSING,
+        nico_video: str = MISSING,
+        skeb: str = MISSING,
+        fantia: str = MISSING,
+        tumblr: str = MISSING,
+        youtube: str = MISSING,
+        website: str = MISSING,
+        version: int,
+    ) -> Author:
         """|coro|
 
-        This method will update the current author on the MangaDex API.
+        This method will update an author on the MangaDex API.
 
         Parameters
         -----------
+        author_id: :class:`str`
+            The UUID relating to the author we wish to update.
         name: Optional[:class:`str`]
             The new name to update the author with.
+        biography: Optional[:class:`~hondana.types.LocalisedString`]
+            The biography of the author we are creating.
+        twitter: Optional[:class:`str`]
+            The twitter URL of the author.
+        pixiv: Optional[:class:`str`]
+            The pixiv URL of the author.
+        melon_book: Optional[:class:`str`]
+            The melon book URL of the author.
+        fan_box: Optional[:class:`str`]
+            The fan box URL of the author.
+        booth: Optional[:class:`str`]
+            The booth URL of the author.
+        nico_video: Optional[:class:`str`]
+            The nico video URL of the author.
+        skeb: Optional[:class:`str`]
+            The skeb URL of the author.
+        fantia: Optional[:class:`str`]
+            The fantia URL of the author.
+        tumblr: Optional[:class:`str`]
+            The tumblr URL of the author.
+        youtube: Optional[:class:`str`]
+            The youtube  URL of the author.
+        website: Optional[:class:`str`]
+            The website URL of the author.
         version: :class:`int`
             The version revision of this author.
 
@@ -237,8 +282,24 @@ class Author:
         :class:`~hondana.Author`
             The updated author from the API.
         """
-        data = await self._http._update_author(self.id, name=name, version=version)
-        return self.__class__(self._http, data["data"])
+        data = await self._http._update_author(
+            self.id,
+            name=name,
+            biography=biography,
+            twitter=twitter,
+            pixiv=pixiv,
+            melon_book=melon_book,
+            fan_box=fan_box,
+            booth=booth,
+            nico_video=nico_video,
+            skeb=skeb,
+            fantia=fantia,
+            tumblr=tumblr,
+            youtube=youtube,
+            website=website,
+            version=version,
+        )
+        return Author(self._http, data["data"])
 
     @require_authentication
     async def delete(self, author_id: str, /) -> None:

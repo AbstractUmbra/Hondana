@@ -66,6 +66,9 @@ from .utils import (
 )
 
 
+MAX_DEPTH = 10_000
+
+
 if TYPE_CHECKING:
     from types import TracebackType
 
@@ -117,6 +120,22 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
         pass
 
     return text
+
+
+def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
+    if offset == MAX_DEPTH:
+        raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
+
+    difference = MAX_DEPTH - offset
+    if difference <= max_limit:
+        new_limit = difference
+        new_offset = MAX_DEPTH - new_limit
+        return new_limit, new_offset
+
+    new_limit = min(max(1, limit), max_limit)
+    new_offset = min(max(0, offset), MAX_DEPTH - new_limit)
+
+    return new_limit, new_offset
 
 
 class MaybeUnlock:
@@ -542,8 +561,7 @@ class HTTPClient:
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -797,8 +815,7 @@ class HTTPClient:
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=500)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -936,8 +953,7 @@ class HTTPClient:
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -995,8 +1011,7 @@ class HTTPClient:
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1121,8 +1136,7 @@ class HTTPClient:
     ) -> Response[cover.GetMultiCoverResponse]:
         route = Route("GET", "/cover")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1196,8 +1210,7 @@ class HTTPClient:
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1223,8 +1236,7 @@ class HTTPClient:
     ) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1272,8 +1284,7 @@ class HTTPClient:
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/user/follows/group")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
@@ -1285,8 +1296,7 @@ class HTTPClient:
     def _get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user/follows/user")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1463,8 +1473,7 @@ class HTTPClient:
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=500)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1600,8 +1609,7 @@ class HTTPClient:
     ) -> Response[author.GetMultiAuthorResponse]:
         route = Route("GET", "/author")
 
-        limit = min(max(1, limit), 100)
-        offset = min(max(0, offset), 10000 - limit)
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
@@ -1619,10 +1627,63 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _create_author(self, *, name: str, version: Optional[int]) -> Response[author.GetSingleAuthorResponse]:
+    def _create_author(
+        self,
+        *,
+        name: str,
+        biography: Optional[common.LocalisedString],
+        twitter: str,
+        pixiv: str,
+        melon_book: str,
+        fan_box: str,
+        booth: str,
+        nico_video: str,
+        skeb: str,
+        fantia: str,
+        tumblr: str,
+        youtube: str,
+        website: str,
+        version: Optional[int],
+    ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("POST", "/author")
 
         query: dict[str, Any] = {"name": name}
+
+        if biography is not None:
+            query["biography"] = biography
+
+        if twitter is not MISSING:
+            query["twitter"] = twitter
+
+        if pixiv is not MISSING:
+            query["pixiv"] = pixiv
+
+        if melon_book is not MISSING:
+            query["melonBook"] = melon_book
+
+        if fan_box is not MISSING:
+            query["fanBox"] = fan_box
+
+        if booth is not MISSING:
+            query["booth"] = booth
+
+        if nico_video is not MISSING:
+            query["nicoVideo"] = nico_video
+
+        if skeb is not MISSING:
+            query["skeb"] = skeb
+
+        if fantia is not MISSING:
+            query["fantia"] = fantia
+
+        if tumblr is not MISSING:
+            query["tumblr"] = tumblr
+
+        if youtube is not MISSING:
+            query["youtube"] = youtube
+
+        if website is not MISSING:
+            query["website"] = website
 
         if version:
             query["version"] = version
@@ -1641,14 +1702,69 @@ class HTTPClient:
         return self.request(route)
 
     def _update_author(
-        self, author_id: str, /, *, name: Optional[str], version: int
+        self,
+        author_id: str,
+        *,
+        name: Optional[str],
+        biography: Optional[common.LocalisedString],
+        twitter: Optional[str],
+        pixiv: Optional[str],
+        melon_book: Optional[str],
+        fan_box: Optional[str],
+        booth: Optional[str],
+        nico_video: Optional[str],
+        skeb: Optional[str],
+        fantia: Optional[str],
+        tumblr: Optional[str],
+        youtube: Optional[str],
+        website: Optional[str],
+        version: Optional[int],
     ) -> Response[author.GetSingleAuthorResponse]:
-        route = Route("PUT", "/author/{author_id}", author_id=author_id)
+        route = Route("POST", "/author/{author_id}", author_id=author_id)
 
-        query: dict[str, Any] = {"version": version}
+        query: dict[str, Any] = {"name": name}
 
-        if name:
+        if name is not None:
             query["name"] = name
+
+        if biography is not None:
+            query["biography"] = biography
+
+        if twitter is not MISSING:
+            query["twitter"] = twitter
+
+        if pixiv is not MISSING:
+            query["pixiv"] = pixiv
+
+        if melon_book is not MISSING:
+            query["melonBook"] = melon_book
+
+        if fan_box is not MISSING:
+            query["fanBox"] = fan_box
+
+        if booth is not MISSING:
+            query["booth"] = booth
+
+        if nico_video is not MISSING:
+            query["nicoVideo"] = nico_video
+
+        if skeb is not MISSING:
+            query["skeb"] = skeb
+
+        if fantia is not MISSING:
+            query["fantia"] = fantia
+
+        if tumblr is not MISSING:
+            query["tumblr"] = tumblr
+
+        if youtube is not MISSING:
+            query["youtube"] = youtube
+
+        if website is not MISSING:
+            query["website"] = website
+
+        if version:
+            query["version"] = version
 
         return self.request(route, json=query)
 
