@@ -72,7 +72,12 @@ MANGADEX_URL_REGEX = re.compile(
 MANGADEX_TIME_REGEX = re.compile(
     r"^P(([1-9]|[1-9][0-9])D)?(([1-9])W)?(T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"
 )
+"""
+This regex pattern follows the PHP DateInterval standard, located here: https://www.php.net/manual/en/dateinterval.construct.php
+This pattern *is* usable but more meant as a guideline for your formatting.
 
+It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
+"""
 
 class Route:
     """A helper class for instantiating a HTTP method to MangaDex.
