@@ -81,6 +81,7 @@ This :class:`re.Pattern` *is* usable but more meant as a guideline for your form
 It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
 """
 
+
 class Route:
     """A helper class for instantiating a HTTP method to MangaDex.
 
