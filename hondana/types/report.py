@@ -39,7 +39,7 @@ __all__ = (
 )
 
 
-ReportCategory = Literal["manga", "chapter", "scanlation_group", "user"]
+ReportCategory = Literal["manga", "chapter", "scanlation_group", "user", "author"]
 
 
 class GetReportReasonAttributesResponse(TypedDict):

@@ -55,6 +55,7 @@ if TYPE_CHECKING:
 
 __all__ = (
     "MANGADEX_URL_REGEX",
+    "MANGADEX_TIME_REGEX",
     "MISSING",
     "CustomRoute",
     "Route",
@@ -67,6 +68,9 @@ __all__ = (
 _PROJECT_DIR = pathlib.Path(__file__)
 MANGADEX_URL_REGEX = re.compile(
     r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
+)
+MANGADEX_TIME_REGEX = re.compile(
+    r"^P(([1-9]|[1-9][0-9])D)?(([1-9])W)?(T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"
 )
 
 

@@ -222,6 +222,8 @@ Report
 
 Scanlator Group
 ---------------
+.. autoclass:: ScanlationGroupOrderQuery
+
 .. autoclass:: ScanlatorGroupIncludes
     :members:
     :undoc-members:

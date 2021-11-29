@@ -349,6 +349,7 @@ class Client:
         order: Optional[manga.MangaOrderQuery] = None,
         includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
         has_available_chapters: Optional[bool] = None,
+        group: Optional[str] = None,
     ) -> list[Manga]:
         """|coro|
 
@@ -406,6 +407,8 @@ class Client:
             Defaults to these values.
         has_available_chapters: Optional[:class:`bool`]
             Filter the manga list to only those that have chapters.
+        group: Optional[:class:`str`]
+            Filter the manga list to only those uploaded by this group.
 
         Raises
         -------
@@ -441,6 +444,7 @@ class Client:
             order=order,
             includes=includes,
             has_available_chapters=has_available_chapters,
+            group=group,
         )
 
         return [Manga(self._http, item) for item in data["data"]]
@@ -1668,6 +1672,8 @@ class Client:
         offset: int = 0,
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
+        focused_language: Optional[common.LanguageCode] = None,
+        order: Optional[scanlator_group.ScanlationGroupOrderQuery] = None,
         includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = ["leader", "member"],
     ) -> list[ScanlatorGroup]:
         """|coro|
@@ -1684,6 +1690,10 @@ class Client:
             A list of scanlator group UUID(s) to limit the request to.
         name: Optional[:class:`str`]
             A name to limit the request to.
+        focused_language: Optional[:class:`~hondana.types.LanguageCode`]
+            A focused language to limit the request to.
+        order: Optional[:class:`~hondana.types.ScanlationGroupOrderQuery`]
+            An ordering statement for the request.
         includes: Optional[List[:class:`~hondana.types.ScanlatorGroupIncludes`]]
             An optional list of includes to request increased payloads during the request.
 
@@ -1702,7 +1712,9 @@ class Client:
         limit = min(max(1, limit), 100)
         offset = max(offset, 0)
 
-        data = await self._http._scanlation_group_list(limit=limit, offset=offset, ids=ids, name=name, includes=includes)
+        data = await self._http._scanlation_group_list(
+            limit=limit, offset=offset, ids=ids, name=name, focused_language=focused_language, order=order, includes=includes
+        )
 
         return [ScanlatorGroup(self._http, item) for item in data["data"]]
 
@@ -2466,7 +2478,18 @@ class Client:
 
     @require_authentication
     async def create_scanlation_group(
-        self, *, name: str, leader: Optional[str] = None, members: Optional[list[str]] = None, version: Optional[int] = None
+        self,
+        *,
+        name: str,
+        website: Optional[str] = None,
+        irc_server: Optional[str] = None,
+        irc_channel: Optional[str] = None,
+        discord: Optional[str] = None,
+        contact_email: Optional[str] = None,
+        description: Optional[str] = None,
+        twitter: Optional[str] = None,
+        inactive: Optional[bool] = None,
+        publish_delay: Optional[str] = None,
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -2476,12 +2499,29 @@ class Client:
         -----------
         name: :class:`str`
             The name of the scanlation group.
-        leader: Optional[:class:`str`]
-            The UUID relating to the leader of the scanlation group.
-        members: Optional[List[:class:`str`]]
-            A list of UUIDs for the members of the scanlation group.
-        version: Optional[:class:`int`]
-            The version revision of this scanlation group.
+        website: Optional[:class:`str`]
+            The scanlation group's website, if any.
+        irc_server: Optional[:class:`str`]
+            The scanlation group's irc server, if any.
+        irc_channel: Optional[:class:`str`]
+            The scanlation group's irc channel, if any.
+        discord: Optional[:class:`str`]
+            The scanlation group's discord server, if any.
+        contact_email: Optional[:class:`str`]
+            The scanlation group's email, if any.
+        description: Optional[:class:`str`]
+            The scanlation group's description, if any.
+        twitter: Optional[:class:`str`]
+            The scanlation group's twitter url, if any.
+        inactive: Optional[:class:`bool`]
+            If the scanlation group is inactive or not.
+        publish_delay: Optional[:class:`str`]
+            If the scanlation group's releases are published on a delay.
+
+
+        .. note::
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
+
 
         Raises
         -------
@@ -2495,7 +2535,18 @@ class Client:
         :class:`ScanlatorGroup`
             The group returned from the API on creation.
         """
-        data = await self._http._create_scanlation_group(name=name, leader=leader, members=members, version=version)
+        data = await self._http._create_scanlation_group(
+            name=name,
+            website=website,
+            irc_server=irc_server,
+            irc_channel=irc_channel,
+            discord=discord,
+            contact_email=contact_email,
+            description=description,
+            twitter=twitter,
+            inactive=inactive,
+            publish_delay=publish_delay,
+        )
         return ScanlatorGroup(self._http, data["data"])
 
     async def get_scanlation_group(
@@ -2538,7 +2589,7 @@ class Client:
         /,
         *,
         name: Optional[str] = None,
-        leader: Optional[str] = MISSING,
+        leader: Optional[str] = None,
         members: Optional[list[str]] = None,
         website: Optional[str] = MISSING,
         irc_server: Optional[str] = MISSING,
@@ -2546,7 +2597,11 @@ class Client:
         discord: Optional[str] = MISSING,
         contact_email: Optional[str] = MISSING,
         description: Optional[str] = MISSING,
+        twitter: Optional[str] = MISSING,
+        focused_languages: list[common.LanguageCode] = MISSING,
+        inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
+        publish_delay: Optional[str] = MISSING,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -2575,15 +2630,26 @@ class Client:
             The contact email to update the group with.
         description: Optional[:class:`str`]
             The new description to update the group with.
+        twitter: Optional[:class:`str`]
+            The new twitter url to update the group with.
+        focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The new list of language codes to update the group with.
+        inactive: Optional[:class:`bool`]
+            If the group is inactive or not.
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
+        publish_delay: Optional[:class:`str`]
+            The publish delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
 
 
         .. note::
-            The ``leader``, ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, and ``description``
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``focused_language`` and ``publish_delay``
             keys are all nullable in the API. To do so please pass ``None`` to these keys.
+
+        .. note::
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
 
         Raises
         -------
@@ -2610,7 +2676,11 @@ class Client:
             discord=discord,
             contact_email=contact_email,
             description=description,
+            twitter=twitter,
+            focused_languages=focused_languages,
+            inactive=inactive,
             locked=locked,
+            publish_delay=publish_delay,
             version=version,
         )
 

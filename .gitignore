@@ -11,3 +11,4 @@ target/
 *.jpg
 *.gif
 *.jpeg
+_*.py

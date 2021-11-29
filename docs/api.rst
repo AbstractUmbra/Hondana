@@ -88,3 +88,6 @@ Utilities
 
 .. autoclass:: hondana.utils.CustomRoute
     :members:
+
+.. autoclass:: hondana.utils.MANGADEX_TIME_REGEX
+    :members:

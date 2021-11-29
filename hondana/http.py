@@ -558,6 +558,7 @@ class HTTPClient:
         order: Optional[manga.MangaOrderQuery],
         includes: Optional[list[manga.MangaIncludes]],
         has_available_chapters: Optional[bool],
+        group: Optional[str],
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
 
@@ -620,6 +621,9 @@ class HTTPClient:
 
         if has_available_chapters is not None:
             query["hasAvailableChapters"] = has_available_chapters
+
+        if group:
+            query["group"] = group
 
         return self.request(route, params=query)
 
@@ -1206,7 +1210,9 @@ class HTTPClient:
         offset: int,
         ids: Optional[list[str]],
         name: Optional[str],
+        focused_language: Optional[common.LanguageCode],
         includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]],
+        order: Optional[scanlator_group.ScanlationGroupOrderQuery],
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
 
@@ -1220,8 +1226,14 @@ class HTTPClient:
         if name:
             query["name"] = name
 
+        if focused_language:
+            query["focusedLanguage"] = focused_language
+
         if includes:
             query["includes"] = includes
+
+        if order:
+            query["order"] = order
 
         return self.request(route, params=query)
 
@@ -1508,20 +1520,49 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _create_scanlation_group(
-        self, *, name: str, leader: Optional[str], members: Optional[list[str]], version: Optional[int]
+        self,
+        *,
+        name: str,
+        website: Optional[str],
+        irc_server: Optional[str],
+        irc_channel: Optional[str],
+        discord: Optional[str],
+        contact_email: Optional[str],
+        description: Optional[str],
+        twitter: Optional[str],
+        inactive: Optional[bool],
+        publish_delay: Optional[str],
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("POST", "/group")
 
         query: dict[str, Any] = {"name": name}
 
-        if leader:
-            query["leader"] = leader
+        if website:
+            query["website"] = website
 
-        if members:
-            query["members"] = members
+        if irc_server:
+            query["ircServer"] = irc_server
 
-        if version:
-            query["version"] = version
+        if irc_channel:
+            query["ircChannel"] = irc_channel
+
+        if discord:
+            query["discord"] = discord
+
+        if contact_email:
+            query["contactEmail"] = contact_email
+
+        if description:
+            query["description"] = description
+
+        if twitter:
+            query["twitter"] = twitter
+
+        if isinstance(inactive, bool):
+            query["inactive"] = inactive
+
+        if publish_delay:
+            query["publishDelay"] = publish_delay
 
         return self.request(route, json=query)
 
@@ -1546,7 +1587,11 @@ class HTTPClient:
         discord: Optional[str],
         contact_email: Optional[str],
         description: Optional[str],
+        twitter: Optional[str],
+        focused_languages: Optional[list[common.LanguageCode]],
+        inactive: Optional[bool],
         locked: Optional[bool],
+        publish_delay: Optional[str],
         version: int,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
@@ -1580,8 +1625,20 @@ class HTTPClient:
         if description is not MISSING:
             query["description"] = description
 
-        if locked:
-            query["locked"] = str(locked).lower()
+        if twitter is not MISSING:
+            query["twitter"] = twitter
+
+        if focused_languages is not MISSING:
+            query["focusedLanguages"] = focused_languages
+
+        if publish_delay is not MISSING:
+            query["publishDelay"] = publish_delay
+
+        if isinstance(inactive, bool):
+            query["inactive"] = inactive
+
+        if isinstance(locked, bool):
+            query["locked"] = locked
 
         return self.request(route, json=query)
 
