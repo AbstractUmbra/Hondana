@@ -27,11 +27,12 @@ import datetime
 from typing import TYPE_CHECKING, Optional
 
 from .user import User
-from .utils import require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.common import LanguageCode
     from .types.relationship import RelationshipResponse
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
@@ -274,3 +275,103 @@ class ScanlatorGroup:
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
         await self._http._unfollow_scanlation_group(self.id)
+
+    @require_authentication
+    async def update(
+        self,
+        *,
+        name: Optional[str] = None,
+        leader: Optional[str] = None,
+        members: Optional[list[str]] = None,
+        website: Optional[str] = MISSING,
+        irc_server: Optional[str] = MISSING,
+        irc_channel: Optional[str] = MISSING,
+        discord: Optional[str] = MISSING,
+        contact_email: Optional[str] = MISSING,
+        description: Optional[str] = MISSING,
+        twitter: Optional[str] = MISSING,
+        focused_languages: list[LanguageCode] = MISSING,
+        inactive: Optional[bool] = None,
+        locked: Optional[bool] = None,
+        publish_delay: Optional[str] = MISSING,
+        version: int,
+    ) -> ScanlatorGroup:
+        """|coro|
+
+        This method will update a scanlation group within the MangaDex API.
+
+        Parameters
+        -----------
+        name: Optional[:class:`str`]
+            The name to update the group with.
+        leader: Optional[:class:`str`]
+            The UUID of the leader to update the group with.
+        members: Optional[:class:`str`]
+            A list of UUIDs relating to the members to update the group with.
+        website: Optional[:class:`str`]
+            The website to update the group with.
+        irc_server: Optional[:class:`str`]
+            The IRC Server to update the group with.
+        irc_channel: Optional[:class:`str`]
+            The IRC Channel to update the group with.
+        discord: Optional[:class:`str`]
+            The discord server to update the group with.
+        contact_email: Optional[:class:`str`]
+            The contact email to update the group with.
+        description: Optional[:class:`str`]
+            The new description to update the group with.
+        twitter: Optional[:class:`str`]
+            The new twitter url to update the group with.
+        focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The new list of language codes to update the group with.
+        inactive: Optional[:class:`bool`]
+            If the group is inactive or not.
+        locked: Optional[:class:`bool`]
+            Update the lock status of this scanlator group.
+        publish_delay: Optional[:class:`str`]
+            The publish delay to add to all group releases.
+        version: :class:`int`
+            The version revision of this scanlator group.
+
+
+        .. note::
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``focused_language`` and ``publish_delay``
+            keys are all nullable in the API. To do so please pass ``None`` to these keys.
+
+        .. note::
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request body was malformed
+        :exc:`Forbidden`
+            You are not authorized to update this scanlation group.
+        :exc:`NotFound`
+            The passed scanlation group ID cannot be found.
+
+        Returns
+        --------
+        :class:`ScanlatorGroup`
+            The group returned from the API after its update.
+        """
+        data = await self._http._update_scanlation_group(
+            self.id,
+            name=name,
+            leader=leader,
+            members=members,
+            website=website,
+            irc_server=irc_server,
+            irc_channel=irc_channel,
+            discord=discord,
+            contact_email=contact_email,
+            description=description,
+            twitter=twitter,
+            focused_languages=focused_languages,
+            inactive=inactive,
+            locked=locked,
+            publish_delay=publish_delay,
+            version=version,
+        )
+
+        return self.__class__(self._http, data["data"])
