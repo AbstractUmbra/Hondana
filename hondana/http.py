@@ -812,7 +812,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
-        includes: Optional[list[manga.MangaIncludes]],
+        includes: Optional[list[chapter.ChapterIncludes]],
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed")

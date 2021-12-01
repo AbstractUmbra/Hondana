@@ -253,6 +253,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
+        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
     ) -> list[Chapter]:
         """|coro|
 
@@ -284,6 +285,8 @@ class Client:
             A start point to return chapters from based on their published date.
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose the 'order by' response from the API.
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+            The optional data to include in the response.
 
 
         .. note::
@@ -321,7 +324,7 @@ class Client:
             updated_at_since=updated_at_since,
             published_at_since=published_at_since,
             order=order,
-            includes=None,
+            includes=includes,
         )
 
         return [Chapter(self._http, payload) for payload in data["data"]]
@@ -812,7 +815,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
     ) -> list[Chapter]:
         """|coro|
 
@@ -845,7 +848,7 @@ class Client:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 

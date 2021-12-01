@@ -768,7 +768,7 @@ class Manga:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+        includes: Optional[list[ChapterIncludes]] = ["manga", "user", "scanlation_group"],
     ) -> list[Chapter]:
         """|coro|
 
@@ -799,7 +799,7 @@ class Manga:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]]
+        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
