@@ -782,7 +782,7 @@ class Client:
             The UUID of the manga to follow.
         set_status: :class:`bool`
             Whether to set the reading status of the manga you follow.
-            Due to he current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
+            Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
             Defaults to ``True``
         status: :class:`~hondana.types.ReadingStatus`
             The status to apply to the newly followed manga.

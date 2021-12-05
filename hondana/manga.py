@@ -513,7 +513,7 @@ class Manga:
     async def get_related_manga(self) -> Optional[list[Manga]]:
         """|coro|
 
-        This method will return all of the related manga and cache their response.
+        This method will return all the related manga and cache their response.
 
         Returns
         --------
