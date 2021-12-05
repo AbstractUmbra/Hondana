@@ -70,7 +70,7 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     description: Optional[:class:`str`]
 
-    twittier: Optional[:class:`str`]
+    twitter: Optional[:class:`str`]
 
     focusedLanguage: Optional[List[:class:`str`]]
 

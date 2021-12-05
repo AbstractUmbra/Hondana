@@ -23,7 +23,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 **NOTE** This library is still in development, I will list off the API methods and their progress here:
 
 | Feature          | Implemented? | Notes                                                                |
-| ---------------- | ------------ | -------------------------------------------------------------------- |
+|------------------|--------------|----------------------------------------------------------------------|
 | Chapter Upload   | [ ]          | Soon:tm:                                                             |
 | Manga            | [x]          | Done.                                                                |
 | Cover            | [x]          | Done.                                                                |
