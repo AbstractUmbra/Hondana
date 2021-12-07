@@ -36,7 +36,7 @@ A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.
 | AtHome           | [x]          | Done.                                                                |
 | Legacy           | [x]          | Done.                                                                |
 | Infrastructure   | [x]          | Done.                                                                |
-| Upload           | [ ]          | Soon:tm:                                                             |
+| Upload           | [x]          | Manga creation and chapter creation exist for use now.               |
 | Account          | [x]          | Done.                                                                |
 | User             | [x]          | Done.                                                                |
 | Chapter          | [x]          | Done.                                                                |
