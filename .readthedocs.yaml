@@ -3,8 +3,6 @@ formats: []
 
 build:
   image: testing
-  tools:
-    python: 3.9
 
 sphinx:
   configuration: docs/conf.py
@@ -12,6 +10,7 @@ sphinx:
   builder: html
 
 python:
+  version: 3.9
   install:
     - method: pip
       path: .
