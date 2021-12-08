@@ -6,7 +6,6 @@ authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/AbstractUmbra/hondana"
 repository = "https://github.com/AbstractUmbra/hondana"
 
 keywords = ["mangadex", "manga", "api", "wrapper"]
