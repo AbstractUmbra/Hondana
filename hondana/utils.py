@@ -46,6 +46,16 @@ from .errors import AuthenticationRequired
 if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec
 
+    from .types.artist import ArtistIncludes as ArtistIncludesType
+    from .types.author import AuthorIncludes as AuthorIncludesType
+    from .types.chapter import ChapterIncludes as ChapterIncludesType
+    from .types.cover import CoverIncludes as CoverIncludesType
+    from .types.custom_list import CustomListIncludes as CustomListIncludesType
+    from .types.manga import MangaIncludes as MangaIncludesType
+    from .types.scanlator_group import (
+        ScanlatorGroupIncludes as ScanlatorGroupIncludesType,
+    )
+
 
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
@@ -57,8 +67,9 @@ __all__ = (
     "MANGADEX_URL_REGEX",
     "MANGADEX_TIME_REGEX",
     "MISSING",
-    "CustomRoute",
+    "Includes",
     "Route",
+    "CustomRoute",
     "to_json",
     "to_iso_format",
     "php_query_builder",
@@ -80,6 +91,22 @@ The pattern *is* usable but more meant as a guideline for your formatting.
 
 It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
 """
+
+
+class Includes:
+    def to_query(
+        self,
+        *,
+        valid: list[str],
+    ) -> list[str]:
+        fmt = []
+        for item in dir(self):
+            if item.startswith("__"):
+                continue
+            if getattr(self, item) and item in valid:
+                fmt.append(item)
+
+        return fmt
 
 
 class Route:

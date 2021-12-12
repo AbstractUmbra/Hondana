@@ -36,6 +36,22 @@ CustomList
 ~~~~~~~~~~
 .. autoclass:: CustomList
 
+Includes
+~~~~~~~~
+.. autoclass:: ArtistIncludes
+
+.. autoclass:: AuthorIncludes
+
+.. autoclass:: ChapterIncludes
+
+.. autoclass:: CoverIncludes
+
+.. autoclass:: CustomListIncludes
+
+.. autoclass:: MangaIncludes
+
+.. autoclass:: ScanlatorGroupIncludes
+
 Legacy
 ~~~~~~
 .. autoclass:: LegacyItem

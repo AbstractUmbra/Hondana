@@ -28,6 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
+from .includes import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes
 from .tags import Tag
 from .utils import MISSING, require_authentication
 
@@ -40,7 +41,7 @@ if TYPE_CHECKING:
     from .types import manga
     from .types.artist import ArtistResponse
     from .types.author import AuthorResponse
-    from .types.chapter import ChapterIncludes, ChapterOrderQuery
+    from .types.chapter import ChapterOrderQuery
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
 
@@ -398,7 +399,7 @@ class Manga:
             if "attributes" in author:
                 formatted.append(Artist(self._http, author))
             else:
-                data = await self._http._get_artist(author["id"], includes=["manga"])
+                data = await self._http._get_artist(author["id"], includes=ArtistIncludes())
                 formatted.append(Artist(self._http, data["data"]))
 
         if not formatted:
@@ -441,7 +442,7 @@ class Manga:
             if "attributes" in author:
                 formatted.append(Author(self._http, author))
             else:
-                data = await self._http._get_author(author["id"], includes=["manga"])
+                data = await self._http._get_author(author["id"], includes=AuthorIncludes())
                 formatted.append(Author(self._http, data["data"]))
 
         if not formatted:
@@ -475,7 +476,7 @@ class Manga:
         if cover_key is None:
             return None
 
-        data = await self._http._get_cover(cover_key["id"], includes=["manga"])
+        data = await self._http._get_cover(cover_key["id"], includes=CoverIncludes())
         self.cover = Cover(self._http, data["data"])
         return self.cover
 
@@ -768,7 +769,7 @@ class Manga:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
 
@@ -799,7 +800,7 @@ class Manga:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
@@ -980,7 +981,7 @@ class Manga:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[ChapterOrderQuery] = None,
-        includes: Optional[list[ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
 
@@ -1025,7 +1026,7 @@ class Manga:
         order: Optional[:class:`~hondana.types.OrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 

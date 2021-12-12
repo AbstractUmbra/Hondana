@@ -40,6 +40,7 @@ from .client import Client as Client
 from .cover import Cover as Cover
 from .custom_list import *
 from .errors import *
+from .includes import *
 from .legacy import *
 from .manga import *
 from .report import *

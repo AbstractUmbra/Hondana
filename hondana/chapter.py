@@ -31,6 +31,7 @@ from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Union
 
 import aiofiles
 
+from .includes import MangaIncludes
 from .manga import Manga
 from .scanlator_group import ScanlatorGroup
 from .utils import MISSING, CustomRoute, require_authentication
@@ -257,7 +258,7 @@ class Chapter:
         if manga_id is None:
             return
 
-        manga = await self._http._view_manga(manga_id, includes=["author", "artist", "cover_art"])
+        manga = await self._http._view_manga(manga_id, includes=MangaIncludes())
 
         return Manga(self._http, manga["data"])
 

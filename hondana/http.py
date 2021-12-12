@@ -72,6 +72,15 @@ MAX_DEPTH = 10_000
 if TYPE_CHECKING:
     from types import TracebackType
 
+    from .includes import (
+        ArtistIncludes,
+        AuthorIncludes,
+        ChapterIncludes,
+        CoverIncludes,
+        CustomListIncludes,
+        MangaIncludes,
+        ScanlatorGroupIncludes,
+    )
     from .tags import QueryTags
     from .types import (
         artist,
@@ -556,7 +565,7 @@ class HTTPClient:
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
-        includes: Optional[list[manga.MangaIncludes]],
+        includes: Optional[MangaIncludes],
         has_available_chapters: Optional[bool],
         group: Optional[str],
     ) -> Response[manga.MangaSearchResponse]:
@@ -617,7 +626,7 @@ class HTTPClient:
             query["order"] = order
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         if has_available_chapters is not None:
             query["hasAvailableChapters"] = has_available_chapters
@@ -716,13 +725,11 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _view_manga(
-        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]]
-    ) -> Response[manga.GetMangaResponse]:
+    def _view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         if includes:
-            query: dict[str, Any] = {"includes": includes}
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -812,7 +819,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[manga.MangaOrderQuery],
-        includes: Optional[list[chapter.ChapterIncludes]],
+        includes: Optional[ChapterIncludes],
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed")
@@ -868,11 +875,11 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
 
-    def _get_random_manga(self, *, includes: Optional[list[manga.MangaIncludes]]) -> Response[manga.GetMangaResponse]:
+    def _get_random_manga(self, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/random")
 
         if includes:
-            query: dict[str, Any] = {"includes": includes}
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -953,7 +960,7 @@ class HTTPClient:
         user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = None,
+        includes: Optional[MangaIncludes],
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft")
 
@@ -1011,7 +1018,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[chapter.ChapterOrderQuery],
-        includes: Optional[list[chapter.ChapterIncludes]],
+        includes: Optional[ChapterIncludes],
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
 
@@ -1074,7 +1081,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _get_chapter(
-        self, chapter_id: str, /, *, includes: Optional[list[chapter.ChapterIncludes]]
+        self, chapter_id: str, /, *, includes: Optional[ChapterIncludes]
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
@@ -1136,7 +1143,7 @@ class HTTPClient:
         ids: Optional[list[str]],
         uploaders: Optional[list[str]],
         order: Optional[cover.CoverOrderQuery],
-        includes: Optional[list[cover.CoverIncludes]],
+        includes: Optional[CoverIncludes],
     ) -> Response[cover.GetMultiCoverResponse]:
         route = Route("GET", "/cover")
 
@@ -1173,14 +1180,13 @@ class HTTPClient:
         form_data.add_field(name="description", value=description)
         return self.request(route, data=form_data)
 
-    def _get_cover(
-        self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]]
-    ) -> Response[cover.GetSingleCoverResponse]:
+    def _get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes]) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
-        query: dict[str, Any] = {"includes": includes}
-
-        return self.request(route, params=query)
+        if includes:
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _edit_cover(
         self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str], version: int
@@ -1211,7 +1217,7 @@ class HTTPClient:
         ids: Optional[list[str]],
         name: Optional[str],
         focused_language: Optional[common.LanguageCode],
-        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]],
+        includes: Optional[ScanlatorGroupIncludes],
         order: Optional[scanlator_group.ScanlationGroupOrderQuery],
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
@@ -1323,7 +1329,7 @@ class HTTPClient:
         return self.request(route)
 
     def _get_user_followed_manga(
-        self, limit: int, offset: int, includes: Optional[list[manga.MangaIncludes]]
+        self, limit: int, offset: int, includes: Optional[MangaIncludes]
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/user/follows/manga")
 
@@ -1400,12 +1406,12 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _get_custom_list(
-        self, custom_list_id: str, /, *, includes: Optional[list[custom_list.CustomListIncludes]]
+        self, custom_list_id: str, /, *, includes: Optional[CustomListIncludes]
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         if includes:
-            query: dict[str, Any] = {"includes": includes}
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1567,11 +1573,14 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _view_scanlation_group(
-        self, scanlation_group_id: str, /, *, includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]]
+        self, scanlation_group_id: str, /, *, includes: Optional[ScanlatorGroupIncludes]
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
-        query: dict[str, Any] = {"includes": includes}
-        return self.request(route, params=query)
+
+        if includes:
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            return self.request(route, params=query)
+        return self.request(route)
 
     def _update_scanlation_group(
         self,
@@ -1662,7 +1671,7 @@ class HTTPClient:
         ids: Optional[list[str]],
         name: Optional[str],
         order: Optional[author.AuthorOrderQuery],
-        includes: Optional[list[author.AuthorIncludes]],
+        includes: Optional[AuthorIncludes],
     ) -> Response[author.GetMultiAuthorResponse]:
         route = Route("GET", "/author")
 
@@ -1748,12 +1757,12 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def _get_author(
-        self, author_id: str, /, *, includes: Optional[list[author.AuthorIncludes]]
+        self, author_id: str, /, *, includes: Optional[AuthorIncludes]
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         if includes:
-            query: dict[str, Any] = {"includes": includes}
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
             return self.request(route, params=query)
 
         return self.request(route)
@@ -1830,12 +1839,12 @@ class HTTPClient:
         return self.request(route)
 
     def _get_artist(
-        self, artist_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]]
+        self, artist_id: str, /, *, includes: Optional[ArtistIncludes]
     ) -> Response[artist.GetSingleArtistResponse]:
         route = Route("GET", "/author/{artist_id}", artist_id=artist_id)
 
         if includes:
-            query: dict[str, Any] = {"includes": includes}
+            query: dict[str, list[str]] = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 

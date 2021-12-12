@@ -38,6 +38,15 @@ from .chapter import Chapter
 from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
+from .includes import (
+    ArtistIncludes,
+    AuthorIncludes,
+    ChapterIncludes,
+    CoverIncludes,
+    CustomListIncludes,
+    MangaIncludes,
+    ScanlatorGroupIncludes,
+)
 from .legacy import LegacyItem
 from .manga import Manga, MangaRelation
 from .report import Report
@@ -253,7 +262,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
 
@@ -285,7 +294,7 @@ class Client:
             A start point to return chapters from based on their published date.
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose the 'order by' response from the API.
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
             The optional data to include in the response.
 
 
@@ -350,7 +359,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+        includes: Optional[MangaIncludes] = MangaIncludes(),
         has_available_chapters: Optional[bool] = None,
         group: Optional[str] = None,
     ) -> list[Manga]:
@@ -404,7 +413,7 @@ class Client:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose the ordering of the response
             i.e. ``{"createdAt": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+        includes: Optional[:class:`~hondana.MangaIncludes`]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
             Defaults to these values.
@@ -587,9 +596,7 @@ class Client:
 
         return data
 
-    async def view_manga(
-        self, manga_id: str, /, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"]
-    ) -> Manga:
+    async def view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
 
         The method will fetch a Manga from the MangaDex API.
@@ -815,7 +822,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
 
@@ -848,9 +855,9 @@ class Client:
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
-            The list of options to include increased payloads for per chapter.
-            Defaults to these values.
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
+            The options to include increased payloads for per chapter.
+            Defaults to all values.
 
         Raises
         -------
@@ -928,16 +935,14 @@ class Client:
 
         await self._http._manga_read_markers_batch(manga_id, read_chapters=read_chapters, unread_chapters=unread_chapters)
 
-    async def get_random_manga(
-        self, *, includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"]
-    ) -> Manga:
+    async def get_random_manga(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
 
         This method will return a random manga from the MangaDex API.
 
         Parameters
         -----------
-        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+        includes: Optional[:class:`~hondana.MangaIncludes`]
             The optional includes for the manga payload.
             Defaults to all three.
 
@@ -956,8 +961,11 @@ class Client:
         *,
         limit: int = 100,
         offset: int = 0,
-        includes: Optional[list[manga.MangaIncludes]] = ["author", "artist", "cover_art", "manga"],
+        includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> list[Manga]:
+        """|coro|
+        TODO
+        """
         data = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
 
         return [Manga(self._http, item) for item in data["data"]]
@@ -1091,7 +1099,7 @@ class Client:
         user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
         order: Optional[manga.MangaOrderQuery] = None,
-        includes: Optional[list[manga.MangaIncludes]] = None,
+        includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> Manga:
         """|coro|
 
@@ -1111,7 +1119,7 @@ class Client:
             The state of the submission to filter by.
         order: Optional[:class:`~hondana.types.MangaOrderQuery`]
             The order parameter for order the responses.
-        includes: Optional[List[:class:`~hondana.types.MangaIncludes`]]
+        includes: Optional[:class:`~hondana.MangaIncludes`]
             The optional includes to request in the responses.
 
         Returns
@@ -1257,7 +1265,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[chapter.ChapterOrderQuery] = None,
-        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
 
@@ -1302,7 +1310,7 @@ class Client:
         order: Optional[:class:`~hondana.types.OrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
@@ -1353,7 +1361,7 @@ class Client:
         chapter_id: str,
         /,
         *,
-        includes: Optional[list[chapter.ChapterIncludes]] = ["manga", "user", "scanlation_group"],
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> Chapter:
         """|coro|
 
@@ -1363,7 +1371,7 @@ class Client:
         -----------
         chapter_id: :class:`str`
             The UUID representing the chapter we are fetching.
-        includes: Optional[List[:class:`~hondana.types.ChapterIncludes`]]
+        includes: Optional[:class:`~hondana.ChapterIncludes`]
             The reference expansion includes we are requesting with this payload.
 
         Returns
@@ -1497,7 +1505,7 @@ class Client:
         ids: Optional[list[str]] = None,
         uploaders: Optional[list[str]] = None,
         order: Optional[cover.CoverOrderQuery] = None,
-        includes: Optional[list[cover.CoverIncludes]] = ["manga", "user"],
+        includes: Optional[CoverIncludes] = CoverIncludes(),
     ) -> list[Cover]:
         """|coro|
 
@@ -1517,8 +1525,8 @@ class Client:
             A list of uploader UUID(s) to limit the request to.
         order: Optional[:class:`~hondana.types.CoverOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[List[:class:`~hondana.types.CoverIncludes`]]
-            An optional list of includes to request increased payloads during the request.
+        includes: Optional[:class:`~hondana.CoverIncludes`]
+            The optional includes to request increased payloads during the request.
 
         Raises
         -------
@@ -1575,9 +1583,7 @@ class Client:
 
         return Cover(self._http, data["data"])
 
-    async def get_cover(
-        self, cover_id: str, /, *, includes: Optional[list[cover.CoverIncludes]] = ["manga", "user"]
-    ) -> Cover:
+    async def get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes] = CoverIncludes()) -> Cover:
         """|coro|
 
         The method will fetch a Cover from the MangaDex API.
@@ -1586,7 +1592,7 @@ class Client:
         -----------
         cover_id: :class:`str`
             The id of the cover we are fetching from the API.
-        includes: Optional[List[:class:`~hondana.types.CoverIncludes`]]
+        includes: Optional[:class:`~hondana.CoverIncludes`]
             A list of the additional information to gather related to the Cover.
 
 
@@ -1677,7 +1683,7 @@ class Client:
         name: Optional[str] = None,
         focused_language: Optional[common.LanguageCode] = None,
         order: Optional[scanlator_group.ScanlationGroupOrderQuery] = None,
-        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = ["leader", "member"],
+        includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
     ) -> list[ScanlatorGroup]:
         """|coro|
 
@@ -1697,7 +1703,7 @@ class Client:
             A focused language to limit the request to.
         order: Optional[:class:`~hondana.types.ScanlationGroupOrderQuery`]
             An ordering statement for the request.
-        includes: Optional[List[:class:`~hondana.types.ScanlatorGroupIncludes`]]
+        includes: Optional[:class:`~hondana.ScanlatorGroupIncludes`]
             An optional list of includes to request increased payloads during the request.
 
         Raises
@@ -2231,7 +2237,7 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        includes: Optional[list[custom_list.CustomListIncludes]] = ["manga", "user", "owner"],
+        includes: Optional[CustomListIncludes] = CustomListIncludes(),
     ) -> CustomList:
         """|coro|
 
@@ -2241,7 +2247,7 @@ class Client:
         -----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list we wish to retrieve.
-        includes: Optional[List[:class:`~hondana.types.CustomListIncludes`]]
+        includes: Optional[:class:`~hondana.CustomListIncludes`]
             The list of additional data to request in the payload.
 
         Raises
@@ -2557,7 +2563,7 @@ class Client:
         scanlation_group_id: str,
         /,
         *,
-        includes: Optional[list[scanlator_group.ScanlatorGroupIncludes]] = ["leader", "member"],
+        includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -2567,7 +2573,7 @@ class Client:
         -----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to fetch.
-        includes: Optional[List[:class:`~hondana.types.ScanlatorGroupIncludes`]]
+        includes: Optional[:class:`~hondana.ScanlatorGroupIncludes`]
             The list of optional includes we request the data for.
 
         Raises
@@ -2753,7 +2759,7 @@ class Client:
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
         order: Optional[author.AuthorOrderQuery] = None,
-        includes: Optional[list[author.AuthorIncludes]] = ["manga"],
+        includes: Optional[AuthorIncludes] = AuthorIncludes(),
     ) -> list[Author]:
         """|coro|
 
@@ -2771,7 +2777,7 @@ class Client:
             A name to limit the request to.
         order: Optional[:class:`~hondana.types.AuthorOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
+        includes: Optional[:class:`~hondana.AuthorIncludes`]
             An optional list of includes to request increased payloads during the request.
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
@@ -2862,7 +2868,7 @@ class Client:
         )
         return Author(self._http, data["data"])
 
-    async def get_author(self, author_id: str, /, *, includes: Optional[list[author.AuthorIncludes]] = ["manga"]) -> Author:
+    async def get_author(self, author_id: str, /, *, includes: Optional[AuthorIncludes] = AuthorIncludes()) -> Author:
         """|coro|
 
         The method will fetch an Author from the MangaDex API.
@@ -2875,7 +2881,7 @@ class Client:
         -----------
         author_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
+        includes: Optional[:class:`~hondana.AuthorIncludes`]
             The optional extra data we are requesting from the API.
 
         Raises
@@ -2892,7 +2898,7 @@ class Client:
 
         return Author(self._http, data["data"])
 
-    async def get_artist(self, artist_id: str, /, *, includes: Optional[list[artist.ArtistIncludes]] = ["manga"]) -> Artist:
+    async def get_artist(self, artist_id: str, /, *, includes: Optional[ArtistIncludes] = ArtistIncludes()) -> Artist:
         """|coro|
 
         The method will fetch an artist from the MangaDex API.
@@ -2905,7 +2911,7 @@ class Client:
         -----------
         artist_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[List[:class:`~hondana.types.AuthorIncludes`]]
+        includes: Optional[:class:`~hondana.AuthorIncludes`]
             The optional extra data we are requesting from the API.
 
         Raises

@@ -26,6 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
+from .includes import MangaIncludes
 from .utils import MISSING, require_authentication
 
 
@@ -203,7 +204,7 @@ class Artist:
             if "attributes" in manga:
                 formatted.append(Manga(self._http, manga))
             else:
-                data = await self._http._view_manga(manga["id"], includes=["author", "artist", "cover_art", "manga"])
+                data = await self._http._view_manga(manga["id"], includes=MangaIncludes())
                 formatted.append(Manga(self._http, data["data"]))
 
         if not formatted:
