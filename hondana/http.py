@@ -313,12 +313,15 @@ class HTTPClient:
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
 
-        if response.status == 400:
-            raise BadRequest(response, errors=data["errors"])
-        elif response.status == 401:
-            raise Unauthorized(response, errors=data["errors"])
-        elif response.status == 403:
-            raise Forbidden(response, errors=data["errors"])
+        if 400 <= response.status <= 510:
+            if response.status == 400:
+                raise BadRequest(response, errors=data["errors"])
+            elif response.status == 401:
+                raise Unauthorized(response, errors=data["errors"])
+            elif response.status == 403:
+                raise Forbidden(response, errors=data["errors"])
+            else:
+                raise APIException(response, status_code=response.status, errors=data["errors"])
 
         self._token = data["token"]["session"]
         self.__last_refresh = datetime.datetime.now(datetime.timezone.utc)
