@@ -26,7 +26,7 @@ __title__ = "Hondana"
 __author__ = "AbstractUmbra"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "0.4.14a"
+__version__ = "1.0.0a"
 
 import logging
 from typing import Literal, NamedTuple
@@ -40,9 +40,9 @@ from .client import Client as Client
 from .cover import Cover as Cover
 from .custom_list import *
 from .errors import *
-from .includes import *
 from .legacy import *
 from .manga import *
+from .query import *
 from .report import *
 from .scanlator_group import *
 from .tags import *
@@ -60,6 +60,6 @@ class VersionInfo(NamedTuple):
     serial: int
 
 
-version_info: VersionInfo = VersionInfo(major=0, minor=4, micro=14, releaselevel="alpha", serial=0)
+version_info: VersionInfo = VersionInfo(major=1, minor=0, micro=0, releaselevel="alpha", serial=0)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())

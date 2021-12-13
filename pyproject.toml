@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "0.4.14a"
+version = "1.0.0a"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
@@ -62,6 +62,13 @@ ignore = ["docs/conf.py"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "basic"
 pythonVersion = "3.9"
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+reportMissingImports = "error"
+reportUnusedImport = "error"
+reportUnusedClass = "error"
+reportUnusedFunction = "error"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
