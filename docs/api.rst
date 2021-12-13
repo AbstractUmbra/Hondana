@@ -36,6 +36,19 @@ CustomList
 ~~~~~~~~~~
 .. autoclass:: CustomList
 
+Legacy
+~~~~~~
+.. autoclass:: LegacyItem
+    :members:
+
+Manga
+~~~~~
+.. autoclass:: Manga
+    :members:
+
+.. autoclass:: MangaRelation
+    :members:
+
 Query
 ~~~~~~~~
 .. autoclass:: Order
@@ -75,19 +88,6 @@ Query
 .. autoclass:: MangaIncludes
 
 .. autoclass:: ScanlatorGroupIncludes
-
-Legacy
-~~~~~~
-.. autoclass:: LegacyItem
-    :members:
-
-Manga
-~~~~~
-.. autoclass:: Manga
-    :members:
-
-.. autoclass:: MangaRelation
-    :members:
 
 Report
 ~~~~~~
