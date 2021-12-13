@@ -61,6 +61,7 @@ class CustomList:
         "name",
         "visibility",
         "version",
+        "__owner",
     )
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
@@ -72,6 +73,7 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = self._attributes["visibility"]
         self.version: int = self._attributes["version"]
+        self.__owner: Optional[User] = None
 
     def __repr__(self) -> str:
         return f"<CustomList id='{self.id}' name='{self.name}'>"
@@ -79,7 +81,20 @@ class CustomList:
     def __str__(self) -> str:
         return self.name
 
-    async def get_owner(self) -> Optional[User]:
+    @property
+    def owner(self) -> Optional[User]:
+        """Returns the owner of this custom list.
+
+        Returns
+        --------
+        Optional[:class:~hondana.User`]
+        """
+        if self.__owner is not None:
+            return self.__owner
+
+        if not self._relationships:
+            return None
+
         owner_key = None
         for relationship in self._relationships:
             if relationship["type"] == "user":
@@ -90,10 +105,42 @@ class CustomList:
             return None
 
         if "attributes" in owner_key:
-            return User(self._http, owner_key)
+            self.__owner = User(self._http, owner_key)
+            return self.__owner
+        return None
+
+    @owner.setter
+    def owner(self, other: User) -> None:
+        if isinstance(other, User):
+            self.__owner = other
+
+    async def get_owner(self) -> Optional[User]:
+        """|coro|
+
+        This method will make an API request to get the owner of a Custom List.
+
+        Returns
+        --------
+        Optional[:class:~hondana.User`]
+        """
+        if self.owner is not None:
+            return self.owner
+
+        if not self._relationships:
+            return
+
+        owner_key = None
+        for relationship in self._relationships:
+            if relationship["type"] == "user":
+                owner_key = relationship
+                break
+
+        if owner_key is None:
+            return None
 
         data = await self._http._get_user(owner_key["id"])
-        return User(self._http, data["data"])
+        self.__owner = User(self._http, data["data"])
+        return self.__owner
 
     @require_authentication
     async def update(
