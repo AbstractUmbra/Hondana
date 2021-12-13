@@ -31,8 +31,8 @@ from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Union
 
 import aiofiles
 
-from .includes import MangaIncludes
 from .manga import Manga
+from .query import MangaIncludes
 from .scanlator_group import ScanlatorGroup
 from .utils import MISSING, CustomRoute, require_authentication
 

@@ -28,7 +28,13 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
-from .includes import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes
+from .query import (
+    ArtistIncludes,
+    AuthorIncludes,
+    ChapterIncludes,
+    CoverIncludes,
+    FeedOrderQuery,
+)
 from .tags import Tag
 from .utils import MISSING, require_authentication
 
@@ -41,7 +47,6 @@ if TYPE_CHECKING:
     from .types import manga
     from .types.artist import ArtistResponse
     from .types.author import AuthorResponse
-    from .types.chapter import ChapterOrderQuery
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
 
@@ -768,7 +773,7 @@ class Manga:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
@@ -797,7 +802,7 @@ class Manga:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
         includes: Optional[:class:`~hondana.ChapterIncludes`]
@@ -980,7 +985,7 @@ class Manga:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[ChapterOrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
@@ -1023,7 +1028,7 @@ class Manga:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.types.OrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
         includes: Optional[:class:`~hondana.ChapterIncludes`]

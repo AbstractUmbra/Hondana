@@ -38,17 +38,24 @@ from .chapter import Chapter
 from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
-from .includes import (
-    ArtistIncludes,
-    AuthorIncludes,
-    ChapterIncludes,
-    CoverIncludes,
-    CustomListIncludes,
-    MangaIncludes,
-    ScanlatorGroupIncludes,
-)
 from .legacy import LegacyItem
 from .manga import Manga, MangaRelation
+from .query import (
+    ArtistIncludes,
+    AuthorIncludes,
+    AuthorListOrderQuery,
+    ChapterIncludes,
+    CoverArtListOrderQuery,
+    CoverIncludes,
+    CustomListIncludes,
+    FeedOrderQuery,
+    MangaDraftListOrderQuery,
+    MangaIncludes,
+    MangaListOrderQuery,
+    ScanlatorGroupIncludes,
+    ScanlatorGroupListOrderQuery,
+    UserListOrderQuery,
+)
 from .report import Report
 from .scanlator_group import ScanlatorGroup
 from .token import Permissions
@@ -58,20 +65,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import (
-        artist,
-        author,
-        chapter,
-        common,
-        cover,
-        custom_list,
-        legacy,
-        manga,
-        report,
-        scanlator_group,
-        user,
-    )
-    from .types.query import OrderQuery
+    from .types import common, custom_list, legacy, manga, report
     from .types.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -179,11 +173,26 @@ class Client:
         self._http.password = password
         self._http._authenticated = True
 
-    async def _static_login(self) -> None:
+    async def static_login(self) -> None:
+        """|coro|
+
+        This method simply logs into the API and assigns a token to the client.
+        """
         await self._http._try_token()
 
     @property
     def permissions(self) -> Optional[Permissions]:
+        """
+        This attribute will return a permissions instance for the current logged in user.
+
+        You must be authenticated to run this, and logged in.
+
+        If you wish to just check permissions without making an api request, consider :meth:`~hondana.Client.static_login`
+
+        Returns
+        --------
+        :class:`~hondana.Permissions`
+        """
         if not self._http._authenticated:
             return None
 
@@ -261,7 +270,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
@@ -292,7 +301,7 @@ class Client:
             A start point to return chapters from based on their update date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published date.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose the 'order by' response from the API.
         includes: Optional[:class:`~hondana.ChapterIncludes`]
             The optional data to include in the response.
@@ -358,7 +367,7 @@ class Client:
         content_rating: Optional[list[manga.ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[MangaListOrderQuery] = None,
         includes: Optional[MangaIncludes] = MangaIncludes(),
         has_available_chapters: Optional[bool] = None,
         group: Optional[str] = None,
@@ -410,9 +419,8 @@ class Client:
         updated_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
             Used for returning manga updated *after* this date.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
-            A query parameter to choose the ordering of the response
-            i.e. ``{"createdAt": "desc"}``
+        order: Optional[:class:`~hondana.MangaListOrderQuery`]
+            A query parameter to choose the ordering of the response.
         includes: Optional[:class:`~hondana.MangaIncludes`]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
@@ -821,7 +829,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
@@ -852,9 +860,8 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
-            i.e. ``{"chapters": "desc"}``
         includes: Optional[:class:`~hondana.ChapterIncludes`]
             The options to include increased payloads for per chapter.
             Defaults to all values.
@@ -1098,7 +1105,7 @@ class Client:
         offset: int = 0,
         user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> Manga:
         """|coro|
@@ -1117,7 +1124,7 @@ class Client:
             The ID relating to the submitting user to filter by.
         state: Optional[:class:`~hondana.types.MangaState`]
             The state of the submission to filter by.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+        order: Optional[:class:`~hondana.MangaDraftListOrderQuery`]
             The order parameter for order the responses.
         includes: Optional[:class:`~hondana.MangaIncludes`]
             The optional includes to request in the responses.
@@ -1264,7 +1271,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[chapter.ChapterOrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> list[Chapter]:
         """|coro|
@@ -1307,9 +1314,8 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.types.OrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
-            i.e. ``{"chapters": "desc"}``
         includes: Optional[:class:`~hondana.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
@@ -1504,7 +1510,7 @@ class Client:
         manga: Optional[list[str]] = None,
         ids: Optional[list[str]] = None,
         uploaders: Optional[list[str]] = None,
-        order: Optional[cover.CoverOrderQuery] = None,
+        order: Optional[CoverArtListOrderQuery] = None,
         includes: Optional[CoverIncludes] = CoverIncludes(),
     ) -> list[Cover]:
         """|coro|
@@ -1523,7 +1529,7 @@ class Client:
             A list of cover art UUID(s) to limit the request to.
         uploaders: Optional[List[:class:`str`]]
             A list of uploader UUID(s) to limit the request to.
-        order: Optional[:class:`~hondana.types.CoverOrderQuery`]
+        order: Optional[:class:`~hondana.CoverArtListOrderQuery`]
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.CoverIncludes`]
             The optional includes to request increased payloads during the request.
@@ -1682,7 +1688,7 @@ class Client:
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
         focused_language: Optional[common.LanguageCode] = None,
-        order: Optional[scanlator_group.ScanlationGroupOrderQuery] = None,
+        order: Optional[ScanlatorGroupListOrderQuery] = None,
         includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
     ) -> list[ScanlatorGroup]:
         """|coro|
@@ -1701,7 +1707,7 @@ class Client:
             A name to limit the request to.
         focused_language: Optional[:class:`~hondana.types.LanguageCode`]
             A focused language to limit the request to.
-        order: Optional[:class:`~hondana.types.ScanlationGroupOrderQuery`]
+        order: Optional[:class:`~hondana.ScanlatorGroupListOrderQuery`]
             An ordering statement for the request.
         includes: Optional[:class:`~hondana.ScanlatorGroupIncludes`]
             An optional list of includes to request increased payloads during the request.
@@ -1735,7 +1741,7 @@ class Client:
         offset: int = 0,
         ids: Optional[list[str]] = None,
         username: Optional[str] = None,
-        order: Optional[user.UserOrderQuery] = None,
+        order: Optional[UserListOrderQuery] = None,
     ) -> list[User]:
         """|coro|
 
@@ -1751,7 +1757,7 @@ class Client:
             A list of User UUID(s) to limit the request to.
         username: Optional[:class:`str`]
             The username to limit this request to.
-        order: Optional[:class:`~hondana.types.UserOrderQuery`]
+        order: Optional[:class:`~hondana.UserListOrderQuery`]
             The optional query param on how the response will be ordered.
 
         Raises
@@ -2414,7 +2420,7 @@ class Client:
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[OrderQuery] = None,
+        order: Optional[FeedOrderQuery] = None,
     ) -> list[Chapter]:
         """|coro|
 
@@ -2444,7 +2450,7 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.types.MangaOrderQuery`]
+        order: Optional[:class:`~hondana.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
 
@@ -2758,7 +2764,7 @@ class Client:
         offset: int = 0,
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
-        order: Optional[author.AuthorOrderQuery] = None,
+        order: Optional[AuthorListOrderQuery] = None,
         includes: Optional[AuthorIncludes] = AuthorIncludes(),
     ) -> list[Author]:
         """|coro|
@@ -2775,7 +2781,7 @@ class Client:
             A list of author UUID(s) to limit the request to.
         name: Optional[:class:`str`]
             A name to limit the request to.
-        order: Optional[:class:`~hondana.types.AuthorOrderQuery`]
+        order: Optional[:class:`~hondana.AuthorListOrderQuery`]
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.AuthorIncludes`]
             An optional list of includes to request increased payloads during the request.

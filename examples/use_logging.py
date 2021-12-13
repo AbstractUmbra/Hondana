@@ -3,13 +3,9 @@ from __future__ import annotations
 import asyncio
 import datetime
 import logging
-from typing import TYPE_CHECKING
 
 import hondana
-
-
-if TYPE_CHECKING:
-    from hondana.types.manga import MangaOrderQuery
+from hondana import Order
 
 
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
@@ -33,7 +29,7 @@ async def main() -> list[hondana.Chapter]:
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 
     # And let's order the responses by created at descending
-    order: MangaOrderQuery = {"createdAt": "desc"}
+    order = hondana.FeedOrderQuery(created_at=Order.descending)
 
     # `feed` will return a list of Chapter instances.
     feed = await client.get_my_feed(

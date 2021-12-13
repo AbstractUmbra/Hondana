@@ -36,8 +36,32 @@ CustomList
 ~~~~~~~~~~
 .. autoclass:: CustomList
 
-Includes
+Query
 ~~~~~~~~
+.. autoclass:: Order
+    :members:
+
+.. autoclass:: MangaListOrderQuery
+    :members:
+
+.. autoclass:: FeedOrderQuery
+    :members:
+
+.. autoclass:: MangaDraftListOrderQuery
+    :members:
+
+.. autoclass:: CoverArtListOrderQuery
+    :members:
+
+.. autoclass:: ScanlatorGroupListOrderQuery
+    :members:
+
+.. autoclass:: AuthorListOrderQuery
+    :members:
+
+.. autoclass:: UserListOrderQuery
+    :members:
+
 .. autoclass:: ArtistIncludes
 
 .. autoclass:: AuthorIncludes

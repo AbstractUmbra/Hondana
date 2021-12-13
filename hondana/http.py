@@ -41,7 +41,6 @@ from typing import (
     Union,
     overload,
 )
-from urllib.parse import quote as _uriquote
 
 import aiohttp
 
@@ -59,7 +58,8 @@ from .utils import (
     MISSING,
     CustomRoute,
     Route,
-    _get_image_mime_type,
+    get_image_mime_type,
+    json_or_text,
     php_query_builder,
     to_iso_format,
     to_json,
@@ -72,14 +72,21 @@ MAX_DEPTH = 10_000
 if TYPE_CHECKING:
     from types import TracebackType
 
-    from .includes import (
+    from .query import (
         ArtistIncludes,
         AuthorIncludes,
+        AuthorListOrderQuery,
         ChapterIncludes,
+        CoverArtListOrderQuery,
         CoverIncludes,
         CustomListIncludes,
+        FeedOrderQuery,
+        MangaDraftListOrderQuery,
         MangaIncludes,
+        MangaListOrderQuery,
         ScanlatorGroupIncludes,
+        ScanlatorGroupListOrderQuery,
+        UserListOrderQuery,
     )
     from .tags import QueryTags
     from .types import (
@@ -96,7 +103,6 @@ if TYPE_CHECKING:
         user,
     )
     from .types.auth import CheckPayload
-    from .types.query import OrderQuery
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
     from .utils import CustomRoute
@@ -111,27 +117,27 @@ LOGGER = logging.getLogger(__name__)
 TAGS = MANGA_TAGS
 
 __all__ = (
-    "json_or_text",
     "Route",
     "HTTPClient",
 )
 
 
-async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
-    text = await response.text(encoding="utf-8")
-    try:
-        if response.headers["content-type"] == "application/json":
-            try:
-                return json.loads(text)
-            except json.JSONDecodeError:
-                pass
-    except KeyError:
-        pass
-
-    return text
-
-
 def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
+    """A helper function that will calculate the offset and limit parameters for API endpoints.
+
+    Parameters
+    -----------
+    limit: :class:`int`
+        The limit (or amount) of objects you are requesting.
+    offset: :class:`int`
+        The offset (or pagination start point) for the objects you are requesting.
+    max_limit: :class:`int`
+        The maximum limit value for the API Endpoint.
+
+    Returns
+    --------
+    Tuple[:class:`int`, :class:`int`]
+    """
     if offset == MAX_DEPTH:
         raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
 
@@ -567,7 +573,7 @@ class HTTPClient:
         content_rating: Optional[list[manga.ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
-        order: Optional[manga.MangaOrderQuery],
+        order: Optional[MangaListOrderQuery],
         includes: Optional[MangaIncludes],
         has_available_chapters: Optional[bool],
         group: Optional[str],
@@ -626,7 +632,7 @@ class HTTPClient:
             query["updatedAtSince"] = to_iso_format(updated_at_since)
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -821,7 +827,7 @@ class HTTPClient:
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
-        order: Optional[manga.MangaOrderQuery],
+        order: Optional[FeedOrderQuery],
         includes: Optional[ChapterIncludes],
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
@@ -859,7 +865,7 @@ class HTTPClient:
             query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes
@@ -962,7 +968,7 @@ class HTTPClient:
         offset: int,
         user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
-        order: Optional[manga.MangaOrderQuery] = None,
+        order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes],
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft")
@@ -978,7 +984,7 @@ class HTTPClient:
             query["state"] = state
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes
@@ -1020,7 +1026,7 @@ class HTTPClient:
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
-        order: Optional[chapter.ChapterOrderQuery],
+        order: Optional[FeedOrderQuery],
         includes: Optional[ChapterIncludes],
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
@@ -1076,7 +1082,7 @@ class HTTPClient:
             query["publishedAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes
@@ -1145,7 +1151,7 @@ class HTTPClient:
         manga: Optional[list[str]],
         ids: Optional[list[str]],
         uploaders: Optional[list[str]],
-        order: Optional[cover.CoverOrderQuery],
+        order: Optional[CoverArtListOrderQuery],
         includes: Optional[CoverIncludes],
     ) -> Response[cover.GetMultiCoverResponse]:
         route = Route("GET", "/cover")
@@ -1164,7 +1170,7 @@ class HTTPClient:
             query["uploaders"] = uploaders
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes
@@ -1175,7 +1181,7 @@ class HTTPClient:
         self, manga_id: str, /, *, cover: bytes, volume: Optional[str], description: Optional[str]
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
-        content_type = _get_image_mime_type(cover)
+        content_type = get_image_mime_type(cover)
         ext = content_type.split("/")[-1]
         form_data = aiohttp.FormData()
         form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
@@ -1221,7 +1227,7 @@ class HTTPClient:
         name: Optional[str],
         focused_language: Optional[common.LanguageCode],
         includes: Optional[ScanlatorGroupIncludes],
-        order: Optional[scanlator_group.ScanlationGroupOrderQuery],
+        order: Optional[ScanlatorGroupListOrderQuery],
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
 
@@ -1242,7 +1248,7 @@ class HTTPClient:
             query["includes"] = includes
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         return self.request(route, params=query)
 
@@ -1253,7 +1259,7 @@ class HTTPClient:
         offset: int,
         ids: Optional[list[str]],
         username: Optional[str],
-        order: Optional[user.UserOrderQuery],
+        order: Optional[UserListOrderQuery],
     ) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user")
 
@@ -1268,7 +1274,7 @@ class HTTPClient:
             query["username"] = username
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         return self.request(route, params=query)
 
@@ -1490,7 +1496,7 @@ class HTTPClient:
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
-        order: Optional[OrderQuery],
+        order: Optional[FeedOrderQuery],
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
@@ -1524,7 +1530,7 @@ class HTTPClient:
             query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         return self.request(route, params=query)
 
@@ -1673,7 +1679,7 @@ class HTTPClient:
         offset: int,
         ids: Optional[list[str]],
         name: Optional[str],
-        order: Optional[author.AuthorOrderQuery],
+        order: Optional[AuthorListOrderQuery],
         includes: Optional[AuthorIncludes],
     ) -> Response[author.GetMultiAuthorResponse]:
         route = Route("GET", "/author")
@@ -1689,7 +1695,7 @@ class HTTPClient:
             query["name"] = name
 
         if order:
-            query["order"] = order
+            query["order"] = order._to_dict()
 
         if includes:
             query["includes"] = includes

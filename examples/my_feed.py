@@ -2,13 +2,10 @@ from __future__ import annotations
 
 import asyncio
 import datetime
-from typing import TYPE_CHECKING
 
 import hondana
+from hondana import Order
 
-
-if TYPE_CHECKING:
-    from hondana.types.manga import MangaOrderQuery
 
 # We need to log in with username/email and password since MangaDex does not let you create user based API tokens.
 # We instead use our credentials to log in and fetch an expiring auth token.
@@ -22,7 +19,7 @@ async def main() -> list[hondana.Chapter]:
 
     # And let's order the responses by created at descending
     # we also coerce the type here to prevent typechecker issues. This isn't needed but if you use a typechecker this is good to do.
-    order: MangaOrderQuery = {"createdAt": "desc"}
+    order = hondana.FeedOrderQuery(created_at=Order.descending)
 
     # `feed` will return a list of Chapter instances.
     feed = await client.get_my_feed(
