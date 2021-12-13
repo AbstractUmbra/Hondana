@@ -26,7 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional
 
-from .includes import MangaIncludes
+from .query import MangaIncludes
 from .utils import MISSING, require_authentication
 
 
@@ -146,6 +146,18 @@ class Artist:
 
     @property
     def manga(self) -> Optional[list[Manga]]:
+        """Returns a list Manga related to this artist.
+
+
+        .. note::
+            If the Artist was not requested with the ``manga`` includes parameter, this will return None.
+            To populate this, consider :meth:`~hondana.Artist.get_manga`
+
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+        """
         if self.__manga is not None:
             return self.__manga
 
@@ -183,6 +195,15 @@ class Artist:
         self.__manga = fmt
 
     async def get_manga(self) -> Optional[list[Manga]]:
+        """|coro|
+
+        This method will make API requests to get all manga attributed to this artist.
+        It also caches the response and populates :attr:`~hondana.Artist.manga`.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+        """
         if self.manga is not None:
             return self.manga
 
