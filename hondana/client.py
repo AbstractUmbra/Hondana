@@ -971,7 +971,21 @@ class Client:
         includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> list[Manga]:
         """|coro|
-        TODO
+
+        This method will get a list of all of the currently loggd in user's followed manga.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            The amount of items we are requesting.
+        offset: :class:`int`
+            The pagination offset for the items we are requesting.
+        includes: Optional[:class:`~hondana.MangaIncludes`]
+            The optional includes to add to the api responses.
+
+        Returns
+        --------
+        List[:class:`~hondana.Manga`]
         """
         data = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
 
