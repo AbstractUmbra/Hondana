@@ -276,7 +276,7 @@ class ArtistIncludes(_Includes):
     """
 
     def __init__(self, *, manga: bool = True) -> None:
-        self.manga = manga
+        self.manga: bool = manga
         self._valid: list[ArtistIncludesType] = VALID_ARTIST_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -295,7 +295,7 @@ class AuthorIncludes(_Includes):
     """
 
     def __init__(self, *, manga: bool = True) -> None:
-        self.manga = manga
+        self.manga: bool = manga
         self._valid: list[AuthorIncludesType] = VALID_AUTHOR_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -318,9 +318,9 @@ class ChapterIncludes(_Includes):
     """
 
     def __init__(self, *, manga: bool = True, user: bool = True, scanlation_group: bool = True) -> None:
-        self.manga = manga
-        self.user = user
-        self.scanlation_group = scanlation_group
+        self.manga: bool = manga
+        self.user: bool = user
+        self.scanlation_group: bool = scanlation_group
         self._valid: list[ChapterIncludesType] = VALID_CHAPTER_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -341,8 +341,8 @@ class CoverIncludes(_Includes):
     """
 
     def __init__(self, *, manga: bool = True, user: bool = True) -> None:
-        self.manga = manga
-        self.user = user
+        self.manga: bool = manga
+        self.user: bool = user
         self._valid: list[CoverIncludesType] = VALID_COVER_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -365,9 +365,9 @@ class CustomListIncludes(_Includes):
     """
 
     def __init__(self, *, manga: bool = True, user: bool = True, owner: bool = True) -> None:
-        self.manga = manga
-        self.user = user
-        self.owner = owner
+        self.manga: bool = manga
+        self.user: bool = user
+        self.owner: bool = owner
         self._valid: list[CustomListIncludesType] = VALID_CUSTOMLIST_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -392,10 +392,10 @@ class MangaIncludes(_Includes):
     """
 
     def __init__(self, *, author: bool = True, artist: bool = True, cover_art: bool = True, manga: bool = True) -> None:
-        self.author = author
-        self.artist = artist
-        self.cover_art = cover_art
-        self.manga = manga
+        self.author: bool = author
+        self.artist: bool = artist
+        self.cover_art: bool = cover_art
+        self.manga: bool = manga
         self._valid: list[MangaIncludesType] = VALID_MANGA_INCLUDES
 
     def to_query(self) -> list[str]:
@@ -416,8 +416,8 @@ class ScanlatorGroupIncludes(_Includes):
     """
 
     def __init__(self, *, leader: bool = True, member: bool = True) -> None:
-        self.leader = leader
-        self.member = member
+        self.leader: bool = leader
+        self.member: bool = member
         self._valid: list[ScanlatorGroupIncludesType] = VALID_SCANLATORGROUP_INCLUDES
 
     def to_query(self) -> list[str]:

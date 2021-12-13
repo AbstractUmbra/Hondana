@@ -215,7 +215,7 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     return "&".join(fmt)
 
 
-def get_image_mime_type(data: bytes):
+def get_image_mime_type(data: bytes) -> str:
     """Returns the image type from the first few bytes."""
     if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
         return "image/png"
