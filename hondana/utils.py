@@ -40,21 +40,13 @@ from typing import (
 )
 from urllib.parse import quote as _uriquote
 
+import aiohttp
+
 from .errors import AuthenticationRequired
 
 
 if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec
-
-    from .types.artist import ArtistIncludes as ArtistIncludesType
-    from .types.author import AuthorIncludes as AuthorIncludesType
-    from .types.chapter import ChapterIncludes as ChapterIncludesType
-    from .types.cover import CoverIncludes as CoverIncludesType
-    from .types.custom_list import CustomListIncludes as CustomListIncludesType
-    from .types.manga import MangaIncludes as MangaIncludesType
-    from .types.scanlator_group import (
-        ScanlatorGroupIncludes as ScanlatorGroupIncludesType,
-    )
 
 
 C = TypeVar("C", bound="Any")
@@ -67,12 +59,15 @@ __all__ = (
     "MANGADEX_URL_REGEX",
     "MANGADEX_TIME_REGEX",
     "MISSING",
-    "Includes",
     "Route",
     "CustomRoute",
     "to_json",
+    "json_or_text",
     "to_iso_format",
     "php_query_builder",
+    "to_snake_case",
+    "to_camel_case",
+    "get_image_mime_type",
     "MANGA_TAGS",
 )
 
@@ -91,22 +86,6 @@ The pattern *is* usable but more meant as a guideline for your formatting.
 
 It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
 """
-
-
-class Includes:
-    def to_query(
-        self,
-        *,
-        valid: list[str],
-    ) -> list[str]:
-        fmt = []
-        for item in dir(self):
-            if item.startswith("__"):
-                continue
-            if getattr(self, item) and item in valid:
-                fmt.append(item)
-
-        return fmt
 
 
 class Route:
@@ -179,6 +158,8 @@ MISSING: Any = MissingSentinel()
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
+    """A decorator to assure the `self` parameter of decorated methods has authentication set."""
+
     @wraps(func)
     def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
         if not item._http._authenticated:
@@ -190,10 +171,27 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
 
 
 def to_json(obj: Any) -> str:
+    """A quick object that dumps a Python type to JSON object."""
     return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
 
 
+async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
+    """A quick method to parse an `aiohttp.ClientResponse` and test if it's json or text."""
+    text = await response.text(encoding="utf-8")
+    try:
+        if response.headers["content-type"] == "application/json":
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError:
+                pass
+    except KeyError:
+        pass
+
+    return text
+
+
 def to_iso_format(in_: datetime.datetime) -> str:
+    """Quick function to dump a `datetime.datetime` to acceptable ISO 8601 format."""
     return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
@@ -217,7 +215,8 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     return "&".join(fmt)
 
 
-def _get_image_mime_type(data: bytes):
+def get_image_mime_type(data: bytes):
+    """Returns the image type from the first few bytes."""
     if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
         return "image/png"
     elif data[0:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
@@ -228,6 +227,25 @@ def _get_image_mime_type(data: bytes):
         return "image/webp"
     else:
         raise ValueError("Unsupported image type given")
+
+
+def to_snake_case(string: str) -> str:
+    """Quick function to return snake_case from camelCase."""
+    fmt: list[str] = []
+    for character in string:
+        if character.isupper():
+            fmt.append(f"_{character.lower()}")
+            continue
+        fmt.append(character)
+    return "".join(fmt)
+
+
+def to_camel_case(string: str) -> str:
+    """Quick function to return camelCase from snake_case."""
+    first, *rest = string.split("_")
+    chunks = [first.lower(), *map(str.capitalize, rest)]
+
+    return "".join(chunks)
 
 
 path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
