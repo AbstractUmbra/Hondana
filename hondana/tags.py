@@ -97,6 +97,12 @@ class Tag:
 
     @property
     def name(self) -> str:
+        """The name of the tag.
+
+        Returns
+        --------
+        :class:`str`
+        """
         name = self._name.get("en")
         if name is None:
             key = next(iter(self._name))
@@ -135,12 +141,12 @@ class QueryTags:
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
             raise TypeError("Tags mode has to be 'AND' or 'OR'.")
-        self.set_tags()
+        self._set_tags()
 
     def __repr__(self) -> str:
         return f"<Tags mode={self.mode} number_of_tags={len(self._tags)}>"
 
-    def set_tags(self) -> list[str]:
+    def _set_tags(self) -> list[str]:
         tags = []
         for tag in self._tags:
             if tag_ := MANGA_TAGS.get(tag.title()):
