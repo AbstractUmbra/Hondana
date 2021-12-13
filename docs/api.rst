@@ -52,28 +52,20 @@ Manga
 Query
 ~~~~~~~~
 .. autoclass:: Order
-    :members:
 
-.. autoclass:: MangaListOrderQuery
-    :members:
+.. autoclass:: MangaListOrderQuery(**kwargs)
 
-.. autoclass:: FeedOrderQuery
-    :members:
+.. autoclass:: FeedOrderQuery(**kwargs)
 
-.. autoclass:: MangaDraftListOrderQuery
-    :members:
+.. autoclass:: MangaDraftListOrderQuery(**kwargs)
 
-.. autoclass:: CoverArtListOrderQuery
-    :members:
+.. autoclass:: CoverArtListOrderQuery(**kwargs)
 
-.. autoclass:: ScanlatorGroupListOrderQuery
-    :members:
+.. autoclass:: ScanlatorGroupListOrderQuery(**kwargs)
 
-.. autoclass:: AuthorListOrderQuery
-    :members:
+.. autoclass:: AuthorListOrderQuery(**kwargs)
 
-.. autoclass:: UserListOrderQuery
-    :members:
+.. autoclass:: UserListOrderQuery(**kwargs)
 
 .. autoclass:: ArtistIncludes
 
