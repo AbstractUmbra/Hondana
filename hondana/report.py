@@ -37,6 +37,21 @@ __all__ = ("Report",)
 
 
 class Report:
+    """
+    Parameters
+    -----------
+    id: :class:`str`
+        The UUID of this report.
+    reason: :class:`str`
+        The reason for this report.
+    details_required: :class:`bool`
+        If details are required for this report.
+    category: :class:`~hondana.types.ReportCategory`
+        The category this report falls under.
+    version: :class:`int`
+        The version revision of this report.
+    """
+
     __slots__ = (
         "_http",
         "_data",

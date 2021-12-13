@@ -84,6 +84,10 @@ VALID_USER_LIST_ORDER_PARAMS: list[str] = ["username"]
 
 
 class Order(Enum):
+    """
+    A quick enum to filter by asc or desc.
+    """
+
     ascending = "asc"
     descending = "desc"
 
@@ -130,6 +134,26 @@ class _Includes:
 
 
 class MangaListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    title: :class:`~hondana.Order`
+        Title ordering.
+    year: :class:`~hondana.Order`
+        Year ordering.
+    created_at: :class:`~hondana.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.Order`
+        Ordering by last updated date.
+    latest_uploaded_chapter: :class:`~hondana.Order`
+        Ordering by latest uploaded chapter.
+    followed_count: :class:`~hondana.Order`
+        Ordering by followed count.
+    relevance: :class:`~hondana.Order`
+        Ordering by relevance to search query.
+
+    """
+
     def __init__(
         self,
         valid: list[str] = VALID_MANGA_LIST_ORDER_PARAMS,
@@ -139,31 +163,104 @@ class MangaListOrderQuery(_OrderQuery):
 
 
 class FeedOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    created_at: :class:`~hondana.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.Order`
+        Ordering by last updated date.
+    publish_at: :class:`~hondana.Order`
+        Ordering by published at date.
+    volume: :class:`~hondana.Order`
+        Ordering by volume number.
+    chapter: :class:`~hondana.Order`
+        Ordering by chapter number.
+
+    """
+
     def __init__(self, valid: list[str] = VALID_FEED_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 
 
 class MangaDraftListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    title: :class:`~hondana.Order`
+        Title ordering.
+    year: :class:`~hondana.Order`
+        Year ordering.
+    created_at: :class:`~hondana.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.Order`
+        Ordering by last updated date.
+
+    """
+
     def __init__(self, valid: list[str] = VALID_MANGA_DRAFT_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 
 
 class CoverArtListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    created_at: :class:`~hondana.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.Order`
+        Ordering by last updated date.
+    volume: :class:`~hondana.Order`
+        Ordering by volume number.
+    """
+
     def __init__(self, valid: list[str] = VALID_COVER_ART_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 
 
 class ScanlatorGroupListOrderQuery(_OrderQuery):
+    """
+
+    Parameters
+    -----------
+    name: :class:`~hondana.Order`
+        Name ordering.
+    created_at: :class:`~hondana.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.Order`
+        Ordering by last updated date.
+    followed_count: :class:`~hondana.Order`
+        Ordering by followed count.
+    relevance: :class:`~hondana.Order`
+        Ordering by relevance to search query.
+    """
+
     def __init__(self, valid: list[str] = VALID_SCANLATORGROUP_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 
 
 class AuthorListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    name: :class:`~hondana.Order`
+        Name ordering.
+
+    """
+
     def __init__(self, valid: list[str] = VALID_AUTHOR_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 
 
 class UserListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    username: :class:`~hondana.Order`
+        Userame ordering.
+
+    """
+
     def __init__(self, valid: list[str] = VALID_USER_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
         super().__init__(valid=valid, **kwargs)
 

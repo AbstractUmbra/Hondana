@@ -32,7 +32,6 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ScanlationGroupOrderQuery",
     "ScanlatorGroupIncludes",
     "ScanlationGroupAttributesResponse",
     "ScanlationGroupResponse",
@@ -41,15 +40,6 @@ __all__ = (
 )
 
 ScanlatorGroupIncludes = Literal["leader", "member"]
-
-
-class ScanlationGroupOrderQuery(TypedDict, total=False):
-    name: Literal["asc", "desc"]
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    followedCount: Literal["asc", "desc"]
-    relevance: Literal["asc", "desc"]
-    latestUploadedChapter: Literal["asc", "desc"]
 
 
 class ScanlationGroupAttributesResponse(TypedDict):

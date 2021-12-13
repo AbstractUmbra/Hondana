@@ -33,7 +33,6 @@ if TYPE_CHECKING:
 
 __all__ = (
     "ChapterIncludes",
-    "ChapterOrderQuery",
     "ChapterAttributesResponse",
     "ChapterResponse",
     "GetSingleChapterResponse",
@@ -42,14 +41,6 @@ __all__ = (
 
 
 ChapterIncludes = Literal["manga", "user", "scanlation_group"]
-
-
-class ChapterOrderQuery(TypedDict, total=False):
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    publishAt: Literal["asc", "desc"]
-    volume: Literal["asc", "desc"]
-    chapter: Literal["asc", "desc"]
 
 
 class _ChapterAttributesOptionalResponse(TypedDict, total=False):

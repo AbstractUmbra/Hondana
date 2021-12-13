@@ -70,8 +70,6 @@ Chapter
     :members:
     :undoc-members:
 
-.. autoclass:: ChapterOrderQuery
-
 .. autoclass:: ChapterResponse
 
 .. autoclass:: ChapterAttributesResponse
@@ -162,8 +160,6 @@ Manga
     :members:
     :undoc-members:
 
-.. autoclass:: MangaOrderQuery
-
 .. autoclass:: MangaLinks
 
 .. autoclass:: MangaResponse
@@ -222,8 +218,6 @@ Report
 
 Scanlator Group
 ---------------
-.. autoclass:: ScanlationGroupOrderQuery
-
 .. autoclass:: ScanlatorGroupIncludes
     :members:
     :undoc-members:

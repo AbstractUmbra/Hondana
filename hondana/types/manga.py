@@ -40,7 +40,6 @@ __all__ = (
     "MangaState",
     "MangaRelationType",
     "MangaRelated",
-    "MangaOrderQuery",
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaRelationAttributesResponse",
@@ -98,16 +97,6 @@ MangaRelated = Literal[
     "colored",
     "serialization",
 ]
-
-
-class MangaOrderQuery(TypedDict, total=False):
-    volume: Literal["asc", "desc"]
-    chapter: Literal["asc", "desc"]
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    latestUploadedChapter: Literal["asc", "desc"]
-    followedCount: Literal["asc", "desc"]
-    relevance: Literal["asc", "desc"]
 
 
 class MangaLinks(TypedDict, total=False):
