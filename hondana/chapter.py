@@ -32,7 +32,7 @@ from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Union
 import aiofiles
 
 from .manga import Manga
-from .query import MangaIncludes
+from .query import MangaIncludes, ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
 from .utils import MISSING, CustomRoute, require_authentication
 
@@ -99,6 +99,8 @@ class Chapter:
         "_updated_at",
         "_published_at",
         "_at_home_url",
+        "__parent",
+        "__scanlator_group",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
@@ -120,6 +122,8 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._at_home_url: Optional[str] = None
+        self.__parent: Optional[Manga] = None
+        self.__scanlator_group: Optional[ScanlatorGroup] = None
 
     def __repr__(self) -> str:
         return f"<Chapter id={self.id} title='{self.title}'>"
@@ -202,6 +206,9 @@ class Chapter:
         Optional[:class:`~hondana.Manga`]
             The manga within the Chapter's payload, usually the parent manga.
         """
+        if self.__parent is not None:
+            return self.__parent
+
         if not self._relationships:
             return
 
@@ -216,6 +223,11 @@ class Chapter:
 
         return Manga(self._http, resolved)
 
+    @manga.setter
+    def manga(self, other: Manga) -> None:
+        if isinstance(other, Manga):
+            self.__parent = other
+
     @property
     def scanlator_group(self) -> Optional[ScanlatorGroup]:
         """The Scanlator Group that handled this chapter.
@@ -225,6 +237,9 @@ class Chapter:
         Optional[:class:`~hondana.ScanlatorGroup`]
             The ScanlatorGroup that handled this chapter.
         """
+        if self.__scanlator_group is not None:
+            return self.__scanlator_group
+
         if not self._relationships:
             return
 
@@ -238,6 +253,11 @@ class Chapter:
             return
 
         return ScanlatorGroup(self._http, resolved)
+
+    @scanlator_group.setter
+    def scanlator_group(self, other: ScanlatorGroup) -> None:
+        if isinstance(other, ScanlatorGroup):
+            self.__scanlator_group = other
 
     async def get_parent_manga(self) -> Optional[Manga]:
         """|coro|
@@ -260,7 +280,40 @@ class Chapter:
 
         manga = await self._http._view_manga(manga_id, includes=MangaIncludes())
 
-        return Manga(self._http, manga["data"])
+        resolved = Manga(self._http, manga["data"])
+        self.__parent = resolved
+        return self.__parent
+
+    async def get_scanlator_group(self) -> Optional[ScanlatorGroup]:
+        """|coro|
+
+        This method will fetch the scanlator group from a chapter's relationships.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.ScanlatorGroup`]
+            The scanlator group that was fetched from the API.
+        """
+        if self.__scanlator_group is not None:
+            return self.__scanlator_group
+
+        if not self._relationships:
+            return
+
+        group_id = None
+        for relationship in self._relationships:
+            if relationship["type"] == "group":
+                group_id = relationship["id"]
+                break
+
+        if group_id is None:
+            return
+
+        group = await self._http._view_scanlation_group(group_id, includes=ScanlatorGroupIncludes())
+
+        resolved = ScanlatorGroup(self._http, group["data"])
+        self.__scanlator_group = resolved
+        return self.__scanlator_group
 
     @require_authentication
     async def update(
