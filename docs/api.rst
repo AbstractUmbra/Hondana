@@ -51,21 +51,23 @@ Manga
 
 Query
 ~~~~~~~~
+.. currentmodule:: hondana.query
+
 .. autoclass:: Order
 
-.. autoclass:: MangaListOrderQuery(**kwargs)
+.. autoclass:: MangaListOrderQuery
 
-.. autoclass:: FeedOrderQuery(**kwargs)
+.. autoclass:: FeedOrderQuery
 
-.. autoclass:: MangaDraftListOrderQuery(**kwargs)
+.. autoclass:: MangaDraftListOrderQuery
 
-.. autoclass:: CoverArtListOrderQuery(**kwargs)
+.. autoclass:: CoverArtListOrderQuery
 
-.. autoclass:: ScanlatorGroupListOrderQuery(**kwargs)
+.. autoclass:: ScanlatorGroupListOrderQuery
 
-.. autoclass:: AuthorListOrderQuery(**kwargs)
+.. autoclass:: AuthorListOrderQuery
 
-.. autoclass:: UserListOrderQuery(**kwargs)
+.. autoclass:: UserListOrderQuery
 
 .. autoclass:: ArtistIncludes
 
@@ -83,6 +85,8 @@ Query
 
 Report
 ~~~~~~
+.. currentmodule:: hondana
+
 .. autoclass:: Report
     :members:
 

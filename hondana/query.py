@@ -117,6 +117,25 @@ class _Includes:
 
 
 class MangaListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    title: :class:`~hondana.query.Order`
+        Title ordering.
+    year: :class:`~hondana.query.Order`
+        Year ordering.
+    created_at: :class:`~hondana.query.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.query.Order`
+        Ordering by last updated date.
+    latest_uploaded_chapter: :class:`~hondana.query.Order`
+        Ordering by latest uploaded chapter.
+    followed_count: :class:`~hondana.query.Order`
+        Ordering by followed count.
+    relevance: :class:`~hondana.query.Order`
+        Ordering by relevance to search query.
+    """
+
     __slots__ = (
         "title",
         "year",
@@ -127,26 +146,6 @@ class MangaListOrderQuery(_OrderQuery):
         "relevance",
     )
 
-    """
-    Parameters
-    -----------
-    title: :class:`~hondana.Order`
-        Title ordering.
-    year: :class:`~hondana.Order`
-        Year ordering.
-    created_at: :class:`~hondana.Order`
-        Ordering by creation date.
-    updated_at: :class:`~hondana.Order`
-        Ordering by last updated date.
-    latest_uploaded_chapter: :class:`~hondana.Order`
-        Ordering by latest uploaded chapter.
-    followed_count: :class:`~hondana.Order`
-        Ordering by followed count.
-    relevance: :class:`~hondana.Order`
-        Ordering by relevance to search query.
-
-    """
-
     def __init__(
         self,
         **kwargs: Order,
@@ -155,6 +154,21 @@ class MangaListOrderQuery(_OrderQuery):
 
 
 class FeedOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    created_at: :class:`~hondana.query.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.query.Order`
+        Ordering by last updated date.
+    publish_at: :class:`~hondana.query.Order`
+        Ordering by published at date.
+    volume: :class:`~hondana.query.Order`
+        Ordering by volume number.
+    chapter: :class:`~hondana.query.Order`
+        Ordering by chapter number.
+    """
+
     __slots__ = (
         "created_at",
         "updated_at",
@@ -162,22 +176,6 @@ class FeedOrderQuery(_OrderQuery):
         "volume",
         "chapter",
     )
-
-    """
-    Parameters
-    -----------
-    created_at: :class:`~hondana.Order`
-        Ordering by creation date.
-    updated_at: :class:`~hondana.Order`
-        Ordering by last updated date.
-    publish_at: :class:`~hondana.Order`
-        Ordering by published at date.
-    volume: :class:`~hondana.Order`
-        Ordering by volume number.
-    chapter: :class:`~hondana.Order`
-        Ordering by chapter number.
-
-    """
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -194,13 +192,13 @@ class MangaDraftListOrderQuery(_OrderQuery):
     """
     Parameters
     -----------
-    title: :class:`~hondana.Order`
+    title: :class:`~hondana.query.Order`
         Title ordering.
-    year: :class:`~hondana.Order`
+    year: :class:`~hondana.query.Order`
         Year ordering.
-    created_at: :class:`~hondana.Order`
+    created_at: :class:`~hondana.query.Order`
         Ordering by creation date.
-    updated_at: :class:`~hondana.Order`
+    updated_at: :class:`~hondana.query.Order`
         Ordering by last updated date.
 
     """
@@ -210,28 +208,43 @@ class MangaDraftListOrderQuery(_OrderQuery):
 
 
 class CoverArtListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    created_at: :class:`~hondana.query.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.query.Order`
+        Ordering by last updated date.
+    volume: :class:`~hondana.query.Order`
+        Ordering by volume number.
+    """
+
     __slots__ = (
         "created_at",
         "updated_at",
         "volume",
     )
 
-    """
-    Parameters
-    -----------
-    created_at: :class:`~hondana.Order`
-        Ordering by creation date.
-    updated_at: :class:`~hondana.Order`
-        Ordering by last updated date.
-    volume: :class:`~hondana.Order`
-        Ordering by volume number.
-    """
-
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
 class ScanlatorGroupListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    name: :class:`~hondana.query.Order`
+        Name ordering.
+    created_at: :class:`~hondana.query.Order`
+        Ordering by creation date.
+    updated_at: :class:`~hondana.query.Order`
+        Ordering by last updated date.
+    followed_count: :class:`~hondana.query.Order`
+        Ordering by followed count.
+    relevance: :class:`~hondana.query.Order`
+        Ordering by relevance to search query.
+    """
+
     __slots__ = (
         "name",
         "created_at",
@@ -240,54 +253,39 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         "relevance",
     )
 
-    """
-    Parameters
-    -----------
-    name: :class:`~hondana.Order`
-        Name ordering.
-    created_at: :class:`~hondana.Order`
-        Ordering by creation date.
-    updated_at: :class:`~hondana.Order`
-        Ordering by last updated date.
-    followed_count: :class:`~hondana.Order`
-        Ordering by followed count.
-    relevance: :class:`~hondana.Order`
-        Ordering by relevance to search query.
-    """
-
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
 class AuthorListOrderQuery(_OrderQuery):
-    __slots__ = ("name",)
     """
     Parameters
     -----------
-    name: :class:`~hondana.Order`
+    name: :class:`~hondana.query.Order`
         Name ordering.
     """
+
+    __slots__ = ("name",)
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
 class UserListOrderQuery(_OrderQuery):
-    __slots__ = ("username",)
     """
     Parameters
     -----------
-    username: :class:`~hondana.Order`
+    username: :class:`~hondana.query.Order`
         Userame ordering.
-
     """
+
+    __slots__ = ("username",)
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
 class ArtistIncludes(_Includes):
-    __slots__ = ("manga",)
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -296,6 +294,8 @@ class ArtistIncludes(_Includes):
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     """
+
+    __slots__ = ("manga",)
 
     def __init__(self, *, manga: bool = True) -> None:
         self.manga: bool = manga
@@ -306,7 +306,6 @@ class ArtistIncludes(_Includes):
 
 
 class AuthorIncludes(_Includes):
-    __slots__ = ("manga",)
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -315,6 +314,8 @@ class AuthorIncludes(_Includes):
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     """
+
+    __slots__ = ("manga",)
 
     def __init__(self, *, manga: bool = True) -> None:
         self.manga: bool = manga
@@ -325,11 +326,6 @@ class AuthorIncludes(_Includes):
 
 
 class ChapterIncludes(_Includes):
-    __slots__ = (
-        "manga",
-        "user",
-        "scanlation_group",
-    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -343,6 +339,12 @@ class ChapterIncludes(_Includes):
         Defaults to ``True``. Whether to include scanlator group in the relationships.
     """
 
+    __slots__ = (
+        "manga",
+        "user",
+        "scanlation_group",
+    )
+
     def __init__(self, *, manga: bool = True, user: bool = True, scanlation_group: bool = True) -> None:
         self.manga: bool = manga
         self.user: bool = user
@@ -354,10 +356,6 @@ class ChapterIncludes(_Includes):
 
 
 class CoverIncludes(_Includes):
-    __slots__ = (
-        "manga",
-        "user",
-    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -369,6 +367,11 @@ class CoverIncludes(_Includes):
         Defaults to ``True``. Whether to include user in the relationships.
     """
 
+    __slots__ = (
+        "manga",
+        "user",
+    )
+
     def __init__(self, *, manga: bool = True, user: bool = True) -> None:
         self.manga: bool = manga
         self.user: bool = user
@@ -379,11 +382,6 @@ class CoverIncludes(_Includes):
 
 
 class CustomListIncludes(_Includes):
-    __slots__ = (
-        "manga",
-        "user",
-        "owner",
-    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -397,6 +395,12 @@ class CustomListIncludes(_Includes):
         Defaults to ``True``. Whether to include owner in the relationships.
     """
 
+    __slots__ = (
+        "manga",
+        "user",
+        "owner",
+    )
+
     def __init__(self, *, manga: bool = True, user: bool = True, owner: bool = True) -> None:
         self.manga: bool = manga
         self.user: bool = user
@@ -408,12 +412,6 @@ class CustomListIncludes(_Includes):
 
 
 class MangaIncludes(_Includes):
-    __slots__ = (
-        "author",
-        "artist",
-        "cover_art",
-        "manga",
-    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -429,6 +427,13 @@ class MangaIncludes(_Includes):
         Defaults to ``True``. Whether to include manga in the relationships.
     """
 
+    __slots__ = (
+        "author",
+        "artist",
+        "cover_art",
+        "manga",
+    )
+
     def __init__(self, *, author: bool = True, artist: bool = True, cover_art: bool = True, manga: bool = True) -> None:
         self.author: bool = author
         self.artist: bool = artist
@@ -441,10 +446,6 @@ class MangaIncludes(_Includes):
 
 
 class ScanlatorGroupIncludes(_Includes):
-    __slots__ = (
-        "leader",
-        "member",
-    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -455,6 +456,11 @@ class ScanlatorGroupIncludes(_Includes):
     member: :class:`bool`
         Defaults to ``True``. Whether to include members in the relationships.
     """
+
+    __slots__ = (
+        "leader",
+        "member",
+    )
 
     def __init__(self, *, leader: bool = True, member: bool = True) -> None:
         self.leader: bool = leader
