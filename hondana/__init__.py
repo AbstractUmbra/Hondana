@@ -33,21 +33,21 @@ from typing import Literal, NamedTuple
 
 from . import types as types
 from . import utils as utils
-from .artist import Artist as Artist
-from .author import Author as Author
-from .chapter import Chapter as Chapter
-from .client import Client as Client
-from .cover import Cover as Cover
+from .artist import *
+from .author import *
+from .chapter import *
+from .client import *
+from .cover import *
 from .custom_list import *
 from .errors import *
 from .legacy import *
 from .manga import *
-from .query import *
+from . import query as query
 from .report import *
 from .scanlator_group import *
 from .tags import *
 from .token import *
-from .user import User as User
+from .user import *
 from .utils import MANGA_TAGS as MANGA_TAGS
 from .utils import MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
 

@@ -70,6 +70,8 @@ if TYPE_CHECKING:
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
+__all__ = ("Client",)
+
 
 class Client:
     """User Client for interfacing with the MangaDex API.

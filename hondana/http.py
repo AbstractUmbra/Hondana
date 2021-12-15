@@ -117,7 +117,6 @@ LOGGER = logging.getLogger(__name__)
 TAGS = MANGA_TAGS
 
 __all__ = (
-    "Route",
     "HTTPClient",
 )
 
