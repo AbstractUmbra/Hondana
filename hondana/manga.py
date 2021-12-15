@@ -802,10 +802,10 @@ class Manga:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
@@ -1028,10 +1028,10 @@ class Manga:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 

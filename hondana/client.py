@@ -303,9 +303,9 @@ class Client:
             A start point to return chapters from based on their update date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose the 'order by' response from the API.
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The optional data to include in the response.
 
 
@@ -421,9 +421,9 @@ class Client:
         updated_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
             Used for returning manga updated *after* this date.
-        order: Optional[:class:`~hondana.MangaListOrderQuery`]
+        order: Optional[:class:`~hondana.query.MangaListOrderQuery`]
             A query parameter to choose the ordering of the response.
-        includes: Optional[:class:`~hondana.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             A list of things to include in the returned manga response payloads.
             i.e. ``["author", "cover_art", "artist"]``
             Defaults to these values.
@@ -862,9 +862,9 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The options to include increased payloads for per chapter.
             Defaults to all values.
 
@@ -951,7 +951,7 @@ class Client:
 
         Parameters
         -----------
-        includes: Optional[:class:`~hondana.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes for the manga payload.
             Defaults to all three.
 
@@ -982,7 +982,7 @@ class Client:
             The amount of items we are requesting.
         offset: :class:`int`
             The pagination offset for the items we are requesting.
-        includes: Optional[:class:`~hondana.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes to add to the api responses.
 
         Returns
@@ -1140,9 +1140,9 @@ class Client:
             The ID relating to the submitting user to filter by.
         state: Optional[:class:`~hondana.types.MangaState`]
             The state of the submission to filter by.
-        order: Optional[:class:`~hondana.MangaDraftListOrderQuery`]
+        order: Optional[:class:`~hondana.query.MangaDraftListOrderQuery`]
             The order parameter for order the responses.
-        includes: Optional[:class:`~hondana.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes to request in the responses.
 
         Returns
@@ -1330,9 +1330,9 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
@@ -1393,7 +1393,7 @@ class Client:
         -----------
         chapter_id: :class:`str`
             The UUID representing the chapter we are fetching.
-        includes: Optional[:class:`~hondana.ChapterIncludes`]
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The reference expansion includes we are requesting with this payload.
 
         Returns
@@ -1545,9 +1545,9 @@ class Client:
             A list of cover art UUID(s) to limit the request to.
         uploaders: Optional[List[:class:`str`]]
             A list of uploader UUID(s) to limit the request to.
-        order: Optional[:class:`~hondana.CoverArtListOrderQuery`]
+        order: Optional[:class:`~hondana.query.CoverArtListOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[:class:`~hondana.CoverIncludes`]
+        includes: Optional[:class:`~hondana.query.CoverIncludes`]
             The optional includes to request increased payloads during the request.
 
         Raises
@@ -1614,7 +1614,7 @@ class Client:
         -----------
         cover_id: :class:`str`
             The id of the cover we are fetching from the API.
-        includes: Optional[:class:`~hondana.CoverIncludes`]
+        includes: Optional[:class:`~hondana.query.CoverIncludes`]
             A list of the additional information to gather related to the Cover.
 
 
@@ -1723,9 +1723,9 @@ class Client:
             A name to limit the request to.
         focused_language: Optional[:class:`~hondana.types.LanguageCode`]
             A focused language to limit the request to.
-        order: Optional[:class:`~hondana.ScanlatorGroupListOrderQuery`]
+        order: Optional[:class:`~hondana.query.ScanlatorGroupListOrderQuery`]
             An ordering statement for the request.
-        includes: Optional[:class:`~hondana.ScanlatorGroupIncludes`]
+        includes: Optional[:class:`~hondana.query.ScanlatorGroupIncludes`]
             An optional list of includes to request increased payloads during the request.
 
         Raises
@@ -1773,7 +1773,7 @@ class Client:
             A list of User UUID(s) to limit the request to.
         username: Optional[:class:`str`]
             The username to limit this request to.
-        order: Optional[:class:`~hondana.UserListOrderQuery`]
+        order: Optional[:class:`~hondana.query.UserListOrderQuery`]
             The optional query param on how the response will be ordered.
 
         Raises
@@ -2269,7 +2269,7 @@ class Client:
         -----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list we wish to retrieve.
-        includes: Optional[:class:`~hondana.CustomListIncludes`]
+        includes: Optional[:class:`~hondana.query.CustomListIncludes`]
             The list of additional data to request in the payload.
 
         Raises
@@ -2466,7 +2466,7 @@ class Client:
             A start point to return chapters from based on their updated at date.
         published_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their published at date.
-        order: Optional[:class:`~hondana.FeedOrderQuery`]
+        order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
 
@@ -2595,7 +2595,7 @@ class Client:
         -----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to fetch.
-        includes: Optional[:class:`~hondana.ScanlatorGroupIncludes`]
+        includes: Optional[:class:`~hondana.query.ScanlatorGroupIncludes`]
             The list of optional includes we request the data for.
 
         Raises
@@ -2797,9 +2797,9 @@ class Client:
             A list of author UUID(s) to limit the request to.
         name: Optional[:class:`str`]
             A name to limit the request to.
-        order: Optional[:class:`~hondana.AuthorListOrderQuery`]
+        order: Optional[:class:`~hondana.query.AuthorListOrderQuery`]
             A query parameter to choose how the responses are ordered.
-        includes: Optional[:class:`~hondana.AuthorIncludes`]
+        includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             An optional list of includes to request increased payloads during the request.
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
@@ -2903,7 +2903,7 @@ class Client:
         -----------
         author_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[:class:`~hondana.AuthorIncludes`]
+        includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             The optional extra data we are requesting from the API.
 
         Raises
@@ -2933,7 +2933,7 @@ class Client:
         -----------
         artist_id: :class:`str`
             The ID of the author we are fetching.
-        includes: Optional[:class:`~hondana.AuthorIncludes`]
+        includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             The optional extra data we are requesting from the API.
 
         Raises
