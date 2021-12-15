@@ -4,7 +4,7 @@ import asyncio
 import datetime
 
 import hondana
-from hondana import Order
+from hondana.query import FeedOrderQuery, Order
 
 
 # We need to log in with username/email and password since MangaDex does not let you create user based API tokens.
@@ -19,7 +19,7 @@ async def main() -> list[hondana.Chapter]:
 
     # And let's order the responses by created at descending
     # we also coerce the type here to prevent typechecker issues. This isn't needed but if you use a typechecker this is good to do.
-    order = hondana.FeedOrderQuery(created_at=Order.descending)
+    order = FeedOrderQuery(created_at=Order.descending)
 
     # `feed` will return a list of Chapter instances.
     feed = await client.get_my_feed(

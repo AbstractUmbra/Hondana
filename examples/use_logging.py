@@ -5,7 +5,7 @@ import datetime
 import logging
 
 import hondana
-from hondana import Order
+from hondana.query import FeedOrderQuery, Order
 
 
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
@@ -29,7 +29,7 @@ async def main() -> list[hondana.Chapter]:
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 
     # And let's order the responses by created at descending
-    order = hondana.FeedOrderQuery(created_at=Order.descending)
+    order = FeedOrderQuery(created_at=Order.descending)
 
     # `feed` will return a list of Chapter instances.
     feed = await client.get_my_feed(

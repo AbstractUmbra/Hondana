@@ -31,6 +31,7 @@ __version__ = "1.0.0"
 import logging
 from typing import Literal, NamedTuple
 
+from . import query as query
 from . import types as types
 from . import utils as utils
 from .artist import *
@@ -42,7 +43,6 @@ from .custom_list import *
 from .errors import *
 from .legacy import *
 from .manga import *
-from . import query as query
 from .report import *
 from .scanlator_group import *
 from .tags import *

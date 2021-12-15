@@ -116,9 +116,7 @@ if TYPE_CHECKING:
 LOGGER = logging.getLogger(__name__)
 TAGS = MANGA_TAGS
 
-__all__ = (
-    "HTTPClient",
-)
+__all__ = ("HTTPClient",)
 
 
 def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
