@@ -66,21 +66,6 @@ VALID_COVER_INCLUDES: list[CoverIncludesType] = ["manga", "user"]
 VALID_CUSTOMLIST_INCLUDES: list[CustomListIncludesType] = ["manga", "user", "owner"]
 VALID_MANGA_INCLUDES: list[MangaIncludesType] = ["author", "artist", "cover_art", "manga"]
 VALID_SCANLATORGROUP_INCLUDES: list[ScanlatorGroupIncludesType] = ["leader", "member"]
-VALID_MANGA_LIST_ORDER_PARAMS: list[str] = [
-    "title",
-    "year",
-    "created_at",
-    "updated_at",
-    "latest_uploaded_chapter",
-    "followed_count",
-    "relevance",
-]
-VALID_FEED_ORDER_PARAMS: list[str] = ["created_at", "updated_at", "publish_at", "volume", "chapter"]
-VALID_MANGA_DRAFT_LIST_ORDER_PARAMS: list[str] = ["title", "year", "created_at", "updated_at"]
-VALID_COVER_ART_LIST_ORDER_PARAMS: list[str] = ["created_at", "updated_at", "volume"]
-VALID_SCANLATORGROUP_ORDER_PARAMS: list[str] = ["name", "created_at", "updated_at", "followed_count", "relevance"]
-VALID_AUTHOR_LIST_ORDER_PARAMS: list[str] = ["name"]
-VALID_USER_LIST_ORDER_PARAMS: list[str] = ["username"]
 
 
 class Order(Enum):
@@ -93,17 +78,19 @@ class Order(Enum):
 
 
 class _OrderQuery:
-    def __init__(self, *, valid: list[str], **kwargs: dict[str, Order]) -> None:
+    def __init__(self, **kwargs: Order) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
 
         _fmt = []
         for (name, value) in kwargs.items():
-            if name in valid:
-                _fmt.append(name)
+            if name in self.__slots__:
                 setattr(self, name, value)
-        if not _fmt:
-            raise TypeError("You must pass valid kwargs.")
+            else:
+                _fmt.append(name)
+
+        if _fmt:
+            raise TypeError(f"You have passed invalid kwargs: {', '.join(_fmt)}")
 
     def _to_dict(self) -> dict[str, str]:
         fmt: dict[str, str] = {}
@@ -117,23 +104,29 @@ class _OrderQuery:
 
 
 class _Includes:
-    def to_query(
-        self,
-        *,
-        valid: list[str],
-    ) -> list[str]:
+    def to_query(self) -> list[str]:
         """Generates a list of strings based on the kwargs."""
         fmt = []
         for item in dir(self):
             if item.startswith("__"):
                 continue
-            if getattr(self, item) and item in valid:
+            if getattr(self, item) and item in self.__slots__:
                 fmt.append(item)
 
         return fmt
 
 
 class MangaListOrderQuery(_OrderQuery):
+    __slots__ = (
+        "title",
+        "year",
+        "created_at",
+        "updated_at",
+        "latest_uploaded_chapter",
+        "followed_count",
+        "relevance",
+    )
+
     """
     Parameters
     -----------
@@ -156,13 +149,20 @@ class MangaListOrderQuery(_OrderQuery):
 
     def __init__(
         self,
-        valid: list[str] = VALID_MANGA_LIST_ORDER_PARAMS,
         **kwargs: Order,
     ) -> None:
-        super().__init__(valid=valid, **kwargs)
+        super().__init__(**kwargs)
 
 
 class FeedOrderQuery(_OrderQuery):
+    __slots__ = (
+        "created_at",
+        "updated_at",
+        "published_at",
+        "volume",
+        "chapter",
+    )
+
     """
     Parameters
     -----------
@@ -179,11 +179,18 @@ class FeedOrderQuery(_OrderQuery):
 
     """
 
-    def __init__(self, valid: list[str] = VALID_FEED_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class MangaDraftListOrderQuery(_OrderQuery):
+    __slots__ = (
+        "title",
+        "year",
+        "created_at",
+        "updated_at",
+    )
+
     """
     Parameters
     -----------
@@ -198,11 +205,17 @@ class MangaDraftListOrderQuery(_OrderQuery):
 
     """
 
-    def __init__(self, valid: list[str] = VALID_MANGA_DRAFT_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class CoverArtListOrderQuery(_OrderQuery):
+    __slots__ = (
+        "created_at",
+        "updated_at",
+        "volume",
+    )
+
     """
     Parameters
     -----------
@@ -214,13 +227,20 @@ class CoverArtListOrderQuery(_OrderQuery):
         Ordering by volume number.
     """
 
-    def __init__(self, valid: list[str] = VALID_COVER_ART_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class ScanlatorGroupListOrderQuery(_OrderQuery):
-    """
+    __slots__ = (
+        "name",
+        "created_at",
+        "updated_at",
+        "followed_count",
+        "relevance",
+    )
 
+    """
     Parameters
     -----------
     name: :class:`~hondana.Order`
@@ -235,24 +255,25 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         Ordering by relevance to search query.
     """
 
-    def __init__(self, valid: list[str] = VALID_SCANLATORGROUP_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class AuthorListOrderQuery(_OrderQuery):
+    __slots__ = ("name",)
     """
     Parameters
     -----------
     name: :class:`~hondana.Order`
         Name ordering.
-
     """
 
-    def __init__(self, valid: list[str] = VALID_AUTHOR_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class UserListOrderQuery(_OrderQuery):
+    __slots__ = ("username",)
     """
     Parameters
     -----------
@@ -261,11 +282,12 @@ class UserListOrderQuery(_OrderQuery):
 
     """
 
-    def __init__(self, valid: list[str] = VALID_USER_LIST_ORDER_PARAMS, **kwargs: Order) -> None:
-        super().__init__(valid=valid, **kwargs)
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
 
 
 class ArtistIncludes(_Includes):
+    __slots__ = ("manga",)
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -277,14 +299,14 @@ class ArtistIncludes(_Includes):
 
     def __init__(self, *, manga: bool = True) -> None:
         self.manga: bool = manga
-        self._valid: list[ArtistIncludesType] = VALID_ARTIST_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class AuthorIncludes(_Includes):
+    __slots__ = ("manga",)
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -296,14 +318,18 @@ class AuthorIncludes(_Includes):
 
     def __init__(self, *, manga: bool = True) -> None:
         self.manga: bool = manga
-        self._valid: list[AuthorIncludesType] = VALID_AUTHOR_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class ChapterIncludes(_Includes):
+    __slots__ = (
+        "manga",
+        "user",
+        "scanlation_group",
+    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -321,14 +347,17 @@ class ChapterIncludes(_Includes):
         self.manga: bool = manga
         self.user: bool = user
         self.scanlation_group: bool = scanlation_group
-        self._valid: list[ChapterIncludesType] = VALID_CHAPTER_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class CoverIncludes(_Includes):
+    __slots__ = (
+        "manga",
+        "user",
+    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -343,14 +372,18 @@ class CoverIncludes(_Includes):
     def __init__(self, *, manga: bool = True, user: bool = True) -> None:
         self.manga: bool = manga
         self.user: bool = user
-        self._valid: list[CoverIncludesType] = VALID_COVER_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class CustomListIncludes(_Includes):
+    __slots__ = (
+        "manga",
+        "user",
+        "owner",
+    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -368,14 +401,19 @@ class CustomListIncludes(_Includes):
         self.manga: bool = manga
         self.user: bool = user
         self.owner: bool = owner
-        self._valid: list[CustomListIncludesType] = VALID_CUSTOMLIST_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class MangaIncludes(_Includes):
+    __slots__ = (
+        "author",
+        "artist",
+        "cover_art",
+        "manga",
+    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -396,14 +434,17 @@ class MangaIncludes(_Includes):
         self.artist: bool = artist
         self.cover_art: bool = cover_art
         self.manga: bool = manga
-        self._valid: list[MangaIncludesType] = VALID_MANGA_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
 
 
 class ScanlatorGroupIncludes(_Includes):
+    __slots__ = (
+        "leader",
+        "member",
+    )
     """
     A helper for generating the ``includes[]`` parameter for queries.
 
@@ -418,8 +459,7 @@ class ScanlatorGroupIncludes(_Includes):
     def __init__(self, *, leader: bool = True, member: bool = True) -> None:
         self.leader: bool = leader
         self.member: bool = member
-        self._valid: list[ScanlatorGroupIncludesType] = VALID_SCANLATORGROUP_INCLUDES
 
     def to_query(self) -> list[str]:
         """Retuns a list of valid query strings."""
-        return super().to_query(valid=self._valid)
+        return super().to_query()
