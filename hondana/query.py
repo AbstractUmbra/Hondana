@@ -146,7 +146,7 @@ class MangaListOrderQuery(_OrderQuery):
         "relevance",
     )
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
