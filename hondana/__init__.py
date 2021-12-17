@@ -26,7 +26,7 @@ __title__ = "Hondana"
 __author__ = "AbstractUmbra"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 import logging
 from typing import Literal, NamedTuple
@@ -60,6 +60,6 @@ class VersionInfo(NamedTuple):
     serial: int
 
 
-version_info: VersionInfo = VersionInfo(major=1, minor=0, micro=0, releaselevel="final", serial=0)
+version_info: VersionInfo = VersionInfo(major=1, minor=1, micro=0, releaselevel="final", serial=0)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
