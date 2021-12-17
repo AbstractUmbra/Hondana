@@ -97,7 +97,7 @@ class _OrderQuery:
         for item in dir(self):
             if item.startswith("_"):
                 continue
-            if val := getattr(self, item):
+            if val := getattr(self, item, None):
                 fmt[to_camel_case(str(item))] = val.value
 
         return fmt
@@ -108,7 +108,7 @@ class _Includes:
         """Generates a list of strings based on the kwargs."""
         fmt = []
         for item in dir(self):
-            if item.startswith("__"):
+            if item.startswith("_"):
                 continue
             if getattr(self, item) and item in self.__slots__:
                 fmt.append(item)
@@ -146,10 +146,7 @@ class MangaListOrderQuery(_OrderQuery):
         "relevance",
     )
 
-    def __init__(
-        self,
-        **kwargs: Order,
-    ) -> None:
+    def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
 
 
