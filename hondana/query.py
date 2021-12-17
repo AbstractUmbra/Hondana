@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from enum import Enum
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from .utils import to_camel_case
 
@@ -78,7 +78,7 @@ class Order(Enum):
 
 
 class _OrderQuery:
-    def __init__(self, **kwargs: Order) -> None:
+    def __init__(self, **kwargs: Optional[Order]) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
 
@@ -146,6 +146,14 @@ class MangaListOrderQuery(_OrderQuery):
         "relevance",
     )
 
+    title: Optional[Order]
+    year: Optional[Order]
+    created_at: Optional[Order]
+    updated_at: Optional[Order]
+    latest_uploaded_chapter: Optional[Order]
+    followed_count: Optional[Order]
+    relevance: Optional[Order]
+
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
@@ -174,18 +182,17 @@ class FeedOrderQuery(_OrderQuery):
         "chapter",
     )
 
+    created_at: Optional[Order]
+    updated_at: Optional[Order]
+    published_at: Optional[Order]
+    volume: Optional[Order]
+    chapter: Optional[Order]
+
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
 
 class MangaDraftListOrderQuery(_OrderQuery):
-    __slots__ = (
-        "title",
-        "year",
-        "created_at",
-        "updated_at",
-    )
-
     """
     Parameters
     -----------
@@ -197,8 +204,19 @@ class MangaDraftListOrderQuery(_OrderQuery):
         Ordering by creation date.
     updated_at: :class:`~hondana.query.Order`
         Ordering by last updated date.
-
     """
+
+    __slots__ = (
+        "title",
+        "year",
+        "created_at",
+        "updated_at",
+    )
+
+    title: Optional[Order]
+    year: Optional[Order]
+    created_at: Optional[Order]
+    updated_at: Optional[Order]
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -221,6 +239,10 @@ class CoverArtListOrderQuery(_OrderQuery):
         "updated_at",
         "volume",
     )
+
+    created_at: Optional[Order]
+    updated_at: Optional[Order]
+    volume: Optional[Order]
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -250,6 +272,12 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         "relevance",
     )
 
+    name: Optional[Order]
+    created_at: Optional[Order]
+    updated_at: Optional[Order]
+    followed_count: Optional[Order]
+    relevance: Optional[Order]
+
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
@@ -264,6 +292,8 @@ class AuthorListOrderQuery(_OrderQuery):
 
     __slots__ = ("name",)
 
+    name: Optional[Order]
+
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
 
@@ -277,6 +307,8 @@ class UserListOrderQuery(_OrderQuery):
     """
 
     __slots__ = ("username",)
+
+    username: Optional[Order]
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
