@@ -17,22 +17,16 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.1.1
-
-      - name: Setup node.js (pyright)
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
-
       - name: Install Python deps
         run: |
-          poetry install --no-dev
+          pip install .
 
       - name: Type Coverage
-        run: |
-          npm install -g pyright
-          poetry run pyright --lib --ignoreexternal --verifytypes hondana
+        uses: jakebailey/pyright-action@v1
+        with:
+          python-version: 3.9
+          project: "pyproject.toml"
+          venv-path: "/home/runner/.cache/pypoetry/virtualenvs"
 
       - name: Lint
         uses: github/super-linter@v4
