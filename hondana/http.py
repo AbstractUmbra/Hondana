@@ -138,6 +138,9 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
     if offset == MAX_DEPTH:
         raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
 
+    if offset < 0:
+        offset = 0
+
     difference = MAX_DEPTH - offset
     if difference <= max_limit:
         new_limit = difference

@@ -328,9 +328,6 @@ class Client:
             Returns a list of Chapter instances.
         """
 
-        limit = min(max(1, limit), 500)
-        offset = max(offset, 0)
-
         data = await self._http._manga_feed(
             None,
             limit=limit,
@@ -442,8 +439,6 @@ class Client:
         List[:class:`~hondana.Manga`]
             Returns a list of Manga instances.
         """
-        limit = min(max(1, limit), 500)
-        offset = max(offset, 0)
 
         data = await self._http._manga_list(
             limit=limit,
@@ -1562,9 +1557,6 @@ class Client:
         List[:class:`~hondana.Cover`]
             A list of Cover instances returned from the API.
         """
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._cover_art_list(
             limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
         )
@@ -1740,9 +1732,6 @@ class Client:
         List[:class:`ScanlatorGroup`]
             A list of scanlator groups returned in the request.
         """
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._scanlation_group_list(
             limit=limit, offset=offset, ids=ids, name=name, focused_language=focused_language, order=order, includes=includes
         )
@@ -1788,9 +1777,6 @@ class Client:
         List[:class:`User`]
             The list of users returned via this request.
         """
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
 
         return [User(self._http, item) for item in data["data"]]
@@ -1926,10 +1912,6 @@ class Client:
         List[:class:`ScanlatorGroup`]
             The list of groups that are being followed.
         """
-
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
 
         return [ScanlatorGroup(self._http, item) for item in data["data"]]
@@ -1981,10 +1963,6 @@ class Client:
         List[:class:`User`]
             The list of groups that are being followed.
         """
-
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._get_my_followed_users(limit=limit, offset=offset)
 
         return [User(self._http, item) for item in data["data"]]
@@ -2382,9 +2360,6 @@ class Client:
         List[:class:`CustomList`]
             The list of custom lists returned from the API.
         """
-        limit = min(max(1, limit), 100)
-        offset = max(offset, 0)
-
         data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
         return [CustomList(self._http, item) for item in data["data"]]
 
@@ -2413,10 +2388,6 @@ class Client:
         List[:class:`CustomList`]
             The list of custom lists returned from the API.
         """
-        limit = min(max(1, limit), 100)
-        if offset < 0:
-            offset = 0
-
         data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
         return [CustomList(self._http, item) for item in data["data"]]
 
@@ -2486,10 +2457,6 @@ class Client:
         List[:class:`~hondana.Chapter`]
             The list of chapters returned from this request.
         """
-        limit = min(max(1, limit), 500)
-        if offset < 0:
-            offset = 0
-
         data = await self._http._custom_list_manga_feed(
             custom_list_id,
             limit=limit,
