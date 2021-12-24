@@ -78,6 +78,10 @@ Chapter
 
 .. autoclass:: GetMultiChapterResponse
 
+.. autoclass:: GetAtHomeResponse
+
+.. autoclass:: GetAtHomeChapterResponse
+
 
 Cover
 -----

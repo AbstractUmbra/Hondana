@@ -37,6 +37,8 @@ __all__ = (
     "ChapterResponse",
     "GetSingleChapterResponse",
     "GetMultiChapterResponse",
+    "GetAtHomeResponse",
+    "GetAtHomeChapterResponse",
 )
 
 
@@ -57,12 +59,6 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
 
     translatedLanguage: :class:`str`
 
-    hash: :class:`str`
-
-    data: List[:class:`str`]
-
-    dataSaver: List[:class:`str`]
-
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -79,9 +75,6 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     volume: str
     chapter: str
     translatedLanguage: str
-    hash: str
-    data: list[str]
-    dataSaver: list[str]
     version: int
     createdAt: str
     updatedAt: str
@@ -133,3 +126,29 @@ class GetMultiChapterResponse(TypedDict):
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ChapterResponse]
+
+
+class GetAtHomeResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    baseUrl: :class:`str`
+
+    chapter: :class`~hondana.types.GetAtHomeChapterResponse`
+    """
+
+    result: Literal["ok"]
+    baseUrl: str
+    chapter: GetAtHomeChapterResponse
+
+
+class GetAtHomeChapterResponse(TypedDict):
+    """
+    hash: :class:`str`
+    data: List[:class:`str`]
+    dataSaver: List[:class:`str`]
+    """
+
+    hash: str
+    data: list[str]
+    dataSaver: list[str]

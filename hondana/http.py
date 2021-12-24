@@ -66,9 +66,6 @@ from .utils import (
 )
 
 
-MAX_DEPTH = 10_000
-
-
 if TYPE_CHECKING:
     from types import TracebackType
 
@@ -115,6 +112,8 @@ if TYPE_CHECKING:
 
 LOGGER = logging.getLogger(__name__)
 TAGS = MANGA_TAGS
+MAX_DEPTH = 10_000
+
 
 __all__ = ("HTTPClient",)
 
@@ -138,8 +137,7 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
     if offset == MAX_DEPTH:
         raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
 
-    if offset < 0:
-        offset = 0
+    offset = max(offset, 0)
 
     difference = MAX_DEPTH - offset
     if difference <= max_limit:
@@ -1386,7 +1384,7 @@ class HTTPClient:
         query: dict[str, Any] = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
 
-    def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[dict[Literal["baseUrl"], str]]:
+    def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[chapter.GetAtHomeResponse]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
         query: dict[str, Any] = {"forcePort443": str(ssl).lower()}
         return self.request(route, params=query)

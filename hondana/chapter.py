@@ -43,7 +43,7 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import ChapterResponse
+    from .types.chapter import ChapterResponse, GetAtHomeResponse
     from .types.relationship import RelationshipResponse
 
 
@@ -68,12 +68,6 @@ class Chapter:
         The chapter identifier (e.g. '001') associated with this chapter, if any.
     translated_language: :class:`str`
         The language code that this chapter was translated to.
-    hash: :class:`str`
-        The hash associated with this chapter.
-    data: List[:class:`str`]
-        A list of chapter page URLs (original quality).
-    data_saver: List[:class:`str`]
-        A list of chapter page URLs (data saver quality).
     uploader: Optional[:class:`str`]
         The UUID of the uploader attributed to this chapter, if any.
     version: :class:`int`
@@ -90,9 +84,6 @@ class Chapter:
         "volume",
         "chapter",
         "translated_language",
-        "hash",
-        "data",
-        "data_saver",
         "uploader",
         "version",
         "_created_at",
@@ -113,9 +104,6 @@ class Chapter:
         self.volume: Optional[str] = self._attributes["volume"]
         self.chapter: Optional[str] = self._attributes["chapter"]
         self.translated_language: str = self._attributes["translatedLanguage"]
-        self.hash: str = self._attributes["hash"]
-        self.data: list[str] = self._attributes["data"]
-        self.data_saver: list[str] = self._attributes["dataSaver"]
         self.uploader: Optional[str] = self._attributes.get("uploader")
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
@@ -149,9 +137,23 @@ class Chapter:
                 fmt[name] = getattr(self, name)
         return fmt
 
-    async def _get_at_home_url(self, ssl: bool) -> str:
-        url = await self._http._get_at_home_url(self.id, ssl=ssl)
-        return url["baseUrl"]
+    async def get_at_home(self, ssl: bool = True) -> GetAtHomeResponse:
+        """|coro|
+
+        This method returns the @Home data for this chapter.
+
+        Parameters
+        ------------
+        ssl :class:`bool`
+            Wether to obtain an @Home URL for SSL only connections.
+            Defaults to ``True``.
+
+        Returns
+        --------
+        :class:`~hondana.types.GetAtHomeResponse`
+        """
+        data = await self._http._get_at_home_url(self.id, ssl=ssl)
+        return data
 
     @property
     def url(self) -> str:
@@ -412,12 +414,17 @@ class Chapter:
     async def _pages(
         self, *, start: int, data_saver: bool, ssl: bool, report: bool
     ) -> AsyncGenerator[tuple[bytes, str], None]:
-        if self._at_home_url is None:
-            self._at_home_url = await self._get_at_home_url(ssl=ssl)
+        at_home_data = await self.get_at_home(ssl=ssl)
+        self._at_home_url = at_home_data["baseUrl"]
+        chapter_data = at_home_data["chapter"]
 
-        _pages = self.data_saver if data_saver else self.data
+        _pages = chapter_data["dataSaver"] if data_saver else chapter_data["data"]
         for i, url in enumerate(_pages[start:], start=1):
-            route = CustomRoute("GET", self._at_home_url, f"/{'data-saver' if data_saver else 'data'}/{self.hash}/{url}")
+            route = CustomRoute(
+                "GET",
+                self._at_home_url,
+                f"/{'data-saver' if data_saver else 'data'}/{chapter_data['hash']}/{url}",
+            )
             LOGGER.debug("Attempting to download: %s" % route.url)
             _start = time.monotonic()
             response: tuple[bytes, ClientResponse] = await self._http.request(route)
