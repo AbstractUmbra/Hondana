@@ -1793,7 +1793,7 @@ class HTTPClient:
         website: Optional[str],
         version: Optional[int],
     ) -> Response[author.GetSingleAuthorResponse]:
-        route = Route("POST", "/author/{author_id}", author_id=author_id)
+        route = Route("PUT", "/author/{author_id}", author_id=author_id)
 
         query: dict[str, Any] = {"name": name}
 
