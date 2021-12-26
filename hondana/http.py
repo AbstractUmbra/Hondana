@@ -989,8 +989,15 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _get_manga_relation_list(self, manga_id: str, /) -> Response[manga.MangaRelationResponse]:
+    def _get_manga_relation_list(
+        self, manga_id: str, /, *, includes: Optional[MangaIncludes]
+    ) -> Response[manga.MangaRelationResponse]:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
+
+        if includes:
+            query: dict[str, Any] = {"includes": includes.to_query()}
+            return self.request(route, params=query)
+
         return self.request(route)
 
     def _create_manga_relation(

@@ -28,13 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
-from .query import (
-    ArtistIncludes,
-    AuthorIncludes,
-    ChapterIncludes,
-    CoverIncludes,
-    FeedOrderQuery,
-)
+from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
 from .utils import MISSING, require_authentication
 
@@ -1114,10 +1108,16 @@ class Manga:
         data = await self._http._submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
-    async def get_relations(self) -> list[MangaRelation]:
+    async def get_relations(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> list[MangaRelation]:
         """|coro|
 
         This method will return a list of all relations to a given manga.
+
+        Parameters
+        -----------
+        includes: Optional[:class:`~hondana.types.MangaIncludes`]
+            The optional parameters for expanded requests to the API.
+            Defaults to all possible expansions.
 
         Returns
         --------
@@ -1128,7 +1128,7 @@ class Manga:
         BadRequest
             The manga ID passed is malformed
         """
-        data = await self._http._get_manga_relation_list(self.id)
+        data = await self._http._get_manga_relation_list(self.id, includes=includes)
         return [MangaRelation(self._http, self.id, item) for item in data["data"]]
 
     @require_authentication
@@ -1219,14 +1219,18 @@ class MangaRelation:
         "_http",
         "_data",
         "_attributes",
+        "_relationships",
         "source_manga_id",
         "id",
         "version",
         "relation_type",
     )
 
+    def __repr__(self) -> str:
+        return f"<MangaRelation id={self.id} source_id={self.source_manga_id}>"
+
     def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
-        return self.id == other.id
+        return self.id == other.id or self.source_manga_id == other.id
 
     def __ne__(self, other: Union[MangaRelation, Manga]) -> bool:
         return not self.__eq__(other)
@@ -1235,6 +1239,7 @@ class MangaRelation:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
+        self._relationships = payload.get("relationships")
         self.source_manga_id: str = parent_id
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]

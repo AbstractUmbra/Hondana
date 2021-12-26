@@ -1149,7 +1149,9 @@ class Client:
         )
         return Manga(self._http, data["data"])
 
-    async def get_manga_relation_list(self, manga_id: str, /) -> list[MangaRelation]:
+    async def get_manga_relation_list(
+        self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()
+    ) -> list[MangaRelation]:
         """|coro|
 
         This method will return a list of all relations to a given manga.
@@ -1158,6 +1160,9 @@ class Client:
         -----------
         manga_id: :class:`str`
             The ID for the manga we wish to query against.
+        includes: Optional[:class:`~hondana.types.MangaIncludes`]
+            The optional parameters for expanded requests to the API.
+            Defaults to all possible expansions.
 
         Returns
         --------
@@ -1168,7 +1173,7 @@ class Client:
         BadRequest
             The manga ID passed is malformed
         """
-        data = await self._http._get_manga_relation_list(manga_id)
+        data = await self._http._get_manga_relation_list(manga_id, includes=includes)
         return [MangaRelation(self._http, manga_id, item) for item in data["data"]]
 
     @require_authentication
