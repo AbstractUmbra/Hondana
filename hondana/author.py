@@ -72,6 +72,10 @@ class Author:
         The author's Tumblr url, if any.
     youtube: Optional[:class:`str`]
         The author's Youtube url, if any.
+    weibo: Optional[:class:`str`]
+        The author's Weibo url, if any.
+    naver: Optional[:class:`str`]
+        The author's Naver url, if any.
     website: Optional[:class:`str`]
         The author's website url, if any.
     version: :class:`int`
@@ -96,6 +100,8 @@ class Author:
         "fantia",
         "tumblr",
         "youtube",
+        "weibo",
+        "naver",
         "website",
         "_created_at",
         "_updated_at",
@@ -121,6 +127,8 @@ class Author:
         self.fantia: Optional[str] = self._attributes["fantia"]
         self.tumblr: Optional[str] = self._attributes["tumblr"]
         self.youtube: Optional[str] = self._attributes["youtube"]
+        self.weibo: Optional[str] = self._attributes.get("weibo")
+        self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]

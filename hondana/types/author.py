@@ -81,6 +81,10 @@ class AuthorAttributesResponse(TypedDict):
 
     youtube: Optional[:class:`str`]
 
+    weibo: Optional[:class:`str`]
+
+    naver: Optional[:class:`str`]
+
     website: Optional[:class:`str`]
 
     version: :class:`int`
@@ -103,6 +107,8 @@ class AuthorAttributesResponse(TypedDict):
     fantia: Optional[str]
     tumblr: Optional[str]
     youtube: Optional[str]
+    weibo: Optional[str]
+    naver: Optional[str]
     website: Optional[str]
     version: int
     createdAt: str
