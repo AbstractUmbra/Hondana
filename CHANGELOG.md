@@ -1,16 +1,17 @@
-1.1.1
+1.1.2
 
 # Hondana Changelog
 
 ## Added
-- `Chapter.get_at_home` method has been modified and made public. This is for retrieving the `MD@H` data for the chapter. (efbe38c0eca095c1d9f3b9f80fdeb5bae940745c)
+- `Author.weibo` and `Author.naver` attributes. (a20df568727333bb224b89d27e25f02a309bdd48)
+- `Artist.weibo` and `Artist.naver` attributes. (a20df568727333bb224b89d27e25f02a309bdd48)
+
 
 ## Changes
-- `Chapter.hash`, `Chapter.data` and `Chapter.data_saver` are now gone due to MangaDex data structure changes.
-    The data for these can be found in the response type from `Chapter.get_at_home()` (efbe38c0eca095c1d9f3b9f80fdeb5bae940745c)
+
 
 ## Fixes
+- Fix `HTTPClient._update_author` endpoint to use correct HTTP verb... (1de2824b7b98a6545a7827be07cdb4351d12c45f)
 
 
 ### Notes
-- Docs updated for the above. (efbe38c0eca095c1d9f3b9f80fdeb5bae940745c)
