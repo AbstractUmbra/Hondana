@@ -28,7 +28,14 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
-from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
+from .query import (
+    ArtistIncludes,
+    AuthorIncludes,
+    ChapterIncludes,
+    CoverIncludes,
+    FeedOrderQuery,
+    MangaIncludes,
+)
 from .tags import Tag
 from .utils import MISSING, require_authentication
 
