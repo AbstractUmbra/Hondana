@@ -235,6 +235,15 @@ Scanlator Group
 .. autoclass:: GetMultiScanlationGroupResponse
 
 
+Statistics
+----------
+.. autoclass:: StatisticsRatingResponse
+
+.. autoclass:: StatisticsResponse
+
+.. autoclass:: GetStatisticsResponse
+
+
 Tags
 ----
 .. autoclass:: TagResponse

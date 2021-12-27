@@ -50,12 +50,10 @@ if TYPE_CHECKING:
     from .types.author import AuthorResponse
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
+    from .types.statistics import StatisticsResponse
 
 
-__all__ = (
-    "Manga",
-    "MangaRelation",
-)
+__all__ = ("Manga", "MangaRelation", "MangaStatistics")
 
 
 class Manga:
@@ -1206,6 +1204,42 @@ class Manga:
         """
         await self._http._delete_manga_relation(self.id, relation_id)
 
+    @require_authentication
+    async def set_manga_rating(self, *, rating: int) -> None:
+        """|coro|
+
+        This method will set your rating on the manga.
+        This method **overwrites** your previous set rating, if any.
+
+        Parameters
+        -----------
+        rating: :class:`int`
+            The rating value, between 0 and 10.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned a response due to authentication failure.
+        :exc:`NotFound`
+            The specified manga UUID was not found or does not exist.
+        """
+        await self._http._set_manga_rating(self.id, rating=rating)
+
+    @require_authentication
+    async def delete_manga_rating(self) -> None:
+        """|coro|
+
+        This method will delete your set rating on the manga.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned a response due to authentication failure.
+        :exc:`NotFound`
+            The specified manga UUID was not found or does not exist.
+        """
+        await self._http._delete_manga_rating(self.id)
+
 
 class MangaRelation:
     """A class representing a MangaRelation returned from the MangaDex API.
@@ -1251,3 +1285,38 @@ class MangaRelation:
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]
         self.relation_type: manga.MangaRelationType = self._attributes["relation"]
+
+
+class MangaStatistics:
+    """
+    A small object to house manga statistics.
+
+    Attributes
+    -----------
+    parent_id: :class:`str`
+        The manga these statistics belong to.
+    average: :class:`float`
+        The average mean score of the manga.
+    distribution: List[:class:`int`]
+        The scoring distribution of the manga.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "_rating",
+        "parent_id",
+        "average",
+        "distribution",
+    )
+
+    def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsResponse) -> None:
+        self._http = http
+        self._data = payload
+        self._rating = payload["rating"]
+        self.parent_id: str = parent_id
+        self.average: float = self._rating["average"]
+        self.distribution: list[int] = self._rating["distribution"]
+
+    def __repr__(self) -> str:
+        return f"<MangaStatistics for={self.parent_id}>"

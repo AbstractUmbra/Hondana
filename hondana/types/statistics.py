@@ -24,21 +24,41 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .query import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .statistics import *
-from .tags import *
-from .token import *
-from .user import *
+from typing import Literal, TypedDict
+
+
+__all__ = (
+    "StatisticsRatingResponse",
+    "StatisticsResponse",
+    "GetStatisticsResponse",
+)
+
+
+class StatisticsRatingResponse(TypedDict):
+    """
+    average: :class:`float`
+
+    distribution: List[:class:`int`]
+    """
+
+    average: float
+    distribution: list[int]
+
+
+class StatisticsResponse(TypedDict):
+    """
+    rating: :class:`~hondana.types.StatisticsRatingResponse`
+    """
+
+    rating: StatisticsRatingResponse
+
+
+class GetStatisticsResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    statistics: Dict[:class:`str`, :class:`~hondana.types.StatisticsResponse`]
+    """
+
+    result: Literal["ok"]
+    statistics: dict[str, StatisticsResponse]

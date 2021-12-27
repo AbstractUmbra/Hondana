@@ -97,6 +97,7 @@ if TYPE_CHECKING:
         manga,
         report,
         scanlator_group,
+        statistics,
         user,
     )
     from .types.auth import CheckPayload
@@ -1957,3 +1958,22 @@ class HTTPClient:
         query: dict[str, Any] = {"category": report_category, "reason": reason, "objectId": object_id, "details": details}
 
         return self.request(route, json=query)
+
+    def _set_manga_rating(self, manga_id: str, /, *, rating: int) -> Response[Literal["ok", "error"]]:
+        route = Route("POST", "/rating/{manga_id}", manga_id=manga_id)
+
+        query: dict[str, Any] = {"rating": rating}
+
+        return self.request(route, json=query)
+
+    def _delete_manga_rating(self, manga_id: str, /) -> Response[Literal["ok", "error"]]:
+        route = Route("DELETE", "/rating/{manga_id}", manga_id=manga_id)
+
+        return self.request(route)
+
+    def _get_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.GetStatisticsResponse]:
+        route = Route("GET", "/statistics/manga")
+
+        query: dict[str, Any] = {"manga": manga_ids}
+
+        return self.request(route, params=query)

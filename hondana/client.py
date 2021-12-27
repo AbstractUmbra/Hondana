@@ -39,7 +39,7 @@ from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
 from .legacy import LegacyItem
-from .manga import Manga, MangaRelation
+from .manga import Manga, MangaRelation, MangaStatistics
 from .query import (
     ArtistIncludes,
     AuthorIncludes,
@@ -3095,3 +3095,69 @@ class Client:
             The specified report UUID or object UUID does not exist.
         """
         await self._http._create_report(report_category=report_category, reason=reason, object_id=object_id, details=details)
+
+    @require_authentication
+    async def set_manga_rating(self, manga_id: str, /, *, rating: int) -> None:
+        """|coro|
+
+        This method will set your rating on the passed manga.
+        This method **overwrites** your previous set rating, if any.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The manga you are setting the rating for.
+        rating: :class:`int`
+            The rating value, between 0 and 10.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned a response due to authentication failure.
+        :exc:`NotFound`
+            The specified manga UUID was not found or does not exist.
+        """
+        await self._http._set_manga_rating(manga_id, rating=rating)
+
+    @require_authentication
+    async def delete_manga_rating(self, manga_id: str, /) -> None:
+        """|coro|
+
+        This method will delete your set rating on the passed manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The manga you wish to delete the rating for.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned a response due to authentication failure.
+        :exc:`NotFound`
+            The specified manga UUID was not found or does not exist.
+        """
+        await self._http._delete_manga_rating(manga_id)
+
+    @require_authentication
+    async def get_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
+        """|coro|
+
+        This method will return the statistics for the passed manga.
+
+        Parameters
+        -----------
+        manga_ids: List[:class:`str`]
+            The list of manga ids to fetch the statistics for.
+
+        Returns
+        ---------
+        List[:class:`~hondana.MangaStatistics`]
+        """
+        data = await self._http._get_manga_statistics(manga_ids)
+
+        fmt: list[MangaStatistics] = []
+        for id_, stats in data["statistics"].items():
+            fmt.append(MangaStatistics(self._http, id_, stats))
+
+        return fmt
