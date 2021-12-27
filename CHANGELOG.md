@@ -1,17 +1,19 @@
-1.1.2
+1.1.3
+
+API Version: 5.4.3
 
 # Hondana Changelog
 
 ## Added
-- `Author.weibo` and `Author.naver` attributes. (a20df568727333bb224b89d27e25f02a309bdd48)
-- `Artist.weibo` and `Artist.naver` attributes. (a20df568727333bb224b89d27e25f02a309bdd48)
-
+- `Client.get_manga_relation_list` and `Manga.get_relations` now support the `includes` parameter. (2fa2c3a3a9e08ad1faae3186360d41a0febf88bd)
+- `Client.set_manga_rating` and `Manga.set_rating` added. (49cb1f03c621bb64d7ea6ccf5ac2e9fc202e4925)
+- `Client.delete_manga_rating` and `Manga.delete_rating` added. (49cb1f03c621bb64d7ea6ccf5ac2e9fc202e4925)
+- `Client.get_manga_statistics` added. (49cb1f03c621bb64d7ea6ccf5ac2e9fc202e4925)
 
 ## Changes
 
 
 ## Fixes
-- Fix `HTTPClient._update_author` endpoint to use correct HTTP verb... (1de2824b7b98a6545a7827be07cdb4351d12c45f)
 
 
 ### Notes
