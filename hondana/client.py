@@ -39,7 +39,7 @@ from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
 from .legacy import LegacyItem
-from .manga import Manga, MangaRelation, MangaStatistics
+from .manga import Manga, MangaRating, MangaRelation, MangaStatistics
 from .query import (
     ArtistIncludes,
     AuthorIncludes,
@@ -3097,6 +3097,38 @@ class Client:
         await self._http._create_report(report_category=report_category, reason=reason, object_id=object_id, details=details)
 
     @require_authentication
+    async def get_my_manga_ratings(self, manga_ids: list[str], /) -> list[MangaStatistics]:
+        """|coro|
+
+        This method will return your personal manga ratings for the given manga.
+
+        Parameters
+        -----------
+        manga_ids: List[:class:`str`]
+            The ids of the manga you wish to fetch your ratings for.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            Failed response due to authentication failure.
+        :exc:`NotFound`
+            A given manga id was not found or does not exist.
+
+        Returns
+        --------
+        List[:class:`~hondana.MangaRating`]
+        """
+        data = await self._http._get_my_ratings(manga_ids)
+
+        ratings = data["ratings"]
+
+        fmt = []
+        for id_, stats in ratings.items():
+            fmt.append(MangaRating(self._http, id_, stats))
+
+        return fmt
+
+    @require_authentication
     async def set_manga_rating(self, manga_id: str, /, *, rating: int) -> None:
         """|coro|
 
@@ -3108,7 +3140,7 @@ class Client:
         manga_id: :class:`str`
             The manga you are setting the rating for.
         rating: :class:`int`
-            The rating value, between 0 and 10.
+            The rating value, between 1 and 10.
 
         Raises
         -------

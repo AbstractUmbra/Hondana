@@ -31,6 +31,8 @@ __all__ = (
     "StatisticsRatingResponse",
     "StatisticsResponse",
     "GetStatisticsResponse",
+    "PersonalMangaRatingsResponse",
+    "GetPersonalMangaRatingsResponse",
 )
 
 
@@ -62,3 +64,25 @@ class GetStatisticsResponse(TypedDict):
 
     result: Literal["ok"]
     statistics: dict[str, StatisticsResponse]
+
+
+class PersonalMangaRatingsResponse(TypedDict):
+    """
+    rating: :class:`int`
+
+    createdAt: :class:`str`
+    """
+
+    rating: int
+    createdAt: str
+
+
+class GetPersonalMangaRatingsResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    ratings: Dict[:class:`str`, :class:`~hondana.types.PersonalMangaRatingsResponse`]
+    """
+
+    result: Literal["ok"]
+    ratings: dict[str, PersonalMangaRatingsResponse]

@@ -52,6 +52,9 @@ Manga
 .. autoclass:: MangaStatistics
     :members:
 
+.. autoclass:: MangaRating
+    :members:
+
 Query
 ~~~~~~~~
 .. currentmodule:: hondana.query

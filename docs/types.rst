@@ -243,6 +243,10 @@ Statistics
 
 .. autoclass:: GetStatisticsResponse
 
+.. autoclass:: PersonalMangaRatingsResponse
+
+.. autoclass:: GetPersonalMangaRatingsResponse
+
 
 Tags
 ----

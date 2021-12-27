@@ -50,10 +50,15 @@ if TYPE_CHECKING:
     from .types.author import AuthorResponse
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
-    from .types.statistics import StatisticsResponse
+    from .types.statistics import PersonalMangaRatingsResponse, StatisticsResponse
 
 
-__all__ = ("Manga", "MangaRelation", "MangaStatistics")
+__all__ = (
+    "Manga",
+    "MangaRelation",
+    "MangaStatistics",
+    "MangaRating",
+)
 
 
 class Manga:
@@ -1320,3 +1325,36 @@ class MangaStatistics:
 
     def __repr__(self) -> str:
         return f"<MangaStatistics for={self.parent_id}>"
+
+
+class MangaRating:
+    """
+    A small object to encompass your personal manga ratings.
+
+    Attributes
+    -----------
+    parent_id: :class:`str`
+        The parent manga this rating belongs to.
+    rating: :class:`int`
+        Your personal rating for this manga, between 1 and 10.
+    created_at: :class:`datetime.datetime`
+        When you created the rating, as a UTC aware datetime.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "parent_id",
+        "rating",
+        "created_at",
+    )
+
+    def __init__(self, http: HTTPClient, parent_id: str, payload: PersonalMangaRatingsResponse) -> None:
+        self._http = http
+        self._data = payload
+        self.parent_id: str = parent_id
+        self.rating: int = self._data["rating"]
+        self.created_at: datetime.datetime = datetime.datetime.fromisoformat(self._data["createdAt"])
+
+    def __repr__(self) -> str:
+        return f"<MangaRating parent={self.parent_id}>"

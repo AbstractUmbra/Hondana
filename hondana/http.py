@@ -1959,6 +1959,13 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
+    def _get_my_ratings(self, manga_ids: list[str], /) -> Response[statistics.GetPersonalMangaRatingsResponse]:
+        route = Route("GET", "/rating")
+
+        query: dict[str, Any] = {"manga": manga_ids}
+
+        return self.request(route, params=query)
+
     def _set_manga_rating(self, manga_id: str, /, *, rating: int) -> Response[Literal["ok", "error"]]:
         route = Route("POST", "/rating/{manga_id}", manga_id=manga_id)
 
