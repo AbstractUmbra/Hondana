@@ -30,6 +30,8 @@ Chapter
 .. autoclass:: ChapterAtHome
     :members:
 
+Chapter Upload
+~~~~~~~~~~~~~~
 .. autoclass:: ChapterUpload
     :members:
 
