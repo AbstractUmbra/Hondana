@@ -714,6 +714,14 @@ class ChapterUpload:
         await self._http.request(route, json=image_ids)
 
     async def commit(self) -> Chapter:
+        """|coro|
+
+        This method will commit the pending upload session and return the valid chapter.
+
+        Returns
+        --------
+        :class:`~hondana.Chapter`
+        """
         payload: dict[str, Any] = {"chapterDraft": {}, "pageOrder": self.uploaded}
 
         payload["chapterDraft"]["volume"] = self.volume
