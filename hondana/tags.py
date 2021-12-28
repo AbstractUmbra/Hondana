@@ -95,6 +95,12 @@ class Tag:
     def __str__(self) -> str:
         return self.name
 
+    def __eq__(self, other: Tag) -> bool:
+        return isinstance(other, Tag) and self.id == other.id
+
+    def __ne__(self, other: Tag) -> bool:
+        return not self.__eq__(other)
+
     @property
     def name(self) -> str:
         """The name of the tag.

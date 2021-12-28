@@ -87,6 +87,12 @@ class Cover:
     def __str__(self) -> str:
         return self.file_name
 
+    def __eq__(self, other: Cover) -> bool:
+        return isinstance(other, Cover) and self.id == other.id
+
+    def __ne__(self, other: Cover) -> bool:
+        return not self.__eq__(other)
+
     @property
     def created_at(self) -> datetime.datetime:
         """When this cover was created."""

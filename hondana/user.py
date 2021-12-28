@@ -74,6 +74,12 @@ class User:
     def __str__(self) -> str:
         return self.username
 
+    def __eq__(self, other: User) -> bool:
+        return isinstance(other, User) and self.id == other.id
+
+    def __ne__(self, other: User) -> bool:
+        return not self.__eq__(other)
+
     @require_authentication
     async def delete(self) -> None:
         """|coro|

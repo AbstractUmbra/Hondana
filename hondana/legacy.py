@@ -72,3 +72,12 @@ class LegacyItem:
         self.obj_new_id: str = self._attributes["newId"]
         self.obj_legacy_id: int = self._attributes["legacyId"]
         self.obj_type: LegacyMappingType = self._attributes["type"]
+
+    def __repr__(self) -> str:
+        return f"<CustomList id={self.id} type='{self.type}'>"
+
+    def __eq__(self, other: LegacyItem) -> bool:
+        return isinstance(other, LegacyItem) and self.id == other.id
+
+    def __ne__(self, other: LegacyItem) -> bool:
+        return not self.__eq__(other)

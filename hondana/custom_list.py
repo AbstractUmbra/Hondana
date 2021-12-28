@@ -81,6 +81,12 @@ class CustomList:
     def __str__(self) -> str:
         return self.name
 
+    def __eq__(self, other: CustomList) -> bool:
+        return isinstance(other, CustomList) and self.id == other.id
+
+    def __ne__(self, other: CustomList) -> bool:
+        return not self.__eq__(other)
+
     @property
     def owner(self) -> Optional[User]:
         """Returns the owner of this custom list.

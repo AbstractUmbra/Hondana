@@ -78,3 +78,9 @@ class Report:
 
     def __str__(self) -> str:
         return f"Report for {self.category.title()} and reason: {self.reason}"
+
+    def __eq__(self, other: Report) -> bool:
+        return isinstance(other, Report) and self.id == other.id
+
+    def __ne__(self, other: Report) -> bool:
+        return not self.__eq__(other)

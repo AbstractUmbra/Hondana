@@ -125,6 +125,12 @@ class ScanlatorGroup:
     def __str__(self) -> str:
         return self.name
 
+    def __eq__(self, other: ScanlatorGroup) -> bool:
+        return isinstance(other, ScanlatorGroup) and self.id == other.id
+
+    def __ne__(self, other: ScanlatorGroup) -> bool:
+        return not self.__eq__(other)
+
     @property
     def created_at(self) -> datetime.datetime:
         """
