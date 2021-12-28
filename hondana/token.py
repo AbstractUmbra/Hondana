@@ -75,9 +75,6 @@ class Permissions:
         "sid",
     )
 
-    def __repr__(self) -> str:
-        return f"<Permissions type={self.type} issuer={self.issuer} audience={self.issuer} issued_at={self.issued_at} not_before={self.not_before} expires={self.expires} user_id={self.user_id} sid={self.sid}>"
-
     def __init__(self, payload: TokenPayload) -> None:
         self.type: str = payload["typ"]
         self.issuer: str = payload["iss"]
@@ -89,3 +86,6 @@ class Permissions:
         self.roles: list[str] = payload["rol"]
         self.permissions: list[str] = payload["prm"]
         self.sid: str = payload["sid"]
+
+    def __repr__(self) -> str:
+        return f"<Permissions type={self.type} issuer={self.issuer} audience={self.issuer} issued_at={self.issued_at} not_before={self.not_before} expires={self.expires} user_id={self.user_id} sid={self.sid}>"
