@@ -41,5 +41,6 @@ Please take a look at the [examples](./examples/) directory for working examples
 ### API caveats to note
 
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
+  - I have separated them logically, but under the hood all Artists are Authors and their `__eq__` reports as such.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags`
   - I have added [an example](./examples/updating_local_tags.py) on how to do the above.

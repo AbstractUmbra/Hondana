@@ -24,13 +24,14 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Union
 
 from .query import MangaIncludes
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
+    from .artist import Artist
     from .http import HTTPClient
     from .manga import Manga
     from .types.author import AuthorResponse
@@ -140,6 +141,9 @@ class Author:
 
     def __str__(self) -> str:
         return self.name
+
+    def __eq__(self, other: Union[Author, Artist]) -> bool:
+        return self.id == other.id
 
     @property
     def created_at(self) -> datetime.datetime:
