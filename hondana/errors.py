@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
 __all__ = (
     "AuthenticationRequired",
+    "UploadInProgress",
     "MangaDexServerError",
     "APIException",
     "NotFound",
@@ -44,6 +45,10 @@ __all__ = (
 
 class AuthenticationRequired(Exception):
     """An exception to be raised when authentication is required to use this endpoint."""
+
+
+class UploadInProgress(Exception):
+    """An exception to be raised when an upload in progress is already found for the logged in user."""
 
 
 class MangaDexServerError(Exception):

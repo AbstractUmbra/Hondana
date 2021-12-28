@@ -27,14 +27,24 @@ import datetime
 import logging
 import pathlib
 import time
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Union
+from types import TracebackType
+from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Type, TypeVar, Union
 
 import aiofiles
+import aiohttp
 
+from .errors import NotFound, UploadInProgress
 from .manga import Manga
 from .query import MangaIncludes, ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
-from .utils import MISSING, CustomRoute, require_authentication
+from .utils import (
+    MISSING,
+    CustomRoute,
+    Route,
+    as_chunks,
+    require_authentication,
+    to_iso_format,
+)
 
 
 if TYPE_CHECKING:
@@ -43,13 +53,21 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import ChapterResponse, GetAtHomeResponse
+    from .types.chapter import (
+        BeginChapterUploadResponse,
+        ChapterResponse,
+        GetAtHomeResponse,
+        UploadedChapterResponse,
+    )
+    from .types.common import LanguageCode
     from .types.relationship import RelationshipResponse
 
+ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 
 __all__ = (
     "Chapter",
     "ChapterAtHome",
+    "ChapterUpload",
 )
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
@@ -547,3 +565,185 @@ class ChapterAtHome:
 
     def __eq__(self, other: ChapterAtHome) -> bool:
         return isinstance(other, ChapterAtHome) and self.hash == other.hash
+
+
+class ChapterUpload:
+    """
+
+    A context manager for handling the uploading of chapters to the MangaDex API.
+
+    Parameters
+    -----------
+    manga: :class:`~hondana.Manga`
+        The manga we are uploading a chapter for.
+    volume: :class:`str`
+        The volume name/number this chapter is/for.
+    chapter: :class:`str`
+        The chapter name/number.
+    title: :class:`str`
+        The chapter's title.
+    translated_language: :class:`~hondana.types.LanguageCode`
+        The language this chapter is translated in.
+    external_url: Optional[:class:`str`]
+        The external link to this chapter, if any.
+    publish_at: Optional[:class:`str`]
+        The future date at which to publish this chapter.
+    scanlator_groups: List[:class:`str`]
+        The list of scanlator group IDs to attribute to this chapter.
+    existing_upload_session_id: :class:`str`
+        If you already have an open upload session and wish to resume there, please pass the ID to this attribute.
+
+
+    .. note::
+        The ``publish_at`` parameter's string must match the regex pattern found at :class:`~hondana.utils.MANGADEX_TIME_REGEX`
+    """
+
+    __slots__ = (
+        "_http",
+        "manga",
+        "volume",
+        "chapter",
+        "title",
+        "translated_language",
+        "external_url",
+        "publish_at",
+        "scanlator_groups",
+        "uploaded",
+        "upload_session_id",
+        "__committed",
+    )
+
+    def __init__(
+        self,
+        manga: Manga,
+        /,
+        *,
+        volume: str,
+        chapter: str,
+        title: str,
+        translated_language: LanguageCode,
+        external_url: Optional[str] = None,
+        publish_at: Optional[datetime.datetime] = None,
+        scanlator_groups: Optional[list[str]] = None,
+        existing_upload_session_id: Optional[str] = None,
+    ) -> None:
+        self._http: HTTPClient = manga._http
+        self.manga: Manga = manga
+        self.volume: str = volume
+        self.chapter: str = chapter
+        self.title: str = title
+        self.translated_language: LanguageCode = translated_language
+        self.external_url: Optional[str] = external_url
+        self.publish_at: Optional[datetime.datetime] = publish_at
+        self.scanlator_groups: Optional[list[str]] = scanlator_groups
+        self.uploaded: list[str] = []
+        self.upload_session_id: Optional[str] = existing_upload_session_id
+        self.__committed: bool = False
+
+    async def _check_for_session(self) -> None:
+        route = Route("GET", "/upload")
+        try:
+            await self._http.request(route)
+        except NotFound:
+            LOGGER.info("No upload session found, continuing.")
+        else:
+            raise UploadInProgress("You already have an existing session, please terminate it.")
+
+    async def open_session(self) -> BeginChapterUploadResponse:
+        """|coro|
+
+        Opens an upload session and retrieves the session ID.
+        """
+        query: dict[str, Any] = {}
+        query["manga"] = self.manga.id
+        query["groups"] = self.scanlator_groups
+
+        route = Route("POST", "/upload/begin")
+        data: BeginChapterUploadResponse = await self._http.request(route, json=query)
+        return data
+
+    async def upload_images(self, images: list[bytes]) -> None:
+        """|coro|
+
+        This method will take a list of bytes and upload them to the MangaDex API.
+
+        Parameters
+        -----------
+        images: List[:class:`bytes`]
+            A list of images as bytes.
+
+
+        .. warning::
+            The list of bytes must be ordered, this is the order they will be presented in the frontend.
+        """
+        route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
+
+        chunks = as_chunks(images, 10)
+        outer_idx = 1
+        for batch in chunks:
+            form = aiohttp.FormData()
+            for idx, item in enumerate(batch, start=outer_idx):
+                form.add_field(name=f"{idx}", value=item)
+                outer_idx += 1
+
+            response: UploadedChapterResponse = await self._http.request(route, data=form)
+            for item in response["data"]:
+                self.uploaded.append(item["id"])
+
+    async def delete_images(self, image_ids: list[str], /) -> None:
+        """|coro|
+
+        This method will delete image(s) from the pending upload session.
+
+        Parameters
+        -----------
+        image_ids: List[:class:`str`]
+            A list of pending image IDs.
+
+
+        .. note::
+            If you need these IDs during an existing context manager, you can access :attr:`uploaded` and find it from there.
+        """
+        if len(image_ids) == 1:
+            image_id = image_ids[0]
+            route = Route("DELETE", "/upload/{session_id}/{image_id}", session_id=self.upload_session_id, image_id=image_id)
+            await self._http.request(route)
+            return
+
+        route = Route("DELETE", "/upload/{session_id}/batch", session_id=self.upload_session_id)
+        await self._http.request(route, json=image_ids)
+
+    async def commit(self) -> Chapter:
+        payload: dict[str, Any] = {"chapterDraft": {}, "pageOrder": self.uploaded}
+
+        payload["chapterDraft"]["volume"] = self.volume
+        payload["chapterDraft"]["chapter"] = self.chapter
+        payload["chapterDraft"]["title"] = self.title
+        payload["chapterDraft"]["translatedLanguage"] = self.translated_language
+
+        if self.external_url:
+            payload["chapterDraft"]["externalUrl"] = self.external_url
+
+        if self.publish_at:
+            payload["chapterDraft"]["publishAt"] = to_iso_format(self.publish_at)
+
+        route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id)
+        data: ChapterResponse = await self._http.request(route, json=payload)
+
+        self.__committed = True
+        return Chapter(self._http, data)
+
+    async def __aenter__(self: ChapterUploadT) -> ChapterUploadT:
+        if self.upload_session_id is None:
+            await self._check_for_session()
+
+        session_data = await self.open_session()
+        self.upload_session_id = session_data["data"]["id"]
+
+        return self
+
+    async def __aexit__(
+        self, exc_type: Optional[Type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]
+    ) -> None:
+        if self.__committed is False:
+            await self.commit()

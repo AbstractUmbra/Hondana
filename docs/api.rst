@@ -30,6 +30,9 @@ Chapter
 .. autoclass:: ChapterAtHome
     :members:
 
+.. autoclass:: ChapterUpload
+    :members:
+
 Cover
 ~~~~~
 .. autoclass:: Cover

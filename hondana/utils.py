@@ -33,6 +33,7 @@ from typing import (
     Any,
     Callable,
     ClassVar,
+    Iterable,
     Mapping,
     Optional,
     TypeVar,
@@ -68,6 +69,7 @@ __all__ = (
     "to_snake_case",
     "to_camel_case",
     "get_image_mime_type",
+    "as_chunks",
     "MANGA_TAGS",
 )
 
@@ -246,6 +248,20 @@ def to_camel_case(string: str) -> str:
     chunks = [first.lower(), *map(str.capitalize, rest)]
 
     return "".join(chunks)
+
+
+def as_chunks(iterator: Iterable[T], max_size: int) -> Iterable[list[T]]:
+    ret = []
+    n = 0
+    for item in iterator:
+        ret.append(item)
+        n += 1
+        if n == max_size:
+            yield ret
+            ret = []
+            n = 0
+    if ret:
+        yield ret
 
 
 path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
