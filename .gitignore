@@ -4,7 +4,6 @@ build/
 dist/
 docs/build
 docs/_static
-*test.py
 hondana.log
 target/
 *.png

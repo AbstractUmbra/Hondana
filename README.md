@@ -6,8 +6,8 @@
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'>
         <img src='https://github.com/AbstractUmbra/Hondana/workflows/Build/badge.svg' alt='Build status' />
     </a>
-    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/lint.yaml'>
-        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Build status' />
+    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml'>
+        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Linting and Typechecking' />
     </a>
 </div>
 <div align="center">
@@ -20,28 +20,7 @@
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 
 ## Features
-**NOTE** This library is still in development, I will list off the API methods and their progress here:
-
-| Feature          | Implemented? | Notes                                                                |
-|------------------|--------------|----------------------------------------------------------------------|
-| Chapter Upload   | [ ]          | Soon:tm:                                                             |
-| Manga            | [x]          | Done.                                                                |
-| Cover            | [x]          | Done.                                                                |
-| Author           | [x]          | Done.                                                                |
-| Search           | [x]          | Done.                                                                |
-| Auth             | [x]          | Authentication is done per request, token handled.                   |
-| Scanlation Group | [x]          | Done.                                                                |
-| Feed             | [x]          | Done                                                                 |
-| CustomList       | [x]          | Done.                                                                |
-| AtHome           | [x]          | Done.                                                                |
-| Legacy           | [x]          | Done.                                                                |
-| Infrastructure   | [x]          | Done.                                                                |
-| Upload           | [x]          | Manga creation and chapter creation exist for use now.               |
-| Account          | [x]          | Done.                                                                |
-| User             | [x]          | Done.                                                                |
-| Chapter          | [x]          | Done.                                                                |
-| Report           | [x]          | Done.                                                                |
-| Ratelimits?      | [x]          | Ratelimits are handled per HTTP request following the standard flow. |
+The only thing left to implement (of released features) is chapter uploads but presently I cannot think of a sane and reasonable design for this.
 
 
 ## Note about authentication
