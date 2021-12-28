@@ -47,7 +47,10 @@ if TYPE_CHECKING:
     from .types.relationship import RelationshipResponse
 
 
-__all__ = ("Chapter",)
+__all__ = (
+    "Chapter",
+    "ChapterAtHome",
+)
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
 
@@ -85,6 +88,7 @@ class Chapter:
         "chapter",
         "translated_language",
         "uploader",
+        "external_url",
         "version",
         "_created_at",
         "_updated_at",
@@ -105,6 +109,7 @@ class Chapter:
         self.chapter: Optional[str] = self._attributes["chapter"]
         self.translated_language: str = self._attributes["translatedLanguage"]
         self.uploader: Optional[str] = self._attributes.get("uploader")
+        self.external_url: Optional[str] = self._attributes["externalUrl"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
@@ -118,6 +123,12 @@ class Chapter:
 
     def __str__(self) -> str:
         return self.title or "No title for this chapter..."
+
+    def __eq__(self, other: Chapter) -> bool:
+        return isinstance(other, Chapter) and self.id == other.id
+
+    def __ne__(self, other: Chapter) -> bool:
+        return not self.__eq__(other)
 
     def to_dict(self) -> dict[str, Any]:
         """
@@ -137,7 +148,7 @@ class Chapter:
                 fmt[name] = getattr(self, name)
         return fmt
 
-    async def get_at_home(self, ssl: bool = True) -> GetAtHomeResponse:
+    async def get_at_home(self, ssl: bool = True) -> ChapterAtHome:
         """|coro|
 
         This method returns the @Home data for this chapter.
@@ -150,10 +161,10 @@ class Chapter:
 
         Returns
         --------
-        :class:`~hondana.types.GetAtHomeResponse`
+        :class:`~hondana.ChapterAtHome`
         """
         data = await self._http._get_at_home_url(self.id, ssl=ssl)
-        return data
+        return ChapterAtHome(self._http, data)
 
     @property
     def url(self) -> str:
@@ -415,15 +426,14 @@ class Chapter:
         self, *, start: int, data_saver: bool, ssl: bool, report: bool
     ) -> AsyncGenerator[tuple[bytes, str], None]:
         at_home_data = await self.get_at_home(ssl=ssl)
-        self._at_home_url = at_home_data["baseUrl"]
-        chapter_data = at_home_data["chapter"]
+        self._at_home_url = at_home_data.base_url
 
-        _pages = chapter_data["dataSaver"] if data_saver else chapter_data["data"]
+        _pages = at_home_data.data_saver if data_saver else at_home_data.data
         for i, url in enumerate(_pages[start:], start=1):
             route = CustomRoute(
                 "GET",
                 self._at_home_url,
-                f"/{'data-saver' if data_saver else 'data'}/{chapter_data['hash']}/{url}",
+                f"/{'data-saver' if data_saver else 'data'}/{at_home_data.hash}/{url}",
             )
             LOGGER.debug("Attempting to download: %s" % route.url)
             _start = time.monotonic()
@@ -495,3 +505,45 @@ class Chapter:
                 await f.write(page_data)
                 LOGGER.info("Downloaded to: %s", download_path)
             idx += 1
+
+
+class ChapterAtHome:
+    """
+    A small helper object for the MD@H responses from the API.
+
+    Attributes
+    -----------
+    base_url: :class:`str`
+        The base url for the MD@H connection
+    hash: :class:`str`
+        The hash of this chapter.
+    data: List[:class:`str`]
+        A list of page hashes for this chapter, for download/reading.
+    data_saver: List[:class:`str`]
+        A list of page hashes for this chapter, for download/reading.
+        These pages are of "data saver" quality, compared to full quality :attr:`data`
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "base_url",
+        "hash",
+        "data",
+        "data_saver",
+    )
+
+    def __init__(self, http: HTTPClient, payload: GetAtHomeResponse) -> None:
+        self._http: HTTPClient = http
+        self._data: GetAtHomeResponse = payload
+        self.base_url: str = payload["baseUrl"]
+        chapter = payload["chapter"]
+        self.hash: str = chapter["hash"]
+        self.data: list[str] = chapter["data"]
+        self.data_saver: list[str] = chapter["dataSaver"]
+
+    def __repr__(self) -> str:
+        return f"<ChapterAtHome hash='{self.hash}'>"
+
+    def __eq__(self, other: ChapterAtHome) -> bool:
+        return isinstance(other, ChapterAtHome) and self.hash == other.hash

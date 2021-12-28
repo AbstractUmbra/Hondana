@@ -27,6 +27,9 @@ Chapter
 .. autoclass:: Chapter
     :members:
 
+.. autoclass:: ChapterAtHome
+    :members:
+
 Cover
 ~~~~~
 .. autoclass:: Cover

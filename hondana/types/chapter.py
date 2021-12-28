@@ -59,6 +59,8 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
 
     translatedLanguage: :class:`str`
 
+    externalUrl: Optional[:class:`str`]
+
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -75,6 +77,7 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     volume: str
     chapter: str
     translatedLanguage: str
+    externalUrl: Optional[str]
     version: int
     createdAt: str
     updatedAt: str
@@ -145,7 +148,9 @@ class GetAtHomeResponse(TypedDict):
 class GetAtHomeChapterResponse(TypedDict):
     """
     hash: :class:`str`
+
     data: List[:class:`str`]
+
     dataSaver: List[:class:`str`]
     """
 
