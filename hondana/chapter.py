@@ -586,16 +586,12 @@ class ChapterUpload:
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
         The external link to this chapter, if any.
-    publish_at: Optional[:class:`str`]
+    publish_at: Optional[:class:`datetime.datetime`]
         The future date at which to publish this chapter.
     scanlator_groups: List[:class:`str`]
         The list of scanlator group IDs to attribute to this chapter.
     existing_upload_session_id: :class:`str`
         If you already have an open upload session and wish to resume there, please pass the ID to this attribute.
-
-
-    .. note::
-        The ``publish_at`` parameter's string must match the regex pattern found at :class:`~hondana.utils.MANGADEX_TIME_REGEX`
     """
 
     __slots__ = (
