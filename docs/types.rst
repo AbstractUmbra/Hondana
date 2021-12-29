@@ -273,3 +273,9 @@ User
 .. autoclass:: GetSingleUserResponse
 
 .. autoclass:: GetMultiUserResponse
+
+Upload
+------
+.. autoclass:: UploadSessionAttributes
+
+.. autoclass:: GetUploadSessionResponse
