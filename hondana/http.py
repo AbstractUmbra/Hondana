@@ -1999,3 +1999,19 @@ class HTTPClient:
         query: dict[str, Any] = {"manga": manga_ids}
 
         return self.request(route, params=query)
+
+    def _open_upload_session(
+        self, manga_id: str, /, *, scanlator_groups: Optional[list[str]]
+    ) -> Response[chapter.BeginChapterUploadResponse]:
+        route = Route("POST", "/upload/begin")
+
+        query: dict[str, Any] = {}
+        query["manga"] = manga_id
+        query["groups"] = scanlator_groups
+
+        return self.request(route, json=query)
+
+    def _abandon_upload_session(self, session_id: str, /) -> Response[None]:
+        route = Route("DELETE", "/upload/{session_id}", session_id=session_id)
+
+        return self.request(route)

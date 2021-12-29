@@ -61,6 +61,7 @@ if TYPE_CHECKING:
     )
     from .types.common import LanguageCode
     from .types.relationship import RelationshipResponse
+    from .types.upload import GetUploadSessionResponse
 
 ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 
@@ -639,25 +640,21 @@ class ChapterUpload:
     async def _check_for_session(self) -> None:
         route = Route("GET", "/upload")
         try:
-            await self._http.request(route)
+            data: GetUploadSessionResponse = await self._http.request(route)
         except NotFound:
             LOGGER.info("No upload session found, continuing.")
         else:
-            raise UploadInProgress("You already have an existing session, please terminate it.")
+            raise UploadInProgress("You already have an existing session, please terminate it.", session_id=data["id"])
 
+    @require_authentication
     async def open_session(self) -> BeginChapterUploadResponse:
         """|coro|
 
         Opens an upload session and retrieves the session ID.
         """
-        query: dict[str, Any] = {}
-        query["manga"] = self.manga.id
-        query["groups"] = self.scanlator_groups
+        return await self._http._open_upload_session(self.manga.id, scanlator_groups=self.scanlator_groups)
 
-        route = Route("POST", "/upload/begin")
-        data: BeginChapterUploadResponse = await self._http.request(route, json=query)
-        return data
-
+    @require_authentication
     async def upload_images(self, images: list[bytes]) -> None:
         """|coro|
 
@@ -686,6 +683,7 @@ class ChapterUpload:
             for item in response["data"]:
                 self.uploaded.append(item["id"])
 
+    @require_authentication
     async def delete_images(self, image_ids: list[str], /) -> None:
         """|coro|
 
@@ -709,6 +707,26 @@ class ChapterUpload:
         route = Route("DELETE", "/upload/{session_id}/batch", session_id=self.upload_session_id)
         await self._http.request(route, json=image_ids)
 
+    @require_authentication
+    async def abandon(self, session_id: Optional[str] = None, /) -> None:
+        """|coro|
+
+        This method will abandon your current (or passed) upload session.
+
+        Parameters
+        -----------
+        session_id: Optional[:class:`str`]
+            The session id which to abandon.
+            Will default to the current instance's session.
+        """
+
+        session = session_id or self.upload_session_id
+        if session is None:
+            return
+
+        await self._http._abandon_upload_session(session)
+
+    @require_authentication
     async def commit(self) -> Chapter:
         """|coro|
 
@@ -737,6 +755,7 @@ class ChapterUpload:
         self.__committed = True
         return Chapter(self._http, data)
 
+    @require_authentication
     async def __aenter__(self: ChapterUploadT) -> ChapterUploadT:
         if self.upload_session_id is None:
             await self._check_for_session()

@@ -24,22 +24,47 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .query import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .statistics import *
-from .tags import *
-from .token import *
-from .user import *
-from .upload import *
+from typing import TypedDict, Literal
+
+
+__all__ = (
+    "UploadSessionAttributes",
+    "GetUploadSessionResponse",
+)
+
+
+class UploadSessionAttributes(TypedDict):
+    """
+    isCommitted: :class:`bool`
+
+    isProcessed: :class:`bool`
+
+    isDeleted: :class:`bool`
+
+    version: :class:`int`
+
+    createdAt: :class:`str`
+
+    updatedAt: :class:`str`
+    """
+
+    isCommitted: bool
+    isProcessed: bool
+    isDeleted: bool
+    version: int
+    createdAt: str
+    updatedAt: str
+
+
+class GetUploadSessionResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"upload_session"``]
+
+    attributes: :class:`~hondana.types.UploadSessionAttributes`
+    """
+
+    id: str
+    type: Literal["upload_session"]
+    attributes: UploadSessionAttributes

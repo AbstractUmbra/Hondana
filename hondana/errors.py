@@ -50,6 +50,14 @@ class AuthenticationRequired(Exception):
 class UploadInProgress(Exception):
     """An exception to be raised when an upload in progress is already found for the logged in user."""
 
+    def __init__(self, message: str, /, *, session_id: str) -> None:
+        self.message: str = message
+        self.session_id: str = session_id
+        super().__init__(self.message, self.session_id)
+
+    def __str__(self) -> str:
+        return f"An upload session was already found, it's ID is: {self.session_id}"
+
 
 class MangaDexServerError(Exception):
     """Generic exception type for when MangaDex is down."""
