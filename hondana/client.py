@@ -2492,7 +2492,7 @@ class Client:
         description: Optional[str] = None,
         twitter: Optional[str] = None,
         inactive: Optional[bool] = None,
-        publish_delay: Optional[str] = None,
+        publish_delay: Optional[Union[str, datetime.timedelta]] = None,
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -2518,12 +2518,13 @@ class Client:
             The scanlation group's twitter url, if any.
         inactive: Optional[:class:`bool`]
             If the scanlation group is inactive or not.
-        publish_delay: Optional[:class:`str`]
+        publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
             If the scanlation group's releases are published on a delay.
 
 
         .. note::
-            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern
+            or be a valid ``datetime.timedelta``.
 
 
         Raises
@@ -2604,7 +2605,7 @@ class Client:
         focused_languages: list[common.LanguageCode] = MISSING,
         inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
-        publish_delay: Optional[str] = MISSING,
+        publish_delay: Optional[Union[str, datetime.timedelta]] = MISSING,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -2641,7 +2642,7 @@ class Client:
             If the group is inactive or not.
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
-        publish_delay: Optional[:class:`str`]
+        publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
             The publish delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
@@ -2652,7 +2653,8 @@ class Client:
             keys are all nullable in the API. To do so please pass ``None`` to these keys.
 
         .. note::
-            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern
+            or be a valid ``datetime.timdelta``.
 
         Raises
         -------

@@ -264,6 +264,55 @@ def as_chunks(iterator: Iterable[T], max_size: int) -> Iterable[list[T]]:
         yield ret
 
 
+def delta_to_format(delta: datetime.timedelta) -> str:
+    def builder(*, weeks: int = None, days: int = None, hours: int = None, minutes: int = None, seconds: int = None) -> str:
+        fmt = ""
+        if weeks or days:
+            fmt += "P"
+        if days:
+            fmt += f"{days}D"
+        if weeks:
+            fmt += f"{weeks}W"
+        if hours or minutes or seconds:
+            fmt += "T"
+        if hours:
+            fmt += f"{hours}H"
+        if minutes:
+            fmt += f"{minutes}M"
+        if seconds:
+            fmt += f"{seconds}S"
+
+        return fmt
+
+    total_secs = int(delta.total_seconds())
+
+    weeks, remaining = divmod(total_secs, 604800)
+    if weeks > 0:
+        total_secs = remaining
+        if remaining == 0:
+            return builder(weeks=weeks)
+
+    days, remaining = divmod(total_secs, 86400)
+    if days > 0:
+        total_secs = remaining
+        if remaining == 0:
+            return builder(weeks=weeks, days=days)
+
+    hours, remaining = divmod(total_secs, 3600)
+    if hours > 0:
+        total_secs = remaining
+        if remaining == 0:
+            return builder(weeks=weeks, days=days, hours=hours)
+
+    minutes, remaining = divmod(total_secs, 60)
+    if minutes > 0:
+        total_secs = remaining
+        if remaining == 0:
+            return builder(weeks=weeks, days=days, hours=hours, minutes=minutes)
+
+    return builder(weeks=weeks, days=days, hours=hours, minutes=minutes, seconds=total_secs)
+
+
 path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
 with open(path, "r") as _fp:
     MANGA_TAGS: dict[str, list[str]] = json.load(_fp)

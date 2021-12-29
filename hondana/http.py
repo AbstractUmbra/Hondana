@@ -55,9 +55,11 @@ from .errors import (
 )
 from .utils import (
     MANGA_TAGS,
+    MANGADEX_TIME_REGEX,
     MISSING,
     CustomRoute,
     Route,
+    delta_to_format,
     get_image_mime_type,
     json_or_text,
     php_query_builder,
@@ -1552,7 +1554,7 @@ class HTTPClient:
         description: Optional[str],
         twitter: Optional[str],
         inactive: Optional[bool],
-        publish_delay: Optional[str],
+        publish_delay: Optional[Union[str, datetime.timedelta]],
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("POST", "/group")
 
@@ -1583,6 +1585,12 @@ class HTTPClient:
             query["inactive"] = inactive
 
         if publish_delay:
+            if isinstance(publish_delay, datetime.timedelta):
+                publish_delay = delta_to_format(publish_delay)
+
+            if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
+                raise ValueError("The `publish_delay` parameter must match the regex format.")
+
             query["publishDelay"] = publish_delay
 
         return self.request(route, json=query)
@@ -1615,7 +1623,7 @@ class HTTPClient:
         focused_languages: Optional[list[common.LanguageCode]],
         inactive: Optional[bool],
         locked: Optional[bool],
-        publish_delay: Optional[str],
+        publish_delay: Optional[Union[str, datetime.timedelta]],
         version: int,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
@@ -1656,6 +1664,13 @@ class HTTPClient:
             query["focusedLanguages"] = focused_languages
 
         if publish_delay is not MISSING:
+            if publish_delay is not None:
+                if isinstance(publish_delay, datetime.timedelta):
+                    publish_delay = delta_to_format(publish_delay)
+
+                if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
+                    raise ValueError("The `publish_at` parameter's string must match the regex pattern.")
+
             query["publishDelay"] = publish_delay
 
         if isinstance(inactive, bool):

@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Union
 
 from .user import User
 from .utils import MISSING, require_authentication
@@ -299,7 +299,7 @@ class ScanlatorGroup:
         focused_languages: list[LanguageCode] = MISSING,
         inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
-        publish_delay: Optional[str] = MISSING,
+        publish_delay: Optional[Union[str, datetime.timedelta]] = MISSING,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -334,7 +334,7 @@ class ScanlatorGroup:
             If the group is inactive or not.
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
-        publish_delay: Optional[:class:`str`]
+        publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
             The publish delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
@@ -345,7 +345,8 @@ class ScanlatorGroup:
             keys are all nullable in the API. To do so please pass ``None`` to these keys.
 
         .. note::
-            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern.
+            The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern
+            or be a valid ``datetime.timedelta``.
 
         Raises
         -------
