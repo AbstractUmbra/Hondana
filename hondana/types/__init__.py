@@ -41,5 +41,5 @@ from .scanlator_group import *
 from .statistics import *
 from .tags import *
 from .token import *
-from .user import *
 from .upload import *
+from .user import *

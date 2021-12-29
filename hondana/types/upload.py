@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TypedDict, Literal
+from typing import Literal, TypedDict
 
 
 __all__ = (
