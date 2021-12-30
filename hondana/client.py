@@ -3195,3 +3195,16 @@ class Client:
             fmt.append(MangaStatistics(self._http, id_, stats))
 
         return fmt
+
+    @require_authentication
+    async def abandon_upload_session(self, session_id: str, /) -> None:
+        """|coro|
+
+        This method will abandon an existing upload session.
+
+        Parameters
+        -----------
+        session_id: :class:`str`
+            The upload
+        """
+        await self._http._abandon_upload_session(session_id)
