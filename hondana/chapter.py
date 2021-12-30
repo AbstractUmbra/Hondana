@@ -724,6 +724,9 @@ class ChapterUpload:
         if session is None:
             return
 
+        if session == self.upload_session_id:
+            self.__committed = True
+
         await self._http._abandon_upload_session(session)
 
     @require_authentication
