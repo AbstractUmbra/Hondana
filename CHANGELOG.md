@@ -1,20 +1,17 @@
-1.1.5
+1.1.6
 
 # Hondana Changelog
 
 ## Added
-- `hondana.chapter.ChapterAtHome` type added for ease of use. (75681c2d091459b3cee79819ab8fcb09e77cbb7d)
-- Added `__eq__` and `__ne__` to primary library objects for use. (75681c2d091459b3cee79819ab8fcb09e77cbb7d, 9694dfac98039e96ee5f233e114984f0cf100910 and d1cc78a1787dc50462898c763a3570dff5def8e9)
-- `Chapter.external_url` attribute added as this was missed at an earlier stage. (75681c2d091459b3cee79819ab8fcb09e77cbb7d)
-- `hondana.ChapterUpload` has been added as a first attempt to upload chapters to MangaDex. (85ef3741b441c86397f193dce3609e682a0fae8a)
-- `hondana.utils.delta_to_format` helper util was added to convert a `datetime.timedelta` to valid ISO8601 DateInterval string. (8d2e2e2fd3cc16eaa534b6a265cb6e0f4837785b)
+- `ChapterUpload.abandon` method has been added. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
+- `Client.abandon_upload_session` method was added for ease, so you don't need to open the context manager to abandon one. (732a7b1e6de9ea0f10662fad0e91a16e101e7d8c)
 
 ## Changes
-- `Client.create_scanlator_group`'s `publish_delay` parameter has changed to accept both `datetime.timedelta` and `str`. (8d2e2e2fd3cc16eaa534b6a265cb6e0f4837785b)
-- `Client.update_scanlator_group`'s `publish_delay` parameter has changed to accept both `datetime.timedelta` and `str`. (8d2e2e2fd3cc16eaa534b6a265cb6e0f4837785b)
-- `ScanlatorGroup.update`'s `publish_delay` parameter has changed to accept both `datetime.timedelta` and `str`. (8d2e2e2fd3cc16eaa534b6a265cb6e0f4837785b)
+- `ChapterUpload` methods now have authentication checks applied. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
+- `ChapterUpload` http methods have been cleaned up as needed. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
 
 ## Fixes
+- `ChapterUpload` no longer tries to commit when you abandon the current session. (0648a13db9e5400006b727bf43b962344b4f154d)
 
 
 ### Notes
