@@ -637,6 +637,9 @@ class ChapterUpload:
         self.upload_session_id: Optional[str] = existing_upload_session_id
         self.__committed: bool = False
 
+    def __repr__(self) -> str:
+        return f"<ChapterUpload id={self.upload_session_id} current_uploads={len(self.uploaded)}>"
+
     async def _check_for_session(self) -> None:
         route = Route("GET", "/upload")
         try:
