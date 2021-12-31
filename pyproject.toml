@@ -50,12 +50,6 @@ version = "hondana.__main__:show_version"
 line-length = 125
 target-version = ["py39"]
 
-[tool.isort]
-profile = "black"
-src_paths = ["hondana"]
-known_first_party = "hondana"
-lines_after_imports = 2
-
 [tool.pyright]
 ignore = ["docs/conf.py"]
 useLibraryCodeForTypes = true
