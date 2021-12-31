@@ -39,6 +39,7 @@ furo = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
+poethepoet = "^0.11.0"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
@@ -49,6 +50,12 @@ version = "hondana.__main__:show_version"
 [tool.black]
 line-length = 125
 target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+src_paths = ["hondana"]
+known_first_party = "hondana"
+lines_after_imports = 2
 
 [tool.pyright]
 ignore = ["docs/conf.py"]
@@ -62,6 +69,11 @@ reportMissingImports = "error"
 reportUnusedImport = "error"
 reportUnusedClass = "error"
 reportUnusedFunction = "error"
+
+[tool.poe.tasks]
+format = "poetry run black ."
+types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+pre = ["format", "types"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

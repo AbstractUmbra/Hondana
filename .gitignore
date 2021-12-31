@@ -11,3 +11,4 @@ target/
 *.gif
 *.jpeg
 _*.py
+api.yaml
