@@ -34,7 +34,7 @@ from aiohttp import ClientSession
 from . import errors
 from .artist import Artist
 from .author import Author
-from .chapter import Chapter
+from .chapter import Chapter, ChapterUpload
 from .cover import Cover
 from .custom_list import CustomList
 from .http import HTTPClient
@@ -3208,3 +3208,145 @@ class Client:
             The upload
         """
         await self._http._abandon_upload_session(session_id)
+
+    @require_authentication
+    def upload_session(
+        self,
+        manga: Union[Manga, str],
+        /,
+        *,
+        volume: str,
+        chapter: str,
+        title: str,
+        translated_language: common.LanguageCode,
+        publish_at: Optional[datetime.datetime] = None,
+        scanlator_groups: Optional[list[str]] = None,
+        existing_upload_session_id: Optional[str] = None,
+    ) -> ChapterUpload:
+        """
+
+        This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
+
+
+        Examples
+        ---------
+
+        Using the async context manager: ::
+
+            async with Client.upload_session(manga, volume=volume, chapter=chapter, title=title, translated_language=translated_language) as session:
+                await session.upload_images(your_list_of_bytes)
+
+
+        Parameters
+        -----------
+        manga: Union[:class:`~hondana.Manga`, :class:`str`]
+            The manga we will be uploading a chapter for.
+        volume: :class:`str`
+            The volume we are uploading a chapter for.
+            Typically this is a numerical identifier.
+        chapter: :class:`str`
+            The chapter we are uploading.
+            Typically this is a numerical identifier.
+        title: :class:`str`
+            The chapter's title.
+        translated_language: :class:`~hondana.types.LanguageCode`
+            The language this chapter is translated in.
+        publish_at: Optional[:class:`datetime.datetime`]
+            When to publish this chapter represented as a *UTC* datetime.
+            This must be a future date.
+        scanlator_groups: Optional[List[:class:`str`]]
+            The list of scanlator groups to attribute to this chapter's scanlation.
+            Only 5 are allowed on a given chapter.
+        existing_upload_session_id: Optional[:class:`str`]
+            Pass this parameter if you wish to resume an existing upload session.
+
+        Returns
+        --------
+        :class:`~hondana.ChapterUpload`
+        """
+        upload_session = ChapterUpload(
+            self._http,
+            manga,
+            volume=volume,
+            chapter=chapter,
+            title=title,
+            translated_language=translated_language,
+            publish_at=publish_at,
+            scanlator_groups=scanlator_groups,
+            existing_upload_session_id=existing_upload_session_id,
+        )
+        return upload_session
+
+    @require_authentication
+    async def upload_chapter(
+        self,
+        manga: Union[Manga, str],
+        /,
+        *,
+        volume: str,
+        chapter: str,
+        title: str,
+        translated_language: common.LanguageCode,
+        publish_at: Optional[datetime.datetime] = None,
+        scanlator_groups: Optional[list[str]] = None,
+        existing_upload_session_id: Optional[str] = None,
+        images: list[bytes],
+    ) -> Chapter:
+        """|coro|
+
+        This method will perform the chapter upload for you, providing a list of images.
+
+        Parameters
+        -----------
+        manga: Union[:class:`~hondana.Manga`, :class:`str`]
+            The manga we will be uploading a chapter for.
+        volume: :class:`str`
+            The volume we are uploading a chapter for.
+            Typically this is a numerical identifier.
+        chapter: :class:`str`
+            The chapter we are uploading.
+            Typically this is a numerical identifier.
+        title: :class:`str`
+            The chapter's title.
+        translated_language: :class:`~hondana.types.LanguageCode`
+            The language this chapter is translated in.
+        publish_at: Optional[:class:`datetime.datetime`]
+            When to publish this chapter represented as a *UTC* datetime.
+            This must be a future date.
+        scanlator_groups: Optional[List[:class:`str`]]
+            The list of scanlator groups to attribute to this chapter's scanlation.
+            Only 5 are allowed on a given chapter.
+        existing_upload_session_id: Optional[:class:`str`]
+            Pass this parameter if you wish to resume an existing upload session.
+        images: List[:class:`bytes`]
+            The list of images to upload.
+
+
+        .. warning::
+            The ``images`` parameter MUST be ordered how you would expect the images to be shown in the frontend.
+            E.g. ``list[0]`` would be page 1, and so on.
+
+        .. warning::
+            This method is for ease of use, but offers little control over the upload session.
+            If you need more control, such as to delete images from the existing session.
+            I suggest using :meth:`~hondana.Client.upload_session` instead for greater control.
+
+        .. note::
+            I personally advise the `context manager <https://realpython.com/python-with-statement/>`_ method as it allows more control over your upload session.
+        """
+
+        async with ChapterUpload(
+            self._http,
+            manga,
+            volume=volume,
+            chapter=chapter,
+            title=title,
+            translated_language=translated_language,
+            publish_at=publish_at,
+            scanlator_groups=scanlator_groups,
+            existing_upload_session_id=existing_upload_session_id,
+        ) as session:
+            await session.upload_images(images)
+            new_chapter = await session.commit()
+
+        return new_chapter

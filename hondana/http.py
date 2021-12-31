@@ -100,6 +100,7 @@ if TYPE_CHECKING:
         report,
         scanlator_group,
         statistics,
+        upload,
         user,
     )
     from .types.auth import CheckPayload
@@ -2002,7 +2003,7 @@ class HTTPClient:
 
     def _open_upload_session(
         self, manga_id: str, /, *, scanlator_groups: Optional[list[str]]
-    ) -> Response[chapter.BeginChapterUploadResponse]:
+    ) -> Response[upload.BeginChapterUploadResponse]:
         route = Route("POST", "/upload/begin")
 
         query: dict[str, Any] = {}

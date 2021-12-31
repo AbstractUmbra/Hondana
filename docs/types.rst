@@ -279,3 +279,15 @@ Upload
 .. autoclass:: UploadSessionAttributes
 
 .. autoclass:: GetUploadSessionResponse
+
+.. autoclass:: ChapterUploadAttributes
+
+.. autoclass:: ChapterUploadData
+
+.. autoclass:: BeginChapterUploadResponse
+
+.. autoclass:: UploadedChapterPageAttributes
+
+.. autoclass:: UploadedChapterDataResponse
+
+.. autoclass:: UploadedChapterResponse

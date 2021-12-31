@@ -53,15 +53,14 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import (
-        BeginChapterUploadResponse,
-        ChapterResponse,
-        GetAtHomeResponse,
-        UploadedChapterResponse,
-    )
+    from .types.chapter import ChapterResponse, GetAtHomeResponse
     from .types.common import LanguageCode
     from .types.relationship import RelationshipResponse
-    from .types.upload import GetUploadSessionResponse
+    from .types.upload import (
+        BeginChapterUploadResponse,
+        GetUploadSessionResponse,
+        UploadedChapterResponse,
+    )
 
 ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 
@@ -612,7 +611,8 @@ class ChapterUpload:
 
     def __init__(
         self,
-        manga: Manga,
+        http: HTTPClient,
+        manga: Union[Manga, str],
         /,
         *,
         volume: str,
@@ -624,8 +624,8 @@ class ChapterUpload:
         scanlator_groups: Optional[list[str]] = None,
         existing_upload_session_id: Optional[str] = None,
     ) -> None:
-        self._http: HTTPClient = manga._http
-        self.manga: Manga = manga
+        self._http: HTTPClient = http
+        self.manga: Union[Manga, str] = manga
         self.volume: str = volume
         self.chapter: str = chapter
         self.title: str = title
@@ -652,10 +652,15 @@ class ChapterUpload:
 
         Opens an upload session and retrieves the session ID.
         """
-        return await self._http._open_upload_session(self.manga.id, scanlator_groups=self.scanlator_groups)
+        if isinstance(self.manga, Manga):
+            manga_id = self.manga.id
+        else:
+            manga_id = self.manga
+
+        return await self._http._open_upload_session(manga_id, scanlator_groups=self.scanlator_groups)
 
     @require_authentication
-    async def upload_images(self, images: list[bytes]) -> None:
+    async def upload_images(self, images: list[bytes]) -> list[UploadedChapterResponse]:
         """|coro|
 
         This method will take a list of bytes and upload them to the MangaDex API.
@@ -665,11 +670,16 @@ class ChapterUpload:
         images: List[:class:`bytes`]
             A list of images as bytes.
 
+        Returns
+        --------
+        List[:class:`~hondana.types.UploadedChapterResponse`]
+
 
         .. warning::
             The list of bytes must be ordered, this is the order they will be presented in the frontend.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
+        ret = []
 
         chunks = as_chunks(images, 10)
         outer_idx = 1
@@ -682,6 +692,9 @@ class ChapterUpload:
             response: UploadedChapterResponse = await self._http.request(route, data=form)
             for item in response["data"]:
                 self.uploaded.append(item["id"])
+            ret.append(response)
+
+        return ret
 
     @require_authentication
     async def delete_images(self, image_ids: list[str], /) -> None:
@@ -696,7 +709,7 @@ class ChapterUpload:
 
 
         .. note::
-            If you need these IDs during an existing context manager, you can access :attr:`uploaded` and find it from there.
+            If you need these IDs during an existing context manager, you can access ``uploaded`` and find it from there.
         """
         if len(image_ids) == 1:
             image_id = image_ids[0]
