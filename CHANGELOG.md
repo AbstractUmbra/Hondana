@@ -1,17 +1,23 @@
-1.1.6
+1.1.7
 
 # Hondana Changelog
 
 ## Added
-- `ChapterUpload.abandon` method has been added. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
-- `Client.abandon_upload_session` method was added for ease, so you don't need to open the context manager to abandon one. (732a7b1e6de9ea0f10662fad0e91a16e101e7d8c)
+- `Client.get_my_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Client.manga_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Client.chapter_list` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Client.get_custom_list_manga_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Manga.feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Manga.chapter_list` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `Client.chapter_list`'s `uploader` parameter now also supports `list[str]`. (7968bc5283990670323bdaba3ceeaf8b61192a96)
+- `ChapterUpload.__repr__`. (320dc14b27b5acfa79a71a23235402734dccd7f8)
+
 
 ## Changes
-- `ChapterUpload` methods now have authentication checks applied. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
-- `ChapterUpload` http methods have been cleaned up as needed. (b9d8593c5d9904888a8bdf7bd5cef9ca9bbe49ba)
+
 
 ## Fixes
-- `ChapterUpload` no longer tries to commit when you abandon the current session. (0648a13db9e5400006b727bf43b962344b4f154d)
+- `ChapterUpload.delete_images` now removes them from the internal `uploaded` attribute too, for accurate representation. (cc1e49fa02d01fe9f0e9fbd9fa489272de9d2936)
 
 
 ### Notes
