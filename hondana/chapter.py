@@ -720,6 +720,9 @@ class ChapterUpload:
         route = Route("DELETE", "/upload/{session_id}/batch", session_id=self.upload_session_id)
         await self._http.request(route, json=image_ids)
 
+        if self.uploaded:
+            self.uploaded = [item for item in self.uploaded if item not in image_ids]
+
     @require_authentication
     async def abandon(self, session_id: Optional[str] = None, /) -> None:
         """|coro|
