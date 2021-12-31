@@ -773,6 +773,8 @@ class Manga:
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
+        excluded_groups: Optional[list[str]] = None,
+        excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
@@ -798,6 +800,10 @@ class Manga:
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        excluded_groups: Optional[List[:class:`str`]]
+            The list of scanlator groups to exclude from the response.
+        excluded_uploaders: Optional[List[:class:`str`]]
+            The list of uploaders to exclude from the response.
         include_future_updates: Optional[:class:`bool`]
             Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -831,6 +837,8 @@ class Manga:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            excluded_groups=excluded_groups,
+            excluded_uploaders=excluded_uploaders,
             include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,
@@ -985,6 +993,8 @@ class Manga:
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
+        excluded_groups: Optional[list[str]] = None,
+        excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
@@ -1024,6 +1034,10 @@ class Manga:
             The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
             The content rating to filter the feed by.
+        excluded_groups: Optional[List[:class:`str`]]
+            The list of scanlator groups to exclude from the response.
+        excluded_uploaders: Optional[List[:class:`str`]]
+            The list of uploaders to exclude from the response.
         include_future_updates: Optional[:class:`bool`]
             Whether to include future chapters in this feed. Defaults to ``True`` API side.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -1068,6 +1082,8 @@ class Manga:
             original_language=original_language,
             excluded_original_language=excluded_original_language,
             content_rating=content_rating,
+            excluded_groups=excluded_groups,
+            excluded_uploaders=excluded_uploaders,
             include_future_updates=include_future_updates,
             created_at_since=created_at_since,
             updated_at_since=updated_at_since,

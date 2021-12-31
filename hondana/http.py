@@ -825,6 +825,8 @@ class HTTPClient:
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        excluded_groups: Optional[list[str]],
+        excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
@@ -852,6 +854,12 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if excluded_groups:
+            query["excludedGroups"] = excluded_groups
+
+        if excluded_uploaders:
+            query["excludedUploaders"] = excluded_uploaders
 
         if include_future_updates:
             resolved = str(int(include_future_updates))
@@ -1023,7 +1031,7 @@ class HTTPClient:
         ids: Optional[list[str]],
         title: Optional[str],
         groups: Optional[list[str]],
-        uploader: Optional[str],
+        uploader: Optional[Union[str, list[str]]],
         manga: Optional[str],
         volume: Optional[Union[str, list[str]]],
         chapter: Optional[Union[str, list[str]]],
@@ -1031,6 +1039,8 @@ class HTTPClient:
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        excluded_groups: Optional[list[str]],
+        excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
@@ -1076,6 +1086,12 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if excluded_groups:
+            query["excludedGroups"] = excluded_groups
+
+        if excluded_uploaders:
+            query["excludedUploaders"] = excluded_uploaders
 
         if include_future_updates:
             resolved = str(int(include_future_updates))
@@ -1501,6 +1517,8 @@ class HTTPClient:
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         content_rating: Optional[list[common.ContentRating]],
+        excluded_groups: Optional[list[str]],
+        excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
@@ -1524,6 +1542,12 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if excluded_groups:
+            query["excludedGroups"] = excluded_groups
+
+        if excluded_uploaders:
+            query["excludedUploaders"] = excluded_uploaders
 
         if include_future_updates:
             resolved = str(int(include_future_updates))
