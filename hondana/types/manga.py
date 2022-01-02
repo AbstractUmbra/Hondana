@@ -62,7 +62,7 @@ __all__ = (
 MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
 MangaIncludes = Literal["author", "artist", "cover_art", "manga"]
 ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
-MangaState = Literal["draft", "submitted", "rejected"]
+MangaState = Literal["draft", "submitted", "published", "rejected"]
 MangaRelationType = Literal[
     "monochrome",
     "main_story",
@@ -141,21 +141,15 @@ class MangaLinks(TypedDict, total=False):
     engtl: Optional[str]
 
 
-class MangaAttributesResponseOptional(TypedDict, total=False):
-    """
-    isLocked: :class:`bool`
-    """
-
-    isLocked: bool
-
-
-class MangaAttributesResponse(MangaAttributesResponseOptional):
+class MangaAttributesResponse(TypedDict):
     """
     title: :class:`~hondana.types.LocalisedString`
 
     altTitle: List[:class:`~hondana.types.LocalisedString`]
 
     description: :class:`~hondana.types.LocalisedString`
+
+    isLocked: :class:`bool`
 
     links: :class:`~hondana.types.MangaLinks`
 
@@ -175,6 +169,8 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
 
     tags: List[:class:`~hondana.types.TagResponse`]
 
+    state: :class:`~hondana.types.MangaState`
+
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -188,6 +184,7 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
     title: LocalisedString
     altTitles: list[LocalisedString]
     description: LocalisedString
+    isLocked: bool
     links: MangaLinks
     originalLanguage: str
     lastVolume: Optional[str]
@@ -197,6 +194,7 @@ class MangaAttributesResponse(MangaAttributesResponseOptional):
     year: Optional[int]
     contentRating: Optional[ContentRating]
     tags: list[TagResponse]
+    state: MangaState
     version: int
     createdAt: str
     updatedAt: str

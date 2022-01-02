@@ -24,6 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
+from functools import cached_property
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
@@ -110,9 +111,11 @@ class Manga:
         "last_volume",
         "last_chapter",
         "publication_demographic",
+        "status",
         "year",
         "content_rating",
         "_tags",
+        "state",
         "version",
         "_created_at",
         "_updated_at",
@@ -138,8 +141,10 @@ class Manga:
         self.last_volume: Optional[str] = self._attributes["lastVolume"]
         self.last_chapter: Optional[str] = self._attributes["lastChapter"]
         self.publication_demographic: Optional[manga.PublicationDemographic] = self._attributes["publicationDemographic"]
+        self.status: Optional[manga.MangaStatus] = self._attributes["status"]
         self.year: Optional[int] = self._attributes["year"]
         self.content_rating: Optional[manga.ContentRating] = self._attributes["contentRating"]
+        self.state: Optional[manga.MangaState] = self._attributes["state"]
         self.version: int = self._attributes["version"]
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
@@ -185,7 +190,7 @@ class Manga:
             return self._description[key]
         return desc
 
-    @property
+    @cached_property
     def tags(self) -> list[Tag]:
         """The tags associated with this manga."""
         return [Tag(tag) for tag in self._tags]
