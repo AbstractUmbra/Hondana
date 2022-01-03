@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "1.1.7"
+version = "1.1.8"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
@@ -73,7 +73,8 @@ reportUnusedFunction = "error"
 [tool.poe.tasks]
 format = "poetry run black ."
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
-pre = ["format", "types"]
+docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
+pre = ["format", "types", "docs"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,23 +1,20 @@
-1.1.7
+1.1.8
+
+API Version 5.4.6!
 
 # Hondana Changelog
 
 ## Added
-- `Client.get_my_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Client.manga_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Client.chapter_list` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Client.get_custom_list_manga_feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Manga.feed` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Manga.chapter_list` has the new `exluded_groups/uploaders` parameter. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `Client.chapter_list`'s `uploader` parameter now also supports `list[str]`. (7968bc5283990670323bdaba3ceeaf8b61192a96)
-- `ChapterUpload.__repr__`. (320dc14b27b5acfa79a71a23235402734dccd7f8)
-
+- `Manga.status` now exists to tell you the current publication status. (7d2b8e8e1a0e86f26b69d87dced840dc80bfa686)
+- `Manga.state` now exists to tell you about the release state. (7d2b8e8e1a0e86f26b69d87dced840dc80bfa686)
+- `MangaStatistics.follows` now shows you the amount of total follows a manga has. (d28ae1596bf772fe7bdad167caafbbef20f90e08)
+- `Chapter.pages` now exists to show the total amount of pages a chapter has, following the removal of the `data` and `dataSaver` keys from the Chapter payload. (d28ae1596bf772fe7bdad167caafbbef20f90e08)
 
 ## Changes
+- `Manga.tags` is not built on the construction of `Manga` objects from their payloads. This is to offset the property running each time. (c32c7f5c87cf1c8b089209a0d0a3ead2c0dfefa7)
 
 
 ## Fixes
-- `ChapterUpload.delete_images` now removes them from the internal `uploaded` attribute too, for accurate representation. (cc1e49fa02d01fe9f0e9fbd9fa489272de9d2936)
 
 
 ### Notes
