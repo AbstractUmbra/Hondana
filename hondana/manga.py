@@ -91,8 +91,16 @@ class Manga:
         The year the manga was release, if the key exists.
     content_rating: Optional[:class:`~hondana.types.ContentRating`]
         The content rating attributed to the manga, if any.
+    state: Optional[:class:`~hondana.types.MangaState`]
+        The publication state of the Manga.
+    stats: Optional[:class:`~hondana.MangaStatistics`]
+        The statistics of the manga.
     version: :class:`int`
         The version revision of this manga.
+
+
+    .. note::
+        The :attr:`stats` is only populated after :meth:`~hondana.Manga.get_statistics` is called.
     """
 
     __slots__ = (
@@ -115,6 +123,7 @@ class Manga:
         "content_rating",
         "tags",
         "state",
+        "stats",
         "version",
         "_created_at",
         "_updated_at",
@@ -146,6 +155,7 @@ class Manga:
         _tags = self._attributes["tags"]
         self.tags: list[Tag] = [Tag(tag_) for tag_ in _tags]
         self.state: Optional[manga.MangaState] = self._attributes["state"]
+        self.stats: Optional[MangaStatistics] = None
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
@@ -1261,6 +1271,23 @@ class Manga:
         """
         await self._http._delete_manga_rating(self.id)
 
+    async def get_statistics(self) -> MangaStatistics:
+        """|coro|
+
+        This method will fetch statistics on the current manga, and cache them as the :attr:`stats`
+
+        Returns
+        --------
+        :class:`~hondana.MangaStatistics`
+        """
+        data = await self._http._get_manga_statistics([self.id])
+
+        key = next(iter(data["statistics"]))
+        stats = MangaStatistics(self._http, self.id, data["statistics"][key])
+
+        self.stats = stats
+        return self.stats
+
 
 class MangaRelation:
     """A class representing a MangaRelation returned from the MangaDex API.
@@ -1314,6 +1341,8 @@ class MangaStatistics:
 
     Attributes
     -----------
+    follows: :class:`int`
+        The number of follows this manga has.
     parent_id: :class:`str`
         The manga these statistics belong to.
     average: :class:`float`
@@ -1326,6 +1355,7 @@ class MangaStatistics:
         "_http",
         "_data",
         "_rating",
+        "follows",
         "parent_id",
         "average",
         "distribution",
@@ -1335,6 +1365,7 @@ class MangaStatistics:
         self._http = http
         self._data = payload
         self._rating = payload["rating"]
+        self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
         self.average: float = self._rating["average"]
         self.distribution: list[int] = self._rating["distribution"]

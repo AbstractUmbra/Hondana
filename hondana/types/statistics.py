@@ -50,9 +50,12 @@ class StatisticsRatingResponse(TypedDict):
 class StatisticsResponse(TypedDict):
     """
     rating: :class:`~hondana.types.StatisticsRatingResponse`
+
+    follows: :class:`int`
     """
 
     rating: StatisticsRatingResponse
+    follows: int
 
 
 class GetStatisticsResponse(TypedDict):

@@ -87,10 +87,14 @@ class Chapter:
         The volume UUID this chapter is associated with this chapter, if any.
     chapter: Optional[:class:`str`]
         The chapter identifier (e.g. '001') associated with this chapter, if any.
+    pages: :class:`int`
+        The number of pages this chapter has.
     translated_language: :class:`str`
         The language code that this chapter was translated to.
     uploader: Optional[:class:`str`]
         The UUID of the uploader attributed to this chapter, if any.
+    external_url: Optional[:class:`str`]
+        The chapter's external url, if any.
     version: :class:`int`
         The revision version of this chapter.
     """
@@ -104,6 +108,7 @@ class Chapter:
         "title",
         "volume",
         "chapter",
+        "pages",
         "translated_language",
         "uploader",
         "external_url",
@@ -125,6 +130,7 @@ class Chapter:
         self.title: Optional[str] = self._attributes["title"]
         self.volume: Optional[str] = self._attributes["volume"]
         self.chapter: Optional[str] = self._attributes["chapter"]
+        self.pages: int = self._attributes["pages"]
         self.translated_language: str = self._attributes["translatedLanguage"]
         self.uploader: Optional[str] = self._attributes.get("uploader")
         self.external_url: Optional[str] = self._attributes["externalUrl"]

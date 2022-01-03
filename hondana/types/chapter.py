@@ -57,6 +57,8 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
 
     chapter: :class:`str`
 
+    pages: :class:`int`
+
     translatedLanguage: :class:`str`
 
     externalUrl: Optional[:class:`str`]
@@ -76,6 +78,7 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     title: Optional[str]
     volume: str
     chapter: str
+    pages: int
     translatedLanguage: str
     externalUrl: Optional[str]
     version: int
