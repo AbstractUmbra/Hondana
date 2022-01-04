@@ -19,7 +19,7 @@ client = hondana.Client(username="my login username", password="my login passwor
 async def search_for_tags() -> list[hondana.Manga]:
     # Using the tag builder for ease during a query
     # This will add a restriction to search for a manga with all 3 of these tags using logical AND
-    tags = hondana.QueryTags("action", "comedy", "isekai", mode="and")
+    tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
 
     # we now perform a search with a limit of 10 (returned manga)
     # an offset of 0 (pagination needs)
@@ -32,7 +32,7 @@ async def search_for_tags() -> list[hondana.Manga]:
 
 async def more_refined_search() -> list[hondana.Manga]:
     # let's do a more refined search using many of the query parameters...
-    tags = hondana.QueryTags("action", "comedy", "isekai", mode="and")
+    tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
 
     # Let's say we only way to show manga created in the last week, lets make an aware utc datetime for one week ago
     seven_days_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=7)

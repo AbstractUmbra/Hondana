@@ -123,14 +123,13 @@ class QueryTags:
     -----------
     tags: :class:`str`
         The tag names you are going to query.
-    mode: :class:`str`
+    mode: Literal[``"AND"``, ``"OR"``]
         The logical operation for the tags.
-        i.e. ``"AND"`` or ``"OR"``
 
     Raises
     -------
     TypeError
-        The mode specified for the builder is not one of "and" or "or"
+        The mode specified for the builder is not one of "AND" or "OR"
 
     ValueError
         The tags passed did not align with MangaDex tags.
@@ -141,7 +140,7 @@ class QueryTags:
         If you feel this is out of date, you can try the helper method :meth:`~hondana.Client.update_tags`
     """
 
-    def __init__(self, *tags: str, mode: str = "AND"):
+    def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND"):
         self._tags = tags
         self.tags: Optional[list[str]] = None
         self.mode: str = mode.upper()
