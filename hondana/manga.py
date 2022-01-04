@@ -1240,7 +1240,7 @@ class Manga:
         await self._http._delete_manga_relation(self.id, relation_id)
 
     @require_authentication
-    async def set_manga_rating(self, *, rating: int) -> None:
+    async def set_rating(self, *, rating: int) -> None:
         """|coro|
 
         This method will set your rating on the manga.
@@ -1261,7 +1261,7 @@ class Manga:
         await self._http._set_manga_rating(self.id, rating=rating)
 
     @require_authentication
-    async def delete_manga_rating(self) -> None:
+    async def delete_rating(self) -> None:
         """|coro|
 
         This method will delete your set rating on the manga.
