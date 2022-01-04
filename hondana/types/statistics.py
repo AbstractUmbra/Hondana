@@ -29,8 +29,11 @@ from typing import Literal, TypedDict
 
 __all__ = (
     "StatisticsRatingResponse",
+    "BatchStatisticsRatingResponse",
     "StatisticsResponse",
+    "BatchStatisticsResponse",
     "GetStatisticsResponse",
+    "BatchGetStatisticsResponse",
     "PersonalMangaRatingsResponse",
     "GetPersonalMangaRatingsResponse",
 )
@@ -47,6 +50,14 @@ class StatisticsRatingResponse(TypedDict):
     distribution: list[int]
 
 
+class BatchStatisticsRatingResponse(TypedDict):
+    """
+    average: :class:`float`
+    """
+
+    average: float
+
+
 class StatisticsResponse(TypedDict):
     """
     rating: :class:`~hondana.types.StatisticsRatingResponse`
@@ -55,6 +66,17 @@ class StatisticsResponse(TypedDict):
     """
 
     rating: StatisticsRatingResponse
+    follows: int
+
+
+class BatchStatisticsResponse(TypedDict):
+    """
+    rating: :class:`~hondana.types.BatchStatisticsRatingResponse`
+
+    follows: :class:`int`
+    """
+
+    rating: BatchStatisticsRatingResponse
     follows: int
 
 
@@ -67,6 +89,17 @@ class GetStatisticsResponse(TypedDict):
 
     result: Literal["ok"]
     statistics: dict[str, StatisticsResponse]
+
+
+class BatchGetStatisticsResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    statistics: Dict[:class:`str`, :class:`~hondana.types.BatchStatisticsResponse`]
+    """
+
+    result: Literal["ok"]
+    statistics: dict[str, BatchStatisticsResponse]
 
 
 class PersonalMangaRatingsResponse(TypedDict):

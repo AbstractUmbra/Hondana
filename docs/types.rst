@@ -239,9 +239,15 @@ Statistics
 ----------
 .. autoclass:: StatisticsRatingResponse
 
+.. autoclass:: BatchStatisticsRatingResponse
+
 .. autoclass:: StatisticsResponse
 
+.. autoclass:: BatchStatisticsResponse
+
 .. autoclass:: GetStatisticsResponse
+
+.. autoclass:: BatchGetStatisticsResponse
 
 .. autoclass:: PersonalMangaRatingsResponse
 

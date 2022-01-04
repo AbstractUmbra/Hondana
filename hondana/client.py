@@ -3206,7 +3206,27 @@ class Client:
         await self._http._delete_manga_rating(manga_id)
 
     @require_authentication
-    async def get_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
+    async def get_manga_statistics(self, manga_id: str, /) -> MangaStatistics:
+        """|coro|
+
+        This method will return the statistics for the passed manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The manga id to fetch the statistics for.
+
+        Returns
+        ---------
+        List[:class:`~hondana.MangaStatistics`]
+        """
+        data = await self._http._get_manga_statistics(manga_id)
+
+        key = next(iter(data["statistics"]))
+        return MangaStatistics(self._http, key, data["statistics"][key])
+
+    @require_authentication
+    async def find_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
         """|coro|
 
         This method will return the statistics for the passed manga.
@@ -3220,7 +3240,7 @@ class Client:
         ---------
         List[:class:`~hondana.MangaStatistics`]
         """
-        data = await self._http._get_manga_statistics(manga_ids)
+        data = await self._http._find_manga_statistics(manga_ids)
 
         fmt: list[MangaStatistics] = []
         for id_, stats in data["statistics"].items():

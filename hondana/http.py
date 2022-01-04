@@ -2018,7 +2018,12 @@ class HTTPClient:
 
         return self.request(route)
 
-    def _get_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.GetStatisticsResponse]:
+    def _get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetStatisticsResponse]:
+        route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
+
+        return self.request(route)
+
+    def _find_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.BatchGetStatisticsResponse]:
         route = Route("GET", "/statistics/manga")
 
         query: dict[str, Any] = {"manga": manga_ids}

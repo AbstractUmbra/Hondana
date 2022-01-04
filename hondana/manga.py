@@ -50,7 +50,11 @@ if TYPE_CHECKING:
     from .types.author import AuthorResponse
     from .types.common import ContentRating, LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
-    from .types.statistics import PersonalMangaRatingsResponse, StatisticsResponse
+    from .types.statistics import (
+        BatchStatisticsResponse,
+        PersonalMangaRatingsResponse,
+        StatisticsResponse,
+    )
 
 
 __all__ = (
@@ -1280,7 +1284,7 @@ class Manga:
         --------
         :class:`~hondana.MangaStatistics`
         """
-        data = await self._http._get_manga_statistics([self.id])
+        data = await self._http._get_manga_statistics(self.id)
 
         key = next(iter(data["statistics"]))
         stats = MangaStatistics(self._http, self.id, data["statistics"][key])
@@ -1349,6 +1353,10 @@ class MangaStatistics:
         The average mean score of the manga.
     distribution: List[:class:`int`]
         The scoring distribution of the manga.
+
+
+    .. note::
+        The :attr:`distribution` attribute will be None unless this object was created with :meth:`~hondana.Client.get_manga_statistics` or :meth:`~hondana.Manga.get_statistics`
     """
 
     __slots__ = (
@@ -1361,14 +1369,16 @@ class MangaStatistics:
         "distribution",
     )
 
-    def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsResponse) -> None:
+    def __init__(
+        self, http: HTTPClient, parent_id: str, payload: Union[StatisticsResponse, BatchStatisticsResponse]
+    ) -> None:
         self._http = http
         self._data = payload
         self._rating = payload["rating"]
         self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
         self.average: float = self._rating["average"]
-        self.distribution: list[int] = self._rating["distribution"]
+        self.distribution: Optional[list[int]] = self._rating.get("distribution")
 
     def __repr__(self) -> str:
         return f"<MangaStatistics for={self.parent_id}>"
