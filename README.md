@@ -20,7 +20,8 @@
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 
 ## Features
-The only thing left to implement (of released features) is chapter uploads but presently I cannot think of a sane and reasonable design for this.
+As it stands, we have 100% API coverage.
+I will update this if it ever changes.
 
 
 ## Note about authentication
@@ -31,7 +32,7 @@ Any help in testing them is greatly appreciated.
 
 ## Note about upload/creation
 Following the above, this means I also cannot test manga creation or chapter creation/upload.
-These are currently a WIP.
+These are currently implemented but untested.
 
 ## Examples
 Please take a look at the [examples](./examples/) directory for working examples.
