@@ -59,7 +59,7 @@ from .utils import (
     MISSING,
     CustomRoute,
     Route,
-    delta_to_format,
+    delta_to_iso,
     get_image_mime_type,
     json_or_text,
     php_query_builder,
@@ -1611,7 +1611,7 @@ class HTTPClient:
 
         if publish_delay:
             if isinstance(publish_delay, datetime.timedelta):
-                publish_delay = delta_to_format(publish_delay)
+                publish_delay = delta_to_iso(publish_delay)
 
             if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
                 raise ValueError("The `publish_delay` parameter must match the regex format.")
@@ -1691,7 +1691,7 @@ class HTTPClient:
         if publish_delay is not MISSING:
             if publish_delay is not None:
                 if isinstance(publish_delay, datetime.timedelta):
-                    publish_delay = delta_to_format(publish_delay)
+                    publish_delay = delta_to_iso(publish_delay)
 
                 if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
                     raise ValueError("The `publish_at` parameter's string must match the regex pattern.")

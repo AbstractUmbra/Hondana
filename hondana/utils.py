@@ -23,8 +23,10 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import json
+import logging
 import pathlib
 import re
 from functools import wraps
@@ -56,6 +58,8 @@ if TYPE_CHECKING:
     B = ParamSpec("B")
 
 
+LOGGER = logging.getLogger(__name__)
+
 __all__ = (
     "MANGADEX_URL_REGEX",
     "MANGADEX_TIME_REGEX",
@@ -70,6 +74,7 @@ __all__ = (
     "to_camel_case",
     "get_image_mime_type",
     "as_chunks",
+    "delta_to_iso",
     "MANGA_TAGS",
 )
 
@@ -83,7 +88,7 @@ MANGADEX_TIME_REGEX = re.compile(
 """
 ``r"^(P([1-9]|[1-9][0-9])D)?(P?([1-9])W)?(P?T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"``
 
-This `regex pattern <https://docs.python.org/3/library/re.html#re-objects>`_ follows the ISO-8601 standard (MangaDex uses PHP DateInterval, located `here <https://www.php.net/manual/en/dateinterval.construct.php>`_.
+This `regex pattern <https://docs.python.org/3/library/re.html#re-objects>`_ follows the ISO-8601 standard (MangaDex uses `<PHP DateInterval<https://www.php.net/manual/en/dateinterval.construct.php>`_).
 The pattern *is* usable but more meant as a guideline for your formatting.
 
 It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
@@ -264,55 +269,51 @@ def as_chunks(iterator: Iterable[T], max_size: int) -> Iterable[list[T]]:
         yield ret
 
 
-def delta_to_format(delta: datetime.timedelta) -> str:
-    def builder(*, weeks: int = None, days: int = None, hours: int = None, minutes: int = None, seconds: int = None) -> str:
-        fmt = ""
-        if weeks or days:
-            fmt += "P"
-        if days:
-            fmt += f"{days}D"
-        if weeks:
-            fmt += f"{weeks}W"
-        if hours or minutes or seconds:
-            fmt += "T"
-        if hours:
-            fmt += f"{hours}H"
-        if minutes:
-            fmt += f"{minutes}M"
-        if seconds:
-            fmt += f"{seconds}S"
+def delta_to_iso(delta: datetime.timedelta) -> str:
+    seconds = round(delta.total_seconds())
+    weeks, seconds = divmod(seconds, 60 * 60 * 24 * 7)
+    days, seconds = divmod(seconds, 60 * 60 * 24)
+    hours, seconds = divmod(seconds, 60 * 60)
+    minutes, seconds = divmod(seconds, 60)
 
-        return fmt
+    builder = "P" * bool(weeks or days)
+    if days:
+        builder += f"{days}D"
+    if weeks:
+        builder += f"{weeks}W"
 
-    total_secs = int(delta.total_seconds())
+    builder += "T" * bool(hours or minutes or seconds)
 
-    weeks, remaining = divmod(total_secs, 604800)
-    if weeks > 0:
-        total_secs = remaining
-        if remaining == 0:
-            return builder(weeks=weeks)
+    if hours:
+        builder += f"{hours}H"
+    if minutes:
+        builder += f"{minutes}M"
+    if seconds:
+        builder += f"{seconds}S"
 
-    days, remaining = divmod(total_secs, 86400)
-    if days > 0:
-        total_secs = remaining
-        if remaining == 0:
-            return builder(weeks=weeks, days=days)
-
-    hours, remaining = divmod(total_secs, 3600)
-    if hours > 0:
-        total_secs = remaining
-        if remaining == 0:
-            return builder(weeks=weeks, days=days, hours=hours)
-
-    minutes, remaining = divmod(total_secs, 60)
-    if minutes > 0:
-        total_secs = remaining
-        if remaining == 0:
-            return builder(weeks=weeks, days=days, hours=hours, minutes=minutes)
-
-    return builder(weeks=weeks, days=days, hours=hours, minutes=minutes, seconds=total_secs)
+    return builder
 
 
-path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
-with open(path, "r") as _fp:
-    MANGA_TAGS: dict[str, list[str]] = json.load(_fp)
+_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
+with open(_path, "r") as _fp:
+    MANGA_TAGS: dict[str, str] = json.load(_fp)
+
+
+def __build_tags():  # type: ignore  # This is for pre-flight release usage only.
+    async def build():
+        from . import Client
+
+        client = Client()
+        tags = await client.update_tags()
+
+        _diff_a = set(map(str.lower, MANGA_TAGS))
+        _diff_b = set(map(str.lower, tags))
+
+        if diff := (_diff_b - _diff_a):
+            print(f"Tags have changed: {', '.join(diff)}")
+        else:
+            print("No tag changes.")
+
+        await client.close()
+
+    asyncio.run(build())
