@@ -16,3 +16,4 @@ API Version 5.4.8!
 
 
 ### Notes
+- Remove `types.manga.MangaRelated` as it was a duplicate. ()

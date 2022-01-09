@@ -160,10 +160,6 @@ Manga
     :members:
     :undoc-members:
 
-.. autoclass:: MangaRelated
-    :members:
-    :undoc-members:
-
 .. autoclass:: MangaLinks
 
 .. autoclass:: MangaResponse
