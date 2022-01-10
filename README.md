@@ -20,17 +20,16 @@
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 
 ## Features
-As it stands, we have 100% API coverage.
-I will update this if it ever changes.
+We are currently at 100% feature compliance with the API.
 
-
-## Note about authentication
+## Notes
+### Authenticated endpoints
 Sadly (thankfully?) I am not an author on MangaDex, meaning I cannot test the creation endpoints for things like scanlators, artists, authors, manga or chapters.
 I have followed the API guidelines to the letter for these, but they may not work.
 
 Any help in testing them is greatly appreciated.
 
-## Note about upload/creation
+### Upload & Creation
 Following the above, this means I also cannot test manga creation or chapter creation/upload.
 These are currently implemented but untested.
 
@@ -40,8 +39,15 @@ Please take a look at the [examples](./examples/) directory for working examples
 **NOTE**: More examples will follow as the library is developed.
 
 ### API caveats to note
-
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
   - I have separated them logically, but under the hood all Artists are Authors and their `__eq__` reports as such.
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags`
   - I have added [an example](./examples/updating_local_tags.py) on how to do the above.
+
+### Contributing
+If you would like to contribute to Hondana, please take a look at [`CONTRIBUTING`](./.github/CONTRIBUTING.md) and follow the procedure there.
+
+
+If you have any question please feel free to join my Discord server:
+
+![Discord server](https://discordapp.com/api/guilds/705500489248145459/widget.png?style=banner4)
