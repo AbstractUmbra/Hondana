@@ -878,7 +878,7 @@ class HTTPClient:
             query["order"] = order._to_dict()
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
@@ -997,7 +997,7 @@ class HTTPClient:
             query["order"] = order._to_dict()
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
@@ -1110,7 +1110,7 @@ class HTTPClient:
             query["order"] = order._to_dict()
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
@@ -1198,7 +1198,7 @@ class HTTPClient:
             query["order"] = order._to_dict()
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
@@ -1270,7 +1270,7 @@ class HTTPClient:
             query["focusedLanguage"] = focused_language
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         if order:
             query["order"] = order._to_dict()
@@ -1370,7 +1370,7 @@ class HTTPClient:
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
@@ -1744,7 +1744,7 @@ class HTTPClient:
             query["order"] = order._to_dict()
 
         if includes:
-            query["includes"] = includes
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
