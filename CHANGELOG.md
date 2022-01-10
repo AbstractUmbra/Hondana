@@ -1,19 +1,15 @@
-1.1.10
+1.1.11
 
 API Version 5.4.8!
 
 # Hondana Changelog
+**Fix release.**
 
 ## Added
-- `"alternate_title"` added as a `types.manga.MangaRelationType`. (8d581245cefba23c608891126cffb003ed3ce164)
 
 ## Changes
-- `Manga.set_manga_rating` was renamed to `Manga.set_rating` to follow naming convention. (6a508b1124bd7e393f28bf298406efc21d45a8cd)
-- `Manga.delete_manga_rating` was renamed to `Manga.delete_rating` to follow naming convention. (6a508b1124bd7e393f28bf298406efc21d45a8cd)
-- Some inner utils code was changed (and tested). (44ee51d47ba3305e0462278d437c0f38c652befb)
 
 ## Fixes
-
+- `hondana.query.XIncludes` types passed to HTTP methods were not correctly used, this has been fixed. (eb53ed09762a92796d7fe3e3e81d1aabf9391c8e)
 
 ### Notes
-- Remove `types.manga.MangaRelated` as it was a duplicate. ()
