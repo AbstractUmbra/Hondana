@@ -309,7 +309,7 @@ def __build_tags():  # type: ignore  # This is for pre-flight release usage only
         _diff_a = set(map(str.lower, MANGA_TAGS))
         _diff_b = set(map(str.lower, tags))
 
-        if diff := (_diff_b - _diff_a):
+        if diff := (_diff_b ^ _diff_a):
             print(f"Tags have changed: {', '.join(diff)}")
         else:
             print("No tag changes.")
