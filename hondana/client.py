@@ -1130,7 +1130,6 @@ class Client:
         *,
         limit: int = 10,
         offset: int = 0,
-        user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
         order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes] = MangaIncludes(),
@@ -1147,8 +1146,6 @@ class Client:
         offset: :class:`int`
             The pagination offset.
             Defaults to 0.
-        user: Optional[:class:`str`]
-            The ID relating to the submitting user to filter by.
         state: Optional[:class:`~hondana.types.MangaState`]
             The state of the submission to filter by.
         order: Optional[:class:`~hondana.query.MangaDraftListOrderQuery`]
@@ -1161,7 +1158,7 @@ class Client:
         :class:`~hondana.Manga`
         """
         data = await self._http._get_manga_draft_list(
-            limit=limit, offset=offset, user=user, state=state, order=order, includes=includes
+            limit=limit, offset=offset, state=state, order=order, includes=includes
         )
         return Manga(self._http, data["data"])
 

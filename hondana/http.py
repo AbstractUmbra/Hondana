@@ -976,7 +976,6 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        user: Optional[str] = None,
         state: Optional[manga.MangaState] = None,
         order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes],
@@ -986,9 +985,6 @@ class HTTPClient:
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
-
-        if user:
-            query["user"] = user
 
         if state:
             query["state"] = state
