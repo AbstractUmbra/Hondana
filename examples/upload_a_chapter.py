@@ -26,6 +26,7 @@ async def main():
     volume = "1"
     translated_language = "en"
     title = "..."
+    scanlator_groups = ["..."]
 
     # Get the manga we are going to upload a chapter for.
     manga = await client.view_manga("...")
@@ -37,7 +38,12 @@ async def main():
 
     # Open our upload session
     async with client.upload_session(
-        manga, volume=volume, chapter=chapter, title=title, translated_language=translated_language
+        manga,
+        volume=volume,
+        chapter=chapter,
+        title=title,
+        translated_language=translated_language,
+        scanlator_groups=scanlator_groups,
     ) as upload_session:
 
         # First we upload the bytes we stored in memory, adhering to the earlier note.
@@ -55,11 +61,17 @@ async def alternative_main():
     volume = "1"
     translated_language = "en"
     title = "..."
+    scanlator_groups = ["..."]
 
     # This will create and return an instance of ``hondana.ChapterUpload``
     ## You can also use a manga ID, or a ``hondana.Manga`` instance as the first parameter
     upload_session = client.upload_session(
-        "...", volume=volume, chapter=chapter, title=title, translated_language=translated_language
+        "...",
+        volume=volume,
+        chapter=chapter,
+        title=title,
+        translated_language=translated_language,
+        scanlator_groups=scanlator_groups,
     )
 
     # I recommend the context manager method, since the session checking and committing are done for you.
@@ -81,6 +93,7 @@ async def other_alternative_main():
     volume = "1"
     translated_language = "en"
     title = "..."
+    scanlator_groups = ["..."]
 
     # Create and upload your images.
     ## NOTE: The order of this list is important, this is the order in which the pages will be presented in the finished upload.
@@ -88,7 +101,13 @@ async def other_alternative_main():
     images: list[bytes] = []
 
     chapter = await client.upload_chapter(
-        "...", volume=volume, chapter=chapter, title=title, translated_language=translated_language, images=images
+        "...",
+        volume=volume,
+        chapter=chapter,
+        title=title,
+        translated_language=translated_language,
+        images=images,
+        scanlator_groups=scanlator_groups,
     )
 
 

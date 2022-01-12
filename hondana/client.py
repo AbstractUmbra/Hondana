@@ -3268,8 +3268,8 @@ class Client:
         chapter: str,
         title: str,
         translated_language: common.LanguageCode,
+        scanlator_groups: list[str],
         publish_at: Optional[datetime.datetime] = None,
-        scanlator_groups: Optional[list[str]] = None,
         existing_upload_session_id: Optional[str] = None,
     ) -> ChapterUpload:
         """
@@ -3300,12 +3300,12 @@ class Client:
             The chapter's title.
         translated_language: :class:`~hondana.types.LanguageCode`
             The language this chapter is translated in.
+        scanlator_groups: List[:class:`str`]
+            The list of scanlator groups to attribute to this chapter's scanlation.
+            Only 5 are allowed on a given chapter.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
-        scanlator_groups: Optional[List[:class:`str`]]
-            The list of scanlator groups to attribute to this chapter's scanlation.
-            Only 5 are allowed on a given chapter.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
 
@@ -3336,8 +3336,8 @@ class Client:
         chapter: str,
         title: str,
         translated_language: common.LanguageCode,
+        scanlator_groups: list[str],
         publish_at: Optional[datetime.datetime] = None,
-        scanlator_groups: Optional[list[str]] = None,
         existing_upload_session_id: Optional[str] = None,
         images: list[bytes],
     ) -> Chapter:
@@ -3359,12 +3359,12 @@ class Client:
             The chapter's title.
         translated_language: :class:`~hondana.types.LanguageCode`
             The language this chapter is translated in.
+        scanlator_groups: List[:class:`str`]
+            The list of scanlator groups to attribute to this chapter's scanlation.
+            Only 5 are allowed on a given chapter.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
-        scanlator_groups: Optional[List[:class:`str`]]
-            The list of scanlator groups to attribute to this chapter's scanlation.
-            Only 5 are allowed on a given chapter.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
         images: List[:class:`bytes`]

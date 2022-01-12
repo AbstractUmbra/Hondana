@@ -2027,7 +2027,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _open_upload_session(
-        self, manga_id: str, /, *, scanlator_groups: Optional[list[str]]
+        self, manga_id: str, /, *, scanlator_groups: list[str]
     ) -> Response[upload.BeginChapterUploadResponse]:
         route = Route("POST", "/upload/begin")
 

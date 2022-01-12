@@ -630,9 +630,9 @@ class ChapterUpload:
         chapter: str,
         title: str,
         translated_language: LanguageCode,
+        scanlator_groups: list[str],
         external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
-        scanlator_groups: Optional[list[str]] = None,
         existing_upload_session_id: Optional[str] = None,
     ) -> None:
         self._http: HTTPClient = http
@@ -643,7 +643,7 @@ class ChapterUpload:
         self.translated_language: LanguageCode = translated_language
         self.external_url: Optional[str] = external_url
         self.publish_at: Optional[datetime.datetime] = publish_at
-        self.scanlator_groups: Optional[list[str]] = scanlator_groups
+        self.scanlator_groups: list[str] = scanlator_groups
         self.uploaded: list[str] = []
         self.upload_session_id: Optional[str] = existing_upload_session_id
         self.__committed: bool = False
