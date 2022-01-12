@@ -141,7 +141,7 @@ class Manga:
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
         self._data = payload
-        self._relationships: list[RelationshipResponse] = payload.pop("relationships", [])
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
