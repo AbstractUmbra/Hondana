@@ -97,6 +97,11 @@ class Chapter:
         The chapter's external url, if any.
     version: :class:`int`
         The revision version of this chapter.
+
+
+    .. warning::
+        THe :attr:`manga` and :meth:`get_parent_manga` will both return a :class:`~hondana.Manga` with minimal data if this Chapter was requested as part of a feed.
+        The reason is that the ``Chapter.relationships["manga"].relationships`` key is null the API response during feed requests to avoid potential recursive data.
     """
 
     __slots__ = (
