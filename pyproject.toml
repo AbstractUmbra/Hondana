@@ -71,6 +71,7 @@ reportUnusedClass = "error"
 reportUnusedFunction = "error"
 
 [tool.poe.tasks]
+spec = "poetry run python _api_dl.py"
 format = "poetry run black ."
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
