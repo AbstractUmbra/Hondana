@@ -60,15 +60,20 @@ lines_after_imports = 2
 [tool.pyright]
 ignore = ["docs/conf.py"]
 useLibraryCodeForTypes = true
-typeCheckingMode = "basic"
 pythonVersion = "3.9"
 strictListInference = true
 strictDictionaryInference = true
 strictSetInference = true
+strictParameterNoneValue = true
 reportMissingImports = "error"
 reportUnusedImport = "error"
 reportUnusedClass = "error"
 reportUnusedFunction = "error"
+reportUnusedVariable = "error"
+reportGeneralTypeIssues = "error"
+reportFunctionMemberAccess = "error"
+reportDuplicateImport = "error"
+reportUntypedFunctionDecorator = "error"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
