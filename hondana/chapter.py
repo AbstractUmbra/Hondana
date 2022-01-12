@@ -495,7 +495,7 @@ class Chapter:
 
     async def download(
         self,
-        path: Union[PathLike[str], str] = None,
+        path: Optional[Union[PathLike[str], str]] = None,
         *,
         start_page: int = 0,
         data_saver: bool = False,
@@ -508,7 +508,7 @@ class Chapter:
 
         Parameters
         -----------
-        path: Union[:class:`os.PathLike`, :class:`str`]
+        path: Optional[Union[:class:`os.PathLike`, :class:`str`]]
             The path at which to use (or create) a directory to save the pages of the chapter.
             Defaults to ``"chapter number - chapter title"``
         start_page: :class:`int`

@@ -78,6 +78,8 @@ class Order(Enum):
 
 
 class _OrderQuery:
+    __slots__ = ()
+
     def __init__(self, **kwargs: Optional[Order]) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
@@ -104,6 +106,8 @@ class _OrderQuery:
 
 
 class _Includes:
+    __slots__ = ()
+
     def to_query(self) -> list[str]:
         """Generates a list of strings based on the kwargs."""
         fmt = []

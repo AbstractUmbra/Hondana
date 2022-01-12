@@ -251,7 +251,7 @@ class Author:
         /,
         *,
         name: Optional[str] = None,
-        biography: LocalisedString = None,
+        biography: Optional[LocalisedString] = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
