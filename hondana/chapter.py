@@ -130,7 +130,7 @@ class Chapter:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data["relationships"]
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.title: Optional[str] = self._attributes["title"]
         self.volume: Optional[str] = self._attributes["volume"]

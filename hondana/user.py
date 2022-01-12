@@ -30,6 +30,7 @@ from .utils import require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.relationship import RelationshipResponse
     from .types.user import UserResponse
 
 __all__ = ("User",)
@@ -53,6 +54,7 @@ class User:
         "_http",
         "_data",
         "_attributes",
+        "_relationships",
         "id",
         "username",
         "version",
@@ -63,6 +65,7 @@ class User:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]

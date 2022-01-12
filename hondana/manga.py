@@ -141,6 +141,7 @@ class Manga:
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
         self._data = payload
+        self._relationships: list[RelationshipResponse] = payload.pop("relationships", [])
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
@@ -163,7 +164,6 @@ class Manga:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._relationships: list[RelationshipResponse] = payload.get("relationships", [])
         self.__authors: Optional[list[Author]] = None
         self.__artists: Optional[list[Artist]] = None
         self.__cover: Optional[Cover] = None

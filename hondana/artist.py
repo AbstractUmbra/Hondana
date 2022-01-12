@@ -115,7 +115,7 @@ class Artist:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data["relationships"]
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]

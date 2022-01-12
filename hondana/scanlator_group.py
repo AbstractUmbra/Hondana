@@ -101,7 +101,7 @@ class ScanlatorGroup:
         self._data = payload
         self._attributes = self._data["attributes"]
         self.id: str = self._data["id"]
-        self._relationships: Optional[list[RelationshipResponse]] = self._data.get("relationships")
+        self._relationships: Optional[list[RelationshipResponse]] = self._data.pop("relationships", [])
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
         self.website: Optional[str] = self._attributes["website"]

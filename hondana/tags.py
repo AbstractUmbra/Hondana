@@ -31,6 +31,7 @@ from .utils import MANGA_TAGS
 
 if TYPE_CHECKING:
     from .types.common import LocalisedString
+    from .types.relationship import RelationshipResponse
     from .types.tags import TagResponse
 
 
@@ -71,6 +72,7 @@ class Tag:
     __slots__ = (
         "_data",
         "_attributes",
+        "_relationships",
         "_name",
         "id",
         "type",
@@ -82,6 +84,7 @@ class Tag:
     def __init__(self, payload: TagResponse) -> None:
         self._data = payload
         self._attributes = payload["attributes"]
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
         self.type: Literal["tag"] = "tag"

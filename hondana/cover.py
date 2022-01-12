@@ -72,6 +72,7 @@ class Cover:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
+        self._relationships = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.volume: Optional[str] = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
@@ -79,7 +80,6 @@ class Cover:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._relationships = self._data["relationships"]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id} filename={self.file_name}>"
