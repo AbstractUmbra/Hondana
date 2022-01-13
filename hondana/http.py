@@ -45,6 +45,16 @@ from typing import (
 import aiohttp
 
 from . import __version__
+from .enums import (
+    ContentRating,
+    CustomListVisibility,
+    MangaRelationType,
+    MangaState,
+    MangaStatus,
+    PublicationDemographic,
+    ReadingStatus,
+    ReportCategory,
+)
 from .errors import (
     APIException,
     BadRequest,
@@ -566,13 +576,13 @@ class HTTPClient:
         year: Optional[int],
         included_tags: Optional[QueryTags],
         excluded_tags: Optional[QueryTags],
-        status: Optional[list[manga.MangaStatus]],
+        status: Optional[list[MangaStatus]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
         available_translated_language: Optional[list[common.LanguageCode]],
-        publication_demographic: Optional[list[manga.PublicationDemographic]],
+        publication_demographic: Optional[list[PublicationDemographic]],
         ids: Optional[list[str]],
-        content_rating: Optional[list[manga.ContentRating]],
+        content_rating: Optional[list[ContentRating]],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         order: Optional[MangaListOrderQuery],
@@ -659,10 +669,10 @@ class HTTPClient:
         original_language: Optional[str],
         last_volume: Optional[str],
         last_chapter: Optional[str],
-        publication_demographic: Optional[manga.PublicationDemographic],
-        status: Optional[manga.MangaStatus],
+        publication_demographic: Optional[PublicationDemographic],
+        status: Optional[MangaStatus],
         year: Optional[int],
-        content_rating: manga.ContentRating,
+        content_rating: ContentRating,
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
         version: int,
@@ -696,16 +706,16 @@ class HTTPClient:
             query["lastChapter"] = last_chapter
 
         if publication_demographic:
-            query["publicationDemographic"] = publication_demographic
+            query["publicationDemographic"] = publication_demographic.value
 
         if status:
-            query["status"] = status
+            query["status"] = status.value
 
         if year:
             query["year"] = year
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = content_rating.value
 
         if tags:
             query["tags"] = tags.tags
@@ -758,17 +768,17 @@ class HTTPClient:
         original_language: Optional[str],
         last_volume: Optional[str],
         last_chapter: Optional[str],
-        publication_demographic: Optional[manga.PublicationDemographic],
-        status: manga.MangaStatus,
+        publication_demographic: Optional[PublicationDemographic],
+        status: MangaStatus,
         year: Optional[int],
-        content_rating: Optional[manga.ContentRating],
+        content_rating: Optional[ContentRating],
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
         version: int,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
 
-        query: dict[str, Any] = {"version": version, "status": status}
+        query: dict[str, Any] = {"version": version, "status": status.value}
 
         if title:
             query["title"] = title
@@ -798,13 +808,16 @@ class HTTPClient:
             query["lastChapter"] = last_chapter
 
         if publication_demographic is not MISSING:
-            query["publicationDemographic"] = publication_demographic
+            if isinstance(publication_demographic, PublicationDemographic):
+                query["publicationDemographic"] = publication_demographic.value
+            else:
+                query["publicationDemographic"] = publication_demographic
 
         if year is not MISSING:
             query["year"] = year
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = content_rating.value
 
         if tags:
             query["tags"] = tags.tags
@@ -824,7 +837,7 @@ class HTTPClient:
         translated_language: Optional[list[common.LanguageCode]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[common.ContentRating]],
+        content_rating: Optional[list[ContentRating]],
         excluded_groups: Optional[list[str]],
         excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
@@ -943,11 +956,11 @@ class HTTPClient:
         return self.request(route, json=body)
 
     def _get_all_manga_reading_status(
-        self, *, status: Optional[manga.ReadingStatus] = None
+        self, *, status: Optional[ReadingStatus] = None
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
         if status:
-            query: dict[str, Any] = {"status": status}
+            query: dict[str, Any] = {"status": status.value}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -956,10 +969,10 @@ class HTTPClient:
         return self.request(route)
 
     def _update_manga_reading_status(
-        self, manga_id: str, /, status: manga.ReadingStatus
+        self, manga_id: str, /, status: ReadingStatus
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
-        query: dict[str, Any] = {"status": status}
+        query: dict[str, Any] = {"status": status.value}
         return self.request(route, params=query)
 
     def _get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
@@ -976,7 +989,7 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        state: Optional[manga.MangaState] = None,
+        state: Optional[MangaState] = None,
         order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes],
     ) -> Response[manga.GetMangaResponse]:
@@ -987,7 +1000,7 @@ class HTTPClient:
         query: dict[str, Any] = {"limit": limit, "offset": offset}
 
         if state:
-            query["state"] = state
+            query["state"] = state.value
 
         if order:
             query["order"] = order._to_dict()
@@ -1009,10 +1022,10 @@ class HTTPClient:
         return self.request(route)
 
     def _create_manga_relation(
-        self, manga_id: str, /, *, target_manga: str, relation_type: manga.MangaRelationType
+        self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
     ) -> Response[manga.MangaRelationCreateResponse]:
         route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id)
-        query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type}
+        query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type.value}
         return self.request(route, json=query)
 
     def _delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1034,7 +1047,7 @@ class HTTPClient:
         translated_language: Optional[list[common.LanguageCode]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[common.ContentRating]],
+        content_rating: Optional[list[ContentRating]],
         excluded_groups: Optional[list[str]],
         excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
@@ -1416,7 +1429,7 @@ class HTTPClient:
         self,
         *,
         name: str,
-        visibility: Optional[custom_list.CustomListVisibility],
+        visibility: Optional[CustomListVisibility],
         manga: Optional[list[str]],
         version: Optional[int],
     ) -> Response[custom_list.GetSingleCustomListResponse]:
@@ -1425,7 +1438,7 @@ class HTTPClient:
         query: dict[str, Any] = {"name": name}
 
         if visibility:
-            query["visibility"] = visibility
+            query["visibility"] = visibility.value
 
         if manga:
             query["manga"] = manga
@@ -1451,7 +1464,7 @@ class HTTPClient:
         /,
         *,
         name: Optional[str],
-        visibility: Optional[custom_list.CustomListVisibility],
+        visibility: Optional[CustomListVisibility],
         manga: Optional[list[str]],
         version: int,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
@@ -1463,7 +1476,7 @@ class HTTPClient:
             query["name"] = name
 
         if visibility:
-            query["visibility"] = visibility
+            query["visibility"] = visibility.value
 
         if manga:
             query["manga"] = manga
@@ -1512,7 +1525,7 @@ class HTTPClient:
         translated_language: Optional[list[common.LanguageCode]],
         original_language: Optional[list[common.LanguageCode]],
         excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[common.ContentRating]],
+        content_rating: Optional[list[ContentRating]],
         excluded_groups: Optional[list[str]],
         excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
@@ -1970,8 +1983,8 @@ class HTTPClient:
         route = Route("DELETE", "/author/{artist_id}", artist_id=artist_id)
         return self.request(route)
 
-    def _get_report_reason_list(self, report_category: report.ReportCategory, /) -> Response[report.GetReportReasonResponse]:
-        route = Route("GET", "/report/reasons/{report_category}", report_category=report_category)
+    def _get_report_reason_list(self, report_category: ReportCategory, /) -> Response[report.GetReportReasonResponse]:
+        route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value)
         return self.request(route)
 
     def _at_home_report(self, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
@@ -1984,14 +1997,19 @@ class HTTPClient:
     def _create_report(
         self,
         *,
-        report_category: report.ReportCategory,
+        report_category: ReportCategory,
         reason: str,
         object_id: str,
         details: str,
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/report")
 
-        query: dict[str, Any] = {"category": report_category, "reason": reason, "objectId": object_id, "details": details}
+        query: dict[str, Any] = {
+            "category": report_category.value,
+            "reason": reason,
+            "objectId": object_id,
+            "details": details,
+        }
 
         return self.request(route, json=query)
 

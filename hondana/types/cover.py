@@ -32,29 +32,11 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "CoverIncludes",
-    "CoverOrderQuery",
     "CoverResponse",
     "CoverAttributesResponse",
     "GetSingleCoverResponse",
     "GetMultiCoverResponse",
 )
-
-CoverIncludes = Literal["manga", "user"]
-
-
-class CoverOrderQuery(TypedDict, total=False):
-    """
-    createdAt: Literal[``"asc"``, ``"desc"``]
-
-    updatedAt: Literal[``"asc"``, ``"desc"``]
-
-    volume: Literal[``"asc"``, ``"desc"``]
-    """
-
-    createdAt: Literal["asc", "desc"]
-    updatedAt: Literal["asc", "desc"]
-    volume: Literal["asc", "desc"]
 
 
 class CoverAttributesResponse(TypedDict):

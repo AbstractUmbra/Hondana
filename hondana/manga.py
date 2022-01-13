@@ -28,6 +28,14 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .cover import Cover
+from .enums import (
+    ContentRating,
+    MangaRelationType,
+    MangaState,
+    MangaStatus,
+    PublicationDemographic,
+    ReadingStatus,
+)
 from .query import (
     ArtistIncludes,
     AuthorIncludes,
@@ -48,7 +56,7 @@ if TYPE_CHECKING:
     from .types import manga
     from .types.artist import ArtistResponse
     from .types.author import AuthorResponse
-    from .types.common import ContentRating, LanguageCode, LocalisedString
+    from .types.common import LanguageCode, LocalisedString
     from .types.relationship import RelationshipResponse
     from .types.statistics import (
         BatchStatisticsResponse,
@@ -72,7 +80,7 @@ class Manga:
     -----------
     id: :class:`str`
         The UUID associated to this manga.
-    relation_type: Optional[:class:`~hondana.types.MangaRelationType`]
+    relation_type: Optional[:class:`~hondana.MangaRelationType`]
         The type of relation this is, to the parent manga requested.
         Only available when :meth:`get_related_manga` is called.
     alternate_titles: :class:`~hondana.types.LocalisedString`
@@ -89,13 +97,13 @@ class Manga:
         The last volume attributed to the manga, if any.
     last_chapter: Optional[:class:`str`]
         The last chapter attributed to the manga, if any.
-    publication_demographic: Optional[:class:`~hondana.types.PublicationDemographic`]
+    publication_demographic: Optional[:class:`~hondana.PublicationDemographic`]
         The attributed publication demographic(s) for the manga, if any.
     year: Optional[:class:`int`]
         The year the manga was release, if the key exists.
-    content_rating: Optional[:class:`~hondana.types.ContentRating`]
+    content_rating: Optional[:class:`~hondana.ContentRating`]
         The content rating attributed to the manga, if any.
-    state: Optional[:class:`~hondana.types.MangaState`]
+    state: Optional[:class:`~hondana.MangaState`]
         The publication state of the Manga.
     stats: Optional[:class:`~hondana.MangaStatistics`]
         The statistics of the manga.
@@ -146,20 +154,27 @@ class Manga:
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
         self._description = self._attributes["description"]
-        self.relation_type: Optional[manga.MangaRelationType] = payload.get("related", None)
+        _related = payload.get("related", None)
+        self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
         self.alternate_titles: list[LocalisedString] = self._attributes["altTitles"]
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
         self.last_volume: Optional[str] = self._attributes["lastVolume"]
         self.last_chapter: Optional[str] = self._attributes["lastChapter"]
-        self.publication_demographic: Optional[manga.PublicationDemographic] = self._attributes["publicationDemographic"]
-        self.status: Optional[manga.MangaStatus] = self._attributes["status"]
+        self.publication_demographic: Optional[PublicationDemographic] = (
+            PublicationDemographic(self._attributes["publicationDemographic"])
+            if self._attributes["publicationDemographic"]
+            else None
+        )
+        self.status: Optional[MangaStatus] = self._attributes["status"]
         self.year: Optional[int] = self._attributes["year"]
-        self.content_rating: Optional[manga.ContentRating] = self._attributes["contentRating"]
+        self.content_rating: Optional[ContentRating] = (
+            ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
+        )
         _tags = self._attributes["tags"]
         self.tags: list[Tag] = [Tag(tag_) for tag_ in _tags]
-        self.state: Optional[manga.MangaState] = self._attributes["state"]
+        self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
         self.stats: Optional[MangaStatistics] = None
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
@@ -587,10 +602,10 @@ class Manga:
         original_language: Optional[str] = None,
         last_volume: str = MISSING,
         last_chapter: str = MISSING,
-        publication_demographic: manga.PublicationDemographic = MISSING,
-        status: manga.MangaStatus = MISSING,
+        publication_demographic: PublicationDemographic = MISSING,
+        status: MangaStatus = MISSING,
         year: int = MISSING,
-        content_rating: Optional[manga.ContentRating] = None,
+        content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
         mod_notes: str = MISSING,
         version: int,
@@ -623,13 +638,13 @@ class Manga:
             The last volume to attribute to this manga.
         last_chapter: :class:`str`
             The last chapter to attribute to this manga.
-        publication_demographic: :class:`hondana.types.PublicationDemographic`
+        publication_demographic: :class:`~hondana.PublicationDemographic`
             The target publication demographic of this manga.
-        status: :class:`~hondana.types.MangaStatus`
+        status: :class:`~hondana.MangaStatus`
             The status of the manga.
         year: :class:`int`
             The release year of the manga.
-        content_rating: Optional[:class:`~hondana.types.ContentRating`]
+        content_rating: Optional[:class:`~hondana.ContentRating`]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -718,7 +733,7 @@ class Manga:
         await self._http._unfollow_manga(self.id)
 
     @require_authentication
-    async def follow(self, *, set_status: bool = True, status: manga.ReadingStatus = "reading") -> None:
+    async def follow(self, *, set_status: bool = True, status: ReadingStatus = ReadingStatus.reading) -> None:
         """|coro|
 
         This method will follow the current Manga for the logged-in user in the MangaDex API.
@@ -729,7 +744,7 @@ class Manga:
             Whether to set the reading status of the manga you follow.
             Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
             Defaults to ``True``
-        status: :class:`~hondana.types.ReadingStatus`
+        status: :class:`~hondana.ReadingStatus`
             The status to apply to the newly followed manga.
             Irrelevant if ``set_status`` is ``False``.
 
@@ -812,7 +827,7 @@ class Manga:
             A list of language codes to filter the original language of the returned chapters with.
         excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -925,14 +940,14 @@ class Manga:
         return await self._http._get_manga_reading_status(self.id)
 
     @require_authentication
-    async def update_reading_status(self, *, status: manga.ReadingStatus) -> None:
+    async def update_reading_status(self, *, status: ReadingStatus) -> None:
         """|coro|
 
         This method will update your current reading status for the current manga.
 
         Parameters
         -----------
-        status: Optional[:class:`~hondana.types.ReadingStatus`]
+        status: Optional[:class:`~hondana.ReadingStatus`]
             The reading status you wish to update this manga with.
 
 
@@ -1046,7 +1061,7 @@ class Manga:
             The list of languages to specifically target in the request.
         excluded_original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The list of original languages to exclude from the request.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -1155,7 +1170,7 @@ class Manga:
 
         Parameters
         -----------
-        includes: Optional[:class:`~hondana.types.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional parameters for expanded requests to the API.
             Defaults to all possible expansions.
 
@@ -1201,7 +1216,7 @@ class Manga:
         return Cover(self._http, data["data"])
 
     @require_authentication
-    async def create_relation(self, *, target_manga: str, relation_type: manga.MangaRelationType) -> MangaRelation:
+    async def create_relation(self, *, target_manga: str, relation_type: MangaRelationType) -> MangaRelation:
         """|coro|
 
         This method will create a manga relation.
@@ -1210,7 +1225,7 @@ class Manga:
         ------------
         target_id: :class:`str`
             The manga ID of the related manga.
-        relation_type: :class:`~hondana.types.MangaRelationType`
+        relation_type: :class:`~hondana.MangaRelationType`
 
         Returns
         --------
@@ -1304,7 +1319,7 @@ class MangaRelation:
         The UUID associated to this manga relation.
     version: :class:`int`
         The version revision of this manga relation.
-    relation_type: :class:`~hondana.types.MangaRelationType`
+    relation_type: :class:`~hondana.MangaRelationType`
         The type of relationship to the source manga.
     """
 
@@ -1336,7 +1351,7 @@ class MangaRelation:
         self.source_manga_id: str = parent_id
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]
-        self.relation_type: manga.MangaRelationType = self._attributes["relation"]
+        self.relation_type: MangaRelationType = MangaRelationType(self._attributes["relation"])
 
 
 class MangaStatistics:

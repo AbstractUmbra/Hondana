@@ -40,6 +40,7 @@ from .chapter import *
 from .client import *
 from .cover import *
 from .custom_list import *
+from .enums import *
 from .errors import *
 from .legacy import *
 from .manga import *

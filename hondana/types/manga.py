@@ -28,17 +28,19 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 
 if TYPE_CHECKING:
-    from .common import ContentRating, LocalisedString, PublicationDemographic
+    from .common import LocalisedString
     from .relationship import RelationshipResponse
     from .tags import TagResponse
 
+from ..enums import ContentRating as _ContentRating
+from ..enums import MangaRelationType as _MangaRelationType
+from ..enums import MangaState as _MangaState
+from ..enums import MangaStatus as _MangaStatus
+from ..enums import PublicationDemographic as _PublicationDemographic
+from ..enums import ReadingStatus as _ReadingStatus
+
 
 __all__ = (
-    "MangaStatus",
-    "MangaIncludes",
-    "ReadingStatus",
-    "MangaState",
-    "MangaRelationType",
     "MangaLinks",
     "MangaAttributesResponse",
     "MangaRelationAttributesResponse",
@@ -56,30 +58,6 @@ __all__ = (
     "MangaSingleReadingStatusResponse",
     "MangaMultipleReadingStatusResponse",
 )
-
-
-MangaStatus = Literal["ongoing", "completed", "hiatus", "cancelled"]
-MangaIncludes = Literal["author", "artist", "cover_art", "manga"]
-ReadingStatus = Literal["reading", "on_hold", "plan_to_read", "dropped", "re_reading", "completed"]
-MangaState = Literal["draft", "submitted", "published", "rejected"]
-MangaRelationType = Literal[
-    "monochrome",
-    "main_story",
-    "adapted_from",
-    "based_on",
-    "prequel",
-    "side_story",
-    "doujinshi",
-    "same_franchise",
-    "shared_universe",
-    "sequel",
-    "spin_off",
-    "alternate_story",
-    "preserialization",
-    "colored",
-    "serialization",
-    "alternate_version",
-]
 
 
 class MangaLinks(TypedDict, total=False):
@@ -142,17 +120,17 @@ class MangaAttributesResponse(TypedDict):
 
     lastChapter: Optional[:class:`str`]
 
-    publicationDemographic: Optional[:class:`~hondana.types.PublicationDemographic`]
+    publicationDemographic: Optional[:class:`~hondana.PublicationDemographic`]
 
-    status: Optional[:class:`~hondana.types.MangaStatus`]
+    status: Optional[:class:`~hondana.MangaStatus`]
 
     year: Optional[:class:`int`]
 
-    contentRating: Optional[:class:`~hondana.types.ContentRating`]
+    contentRating: Optional[:class:`~hondana.ContentRating`]
 
     tags: List[:class:`~hondana.types.TagResponse`]
 
-    state: :class:`~hondana.types.MangaState`
+    state: :class:`~hondana.MangaState`
 
     version: :class:`int`
 
@@ -172,12 +150,12 @@ class MangaAttributesResponse(TypedDict):
     originalLanguage: str
     lastVolume: Optional[str]
     lastChapter: Optional[str]
-    publicationDemographic: Optional[PublicationDemographic]
-    status: Optional[MangaStatus]
+    publicationDemographic: Optional[_PublicationDemographic]
+    status: Optional[_MangaStatus]
     year: Optional[int]
-    contentRating: Optional[ContentRating]
+    contentRating: Optional[_ContentRating]
     tags: list[TagResponse]
-    state: MangaState
+    state: _MangaState
     version: int
     createdAt: str
     updatedAt: str
@@ -185,18 +163,18 @@ class MangaAttributesResponse(TypedDict):
 
 class MangaRelationAttributesResponse(TypedDict):
     """
-    relation: :class:`~hondana.types.MangaRelationType`
+    relation: :class:`~hondana.MangaRelationType`
 
     version: int
     """
 
-    relation: MangaRelationType
+    relation: _MangaRelationType
     version: int
 
 
 class _OptionalMangaResponse(TypedDict, total=False):
     relationships: list[RelationshipResponse]
-    related: MangaRelationType
+    related: _MangaRelationType
 
 
 class MangaResponse(_OptionalMangaResponse):
@@ -210,7 +188,7 @@ class MangaResponse(_OptionalMangaResponse):
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
         This key is optional.
 
-    related: :class:`~hondana.types.MangaRelationType`
+    related: :class:`~hondana.MangaRelationType`
         This key is optional.
     """
 
@@ -372,20 +350,20 @@ class MangaSingleReadingStatusResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    status: :class:`~hondana.types.ReadingStatus`
+    status: :class:`~hondana.ReadingStatus`
     """
 
     result: Literal["ok"]
-    status: ReadingStatus
+    status: _ReadingStatus
 
 
 class MangaMultipleReadingStatusResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statuses: Dict[str, :class:`~hondana.types.ReadingStatus`]
-        Mapping of [``manga_id``: :class:`~hondana.types.ReadingStatus`]
+    statuses: Dict[str, :class:`~hondana.ReadingStatus`]
+        Mapping of [``manga_id``: :class:`~hondana.ReadingStatus`]
     """
 
     result: Literal["ok"]
-    statuses: dict[str, ReadingStatus]
+    statuses: dict[str, _ReadingStatus]

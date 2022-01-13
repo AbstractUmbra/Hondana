@@ -32,29 +32,26 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "CustomListVisibility",
-    "CustomListIncludes",
     "CustomListAttributesResponse",
     "CustomListResponse",
     "GetSingleCustomListResponse",
     "GetMultiCustomListResponse",
 )
 
-CustomListVisibility = Literal["public", "private"]
-CustomListIncludes = Literal["manga", "user", "owner"]
+_CustomListVisibility = Literal["public", "private"]
 
 
 class CustomListAttributesResponse(TypedDict):
     """
     name: :class:`str`
 
-    visibility: :class:`~hondana.types.CustomListVisibility`
+    visibility: :class:`~hondana.CustomListVisibility`
 
     version: :class:`int`
     """
 
     name: str
-    visibility: CustomListVisibility
+    visibility: _CustomListVisibility
     version: int
 
 

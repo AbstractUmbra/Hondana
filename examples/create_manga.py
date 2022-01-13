@@ -23,8 +23,8 @@ async def main():
     # Outline the needed attributes for this manga here
     manga_title: LocalizedString = {"en": "Some neat manga!", "ja": "本棚"}
     original_language = "en"
-    status = "ongoing"
-    content_rating = "safe"
+    status = hondana.MangaStatus.ongoing
+    content_rating = hondana.ContentRating.safe
     version = 1
 
     # Create the manga with them:

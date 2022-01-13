@@ -32,20 +32,11 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "UserOrderQuery",
     "GetUserAttributesResponse",
     "UserResponse",
     "GetSingleUserResponse",
     "GetMultiUserResponse",
 )
-
-
-class UserOrderQuery(TypedDict):
-    """
-    username: Literal[``"asc"``, ``"desc"``]
-    """
-
-    username: Literal["asc", "desc"]
 
 
 class GetUserAttributesResponse(TypedDict):

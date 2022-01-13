@@ -6,14 +6,6 @@ Response Types and Payloads
 
 Common
 ------
-.. autoclass:: PublicationDemographic
-    :members:
-    :undoc-members:
-
-.. autoclass:: ContentRating
-    :members:
-    :undoc-members:
-
 .. autoclass:: LanguageCode
     :members:
     :undoc-members:
@@ -25,10 +17,6 @@ Common
 
 Artist
 ------
-.. autoclass:: ArtistIncludes
-    :members:
-    :undoc-members:
-
 .. autoclass:: ArtistResponse
 
 .. autoclass:: ArtistAttributesResponse
@@ -50,12 +38,6 @@ Auth
 
 Author
 ------
-.. autoclass:: AuthorIncludes
-    :members:
-    :undoc-members:
-
-.. autoclass:: AuthorOrderQuery
-
 .. autoclass:: AuthorResponse
 
 .. autoclass:: AuthorAttributesResponse
@@ -66,10 +48,6 @@ Author
 
 Chapter
 -------
-.. autoclass:: ChapterIncludes
-    :members:
-    :undoc-members:
-
 .. autoclass:: ChapterResponse
 
 .. autoclass:: ChapterAttributesResponse
@@ -85,12 +63,6 @@ Chapter
 
 Cover
 -----
-.. autoclass:: CoverIncludes
-    :members:
-    :undoc-members:
-
-.. autoclass:: CoverOrderQuery
-
 .. autoclass:: CoverResponse
 
 .. autoclass:: CoverAttributesResponse
@@ -102,14 +74,6 @@ Cover
 
 CustomList
 ----------
-.. autoclass:: CustomListVisibility
-    :members:
-    :undoc-members:
-
-.. autoclass:: CustomListIncludes
-    :members:
-    :undoc-members:
-
 .. autoclass:: CustomListResponse
 
 .. autoclass:: CustomListAttributesResponse
@@ -140,26 +104,6 @@ Legacy
 
 Manga
 -----
-.. autoclass:: MangaStatus
-    :members:
-    :undoc-members:
-
-.. autoclass:: MangaIncludes
-    :members:
-    :undoc-members:
-
-.. autoclass:: ReadingStatus
-    :members:
-    :undoc-members:
-
-.. autoclass:: MangaState
-    :members:
-    :undoc-members:
-
-.. autoclass:: MangaRelationType
-    :members:
-    :undoc-members:
-
 .. autoclass:: MangaLinks
 
 .. autoclass:: MangaResponse
@@ -193,11 +137,6 @@ Manga
 .. autoclass:: MangaMultipleReadingStatusResponse
 
 
-Query
------
-.. autoclass:: OrderQuery
-
-
 Relationship
 ------------
 .. autoclass:: RelationshipResponse
@@ -205,10 +144,6 @@ Relationship
 
 Report
 ------
-.. autoclass:: ReportCategory
-    :members:
-    :undoc-members:
-
 .. autoclass:: ReportReasonResponse
 
 .. autoclass:: GetReportReasonAttributesResponse
@@ -218,10 +153,6 @@ Report
 
 Scanlator Group
 ---------------
-.. autoclass:: ScanlatorGroupIncludes
-    :members:
-    :undoc-members:
-
 .. autoclass:: ScanlationGroupResponse
 
 .. autoclass:: ScanlationGroupAttributesResponse
@@ -266,8 +197,6 @@ Token
 
 User
 ----
-.. autoclass:: UserOrderQuery
-
 .. autoclass:: UserResponse
 
 .. autoclass:: GetUserAttributesResponse

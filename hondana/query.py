@@ -24,21 +24,9 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from enum import Enum
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from .utils import to_camel_case
-
-
-if TYPE_CHECKING:
-    from .types.artist import ArtistIncludes as ArtistIncludesType
-    from .types.author import AuthorIncludes as AuthorIncludesType
-    from .types.chapter import ChapterIncludes as ChapterIncludesType
-    from .types.cover import CoverIncludes as CoverIncludesType
-    from .types.custom_list import CustomListIncludes as CustomListIncludesType
-    from .types.manga import MangaIncludes as MangaIncludesType
-    from .types.scanlator_group import (
-        ScanlatorGroupIncludes as ScanlatorGroupIncludesType,
-    )
 
 
 __all__ = (
@@ -58,14 +46,6 @@ __all__ = (
     "MangaIncludes",
     "ScanlatorGroupIncludes",
 )
-
-VALID_ARTIST_INCLUDES: list[ArtistIncludesType] = ["manga"]
-VALID_AUTHOR_INCLUDES: list[AuthorIncludesType] = ["manga"]
-VALID_CHAPTER_INCLUDES: list[ChapterIncludesType] = ["manga", "user", "scanlation_group"]
-VALID_COVER_INCLUDES: list[CoverIncludesType] = ["manga", "user"]
-VALID_CUSTOMLIST_INCLUDES: list[CustomListIncludesType] = ["manga", "user", "owner"]
-VALID_MANGA_INCLUDES: list[MangaIncludesType] = ["author", "artist", "cover_art", "manga"]
-VALID_SCANLATORGROUP_INCLUDES: list[ScanlatorGroupIncludesType] = ["leader", "member"]
 
 
 class Order(Enum):

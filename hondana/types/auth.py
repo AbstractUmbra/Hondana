@@ -27,7 +27,12 @@ from __future__ import annotations
 from typing import Literal, TypedDict
 
 
-__all__ = ("TokenResponse", "LoginPayload", "RefreshPayload", "CheckPayload")
+__all__ = (
+    "TokenResponse",
+    "LoginPayload",
+    "RefreshPayload",
+    "CheckPayload",
+)
 
 
 class TokenResponse(TypedDict):

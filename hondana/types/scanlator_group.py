@@ -32,14 +32,11 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ScanlatorGroupIncludes",
     "ScanlationGroupAttributesResponse",
     "ScanlationGroupResponse",
     "GetSingleScanlationGroupResponse",
     "GetMultiScanlationGroupResponse",
 )
-
-ScanlatorGroupIncludes = Literal["leader", "member"]
 
 
 class ScanlationGroupAttributesResponse(TypedDict):

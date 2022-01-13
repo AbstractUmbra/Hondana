@@ -32,7 +32,6 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ChapterIncludes",
     "ChapterAttributesResponse",
     "ChapterResponse",
     "GetSingleChapterResponse",
@@ -40,9 +39,6 @@ __all__ = (
     "GetAtHomeResponse",
     "GetAtHomeChapterResponse",
 )
-
-
-ChapterIncludes = Literal["manga", "user", "scanlation_group"]
 
 
 class _ChapterAttributesOptionalResponse(TypedDict, total=False):

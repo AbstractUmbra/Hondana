@@ -33,14 +33,11 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ArtistIncludes",
     "ArtistResponse",
     "ArtistAttributesResponse",
     "GetSingleArtistResponse",
     "GetMultiArtistResponse",
 )
-
-ArtistIncludes = Literal["manga"]
 
 
 class ArtistAttributesResponse(TypedDict):

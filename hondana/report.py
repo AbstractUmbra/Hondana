@@ -25,12 +25,13 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from .enums import ReportCategory
 from .http import HTTPClient
 
 
 if TYPE_CHECKING:
     from .types.common import LocalisedString
-    from .types.report import ReportCategory, ReportReasonResponse
+    from .types.report import ReportReasonResponse
 
 
 __all__ = ("Report",)
@@ -46,7 +47,7 @@ class Report:
         The reason for this report.
     details_required: :class:`bool`
         If details are required for this report.
-    category: :class:`~hondana.types.ReportCategory`
+    category: :class:`~hondana.ReportCategory`
         The category this report falls under.
     version: :class:`int`
         The version revision of this report.
@@ -70,14 +71,14 @@ class Report:
         self._attributes = self._data["attributes"]
         self.reason: LocalisedString = self._attributes["reason"]
         self.details_required: bool = self._attributes["detailsRequired"]
-        self.category: ReportCategory = self._attributes["category"]
+        self.category: ReportCategory = ReportCategory(self._attributes["category"])
         self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
         return f"<Report id='{self.id}'>"
 
     def __str__(self) -> str:
-        return f"Report for {self.category.title()} and reason: {self.reason}"
+        return f"Report for {str(self.category).title()} and reason: {self.reason}"
 
     def __eq__(self, other: Report) -> bool:
         return isinstance(other, Report) and self.id == other.id

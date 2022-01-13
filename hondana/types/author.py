@@ -33,24 +33,11 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "AuthorIncludes",
-    "AuthorOrderQuery",
     "AuthorAttributesResponse",
     "AuthorResponse",
     "GetSingleAuthorResponse",
     "GetMultiAuthorResponse",
 )
-
-
-AuthorIncludes = Literal["manga"]
-
-
-class AuthorOrderQuery(TypedDict):
-    """
-    name: Literal[``"asc"``, ``"desc"``]
-    """
-
-    name: Literal["asc", "desc"]
 
 
 class AuthorAttributesResponse(TypedDict):

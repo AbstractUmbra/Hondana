@@ -28,15 +28,11 @@ from typing import Literal, TypedDict
 
 
 __all__ = (
-    "PublicationDemographic",
-    "ContentRating",
     "LanguageCode",
     "LocalizedString",
     "LocalisedString",
 )
 
-PublicationDemographic = Literal["shounen", "shoujo", "josei", "seinen"]
-ContentRating = Literal["safe", "suggestive", "erotica", "pornographic"]
 LanguageCode = Literal[
     "ar",
     "bg",

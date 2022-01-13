@@ -32,14 +32,13 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ReportCategory",
     "GetReportReasonAttributesResponse",
     "ReportReasonResponse",
     "GetReportReasonResponse",
 )
 
 
-ReportCategory = Literal["manga", "chapter", "scanlation_group", "user", "author"]
+_ReportCategory = Literal["manga", "chapter", "scanlation_group", "user", "author"]
 
 
 class GetReportReasonAttributesResponse(TypedDict):
@@ -48,14 +47,14 @@ class GetReportReasonAttributesResponse(TypedDict):
 
     detailsRequired: :class:`bool`
 
-    category: :class:`~hondana.types.ReportCategory`
+    category: :class:`~hondana.ReportCategory`
 
     version: :class:`int`
     """
 
     reason: LocalisedString
     detailsRequired: bool
-    category: ReportCategory
+    category: _ReportCategory
     version: int
 
 

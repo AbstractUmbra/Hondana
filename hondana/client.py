@@ -37,6 +37,16 @@ from .author import Author
 from .chapter import Chapter, ChapterUpload
 from .cover import Cover
 from .custom_list import CustomList
+from .enums import (
+    ContentRating,
+    CustomListVisibility,
+    MangaRelationType,
+    MangaState,
+    MangaStatus,
+    PublicationDemographic,
+    ReadingStatus,
+    ReportCategory,
+)
 from .http import HTTPClient
 from .legacy import LegacyItem
 from .manga import Manga, MangaRating, MangaRelation, MangaStatistics
@@ -65,7 +75,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .tags import QueryTags
-    from .types import common, custom_list, legacy, manga, report
+    from .types import common, legacy, manga
     from .types.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -267,7 +277,7 @@ class Client:
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[common.ContentRating]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
         excluded_groups: Optional[list[str]] = None,
         excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
@@ -295,7 +305,7 @@ class Client:
             A list of language codes to filter the original language of the returned chapters with.
         excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -365,13 +375,13 @@ class Client:
         year: Optional[int] = None,
         included_tags: Optional[QueryTags] = None,
         excluded_tags: Optional[QueryTags] = None,
-        status: Optional[list[manga.MangaStatus]] = None,
+        status: Optional[list[MangaStatus]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         available_translated_language: Optional[list[common.LanguageCode]] = None,
-        publication_demographic: Optional[list[manga.PublicationDemographic]] = None,
+        publication_demographic: Optional[list[PublicationDemographic]] = None,
         ids: Optional[list[str]] = None,
-        content_rating: Optional[list[manga.ContentRating]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         order: Optional[MangaListOrderQuery] = None,
@@ -403,7 +413,7 @@ class Client:
             An instance of :class:`hondana.QueryTags` to include in the search.
         excluded_tags: Optional[:class:`QueryTags`]
             An instance of :class:`hondana.QueryTags` to include in the search.
-        status: Optional[List[:class:`~hondana.types.MangaStatus`]]
+        status: Optional[List[:class:`~hondana.MangaStatus`]]
             The status(es) of manga to include in the search.
         original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             A list of language codes to include for the manga's original language.
@@ -414,11 +424,11 @@ class Client:
         available_translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             A list of language codes to filter they available translation languages in.
             i.e. ``["en"]``
-        publication_demographic: Optional[List[:class:`~hondana.types.PublicationDemographic`]]
+        publication_demographic: Optional[List[:class:`~hondana.PublicationDemographic`]]
             The publication demographic(s) to limit the search to.
         ids: Optional[:class:`str`]
             A list of manga UUID(s) to limit the search to.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating(s) to filter the search to.
         created_at_since: Optional[datetime.datetime]
             A (naive UTC) datetime instance we specify for searching.
@@ -487,10 +497,10 @@ class Client:
         original_language: str,
         last_volume: Optional[str] = None,
         last_chapter: Optional[str] = None,
-        publication_demographic: Optional[manga.PublicationDemographic] = None,
-        status: manga.MangaStatus,
+        publication_demographic: Optional[PublicationDemographic] = None,
+        status: MangaStatus,
         year: Optional[int] = None,
-        content_rating: manga.ContentRating,
+        content_rating: ContentRating,
         tags: Optional[QueryTags] = None,
         mod_notes: Optional[str] = None,
         version: int,
@@ -523,13 +533,13 @@ class Client:
             The last volume to attribute to this manga.
         last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: Optional[:class:`~hondana.types.PublicationDemographic`]
+        publication_demographic: Optional[:class:`~hondana.PublicationDemographic`]
             The target publication demographic of this manga.
-        status: :class:`~hondana.types.MangaStatus`
+        status: :class:`~hondana.MangaStatus`
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: :class:`~hondana.types.ContentRating`
+        content_rating: :class:`~hondana.ContentRating`
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -654,10 +664,10 @@ class Client:
         original_language: Optional[str] = None,
         last_volume: Optional[str] = MISSING,
         last_chapter: Optional[str] = MISSING,
-        publication_demographic: Optional[manga.PublicationDemographic] = MISSING,
-        status: manga.MangaStatus,
+        publication_demographic: Optional[PublicationDemographic] = MISSING,
+        status: MangaStatus,
         year: Optional[int] = MISSING,
-        content_rating: Optional[manga.ContentRating] = None,
+        content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
         mod_notes: Optional[str] = MISSING,
         version: int,
@@ -688,13 +698,13 @@ class Client:
             The last volume to attribute to this manga.
         last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: :class:`~hondana.types.PublicationDemographic`
+        publication_demographic: :class:`~hondana.PublicationDemographic`
             The target publication demographic of this manga.
-        status: Optional[:class:`~hondana.types.MangaStatus`]
+        status: Optional[:class:`~hondana.MangaStatus`]
             The status of the manga.
         year: Optional[:class:`int`]
             The release year of the manga.
-        content_rating: Optional[:class:`~hondana.types.ContentRating`]
+        content_rating: Optional[:class:`~hondana.ContentRating`]
             The content rating of the manga.
         tags: Optional[:class:`~hondana.QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
@@ -790,7 +800,7 @@ class Client:
 
     @require_authentication
     async def follow_manga(
-        self, manga_id: str, /, *, set_status: bool = True, status: manga.ReadingStatus = "reading"
+        self, manga_id: str, /, *, set_status: bool = True, status: ReadingStatus = ReadingStatus.reading
     ) -> None:
         """|coro|
 
@@ -804,7 +814,7 @@ class Client:
             Whether to set the reading status of the manga you follow.
             Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
             Defaults to ``True``
-        status: :class:`~hondana.types.ReadingStatus`
+        status: :class:`~hondana.ReadingStatus`
             The status to apply to the newly followed manga.
             Irrelevant if ``set_status`` is ``False``.
 
@@ -829,7 +839,7 @@ class Client:
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[common.ContentRating]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
         excluded_groups: Optional[list[str]] = None,
         excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
@@ -857,7 +867,7 @@ class Client:
             A list of language codes to filter the original language of the returned chapters with.
         excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -1006,7 +1016,7 @@ class Client:
 
     @require_authentication
     async def get_all_manga_reading_status(
-        self, *, status: Optional[manga.ReadingStatus] = None
+        self, *, status: Optional[ReadingStatus] = None
     ) -> manga.MangaMultipleReadingStatusResponse:
         """|coro|
 
@@ -1014,7 +1024,7 @@ class Client:
 
         Parameters
         -----------
-        status: Optional[:class:`~hondana.types.ReadingStatus`]
+        status: Optional[:class:`~hondana.ReadingStatus`]
             The reading status to filter the response with.
 
         Returns
@@ -1050,7 +1060,7 @@ class Client:
         return await self._http._get_manga_reading_status(manga_id)
 
     @require_authentication
-    async def update_manga_reading_status(self, manga_id: str, /, *, status: manga.ReadingStatus) -> None:
+    async def update_manga_reading_status(self, manga_id: str, /, *, status: ReadingStatus) -> None:
         """|coro|
 
         This method will update your current reading status for the specified manga.
@@ -1059,7 +1069,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to update.
-        status: Optional[:class:`~hondana.types.ReadingStatus`]
+        status: Optional[:class:`~hondana.ReadingStatus`]
             The reading status you wish to update this manga with.
 
 
@@ -1130,7 +1140,7 @@ class Client:
         *,
         limit: int = 10,
         offset: int = 0,
-        state: Optional[manga.MangaState] = None,
+        state: Optional[MangaState] = None,
         order: Optional[MangaDraftListOrderQuery] = None,
         includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> Manga:
@@ -1146,7 +1156,7 @@ class Client:
         offset: :class:`int`
             The pagination offset.
             Defaults to 0.
-        state: Optional[:class:`~hondana.types.MangaState`]
+        state: Optional[:class:`~hondana.MangaState`]
             The state of the submission to filter by.
         order: Optional[:class:`~hondana.query.MangaDraftListOrderQuery`]
             The order parameter for order the responses.
@@ -1173,7 +1183,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The ID for the manga we wish to query against.
-        includes: Optional[:class:`~hondana.types.MangaIncludes`]
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional parameters for expanded requests to the API.
             Defaults to all possible expansions.
 
@@ -1191,7 +1201,7 @@ class Client:
 
     @require_authentication
     async def create_manga_relation(
-        self, manga_id: str, /, *, target_manga: str, relation_type: manga.MangaRelationType
+        self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
     ) -> MangaRelation:
         """|coro|
 
@@ -1203,7 +1213,7 @@ class Client:
             The manga ID we are creating a relation to.
         target_id: :class:`str`
             The manga ID of the related manga.
-        relation_type: :class:`~hondana.types.MangaRelationType`
+        relation_type: :class:`~hondana.MangaRelationType`
 
         Returns
         --------
@@ -1295,7 +1305,7 @@ class Client:
         translated_language: Optional[list[common.LanguageCode]] = None,
         excluded_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[common.ContentRating]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
         excluded_groups: Optional[list[str]] = None,
         excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
@@ -1335,7 +1345,7 @@ class Client:
             The list of languages to specifically target in the request.
         excluded_original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The list of original languages to exclude from the request.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -2223,7 +2233,7 @@ class Client:
         self,
         *,
         name: str,
-        visibility: Optional[custom_list.CustomListVisibility] = None,
+        visibility: Optional[CustomListVisibility] = None,
         manga: Optional[list[str]] = None,
         version: Optional[int] = None,
     ) -> CustomList:
@@ -2235,7 +2245,7 @@ class Client:
         -----------
         name: :class:`str`
             The name of this custom list.
-        visibility: Optional[:class:`~hondana.types.CustomListVisibility`]
+        visibility: Optional[:class:`~hondana.CustomListVisibility`]
             The visibility of this custom list.
         manga: Optional[List[:class:`str`]]
             A list of manga ids to add to this custom list.
@@ -2297,7 +2307,7 @@ class Client:
         /,
         *,
         name: Optional[str] = None,
-        visibility: Optional[custom_list.CustomListVisibility] = None,
+        visibility: Optional[CustomListVisibility] = None,
         manga: Optional[list[str]] = None,
         version: int,
     ) -> CustomList:
@@ -2311,7 +2321,7 @@ class Client:
             The custom list ID we wish to update.
         name: Optional[:class:`str`]
             The name we wish to edit the custom list with.
-        visibility: Optional[:class:`~hondana.types.CustomListVisibility`]
+        visibility: Optional[:class:`~hondana.CustomListVisibility`]
             The visibility we wish to edit the custom list with.
         manga: Optional[List[:class:`str`]]
             The list of manga IDs to edit this custom list with.
@@ -2428,7 +2438,7 @@ class Client:
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[common.ContentRating]] = None,
+        content_rating: Optional[list[ContentRating]] = None,
         excluded_groups: Optional[list[str]] = None,
         excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
@@ -2455,7 +2465,7 @@ class Client:
             A list of language codes to filter the original language of the returned chapters with.
         excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
-        content_rating: Optional[List[:class:`~hondana.types.ContentRating`]]
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter this query with.
         excluded_groups: Optional[List[:class:`str`]]
             The list of scanlator groups to exclude from the response.
@@ -3065,14 +3075,14 @@ class Client:
         await self._http._delete_author(author_id)
 
     @require_authentication
-    async def get_report_list(self, report_category: report.ReportCategory, /) -> list[Report]:
+    async def get_report_list(self, report_category: ReportCategory, /) -> list[Report]:
         """|coro|
 
         This method will retrieve a list of reports from the MangaDex API.
 
         Parameters
         -----------
-        report_category: :class:`~hondana.types.ReportCategory`
+        report_category: :class:`~hondana.ReportCategory`
             The category of which to retrieve a list of reports.
 
         Raises
@@ -3096,7 +3106,7 @@ class Client:
     async def create_report(
         self,
         *,
-        report_category: report.ReportCategory,
+        report_category: ReportCategory,
         reason: str,
         object_id: str,
         details: str,
@@ -3107,7 +3117,7 @@ class Client:
 
         Parameters
         -----------
-        report_category: :class:`~hondana.types.ReportCategory`
+        report_category: :class:`~hondana.ReportCategory`
             The category for which the report is for.
         reason: :class:`str`
             The UUID representing the reason for this report.

@@ -34,7 +34,6 @@ from .custom_list import *
 from .errors import *
 from .legacy import *
 from .manga import *
-from .query import *
 from .relationship import *
 from .report import *
 from .scanlator_group import *

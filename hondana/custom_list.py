@@ -25,13 +25,14 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional
 
+from .enums import CustomListVisibility
 from .user import User
 from .utils import require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.custom_list import CustomListResponse, CustomListVisibility
+    from .types.custom_list import CustomListResponse
 
 
 __all__ = ("CustomList",)
@@ -46,7 +47,7 @@ class CustomList:
         The UUID relating to this custom list.
     name: :class:`str`
         The name of this custom list.
-    visibility: :class:`~hondana.types.CustomListVisibility`
+    visibility: :class:`~hondana.CustomListVisibility`
         The visibility of this custom list.
     version: :class:`int`
         The version revision of this custom list.
@@ -71,7 +72,7 @@ class CustomList:
         self._relationships = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
-        self.visibility: CustomListVisibility = self._attributes["visibility"]
+        self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
         self.__owner: Optional[User] = None
 
@@ -165,7 +166,7 @@ class CustomList:
         -----------
         name: Optional[:class:`str`]
             The name we wish to edit the custom list with.
-        visibility: Optional[:class:`~hondana.types.CustomListVisibility`]
+        visibility: Optional[:class:`~hondana.CustomListVisibility`]
             The visibility we wish to edit the custom list with.
         manga: Optional[List[:class:`str`]]
             The list of manga IDs to edit this custom list with.
