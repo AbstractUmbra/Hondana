@@ -27,6 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
+from .author import Author
 from .cover import Cover
 from .enums import (
     ContentRating,
@@ -49,7 +50,6 @@ from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
-    from .author import Author
     from .chapter import Chapter
     from .http import HTTPClient
     from .tags import QueryTags
@@ -262,6 +262,9 @@ class Manga:
             if "attributes" in artist:
                 formatted.append(Artist(self._http, artist))
 
+        if not formatted:
+            return None
+
         self.__artists = formatted
         return self.__artists
 
@@ -280,7 +283,7 @@ class Manga:
 
         Returns
         --------
-        Optional[List[:class:`~hondana.Artist`]]
+        Optional[List[:class:`~hondana.Author`]]
             The artists associated with this Manga.
 
 
@@ -433,11 +436,11 @@ class Manga:
             return None
 
         formatted: list[Artist] = []
-        for author in artists:
-            if "attributes" in author:
-                formatted.append(Artist(self._http, author))
+        for artist in artists:
+            if "attributes" in artist:
+                formatted.append(Artist(self._http, artist))
             else:
-                data = await self._http._get_artist(author["id"], includes=ArtistIncludes())
+                data = await self._http._get_artist(artist["id"], includes=ArtistIncludes())
                 formatted.append(Artist(self._http, data["data"]))
 
         if not formatted:
