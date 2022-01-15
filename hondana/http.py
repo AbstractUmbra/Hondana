@@ -769,16 +769,16 @@ class HTTPClient:
         last_volume: Optional[str],
         last_chapter: Optional[str],
         publication_demographic: Optional[PublicationDemographic],
-        status: MangaStatus,
+        status: Optional[MangaStatus],
         year: Optional[int],
         content_rating: Optional[ContentRating],
         tags: Optional[QueryTags],
-        mod_notes: Optional[str],
+        primary_cover: Optional[str],
         version: int,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
 
-        query: dict[str, Any] = {"version": version, "status": status.value}
+        query: dict[str, Any] = {"version": version}
 
         if title:
             query["title"] = title
@@ -813,6 +813,9 @@ class HTTPClient:
             else:
                 query["publicationDemographic"] = publication_demographic
 
+        if status:
+            query["status"] = status
+
         if year is not MISSING:
             query["year"] = year
 
@@ -822,8 +825,8 @@ class HTTPClient:
         if tags:
             query["tags"] = tags.tags
 
-        if mod_notes is not MISSING:
-            query["modNotes"] = mod_notes
+        if primary_cover is not MISSING:
+            query["primaryCover"] = primary_cover
 
         return self.request(route, json=query)
 
@@ -1697,13 +1700,12 @@ class HTTPClient:
         if focused_languages is not MISSING:
             query["focusedLanguages"] = focused_languages
 
-        if publish_delay is not MISSING:
-            if publish_delay is not None:
-                if isinstance(publish_delay, datetime.timedelta):
-                    publish_delay = delta_to_iso(publish_delay)
+        if publish_delay:
+            if isinstance(publish_delay, datetime.timedelta):
+                publish_delay = delta_to_iso(publish_delay)
 
-                if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
-                    raise ValueError("The `publish_at` parameter's string must match the regex pattern.")
+            if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
+                raise ValueError("The `publish_at` parameter's string must match the regex pattern.")
 
             query["publishDelay"] = publish_delay
 
