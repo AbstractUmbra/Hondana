@@ -147,12 +147,22 @@ class Author:
 
     @property
     def created_at(self) -> datetime.datetime:
-        """When this author was created."""
+        """When this author was created.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
-        """When this author was last updated."""
+        """When this author was last updated.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property

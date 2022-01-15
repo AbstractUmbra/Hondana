@@ -427,13 +427,13 @@ class HTTPClient:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             A request was malformed
         Unauthorized
             You attempted to use an endpoint you have no authorization for.
-        Forbidden
+        :exc:`Forbidden`
             Your auth was not sufficient to perform this action.
-        NotFound
+        :exc:`NotFound`
             The specified item, endpoint or resource was not found.
         APIException
             A generic exception raised when the HTTP response code is non 2xx.

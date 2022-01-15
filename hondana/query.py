@@ -89,7 +89,13 @@ class _Includes:
     __slots__ = ()
 
     def to_query(self) -> list[str]:
-        """Generates a list of strings based on the kwargs."""
+        """Generates a list of strings based on the kwargs.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         fmt = []
         for item in dir(self):
             if item.startswith("_"):
@@ -314,7 +320,13 @@ class ArtistIncludes(_Includes):
         self.manga: bool = manga
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Generates a list of strings based on the kwargs.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()
 
 
@@ -334,7 +346,13 @@ class AuthorIncludes(_Includes):
         self.manga: bool = manga
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Generates a list of strings based on the kwargs.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()
 
 
@@ -364,7 +382,13 @@ class ChapterIncludes(_Includes):
         self.scanlation_group: bool = scanlation_group
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Retuns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()
 
 
@@ -390,7 +414,13 @@ class CoverIncludes(_Includes):
         self.user: bool = user
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Retuns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()
 
 
@@ -454,7 +484,13 @@ class MangaIncludes(_Includes):
         self.manga: bool = manga
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Retuns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()
 
 
@@ -480,5 +516,11 @@ class ScanlatorGroupIncludes(_Includes):
         self.member: bool = member
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Retuns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
         return super().to_query()

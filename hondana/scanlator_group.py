@@ -342,7 +342,7 @@ class ScanlatorGroup:
 
         .. note::
             The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``focused_language`` and ``publish_delay``
-            keys are all nullable in the API. To do so please pass ``None`` to these keys.
+            keys are all nullable in the API. To do so pass ``None`` explicitly to these keys.
 
         .. note::
             The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern

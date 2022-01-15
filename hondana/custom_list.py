@@ -95,6 +95,7 @@ class CustomList:
         Returns
         --------
         Optional[:class:`~hondana.User`]
+            The owner of this list, if any.
         """
         if self.__owner is not None:
             return self.__owner
@@ -129,6 +130,7 @@ class CustomList:
         Returns
         --------
         Optional[:class:`~hondana.User`]
+            The owner of this list, if any.
         """
         if self.owner is not None:
             return self.owner

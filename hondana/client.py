@@ -329,13 +329,9 @@ class Client:
             If no start point is given with the `created_at_since`, `updated_at_since` or `published_at_since` parameters,
             then the API will return oldest first based on creation date.
 
-
-        .. note::
-            For some reason this endpoint does not support the ``includes`` query parameter. Meaning all chapters will have minimal payloads.
-
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were not valid.
 
         Returns
@@ -449,7 +445,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were not valid.
 
         Returns
@@ -555,9 +551,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were not valid.
-        Forbidden
+        :exc:`Forbidden`
             The query failed due to authorization failure.
 
         Returns
@@ -610,7 +606,7 @@ class Client:
 
         Returns
         --------
-        :class:`hondana.types.GetMangaVolumesAndChaptersResponse`
+        :class:`~hondana.types.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
         data = await self._http._get_manga_volumes_and_chapters(
@@ -628,16 +624,15 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga to view.
-        includes: Optional[Literal[``"author"``, ``"artist"``, ``"cover_art"``]]
-            This is a list of items to include in the query.
-            Be default we request all optionals (artist, cover_art and author).
-            Pass a new list of these strings to overwrite it.
+        includes: Optional[:class:`~hondana.query.MangaIncludes`]
+            The includes query parameter for this manga.
+            If not given, it defaults to all possible reference expansions.
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The query failed due to authorization failure.
-        NotFound
+        :exc:`NotFound`
             The passed manga ID was not found, likely due to an incorrect ID.
 
         Returns
@@ -665,11 +660,11 @@ class Client:
         last_volume: Optional[str] = MISSING,
         last_chapter: Optional[str] = MISSING,
         publication_demographic: Optional[PublicationDemographic] = MISSING,
-        status: MangaStatus,
+        status: Optional[MangaStatus],
         year: Optional[int] = MISSING,
         content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
-        mod_notes: Optional[str] = MISSING,
+        primary_cover: Optional[str] = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -708,27 +703,23 @@ class Client:
             The content rating of the manga.
         tags: Optional[:class:`~hondana.QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
-        mod_notes: Optional[:class:`str`]
-            The moderator notes to add to this Manga.
+        primary_cover: Optional[:class:`str`]
+            The primary cover for this Manga.
         version: :class:`int`
             The revision version of this manga.
 
 
         .. note::
-            The ``mod_notes`` parameter requires the logged-in user to be a MangaDex moderator.
-            Leave this as the default unless you fit these criteria.
-
-        .. note::
-            The ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
-            are nullable in the API, to do this please pass ``None``.
+            The ``last_volume``, ``last_chapter``, ``publication_demographic``, ``year`` and ``primary_cover`` parameters
+            are nullable in the API, pass ``None`` explicitly to do this.
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were not valid.
-        Forbidden
+        :exc:`Forbidden`
             The returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
 
         Returns
@@ -752,7 +743,7 @@ class Client:
             year=year,
             content_rating=content_rating,
             tags=tags,
-            mod_notes=mod_notes,
+            primary_cover=primary_cover,
             version=version,
         )
 
@@ -771,9 +762,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga doesn't exist.
         """
         await self._http._delete_manga(manga_id)
@@ -791,9 +782,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
         """
         await self._http._unfollow_manga(manga_id)
@@ -820,9 +811,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
         """
         await self._http._follow_manga(manga_id)
@@ -889,7 +880,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were malformed.
 
         Returns
@@ -974,7 +965,7 @@ class Client:
         -----------
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes for the manga payload.
-            Defaults to all three.
+            Defaults to all possible reference expansions.
 
         Returns
         --------
@@ -1047,9 +1038,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authenticated to perform this action.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist, likely due to an incorrect ID.
 
         Returns
@@ -1079,9 +1070,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were invalid.
-        NotFound
+        :exc:`NotFound`
             The specified manga cannot be found, likely due to incorrect ID.
         """
 
@@ -1124,11 +1115,11 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request parameters were incorrect or malformed.
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised to perform this action.
-        NotFound
+        :exc:`NotFound`
             The manga was not found.
         """
         data = await self._http._submit_manga_draft(manga_id, version=version)
@@ -1193,7 +1184,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The manga ID passed is malformed
         """
         data = await self._http._get_manga_relation_list(manga_id, includes=includes)
@@ -1214,6 +1205,7 @@ class Client:
         target_id: :class:`str`
             The manga ID of the related manga.
         relation_type: :class:`~hondana.MangaRelationType`
+            The relation type we are creating.
 
         Returns
         --------
@@ -1221,9 +1213,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The parameters were malformed
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised for this action.
         """
         data = await self._http._create_manga_relation(manga_id, target_manga=target_manga, relation_type=relation_type)
@@ -1259,9 +1251,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised to add manga to this custom list.
-        NotFound
+        :exc:`NotFound`
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
@@ -1282,9 +1274,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised to remove a manga from the specified custom list.
-        NotFound
+        :exc:`NotFound`
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
@@ -1363,7 +1355,7 @@ class Client:
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
-            Defaults to these values.
+            Defaults to all possible expansiions.
 
 
         .. note::
@@ -1372,9 +1364,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were malformed
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1426,6 +1418,7 @@ class Client:
             The UUID representing the chapter we are fetching.
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The reference expansion includes we are requesting with this payload.
+            Defaults to all possible expansions.
 
         Returns
         --------
@@ -1477,11 +1470,11 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request body was malformed.
-        Forbidden
+        :exc:`Forbidden`
             You are not authorized to update this chapter.
-        NotFound
+        :exc:`NotFound`
             One or more UUIDs given were not found.
 
         Returns
@@ -1514,11 +1507,11 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query was malformed.
-        Forbidden
+        :exc:`Forbidden`
             You are not authorized to delete this chapter.
-        NotFound
+        :exc:`NotFound`
             The UUID passed for this chapter does not relate to a chapter in the API.
         """
         await self._http._delete_chapter(chapter_id)
@@ -1583,9 +1576,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request parameters were malformed.
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1620,9 +1613,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The volume parameter was malformed or the file was a bad format.
-        Forbidden
+        :exc:`Forbidden`
             You are not permitted for this action.
 
         Returns
@@ -1651,7 +1644,7 @@ class Client:
 
         Raises
         -------
-        NotFound
+        :exc:`NotFound`
             The passed cover ID was not found, likely due to an incorrect ID.
 
         Returns
@@ -1690,9 +1683,9 @@ class Client:
         -------
         TypeError
             The volume key was not given a value. This is required.
-        BadRequest
+        :exc:`BadRequest`
             The request body was malformed.
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1717,9 +1710,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request payload was malformed.
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication.
         """
         await self._http._delete_cover(cover_id)
@@ -1758,9 +1751,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were malformed
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1803,9 +1796,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request parameters were malformed
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1849,9 +1842,9 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The response returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The user specified cannot be found.
         """
 
@@ -1885,7 +1878,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to an authentication issue.
         """
 
@@ -1904,7 +1897,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The API returned an error due to authentication failure.
         """
 
@@ -1918,7 +1911,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
         """
         data = await self._http._get_my_details()
@@ -1940,7 +1933,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -1991,7 +1984,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -2016,7 +2009,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The requested returned an error due to authentication failure.
 
         Returns
@@ -2045,7 +2038,7 @@ class Client:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -2081,7 +2074,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The parameters passed were malformed.
 
         Returns
@@ -2104,9 +2097,9 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query was malformed.
-        NotFound
+        :exc:`NotFound`
             The activation code passed was not a valid one.
         """
         await self._http._activate_account(activation_code)
@@ -2123,7 +2116,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The email passed is not pending activation.
         """
         await self._http._resend_activation_code(email)
@@ -2140,7 +2133,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The email does not belong to a matching account.
         """
         await self._http._recover_account(email)
@@ -2159,7 +2152,7 @@ class Client:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The recovery code given was not found or the password was greater than 1024 characters.
         """
         await self._http._complete_account_recovery(recovery_code, new_password=new_password)
@@ -2261,7 +2254,7 @@ class Client:
 
         Returns
         --------
-        :class:`CustomList`
+        :class:`~hondana.CustomList`
             The custom list that was created.
         """
         data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga, version=version)
@@ -2293,7 +2286,7 @@ class Client:
 
         Returns
         --------
-        :class:`CustomList`
+        :class:`~hondana.CustomList`
             The retrieved custom list.
         """
         data = await self._http._get_custom_list(custom_list_id, includes=includes)
@@ -2344,7 +2337,7 @@ class Client:
 
         Returns
         --------
-        :class:`CustomList`
+        :class:`~hondana.CustomList`
             The returned custom list after it was updated.
         """
         data = await self._http._update_custom_list(
@@ -2393,7 +2386,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`CustomList`]
+        List[:class:`~hondana.CustomList`]
             The list of custom lists returned from the API.
         """
         data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
@@ -2421,7 +2414,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`CustomList`]
+        List[:class:`~hondana.CustomList`]
             The list of custom lists returned from the API.
         """
         data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
@@ -2575,7 +2568,7 @@ class Client:
 
         Returns
         --------
-        :class:`ScanlatorGroup`
+        :class:`~hondana.ScanlatorGroup`
             The group returned from the API on creation.
         """
         data = await self._http._create_scanlation_group(
@@ -2609,6 +2602,7 @@ class Client:
             The UUID relating to the scanlation group you wish to fetch.
         includes: Optional[:class:`~hondana.query.ScanlatorGroupIncludes`]
             The list of optional includes we request the data for.
+            Defaults to all possible expansions
 
         Raises
         -------
@@ -2619,7 +2613,7 @@ class Client:
 
         Returns
         --------
-        :class:`ScanlatorGroup`
+        :class:`~hondana.ScanlatorGroup`
             The group returned from the API.
         """
         data = await self._http._view_scanlation_group(scanlation_group_id, includes=includes)
@@ -2644,7 +2638,7 @@ class Client:
         focused_languages: list[common.LanguageCode] = MISSING,
         inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
-        publish_delay: Optional[Union[str, datetime.timedelta]] = MISSING,
+        publish_delay: Optional[Union[str, datetime.timedelta]] = None,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -2688,8 +2682,8 @@ class Client:
 
 
         .. note::
-            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``focused_language`` and ``publish_delay``
-            keys are all nullable in the API. To do so please pass ``None`` to these keys.
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, and ``focused_language``
+            keys are all nullable in the API. To do so please pass ``None`` explicitly to these keys.
 
         .. note::
             The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern
@@ -2814,6 +2808,7 @@ class Client:
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             An optional list of includes to request increased payloads during the request.
+            Defaults to all possible expansions.
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
 
@@ -2918,6 +2913,7 @@ class Client:
             The ID of the author we are fetching.
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             The optional extra data we are requesting from the API.
+            Defaults to all possible expansions.
 
         Raises
         -------
@@ -2948,6 +2944,7 @@ class Client:
             The ID of the author we are fetching.
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             The optional extra data we are requesting from the API.
+            Defaults to all possible expansions.
 
         Raises
         -------
@@ -3283,7 +3280,6 @@ class Client:
         existing_upload_session_id: Optional[str] = None,
     ) -> ChapterUpload:
         """
-
         This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
 
 

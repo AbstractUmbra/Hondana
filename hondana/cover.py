@@ -95,12 +95,24 @@ class Cover:
 
     @property
     def created_at(self) -> datetime.datetime:
-        """When this cover was created."""
+        """When this cover was created.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when this cover was created.
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
-        """When this cover was last updated."""
+        """When this cover was last updated.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when this cover was last updated.
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
     def url(self, type: Optional[Literal[256, 512]] = None, /) -> Optional[str]:
@@ -157,16 +169,16 @@ class Cover:
             The version revision of the cover.
 
 
-        .. note::
+        .. warning::
             The ``volume`` key is mandatory. You can pass ``None`` to null it in the API, but it must have a value.
 
         Raises
         -------
         TypeError
             The volume key was not given a value. This is required.
-        BadRequest
+        :exc:`BadRequest`
             The request body was malformed.
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
 
         Returns
@@ -186,9 +198,9 @@ class Cover:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request payload was malformed.
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication.
         """
         await self._http._delete_cover(self.id)

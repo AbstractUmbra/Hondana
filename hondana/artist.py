@@ -148,12 +148,22 @@ class Artist:
 
     @property
     def created_at(self) -> datetime.datetime:
-        """When this artist was created."""
+        """When this artist was created.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
-        """When this artist was last updated."""
+        """When this artist was last updated.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property

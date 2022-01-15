@@ -122,6 +122,7 @@ class Manga:
         "_relationships",
         "_title",
         "_description",
+        "id",
         "relation_type",
         "alternate_titles",
         "locked",
@@ -139,7 +140,6 @@ class Manga:
         "version",
         "_created_at",
         "_updated_at",
-        "id",
         "__authors",
         "__artists",
         "__cover",
@@ -198,12 +198,25 @@ class Manga:
 
     @property
     def url(self) -> str:
-        """The URL to this manga."""
+        """The URL to this manga.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the manga.
+        """
         return f"https://mangadex.org/title/{self.id}"
 
     @property
     def title(self) -> str:
-        """The manga's title."""
+        """The manga's title.
+
+        Returns
+        --------
+        :class:`str`
+            The title of the manga, defaults to the ``en`` key in the titles.
+            Falls back to the next available key if ``en`` is not present.
+        """
         title = self._title.get("en")
         if title is None:
             key = next(iter(self._title))
@@ -212,7 +225,14 @@ class Manga:
 
     @property
     def description(self) -> str:
-        """The manga's description/synopsis."""
+        """The manga's description/synopsis.
+
+        Returns
+        --------
+        :class:`str`
+            The description of the manga, defaults to the ``en`` key in the titles.
+            Falls back to the next available key if ``en`` is not present.
+        """
         desc = self._description.get("en")
         if desc is None:
             key = next(iter(self._description))
@@ -221,27 +241,39 @@ class Manga:
 
     @property
     def created_at(self) -> datetime.datetime:
-        """The date this manga was created."""
+        """The date this manga was created.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when this manga was created.
+        """
         return datetime.datetime.fromisoformat(self._created_at)
 
     @property
     def updated_at(self) -> datetime.datetime:
-        """The date this manga was last updated."""
+        """The date this manga was last updated.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when this manga was last updated.
+        """
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
     def artists(self) -> Optional[list[Artist]]:
         """The artists of the parent Manga.
 
-        Returns
-        --------
-        Optional[List[:class:`~hondana.Artist`]]
-            The artists associated with this Manga.
-
 
         .. note::
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter
             then this method will return ``None``.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Artist`]]
+            The artists associated with this Manga.
         """
         if self.__artists is not None:
             return self.__artists
@@ -281,15 +313,16 @@ class Manga:
     def authors(self) -> Optional[list[Author]]:
         """The artists of the parent Manga.
 
+
+        .. note::
+            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
+            then this method will return ``None``.
+
         Returns
         --------
         Optional[List[:class:`~hondana.Author`]]
             The artists associated with this Manga.
 
-
-        .. note::
-            If the parent manga was **not** requested with the "artist" `includes[]` query parameter
-            then this method will return ``None``.
         """
         if self.__authors is not None:
             return self.__authors
@@ -329,15 +362,15 @@ class Manga:
     def cover(self) -> Optional[Cover]:
         """The cover of the manga.
 
-        Returns
-        --------
-        Optional[:class:`~hondana.Cover`]
-            The cover of the manga.
-
 
         .. note::
             If the parent manga was **not** requested with the "cover" `includes[]` query parameter
             then this method will return ``None``.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.Cover`]
+            The cover of the manga.
         """
         if self.__cover is not None:
             return self.__cover
@@ -411,15 +444,15 @@ class Manga:
 
         This method will return the artists of the manga and caches the response.
 
-        Returns
-        --------
-        Optional[List[:class:`~hondana.Author`]]
-            The artists of the manga.
-
 
         .. note::
             If the parent manga was requested with the "artist" `includes[]` query parameter,
             then this method will not make extra API calls to retrieve the artist data.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Author`]]
+            The artists of the manga.
         """
         if self.artists is not None:
             return self.artists
@@ -454,15 +487,15 @@ class Manga:
 
         This method will return the authors of the manga and caches the response.
 
-        Returns
-        --------
-        Optional[List[:class:`~hondana.Author`]]
-            The authors of the manga.
-
 
         .. note::
             If the parent manga was requested with the "author" `includes[]` query parameter,
             then this method will not make extra API calls to retrieve the author data.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Author`]]
+            The authors of the manga.
         """
         if self.authors is not None:
             return self.authors
@@ -495,7 +528,7 @@ class Manga:
     async def get_cover(self) -> Optional[Cover]:
         """|coro|
 
-        This method will return the cover URL of the parent Manga if it exists anc caches the response.
+        This method will return the cover URL of the parent Manga if it exists and caches the response.
 
         Returns
         --------
@@ -557,15 +590,15 @@ class Manga:
 
         This method will return all the related manga and cache their response.
 
-        Returns
-        --------
-        Optional[List[:class:`~hondana.Manga`]]
-            The related manga of the parent.
-
 
         .. note::
             If the parent manga was requested with the "manga" `includes[]` query parameter,
             then this method will not make extra API calls to retrieve manga data.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+            The related manga of the parent.
         """
         if self.related_manga is not None:
             return self.related_manga
@@ -603,14 +636,14 @@ class Manga:
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
         original_language: Optional[str] = None,
-        last_volume: str = MISSING,
-        last_chapter: str = MISSING,
+        last_volume: Optional[str] = MISSING,
+        last_chapter: Optional[str] = MISSING,
         publication_demographic: PublicationDemographic = MISSING,
-        status: MangaStatus = MISSING,
-        year: int = MISSING,
+        status: Optional[MangaStatus] = None,
+        year: Optional[int] = MISSING,
         content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
-        mod_notes: str = MISSING,
+        primary_cover: Optional[str] = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -637,44 +670,35 @@ class Manga:
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
             The language key for the original language of the manga.
-        last_volume: :class:`str`
+        last_volume: Optional[:class:`str`]
             The last volume to attribute to this manga.
-        last_chapter: :class:`str`
+        last_chapter: Optional[:class:`str`]
             The last chapter to attribute to this manga.
-        publication_demographic: :class:`~hondana.PublicationDemographic`
+        publication_demographic: Optional[:class:`~hondana.PublicationDemographic`]
             The target publication demographic of this manga.
-        status: :class:`~hondana.MangaStatus`
+        status: Optional[:class:`~hondana.MangaStatus`]
             The status of the manga.
-        year: :class:`int`
+        year: Optional[:class:`int`]
             The release year of the manga.
         content_rating: Optional[:class:`~hondana.ContentRating`]
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
-        mod_notes: :class:`str`
-            The moderator notes to add to this Manga.
         version: :class:`int`
             The revision version of this manga.
 
 
         .. note::
-            The ``mod_notes`` parameter requires the logged-in user to be a MangaDex moderator.
-            Leave this as the default unless you fit these criteria.
-
-        .. note::
-            With the ``last_volume``, ``last_chapter``, ``publication_demographic``, ``status``, ``year`` and ``mod_notes`` parameters
-            if you leave these values as their default, they will instead be cast to ``None`` (null) in the API.
-            Provide values for these unless you want to nullify them.
+            The ``last_volume``, ``last_chapter``, ``publication_demographic``, ``year`` and ``primary_cover`` parameters
+            are nullable in the API. Pass ``None`` explicitly to do so.
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were not valid.
-
-        Forbidden
+        :exc:`Forbidden`
             The update returned an error due to authentication failure.
-
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
 
         Returns
@@ -698,7 +722,7 @@ class Manga:
             year=year,
             content_rating=content_rating,
             tags=tags,
-            mod_notes=mod_notes,
+            primary_cover=primary_cover,
             version=version,
         )
 
@@ -712,9 +736,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The update returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
         """
 
@@ -728,9 +752,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
         """
         await self._http._unfollow_manga(self.id)
@@ -753,9 +777,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The request returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist.
         """
         await self._http._follow_manga(self.id)
@@ -853,7 +877,7 @@ class Manga:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were malformed.
 
         Returns
@@ -930,9 +954,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authenticated to perform this action.
-        NotFound
+        :exc:`NotFound`
             The specified manga does not exist, likely due to an incorrect ID.
 
         Returns
@@ -960,9 +984,9 @@ class Manga:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were invalid.
-        NotFound
+        :exc:`NotFound`
             The specified manga cannot be found, likely due to incorrect ID.
         """
 
@@ -981,9 +1005,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised to add manga to this custom list.
-        NotFound
+        :exc:`NotFound`
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
@@ -1002,9 +1026,9 @@ class Manga:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             You are not authorised to remove a manga from the specified custom list.
-        NotFound
+        :exc:`NotFound`
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
@@ -1083,7 +1107,7 @@ class Manga:
             i.e. ``{"chapters": "desc"}``
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
-            Defaults to these values.
+            Defaults to all values.
 
 
         .. note::
@@ -1092,7 +1116,7 @@ class Manga:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query parameters were malformed
 
         Returns
@@ -1150,18 +1174,18 @@ class Manga:
         version: Optional[:class:`int`]
             The version of the manga we're attributing this submission to.
 
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request parameters were incorrect or malformed.
+        :exc:`Forbidden`
+            You are not authorised to perform this action.
+        :exc:`NotFound`
+            The manga was not found.
+
         Returns
         --------
         :class:`~hondana.Manga`
-
-        Raises
-        -------
-        BadRequest
-            The request parameters were incorrect or malformed.
-        Forbidden
-            You are not authorised to perform this action.
-        NotFound
-            The manga was not found.
         """
         data = await self._http._submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
@@ -1177,14 +1201,14 @@ class Manga:
             The optional parameters for expanded requests to the API.
             Defaults to all possible expansions.
 
+        Raises
+        -------
+        :exc:`BadRequest`
+            The manga ID passed is malformed
+
         Returns
         --------
         List[:class:`~hondana.MangaRelation`]
-
-        Raises
-        -------
-        BadRequest
-            The manga ID passed is malformed
         """
         data = await self._http._get_manga_relation_list(self.id, includes=includes)
         return [MangaRelation(self._http, self.id, item) for item in data["data"]]
@@ -1206,9 +1230,9 @@ class Manga:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The volume parameter was malformed or the file was a bad format.
-        Forbidden
+        :exc:`Forbidden`
             You are not permitted for this action.
 
         Returns
@@ -1230,16 +1254,16 @@ class Manga:
             The manga ID of the related manga.
         relation_type: :class:`~hondana.MangaRelationType`
 
+        Raises
+        -------
+        :exc:`BadRequest`
+            The parameters were malformed
+        :exc:`Forbidden`
+            You are not authorised for this action.
+
         Returns
         --------
         :class:`~hondana.MangaRelation`
-
-        Raises
-        -------
-        BadRequest
-            The parameters were malformed
-        Forbidden
-            You are not authorised for this action.
         """
         data = await self._http._create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
         return MangaRelation(self._http, self.id, data["data"])
@@ -1369,7 +1393,7 @@ class MangaStatistics:
         The manga these statistics belong to.
     average: :class:`float`
         The average mean score of the manga.
-    distribution: List[:class:`int`]
+    distribution: Optional[List[:class:`int`]]
         The scoring distribution of the manga.
 
 

@@ -91,9 +91,9 @@ class User:
 
         Raises
         -------
-        Forbidden
+        :exc:`Forbidden`
             The response returned an error due to authentication failure.
-        NotFound
+        :exc:`NotFound`
             The user specified cannot be found.
         """
 

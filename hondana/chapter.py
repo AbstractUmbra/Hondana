@@ -84,7 +84,7 @@ class Chapter:
         The manga's title.
         Interestingly enough, this can sometimes be ``None``.
     volume: Optional[:class:`str`]
-        The volume UUID this chapter is associated with this chapter, if any.
+        The volume identifier (e.g. '1') this chapter is associated with, if any.
     chapter: Optional[:class:`str`]
         The chapter identifier (e.g. '001') associated with this chapter, if any.
     pages: :class:`int`
@@ -163,6 +163,10 @@ class Chapter:
         """
         Method to dump the chapter to a dictionary.
 
+
+        .. warning::
+            The dumped dictionary is not standard ``json`` spec compliant.
+
         Returns
         --------
         Dict[:class:`str`, Any]
@@ -191,6 +195,7 @@ class Chapter:
         Returns
         --------
         :class:`~hondana.ChapterAtHome`
+            The returned details to reach a MD@H node for this chapter.
         """
         data = await self._http._get_at_home_url(self.id, ssl=ssl)
         return ChapterAtHome(self._http, data)
@@ -213,7 +218,7 @@ class Chapter:
         Returns
         --------
         :class:`datetime.datetime`
-            The UTC timestamp of when this chapter was created.
+            The UTC datetime of when this chapter was created.
         """
         return datetime.datetime.fromisoformat(self._created_at)
 
@@ -224,7 +229,7 @@ class Chapter:
         Returns
         --------
         :class:`datetime.datetime`
-            The UTC timestamp of when this chapter was last updated.
+            The UTC datetime of when this chapter was last updated.
         """
         return datetime.datetime.fromisoformat(self._updated_at)
 
@@ -235,7 +240,7 @@ class Chapter:
         Returns
         --------
         :class:`datetime.datetime`
-            The UTC timestamp of when this chapter was published.
+            The UTC datetime of when this chapter was published.
         """
         return datetime.datetime.fromisoformat(self._published_at)
 
@@ -277,7 +282,7 @@ class Chapter:
         Returns
         --------
         Optional[:class:`~hondana.ScanlatorGroup`]
-            The ScanlatorGroup that handled this chapter.
+            The ScanlatorGroup that handled this chapter's scanlation and upload.
         """
         if self.__scanlator_group is not None:
             return self.__scanlator_group
@@ -394,11 +399,11 @@ class Chapter:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The request body was malformed.
-        Forbidden
+        :exc:`Forbidden`
             You are not authorized to update this chapter.
-        NotFound
+        :exc:`NotFound`
             One or more UUIDs given were not found.
 
         Returns
@@ -426,11 +431,11 @@ class Chapter:
 
         Raises
         -------
-        BadRequest
+        :exc:`BadRequest`
             The query was malformed.
-        Forbidden
+        :exc:`Forbidden`
             You are not authorized to delete this chapter.
-        NotFound
+        :exc:`NotFound`
             The UUID passed for this chapter does not relate to a chapter in the API.
         """
         await self._http._delete_chapter(self.id)
@@ -665,6 +670,10 @@ class ChapterUpload:
         """|coro|
 
         Opens an upload session and retrieves the session ID.
+
+        Returns
+        --------
+        :class:`~hondana.types.BeginChapterUploadResponse`
         """
         if isinstance(self.manga, Manga):
             manga_id = self.manga.id

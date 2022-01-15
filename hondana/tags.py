@@ -131,10 +131,9 @@ class QueryTags:
 
     Raises
     -------
-    TypeError
+    :exc:`TypeError`
         The mode specified for the builder is not one of "AND" or "OR"
-
-    ValueError
+    :exc:`ValueError`
         The tags passed did not align with MangaDex tags.
 
 

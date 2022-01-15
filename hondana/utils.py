@@ -183,7 +183,7 @@ def to_json(obj: Any) -> str:
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
-    """A quick method to parse an `aiohttp.ClientResponse` and test if it's json or text."""
+    """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text."""
     text = await response.text(encoding="utf-8")
     try:
         if response.headers["content-type"] == "application/json":
