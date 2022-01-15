@@ -160,7 +160,7 @@ class QueryTags:
             if tag_ := MANGA_TAGS.get(tag.title()):
                 tags.append(tag_)
             else:
-                logger.warning("Tag '%s' cannot be found in the local tag cache, skipping." % tag)
+                logger.warning("Tag '%s' cannot be found in the local tag cache, skipping.", tag)
 
         if not tags:
             raise ValueError("No tags passed matched any valid MangaDex tags.")

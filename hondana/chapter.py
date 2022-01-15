@@ -464,13 +464,13 @@ class Chapter:
                 self._at_home_url,
                 f"/{'data-saver' if data_saver else 'data'}/{at_home_data.hash}/{url}",
             )
-            LOGGER.debug("Attempting to download: %s" % route.url)
+            LOGGER.debug("Attempting to download: %s", route.url)
             _start = time.monotonic()
             response: tuple[bytes, ClientResponse] = await self._http.request(route)
             data, page_resp = response
             _end = time.monotonic()
             _total = _end - _start
-            LOGGER.debug("Downloaded: %s" % route.url)
+            LOGGER.debug("Downloaded: %s", route.url)
 
             if report is True:
                 await self._http._at_home_report(
