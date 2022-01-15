@@ -210,7 +210,7 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     """
     fmt = []
     for key, value in obj.items():
-        if value is None or value is MISSING:
+        if value is None:
             fmt.append(f"{key}=null")
         if isinstance(value, (str, int, bool)):
             fmt.append(f"{key}={str(value)}")
