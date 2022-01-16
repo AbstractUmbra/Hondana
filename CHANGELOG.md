@@ -29,3 +29,4 @@ API Version 5.4.8!
 - Fix how bools are handled as query parameters. (c5eedd84fd2e2d8af6f5239e728dc6b8eb018b45)
 
 ### Notes
+- Expect a `2.0.1` soon as the settings template change has not been finalized until the front end catches up.
