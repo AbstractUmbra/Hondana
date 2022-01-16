@@ -148,7 +148,7 @@ class Chapter:
         self.__scanlator_group: Optional[ScanlatorGroup] = None
 
     def __repr__(self) -> str:
-        return f"<Chapter id={self.id} title='{self.title}'>"
+        return f"<Chapter id='{self.id}' title='{self.title}'>"
 
     def __str__(self) -> str:
         return self.title or "No title for this chapter..."
@@ -654,7 +654,7 @@ class ChapterUpload:
         self.__committed: bool = False
 
     def __repr__(self) -> str:
-        return f"<ChapterUpload id={self.upload_session_id} current_uploads={len(self.uploaded)}>"
+        return f"<ChapterUpload id='{self.upload_session_id}' current_uploads={len(self.uploaded)}>"
 
     async def _check_for_session(self) -> None:
         route = Route("GET", "/upload")

@@ -138,7 +138,7 @@ class Artist:
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
-        return f"<Artist id={self.id} name='{self.name}'>"
+        return f"<Artist id='{self.id}' name='{self.name}'>"
 
     def __str__(self) -> str:
         return self.name

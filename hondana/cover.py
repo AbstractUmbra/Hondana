@@ -82,7 +82,7 @@ class Cover:
         self._updated_at = self._attributes["updatedAt"]
 
     def __repr__(self) -> str:
-        return f"<Cover id={self.id} filename={self.file_name}>"
+        return f"<Cover id='{self.id}' filename={self.file_name}>"
 
     def __str__(self) -> str:
         return self.file_name
