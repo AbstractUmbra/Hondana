@@ -471,7 +471,7 @@ class HTTPClient:
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
-        LOGGER.debug("Current request url and params: %s", route.url)
+        LOGGER.debug("Current request url: %s", route.url)
         if "params" in kwargs:
             LOGGER.debug("Current request parameters: %s", kwargs["params"])
         if "data" in kwargs:
