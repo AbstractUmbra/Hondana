@@ -212,10 +212,8 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     for key, value in obj.items():
         if value is None:
             fmt.append(f"{key}=null")
-        if isinstance(value, (str, int)):
-            fmt.append(f"{key}={value}")
-        elif isinstance(value, bool):
-            fmt.append(f"{key}={str(value).lower()}")
+        if isinstance(value, (str, int, bool)):
+            fmt.append(f"{key}={str(value)}")
         elif isinstance(value, list):
             fmt.extend(f"{key}[]={item}" for item in value)
         elif isinstance(value, dict):
