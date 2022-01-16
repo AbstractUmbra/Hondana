@@ -38,6 +38,7 @@ from .artist import *
 from .author import *
 from .chapter import *
 from .client import *
+from .collections import *
 from .cover import *
 from .custom_list import *
 from .enums import *
