@@ -262,6 +262,8 @@ class Client:
                 name = name_key[key]
             tags[name] = tag["id"]
 
+        tags = {tag: item for tag, item in sorted(tags.items(), key=lambda t: t[0])}
+
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
         with open(path, "w") as fp:
             json.dump(tags, fp, indent=4)
