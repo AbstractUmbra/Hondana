@@ -28,6 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, Union
 
 from .artist import Artist
 from .author import Author
+from .collections import ChapterFeed, MangaRelationCollection
 from .cover import Cover
 from .enums import (
     ContentRating,
@@ -50,7 +51,6 @@ from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
-    from .chapter import Chapter
     from .http import HTTPClient
     from .tags import QueryTags
     from .types import manga
@@ -837,7 +837,7 @@ class Manga:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method returns the current manga's chapter feed.
@@ -882,8 +882,8 @@ class Manga:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            The list of chapters returned from this request.
+        :class:`~hondana.ChapterFeed`
+            Returns a collection of chapters.
         """
         data = await self._http._manga_feed(
             self.id,
@@ -905,7 +905,8 @@ class Manga:
 
         from .chapter import Chapter
 
-        return [Chapter(self._http, item) for item in data["data"]]
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def update_read_markers(self) -> manga.MangaReadMarkersResponse:
@@ -1044,7 +1045,7 @@ class Manga:
         groups: Optional[list[str]] = None,
         uploader: Optional[str] = None,
         volumes: Optional[list[str]] = None,
-        chapters: Optional[list[str]] = None,
+        chapter: Optional[list[str]] = None,
         translated_language: Optional[list[LanguageCode]] = None,
         original_language: Optional[list[LanguageCode]] = None,
         excluded_original_language: Optional[list[LanguageCode]] = None,
@@ -1057,7 +1058,7 @@ class Manga:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method will return a list of published chapters.
@@ -1121,8 +1122,8 @@ class Manga:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            The returned chapters from the endpoint.
+        :class:`~hondana.ChapterFeed`
+            Returns a collection of chapters.
         """
         data = await self._http._chapter_list(
             limit=limit,
@@ -1133,7 +1134,7 @@ class Manga:
             groups=groups,
             uploader=uploader,
             volume=volumes,
-            chapter=chapters,
+            chapter=chapter,
             translated_language=translated_language,
             original_language=original_language,
             excluded_original_language=excluded_original_language,
@@ -1149,7 +1150,9 @@ class Manga:
         )
         from .chapter import Chapter
 
-        return [Chapter(self._http, item) for item in data["data"]]
+        fmt = [Chapter(self._http, item) for item in data["data"]]
+
+        return ChapterFeed(self._http, data, fmt)
 
     async def get_draft(self) -> Manga:
         """|coro|
@@ -1190,7 +1193,7 @@ class Manga:
         data = await self._http._submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
-    async def get_relations(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> list[MangaRelation]:
+    async def get_relations(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> MangaRelationCollection:
         """|coro|
 
         This method will return a list of all relations to a given manga.
@@ -1208,10 +1211,11 @@ class Manga:
 
         Returns
         --------
-        List[:class:`~hondana.MangaRelation`]
+        :class:`~hondana.MangaRelationCollection`
         """
         data = await self._http._get_manga_relation_list(self.id, includes=includes)
-        return [MangaRelation(self._http, self.id, item) for item in data["data"]]
+        fmt = [MangaRelation(self._http, self.id, item) for item in data["data"]]
+        return MangaRelationCollection(self._http, data, fmt)
 
     @require_authentication
     async def upload_cover(self, *, cover: bytes, volume: Optional[str] = None, description: Optional[str] = None) -> Cover:

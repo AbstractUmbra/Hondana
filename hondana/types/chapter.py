@@ -123,11 +123,20 @@ class GetMultiChapterResponse(TypedDict):
     response: Literal[``"collection"``]
 
     data: List[:class:`~hondana.types.ChapterResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ChapterResponse]
+    limit: int
+    offset: int
+    total: int
 
 
 class GetAtHomeResponse(TypedDict):

@@ -35,6 +35,17 @@ from . import errors
 from .artist import Artist
 from .author import Author
 from .chapter import Chapter, ChapterUpload
+from .collections import (
+    AuthorCollection,
+    ChapterFeed,
+    CoverCollection,
+    CustomListCollection,
+    MangaCollection,
+    MangaRelationCollection,
+    ReportCollection,
+    ScanlatorGroupCollection,
+    UserCollection,
+)
 from .cover import Cover
 from .custom_list import CustomList
 from .enums import (
@@ -288,7 +299,7 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method will retrieve the logged-in user's followed manga chapter feed.
@@ -338,8 +349,8 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            Returns a list of Chapter instances.
+        :class:`~hondana.ChapterFeed`
+            Returns a collection of chapters.
         """
 
         data = await self._http._manga_feed(
@@ -360,7 +371,8 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, payload) for payload in data["data"]]
+        chapters = [Chapter(self._http, payload) for payload in data["data"]]
+        return ChapterFeed(self._http, data, chapters)
 
     async def manga_list(
         self,
@@ -386,7 +398,7 @@ class Client:
         includes: Optional[MangaIncludes] = MangaIncludes(),
         has_available_chapters: Optional[bool] = None,
         group: Optional[str] = None,
-    ) -> list[Manga]:
+    ) -> MangaCollection:
         """|coro|
 
         This method will perform a search based on the passed query parameters for manga.
@@ -452,8 +464,8 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Manga`]
-            Returns a list of Manga instances.
+        List[:class:`~hondana.MangaCollection`]
+            Returns a collection of Manga.
         """
 
         data = await self._http._manga_list(
@@ -480,7 +492,8 @@ class Client:
             group=group,
         )
 
-        return [Manga(self._http, item) for item in data["data"]]
+        fmt = [Manga(self._http, item) for item in data["data"]]
+        return MangaCollection(self._http, data, fmt)
 
     @require_authentication
     async def create_manga(
@@ -841,7 +854,7 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method returns the specified manga's chapter feed.
@@ -887,8 +900,8 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            The list of chapters returned from this request.
+        :class:`~hondana.ChapterFeed`
+            Returns a collection of chapters.
         """
         data = await self._http._manga_feed(
             manga_id,
@@ -908,7 +921,8 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, item) for item in data["data"]]
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def manga_read_markers(
@@ -985,7 +999,7 @@ class Client:
         limit: int = 100,
         offset: int = 0,
         includes: Optional[MangaIncludes] = MangaIncludes(),
-    ) -> list[Manga]:
+    ) -> MangaCollection:
         """|coro|
 
         This method will get a list of all of the currently loggd in user's followed manga.
@@ -1001,11 +1015,14 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Manga`]
+        List[:class:`~hondana.MangaCollection`]
+            Returns a collection of manga.
         """
         data = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
 
-        return [Manga(self._http, item) for item in data["data"]]
+        fmt = [Manga(self._http, item) for item in data["data"]]
+
+        return MangaCollection(self._http, data, fmt)
 
     @require_authentication
     async def get_all_manga_reading_status(
@@ -1167,7 +1184,7 @@ class Client:
 
     async def get_manga_relation_list(
         self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()
-    ) -> list[MangaRelation]:
+    ) -> MangaRelationCollection:
         """|coro|
 
         This method will return a list of all relations to a given manga.
@@ -1182,7 +1199,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.MangaRelation`]
+        :class:`~hondana.MangaRelationCollection`
 
         Raises
         -------
@@ -1190,7 +1207,8 @@ class Client:
             The manga ID passed is malformed
         """
         data = await self._http._get_manga_relation_list(manga_id, includes=includes)
-        return [MangaRelation(self._http, manga_id, item) for item in data["data"]]
+        fmt = [MangaRelation(self._http, manga_id, item) for item in data["data"]]
+        return MangaRelationCollection(self._http, data, fmt)
 
     @require_authentication
     async def create_manga_relation(
@@ -1308,7 +1326,7 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method will return a list of published chapters.
@@ -1373,8 +1391,8 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            The returned chapters from the endpoint.
+        :class:`~hondana.ChapterFeed`
+            Returns a collection of chapters.
         """
 
         data = await self._http._chapter_list(
@@ -1401,7 +1419,8 @@ class Client:
             includes=includes,
         )
 
-        return [Chapter(self._http, item) for item in data["data"]]
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        return ChapterFeed(self._http, data, chapters)
 
     async def get_chapter(
         self,
@@ -1554,7 +1573,7 @@ class Client:
         uploaders: Optional[list[str]] = None,
         order: Optional[CoverArtListOrderQuery] = None,
         includes: Optional[CoverIncludes] = CoverIncludes(),
-    ) -> list[Cover]:
+    ) -> CoverCollection:
         """|coro|
 
         This method will fetch a list of cover arts from the MangaDex API.
@@ -1585,14 +1604,16 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Cover`]
-            A list of Cover instances returned from the API.
+        :class:`~hondana.CoverCollection`
+            Returns a collection of covers.
         """
         data = await self._http._cover_art_list(
             limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
         )
 
-        return [Cover(self._http, item) for item in data["data"]]
+        fmt = [Cover(self._http, item) for item in data["data"]]
+
+        return CoverCollection(self._http, data, fmt)
 
     @require_authentication
     async def upload_cover(
@@ -1729,7 +1750,7 @@ class Client:
         focused_language: Optional[common.LanguageCode] = None,
         order: Optional[ScanlatorGroupListOrderQuery] = None,
         includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
-    ) -> list[ScanlatorGroup]:
+    ) -> ScanlatorGroupCollection:
         """|coro|
 
         This method will return a list of scanlator groups from the MangaDex API.
@@ -1760,14 +1781,16 @@ class Client:
 
         Returns
         --------
-        List[:class:`ScanlatorGroup`]
-            A list of scanlator groups returned in the request.
+        :class:`ScanlatorGroupCollection`
+            A returned collection of scanlation groups.
         """
         data = await self._http._scanlation_group_list(
             limit=limit, offset=offset, ids=ids, name=name, focused_language=focused_language, order=order, includes=includes
         )
 
-        return [ScanlatorGroup(self._http, item) for item in data["data"]]
+        fmt = [ScanlatorGroup(self._http, item) for item in data["data"]]
+
+        return ScanlatorGroupCollection(self._http, data, fmt)
 
     @require_authentication
     async def user_list(
@@ -1778,7 +1801,7 @@ class Client:
         ids: Optional[list[str]] = None,
         username: Optional[str] = None,
         order: Optional[UserListOrderQuery] = None,
-    ) -> list[User]:
+    ) -> UserCollection:
         """|coro|
 
         This method will return a list of Users from the MangaDex API.
@@ -1805,12 +1828,14 @@ class Client:
 
         Returns
         --------
-        List[:class:`User`]
-            The list of users returned via this request.
+        :class:`UserCollection`
+            A returned collection of users.
         """
         data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
 
-        return [User(self._http, item) for item in data["data"]]
+        fmt = [User(self._http, item) for item in data["data"]]
+
+        return UserCollection(self._http, data, fmt)
 
     async def get_user(self, user_id: str, /) -> User:
         """|coro|
@@ -1972,7 +1997,7 @@ class Client:
             return True
 
     @require_authentication
-    async def get_my_followed_users(self, *, limit: int = 10, offset: int = 0) -> list[User]:
+    async def get_my_followed_users(self, *, limit: int = 10, offset: int = 0) -> UserCollection:
         """|coro|
 
         This method will return the current authenticated user's followed users.
@@ -1991,12 +2016,14 @@ class Client:
 
         Returns
         --------
-        List[:class:`User`]
-            The list of groups that are being followed.
+        :class:`~hondana.UserCollection`
+            A returned collection of users.
         """
         data = await self._http._get_my_followed_users(limit=limit, offset=offset)
 
-        return [User(self._http, item) for item in data["data"]]
+        fmt = [User(self._http, item) for item in data["data"]]
+
+        return UserCollection(self._http, data, fmt)
 
     @require_authentication
     async def check_if_following_user(self, user_id: str, /) -> bool:
@@ -2369,7 +2396,7 @@ class Client:
         await self._http._delete_custom_list(custom_list_id)
 
     @require_authentication
-    async def get_my_custom_lists(self, *, limit: int = 10, offset: int = 0) -> list[CustomList]:
+    async def get_my_custom_lists(self, *, limit: int = 10, offset: int = 0) -> CustomListCollection:
         """|coro|
 
         This method will get the current authenticated user's custom list.
@@ -2388,14 +2415,15 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.CustomList`]
-            The list of custom lists returned from the API.
+        :class:`~hondana.CustomListCollection`
+            A returned collection of custom lists.
         """
         data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
-        return [CustomList(self._http, item) for item in data["data"]]
+        fmt = [CustomList(self._http, item) for item in data["data"]]
+        return CustomListCollection(self._http, data, fmt)
 
     @require_authentication
-    async def get_users_custom_lists(self, user_id: str, /, *, limit: int = 10, offset: int = 0) -> list[CustomList]:
+    async def get_users_custom_lists(self, user_id: str, /, *, limit: int = 10, offset: int = 0) -> CustomListCollection:
         """|coro|
 
         This method will retrieve another user's custom lists.
@@ -2416,11 +2444,12 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.CustomList`]
-            The list of custom lists returned from the API.
+        :class:`~hondana.CustomListCollection`
+            A returned collection of custom lists.
         """
         data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
-        return [CustomList(self._http, item) for item in data["data"]]
+        fmt = [CustomList(self._http, item) for item in data["data"]]
+        return CustomListCollection(self._http, data, fmt)
 
     @require_authentication
     async def get_custom_list_manga_feed(
@@ -2441,7 +2470,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
-    ) -> list[Chapter]:
+    ) -> ChapterFeed:
         """|coro|
 
         This method returns the specified manga's chapter feed.
@@ -2491,8 +2520,8 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.Chapter`]
-            The list of chapters returned from this request.
+        :class:`~hondana.ChapterFeed`
+            Returns a collections of chapters.
         """
         data = await self._http._custom_list_manga_feed(
             custom_list_id,
@@ -2511,7 +2540,8 @@ class Client:
             order=order,
         )
 
-        return [Chapter(self._http, item) for item in data["data"]]
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def create_scanlation_group(
@@ -2791,7 +2821,7 @@ class Client:
         name: Optional[str] = None,
         order: Optional[AuthorListOrderQuery] = None,
         includes: Optional[AuthorIncludes] = AuthorIncludes(),
-    ) -> list[Author]:
+    ) -> AuthorCollection:
         """|coro|
 
         This method will fetch a list of authors from the MangaDex API.
@@ -2811,10 +2841,24 @@ class Client:
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
             An optional list of includes to request increased payloads during the request.
             Defaults to all possible expansions.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request payload was malformed.
+        :exc:`Forbidden`
+            The request failed due to authentication failure.
+
+        Returns
+        --------
+        :class:`~hondana.AuthorCollection`
+            A returned collection of authors.
         """
         data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
 
-        return [Author(self._http, item) for item in data["data"]]
+        fmt = [Author(self._http, item) for item in data["data"]]
+
+        return AuthorCollection(self._http, data, fmt)
 
     @require_authentication
     async def create_author(
@@ -3074,7 +3118,7 @@ class Client:
         await self._http._delete_author(author_id)
 
     @require_authentication
-    async def get_report_list(self, report_category: ReportCategory, /) -> list[Report]:
+    async def get_report_list(self, report_category: ReportCategory, /) -> ReportCollection:
         """|coro|
 
         This method will retrieve a list of reports from the MangaDex API.
@@ -3095,11 +3139,12 @@ class Client:
 
         Returns
         --------
-        List[:class:`Report`]
-            The list of reports returned from the API.
+        :class:`~hondana.ReportCollection`
+            A returned collection of reports.
         """
         data = await self._http._get_report_reason_list(report_category)
-        return [Report(self._http, item) for item in data["data"]]
+        fmt = [Report(self._http, item) for item in data["data"]]
+        return ReportCollection(self._http, data, fmt)
 
     @require_authentication
     async def create_report(

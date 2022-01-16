@@ -35,6 +35,26 @@ Chapter Upload
 .. autoclass:: ChapterUpload
     :members:
 
+Collections
+~~~~~~~~~~~
+.. autoclass:: MangaCollection
+
+.. autoclass:: MangaRelationCollection
+
+.. autoclass:: ChapterFeed
+
+.. autoclass:: AuthorCollection
+
+.. autoclass:: CoverCollection
+
+.. autoclass:: ScanlatorGroupCollection
+
+.. autoclass:: ReportCollection
+
+.. autoclass:: UserCollection
+
+.. autoclass:: CustomListCollection
+
 Cover
 ~~~~~
 .. autoclass:: Cover
