@@ -24,7 +24,7 @@ handler.setFormatter(logging.Formatter("%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 
-async def main() -> list[hondana.Chapter]:
+async def main() -> hondana.ChapterFeed:
     # Let's get the last 15 minutes of released manga
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 

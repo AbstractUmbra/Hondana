@@ -13,7 +13,7 @@ from hondana.query import FeedOrderQuery, Order
 client = hondana.Client(username="my-username", password="my-password")
 
 
-async def main() -> list[hondana.Chapter]:
+async def main() -> hondana.ChapterFeed:
     # Let's get the last 15 minutes of released manga
     fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
 
@@ -21,7 +21,7 @@ async def main() -> list[hondana.Chapter]:
     # we also coerce the type here to prevent typechecker issues. This isn't needed but if you use a typechecker this is good to do.
     order = FeedOrderQuery(created_at=Order.descending)
 
-    # `feed` will return a list of Chapter instances.
+    # `feed` will return a ChapterFeed instance. This just has the response info and list of chapters.
     feed = await client.get_my_feed(
         limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order
     )

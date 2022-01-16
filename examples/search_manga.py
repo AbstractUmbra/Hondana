@@ -11,7 +11,7 @@ import hondana
 client = hondana.Client(username="my login username", password="my login password")
 
 
-async def search_for_tags() -> list[hondana.Manga]:
+async def search_for_tags() -> hondana.MangaCollection:
     # Using the tag builder for ease during a query
     # This will add a restriction to search for a manga with all 3 of these tags using logical AND
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
@@ -25,7 +25,7 @@ async def search_for_tags() -> list[hondana.Manga]:
     return manga_response
 
 
-async def more_refined_search() -> list[hondana.Manga]:
+async def more_refined_search() -> hondana.MangaCollection:
     # let's do a more refined search using many of the query parameters...
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
 
