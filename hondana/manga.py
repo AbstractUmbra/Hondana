@@ -825,7 +825,7 @@ class Manga:
     async def feed(
         self,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         translated_language: Optional[list[LanguageCode]] = None,
         original_language: Optional[list[LanguageCode]] = None,
@@ -846,7 +846,7 @@ class Manga:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. The maximum amount of chapters to return-in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
@@ -877,6 +877,10 @@ class Manga:
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
+
         Raises
         -------
         :exc:`BadRequest`
@@ -887,9 +891,11 @@ class Manga:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
+        from .chapter import Chapter
+
         data = await self._http._manga_feed(
             self.id,
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             translated_language=translated_language,
             original_language=original_language,
@@ -905,10 +911,39 @@ class Manga:
             includes=includes,
         )
 
-        from .chapter import Chapter
-
         chapters = [Chapter(self._http, item) for item in data["data"]]
-        return ChapterFeed(self._http, data, chapters)
+        feed = ChapterFeed(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._manga_feed(
+                self.id,
+                limit=limit,
+                offset=offset,
+                translated_language=translated_language,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+                includes=includes,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     @require_authentication
     async def update_read_markers(self) -> manga.MangaReadMarkersResponse:
@@ -1040,7 +1075,7 @@ class Manga:
     async def get_chapters(
         self,
         *,
-        limit: int = 10,
+        limit: Optional[int] = 10,
         offset: int = 0,
         ids: Optional[list[str]] = None,
         title: Optional[str] = None,
@@ -1067,7 +1102,7 @@ class Manga:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. This specifies the amount of chapters to return in one request.
         offset: :class:`int`
             Defaults to 0. This specifies the pagination offset.
@@ -1114,6 +1149,9 @@ class Manga:
 
 
         .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
+
+        .. note::
             If `order` is not specified then the API will return results first based on their creation date,
             which could lead to unexpected results.
 
@@ -1128,7 +1166,7 @@ class Manga:
             Returns a collection of chapters.
         """
         data = await self._http._chapter_list(
-            limit=limit,
+            limit=(limit if limit is not None else 10),
             offset=offset,
             manga=self.id,
             ids=ids,
@@ -1152,9 +1190,45 @@ class Manga:
         )
         from .chapter import Chapter
 
-        fmt = [Chapter(self._http, item) for item in data["data"]]
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        feed = ChapterFeed(self._http, data, chapters)
 
-        return ChapterFeed(self._http, data, fmt)
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._chapter_list(
+                limit=limit,
+                offset=offset,
+                manga=self.id,
+                ids=ids,
+                title=title,
+                groups=groups,
+                uploader=uploader,
+                volume=volumes,
+                chapter=chapter,
+                translated_language=translated_language,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+                includes=includes,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     async def get_draft(self) -> Manga:
         """|coro|

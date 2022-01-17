@@ -40,6 +40,7 @@ from .collections import (
     ChapterFeed,
     CoverCollection,
     CustomListCollection,
+    LegacyMappingCollection,
     MangaCollection,
     MangaRelationCollection,
     ReportCollection,
@@ -285,7 +286,7 @@ class Client:
     async def get_my_feed(
         self,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
@@ -355,7 +356,7 @@ class Client:
 
         data = await self._http._manga_feed(
             None,
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             translated_language=translated_language,
             original_language=original_language,
@@ -371,13 +372,44 @@ class Client:
             includes=includes,
         )
 
-        chapters = [Chapter(self._http, payload) for payload in data["data"]]
-        return ChapterFeed(self._http, data, chapters)
+        chapters = [Chapter(self._http, item) for item in data["data"]]
+        feed = ChapterFeed(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._manga_feed(
+                None,
+                limit=limit,
+                offset=offset,
+                translated_language=translated_language,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+                includes=includes,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     async def manga_list(
         self,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         title: Optional[str] = None,
         authors: Optional[list[str]] = None,
@@ -405,7 +437,7 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. This is the limit of manga that is returned in this request,
             it is clamped at 500 as that is the max in the API.
         offset: :class:`int`
@@ -457,6 +489,10 @@ class Client:
         group: Optional[:class:`str`]
             Filter the manga list to only those uploaded by this group.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the manga list.
+
         Raises
         -------
         :exc:`BadRequest`
@@ -469,7 +505,7 @@ class Client:
         """
 
         data = await self._http._manga_list(
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             title=title,
             authors=authors,
@@ -492,8 +528,45 @@ class Client:
             group=group,
         )
 
-        fmt = [Manga(self._http, item) for item in data["data"]]
-        return MangaCollection(self._http, data, fmt)
+        chapters = [Manga(self._http, item) for item in data["data"]]
+        feed = MangaCollection(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.manga) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._manga_list(
+                limit=limit,
+                offset=offset,
+                title=title,
+                authors=authors,
+                artists=artists,
+                year=year,
+                included_tags=included_tags,
+                excluded_tags=excluded_tags,
+                status=status,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                available_translated_language=available_translated_language,
+                publication_demographic=publication_demographic,
+                ids=ids,
+                content_rating=content_rating,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                order=order,
+                includes=includes,
+                has_available_chapters=has_available_chapters,
+                group=group,
+            )
+            manga = [Manga(self._http, item) for item in next_batch["data"]]
+            feed.manga.extend(manga)
+
+        return feed
 
     @require_authentication
     async def create_manga(
@@ -840,7 +913,7 @@ class Client:
         manga_id: str,
         /,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
@@ -863,7 +936,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga whose feed we are requesting.
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
@@ -893,6 +966,10 @@ class Client:
             The options to include increased payloads for per chapter.
             Defaults to all values.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
+
         Raises
         -------
         :exc:`BadRequest`
@@ -905,7 +982,7 @@ class Client:
         """
         data = await self._http._manga_feed(
             manga_id,
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             translated_language=translated_language,
             original_language=original_language,
@@ -922,7 +999,38 @@ class Client:
         )
 
         chapters = [Chapter(self._http, item) for item in data["data"]]
-        return ChapterFeed(self._http, data, chapters)
+        feed = ChapterFeed(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._manga_feed(
+                manga_id,
+                limit=limit,
+                offset=offset,
+                translated_language=translated_language,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+                includes=includes,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     @require_authentication
     async def manga_read_markers(
@@ -996,7 +1104,7 @@ class Client:
     async def get_my_followed_manga(
         self,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         includes: Optional[MangaIncludes] = MangaIncludes(),
     ) -> MangaCollection:
@@ -1006,23 +1114,43 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             The amount of items we are requesting.
         offset: :class:`int`
             The pagination offset for the items we are requesting.
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes to add to the api responses.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the followed manga list.
+
         Returns
         --------
         List[:class:`~hondana.MangaCollection`]
             Returns a collection of manga.
         """
-        data = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
+        data = await self._http._get_user_followed_manga(
+            limit=(limit if limit is not None else 100), offset=offset, includes=includes
+        )
 
-        fmt = [Manga(self._http, item) for item in data["data"]]
+        manga = [Manga(self._http, item) for item in data["data"]]
+        collection = MangaCollection(self._http, data, manga)
 
-        return MangaCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.manga) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
+            manga = [Manga(self._http, item) for item in next_batch["data"]]
+            collection.manga.extend(manga)
+
+        return collection
 
     @require_authentication
     async def get_all_manga_reading_status(
@@ -1305,7 +1433,7 @@ class Client:
     async def chapter_list(
         self,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         ids: Optional[list[str]] = None,
         title: Optional[str] = None,
@@ -1333,7 +1461,7 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. This specifies the amount of chapters to return in one request.
         offset: :class:`int`
             Defaults to 0. This specifies the pagination offset.
@@ -1379,6 +1507,9 @@ class Client:
 
 
         .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
+
+        .. note::
             If `order` is not specified then the API will return results first based on their creation date,
             which could lead to unexpected results.
 
@@ -1396,7 +1527,7 @@ class Client:
         """
 
         data = await self._http._chapter_list(
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             ids=ids,
             title=title,
@@ -1420,7 +1551,44 @@ class Client:
         )
 
         chapters = [Chapter(self._http, item) for item in data["data"]]
-        return ChapterFeed(self._http, data, chapters)
+        feed = ChapterFeed(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._chapter_list(
+                limit=limit,
+                offset=offset,
+                ids=ids,
+                title=title,
+                groups=groups,
+                uploader=uploader,
+                manga=manga,
+                volume=volume,
+                chapter=chapter,
+                translated_language=translated_language,
+                original_language=excluded_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+                includes=includes,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     async def get_chapter(
         self,
@@ -1566,7 +1734,7 @@ class Client:
     async def cover_art_list(
         self,
         *,
-        limit: int = 10,
+        limit: Optional[int] = 10,
         offset: int = 0,
         manga: Optional[list[str]] = None,
         ids: Optional[list[str]] = None,
@@ -1608,12 +1776,34 @@ class Client:
             Returns a collection of covers.
         """
         data = await self._http._cover_art_list(
-            limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
+            limit=(limit if limit is not None else 10),
+            offset=offset,
+            manga=manga,
+            ids=ids,
+            uploaders=uploaders,
+            order=order,
+            includes=includes,
         )
 
-        fmt = [Cover(self._http, item) for item in data["data"]]
+        covers = [Cover(self._http, item) for item in data["data"]]
+        collection = CoverCollection(self._http, data, covers)
 
-        return CoverCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.covers) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._cover_art_list(
+                limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
+            )
+            covers = [Cover(self._http, item) for item in next_batch["data"]]
+            collection.covers.extend(covers)
+
+        return collection
 
     @require_authentication
     async def upload_cover(
@@ -1743,7 +1933,7 @@ class Client:
     async def scanlation_group_list(
         self,
         *,
-        limit: int = 10,
+        limit: Optional[int] = 10,
         offset: int = 0,
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
@@ -1757,7 +1947,7 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of scanlator groups to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
@@ -1772,6 +1962,10 @@ class Client:
         includes: Optional[:class:`~hondana.query.ScanlatorGroupIncludes`]
             An optional list of includes to request increased payloads during the request.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
+
         Raises
         -------
         :exc:`BadRequest`
@@ -1785,18 +1979,44 @@ class Client:
             A returned collection of scanlation groups.
         """
         data = await self._http._scanlation_group_list(
-            limit=limit, offset=offset, ids=ids, name=name, focused_language=focused_language, order=order, includes=includes
+            limit=(limit if limit is not None else 10),
+            offset=offset,
+            ids=ids,
+            name=name,
+            focused_language=focused_language,
+            order=order,
+            includes=includes,
         )
 
-        fmt = [ScanlatorGroup(self._http, item) for item in data["data"]]
+        groups = [ScanlatorGroup(self._http, item) for item in data["data"]]
+        collection = ScanlatorGroupCollection(self._http, data, groups)
 
-        return ScanlatorGroupCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.groups) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                next_batch = await self._http._scanlation_group_list(
+                    limit=limit,
+                    offset=offset,
+                    ids=ids,
+                    name=name,
+                    focused_language=focused_language,
+                    order=order,
+                    includes=includes,
+                )
+                groups = [ScanlatorGroup(self._http, item) for item in next_batch["data"]]
+                collection.groups.extend(groups)
+
+        return collection
 
     @require_authentication
     async def user_list(
         self,
         *,
-        limit: int = 10,
+        limit: Optional[int] = 10,
         offset: int = 0,
         ids: Optional[list[str]] = None,
         username: Optional[str] = None,
@@ -1808,7 +2028,7 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of users to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
@@ -1818,6 +2038,10 @@ class Client:
             The username to limit this request to.
         order: Optional[:class:`~hondana.query.UserListOrderQuery`]
             The optional query param on how the response will be ordered.
+
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
         -------
@@ -1831,11 +2055,27 @@ class Client:
         :class:`UserCollection`
             A returned collection of users.
         """
-        data = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
+        data = await self._http._user_list(
+            limit=(limit if limit is not None else 10), offset=offset, ids=ids, username=username, order=order
+        )
 
-        fmt = [User(self._http, item) for item in data["data"]]
+        users = [User(self._http, item) for item in data["data"]]
+        collection = UserCollection(self._http, data, users)
 
-        return UserCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.users) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
+            users = [User(self._http, item) for item in next_batch["data"]]
+            collection.users.extend(users)
+
+        return collection
 
     async def get_user(self, user_id: str, /) -> User:
         """|coro|
@@ -1997,17 +2237,21 @@ class Client:
             return True
 
     @require_authentication
-    async def get_my_followed_users(self, *, limit: int = 10, offset: int = 0) -> UserCollection:
+    async def get_my_followed_users(self, *, limit: Optional[int] = 10, offset: int = 0) -> UserCollection:
         """|coro|
 
         This method will return the current authenticated user's followed users.
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. The amount of users to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
+
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
         -------
@@ -2019,11 +2263,25 @@ class Client:
         :class:`~hondana.UserCollection`
             A returned collection of users.
         """
-        data = await self._http._get_my_followed_users(limit=limit, offset=offset)
+        data = await self._http._get_my_followed_users(limit=(limit if limit is not None else 10), offset=offset)
 
-        fmt = [User(self._http, item) for item in data["data"]]
+        users = [User(self._http, item) for item in data["data"]]
+        collection = UserCollection(self._http, data, users)
 
-        return UserCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.users) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._get_my_followed_users(limit=limit, offset=offset)
+            users = [User(self._http, item) for item in next_batch["data"]]
+            collection.users.extend(users)
+
+        return collection
 
     @require_authentication
     async def check_if_following_user(self, user_id: str, /) -> bool:
@@ -2397,17 +2655,21 @@ class Client:
         await self._http._delete_custom_list(custom_list_id)
 
     @require_authentication
-    async def get_my_custom_lists(self, *, limit: int = 10, offset: int = 0) -> CustomListCollection:
+    async def get_my_custom_lists(self, *, limit: Optional[int] = 10, offset: int = 0) -> CustomListCollection:
         """|coro|
 
         This method will get the current authenticated user's custom list.
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
+
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
         -------
@@ -2419,12 +2681,27 @@ class Client:
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """
-        data = await self._http._get_my_custom_lists(limit=limit, offset=offset)
-        fmt = [CustomList(self._http, item) for item in data["data"]]
-        return CustomListCollection(self._http, data, fmt)
+        data = await self._http._get_my_custom_lists(limit=(limit if limit is not None else 10), offset=offset)
+
+        lists = [CustomList(self._http, item) for item in data["data"]]
+        collection = CustomListCollection(self._http, data, lists)
+
+        while len(collection.lists) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._get_my_custom_lists(limit=limit, offset=offset)
+            lists = [CustomList(self._http, item) for item in next_batch["data"]]
+            collection.lists.extend(lists)
+
+        return collection
 
     @require_authentication
-    async def get_users_custom_lists(self, user_id: str, /, *, limit: int = 10, offset: int = 0) -> CustomListCollection:
+    async def get_users_custom_lists(
+        self, user_id: str, /, *, limit: Optional[int] = 10, offset: int = 0
+    ) -> CustomListCollection:
         """|coro|
 
         This method will retrieve another user's custom lists.
@@ -2433,10 +2710,14 @@ class Client:
         -----------
         user_id: :class:`str`
             The UUID of the user whose lists we wish to retrieve.
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
+
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
         -------
@@ -2448,9 +2729,21 @@ class Client:
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """
-        data = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
-        fmt = [CustomList(self._http, item) for item in data["data"]]
-        return CustomListCollection(self._http, data, fmt)
+        data = await self._http._get_users_custom_lists(user_id, limit=(limit if limit is not None else 10), offset=offset)
+        lists = [CustomList(self._http, item) for item in data["data"]]
+        collection = CustomListCollection(self._http, data, lists)
+
+        while len(collection.lists) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
+            lists = [CustomList(self._http, item) for item in next_batch["data"]]
+            collection.lists.extend(lists)
+
+        return collection
 
     @require_authentication
     async def get_custom_list_manga_feed(
@@ -2458,7 +2751,7 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        limit: int = 100,
+        limit: Optional[int] = 100,
         offset: int = 0,
         translated_language: Optional[list[common.LanguageCode]] = None,
         original_language: Optional[list[common.LanguageCode]] = None,
@@ -2480,7 +2773,7 @@ class Client:
         -----------
         custom_list_id: :class:`str`
             The UUID of the custom list whose feed we are requesting.
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
@@ -2526,7 +2819,7 @@ class Client:
         """
         data = await self._http._custom_list_manga_feed(
             custom_list_id,
-            limit=limit,
+            limit=(limit if limit is not None else 100),
             offset=offset,
             translated_language=translated_language,
             original_language=original_language,
@@ -2542,7 +2835,37 @@ class Client:
         )
 
         chapters = [Chapter(self._http, item) for item in data["data"]]
-        return ChapterFeed(self._http, data, chapters)
+        feed = ChapterFeed(self._http, data, chapters)
+
+        if limit is not None:
+            return feed
+
+        while len(feed.chapters) < feed.total:
+            limit = feed.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > feed.total:
+                break
+
+            next_batch = await self._http._custom_list_manga_feed(
+                custom_list_id,
+                limit=limit,
+                offset=offset,
+                translated_language=translated_language,
+                original_language=original_language,
+                excluded_original_language=excluded_original_language,
+                content_rating=content_rating,
+                excluded_groups=excluded_groups,
+                excluded_uploaders=excluded_uploaders,
+                include_future_updates=include_future_updates,
+                created_at_since=created_at_since,
+                updated_at_since=updated_at_since,
+                published_at_since=published_at_since,
+                order=order,
+            )
+            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
+            feed.chapters.extend(chapters)
+
+        return feed
 
     @require_authentication
     async def create_scanlation_group(
@@ -2816,7 +3139,7 @@ class Client:
     async def author_list(
         self,
         *,
-        limit: int = 10,
+        limit: Optional[int] = 10,
         offset: int = 0,
         ids: Optional[list[str]] = None,
         name: Optional[str] = None,
@@ -2829,7 +3152,7 @@ class Client:
 
         Parameters
         -----------
-        limit: :class:`int`
+        limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of scanlator groups to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
@@ -2843,6 +3166,10 @@ class Client:
             An optional list of includes to request increased payloads during the request.
             Defaults to all possible expansions.
 
+
+        .. note::
+            Passing ``None`` to ``limit`` will attempt to retrieve all items in the author collection.
+
         Raises
         -------
         :exc:`BadRequest`
@@ -2855,11 +3182,29 @@ class Client:
         :class:`~hondana.AuthorCollection`
             A returned collection of authors.
         """
-        data = await self._http._author_list(limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes)
+        data = await self._http._author_list(
+            limit=(limit if limit is not None else 10), offset=offset, ids=ids, name=name, order=order, includes=includes
+        )
 
-        fmt = [Author(self._http, item) for item in data["data"]]
+        authors = [Author(self._http, item) for item in data["data"]]
+        collection = AuthorCollection(self._http, data, authors)
 
-        return AuthorCollection(self._http, data, fmt)
+        if limit is not None:
+            return collection
+
+        while len(collection.authors) < collection.total:
+            limit = collection.limit
+            offset = offset + limit
+            if offset >= 10_000 or offset > collection.total:
+                break
+
+            next_batch = await self._http._author_list(
+                limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes
+            )
+            authors = [Author(self._http, item) for item in next_batch["data"]]
+            collection.authors.extend(authors)
+
+        return collection
 
     @require_authentication
     async def create_author(
