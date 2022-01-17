@@ -214,13 +214,15 @@ class Manga:
         Returns
         --------
         :class:`str`
-            The title of the manga, defaults to the ``en`` key in the titles.
-            Falls back to the next available key if ``en`` is not present.
+            The title of the manga, defaults to the ``en`` key in the titles attribute of the response.
+            Attempts to fall back to the manga's default language, and failing that it will
+            fall back to the next available key if ``en`` or default language key is not present.
         """
         title = self._title.get("en")
+        key = next(iter(self._title))
         if title is None:
-            key = next(iter(self._title))
-            return self._title[key]
+            title = self._title.get(self.original_language, self._title[key])
+
         return title
 
     @property
