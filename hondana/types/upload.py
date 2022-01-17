@@ -67,18 +67,35 @@ class UploadSessionAttributes(TypedDict):
     updatedAt: str
 
 
-class GetUploadSessionResponse(TypedDict):
+class GetUploadSessionDataResponse(TypedDict):
     """
     id: :class:`str`
 
     type: Literal[``"upload_session"``]
 
     attributes: :class:`~hondana.types.UploadSessionAttributes`
+
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
     """
 
     id: str
     type: Literal["upload_session"]
     attributes: UploadSessionAttributes
+    relationships: list[RelationshipResponse]
+
+
+class GetUploadSessionResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"entity"``]
+
+    data: :class:~hondana.types.GetUploadSessionDataResponse`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["entity"]
+    data: GetUploadSessionDataResponse
 
 
 class ChapterUploadAttributes(TypedDict):

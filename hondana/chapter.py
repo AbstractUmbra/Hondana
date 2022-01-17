@@ -663,7 +663,9 @@ class ChapterUpload:
         except NotFound:
             LOGGER.info("No upload session found, continuing.")
         else:
-            raise UploadInProgress("You already have an existing session, please terminate it.", session_id=data["id"])
+            raise UploadInProgress(
+                "You already have an existing session, please terminate it.", session_id=data["data"]["id"]
+            )
 
     @require_authentication
     async def open_session(self) -> BeginChapterUploadResponse:
