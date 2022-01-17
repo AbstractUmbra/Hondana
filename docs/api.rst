@@ -55,6 +55,8 @@ Collections
 
 .. autoclass:: CustomListCollection
 
+.. autoclass:: LegacyMappingCollection
+
 Cover
 ~~~~~
 .. autoclass:: Cover

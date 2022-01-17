@@ -32,6 +32,7 @@ if TYPE_CHECKING:
     from .cover import Cover
     from .custom_list import CustomList
     from .http import HTTPClient
+    from .legacy import LegacyItem
     from .manga import Manga, MangaRelation
     from .report import Report
     from .scanlator_group import ScanlatorGroup
@@ -39,6 +40,7 @@ if TYPE_CHECKING:
     from .types.chapter import GetMultiChapterResponse
     from .types.cover import GetMultiCoverResponse
     from .types.custom_list import GetMultiCustomListResponse
+    from .types.legacy import GetLegacyMappingResponse
     from .types.manga import MangaRelationResponse, MangaSearchResponse
     from .types.report import GetReportReasonResponse
     from .types.scanlator_group import GetMultiScanlationGroupResponse
@@ -55,6 +57,7 @@ __all__ = (
     "ReportCollection",
     "UserCollection",
     "CustomListCollection",
+    "LegacyMappingCollection",
 )
 
 
@@ -409,3 +412,42 @@ class CustomListCollection(_Collection):
 
     def __repr__(self) -> str:
         return f"<CustomListCollection lists={len(self.lists)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+
+class LegacyMappingCollection(_Collection):
+    """
+    A collection object type to represent custom lists.
+
+    Attributes
+    -----------
+    legacy_mappings: List[:class:`~hondana.LegacyItem`]
+        The legacy mappings returned from this collection.
+    total: :class:`int`
+        The total possible results with this query could return.
+    offset: :class:`int`
+        The offset used in this query.
+    limit: :class:`int`
+        The limit used in this query.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "legacy_mappings",
+        "total",
+        "limit",
+        "offset",
+    )
+
+    def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
+        self._http: HTTPClient = http
+        payload.pop("data", [])
+        self._data: GetLegacyMappingResponse = payload
+        self.legacy_mappings: list[LegacyItem] = mappings
+        self.total: int = payload.pop("total", 0)
+        self.limit: int = payload.pop("limit", 0)
+        self.offset: int = payload.pop("offset", 0)
+        super().__init__()
+
+    def __repr__(self) -> str:
+        return f"<LegacyMappingCollection legacy_mappings={len(self.legacy_mappings)} total={self.total} offset={self.offset} limit={self.limit}>"

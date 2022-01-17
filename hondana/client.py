@@ -2200,7 +2200,7 @@ class Client:
         data = await self._http._ping_the_server()
         return data == "pong"
 
-    async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> list[LegacyItem]:
+    async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> LegacyMappingCollection:
         """|coro|
 
         This method will return a small response from the API to retrieve a legacy MangaDex's new details.
@@ -2219,11 +2219,12 @@ class Client:
 
         Returns
         ---------
-        List[:class:`LegacyItem`]
+        :class:`LegacyMappingCollection`
             The list of returned items from this query.
         """
         data = await self._http._legacy_id_mapping(type, item_ids=item_ids)
-        return [LegacyItem(self._http, item) for item in data["data"]]
+        items = [LegacyItem(self._http, item) for item in data["data"]]
+        return LegacyMappingCollection(self._http, data, items)
 
     async def get_at_home_url(self, chapter_id: str, /, *, ssl: bool = True) -> str:
         """|coro|
