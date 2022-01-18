@@ -517,7 +517,7 @@ class Chapter:
             _total = _end - _start
             LOGGER.debug("Downloaded: %s", route.url)
 
-            if report is True:
+            if report is True and self._at_home_url != "https://uploads.mangadex.org":
                 await self._http._at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
