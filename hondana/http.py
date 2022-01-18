@@ -1132,7 +1132,7 @@ class HTTPClient:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
         if includes:
-            return self.request(route, params={"includes": includes})
+            return self.request(route, params={"includes": includes.to_query()})
         return self.request(route)
 
     def _update_chapter(
