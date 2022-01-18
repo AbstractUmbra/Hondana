@@ -479,11 +479,11 @@ class Chapter:
 
             if report is True:
                 await self._http._at_home_report(
-                    route.url,
-                    page_resp.status == 200,
-                    "X-Cache" in page_resp.headers,
-                    (page_resp.content_length or 0),
-                    int(_total * 1000),
+                    url=route.url,
+                    success=page_resp.status == 200,
+                    cached=("X-Cache" in page_resp.headers),
+                    size=(page_resp.content_length or 0),
+                    duration=int(_total * 1000),
                 )
 
             if page_resp.status != 200:

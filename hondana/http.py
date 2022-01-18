@@ -1989,7 +1989,7 @@ class HTTPClient:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value)
         return self.request(route)
 
-    def _at_home_report(self, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
+    def _at_home_report(self, *, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
         route = CustomRoute("POST", "https://api.mangadex.network", "/report")
 
         query: dict[str, Any] = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
