@@ -37,6 +37,7 @@ from .errors import NotFound, UploadInProgress
 from .manga import Manga
 from .query import MangaIncludes, ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
+from .user import User
 from .utils import (
     MISSING,
     CustomRoute,
@@ -56,6 +57,7 @@ if TYPE_CHECKING:
     from .types.chapter import ChapterResponse, GetAtHomeResponse
     from .types.common import LanguageCode
     from .types.relationship import RelationshipResponse
+    from .types.scanlator_group import ScanlationGroupResponse
     from .types.upload import (
         BeginChapterUploadResponse,
         GetUploadSessionResponse,
@@ -91,8 +93,6 @@ class Chapter:
         The number of pages this chapter has.
     translated_language: :class:`str`
         The language code that this chapter was translated to.
-    uploader: Optional[:class:`str`]
-        The UUID of the uploader attributed to this chapter, if any.
     external_url: Optional[:class:`str`]
         The chapter's external url, if any.
     version: :class:`int`
@@ -115,15 +115,15 @@ class Chapter:
         "chapter",
         "pages",
         "translated_language",
-        "uploader",
         "external_url",
         "version",
         "_created_at",
         "_updated_at",
         "_published_at",
         "_at_home_url",
+        "__uploader",
         "__parent",
-        "__scanlator_group",
+        "__scanlator_groups",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
@@ -137,15 +137,15 @@ class Chapter:
         self.chapter: Optional[str] = self._attributes["chapter"]
         self.pages: int = self._attributes["pages"]
         self.translated_language: str = self._attributes["translatedLanguage"]
-        self.uploader: Optional[str] = self._attributes.get("uploader")
         self.external_url: Optional[str] = self._attributes["externalUrl"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._at_home_url: Optional[str] = None
+        self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
-        self.__scanlator_group: Optional[ScanlatorGroup] = None
+        self.__scanlator_groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
         return f"<Chapter id='{self.id}' title='{self.title}'>"
@@ -268,54 +268,92 @@ class Chapter:
         if resolved is None or not resolved.get("attributes"):
             return
 
-        return Manga(self._http, resolved)
+        manga = Manga(self._http, resolved)
+        self.__parent = manga
+        return self.__parent
 
     @manga.setter
     def manga(self, other: Manga) -> None:
-        if isinstance(other, Manga):
-            self.__parent = other
+        self.__parent = other
 
     @property
-    def scanlator_group(self) -> Optional[ScanlatorGroup]:
+    def scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
         """The Scanlator Group that handled this chapter.
 
         Returns
         --------
-        Optional[:class:`~hondana.ScanlatorGroup`]
-            The ScanlatorGroup that handled this chapter's scanlation and upload.
+        Optional[List[:class:`~hondana.ScanlatorGroup`]]
+            The groups that handled this chapter's scanlation and upload.
         """
-        if self.__scanlator_group is not None:
-            return self.__scanlator_group
+        if self.__scanlator_groups is not None:
+            return self.__scanlator_groups
+
+        if not self._relationships:
+            return
+
+        resolved: list[ScanlationGroupResponse] = []
+        for relationship in self._relationships:
+            if relationship["type"] == "scanlation_group":
+                resolved.append(relationship)
+                break
+
+        fmt = []
+        for payload in resolved:
+            if payload.get("attributes"):
+                fmt.append(ScanlatorGroup(self._http, payload))
+
+        if not fmt:
+            return
+
+        self.__scanlator_groups = fmt
+        return self.__scanlator_groups
+
+    @scanlator_groups.setter
+    def scanlator_groups(self, other: list[ScanlatorGroup]) -> None:
+        self.__scanlator_groups = other
+
+    @property
+    def uploader(self) -> Optional[User]:
+        """The uploader who uploaded this chapter.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.User`]
+            The user that handled this chapter's upload.
+        """
+        if self.__uploader is not None:
+            return self.__uploader
 
         if not self._relationships:
             return
 
         resolved = None
         for relationship in self._relationships:
-            if relationship["type"] == "scanlation_group":
+            if relationship["type"] == "user":
                 resolved = relationship
                 break
 
-        if resolved is None or not resolved.get("attributes"):
-            return
-
-        return ScanlatorGroup(self._http, resolved)
-
-    @scanlator_group.setter
-    def scanlator_group(self, other: ScanlatorGroup) -> None:
-        if isinstance(other, ScanlatorGroup):
-            self.__scanlator_group = other
+        if resolved is not None:
+            if resolved.get("attributes"):
+                self.__uploader = User(self._http, resolved)
+                return self.__uploader
 
     async def get_parent_manga(self) -> Optional[Manga]:
         """|coro|
 
-        This method will fetch the parent manga from a chapter's relationships.
+        This method will fetch the parent manga from a chapter's relationships and cache the response.
 
         Returns
         --------
         Optional[:class:`~hondana.Manga`]
             The Manga that was fetched from the API.
         """
+        if self.__parent is not None:
+            return self.__parent
+
+        if not self._relationships:
+            return
+
         manga_id = None
         for relationship in self._relationships:
             if relationship["type"] == "manga":
@@ -331,7 +369,7 @@ class Chapter:
         self.__parent = resolved
         return self.__parent
 
-    async def get_scanlator_group(self) -> Optional[ScanlatorGroup]:
+    async def get_scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
         """|coro|
 
         This method will fetch the scanlator group from a chapter's relationships.
@@ -341,26 +379,28 @@ class Chapter:
         Optional[:class:`~hondana.ScanlatorGroup`]
             The scanlator group that was fetched from the API.
         """
-        if self.__scanlator_group is not None:
-            return self.__scanlator_group
+        if self.__scanlator_groups is not None:
+            return self.__scanlator_groups
 
         if not self._relationships:
             return
 
-        group_id = None
+        resolved: list[ScanlationGroupResponse] = []
         for relationship in self._relationships:
             if relationship["type"] == "group":
-                group_id = relationship["id"]
-                break
+                resolved.append(relationship)
 
-        if group_id is None:
+        if not resolved:
             return
 
-        group = await self._http._view_scanlation_group(group_id, includes=ScanlatorGroupIncludes())
+        ids = [item["id"] for item in resolved]
+        groups = await self._http._scanlation_group_list(
+            limit=25, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
+        )
 
-        resolved = ScanlatorGroup(self._http, group["data"])
-        self.__scanlator_group = resolved
-        return self.__scanlator_group
+        resolved_groups = [ScanlatorGroup(self._http, item) for item in groups["data"]]
+        self.__scanlator_groups = resolved_groups
+        return self.__scanlator_groups
 
     @require_authentication
     async def update(
