@@ -1010,6 +1010,34 @@ class Manga:
 
         await self._http._update_manga_reading_status(self.id, status=status)
 
+    async def get_volumes_and_chapters(
+        self,
+        *,
+        translated_language: Optional[list[str]] = None,
+        groups: Optional[list[str]] = None,
+    ) -> manga.GetMangaVolumesAndChaptersResponse:
+        """|coro|
+
+        This endpoint returns the raw relational mapping of a manga's volumes and chapters.
+
+        Parameters
+        -----------
+        translated_language: Optional[List[:class:`str`]]
+            The list of language codes you want to limit the search to.
+        groups: Optional[List[:class:`str`]]
+            A list of scanlator groups to filter the results by.
+
+        Returns
+        --------
+        :class:`~hondana.types.GetMangaVolumesAndChaptersResponse`
+            The raw payload from mangadex. There is no guarantee of the keys here.
+        """
+        data = await self._http._get_manga_volumes_and_chapters(
+            manga_id=self.id, translated_language=translated_language, groups=groups
+        )
+
+        return data
+
     @require_authentication
     async def add_to_custom_list(self, *, custom_list_id: str) -> None:
         """|coro|
