@@ -96,9 +96,9 @@ class MangaCollection(_Collection):
         payload.pop("data", [])
         self._data: MangaSearchResponse = payload
         self.manga: list[Manga] = manga
-        self.total: int = payload.pop("total", 0)
-        self.offset: int = payload.pop("offset", 0)
-        self.limit: int = payload.pop("limit", 0)
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -135,9 +135,9 @@ class MangaRelationCollection(_Collection):
         payload.pop("data", [])
         self._data = payload
         self.relations: list[MangaRelation] = relations
-        self.total: int = payload.pop("total", 0)
-        self.offset: int = payload.pop("offset", 0)
-        self.limit: int = payload.pop("limit", 0)
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
         super().__init__()
 
 
@@ -171,9 +171,9 @@ class ChapterFeed(_Collection):
         payload.pop("data", [])
         self._data: GetMultiChapterResponse = payload
         self.chapters: list[Chapter] = chapters
-        self.total: int = payload.pop("total", 0)
-        self.offset: int = payload.pop("offset", 0)
-        self.limit: int = payload.pop("limit", 0)
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -210,9 +210,9 @@ class AuthorCollection:
         payload.pop("data", [])
         self._data: GetMultiAuthorResponse = payload
         self.authors: list[Author] = authors
-        self.total: int = payload.pop("total", 0)
-        self.offset: int = payload.pop("offset", 0)
-        self.limit: int = payload.pop("limit", 0)
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -249,9 +249,9 @@ class CoverCollection(_Collection):
         payload.pop("data", [])
         self._data: GetMultiCoverResponse = payload
         self.covers: list[Cover] = covers
-        self.total: int = payload.pop("total", 0)
-        self.offset: int = payload.pop("offset", 0)
-        self.limit: int = payload.pop("limit", 0)
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -288,9 +288,9 @@ class ScanlatorGroupCollection(_Collection):
         payload.pop("data", [])
         self._data: GetMultiScanlationGroupResponse = payload
         self.groups: list[ScanlatorGroup] = groups
-        self.total: int = payload.pop("total", 0)
-        self.limit: int = payload.pop("limit", 0)
-        self.offset: int = payload.pop("offset", 0)
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -327,9 +327,9 @@ class ReportCollection(_Collection):
         payload.pop("data", [])
         self._data: GetReportReasonResponse = payload
         self.reports: list[Report] = reports
-        self.total: int = payload.pop("total", 0)
-        self.limit: int = payload.pop("limit", 0)
-        self.offset: int = payload.pop("offset", 0)
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -366,9 +366,9 @@ class UserCollection(_Collection):
         payload.pop("data", [])
         self._data: GetMultiUserResponse = payload
         self.users: list[User] = users
-        self.total: int = payload.pop("total", 0)
-        self.limit: int = payload.pop("limit", 0)
-        self.offset: int = payload.pop("offset", 0)
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -405,9 +405,9 @@ class CustomListCollection(_Collection):
         payload.pop("data", [])
         self._data: GetMultiCustomListResponse = payload
         self.lists: list[CustomList] = lists
-        self.total: int = payload.pop("total", 0)
-        self.limit: int = payload.pop("limit", 0)
-        self.offset: int = payload.pop("offset", 0)
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
@@ -444,9 +444,9 @@ class LegacyMappingCollection(_Collection):
         payload.pop("data", [])
         self._data: GetLegacyMappingResponse = payload
         self.legacy_mappings: list[LegacyItem] = mappings
-        self.total: int = payload.pop("total", 0)
-        self.limit: int = payload.pop("limit", 0)
-        self.offset: int = payload.pop("offset", 0)
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
