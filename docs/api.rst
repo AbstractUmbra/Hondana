@@ -14,20 +14,20 @@ API Models
 
 Artist
 ~~~~~~
-.. autoclass:: Artist
+.. autoclass:: Artist()
     :members:
 
 Author
 ~~~~~~
-.. autoclass:: Author
+.. autoclass:: Author()
     :members:
 
 Chapter
 ~~~~~~~
-.. autoclass:: Chapter
+.. autoclass:: Chapter()
     :members:
 
-.. autoclass:: ChapterAtHome
+.. autoclass:: ChapterAtHome()
     :members:
 
 Chapter Upload
@@ -59,37 +59,35 @@ Collections
 
 Cover
 ~~~~~
-.. autoclass:: Cover
+.. autoclass:: Cover()
     :members:
 
 CustomList
 ~~~~~~~~~~
-.. autoclass:: CustomList
+.. autoclass:: CustomList()
 
 Legacy
 ~~~~~~
-.. autoclass:: LegacyItem
+.. autoclass:: LegacyItem()
     :members:
 
 Manga
 ~~~~~
-.. autoclass:: Manga
+.. autoclass:: Manga()
     :members:
 
-.. autoclass:: MangaRelation
+.. autoclass:: MangaRelation()
     :members:
 
-.. autoclass:: MangaStatistics
+.. autoclass:: MangaStatistics()
     :members:
 
-.. autoclass:: MangaRating
+.. autoclass:: MangaRating()
     :members:
 
 Query
 ~~~~~~~~
 .. currentmodule:: hondana.query
-
-.. autoclass:: Order
 
 .. autoclass:: MangaListOrderQuery
 
@@ -123,17 +121,17 @@ Report
 ~~~~~~
 .. currentmodule:: hondana
 
-.. autoclass:: Report
+.. autoclass:: Report()
     :members:
 
 Scanlation Group
 ~~~~~~~~~~~~~~~~
-.. autoclass:: ScanlatorGroup
+.. autoclass:: ScanlatorGroup()
     :members:
 
 Tag
 ~~~
-.. autoclass:: Tag
+.. autoclass:: Tag()
     :members:
 
 QueryTags
@@ -144,12 +142,12 @@ QueryTags
 
 Token
 ~~~~~
-.. autoclass:: Permissions
+.. autoclass:: Permissions()
     :members:
 
 User
 ~~~~
-.. autoclass:: User
+.. autoclass:: User()
     :members:
 
 
@@ -170,6 +168,20 @@ Enumerations
 We provide some enumeration types to avoid the API from being stringly typed
 in case the strings change in future.
 
+.. currentmodule:: hondana.query
+.. class:: Order
+
+    Decides the ordering of the query.
+
+    .. attribute:: ascending
+
+        Sorts the query by key ascending.
+
+    .. attribute:: descending
+
+        Sorts the query by key descending.
+
+.. currentmodule:: hondana
 .. class:: ContentRating
 
     Specifies the content rating of the manga.
