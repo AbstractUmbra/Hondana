@@ -24,9 +24,13 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
+from typing import TYPE_CHECKING, Optional, Type
 
 from .utils import to_camel_case
+
+
+if TYPE_CHECKING:
+    from typing_extensions import Self
 
 
 __all__ = (
@@ -104,6 +108,26 @@ class _Includes:
                 fmt.append(item)
 
         return fmt
+
+    @classmethod
+    def all(cls: Type[Self]) -> Self:
+        """A factory method that returns all possible reference expansions for this type."""
+        self = cls()
+
+        for item in self.__slots__:
+            setattr(self, item, True)
+
+        return self
+
+    @classmethod
+    def none(cls: Type[Self]) -> Self:
+        """A factory method that disables all possible reference expansions for this type."""
+        self = cls()
+
+        for item in self.__slots__:
+            setattr(self, item, False)
+
+        return self
 
 
 class MangaListOrderQuery(_OrderQuery):
