@@ -2,9 +2,9 @@ name: Type Coverage and Linting
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
 jobs:
   job:
@@ -28,8 +28,12 @@ jobs:
           project: "pyproject.toml"
 
       - name: Lint
-        uses: github/super-linter@v4
+        uses: github/super-linter/slim@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_ISORT: true
+          LINTER_RULES_PATH: /
+          PYTHON_ISORT_CONFIG_FILE: pyproject.toml
+          PYTHON_BLACK_CONFIG_FILE: pyproject.toml
