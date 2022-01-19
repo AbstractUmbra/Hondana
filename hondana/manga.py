@@ -1423,15 +1423,6 @@ class MangaRelation:
         "relation_type",
     )
 
-    def __repr__(self) -> str:
-        return f"<MangaRelation id='{self.id}' source_id={self.source_manga_id}>"
-
-    def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
-        return self.id == other.id or self.source_manga_id == other.id
-
-    def __ne__(self, other: Union[MangaRelation, Manga]) -> bool:
-        return not self.__eq__(other)
-
     def __init__(self, http: HTTPClient, parent_id: str, payload: manga.MangaRelation, /) -> None:
         self._http = http
         self._data = payload
@@ -1441,6 +1432,15 @@ class MangaRelation:
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]
         self.relation_type: MangaRelationType = MangaRelationType(self._attributes["relation"])
+
+    def __repr__(self) -> str:
+        return f"<MangaRelation id='{self.id}' source_id={self.source_manga_id}>"
+
+    def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
+        return self.id == other.id or self.source_manga_id == other.id
+
+    def __ne__(self, other: Union[MangaRelation, Manga]) -> bool:
+        return not self.__eq__(other)
 
 
 class MangaStatistics:
