@@ -277,6 +277,28 @@ class Chapter:
         self.__parent = other
 
     @property
+    def manga_id(self) -> Optional[str]:
+        """The parent manga id of this chapter.
+
+
+        .. note::
+            The can be ``None`` if the chapter has no relationships key.
+            Or in the almost impossible situation that it has no ``"manga"`` relationship.
+
+        Returns
+        --------
+        :class:`str`
+            The manga id.
+        """
+
+        if not self._relationships:
+            return
+
+        for relationship in self._relationships:
+            if relationship["type"] == "manga":
+                return relationship["id"]
+
+    @property
     def scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
         """The Scanlator Group that handled this chapter.
 
