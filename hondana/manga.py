@@ -891,41 +891,14 @@ class Manga:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
-        from .chapter import Chapter
 
-        data = await self._http._manga_feed(
-            self.id,
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            translated_language=translated_language,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-            includes=includes,
-        )
+        inner_limit = limit or 100
 
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
-
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._manga_feed(
+        chapters = []
+        while True:
+            data = await self._http._manga_feed(
                 self.id,
-                limit=limit,
+                limit=inner_limit,
                 offset=offset,
                 translated_language=translated_language,
                 original_language=original_language,
@@ -940,9 +913,16 @@ class Manga:
                 order=order,
                 includes=includes,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
 
+            from .chapter import Chapter
+
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
         return feed
 
     @require_authentication
@@ -1165,45 +1145,13 @@ class Manga:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
-        data = await self._http._chapter_list(
-            limit=(limit if limit is not None else 10),
-            offset=offset,
-            manga=self.id,
-            ids=ids,
-            title=title,
-            groups=groups,
-            uploader=uploader,
-            volume=volumes,
-            chapter=chapter,
-            translated_language=translated_language,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-            includes=includes,
-        )
-        from .chapter import Chapter
 
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
+        inner_limit = limit or 10
 
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._chapter_list(
-                limit=limit,
+        chapters = []
+        while True:
+            data = await self._http._chapter_list(
+                limit=inner_limit,
                 offset=offset,
                 manga=self.id,
                 ids=ids,
@@ -1225,9 +1173,15 @@ class Manga:
                 order=order,
                 includes=includes,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
+            from .chapter import Chapter
 
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
         return feed
 
     async def get_draft(self) -> Manga:

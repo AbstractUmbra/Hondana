@@ -353,40 +353,13 @@ class Client:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
+        inner_limit = limit or 100
 
-        data = await self._http._manga_feed(
-            None,
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            translated_language=translated_language,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-            includes=includes,
-        )
-
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
-
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._manga_feed(
+        chapters = []
+        while True:
+            data = await self._http._manga_feed(
                 None,
-                limit=limit,
+                limit=inner_limit,
                 offset=offset,
                 translated_language=translated_language,
                 original_language=original_language,
@@ -401,9 +374,14 @@ class Client:
                 order=order,
                 includes=includes,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
 
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
         return feed
 
     async def manga_list(
@@ -503,45 +481,12 @@ class Client:
         List[:class:`~hondana.MangaCollection`]
             Returns a collection of Manga.
         """
+        inner_limit = limit or 100
 
-        data = await self._http._manga_list(
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            title=title,
-            authors=authors,
-            artists=artists,
-            year=year,
-            included_tags=included_tags,
-            excluded_tags=excluded_tags,
-            status=status,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            available_translated_language=available_translated_language,
-            publication_demographic=publication_demographic,
-            ids=ids,
-            content_rating=content_rating,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            order=order,
-            includes=includes,
-            has_available_chapters=has_available_chapters,
-            group=group,
-        )
-
-        chapters = [Manga(self._http, item) for item in data["data"]]
-        feed = MangaCollection(self._http, data, chapters)
-
-        if limit is not None:
-            return feed
-
-        while len(feed.manga) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._manga_list(
-                limit=limit,
+        manga = []
+        while True:
+            data = await self._http._manga_list(
+                limit=inner_limit,
                 offset=offset,
                 title=title,
                 authors=authors,
@@ -563,9 +508,14 @@ class Client:
                 has_available_chapters=has_available_chapters,
                 group=group,
             )
-            manga = [Manga(self._http, item) for item in next_batch["data"]]
-            feed.manga.extend(manga)
 
+            manga.extend([Manga(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = MangaCollection(self._http, data, manga)
         return feed
 
     @require_authentication
@@ -980,39 +930,13 @@ class Client:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
-        data = await self._http._manga_feed(
-            manga_id,
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            translated_language=translated_language,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-            includes=includes,
-        )
+        inner_limit = limit or 100
 
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
-
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._manga_feed(
+        chapters = []
+        while True:
+            data = await self._http._manga_feed(
                 manga_id,
-                limit=limit,
+                limit=inner_limit,
                 offset=offset,
                 translated_language=translated_language,
                 original_language=original_language,
@@ -1027,9 +951,14 @@ class Client:
                 order=order,
                 includes=includes,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
 
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
         return feed
 
     @require_authentication
@@ -1130,25 +1059,18 @@ class Client:
         List[:class:`~hondana.MangaCollection`]
             Returns a collection of manga.
         """
-        data = await self._http._get_user_followed_manga(
-            limit=(limit if limit is not None else 100), offset=offset, includes=includes
-        )
+        inner_limit = limit or 100
 
-        manga = [Manga(self._http, item) for item in data["data"]]
-        collection = MangaCollection(self._http, data, manga)
+        manga = []
+        while True:
+            data = await self._http._get_user_followed_manga(limit=inner_limit, offset=offset, includes=includes)
+            manga.extend([Manga(self._http, item) for item in data["data"]])
 
-        if limit is not None:
-            return collection
-
-        while len(collection.manga) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._get_user_followed_manga(limit=limit, offset=offset, includes=includes)
-            manga = [Manga(self._http, item) for item in next_batch["data"]]
-            collection.manga.extend(manga)
+        collection = MangaCollection(self._http, data, manga)
 
         return collection
 
@@ -1525,45 +1447,12 @@ class Client:
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """
+        inner_limit = limit or 100
 
-        data = await self._http._chapter_list(
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            ids=ids,
-            title=title,
-            groups=groups,
-            uploader=uploader,
-            manga=manga,
-            volume=volume,
-            chapter=chapter,
-            translated_language=translated_language,
-            original_language=excluded_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-            includes=includes,
-        )
-
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
-
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._chapter_list(
-                limit=limit,
+        chapters = []
+        while True:
+            data = await self._http._chapter_list(
+                limit=inner_limit,
                 offset=offset,
                 ids=ids,
                 title=title,
@@ -1585,9 +1474,14 @@ class Client:
                 order=order,
                 includes=includes,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
 
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
         return feed
 
     async def get_chapter(
@@ -1775,34 +1669,28 @@ class Client:
         :class:`~hondana.CoverCollection`
             Returns a collection of covers.
         """
-        data = await self._http._cover_art_list(
-            limit=(limit if limit is not None else 10),
-            offset=offset,
-            manga=manga,
-            ids=ids,
-            uploaders=uploaders,
-            order=order,
-            includes=includes,
-        )
+        inner_limit = limit or 10
 
-        covers = [Cover(self._http, item) for item in data["data"]]
-        collection = CoverCollection(self._http, data, covers)
+        covers = []
 
-        if limit is not None:
-            return collection
+        while True:
+            data = await self._http._cover_art_list(
+                limit=inner_limit,
+                offset=offset,
+                manga=manga,
+                ids=ids,
+                uploaders=uploaders,
+                order=order,
+                includes=includes,
+            )
 
-        while len(collection.covers) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+            covers.extend([Cover(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._cover_art_list(
-                limit=limit, offset=offset, manga=manga, ids=ids, uploaders=uploaders, order=order, includes=includes
-            )
-            covers = [Cover(self._http, item) for item in next_batch["data"]]
-            collection.covers.extend(covers)
-
+        collection = CoverCollection(self._http, data, covers)
         return collection
 
     @require_authentication
@@ -1978,37 +1866,28 @@ class Client:
         :class:`ScanlatorGroupCollection`
             A returned collection of scanlation groups.
         """
-        data = await self._http._scanlation_group_list(
-            limit=(limit if limit is not None else 10),
-            offset=offset,
-            ids=ids,
-            name=name,
-            focused_language=focused_language,
-            order=order,
-            includes=includes,
-        )
+        inner_limit = limit or 10
 
-        groups = [ScanlatorGroup(self._http, item) for item in data["data"]]
+        groups = []
+
+        while True:
+            data = await self._http._scanlation_group_list(
+                limit=inner_limit,
+                offset=offset,
+                ids=ids,
+                name=name,
+                focused_language=focused_language,
+                order=order,
+                includes=includes,
+            )
+
+            groups.extend([ScanlatorGroup(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
         collection = ScanlatorGroupCollection(self._http, data, groups)
-
-        if limit is not None:
-            return collection
-
-        while len(collection.groups) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
-                next_batch = await self._http._scanlation_group_list(
-                    limit=limit,
-                    offset=offset,
-                    ids=ids,
-                    name=name,
-                    focused_language=focused_language,
-                    order=order,
-                    includes=includes,
-                )
-                groups = [ScanlatorGroup(self._http, item) for item in next_batch["data"]]
-                collection.groups.extend(groups)
 
         return collection
 
@@ -2055,25 +1934,19 @@ class Client:
         :class:`UserCollection`
             A returned collection of users.
         """
-        data = await self._http._user_list(
-            limit=(limit if limit is not None else 10), offset=offset, ids=ids, username=username, order=order
-        )
+        innert_limit = limit or 10
 
-        users = [User(self._http, item) for item in data["data"]]
-        collection = UserCollection(self._http, data, users)
+        users = []
 
-        if limit is not None:
-            return collection
+        while True:
+            data = await self._http._user_list(limit=innert_limit, offset=offset, ids=ids, username=username, order=order)
+            users.extend([User(self._http, item) for item in data["data"]])
 
-        while len(collection.users) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+            offset = offset + innert_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._user_list(limit=limit, offset=offset, ids=ids, username=username, order=order)
-            users = [User(self._http, item) for item in next_batch["data"]]
-            collection.users.extend(users)
+        collection = UserCollection(self._http, data, users)
 
         return collection
 
@@ -2263,23 +2136,19 @@ class Client:
         :class:`~hondana.UserCollection`
             A returned collection of users.
         """
-        data = await self._http._get_my_followed_users(limit=(limit if limit is not None else 10), offset=offset)
+        inner_limit = limit or 10
 
-        users = [User(self._http, item) for item in data["data"]]
-        collection = UserCollection(self._http, data, users)
+        users = []
 
-        if limit is not None:
-            return collection
+        while True:
+            data = await self._http._get_my_followed_users(limit=inner_limit, offset=offset)
+            users.extend([User(self._http, item) for item in data["data"]])
 
-        while len(collection.users) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._get_my_followed_users(limit=limit, offset=offset)
-            users = [User(self._http, item) for item in next_batch["data"]]
-            collection.users.extend(users)
+        collection = UserCollection(self._http, data, users)
 
         return collection
 
@@ -2681,20 +2550,19 @@ class Client:
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """
-        data = await self._http._get_my_custom_lists(limit=(limit if limit is not None else 10), offset=offset)
+        inner_limit = limit or 10
 
-        lists = [CustomList(self._http, item) for item in data["data"]]
-        collection = CustomListCollection(self._http, data, lists)
+        lists = []
 
-        while len(collection.lists) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+        while True:
+            data = await self._http._get_my_custom_lists(limit=inner_limit, offset=offset)
+            lists.extend([CustomList(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._get_my_custom_lists(limit=limit, offset=offset)
-            lists = [CustomList(self._http, item) for item in next_batch["data"]]
-            collection.lists.extend(lists)
+        collection = CustomListCollection(self._http, data, lists)
 
         return collection
 
@@ -2729,19 +2597,19 @@ class Client:
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """
-        data = await self._http._get_users_custom_lists(user_id, limit=(limit if limit is not None else 10), offset=offset)
-        lists = [CustomList(self._http, item) for item in data["data"]]
-        collection = CustomListCollection(self._http, data, lists)
+        inner_limit = limit or 10
 
-        while len(collection.lists) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+        lists = []
+
+        while True:
+            data = await self._http._get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
+            lists.extend([CustomList(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._get_users_custom_lists(user_id, limit=limit, offset=offset)
-            lists = [CustomList(self._http, item) for item in next_batch["data"]]
-            collection.lists.extend(lists)
+        collection = CustomListCollection(self._http, data, lists)
 
         return collection
 
@@ -2817,38 +2685,14 @@ class Client:
         :class:`~hondana.ChapterFeed`
             Returns a collections of chapters.
         """
-        data = await self._http._custom_list_manga_feed(
-            custom_list_id,
-            limit=(limit if limit is not None else 100),
-            offset=offset,
-            translated_language=translated_language,
-            original_language=original_language,
-            excluded_original_language=excluded_original_language,
-            content_rating=content_rating,
-            excluded_groups=excluded_groups,
-            excluded_uploaders=excluded_uploaders,
-            include_future_updates=include_future_updates,
-            created_at_since=created_at_since,
-            updated_at_since=updated_at_since,
-            published_at_since=published_at_since,
-            order=order,
-        )
+        inner_limit = limit or 100
 
-        chapters = [Chapter(self._http, item) for item in data["data"]]
-        feed = ChapterFeed(self._http, data, chapters)
+        chapters = []
 
-        if limit is not None:
-            return feed
-
-        while len(feed.chapters) < feed.total:
-            limit = feed.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > feed.total:
-                break
-
-            next_batch = await self._http._custom_list_manga_feed(
+        while True:
+            data = await self._http._custom_list_manga_feed(
                 custom_list_id,
-                limit=limit,
+                limit=inner_limit,
                 offset=offset,
                 translated_language=translated_language,
                 original_language=original_language,
@@ -2862,8 +2706,14 @@ class Client:
                 published_at_since=published_at_since,
                 order=order,
             )
-            chapters = [Chapter(self._http, item) for item in next_batch["data"]]
-            feed.chapters.extend(chapters)
+
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        feed = ChapterFeed(self._http, data, chapters)
 
         return feed
 
@@ -3182,27 +3032,22 @@ class Client:
         :class:`~hondana.AuthorCollection`
             A returned collection of authors.
         """
-        data = await self._http._author_list(
-            limit=(limit if limit is not None else 10), offset=offset, ids=ids, name=name, order=order, includes=includes
-        )
+        inner_limit = limit or 10
 
-        authors = [Author(self._http, item) for item in data["data"]]
-        collection = AuthorCollection(self._http, data, authors)
+        authors = []
 
-        if limit is not None:
-            return collection
+        while True:
+            data = await self._http._author_list(
+                limit=inner_limit, offset=offset, ids=ids, name=name, order=order, includes=includes
+            )
 
-        while len(collection.authors) < collection.total:
-            limit = collection.limit
-            offset = offset + limit
-            if offset >= 10_000 or offset > collection.total:
+            authors.extend([Author(self._http, item) for item in data["data"]])
+
+            offset = offset + inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-            next_batch = await self._http._author_list(
-                limit=limit, offset=offset, ids=ids, name=name, order=order, includes=includes
-            )
-            authors = [Author(self._http, item) for item in next_batch["data"]]
-            collection.authors.extend(authors)
+        collection = AuthorCollection(self._http, data, authors)
 
         return collection
 
