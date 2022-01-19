@@ -124,7 +124,7 @@ class QueryTags:
 
     Attributes
     -----------
-    tags: :class:`str`
+    tags: List[:class:`str`]
         The tag names you are going to query.
     mode: Literal[``"AND"``, ``"OR"``]
         The logical operation for the tags.
