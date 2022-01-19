@@ -41,11 +41,7 @@ __all__ = (
 )
 
 
-class _ChapterAttributesOptionalResponse(TypedDict, total=False):
-    uploader: Optional[str]
-
-
-class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
+class ChapterAttributesResponse(TypedDict):
     """
     title: Optional[:class:`str`]
 
@@ -66,9 +62,6 @@ class ChapterAttributesResponse(_ChapterAttributesOptionalResponse):
     updatedAt: :class:`str`
 
     publishAt: :class:`str`
-
-    uploader: :class:`str`
-        This key is optional.
     """
 
     title: Optional[str]
