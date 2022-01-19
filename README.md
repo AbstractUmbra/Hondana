@@ -1,18 +1,21 @@
 <div align="center">
     <h1><a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</a></h1>
-    <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
-        <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
-    </a>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'>
-        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Build/badge.svg' alt='Build status' />
+        <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml/badge.svg' alt='Build status' />
     </a>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml'>
-        <img src='https://github.com/AbstractUmbra/Hondana/workflows/Lint/badge.svg' alt='Linting and Typechecking' />
+        <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml/badge.svg' alt='Linting and Typechecking' />
+    </a>
+    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/analysis.yml'>
+        <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/analysis.yml/badge.svg' alt='Code Analysis' />
     </a>
 </div>
 <div align="center">
     <a href='https://api.mangadex.org/'>
         <img src='https://img.shields.io/website?down_color=red&down_message=offline&label=API%20Status&logo=MangaDex%20API&up_color=lime&up_message=online&url=https%3A%2F%2Fapi.mangadex.org%2Fping' alt='API Status'/>
+    </a>
+    <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
+        <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
 </div>
 <h1></h1>
