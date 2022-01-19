@@ -45,11 +45,16 @@ def show_version() -> None:
     )
 
     if md_version_info.releaselevel != "final":
-        pkg = pkg_resources.get_distribution("Hondana")
-        if pkg:
+        try:
+            pkg = pkg_resources.get_distribution("Hondana")
+        except pkg_resources.DistributionNotFound:
+            pass
+        else:
             entries.append(f"    - Hondana pkg_resources: v{pkg.version}")
 
     entries.append(f" - aiohttp {aiohttp.__version__}")
+    aiofiles_ = pkg_resources.get_distribution("aiofiles")
+    entries.append(f" - aiofiles {aiofiles_.version}")
     uname = platform.uname()
     entries.append(f"- system info: {uname.system} {uname.release} {uname.version}")
 
