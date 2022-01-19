@@ -609,10 +609,12 @@ class HTTPClient:
             query["year"] = year
 
         if included_tags:
+            assert included_tags.tags is not None  # the init of QueryTags raises if this is None
             query["includedTags"] = included_tags.tags
             query["includedTagsMode"] = included_tags.mode
 
         if excluded_tags:
+            assert excluded_tags.tags is not None  # the init of QueryTags raises if this is None
             query["excludedTags"] = excluded_tags.tags
             query["excludedTagsMode"] = excluded_tags.mode
 
