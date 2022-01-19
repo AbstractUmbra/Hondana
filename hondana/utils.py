@@ -29,6 +29,7 @@ import json
 import logging
 import pathlib
 import re
+from enum import Enum
 from functools import wraps
 from typing import (
     TYPE_CHECKING,
@@ -162,6 +163,13 @@ class MissingSentinel:
 
 
 MISSING: Any = MissingSentinel()
+
+
+class _StrEnum(Enum):  # type: ignore # we import this as needed.
+    value: str
+
+    def __str__(self) -> str:
+        return self.value
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:

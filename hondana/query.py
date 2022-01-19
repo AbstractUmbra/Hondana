@@ -23,9 +23,9 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from enum import Enum
 from typing import TYPE_CHECKING, Optional, Type
 
+from .enums import Order as Order
 from .utils import to_camel_case
 
 
@@ -50,15 +50,6 @@ __all__ = (
     "MangaIncludes",
     "ScanlatorGroupIncludes",
 )
-
-
-class Order(Enum):
-    """
-    A quick enum to filter by asc or desc.
-    """
-
-    ascending = "asc"
-    descending = "desc"
 
 
 class _OrderQuery:

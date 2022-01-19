@@ -22,7 +22,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
 
-from enum import Enum
+from .utils import _StrEnum
 
 
 __all__ = (
@@ -37,11 +37,9 @@ __all__ = (
 )
 
 
-class _StrEnum(Enum):
-    value: str
-
-    def __str__(self) -> str:
-        return self.value
+class Order(_StrEnum):
+    ascending = "asc"
+    descending = "desc"
 
 
 class ContentRating(_StrEnum):
