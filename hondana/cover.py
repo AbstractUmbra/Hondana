@@ -151,6 +151,32 @@ class Cover:
 
         return f"https://uploads.mangadex.org/covers/{parent_manga_id}/{self.file_name}{fmt}"
 
+    async def fetch_image(self, size: Optional[Literal[256, 512]] = None, /) -> Optional[bytes]:
+        """|coro|
+
+        This method depends on :attr:`url`, as such, it can return None.
+
+        Parameters
+        -----------
+        size: Optional[Literal[``256``, ``512``]]
+            Defaults to ``None`` to return original quality.
+            Specifies the returned image size.
+
+        Returns
+        --------
+        :class:`bytes`
+            The raw image bytes.
+        """
+        url = self.url(size)
+        if url is None:
+            return
+
+        assert self._http._session is not None  # if you got this far, this cannot be None
+        async with self._http._session.get(url) as resp:
+            data = await resp.read()
+
+        return data
+
     @require_authentication
     async def edit_cover(
         self, *, volume: Optional[str] = MISSING, description: Optional[str] = MISSING, version: int
