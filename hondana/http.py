@@ -192,7 +192,7 @@ class HTTPClient:
         "email",
         "password",
         "_authenticated",
-        "__session",
+        "_session",
         "_locks",
         "_token",
         "__refresh_token",
@@ -213,7 +213,7 @@ class HTTPClient:
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
-        self.__session: Optional[aiohttp.ClientSession] = session
+        self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
         self._token: Optional[str] = None
         self.__refresh_token: Optional[str] = None
@@ -243,10 +243,10 @@ class HTTPClient:
         This method will close the internal client session to ensure a clean exit.
         """
 
-        if self.__session is not None:
+        if self._session is not None:
             if self._authenticated:
                 await self._logout()
-            await self.__session.close()
+            await self._session.close()
 
     async def _get_token(self) -> str:
         """|coro|
@@ -267,8 +267,8 @@ class HTTPClient:
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
 
-        if self.__session is None:
-            self.__session = await self._generate_session()
+        if self._session is None:
+            self._session = await self._generate_session()
 
         if self.username:
             auth = {"username": self.username, "password": self.password}
@@ -278,7 +278,7 @@ class HTTPClient:
             raise ValueError("No authentication methods set before attempting an API request.")
 
         route = Route("POST", "/auth/login")
-        async with self.__session.post(route.url, json=auth) as response:
+        async with self._session.post(route.url, json=auth) as response:
             data = await response.json()
 
         if response.status == 400:
@@ -322,11 +322,11 @@ class HTTPClient:
         """
         LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
 
-        if self.__session is None:
-            self.__session = await self._generate_session()
+        if self._session is None:
+            self._session = await self._generate_session()
 
         route = Route("POST", "/auth/refresh")
-        async with self.__session.post(route.url, json={"token": self.__refresh_token}) as response:
+        async with self._session.post(route.url, json={"token": self.__refresh_token}) as response:
             data = await response.json()
 
         assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
@@ -383,10 +383,10 @@ class HTTPClient:
         LOGGER.debug("Attempting to validate token: %s", self._token[:20])
         route = Route("GET", "/auth/check")
 
-        if self.__session is None:
-            self.__session = await self._generate_session()
+        if self._session is None:
+            self._session = await self._generate_session()
 
-        async with self.__session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
+        async with self._session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
             data: CheckPayload = await response.json()
 
         if data["isAuthenticated"] is True:
@@ -402,11 +402,11 @@ class HTTPClient:
 
         This performs the logout request, also done in :meth:`Client.close` for convenience.
         """
-        if self.__session is None:
-            self.__session = await self._generate_session()
+        if self._session is None:
+            self._session = await self._generate_session()
 
         route = Route("POST", "/auth/logout")
-        async with self.__session.request(route.verb, route.url) as response:
+        async with self._session.request(route.verb, route.url) as response:
             data = await response.json()
 
         if not (300 > response.status >= 200) or data["result"] != "ok":
@@ -443,8 +443,8 @@ class HTTPClient:
         Any
             The potential response data we got from the request.
         """
-        if self.__session is None:
-            self.__session = await self._generate_session()
+        if self._session is None:
+            self._session = await self._generate_session()
 
         bucket = route.path
         lock = self._locks.get(bucket)
@@ -482,7 +482,7 @@ class HTTPClient:
         with MaybeUnlock(lock) as maybe_lock:
             for tries in range(5):
                 try:
-                    async with self.__session.request(route.verb, route.url, **kwargs) as response:
+                    async with self._session.request(route.verb, route.url, **kwargs) as response:
                         # Requests remaining before ratelimit
                         remaining = response.headers.get("x-ratelimit-remaining", None)
                         LOGGER.debug("remaining is: %s", remaining)
