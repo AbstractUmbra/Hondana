@@ -219,8 +219,8 @@ class Manga:
             fall back to the next available key if ``en`` or default language key is not present.
         """
         title = self._title.get("en")
-        key = next(iter(self._title))
         if title is None:
+            key = next(iter(self._title))
             title = self._title.get(self.original_language, self._title[key])
 
         return title
