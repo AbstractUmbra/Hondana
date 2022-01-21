@@ -153,6 +153,17 @@ class ScanlatorGroup:
         """
         return datetime.datetime.fromisoformat(self._updated_at)
 
+    @property
+    def url(self) -> str:
+        """The URL to this scanlator group.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the scanlator group.
+        """
+        return f"https://mangadex.org/group/{self.id}"
+
     async def get_leader(self) -> Optional[User]:
         """|coro|
 

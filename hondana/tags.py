@@ -118,6 +118,18 @@ class Tag:
             return self._name[key]
         return name
 
+    @property
+    def url(self) -> str:
+        """The URL to this tag.
+        Allows browsing all manga attributed to this tag
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the tag.
+        """
+        return f"https://mangadex.org/tag/{self.id}"
+
 
 class QueryTags:
     """Utility class for creating a Tag based query.

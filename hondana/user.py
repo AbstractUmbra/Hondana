@@ -83,6 +83,17 @@ class User:
     def __ne__(self, other: User) -> bool:
         return not self.__eq__(other)
 
+    @property
+    def url(self) -> str:
+        """The URL to this user.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the user.
+        """
+        return f"https://mangadex.org/user/{self.id}"
+
     @require_authentication
     async def delete(self) -> None:
         """|coro|

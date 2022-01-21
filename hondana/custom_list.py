@@ -89,6 +89,17 @@ class CustomList:
         return not self.__eq__(other)
 
     @property
+    def url(self) -> str:
+        """The URL to to this custom list.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the custom list.
+        """
+        return f"https://mangadex.org/list/{self.id}"
+
+    @property
     def owner(self) -> Optional[User]:
         """Returns the owner of this custom list.
 

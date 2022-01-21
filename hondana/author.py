@@ -166,6 +166,17 @@ class Author:
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
+    def url(self) -> str:
+        """The URL to to this author.
+
+        Returns
+        --------
+        :class:`str`
+            The URL of the author.
+        """
+        return f"https://mangadex.org/author/{self.id}"
+
+    @property
     def manga(self) -> Optional[list[Manga]]:
         """Returns a list Manga related to this author.
 
