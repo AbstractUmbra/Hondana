@@ -1,20 +1,18 @@
-2.0.2
+2.0.3
 
-API Version 5.4.10!
+API Version 5.4.11!
 
 # Hondana Changelog
 
 ## Added
-- `Chapter.manga_id` property added to retrieve the parent manga id from the payload (if present). (26464a41a1e95cbe6f26fd76470924199a87b1e0)
+- `__main__` now shows all dependency information. (912ad8897acb58eb7269eae00b52f3303e59a346)
+- Many objects missing their `.url` properties, added now. (23131029d176bc204d8476f165186aa82ed495d9)
+- `manga_updates` kwarg to `Client.create_scanlator_group`, `Client.update_scalator_group` and `ScanlatorGroup.update`. (8e800d307a8b817044757ee2d3fbeb714e9f71d3)
 
 ## Changes
-- Internal change for the inner MD@H report http method kwarg only. (d22cbf5033692ffe9eef7fe28d995545d71ba1fb)
-- Internal change for how collection endpoints managed their logic to return feeds. (7a3828d0f790a50e5600173f107ed52585c9d94e)
+- Documentation now hides non-constructible (by end user) class signatures. (2da38d53820bf428beeddc079c9ae28787ee38e2)
 
 ## Fixes
-- `includes` parameter on `Client.get_chapter` was broken, this has been resolved. (d136064c7c1d3c154b1fb8cf8768c8debe264059)
-- `Chapter.uploader` and `Chapter.scanlator_groups` now correctly get the data, which was initially caused by incorrect docs. (9bb7973a692155799eb9237e49b1beda12e7da1b)
-- MD@H reports were erroring out when trying to report on `uploads.mangadex.org`, this has now been fixed. (cd33a6e816a130bbbfa628371c17198bdb978ffb)
-- Inner payload types were amended to account for bad docs. (97a5c6ad4731d72b22972c181a8ac6d0c0d5b847)
+- `query.Order` is now documented properly under "Enumerations". (a9d6d24cbbad9a016305dd89f730a9c9306778e1 and 2da38d53820bf428beeddc079c9ae28787ee38e2)
 
 ### Notes
