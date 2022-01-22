@@ -167,7 +167,7 @@ class Author:
 
     @property
     def url(self) -> str:
-        """The URL to to this author.
+        """The URL to this author.
 
         Returns
         --------

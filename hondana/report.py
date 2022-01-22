@@ -39,7 +39,7 @@ __all__ = ("Report",)
 
 class Report:
     """
-    Parameters
+    Attributes
     -----------
     id: :class:`str`
         The UUID of this report.

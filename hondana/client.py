@@ -209,7 +209,7 @@ class Client:
         """
         This attribute will return a permissions instance for the current logged in user.
 
-        You must be authenticated to run this, and logged in.
+        You must be authenticated to access this, and logged in.
 
         If you wish to just check permissions without making an api request, consider :meth:`~hondana.Client.static_login`
 
@@ -315,9 +315,9 @@ class Client:
             If set lower than 0 then it is set to 0.
         translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_languages: List[:class:`~hondana.types.LanguageCode`]
+        original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -892,9 +892,9 @@ class Client:
             Defaults to 0. The pagination offset for the request.
         translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_languages: List[:class:`~hondana.types.LanguageCode`]
+        original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -1039,7 +1039,7 @@ class Client:
     ) -> MangaCollection:
         """|coro|
 
-        This method will get a list of all of the currently loggd in user's followed manga.
+        This method will return an object containing all the followed manga from the currently logged in user.
 
         Parameters
         -----------
@@ -1272,7 +1272,7 @@ class Client:
         ------------
         manga_id: :class:`str`
             The manga ID we are creating a relation to.
-        target_id: :class:`str`
+        target_manga: :class:`str`
             The manga ID of the related manga.
         relation_type: :class:`~hondana.MangaRelationType`
             The relation type we are creating.
@@ -1425,7 +1425,7 @@ class Client:
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
-            Defaults to all possible expansiions.
+            Defaults to all possible expansions.
 
 
         .. note::
@@ -1935,6 +1935,7 @@ class Client:
             A returned collection of users.
         """
         innert_limit = limit or 10
+        # Not sure if this should be `inner_limit` or something.
 
         users = []
 
@@ -2647,9 +2648,9 @@ class Client:
             Defaults to 0. The pagination offset for the request.
         translated_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_languages: List[:class:`~hondana.types.LanguageCode`]
+        original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter this query with.
@@ -2882,7 +2883,7 @@ class Client:
             The new twitter url to update the group with.
         manga_updates: Optional[:class:`str`]
             The URL to the group's page where they post updates, if any.
-        focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        focused_languages: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
             If the group is inactive or not.
@@ -2900,7 +2901,7 @@ class Client:
 
         .. note::
             The ``publish_delay`` parameter must match the :class:`hondana.utils.MANGADEX_TIME_REGEX` pattern
-            or be a valid ``datetime.timdelta``.
+            or be a valid ``datetime.timedelta``.
 
         Raises
         -------
@@ -3544,10 +3545,10 @@ class Client:
             The manga we will be uploading a chapter for.
         volume: :class:`str`
             The volume we are uploading a chapter for.
-            Typically this is a numerical identifier.
+            Typically, this is a numerical identifier.
         chapter: :class:`str`
             The chapter we are uploading.
-            Typically this is a numerical identifier.
+            Typically, this is a numerical identifier.
         title: :class:`str`
             The chapter's title.
         translated_language: :class:`~hondana.types.LanguageCode`
@@ -3603,10 +3604,10 @@ class Client:
             The manga we will be uploading a chapter for.
         volume: :class:`str`
             The volume we are uploading a chapter for.
-            Typically this is a numerical identifier.
+            Typically, this is a numerical identifier.
         chapter: :class:`str`
             The chapter we are uploading.
-            Typically this is a numerical identifier.
+            Typically, this is a numerical identifier.
         title: :class:`str`
             The chapter's title.
         translated_language: :class:`~hondana.types.LanguageCode`

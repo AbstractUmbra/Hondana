@@ -255,7 +255,7 @@ class CoverCollection(_Collection):
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<CovverCollection covers={len(self.covers)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return f"<CoverCollection covers={len(self.covers)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
 class ScanlatorGroupCollection(_Collection):

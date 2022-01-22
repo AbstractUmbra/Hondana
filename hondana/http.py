@@ -292,7 +292,8 @@ class HTTPClient:
         self.__refresh_token = refresh_token
         return token
 
-    def _get_expiry(self, token: str) -> datetime.datetime:
+    @staticmethod
+    def _get_expiry(token: str) -> datetime.datetime:
         payload = token.split(".")[1]
         padding = len(payload) % 4
         payload = b64decode(payload + "=" * padding)
