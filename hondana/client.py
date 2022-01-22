@@ -2729,6 +2729,7 @@ class Client:
         contact_email: Optional[str] = None,
         description: Optional[str] = None,
         twitter: Optional[str] = None,
+        manga_updates: Optional[str] = None,
         inactive: Optional[bool] = None,
         publish_delay: Optional[Union[str, datetime.timedelta]] = None,
     ) -> ScanlatorGroup:
@@ -2754,6 +2755,8 @@ class Client:
             The scanlation group's description, if any.
         twitter: Optional[:class:`str`]
             The scanlation group's twitter url, if any.
+        manga_updates: Optional[:class:`str`]
+            The group's page where they post manga updates, if any.
         inactive: Optional[:class:`bool`]
             If the scanlation group is inactive or not.
         publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
@@ -2786,6 +2789,7 @@ class Client:
             contact_email=contact_email,
             description=description,
             twitter=twitter,
+            manga_updates=manga_updates,
             inactive=inactive,
             publish_delay=publish_delay,
         )
@@ -2841,6 +2845,7 @@ class Client:
         contact_email: Optional[str] = MISSING,
         description: Optional[str] = MISSING,
         twitter: Optional[str] = MISSING,
+        manga_updates: Optional[str] = MISSING,
         focused_languages: list[common.LanguageCode] = MISSING,
         inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
@@ -2875,6 +2880,8 @@ class Client:
             The new description to update the group with.
         twitter: Optional[:class:`str`]
             The new twitter url to update the group with.
+        manga_updates: Optional[:class:`str`]
+            The URL to the group's page where they post updates, if any.
         focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
@@ -2888,7 +2895,7 @@ class Client:
 
 
         .. note::
-            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, and ``focused_language``
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``manga_updates`` and ``focused_language``
             keys are all nullable in the API. To do so please pass ``None`` explicitly to these keys.
 
         .. note::
@@ -2921,6 +2928,7 @@ class Client:
             contact_email=contact_email,
             description=description,
             twitter=twitter,
+            manga_updates=manga_updates,
             focused_languages=focused_languages,
             inactive=inactive,
             locked=locked,

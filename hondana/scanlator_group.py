@@ -66,8 +66,14 @@ class ScanlatorGroup:
         The contact email for this scanlator group.
     description: :class:`str`
         The description of this scanlator group.
+    twitter: Optional[:class:`str`]
+        The twitter URL of the group, if any.
+    manga_updates: Optional[:class:`str`]
+        The URL where the group posts their updates, if any.
     locked: :class:`bool`
         If this scanlator group is considered 'locked' or not.
+    official: :class:`bool`
+        Whether the group is official or not.
     version: :class:`int`
         The version revision of this scanlator group.
     """
@@ -88,6 +94,7 @@ class ScanlatorGroup:
         "contact_email",
         "description",
         "twitter",
+        "manga_updates",
         "locked",
         "official",
         "verified",
@@ -112,6 +119,7 @@ class ScanlatorGroup:
         self.contact_email: Optional[str] = self._attributes["contactEmail"]
         self.description: Optional[str] = self._attributes["description"]
         self.twitter: Optional[str] = self._attributes["twitter"]
+        self.manga_updates: Optional[str] = self._attributes["mangaUpdates"]
         self.locked: bool = self._attributes.get("locked", False)
         self.official: bool = self._attributes["official"]
         self.verified: bool = self._attributes["verified"]
@@ -307,6 +315,7 @@ class ScanlatorGroup:
         contact_email: Optional[str] = MISSING,
         description: Optional[str] = MISSING,
         twitter: Optional[str] = MISSING,
+        manga_updates: Optional[str] = MISSING,
         focused_languages: list[LanguageCode] = MISSING,
         inactive: Optional[bool] = None,
         locked: Optional[bool] = None,
@@ -339,6 +348,8 @@ class ScanlatorGroup:
             The new description to update the group with.
         twitter: Optional[:class:`str`]
             The new twitter url to update the group with.
+        manga_updates: Optional[:class:`str`]
+            The URL for this group's manga updates page, if any.
         focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
@@ -352,7 +363,7 @@ class ScanlatorGroup:
 
 
         .. note::
-            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``focused_language`` and ``publish_delay``
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``manga_updates``, ``focused_language`` and ``publish_delay``
             keys are all nullable in the API. To do so pass ``None`` explicitly to these keys.
 
         .. note::
@@ -385,6 +396,7 @@ class ScanlatorGroup:
             contact_email=contact_email,
             description=description,
             twitter=twitter,
+            manga_updates=manga_updates,
             focused_languages=focused_languages,
             inactive=inactive,
             locked=locked,

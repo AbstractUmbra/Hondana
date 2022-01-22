@@ -1592,6 +1592,7 @@ class HTTPClient:
         contact_email: Optional[str],
         description: Optional[str],
         twitter: Optional[str],
+        manga_updates: Optional[str],
         inactive: Optional[bool],
         publish_delay: Optional[Union[str, datetime.timedelta]],
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
@@ -1619,6 +1620,9 @@ class HTTPClient:
 
         if twitter:
             query["twitter"] = twitter
+
+        if manga_updates:
+            query["mangaUpdates"] = manga_updates
 
         if isinstance(inactive, bool):
             query["inactive"] = inactive
@@ -1659,6 +1663,7 @@ class HTTPClient:
         contact_email: Optional[str],
         description: Optional[str],
         twitter: Optional[str],
+        manga_updates: Optional[str],
         focused_languages: Optional[list[common.LanguageCode]],
         inactive: Optional[bool],
         locked: Optional[bool],
@@ -1698,6 +1703,9 @@ class HTTPClient:
 
         if twitter is not MISSING:
             query["twitter"] = twitter
+
+        if manga_updates is not MISSING:
+            query["mangaUpdates"] = manga_updates
 
         if focused_languages is not MISSING:
             query["focusedLanguages"] = focused_languages
