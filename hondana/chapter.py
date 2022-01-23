@@ -189,7 +189,7 @@ class Chapter:
         Parameters
         ------------
         ssl :class:`bool`
-            Wether to obtain an @Home URL for SSL only connections.
+            Whether to obtain an @Home URL for SSL only connections.
             Defaults to ``True``.
 
         Returns
@@ -282,7 +282,7 @@ class Chapter:
 
 
         .. note::
-            The can be ``None`` if the chapter has no relationships key.
+            This can be ``None`` if the chapter has no relationships key.
             Or in the almost impossible situation that it has no ``"manga"`` relationship.
 
         Returns

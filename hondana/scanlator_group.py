@@ -60,7 +60,7 @@ class ScanlatorGroup:
         The IRC channel for this scanlator group.
     discord: :class:`str`
         The Discord server for this scanlator group.
-    focused_language: Optional[List[str]]
+    focused_languages: Optional[List[str]]
         The scanlator group's focused languages, if any.
     contact_email: :class:`str`
         The contact email for this scanlator group.
@@ -350,7 +350,7 @@ class ScanlatorGroup:
             The new twitter url to update the group with.
         manga_updates: Optional[:class:`str`]
             The URL for this group's manga updates page, if any.
-        focused_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        focused_languages: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
             If the group is inactive or not.

@@ -852,9 +852,9 @@ class Manga:
             Defaults to 0. The pagination offset for the request.
         translated_language: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
-        original_languages: List[:class:`~hondana.types.LanguageCode`]
+        original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_languages: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -1122,9 +1122,7 @@ class Manga:
             The scanlation group UUID(s) to limit the request with.
         uploader: Optional[:class:`str`]
             The uploader UUID to limit the request with.
-        manga: Optional[:class:`str`]
-            The manga UUID to limit the request with.
-        volume: Optional[Union[:class:`str`, List[:class:`str`]]]
+        volumes: Optional[Union[:class:`str`, List[:class:`str`]]]
             The volume UUID or UUIDs to limit the request with.
         chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
             The chapter UUID or UUIDs to limit the request with.
@@ -1312,7 +1310,7 @@ class Manga:
 
         Parameters
         ------------
-        target_id: :class:`str`
+        target_manga: :class:`str`
             The manga ID of the related manga.
         relation_type: :class:`~hondana.MangaRelationType`
 
