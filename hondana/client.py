@@ -1934,16 +1934,15 @@ class Client:
         :class:`UserCollection`
             A returned collection of users.
         """
-        innert_limit = limit or 10
-        # Not sure if this should be `inner_limit` or something.
+        inner_limit = limit or 10
 
         users = []
 
         while True:
-            data = await self._http._user_list(limit=innert_limit, offset=offset, ids=ids, username=username, order=order)
+            data = await self._http._user_list(limit=inner_limit, offset=offset, ids=ids, username=username, order=order)
             users.extend([User(self._http, item) for item in data["data"]])
 
-            offset = offset + innert_limit
+            offset = offset + inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
