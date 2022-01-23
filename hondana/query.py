@@ -308,7 +308,7 @@ class UserListOrderQuery(_OrderQuery):
     Parameters
     -----------
     username: :class:`~hondana.query.Order`
-        Userame ordering.
+        Username ordering.
     """
 
     __slots__ = ("username",)
@@ -397,7 +397,7 @@ class ChapterIncludes(_Includes):
         self.scanlation_group: bool = scanlation_group
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings.
+        """Returns a list of valid query strings.
 
         Returns
         --------
@@ -429,7 +429,7 @@ class CoverIncludes(_Includes):
         self.user: bool = user
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings.
+        """Returns a list of valid query strings.
 
         Returns
         --------
@@ -465,7 +465,7 @@ class CustomListIncludes(_Includes):
         self.owner: bool = owner
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings."""
+        """Returns a list of valid query strings."""
         return super().to_query()
 
 
@@ -499,7 +499,7 @@ class MangaIncludes(_Includes):
         self.manga: bool = manga
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings.
+        """Returns a list of valid query strings.
 
         Returns
         --------
@@ -531,7 +531,7 @@ class ScanlatorGroupIncludes(_Includes):
         self.member: bool = member
 
     def to_query(self) -> list[str]:
-        """Retuns a list of valid query strings.
+        """Returns a list of valid query strings.
 
         Returns
         --------

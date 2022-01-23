@@ -168,7 +168,7 @@ class Artist:
 
     @property
     def url(self) -> str:
-        """The URL to to this artist.
+        """The URL to this artist.
 
         Returns
         --------

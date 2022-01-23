@@ -90,7 +90,7 @@ class CustomList:
 
     @property
     def url(self) -> str:
-        """The URL to to this custom list.
+        """The URL to this custom list.
 
         Returns
         --------
