@@ -362,7 +362,7 @@ class MangaMultipleReadingStatusResponse(TypedDict):
     result: Literal[``"ok"``]
 
     statuses: Dict[str, :class:`~hondana.ReadingStatus`]
-        Mapping of [``manga_id``: :class:`~hondana.ReadingStatus`]
+        Mapping of [``manga_id``: :class:`~hondana.ReadingStatus` value]
     """
 
     result: Literal["ok"]

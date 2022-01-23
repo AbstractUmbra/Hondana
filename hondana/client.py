@@ -2356,7 +2356,7 @@ class Client:
     async def get_at_home_url(self, chapter_id: str, /, *, ssl: bool = True) -> str:
         """|coro|
 
-        This method will retrieve a MangaDex@Home URL fpr accessing a chapter.
+        This method will retrieve a MangaDex@Home URL for accessing a chapter.
 
         Parameters
         -----------
