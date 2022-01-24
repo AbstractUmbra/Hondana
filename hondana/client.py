@@ -27,7 +27,8 @@ import datetime
 import json
 import pathlib
 from base64 import b64decode
-from typing import TYPE_CHECKING, Optional, Union, overload
+from os import PathLike
+from typing import TYPE_CHECKING, Literal, Optional, Union, overload
 
 from aiohttp import ClientSession
 
@@ -108,6 +109,8 @@ class Client:
         Your login password for the API / site. Used in conjunction with your username to generate an authentication token.
     session: Optional[:class:`aiohttp.ClientSession`]
         A aiohttp ClientSession to use instead of creating one.
+    refresh_token: Optional[:class:`str`]
+        Your last refresh token to use if you want to skip the login stage.
 
 
     .. note::
@@ -134,6 +137,7 @@ class Client:
         email: None = ...,
         password: None = ...,
         session: Optional[ClientSession] = ...,
+        refresh_token: None = ...,
     ) -> None:
         ...
 
@@ -145,6 +149,19 @@ class Client:
         email: str = ...,
         password: str = ...,
         session: Optional[ClientSession] = ...,
+        refresh_token: None = ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: None = ...,
+        email: str = ...,
+        password: str = ...,
+        session: Optional[ClientSession] = ...,
+        refresh_token: str = ...,
     ) -> None:
         ...
 
@@ -156,6 +173,31 @@ class Client:
         email: None = ...,
         password: str = ...,
         session: Optional[ClientSession] = ...,
+        refresh_token: None = ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: str = ...,
+        email: None = ...,
+        password: str = ...,
+        session: Optional[ClientSession] = ...,
+        refresh_token: str = ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: None = ...,
+        email: None = ...,
+        password: None = ...,
+        session: Optional[ClientSession] = ...,
+        refresh_token: str = ...,
     ) -> None:
         ...
 
@@ -166,18 +208,40 @@ class Client:
         email: Optional[str] = None,
         password: Optional[str] = None,
         session: Optional[ClientSession] = None,
+        refresh_token: Optional[str] = None,
     ) -> None:
-        self._http = HTTPClient(username=username, email=email, password=password, session=session)
+        self._http = HTTPClient(
+            username=username, email=email, password=password, session=session, refresh_token=refresh_token
+        )
 
     @overload
-    def login(self, *, username: str = ..., email: None = ..., password: str) -> None:
+    def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: None = ...) -> None:
         ...
 
     @overload
-    def login(self, *, username: None = ..., email: str = ..., password: str) -> None:
+    def login(self, *, username: None = ..., email: str = ..., password: str, refresh_token: None = ...) -> None:
         ...
 
-    def login(self, *, username: Optional[str] = None, email: Optional[str] = None, password: str) -> None:
+    @overload
+    def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: str = ...) -> None:
+        ...
+
+    @overload
+    def login(self, *, username: None = ..., email: str = ..., password: str, refresh_token: str = ...) -> None:
+        ...
+
+    @overload
+    def login(self, *, username: None = ..., email: None = ..., password: None = ..., refresh_token: str = ...) -> None:
+        ...
+
+    def login(
+        self,
+        *,
+        username: Optional[str] = None,
+        email: Optional[str] = None,
+        password: Optional[str] = None,
+        refresh_token: Optional[str] = None,
+    ) -> None:
         """A method to add authentication details to the client post-creation.
 
         Parameters
@@ -189,13 +253,14 @@ class Client:
         password: :class:`str`
             The password to authenticate to the API.
         """
-        if username is None and email is None:
-            raise ValueError("An email or username must be passed.")
+        if (username is None and email is None) and refresh_token is None:
+            raise ValueError("An email or username must be passed or a refresh token must be provided.")
 
         self._http.username = username
         self._http.email = email
         self._http.password = password
         self._http._authenticated = True
+        self._http._refresh_token = refresh_token
 
     async def static_login(self) -> None:
         """|coro|
@@ -231,6 +296,30 @@ class Client:
         parsed_payload: TokenPayload = json.loads(b64decode(payload))
 
         return Permissions(parsed_payload)
+
+    @require_authentication
+    def dump_refresh_token(
+        self, path: Union[PathLike[str], str] = ".hondana-refresh-token", /, *, mode: Literal["a", "a+", "w", "w+"] = "w"
+    ) -> str:
+        """
+        This method will dump your current refresh token to a file for later re-use in the login process in future client initialisations.
+
+        Parameters
+        -----------
+        path: Union[:class:`os.PathLike`, :class:`str`]
+            The path to dump the file. Defaults to ``".hondana-refresh-token"``.
+        mode: Literal[``"a"``, ``"a+"``, ``"w"``, ``"w+"``]
+            The mode in which to open the file. Defaults to ``"w"``.
+        """
+        if self._http._refresh_token is None:
+            raise TypeError(
+                "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
+            )
+
+        with open(path, mode) as fp:
+            fp.write(self._http._refresh_token)
+
+        return self._http._refresh_token
 
     @require_authentication
     async def logout(self) -> None:

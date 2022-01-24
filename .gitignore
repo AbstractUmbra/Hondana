@@ -13,3 +13,4 @@ target/
 _*.py
 _api*.yaml
 _testing/
+.hondana-refresh-token

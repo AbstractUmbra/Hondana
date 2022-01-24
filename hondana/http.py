@@ -195,7 +195,7 @@ class HTTPClient:
         "_session",
         "_locks",
         "_token",
-        "__refresh_token",
+        "_refresh_token",
         "__last_refresh",
         "user_agent",
         "_connection",
@@ -208,6 +208,7 @@ class HTTPClient:
         email: Optional[str],
         password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
+        refresh_token: Optional[str] = None,
     ) -> None:
         self._authenticated = bool(((username or email) and password))
         self.username: Optional[str] = username
@@ -216,7 +217,7 @@ class HTTPClient:
         self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
         self._token: Optional[str] = None
-        self.__refresh_token: Optional[str] = None
+        self._refresh_token: Optional[str] = refresh_token
         self.__last_refresh: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
@@ -289,7 +290,7 @@ class HTTPClient:
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
         self.__last_refresh = self._get_expiry(token)
-        self.__refresh_token = refresh_token
+        self._refresh_token = refresh_token
         return token
 
     def _get_expiry(self, token: str) -> datetime.datetime:
@@ -302,7 +303,7 @@ class HTTPClient:
         expires = datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
         return expires
 
-    async def _refresh_token(self) -> str:
+    async def _perform_token_refresh(self) -> str:
         """|coro|
 
         This private method will refresh the current set token (:attr:`._auth`)
@@ -320,16 +321,12 @@ class HTTPClient:
         .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
-        LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
-
         if self._session is None:
             self._session = await self._generate_session()
 
         route = Route("POST", "/auth/refresh")
-        async with self._session.post(route.url, json={"token": self.__refresh_token}) as response:
+        async with self._session.post(route.url, json={"token": self._refresh_token}) as response:
             data = await response.json()
-
-        assert self.__last_refresh is not None  # this will 100% be a `datetime` here, but type checker was crying
 
         if 400 <= response.status <= 510:
             if response.status == 400:
@@ -364,6 +361,13 @@ class HTTPClient:
         .. note::
             This does not use :meth:`Client.request` due to circular usage of request > generate token.
         """
+        if self._token is None and self._refresh_token is not None:
+            LOGGER.debug("User passed a refresh token on creation, will skip login stage.")
+            refreshed = await self._perform_token_refresh()
+            if refreshed:
+                assert isinstance(self._token, str)  # the refresh stage above sets this.
+                return self._token
+
         if self._token is None:
             LOGGER.debug("No jwt set yet, will attempt to generate one.")
             self._token = await self._get_token()
@@ -373,7 +377,8 @@ class HTTPClient:
             now = datetime.datetime.now(datetime.timezone.utc)
             # To avoid a race condition we're gonna check this for 14 minutes, since it can re-auth anytime, but post 15m it will error
             if now > self.__last_refresh:
-                refreshed = await self._refresh_token()
+                LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
+                refreshed = await self._perform_token_refresh()
                 if refreshed:
                     return self._token
             else:
