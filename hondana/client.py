@@ -250,8 +250,10 @@ class Client:
             The login username to authenticate to the API.
         email: Optional[:class:`str`]
             The login email to authenticate to the API.
-        password: :class:`str`
+        password: Optional[:class:`str`]
             The password to authenticate to the API.
+        refresh_token: Optional[:class:`str`]
+            The refresh token to use in place of auth.
         """
         if (username is None and email is None) and refresh_token is None:
             raise ValueError("An email or username must be passed or a refresh token must be provided.")
