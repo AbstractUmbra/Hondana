@@ -31,6 +31,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .types.common import LanguageCode
     from .types.cover import CoverResponse
 
 
@@ -63,6 +64,7 @@ class Cover:
         "volume",
         "file_name",
         "description",
+        "locale",
         "version",
         "_created_at",
         "_updated_at",
@@ -76,7 +78,8 @@ class Cover:
         self.id: str = self._data["id"]
         self.volume: Optional[str] = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
-        self.description: str = self._attributes["description"]
+        self.description: Optional[str] = self._attributes["description"]
+        self.locale: Optional[LanguageCode] = self._attributes["locale"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]

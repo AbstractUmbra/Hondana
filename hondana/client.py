@@ -47,6 +47,7 @@ from .collections import (
     ReportCollection,
     ScanlatorGroupCollection,
     UserCollection,
+    UserReportCollection,
 )
 from .cover import Cover
 from .custom_list import CustomList
@@ -59,6 +60,7 @@ from .enums import (
     PublicationDemographic,
     ReadingStatus,
     ReportCategory,
+    ReportStatus,
 )
 from .http import HTTPClient
 from .legacy import LegacyItem
@@ -75,11 +77,12 @@ from .query import (
     MangaDraftListOrderQuery,
     MangaIncludes,
     MangaListOrderQuery,
+    ReportListOrderQuery,
     ScanlatorGroupIncludes,
     ScanlatorGroupListOrderQuery,
     UserListOrderQuery,
 )
-from .report import Report
+from .report import Report, UserReport
 from .scanlator_group import ScanlatorGroup
 from .token import Permissions
 from .user import User
@@ -1724,6 +1727,7 @@ class Client:
         manga: Optional[list[str]] = None,
         ids: Optional[list[str]] = None,
         uploaders: Optional[list[str]] = None,
+        locales: Optional[list[common.LanguageCode]] = None,
         order: Optional[CoverArtListOrderQuery] = None,
         includes: Optional[CoverIncludes] = CoverIncludes(),
     ) -> CoverCollection:
@@ -1743,6 +1747,8 @@ class Client:
             A list of cover art UUID(s) to limit the request to.
         uploaders: Optional[List[:class:`str`]]
             A list of uploader UUID(s) to limit the request to.
+        locales: Optional[List[:class:`~hondana.types.LanguageCode`]]
+            The locales to filter this search by.
         order: Optional[:class:`~hondana.query.CoverArtListOrderQuery`]
             A query parameter to choose how the responses are ordered.
         includes: Optional[:class:`~hondana.query.CoverIncludes`]
@@ -1771,6 +1777,7 @@ class Client:
                 manga=manga,
                 ids=ids,
                 uploaders=uploaders,
+                locales=locales,
                 order=order,
                 includes=includes,
             )
@@ -1786,7 +1793,14 @@ class Client:
 
     @require_authentication
     async def upload_cover(
-        self, manga_id: str, /, *, cover: bytes, volume: Optional[str] = None, description: Optional[str] = None
+        self,
+        manga_id: str,
+        /,
+        *,
+        cover: bytes,
+        volume: Optional[str] = None,
+        description: str,
+        locale: Optional[common.LanguageCode] = None,
     ) -> Cover:
         """|coro|
 
@@ -1800,8 +1814,10 @@ class Client:
             THe raw bytes of the image.
         volume: Optional[:class:`str`]
             The volume this cover relates to.
-        description: Optional[:class:`str`]
+        description: :class:`str`
             The description of this cover.
+        locale: Optional[:class:`~hondana.types.LanguageCode`]
+            The locale of this cover.
 
         Raises
         -------
@@ -1814,7 +1830,7 @@ class Client:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume, description=description)
+        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume, description=description, locale=locale)
 
         return Cover(self._http, data["data"])
 
@@ -3435,6 +3451,24 @@ class Client:
         data = await self._http._get_report_reason_list(report_category)
         fmt = [Report(self._http, item) for item in data["data"]]
         return ReportCollection(self._http, data, fmt)
+
+    @require_authentication
+    async def get_my_reports(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        category: Optional[ReportCategory] = None,
+        status: Optional[ReportStatus] = None,
+        order: Optional[ReportListOrderQuery] = None,
+    ) -> UserReportCollection:
+        data = await self._http._get_reports_current_user(
+            limit=limit, offset=offset, category=category, status=status, order=order
+        )
+
+        reports = [UserReport(self._http, item) for item in data["data"]]
+
+        return UserReportCollection(self._http, data, reports)
 
     @require_authentication
     async def create_report(

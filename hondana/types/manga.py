@@ -128,6 +128,8 @@ class MangaAttributesResponse(TypedDict):
 
     contentRating: Optional[:class:`~hondana.ContentRating`]
 
+    chapterNumbersResetOnNewVolume: :class:`bool`
+
     tags: List[:class:`~hondana.types.TagResponse`]
 
     state: :class:`~hondana.MangaState`
@@ -154,6 +156,7 @@ class MangaAttributesResponse(TypedDict):
     status: Optional[_MangaStatus]
     year: Optional[int]
     contentRating: Optional[_ContentRating]
+    chapterNumbersResetOnNewVolume: bool
     tags: list[TagResponse]
     state: _MangaState
     version: int

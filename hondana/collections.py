@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .legacy import LegacyItem
     from .manga import Manga, MangaRelation
-    from .report import Report
+    from .report import Report, UserReport
     from .scanlator_group import ScanlatorGroup
     from .types.author import GetMultiAuthorResponse
     from .types.chapter import GetMultiChapterResponse
@@ -42,7 +42,7 @@ if TYPE_CHECKING:
     from .types.custom_list import GetMultiCustomListResponse
     from .types.legacy import GetLegacyMappingResponse
     from .types.manga import MangaRelationResponse, MangaSearchResponse
-    from .types.report import GetReportReasonResponse
+    from .types.report import GetReportReasonResponse, GetUserReportReasonResponse
     from .types.scanlator_group import GetMultiScanlationGroupResponse
     from .types.user import GetMultiUserResponse
     from .user import User
@@ -55,6 +55,7 @@ __all__ = (
     "CoverCollection",
     "ScanlatorGroupCollection",
     "ReportCollection",
+    "UserReportCollection",
     "UserCollection",
     "CustomListCollection",
     "LegacyMappingCollection",
@@ -334,6 +335,47 @@ class ReportCollection(_Collection):
 
     def __repr__(self) -> str:
         return f"<ReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+
+class UserReportCollection(_Collection):
+    """
+    A collection object type to represent reports.
+
+    Attributes
+    -----------
+    reports: List[:class:`~hondana.UserReport`]
+        The reports returned from this collection.
+    total: :class:`int`
+        The total possible results with this query could return.
+    offset: :class:`int`
+        The offset used in this query.
+    limit: :class:`int`
+        The limit used in this query.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "reports",
+        "total",
+        "limit",
+        "offset",
+    )
+
+    def __init__(self, http: HTTPClient, payload: GetUserReportReasonResponse, reports: list[UserReport]) -> None:
+        self._http: HTTPClient = http
+        payload.pop("data", [])
+        self._data: GetUserReportReasonResponse = payload
+        self.reports: list[UserReport] = reports
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
+        super().__init__()
+
+    def __repr__(self) -> str:
+        return (
+            f"<UserReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
+        )
 
 
 class UserCollection(_Collection):

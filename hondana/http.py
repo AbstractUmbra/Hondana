@@ -54,6 +54,7 @@ from .enums import (
     PublicationDemographic,
     ReadingStatus,
     ReportCategory,
+    ReportStatus,
 )
 from .errors import (
     APIException,
@@ -93,6 +94,7 @@ if TYPE_CHECKING:
         MangaDraftListOrderQuery,
         MangaIncludes,
         MangaListOrderQuery,
+        ReportListOrderQuery,
         ScanlatorGroupIncludes,
         ScanlatorGroupListOrderQuery,
         UserListOrderQuery,
@@ -375,7 +377,6 @@ class HTTPClient:
 
         if self.__last_refresh is not None:
             now = datetime.datetime.now(datetime.timezone.utc)
-            # To avoid a race condition we're gonna check this for 14 minutes, since it can re-auth anytime, but post 15m it will error
             if now > self.__last_refresh:
                 LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
                 refreshed = await self._perform_token_refresh()
@@ -1195,6 +1196,7 @@ class HTTPClient:
         manga: Optional[list[str]],
         ids: Optional[list[str]],
         uploaders: Optional[list[str]],
+        locales: Optional[list[common.LanguageCode]],
         order: Optional[CoverArtListOrderQuery],
         includes: Optional[CoverIncludes],
     ) -> Response[cover.GetMultiCoverResponse]:
@@ -1213,6 +1215,9 @@ class HTTPClient:
         if uploaders:
             query["uploaders"] = uploaders
 
+        if locales:
+            query["locales"] = locales
+
         if order:
             query["order"] = order._to_dict()
 
@@ -1222,7 +1227,14 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _upload_cover(
-        self, manga_id: str, /, *, cover: bytes, volume: Optional[str], description: Optional[str]
+        self,
+        manga_id: str,
+        /,
+        *,
+        cover: bytes,
+        volume: Optional[str],
+        description: str,
+        locale: Optional[common.LanguageCode],
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
         content_type = get_image_mime_type(cover)
@@ -1230,7 +1242,10 @@ class HTTPClient:
         form_data = aiohttp.FormData()
         form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
         form_data.add_field(name="volume", value=volume)
-        form_data.add_field(name="description", value=description)
+        form_data.add_field(name="locale", value=locale)
+        if description is not None:
+            form_data.add_field(name="description", value=description)
+
         return self.request(route, data=form_data)
 
     def _get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes]) -> Response[cover.GetSingleCoverResponse]:
@@ -1242,7 +1257,14 @@ class HTTPClient:
         return self.request(route)
 
     def _edit_cover(
-        self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str], version: int
+        self,
+        cover_id: str,
+        /,
+        *,
+        volume: Optional[str] = MISSING,
+        description: Optional[str] = MISSING,
+        locale: Optional[str] = MISSING,
+        version: int,
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
 
@@ -1255,6 +1277,9 @@ class HTTPClient:
 
         if description is not MISSING:
             query["description"] = description
+
+        if locale is not MISSING:
+            query["locale"] = locale
 
         return self.request(route, json=query)
 
@@ -2003,6 +2028,32 @@ class HTTPClient:
     def _get_report_reason_list(self, report_category: ReportCategory, /) -> Response[report.GetReportReasonResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value)
         return self.request(route)
+
+    def _get_reports_current_user(
+        self,
+        *,
+        limit: int = 10,
+        offset: int = 0,
+        category: Optional[ReportCategory],
+        status: Optional[ReportStatus],
+        order: Optional[ReportListOrderQuery] = None,
+    ) -> Response[report.GetUserReportReasonResponse]:
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
+
+        route = Route("GET", "/report")
+
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if category:
+            query["category"] = category.value
+
+        if status:
+            query["status"] = status.value
+
+        if order:
+            query["order"] = order._to_dict()
+
+        return self.request(route, params=query)
 
     def _at_home_report(self, *, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
         route = CustomRoute("POST", "https://api.mangadex.network", "/report")

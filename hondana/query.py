@@ -42,6 +42,7 @@ __all__ = (
     "ScanlatorGroupListOrderQuery",
     "AuthorListOrderQuery",
     "UserListOrderQuery",
+    "ReportListOrderQuery",
     "ArtistIncludes",
     "AuthorIncludes",
     "ChapterIncludes",
@@ -314,6 +315,22 @@ class UserListOrderQuery(_OrderQuery):
     __slots__ = ("username",)
 
     username: Optional[Order]
+
+    def __init__(self, **kwargs: Order) -> None:
+        super().__init__(**kwargs)
+
+
+class ReportListOrderQuery(_OrderQuery):
+    """
+    Parameters
+    -----------
+    created_at: :class:`~hondana.query.Order`
+        Ordering by creation date.
+    """
+
+    __slots__ = ("created_at",)
+
+    created_at: Optional[Order]
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)

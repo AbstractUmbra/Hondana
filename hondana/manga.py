@@ -103,6 +103,8 @@ class Manga:
         The year the manga was release, if the key exists.
     content_rating: Optional[:class:`~hondana.ContentRating`]
         The content rating attributed to the manga, if any.
+    chapter_numbers_reset_on_new_volume: :class:`bool`
+        Whether the chapter numbers will reset on a new volume or not.
     state: Optional[:class:`~hondana.MangaState`]
         The publication state of the Manga.
     stats: Optional[:class:`~hondana.MangaStatistics`]
@@ -134,6 +136,7 @@ class Manga:
         "status",
         "year",
         "content_rating",
+        "chapter_numbers_reset_on_new_volume",
         "tags",
         "state",
         "stats",
@@ -173,6 +176,7 @@ class Manga:
             ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
         )
         _tags = self._attributes["tags"]
+        self.chapter_numbers_reset_on_new_volume: bool = self._attributes["chapterNumbersResetOnNewVolume"]
         self.tags: list[Tag] = [Tag(tag_) for tag_ in _tags]
         self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
         self.stats: Optional[MangaStatistics] = None
@@ -1274,7 +1278,9 @@ class Manga:
         return MangaRelationCollection(self._http, data, fmt)
 
     @require_authentication
-    async def upload_cover(self, *, cover: bytes, volume: Optional[str] = None, description: Optional[str] = None) -> Cover:
+    async def upload_cover(
+        self, *, cover: bytes, volume: Optional[str] = None, description: str, locale: Optional[LanguageCode] = None
+    ) -> Cover:
         """|coro|
 
         This method will upload a cover to the MangaDex API.
@@ -1285,8 +1291,10 @@ class Manga:
             THe raw bytes of the image.
         volume: Optional[:class:`str`]
             The volume this cover relates to.
-        description: Optional[:class:`str`]
+        description: :class:`str`
             The description of this cover.
+        locale: Optional[:class:`~hondana.types.LanguageCode`]
+            The locale of this cover.
 
         Raises
         -------
@@ -1299,7 +1307,7 @@ class Manga:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(self.id, cover=cover, volume=volume, description=description)
+        data = await self._http._upload_cover(self.id, cover=cover, volume=volume, description=description, locale=locale)
         return Cover(self._http, data["data"])
 
     @require_authentication

@@ -30,6 +30,7 @@ __all__ = (
     "PublicationDemographic",
     "CustomListVisibility",
     "ReportCategory",
+    "ReportStatus",
     "MangaStatus",
     "ReadingStatus",
     "MangaState",
@@ -67,6 +68,13 @@ class ReportCategory(_StrEnum):
     scanlation_group = "scanlation_group"
     user = "user"
     author = "author"
+
+
+class ReportStatus(_StrEnum):
+    waiting = "waiting"
+    accepted = "accepted"
+    refused = "refused"
+    autoresolved = "autoresolved"
 
 
 class MangaStatus(_StrEnum):

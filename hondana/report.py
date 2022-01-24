@@ -23,18 +23,22 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import datetime
 from typing import TYPE_CHECKING
 
-from .enums import ReportCategory
+from .enums import ReportCategory, ReportStatus
 from .http import HTTPClient
 
 
 if TYPE_CHECKING:
     from .types.common import LocalisedString
-    from .types.report import ReportReasonResponse
+    from .types.report import ReportReasonResponse, UserReportReasonResponse
 
 
-__all__ = ("Report",)
+__all__ = (
+    "Report",
+    "UserReport",
+)
 
 
 class Report:
@@ -85,3 +89,58 @@ class Report:
 
     def __ne__(self, other: Report) -> bool:
         return not self.__eq__(other)
+
+
+class UserReport:
+    """
+    A user generated report on MangaDex.
+
+    Attributes
+    -----------
+    id: :class:`str`
+        This report's ID.
+    details: :class:`str`
+        The report's details
+    object_id: :class:`str`
+        The target object's ID.
+    status: :class:`~hondana.ReportStatus`
+        The current status of the report.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "_attributes",
+        "id",
+        "details",
+        "object_id",
+        "status",
+        "_created_at",
+    )
+
+    def __init__(self, http: HTTPClient, payload: UserReportReasonResponse) -> None:
+        self._http: HTTPClient = http
+        self._data: UserReportReasonResponse = payload
+        self.id: str = self._data["id"]
+        self._attributes = self._data["attributes"]
+        self.details: str = self._attributes["details"]
+        self.object_id: str = self._attributes["objectId"]
+        self.status: ReportStatus = ReportStatus(self._attributes["status"])
+        self._created_at: str = self._attributes["createdAt"]
+
+    def __repr__(self) -> str:
+        return f"<UserReport id='{self.id}' status={self.status.value}>"
+
+    def __eq__(self, other: UserReport) -> bool:
+        return isinstance(other, self.__class__) and self.id == other.id
+
+    @property
+    def created_at(self) -> datetime.datetime:
+        """Returns the date this report was created in UTC.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The date this report was created.
+        """
+        return datetime.datetime.fromisoformat(self._created_at)

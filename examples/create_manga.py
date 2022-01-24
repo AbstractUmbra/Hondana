@@ -39,7 +39,7 @@ async def main():
         cover = file.read()
 
     # When we upload a cover, we need to attribute it to a manga, so lets use the draft one we created.
-    uploaded_cover = await draft_manga.upload_cover(cover=cover, volume=None)
+    uploaded_cover = await draft_manga.upload_cover(cover=cover, volume=None, description="My awesome cover", locale="en")
     print(uploaded_cover)
 
     # Now that our manga is covered and uploaded, let's submit it for approval:

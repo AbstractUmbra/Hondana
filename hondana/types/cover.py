@@ -28,6 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 
 if TYPE_CHECKING:
+    from .common import LanguageCode
     from .relationship import RelationshipResponse
 
 
@@ -45,7 +46,9 @@ class CoverAttributesResponse(TypedDict):
 
     fileName: :class:`str`
 
-    description: :class:`str`
+    description: Optional[:class:`str`]
+
+    locale: Optional[:class:`~hondana.types.LanguageCode`]
 
     version: :class:`int`
 
@@ -56,7 +59,8 @@ class CoverAttributesResponse(TypedDict):
 
     volume: Optional[str]
     fileName: str
-    description: str
+    description: Optional[str]
+    locale: Optional[LanguageCode]
     version: int
     createdAt: str
     updatedAt: str

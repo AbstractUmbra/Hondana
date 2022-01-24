@@ -28,7 +28,9 @@ from typing import TYPE_CHECKING, Literal, TypedDict
 
 
 if TYPE_CHECKING:
+    from ..enums import ReportStatus
     from .common import LocalisedString
+    from .relationship import RelationshipResponse
 
 
 __all__ = (
@@ -58,6 +60,23 @@ class GetReportReasonAttributesResponse(TypedDict):
     version: int
 
 
+class GetUserReportReasonAttributesResponse(TypedDict):
+    """
+    details: :class:`str`
+
+    objectId: :class:`str`
+
+    status: :class:`~hondana.ReportStatus`
+
+    createdAt: :class:`str`
+    """
+
+    details: str
+    objectId: str
+    status: ReportStatus
+    createdAt: str
+
+
 class ReportReasonResponse(TypedDict):
     """
     id: :class:`str`
@@ -70,6 +89,24 @@ class ReportReasonResponse(TypedDict):
     id: str
     type: Literal["report_reason"]
     attributes: GetReportReasonAttributesResponse
+
+
+class UserReportReasonResponse(TypedDict):
+    """
+    id: :class:`str`
+
+    type: Literal[``"report"``]
+
+    attributes: :class:`~hondana.types.GetUserReportReasonAttributesResponse`
+
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+        This key is Optional.
+    """
+
+    id: str
+    type: Literal["report"]
+    attributes: GetUserReportReasonAttributesResponse
+    relationships: list[RelationshipResponse]
 
 
 class GetReportReasonResponse(TypedDict):
@@ -90,6 +127,29 @@ class GetReportReasonResponse(TypedDict):
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ReportReasonResponse]
+    limit: int
+    offset: int
+    total: int
+
+
+class GetUserReportReasonResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`~hondana.types.UserReportReasonResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[UserReportReasonResponse]
     limit: int
     offset: int
     total: int
