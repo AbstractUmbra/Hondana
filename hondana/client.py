@@ -261,8 +261,8 @@ class Client:
         self._http.username = username
         self._http.email = email
         self._http.password = password
-        self._http._authenticated = True
         self._http._refresh_token = refresh_token
+        self._http._authenticated = True
 
     async def static_login(self) -> None:
         """|coro|

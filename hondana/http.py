@@ -210,7 +210,7 @@ class HTTPClient:
         session: Optional[aiohttp.ClientSession] = None,
         refresh_token: Optional[str] = None,
     ) -> None:
-        self._authenticated = bool(((username or email) and password))
+        self._authenticated = bool(((username or email) and password) or refresh_token)
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
