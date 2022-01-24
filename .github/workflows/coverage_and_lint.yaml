@@ -25,7 +25,6 @@ jobs:
         uses: jakebailey/pyright-action@v1
         with:
           python-version: 3.9
-          project: "pyproject.toml"
 
       - name: Lint
         uses: github/super-linter/slim@v4
