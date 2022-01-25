@@ -120,6 +120,7 @@ class Chapter:
         "_created_at",
         "_updated_at",
         "_published_at",
+        "_readable_at",
         "_at_home_url",
         "__uploader",
         "__parent",
@@ -142,6 +143,7 @@ class Chapter:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
+        self._readable_at = self._attributes["readableAt"]
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
@@ -243,6 +245,17 @@ class Chapter:
             The UTC datetime of when this chapter was published.
         """
         return datetime.datetime.fromisoformat(self._published_at)
+
+    @property
+    def readable_at(self) -> datetime.datetime:
+        """When this chapter is readable.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when this chapter becomes readable.
+        """
+        return datetime.datetime.fromisoformat(self._readable_at)
 
     @property
     def manga(self) -> Optional[Manga]:

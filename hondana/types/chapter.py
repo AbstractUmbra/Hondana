@@ -62,6 +62,8 @@ class ChapterAttributesResponse(TypedDict):
     updatedAt: :class:`str`
 
     publishAt: :class:`str`
+
+    readableAt: :class:`str`
     """
 
     title: Optional[str]
@@ -74,6 +76,7 @@ class ChapterAttributesResponse(TypedDict):
     createdAt: str
     updatedAt: str
     publishAt: str
+    readableAt: str
 
 
 class ChapterResponse(TypedDict):
