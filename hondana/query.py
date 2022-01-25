@@ -174,6 +174,8 @@ class FeedOrderQuery(_OrderQuery):
         Ordering by last updated date.
     publish_at: :class:`~hondana.query.Order`
         Ordering by published at date.
+    readable_at: :class:~hondana.query.Order`
+        Ordering by when the chapters are readable.
     volume: :class:`~hondana.query.Order`
         Ordering by volume number.
     chapter: :class:`~hondana.query.Order`
@@ -184,6 +186,7 @@ class FeedOrderQuery(_OrderQuery):
         "created_at",
         "updated_at",
         "published_at",
+        "readable_at",
         "volume",
         "chapter",
     )
@@ -191,6 +194,7 @@ class FeedOrderQuery(_OrderQuery):
     created_at: Optional[Order]
     updated_at: Optional[Order]
     published_at: Optional[Order]
+    readable_at: Optional[Order]
     volume: Optional[Order]
     chapter: Optional[Order]
 
