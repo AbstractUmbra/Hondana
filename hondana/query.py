@@ -183,7 +183,7 @@ class FeedOrderQuery(_OrderQuery):
         Ordering by last updated date.
     publish_at: :class:`~hondana.query.Order`
         Ordering by published at date.
-    readable_at: :class:~hondana.query.Order`
+    readable_at: :class:`~hondana.query.Order`
         Ordering by when the chapters are readable.
     volume: :class:`~hondana.query.Order`
         Ordering by volume number.
