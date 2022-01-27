@@ -653,7 +653,7 @@ class HTTPClient:
             query["updatedAtSince"] = to_iso_format(updated_at_since)
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -900,7 +900,7 @@ class HTTPClient:
             query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -1015,7 +1015,7 @@ class HTTPClient:
             query["state"] = state.value
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -1128,7 +1128,7 @@ class HTTPClient:
             query["publishedAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -1220,7 +1220,7 @@ class HTTPClient:
             query["locales"] = locales
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -1318,7 +1318,7 @@ class HTTPClient:
             query["includes"] = includes.to_query()
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         return self.request(route, params=query)
 
@@ -1344,7 +1344,7 @@ class HTTPClient:
             query["username"] = username
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         return self.request(route, params=query)
 
@@ -1608,7 +1608,7 @@ class HTTPClient:
             query["publishAtSince"] = to_iso_format(published_at_since)
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         return self.request(route, params=query)
 
@@ -1793,7 +1793,7 @@ class HTTPClient:
             query["name"] = name
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         if includes:
             query["includes"] = includes.to_query()
@@ -2052,7 +2052,7 @@ class HTTPClient:
             query["status"] = status.value
 
         if order:
-            query["order"] = order._to_dict()
+            query["order"] = order.to_dict()
 
         return self.request(route, params=query)
 

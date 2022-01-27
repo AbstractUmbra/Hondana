@@ -70,11 +70,16 @@ class _OrderQuery:
         if _fmt:
             raise TypeError(f"You have passed invalid kwargs: {', '.join(_fmt)}")
 
-    def _to_dict(self) -> dict[str, str]:
+    def __repr__(self) -> str:
+        opt = []
+        for key in self.__slots__:
+            if val := getattr(self, key, None):
+                opt.append(f"{key}={val.name}")
+        return f"<{self.__class__.__name__} {' '.join(opt)}>"
+
+    def to_dict(self) -> dict[str, str]:
         fmt: dict[str, str] = {}
-        for item in dir(self):
-            if item.startswith("_"):
-                continue
+        for item in self.__slots__:
             if val := getattr(self, item, None):
                 fmt[to_camel_case(str(item))] = val.value
 
@@ -100,6 +105,10 @@ class _Includes:
                 fmt.append(item)
 
         return fmt
+
+    def __repr__(self) -> str:
+        fmt = " ".join([f"{key}={getattr(self, key, False)}" for key in self.__slots__])
+        return f"<{self.__class__.__name__} {fmt}>"
 
     @classmethod
     def all(cls: Type[Self]) -> Self:
