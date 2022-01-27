@@ -8,8 +8,9 @@ hondana.log
 target/
 *.png
 *.jpg
-*.gif
 *.jpeg
+*.webp
+*.gif
 _*.py
 _api*.yaml
 _testing/
