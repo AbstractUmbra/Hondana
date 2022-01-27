@@ -77,11 +77,13 @@ reportUntypedFunctionDecorator = "error"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
+install = "poetry install"
 format = "poetry run black ."
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
-pre = ["format", "types", "docs", "tags"]
+uninstall = "poetry run pip uninstall hondana -y"
+pre = ["install", "format", "types", "docs", "tags", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
