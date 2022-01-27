@@ -126,9 +126,10 @@ if TYPE_CHECKING:
     BE = TypeVar("BE", bound=BaseException)
 
 
-LOGGER = logging.getLogger(__name__)
-TAGS = MANGA_TAGS
-MAX_DEPTH = 10_000
+LOGGER: logging.Logger = logging.getLogger(__name__)
+TAGS: dict[str, str] = MANGA_TAGS
+MAX_DEPTH: int = 10_000
+ALLOWED_IMAGE_FORMATS: set[str] = {"image/png", "image/gif", "image/jpeg", "image/jpg", "image/webp"}
 
 
 __all__ = ("HTTPClient",)
@@ -510,7 +511,7 @@ class HTTPClient:
                             loop = asyncio.get_running_loop()
                             loop.call_later(sleep, lock.release)
 
-                        if response.content_type in {"image/png", "image/gif", "image/jpeg", "image/jpg"}:
+                        if response.content_type in ALLOWED_IMAGE_FORMATS:
                             data = (await response.read(), response)
                         else:
                             data = await json_or_text(response)
