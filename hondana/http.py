@@ -306,7 +306,7 @@ class HTTPClient:
         expires = datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
         return expires
 
-    async def _perform_token_refresh(self) -> str:
+    async def _perform_token_refresh(self) -> None:
         """|coro|
 
         This private method will refresh the current set token (:attr:`._auth`)
@@ -366,12 +366,11 @@ class HTTPClient:
         """
         if self._token is None and self._refresh_token is not None:
             LOGGER.debug("User passed a refresh token on creation, will skip login stage.")
-            refreshed = await self._perform_token_refresh()
-            if refreshed:
-                assert isinstance(self._token, str)  # the refresh stage above sets this.
-                return self._token
+            await self._perform_token_refresh()
+            assert isinstance(self._token, str)  # the refresh stage above sets this.
+            return self._token
 
-        if self._token is None:
+        elif self._token is None:
             LOGGER.debug("No jwt set yet, will attempt to generate one.")
             self._token = await self._get_token()
             return self._token
@@ -380,9 +379,8 @@ class HTTPClient:
             now = datetime.datetime.now(datetime.timezone.utc)
             if now > self.__last_refresh:
                 LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
-                refreshed = await self._perform_token_refresh()
-                if refreshed:
-                    return self._token
+                await self._perform_token_refresh()
+                return self._token
             else:
                 LOGGER.debug("Within the same 15m span of token generation, reusing it.")
                 return self._token
@@ -436,13 +434,13 @@ class HTTPClient:
         -------
         :exc:`BadRequest`
             A request was malformed
-        Unauthorized
+        :exc:`Unauthorized`
             You attempted to use an endpoint you have no authorization for.
         :exc:`Forbidden`
             Your auth was not sufficient to perform this action.
         :exc:`NotFound`
             The specified item, endpoint or resource was not found.
-        APIException
+        :exc:`APIException`
             A generic exception raised when the HTTP response code is non 2xx.
 
         Returns
