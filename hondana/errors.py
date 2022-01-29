@@ -43,12 +43,61 @@ __all__ = (
 )
 
 
+class Error:
+    """
+    Common Error type class representing an error returned from MangaDex.
+
+    Attributes
+    -----------
+    error_id: :class:`str`
+        The UUID representing this error.
+    error_status: :class:`int`
+        The HTTP status code of this error.
+    error_title: :class:`str`
+        The title summary of this error.
+    error_detail: :class:`str`
+        The detailed report of this error.
+    """
+
+    __slots__ = (
+        "error_id",
+        "error_status",
+        "error_title",
+        "error_detail",
+    )
+
+    def __init__(self, error: ErrorType) -> None:
+        self.error_id: str = error["id"]
+        self.error_status: int = error["status"]
+        self.error_title: str = error["title"]
+        self.error_detail: str = error["detail"]
+
+    def __repr__(self) -> str:
+        return f"<Error status={self.error_status} title='{self.error_title}' detail='{self.error_detail}'>"
+
+    def __str__(self) -> str:
+        return f"Error: {self.error_title}: {self.error_detail}"
+
+
 class AuthenticationRequired(Exception):
     """An exception to be raised when authentication is required to use this endpoint."""
 
 
 class UploadInProgress(Exception):
-    """An exception to be raised when an upload in progress is already found for the logged in user."""
+    """An exception to be raised when an upload in progress is already found for the logged in user.
+
+    Attributes
+    -----------
+    message: class:`str`
+        The message returned with this error.
+    session_id: :class:`str`
+        The already existing session ID.
+    """
+
+    __slots__ = (
+        "message",
+        "session_id",
+    )
 
     def __init__(self, message: str, /, *, session_id: str) -> None:
         self.message: str = message
@@ -60,7 +109,20 @@ class UploadInProgress(Exception):
 
 
 class MangaDexServerError(Exception):
-    """Generic exception type for when MangaDex is down."""
+    """Generic exception type for when MangaDex is down.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: :class:`int`
+        The HTTP status code for this request.
+    """
+
+    __slots__ = (
+        "response",
+        "status_code",
+    )
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int) -> None:
         self.response: aiohttp.ClientResponse = response
@@ -69,50 +131,104 @@ class MangaDexServerError(Exception):
 
 
 class APIException(Exception):
-    """Generic API error when the response code is a non 2xx error."""
+    """Generic API error when the response code is a non 2xx error.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: :class:`int`
+        The HTTP status code for this request.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
+
+    __slots__ = (
+        "response",
+        "status_code",
+        "errors",
+        "_errors",
+    )
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
         self.status_code: int = status_code
-        self.errors: list[ErrorType] = errors
-        super().__init__(self.response, self.status_code, self.errors)
+        self._errors: list[ErrorType] = errors
+        self.errors: list[Error] = []
+        for item in self._errors:
+            self.errors.append(Error(item))
+        super().__init__(self.status_code, self.errors)
+
+    def __repr__(self) -> str:
+        return f"<{self.__class__.__name__} status_code={self.status_code} error_amount: {len(self.errors)}>"
+
+    def __str__(self) -> str:
+        return f"HTTP Status: {self.status_code}: {', '.join([error.error_detail for error in self.errors])}"
 
 
 class BadRequest(APIException):
-    """An error for when the API query was malformed."""
+    """An error for when the API query was malformed.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: Literal[``400``]
+        The HTTP status code for this request.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
-        self.response: aiohttp.ClientResponse = response
-        self.status_code: int = 400
-        self.errors: list[ErrorType] = errors
-        super().__init__(response, status_code=self.status_code, errors=errors)
+        super().__init__(response, status_code=400, errors=errors)
 
 
 class Unauthorized(APIException):
-    """An error for when you are unauthorized on this API endpoint."""
+    """An error for when you are unauthorized on this API endpoint.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: Literal[``401``]
+        The HTTP status code for this request.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
-        self.response: aiohttp.ClientResponse = response
-        self.status_code: int = 401
-        self.errors: list[ErrorType] = errors
-        super().__init__(response, status_code=self.status_code, errors=errors)
+        super().__init__(response, status_code=401, errors=errors)
 
 
 class Forbidden(APIException):
-    """An error for when your authorization was rejected."""
+    """An error for when your authorization was rejected.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: Literal[``403``]
+        The HTTP status code for this request.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
-        self.response: aiohttp.ClientResponse = response
-        self.status_code: int = 403
-        self.errors: list[ErrorType] = errors
-        super().__init__(response, status_code=self.status_code, errors=errors)
+        super().__init__(response, status_code=403, errors=errors)
 
 
 class NotFound(APIException):
-    """An error for when the requested API item was not found."""
+    """An error for when the requested API item was not found."
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: Literal[``404``]
+        The HTTP status code for this request.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
-        self.response: aiohttp.ClientResponse = response
-        self.status_code: int = 404
-        self.errors: list[ErrorType] = errors
-        super().__init__(response, status_code=self.status_code, errors=errors)
+        super().__init__(response, status_code=404, errors=errors)

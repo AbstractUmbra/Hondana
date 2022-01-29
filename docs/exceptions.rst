@@ -3,6 +3,10 @@ Exceptions
 
 .. currentmodule:: hondana
 
+Common Error Type
+~~~~~~~~~~~~~~~~~
+.. autoclass:: hondana.errors.Error()
+
 AuthenticationRequired
 ~~~~~~~~~~~~~~~~~~~~~~
 .. autoexception:: AuthenticationRequired()
