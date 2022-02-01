@@ -170,7 +170,7 @@ class Manga:
             if self._attributes["publicationDemographic"]
             else None
         )
-        self.status: Optional[MangaStatus] = self._attributes["status"]
+        self.status: Optional[MangaStatus] = MangaStatus(self._attributes["status"]) if self._attributes["status"] else None
         self.year: Optional[int] = self._attributes["year"]
         self.content_rating: Optional[ContentRating] = (
             ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
