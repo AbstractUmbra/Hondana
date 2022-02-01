@@ -199,7 +199,7 @@ class HTTPClient:
         "_locks",
         "_token",
         "_refresh_token",
-        "__last_refresh",
+        "__refresh_after",
         "user_agent",
         "_connection",
     )
@@ -221,7 +221,7 @@ class HTTPClient:
         self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
         self._token: Optional[str] = None
         self._refresh_token: Optional[str] = refresh_token
-        self.__last_refresh: Optional[datetime.datetime] = None
+        self.__refresh_after: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
@@ -292,7 +292,7 @@ class HTTPClient:
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
-        self.__last_refresh = self._get_expiry(token)
+        self.__refresh_after = self._get_expiry(token)
         self._refresh_token = refresh_token
         return token
 
@@ -342,7 +342,7 @@ class HTTPClient:
                 raise APIException(response, status_code=response.status, errors=data["errors"])
 
         self._token = data["token"]["session"]
-        self.__last_refresh = datetime.datetime.now(datetime.timezone.utc)
+        self.__refresh_after = self._get_expiry(self._token)
         return self._token
 
     async def _try_token(self) -> str:
@@ -375,9 +375,9 @@ class HTTPClient:
             self._token = await self._get_token()
             return self._token
 
-        if self.__last_refresh is not None:
+        if self.__refresh_after is not None:
             now = datetime.datetime.now(datetime.timezone.utc)
-            if now > self.__last_refresh:
+            if now > self.__refresh_after:
                 LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
                 await self._perform_token_refresh()
                 return self._token
