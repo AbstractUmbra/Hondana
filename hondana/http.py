@@ -467,20 +467,18 @@ class HTTPClient:
         if "json" in kwargs:
             headers["Content-Type"] = "application/json"
             kwargs["data"] = to_json(kwargs.pop("json"))
+            LOGGER.debug("Current json body is: %s", str(kwargs["data"]))
 
         if "params" in kwargs:
             params = kwargs["params"]
             resolved_params = php_query_builder(params)
             kwargs["params"] = resolved_params
+            LOGGER.debug("Current request parameters: %s", resolved_params)
 
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
         LOGGER.debug("Current request url: %s", route.url)
-        if "params" in kwargs:
-            LOGGER.debug("Current request parameters: %s", kwargs["params"])
-        if "data" in kwargs:
-            LOGGER.debug("Current json body is: %s", str(kwargs["data"]))
 
         response: Optional[aiohttp.ClientResponse] = None
         await lock.acquire()
