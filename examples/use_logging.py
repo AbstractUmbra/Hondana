@@ -1,3 +1,6 @@
+## Preface note: DEBUG logging on `hondana` (specifically it's `http` module) will result in your token as well as other information that could be sensitive
+## showing to the CLI. Be careful if sharing these logs.
+
 from __future__ import annotations
 
 import asyncio

@@ -44,6 +44,8 @@ outputting them to the console the following snippet can be used
 This is recommended, especially at verbose levels such as ``INFO``
 and ``DEBUG``, as there are a lot of events logged and it would clog the
 stdout of your program.
+Further, using ``DEBUG`` logging within hondana can reveal sensitive information, like your authentication token.
+Please be careful when sharing this information.
 
 
 
