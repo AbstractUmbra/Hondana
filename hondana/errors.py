@@ -139,6 +139,9 @@ class APIException(Exception):
         The response object pertaining to this request.
     status_code: :class:`int`
         The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
     errors: List[:class:`~hondana.errors.Error`]
         The list of errors returned from MangaDex.
     """
@@ -146,6 +149,7 @@ class APIException(Exception):
     __slots__ = (
         "response",
         "status_code",
+        "response_id",
         "errors",
         "_errors",
     )
@@ -153,6 +157,7 @@ class APIException(Exception):
     def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int, errors: list[ErrorType]) -> None:
         self.response: aiohttp.ClientResponse = response
         self.status_code: int = status_code
+        self.response_id: str = response.headers["x-request-id"]
         self._errors: list[ErrorType] = errors
         self.errors: list[Error] = []
         for item in self._errors:
@@ -160,10 +165,10 @@ class APIException(Exception):
         super().__init__(self.status_code, self.errors)
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} status_code={self.status_code} error_amount: {len(self.errors)}>"
+        return f"<{self.__class__.__name__} response_id={self.response_id} status_code={self.status_code} error_amount: {len(self.errors)}>"
 
     def __str__(self) -> str:
-        return f"HTTP Status: {self.status_code}: {', '.join([error.error_detail for error in self.errors])}"
+        return f"HTTP Status: {self.status_code} and response id: {self.response_id} :: {', '.join([error.error_detail for error in self.errors])}"
 
 
 class BadRequest(APIException):
@@ -175,6 +180,9 @@ class BadRequest(APIException):
         The response object pertaining to this request.
     status_code: Literal[``400``]
         The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
     errors: List[:class:`~hondana.errors.Error`]
         The list of errors returned from MangaDex.
     """
@@ -192,6 +200,9 @@ class Unauthorized(APIException):
         The response object pertaining to this request.
     status_code: Literal[``401``]
         The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
     errors: List[:class:`~hondana.errors.Error`]
         The list of errors returned from MangaDex.
     """
@@ -209,6 +220,9 @@ class Forbidden(APIException):
         The response object pertaining to this request.
     status_code: Literal[``403``]
         The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
     errors: List[:class:`~hondana.errors.Error`]
         The list of errors returned from MangaDex.
     """
@@ -226,6 +240,9 @@ class NotFound(APIException):
         The response object pertaining to this request.
     status_code: Literal[``404``]
         The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
     errors: List[:class:`~hondana.errors.Error`]
         The list of errors returned from MangaDex.
     """
