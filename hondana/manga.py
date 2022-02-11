@@ -47,7 +47,7 @@ from .query import (
     MangaIncludes,
 )
 from .tags import Tag
-from .utils import MISSING, require_authentication
+from .utils import MISSING, cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -137,16 +137,17 @@ class Manga:
         "year",
         "content_rating",
         "chapter_numbers_reset_on_new_volume",
-        "tags",
         "state",
         "stats",
         "version",
+        "_tags",
         "_created_at",
         "_updated_at",
         "__authors",
         "__artists",
         "__cover",
         "__related_manga",
+        "_cs_tags",
     )
 
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
@@ -175,12 +176,11 @@ class Manga:
         self.content_rating: Optional[ContentRating] = (
             ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
         )
-        _tags = self._attributes["tags"]
         self.chapter_numbers_reset_on_new_volume: bool = self._attributes["chapterNumbersResetOnNewVolume"]
-        self.tags: list[Tag] = [Tag(tag_) for tag_ in _tags]
         self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
         self.stats: Optional[MangaStatistics] = None
         self.version: int = self._attributes["version"]
+        self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self.__authors: Optional[list[Author]] = None
@@ -266,6 +266,17 @@ class Manga:
             The UTC datetime of when this manga was last updated.
         """
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    @cached_slot_property("_cs_tags")
+    def tags(self) -> list[Tag]:
+        """The tags of this Manga.
+
+        Returns
+        --------
+        List[:class:`~hondana.Tag`]
+            The list of tags that this manga is associated with.
+        """
+        return [Tag(item) for item in self._tags]
 
     @property
     def artists(self) -> Optional[list[Artist]]:

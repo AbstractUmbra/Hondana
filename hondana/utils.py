@@ -36,11 +36,14 @@ from typing import (
     Any,
     Callable,
     ClassVar,
+    Generic,
     Iterable,
     Mapping,
     Optional,
+    Type,
     TypeVar,
     Union,
+    overload,
 )
 from urllib.parse import quote as _uriquote
 
@@ -55,6 +58,7 @@ if TYPE_CHECKING:
 
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
+T_co = TypeVar("T_co", covariant=True)
 if TYPE_CHECKING:
     B = ParamSpec("B")
 
@@ -67,6 +71,7 @@ __all__ = (
     "MISSING",
     "Route",
     "CustomRoute",
+    "cached_slot_property",
     "to_json",
     "json_or_text",
     "to_iso_format",
@@ -170,6 +175,44 @@ class _StrEnum(Enum):  # type: ignore # we import this as needed.
 
     def __str__(self) -> str:
         return self.value
+
+
+## This class and subsequent decorator have been copied from Rapptz' Discord.py
+## (https://github.com/Rapptz/discord.py)
+## Credit goes to Rapptz and contributors
+
+
+class CachedSlotProperty(Generic[T, T_co]):
+    def __init__(self, name: str, function: Callable[[T], T_co]) -> None:
+        self.name: str = name
+        self.function: Callable[[T], T_co] = function
+        self.__doc__ = getattr(function, "__doc__")
+
+    @overload
+    def __get__(self, instance: None, owner: Type[T]) -> CachedSlotProperty[T, T_co]:
+        ...
+
+    @overload
+    def __get__(self, instance: T, owner: Type[T]) -> T_co:
+        ...
+
+    def __get__(self, instance: Optional[T], owner: Type[T]) -> Any:
+        if instance is None:
+            return self
+
+        try:
+            return getattr(instance, self.name)
+        except AttributeError:
+            value = self.function(instance)
+            setattr(instance, self.name, value)
+            return value
+
+
+def cached_slot_property(name: str) -> Callable[[Callable[[T], T_co]], CachedSlotProperty[T, T_co]]:
+    def decorator(func: Callable[[T], T_co]) -> CachedSlotProperty[T, T_co]:
+        return CachedSlotProperty(name, func)
+
+    return decorator
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
