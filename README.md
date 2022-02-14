@@ -22,6 +22,7 @@
 <br>
 
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
+You can see our stable docs [here](https://hondana.readthedocs.io/en/stable/)!
 
 ## Features
 We are currently at 100% feature compliance with the API.
