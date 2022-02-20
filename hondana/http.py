@@ -316,11 +316,6 @@ class HTTPClient:
         RefreshError
             We were unable to refresh the token.
 
-        Returns
-        --------
-        :class:`str`
-            The authentication token we just refreshed.
-
         .. note::
             This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
         """
@@ -330,6 +325,9 @@ class HTTPClient:
         route = Route("POST", "/auth/refresh")
         async with self._session.post(route.url, json={"token": self._refresh_token}) as response:
             data = await response.json()
+
+        # data is actually `.types.auth.RefreshPayload` but type-checking it here is a nightmare
+        # unless the request errors, which we handle here:
 
         if 400 <= response.status <= 510:
             if response.status == 400:
@@ -343,7 +341,6 @@ class HTTPClient:
 
         self._token = data["token"]["session"]
         self.__refresh_after = self._get_expiry(self._token)
-        return self._token
 
     async def _try_token(self) -> str:
         """|coro|
