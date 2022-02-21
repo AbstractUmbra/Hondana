@@ -137,6 +137,7 @@ class Manga:
         "year",
         "content_rating",
         "chapter_numbers_reset_on_new_volume",
+        "available_translated_languages",
         "state",
         "stats",
         "version",
@@ -177,6 +178,7 @@ class Manga:
             ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
         )
         self.chapter_numbers_reset_on_new_volume: bool = self._attributes["chapterNumbersResetOnNewVolume"]
+        self.available_translated_languages: list[LanguageCode] = self._attributes["availableTranslatedLanguages"]
         self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
         self.stats: Optional[MangaStatistics] = None
         self.version: int = self._attributes["version"]

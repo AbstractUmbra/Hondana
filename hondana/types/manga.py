@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 
 if TYPE_CHECKING:
-    from .common import LocalisedString
+    from .common import LocalisedString, LanguageCode
     from .relationship import RelationshipResponse
     from .tags import TagResponse
 
@@ -130,6 +130,8 @@ class MangaAttributesResponse(TypedDict):
 
     chapterNumbersResetOnNewVolume: :class:`bool`
 
+    availableTranslatedLanguages: List[:class:`~hondana.types.LanguageCode`]
+
     tags: List[:class:`~hondana.types.TagResponse`]
 
     state: :class:`~hondana.MangaState`
@@ -157,6 +159,7 @@ class MangaAttributesResponse(TypedDict):
     year: Optional[int]
     contentRating: Optional[_ContentRating]
     chapterNumbersResetOnNewVolume: bool
+    availableTranslatedLanguages: list[LanguageCode]
     tags: list[TagResponse]
     state: _MangaState
     version: int
