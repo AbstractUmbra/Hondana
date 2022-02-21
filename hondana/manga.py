@@ -1240,14 +1240,14 @@ class Manga:
         data = await self._http._get_manga_draft(self.id)
         return self.__class__(self._http, data["data"])
 
-    async def submit_draft(self, *, version: Optional[int] = None) -> Manga:
+    async def submit_draft(self, *, version: int) -> Manga:
         """|coro|
 
         This method will submit a draft for a manga.
 
         Parameters
         -----------
-        version: Optional[:class:`int`]
+        version: :class:`int`
             The version of the manga we're attributing this submission to.
 
         Raises

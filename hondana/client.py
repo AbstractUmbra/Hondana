@@ -1260,7 +1260,7 @@ class Client:
         return Manga(self._http, data["data"])
 
     @require_authentication
-    async def submit_manga_draft(self, manga_id: str, /, *, version: Optional[int] = None) -> Manga:
+    async def submit_manga_draft(self, manga_id: str, /, *, version: int) -> Manga:
         """|coro|
 
         This method will submit a draft for a manga.
@@ -1269,7 +1269,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The ID relating to the manga we are submitting to.
-        version: Optional[:class:`int`]
+        version: :class:`int`
             The version of the manga we're attributing this submission to.
 
         Returns

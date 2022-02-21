@@ -984,7 +984,7 @@ class HTTPClient:
         route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _submit_manga_draft(self, manga_id: str, /, version: Optional[int]) -> Response[manga.GetMangaResponse]:
+    def _submit_manga_draft(self, manga_id: str, /, *, version: int) -> Response[manga.GetMangaResponse]:
         route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
         query: dict[str, Any] = {"version": version}
         return self.request(route, json=query)
