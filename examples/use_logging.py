@@ -29,17 +29,17 @@ logger.addHandler(handler)
 
 async def main() -> hondana.ChapterFeed:
     # Let's get the last 15 minutes of released manga
-    fifteen_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=15)
+    fifteen_minutes_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=15)
 
     # And let's order the responses by created at descending
     order = FeedOrderQuery(created_at=Order.descending)
 
-    # `feed` will return a list of Chapter instances.
+    # `feed` will return a `hondana.ChapterFeed` instance.
     feed = await client.get_my_feed(
         limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order
     )
 
-    # Let's view the responses.
+    # Let's view the response repr.
     print(feed)
 
     await client.close()
