@@ -43,11 +43,11 @@ class StatisticsRatingResponse(TypedDict):
     """
     average: :class:`float`
 
-    distribution: List[:class:`int`]
+    distribution: Dict[:class:`str`, :class:`int`]
     """
 
     average: float
-    distribution: list[int]
+    distribution: dict[str, int]
 
 
 class BatchStatisticsRatingResponse(TypedDict):
