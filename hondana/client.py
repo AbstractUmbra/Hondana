@@ -3600,7 +3600,6 @@ class Client:
         key = next(iter(data["statistics"]))
         return MangaStatistics(self._http, key, data["statistics"][key])
 
-    @require_authentication
     async def find_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
         """|coro|
 
