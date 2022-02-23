@@ -3580,7 +3580,6 @@ class Client:
         """
         await self._http._delete_manga_rating(manga_id)
 
-    @require_authentication
     async def get_manga_statistics(self, manga_id: str, /) -> MangaStatistics:
         """|coro|
 
@@ -3600,7 +3599,6 @@ class Client:
         key = next(iter(data["statistics"]))
         return MangaStatistics(self._http, key, data["statistics"][key])
 
-    @require_authentication
     async def find_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
         """|coro|
 
