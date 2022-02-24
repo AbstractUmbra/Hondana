@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import Literal, TypedDict
+from typing import Literal, Optional, TypedDict
 
 
 __all__ = (
@@ -41,12 +41,12 @@ __all__ = (
 
 class StatisticsRatingResponse(TypedDict):
     """
-    average: :class:`float`
+    average: Optional[:class:`float`]
 
     distribution: Dict[:class:`str`, :class:`int`]
     """
 
-    average: float
+    average: Optional[float]
     distribution: dict[str, int]
 
 

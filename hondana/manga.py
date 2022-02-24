@@ -1472,7 +1472,7 @@ class MangaStatistics:
         The number of follows this manga has.
     parent_id: :class:`str`
         The manga these statistics belong to.
-    average: :class:`float`
+    average: Optional[:class:`float`]
         The average mean score of the manga.
     distribution: Optional[Dict[:class:`str`, :class:`int`]]
         The scoring distribution of the manga.
@@ -1501,7 +1501,7 @@ class MangaStatistics:
         self._rating = payload["rating"]
         self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
-        self.average: float = self._rating["average"]
+        self.average: Optional[float] = self._rating["average"]
         self.distribution: Optional[dict[str, int]] = self._rating.get("distribution")
 
     def __repr__(self) -> str:
