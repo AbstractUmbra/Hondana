@@ -912,13 +912,20 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
 
-    def _get_random_manga(self, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
+    def _get_random_manga(
+        self, *, includes: Optional[MangaIncludes], content_rating: Optional[list[ContentRating]]
+    ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/random")
 
+        query: dict[str, Any] = {}
+
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
-            return self.request(route, params=query)
-        return self.request(route)
+            query["includes"] = includes.to_query()
+
+        if content_rating:
+            query["contentRating"] = content_rating
+
+        return self.request(route, params=query)
 
     @overload
     def _manga_read_markers(

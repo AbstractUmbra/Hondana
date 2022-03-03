@@ -1103,7 +1103,9 @@ class Client:
 
         await self._http._manga_read_markers_batch(manga_id, read_chapters=read_chapters, unread_chapters=unread_chapters)
 
-    async def get_random_manga(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
+    async def get_random_manga(
+        self, *, includes: Optional[MangaIncludes] = MangaIncludes(), content_rating: Optional[list[ContentRating]] = None
+    ) -> Manga:
         """|coro|
 
         This method will return a random manga from the MangaDex API.
@@ -1113,13 +1115,15 @@ class Client:
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes for the manga payload.
             Defaults to all possible reference expansions.
+        content_rating: Optional[List[:class:`~hondana.ContentRating`]]
+            The content ratings to filter the random manga by
 
         Returns
         --------
         :class:`~hondana.Manga`
             The random Manga that was returned.
         """
-        data = await self._http._get_random_manga(includes=includes)
+        data = await self._http._get_random_manga(includes=includes, content_rating=content_rating)
 
         return Manga(self._http, data["data"])
 
