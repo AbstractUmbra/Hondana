@@ -1,15 +1,15 @@
-2.0.10
+2.0.11
 
 API Version 5.5.6!
 
 # Hondana Changelog
 
 ## Added
-- Added `content_rating` kwarg to `Client.get_random_manga()`. (2f6f018316424b2fa2e13d672747982308936e7d)
+- Add `Client.get_manga` method to be more consistent with the rest of the Client methods, see notes below. (588c2fdc2956db5435c2aa5792281d3a78ef7396)
 
 ## Changes
 
 ## Fixes
-- Types of `MangaStatistics.average` were wrong, this has been corrected. (Thanks Pokestar) (fee0a4993669153cdcf22d88af9002bd482c724e)
 
 ### Notes
+- `Client.view_manga` method has been marked as deprecated in favour of `Client.view_manga` and will be removed in version 3.0. (588c2fdc2956db5435c2aa5792281d3a78ef7396)
