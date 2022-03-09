@@ -367,25 +367,30 @@ class Client:
         Dict[:class:`str`, :class:`str`]
             The new tags from the API.
         """
-        data = await self._http._update_tags()
+        tags = await self.get_tags()
 
-        tags: dict[str, str] = {}
-
-        for tag in data["data"]:
-            name_key = tag["attributes"]["name"]
-            name = name_key.get("en", None)
-            if name is None:
-                key = next(iter(name_key))
-                name = name_key[key]
-            tags[name] = tag["id"]
-
-        tags = {tag: item for tag, item in sorted(tags.items(), key=lambda t: t[0])}
+        pre_fmt = {tag.name: tag.id for tag in tags}
+        fmt = {tag: item for tag, item in sorted(pre_fmt.items(), key=lambda t: t[0])}
 
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
         with open(path, "w") as fp:
-            json.dump(tags, fp, indent=4)
+            json.dump(fmt, fp, indent=4)
 
-        return tags
+        return fmt
+
+    async def get_tags(self) -> list[Tag]:
+        """|coro|
+
+        This method will retrieve the current list of tags on MangaDex.
+
+        Returns
+        --------
+        List[:class:`~hondana.Tag`]
+            The list of tags.
+        """
+        data = await self._http._update_tags()
+
+        return [Tag(item) for item in data["data"]]
 
     @require_authentication
     async def get_my_feed(
