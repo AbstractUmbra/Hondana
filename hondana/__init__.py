@@ -45,6 +45,7 @@ from .enums import *
 from .errors import *
 from .legacy import *
 from .manga import *
+from .relationship import *
 from .report import *
 from .scanlator_group import *
 from .tags import *
