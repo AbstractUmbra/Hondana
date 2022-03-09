@@ -304,25 +304,36 @@ class Client:
 
     @require_authentication
     def dump_refresh_token(
-        self, path: Union[PathLike[str], str] = ".hondana-refresh-token", /, *, mode: Literal["a", "a+", "w", "w+"] = "w"
+        self,
+        *,
+        file: bool = True,
+        path: Union[PathLike[str], str] = ".hondana-refresh-token",
+        mode: Literal["a", "a+", "w", "w+"] = "w",
     ) -> str:
         """
         This method will dump your current refresh token to a file for later re-use in the login process in future client initialisations.
 
         Parameters
         -----------
+        file: :class:`bool`
+            Whether to dump to a file, or not.
         path: Union[:class:`os.PathLike`, :class:`str`]
             The path to dump the file. Defaults to ``".hondana-refresh-token"``.
         mode: Literal[``"a"``, ``"a+"``, ``"w"``, ``"w+"``]
             The mode in which to open the file. Defaults to ``"w"``.
+
+        Returns
+        --------
+        :class:`str`
+            The current refresh token.
         """
         if self._http._refresh_token is None:
             raise TypeError(
                 "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
             )
-
-        with open(path, mode) as fp:
-            fp.write(self._http._refresh_token)
+        if file is True:
+            with open(path, mode) as fp:
+                fp.write(self._http._refresh_token)
 
         return self._http._refresh_token
 
