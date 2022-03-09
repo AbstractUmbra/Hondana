@@ -36,7 +36,7 @@ __all__ = ("Relationship",)
 
 class Relationship:
     """
-    An open <TODO> type reprepsenting an arbitrary relationship within MangaDex.
+    An open container type reprepsenting an arbitrary relationship within MangaDex.
 
     .. note::
         Relationships are similar to full objects, except they store no relationships of their own.
