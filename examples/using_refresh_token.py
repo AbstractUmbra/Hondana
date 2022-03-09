@@ -13,7 +13,7 @@ async def main():
     await client.static_login()
 
     # For convenience I have added the following:
-    client.dump_refresh_token(".hondana_refresh", mode="w")
+    client.dump_refresh_token(file=True, path=".hondana_refresh", mode="w")
     # which will dump your refresh token to a file
 
     await client.close()
