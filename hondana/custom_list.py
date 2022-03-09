@@ -26,8 +26,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from .enums import CustomListVisibility
+from .relationship import Relationship
 from .user import User
-from .utils import require_authentication
+from .utils import cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -63,6 +64,7 @@ class CustomList:
         "visibility",
         "version",
         "__owner",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
@@ -98,6 +100,17 @@ class CustomList:
             The URL of the custom list.
         """
         return f"https://mangadex.org/list/{self.id}"
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Custom List.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this custom list has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     @property
     def owner(self) -> Optional[User]:

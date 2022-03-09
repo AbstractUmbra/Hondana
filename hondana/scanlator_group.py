@@ -26,8 +26,9 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
+from .relationship import Relationship
 from .user import User
-from .utils import MISSING, require_authentication
+from .utils import MISSING, cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -101,6 +102,7 @@ class ScanlatorGroup:
         "version",
         "_created_at",
         "_updated_at",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: ScanlationGroupResponse) -> None:
@@ -108,7 +110,7 @@ class ScanlatorGroup:
         self._data = payload
         self._attributes = self._data["attributes"]
         self.id: str = self._data["id"]
-        self._relationships: Optional[list[RelationshipResponse]] = self._data.pop("relationships", [])
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
         self.website: Optional[str] = self._attributes["website"]
@@ -171,6 +173,17 @@ class ScanlatorGroup:
             The URL of the scanlator group.
         """
         return f"https://mangadex.org/group/{self.id}"
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Artist.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this artist has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     async def get_leader(self) -> Optional[User]:
         """|coro|

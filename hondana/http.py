@@ -289,6 +289,8 @@ class HTTPClient:
             raise BadRequest(response, errors=data["errors"])
         elif response.status == 401:
             raise Unauthorized(response, errors=data["errors"])
+        elif response.status == 429:
+            raise APIException(response, status_code=429, errors=[])
 
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
@@ -543,6 +545,7 @@ class HTTPClient:
                             raise Forbidden(response, errors=data["errors"])
                         elif response.status == 404:
                             raise NotFound(response, errors=data["errors"])
+                        LOGGER.exception("Unhandled HTTP error occurred: %s -> %s", response.status, data)
                         raise APIException(
                             response,
                             status_code=response.status,

@@ -36,6 +36,7 @@ import aiohttp
 from .errors import NotFound, UploadInProgress
 from .manga import Manga
 from .query import MangaIncludes, ScanlatorGroupIncludes
+from .relationship import Relationship
 from .scanlator_group import ScanlatorGroup
 from .user import User
 from .utils import (
@@ -43,6 +44,7 @@ from .utils import (
     CustomRoute,
     Route,
     as_chunks,
+    cached_slot_property,
     require_authentication,
     to_iso_format,
 )
@@ -125,6 +127,7 @@ class Chapter:
         "__uploader",
         "__parent",
         "__scanlator_groups",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
@@ -256,6 +259,17 @@ class Chapter:
             The UTC datetime of when this chapter becomes readable.
         """
         return datetime.datetime.fromisoformat(self._readable_at)
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Chapter.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this chapter has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     @property
     def manga(self) -> Optional[Manga]:

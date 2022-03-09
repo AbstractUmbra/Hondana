@@ -26,7 +26,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Literal, Optional
 
-from .utils import MANGA_TAGS
+from .relationship import Relationship
+from .utils import MANGA_TAGS, cached_slot_property
 
 
 if TYPE_CHECKING:
@@ -79,6 +80,7 @@ class Tag:
         "description",
         "group",
         "version",
+        "_cs_relationships",
     )
 
     def __init__(self, payload: TagResponse) -> None:
@@ -129,6 +131,17 @@ class Tag:
             The URL of the tag.
         """
         return f"https://mangadex.org/tag/{self.id}"
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Tag.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this tag has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
 
 class QueryTags:

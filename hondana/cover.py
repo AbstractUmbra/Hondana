@@ -26,7 +26,8 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
-from .utils import MISSING, require_authentication
+from .relationship import Relationship
+from .utils import MISSING, cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -68,6 +69,7 @@ class Cover:
         "version",
         "_created_at",
         "_updated_at",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: CoverResponse) -> None:
@@ -117,6 +119,17 @@ class Cover:
             The UTC datetime of when this cover was last updated.
         """
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Cover.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this cover has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     def url(self, type: Optional[Literal[256, 512]] = None, /) -> Optional[str]:
         """Method to return the Cover url.

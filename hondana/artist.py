@@ -27,7 +27,8 @@ import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
 from .query import MangaIncludes
-from .utils import MISSING, require_authentication
+from .relationship import Relationship
+from .utils import MISSING, cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -109,6 +110,7 @@ class Artist:
         "_updated_at",
         "version",
         "__manga",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
@@ -176,6 +178,17 @@ class Artist:
             The URL of the artist.
         """
         return f"https://mangadex.org/author/{self.id}"
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Artist.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this artist has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     @property
     def manga(self) -> Optional[list[Manga]]:

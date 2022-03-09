@@ -25,7 +25,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .utils import require_authentication
+from .relationship import Relationship
+from .utils import cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -59,6 +60,7 @@ class User:
         "username",
         "version",
         "roles",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: UserResponse) -> None:
@@ -93,6 +95,17 @@ class User:
             The URL of the user.
         """
         return f"https://mangadex.org/user/{self.id}"
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this User.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this user has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     @require_authentication
     async def delete(self) -> None:

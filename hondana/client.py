@@ -84,6 +84,7 @@ from .query import (
 )
 from .report import Report, UserReport
 from .scanlator_group import ScanlatorGroup
+from .tags import Tag
 from .token import Permissions
 from .user import User
 from .utils import MISSING, require_authentication

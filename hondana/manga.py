@@ -46,6 +46,7 @@ from .query import (
     FeedOrderQuery,
     MangaIncludes,
 )
+from .relationship import Relationship
 from .tags import Tag
 from .utils import MISSING, cached_slot_property, require_authentication
 
@@ -149,6 +150,7 @@ class Manga:
         "__cover",
         "__related_manga",
         "_cs_tags",
+        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
@@ -279,6 +281,17 @@ class Manga:
             The list of tags that this manga is associated with.
         """
         return [Tag(item) for item in self._tags]
+
+    @cached_slot_property("_cs_relationships")
+    def relationships(self) -> list[Relationship]:
+        """The relationships of this Manga.
+
+        Returns
+        --------
+        List[:class:`~hondana.Relationship`]
+            The list of relationships this manga has.
+        """
+        return [Relationship(item) for item in self._relationships]
 
     @property
     def artists(self) -> Optional[list[Artist]]:
