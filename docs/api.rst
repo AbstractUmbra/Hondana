@@ -117,9 +117,15 @@ Query
 
 .. autoclass:: ScanlatorGroupIncludes
 
+Relationship
+~~~~~~~~~~~~
+.. currentmodule:: hondana
+
+.. autoclass:: Relationship()
+    :members:
+
 Report
 ~~~~~~
-.. currentmodule:: hondana
 
 .. autoclass:: Report()
     :members:
