@@ -509,7 +509,10 @@ class HTTPClient:
                         if response.content_type in ALLOWED_IMAGE_FORMATS:
                             data = (await response.read(), response)
                         else:
-                            data = await json_or_text(response)
+                            try:
+                                data = await json_or_text(response)
+                            except aiohttp.ClientResponseError:
+                                continue
 
                         if 300 > response.status >= 200:
                             return data
