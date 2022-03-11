@@ -160,7 +160,7 @@ class Manga:
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
-        self._description = self._attributes["description"]
+        self._description: LocalisedString = self._attributes["description"] or {}
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
         self.alternate_titles: list[LocalisedString] = self._attributes["altTitles"]
