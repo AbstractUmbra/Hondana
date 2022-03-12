@@ -37,25 +37,38 @@ Chapter Upload
 
 Collections
 ~~~~~~~~~~~
+.. autoclass:: BaseCollection
+    :members: items
+
 .. autoclass:: MangaCollection
+    :members: items
 
 .. autoclass:: MangaRelationCollection
+    :members: items
 
 .. autoclass:: ChapterFeed
+    :members: items
 
 .. autoclass:: AuthorCollection
+    :members: items
 
 .. autoclass:: CoverCollection
+    :members: items
 
 .. autoclass:: ScanlatorGroupCollection
+    :members: items
 
 .. autoclass:: ReportCollection
+    :members: items
 
 .. autoclass:: UserCollection
+    :members: items
 
 .. autoclass:: CustomListCollection
+    :members: items
 
 .. autoclass:: LegacyMappingCollection
+    :members: items
 
 Cover
 ~~~~~
