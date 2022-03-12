@@ -48,7 +48,6 @@ jobs:
       - name: Build docs
         run: |
           cd docs/
-
           sphinx-build -a -E -n -T -W --keep-going . _build
 
       - name: Upload artifacts
