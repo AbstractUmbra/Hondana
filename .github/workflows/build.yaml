@@ -17,10 +17,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [ 3.9 ]
-
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
@@ -28,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.9
 
       - name: Set up Poetry
         uses: Gr1N/setup-poetry@v4
@@ -48,7 +44,7 @@ jobs:
       - name: Build docs
         run: |
           cd docs/
-          sphinx-build -a -E -n -T -W --keep-going . _build
+          poetry run sphinx-build -a -E -n -T -W --keep-going . _build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
