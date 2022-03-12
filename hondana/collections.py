@@ -23,8 +23,8 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
-
+from abc import ABC, abstractmethod
+from typing import Generic, List, TYPE_CHECKING, Literal, TypeVar
 
 if TYPE_CHECKING:
     from .author import Author
@@ -48,6 +48,7 @@ if TYPE_CHECKING:
     from .user import User
 
 __all__ = (
+    "BaseCollection",
     "MangaCollection",
     "MangaRelationCollection",
     "ChapterFeed",
@@ -61,13 +62,47 @@ __all__ = (
     "LegacyMappingCollection",
 )
 
+T = TypeVar("T")
+
 
 class _Collection:
     def __init__(self) -> None:
         self.type: Literal["collection"] = "collection"
 
 
-class MangaCollection(_Collection):
+class BaseCollection(ABC, Generic[T]):
+    """
+    The base class for all collections. This class serves to make it easier to create functions that process
+    arbitrary collections without needing to set up ``isinstance()`` checks.
+
+    Attributes
+    -----------
+    total: :class:`int`
+        The total possible results with this query could return.
+    offset: :class:`int`
+        The offset used in this query.
+    limit: :class:`int`
+        The limit used in this query.
+    """
+
+    total: int
+    offset: int
+    limit: int
+
+    @property
+    @abstractmethod
+    def items(self) -> List[T]:
+        """
+        Returns the items in the collection.
+
+        Returns
+        -------
+
+        :class:`list`
+        """
+
+
+class MangaCollection(_Collection, BaseCollection["Manga"]):
     """
     A collection object type to represent manga.
 
@@ -92,6 +127,18 @@ class MangaCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the mangas in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Manga`]
+        """
+        return self.manga
+
     def __init__(self, http: HTTPClient, payload: MangaSearchResponse, manga: list[Manga]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -106,7 +153,7 @@ class MangaCollection(_Collection):
         return f"<MangaFeed manga={len(self.manga)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class MangaRelationCollection(_Collection):
+class MangaRelationCollection(_Collection, BaseCollection["MangaRelation"]):
     """
     A collection object type to represent manga relations.
 
@@ -131,6 +178,18 @@ class MangaRelationCollection(_Collection):
         "limit",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the manga relations in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.MangaRelation`]
+        """
+        return self.relations
+
     def __init__(self, http: HTTPClient, payload: MangaRelationResponse, relations: list[MangaRelation]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -142,7 +201,7 @@ class MangaRelationCollection(_Collection):
         super().__init__()
 
 
-class ChapterFeed(_Collection):
+class ChapterFeed(_Collection, BaseCollection["Chapter"]):
     """
     A collection object type to represent chapters.
 
@@ -167,6 +226,18 @@ class ChapterFeed(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the chapters in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Chapter`]
+        """
+        return self.chapters
+
     def __init__(self, http: HTTPClient, payload: GetMultiChapterResponse, chapters: list[Chapter]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -181,7 +252,7 @@ class ChapterFeed(_Collection):
         return f"<ChapterFeed chapters={len(self.chapters)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class AuthorCollection:
+class AuthorCollection(BaseCollection["Author"]):
     """
     A collection object type to represent authors.
 
@@ -206,6 +277,18 @@ class AuthorCollection:
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the authors in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Author`]
+        """
+        return self.authors
+
     def __init__(self, http: HTTPClient, payload: GetMultiAuthorResponse, authors: list[Author]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -220,7 +303,7 @@ class AuthorCollection:
         return f"<ArtistCollection authors={len(self.authors)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class CoverCollection(_Collection):
+class CoverCollection(_Collection, BaseCollection["Cover"]):
     """
     A collection object type to represent covers.
 
@@ -245,6 +328,18 @@ class CoverCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the covers in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Cover`]
+        """
+        return self.covers
+
     def __init__(self, http: HTTPClient, payload: GetMultiCoverResponse, covers: list[Cover]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -259,7 +354,7 @@ class CoverCollection(_Collection):
         return f"<CoverCollection covers={len(self.covers)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class ScanlatorGroupCollection(_Collection):
+class ScanlatorGroupCollection(_Collection, BaseCollection["ScanlatorGroup"]):
     """
     A collection object type to represent scanlator groups.
 
@@ -284,6 +379,18 @@ class ScanlatorGroupCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the groups in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.ScanlatorGroup`]
+        """
+        return self.groups
+
     def __init__(self, http: HTTPClient, payload: GetMultiScanlationGroupResponse, groups: list[ScanlatorGroup]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -298,7 +405,7 @@ class ScanlatorGroupCollection(_Collection):
         return f"<ScanlatorGroupCollection groups={len(self.groups)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class ReportCollection(_Collection):
+class ReportCollection(_Collection, BaseCollection["Report"]):
     """
     A collection object type to represent reports.
 
@@ -323,6 +430,18 @@ class ReportCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the reports in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Report`]
+        """
+        return self.reports
+
     def __init__(self, http: HTTPClient, payload: GetReportReasonResponse, reports: list[Report]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -337,7 +456,7 @@ class ReportCollection(_Collection):
         return f"<ReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class UserReportCollection(_Collection):
+class UserReportCollection(_Collection, BaseCollection["UserReport"]):
     """
     A collection object type to represent reports.
 
@@ -362,6 +481,18 @@ class UserReportCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the reports in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.UserReport`]
+        """
+        return self.reports
+
     def __init__(self, http: HTTPClient, payload: GetUserReportReasonResponse, reports: list[UserReport]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -378,7 +509,7 @@ class UserReportCollection(_Collection):
         )
 
 
-class UserCollection(_Collection):
+class UserCollection(_Collection, BaseCollection["User"]):
     """
     A collection object type to represent users.
 
@@ -403,6 +534,18 @@ class UserCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the users in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.User`]
+        """
+        return self.users
+
     def __init__(self, http: HTTPClient, payload: GetMultiUserResponse, users: list[User]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -417,7 +560,7 @@ class UserCollection(_Collection):
         return f"<UserCollection users={len(self.users)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class CustomListCollection(_Collection):
+class CustomListCollection(_Collection, BaseCollection["CustomList"]):
     """
     A collection object type to represent custom lists.
 
@@ -442,6 +585,18 @@ class CustomListCollection(_Collection):
         "offset",
     )
 
+    @property
+    def items(self):
+        """
+        Returns the custom lists in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.CustomList`]
+        """
+        return self.lists
+
     def __init__(self, http: HTTPClient, payload: GetMultiCustomListResponse, lists: list[CustomList]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -456,7 +611,7 @@ class CustomListCollection(_Collection):
         return f"<CustomListCollection lists={len(self.lists)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class LegacyMappingCollection(_Collection):
+class LegacyMappingCollection(_Collection, BaseCollection["LegacyItem"]):
     """
     A collection object type to represent custom lists.
 
@@ -480,6 +635,18 @@ class LegacyMappingCollection(_Collection):
         "limit",
         "offset",
     )
+
+    @property
+    def items(self):
+        """
+        Returns the legacy mappings in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.LegacyItem`]
+        """
+        return self.legacy_mappings
 
     def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
         self._http: HTTPClient = http
