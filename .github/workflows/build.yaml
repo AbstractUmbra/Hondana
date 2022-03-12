@@ -35,7 +35,7 @@ jobs:
 
       - name: Install Python deps
         run: |
-          poetry install --no-dev
+          poetry install
 
       - name: Check it imports
         run: |
@@ -44,6 +44,12 @@ jobs:
       - name: Build wheels
         run: |
           poetry build
+
+      - name: Build docs
+        run: |
+          cd docs/
+
+          sphinx-build -a -E -n -T -W --keep-going . _build
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
