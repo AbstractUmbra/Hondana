@@ -234,17 +234,20 @@ class Manga:
         return title
 
     @property
-    def description(self) -> str:
+    def description(self) -> Optional[str]:
         """The manga's description/synopsis.
 
         Returns
         --------
-        :class:`str`
+        Optional[:class:`str`]
             The description of the manga, defaults to the ``en`` key in the titles.
-            Falls back to the next available key if ``en`` is not present.
+            Falls back to the next available key if ``en`` is not present. If there is
+            no description, returns None.
         """
         desc = self._description.get("en")
         if desc is None:
+            if not self._description:
+                return None
             key = next(iter(self._description))
             return self._description[key]
         return desc
