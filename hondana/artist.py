@@ -63,6 +63,8 @@ class Artist:
         The artist's Pixiv url, if any.
     melon_book: Optional[:class:`str`]
         The artist's Melon Book url, if any.
+    fan_box: Optional[:class:`str`]
+        The artist's Fan Box url, if any.
     booth: Optional[:class:`str`]
         The artist's Booth url, if any.
     nico_video: Optional[:class:`str`]
@@ -97,6 +99,7 @@ class Artist:
         "twitter",
         "pixiv",
         "melon_book",
+        "fan_box",
         "booth",
         "nico_video",
         "skeb",
@@ -125,6 +128,7 @@ class Artist:
         self.twitter: Optional[str] = self._attributes["twitter"]
         self.pixiv: Optional[str] = self._attributes["pixiv"]
         self.melon_book: Optional[str] = self._attributes["melonBook"]
+        self.fan_box: Optional[str] = self._attributes["fanBox"]
         self.booth: Optional[str] = self._attributes["booth"]
         self.nico_video: Optional[str] = self._attributes["nicoVideo"]
         self.skeb: Optional[str] = self._attributes["skeb"]
