@@ -246,10 +246,9 @@ class Manga:
         """
         desc = self._description.get("en")
         if desc is None:
-            try:
-                key = next(iter(self._description))
-            except StopIteration:
+            if not self._description:
                 return None
+            key = next(iter(self._description))
             return self._description[key]
         return desc
 
