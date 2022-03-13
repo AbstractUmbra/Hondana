@@ -250,6 +250,18 @@ class Manga:
         return desc
 
     @property
+    def raw_description(self) -> LocalisedString:
+        """The raw description attribute from the manga's payload from the API.
+
+        Returns
+        --------
+        :class:`~hondana.LocalisedString`
+            The raw object from the manga's api response payload.
+            Provides no formatting on it's own. Consider :attr:`~hondana.Manga.description` or :attr:`~hondana.Manga.localised_description` instead.
+        """
+        return self._description
+
+    @property
     def created_at(self) -> datetime.datetime:
         """The date this manga was created.
 
