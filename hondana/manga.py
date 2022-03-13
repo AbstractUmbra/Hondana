@@ -255,9 +255,9 @@ class Manga:
 
         Returns
         --------
-        :class:`~hondana.LocalisedString`
+        :class:`~hondana.types.LocalisedString`
             The raw object from the manga's api response payload.
-            Provides no formatting on it's own. Consider :attr:`~hondana.Manga.description` or :attr:`~hondana.Manga.localised_description` instead.
+            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
         return self._description
 
@@ -830,7 +830,7 @@ class Manga:
         if set_status:
             await self.update_reading_status(status=status)
 
-    def localized_title(self, language_code: LanguageCode, /) -> Optional[str]:
+    def localised_title(self, language_code: LanguageCode, /) -> Optional[str]:
         """
         This method will attempt to return the current manga's title in the provided language code.
         Falling back to the :attr:`title`
@@ -847,7 +847,10 @@ class Manga:
         """
         return self._title.get(language_code, self.title)
 
-    def localized_description(self, language_code: LanguageCode, /) -> Optional[str]:
+    localized_title = localised_title
+    localized_title.__doc__ = localised_title.__doc__
+
+    def localised_description(self, language_code: LanguageCode, /) -> Optional[str]:
         """
         This method will attempt to return the current manga's description in the provided language code.
         Falling back to the :attr:`description`
@@ -863,6 +866,9 @@ class Manga:
             The manga description in the provided language, if found.
         """
         return self._description.get(language_code, self.description)
+
+    localized_description = localised_description
+    localized_description.__doc__ = localised_description.__doc__
 
     async def feed(
         self,
