@@ -344,7 +344,6 @@ class Chapter:
         for relationship in self._relationships:
             if relationship["type"] == "scanlation_group":
                 resolved.append(relationship)
-                break
 
         fmt = []
         for payload in resolved:
@@ -436,7 +435,7 @@ class Chapter:
 
         resolved: list[ScanlationGroupResponse] = []
         for relationship in self._relationships:
-            if relationship["type"] == "group":
+            if relationship["type"] == "scanlation_group":
                 resolved.append(relationship)
 
         if not resolved:
