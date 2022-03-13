@@ -24,7 +24,8 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Generic, List, TYPE_CHECKING, Literal, TypeVar
+from typing import TYPE_CHECKING, Generic, TypeVar
+
 
 if TYPE_CHECKING:
     from .author import Author
@@ -48,7 +49,6 @@ if TYPE_CHECKING:
     from .user import User
 
 __all__ = (
-    "BaseCollection",
     "MangaCollection",
     "MangaRelationCollection",
     "ChapterFeed",
@@ -63,11 +63,6 @@ __all__ = (
 )
 
 T = TypeVar("T")
-
-
-class _Collection:
-    def __init__(self) -> None:
-        self.type: Literal["collection"] = "collection"
 
 
 class BaseCollection(ABC, Generic[T]):
@@ -91,7 +86,7 @@ class BaseCollection(ABC, Generic[T]):
 
     @property
     @abstractmethod
-    def items(self) -> List[T]:
+    def items(self) -> list[T]:
         """
         Returns the items in the collection.
 
@@ -102,7 +97,7 @@ class BaseCollection(ABC, Generic[T]):
         """
 
 
-class MangaCollection(_Collection, BaseCollection["Manga"]):
+class MangaCollection(BaseCollection["Manga"]):
     """
     A collection object type to represent manga.
 
@@ -128,7 +123,7 @@ class MangaCollection(_Collection, BaseCollection["Manga"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[Manga]:
         """
         Returns the mangas in the collection.
 
@@ -153,7 +148,7 @@ class MangaCollection(_Collection, BaseCollection["Manga"]):
         return f"<MangaFeed manga={len(self.manga)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class MangaRelationCollection(_Collection, BaseCollection["MangaRelation"]):
+class MangaRelationCollection(BaseCollection["MangaRelation"]):
     """
     A collection object type to represent manga relations.
 
@@ -179,7 +174,7 @@ class MangaRelationCollection(_Collection, BaseCollection["MangaRelation"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[MangaRelation]:
         """
         Returns the manga relations in the collection.
 
@@ -201,7 +196,7 @@ class MangaRelationCollection(_Collection, BaseCollection["MangaRelation"]):
         super().__init__()
 
 
-class ChapterFeed(_Collection, BaseCollection["Chapter"]):
+class ChapterFeed(BaseCollection["Chapter"]):
     """
     A collection object type to represent chapters.
 
@@ -227,7 +222,7 @@ class ChapterFeed(_Collection, BaseCollection["Chapter"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[Chapter]:
         """
         Returns the chapters in the collection.
 
@@ -278,7 +273,7 @@ class AuthorCollection(BaseCollection["Author"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[Author]:
         """
         Returns the authors in the collection.
 
@@ -303,7 +298,7 @@ class AuthorCollection(BaseCollection["Author"]):
         return f"<ArtistCollection authors={len(self.authors)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class CoverCollection(_Collection, BaseCollection["Cover"]):
+class CoverCollection(BaseCollection["Cover"]):
     """
     A collection object type to represent covers.
 
@@ -329,7 +324,7 @@ class CoverCollection(_Collection, BaseCollection["Cover"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[Cover]:
         """
         Returns the covers in the collection.
 
@@ -354,7 +349,7 @@ class CoverCollection(_Collection, BaseCollection["Cover"]):
         return f"<CoverCollection covers={len(self.covers)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class ScanlatorGroupCollection(_Collection, BaseCollection["ScanlatorGroup"]):
+class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
     """
     A collection object type to represent scanlator groups.
 
@@ -380,7 +375,7 @@ class ScanlatorGroupCollection(_Collection, BaseCollection["ScanlatorGroup"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[ScanlatorGroup]:
         """
         Returns the groups in the collection.
 
@@ -405,7 +400,7 @@ class ScanlatorGroupCollection(_Collection, BaseCollection["ScanlatorGroup"]):
         return f"<ScanlatorGroupCollection groups={len(self.groups)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class ReportCollection(_Collection, BaseCollection["Report"]):
+class ReportCollection(BaseCollection["Report"]):
     """
     A collection object type to represent reports.
 
@@ -431,7 +426,7 @@ class ReportCollection(_Collection, BaseCollection["Report"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[Report]:
         """
         Returns the reports in the collection.
 
@@ -456,7 +451,7 @@ class ReportCollection(_Collection, BaseCollection["Report"]):
         return f"<ReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class UserReportCollection(_Collection, BaseCollection["UserReport"]):
+class UserReportCollection(BaseCollection["UserReport"]):
     """
     A collection object type to represent reports.
 
@@ -482,7 +477,7 @@ class UserReportCollection(_Collection, BaseCollection["UserReport"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[UserReport]:
         """
         Returns the reports in the collection.
 
@@ -509,7 +504,7 @@ class UserReportCollection(_Collection, BaseCollection["UserReport"]):
         )
 
 
-class UserCollection(_Collection, BaseCollection["User"]):
+class UserCollection(BaseCollection["User"]):
     """
     A collection object type to represent users.
 
@@ -535,7 +530,7 @@ class UserCollection(_Collection, BaseCollection["User"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[User]:
         """
         Returns the users in the collection.
 
@@ -560,7 +555,7 @@ class UserCollection(_Collection, BaseCollection["User"]):
         return f"<UserCollection users={len(self.users)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class CustomListCollection(_Collection, BaseCollection["CustomList"]):
+class CustomListCollection(BaseCollection["CustomList"]):
     """
     A collection object type to represent custom lists.
 
@@ -586,7 +581,7 @@ class CustomListCollection(_Collection, BaseCollection["CustomList"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[CustomList]:
         """
         Returns the custom lists in the collection.
 
@@ -611,7 +606,7 @@ class CustomListCollection(_Collection, BaseCollection["CustomList"]):
         return f"<CustomListCollection lists={len(self.lists)} total={self.total} offset={self.offset} limit={self.limit}>"
 
 
-class LegacyMappingCollection(_Collection, BaseCollection["LegacyItem"]):
+class LegacyMappingCollection(BaseCollection["LegacyItem"]):
     """
     A collection object type to represent custom lists.
 
@@ -637,7 +632,7 @@ class LegacyMappingCollection(_Collection, BaseCollection["LegacyItem"]):
     )
 
     @property
-    def items(self):
+    def items(self) -> list[LegacyItem]:
         """
         Returns the legacy mappings in the collection.
 
