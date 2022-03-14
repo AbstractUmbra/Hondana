@@ -135,8 +135,17 @@ class GetMultiScanlationGroupResponse(TypedDict):
     response: Literal[``"collection"``]
 
     data: List[:class:`~hondana.types.ScanlationGroupResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[ScanlationGroupResponse]
+    limit: int
+    offset: int
+    total: int

@@ -91,8 +91,17 @@ class GetMultiCustomListResponse(TypedDict):
     response: Literal[``"collection"``]
 
     data: List[:class:`~hondana.types.CustomListResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[CustomListResponse]
+    limit: int
+    offset: int
+    total: int
