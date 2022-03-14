@@ -142,8 +142,17 @@ class GetMultiAuthorResponse(TypedDict):
     response: Literal[``collection``]
 
     data: List[:class:`~hondana.types.AuthorResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
     """
 
     result: Literal["ok", "error"]
     response: Literal["collection"]
     data: list[AuthorResponse]
+    limit: int
+    offset: int
+    total: int
