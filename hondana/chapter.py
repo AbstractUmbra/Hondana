@@ -46,7 +46,6 @@ from .utils import (
     as_chunks,
     cached_slot_property,
     require_authentication,
-    to_iso_format,
 )
 
 
@@ -879,7 +878,7 @@ class ChapterUpload:
             payload["chapterDraft"]["externalUrl"] = self.external_url
 
         if self.publish_at:
-            payload["chapterDraft"]["publishAt"] = to_iso_format(self.publish_at)
+            payload["chapterDraft"]["publishAt"] = self.publish_at.isoformat()
 
         route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id)
         data: ChapterResponse = await self._http.request(route, json=payload)

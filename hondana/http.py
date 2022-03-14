@@ -70,11 +70,11 @@ from .utils import (
     MISSING,
     CustomRoute,
     Route,
+    calculate_limits,
     delta_to_iso,
     get_image_mime_type,
     json_or_text,
     php_query_builder,
-    to_iso_format,
     to_json,
 )
 
@@ -128,44 +128,10 @@ if TYPE_CHECKING:
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
 TAGS: dict[str, str] = MANGA_TAGS
-MAX_DEPTH: int = 10_000
 ALLOWED_IMAGE_FORMATS: set[str] = {"image/png", "image/gif", "image/jpeg", "image/jpg", "image/webp"}
 
 
 __all__ = ("HTTPClient",)
-
-
-def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
-    """A helper function that will calculate the offset and limit parameters for API endpoints.
-
-    Parameters
-    -----------
-    limit: :class:`int`
-        The limit (or amount) of objects you are requesting.
-    offset: :class:`int`
-        The offset (or pagination start point) for the objects you are requesting.
-    max_limit: :class:`int`
-        The maximum limit value for the API Endpoint.
-
-    Returns
-    --------
-    Tuple[:class:`int`, :class:`int`]
-    """
-    if offset == MAX_DEPTH:
-        raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
-
-    offset = max(offset, 0)
-
-    difference = MAX_DEPTH - offset
-    if difference <= max_limit:
-        new_limit = difference
-        new_offset = MAX_DEPTH - new_limit
-        return new_limit, new_offset
-
-    new_limit = min(max(1, limit), max_limit)
-    new_offset = min(max(0, offset), MAX_DEPTH - new_limit)
-
-    return new_limit, new_offset
 
 
 class MaybeUnlock:
@@ -646,10 +612,10 @@ class HTTPClient:
             query["contentRating"] = content_rating
 
         if created_at_since:
-            query["createdAtSince"] = to_iso_format(created_at_since)
+            query["createdAtSince"] = created_at_since.isoformat()
 
         if updated_at_since:
-            query["updatedAtSince"] = to_iso_format(updated_at_since)
+            query["updatedAtSince"] = updated_at_since.isoformat()
 
         if order:
             query["order"] = order.to_dict()
@@ -890,13 +856,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = to_iso_format(created_at_since)
+            query["createdAtSince"] = created_at_since.isoformat()
 
         if updated_at_since:
-            query["updatedAtSince"] = to_iso_format(updated_at_since)
+            query["updatedAtSince"] = updated_at_since.isoformat()
 
         if published_at_since:
-            query["publishAtSince"] = to_iso_format(published_at_since)
+            query["publishAtSince"] = published_at_since.isoformat()
 
         if order:
             query["order"] = order.to_dict()
@@ -1125,13 +1091,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = to_iso_format(created_at_since)
+            query["createdAtSince"] = created_at_since.isoformat()
 
         if updated_at_since:
-            query["updatedAtSince"] = to_iso_format(updated_at_since)
+            query["updatedAtSince"] = updated_at_since.isoformat()
 
         if published_at_since:
-            query["publishedAtSince"] = to_iso_format(published_at_since)
+            query["publishedAtSince"] = published_at_since.isoformat()
 
         if order:
             query["order"] = order.to_dict()
@@ -1605,13 +1571,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = to_iso_format(created_at_since)
+            query["createdAtSince"] = created_at_since.isoformat()
 
         if updated_at_since:
-            query["updatedAtSince"] = to_iso_format(updated_at_since)
+            query["updatedAtSince"] = updated_at_since.isoformat()
 
         if published_at_since:
-            query["publishAtSince"] = to_iso_format(published_at_since)
+            query["publishAtSince"] = published_at_since.isoformat()
 
         if order:
             query["order"] = order.to_dict()

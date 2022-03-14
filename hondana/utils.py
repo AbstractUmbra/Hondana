@@ -74,7 +74,6 @@ __all__ = (
     "cached_slot_property",
     "to_json",
     "json_or_text",
-    "to_iso_format",
     "php_query_builder",
     "to_snake_case",
     "to_camel_case",
@@ -85,6 +84,7 @@ __all__ = (
 )
 
 _PROJECT_DIR = pathlib.Path(__file__)
+MAX_DEPTH: int = 10_000
 MANGADEX_URL_REGEX = re.compile(
     r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
 )
@@ -228,6 +228,39 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
     return wrapper
 
 
+def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
+    """A helper function that will calculate the offset and limit parameters for API endpoints.
+
+    Parameters
+    -----------
+    limit: :class:`int`
+        The limit (or amount) of objects you are requesting.
+    offset: :class:`int`
+        The offset (or pagination start point) for the objects you are requesting.
+    max_limit: :class:`int`
+        The maximum limit value for the API Endpoint.
+
+    Returns
+    --------
+    Tuple[:class:`int`, :class:`int`]
+    """
+    if offset >= MAX_DEPTH:
+        raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
+
+    offset = max(offset, 0)
+
+    difference = MAX_DEPTH - offset
+    if difference <= max_limit:
+        new_limit = difference
+        new_offset = MAX_DEPTH - new_limit
+        return new_limit, new_offset
+
+    new_limit = min(max(1, limit), max_limit)
+    new_offset = min(max(0, offset), MAX_DEPTH - new_limit)
+
+    return new_limit, new_offset
+
+
 def to_json(obj: Any) -> str:
     """A quick object that dumps a Python type to JSON object."""
     return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
@@ -246,11 +279,6 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
         pass
 
     return text
-
-
-def to_iso_format(in_: datetime.datetime) -> str:
-    """Quick function to dump a `datetime.datetime` to acceptable ISO 8601 format."""
-    return f"{in_:%Y-%m-%dT%H:%M:%S}"
 
 
 def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]) -> str:
