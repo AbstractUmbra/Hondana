@@ -23,7 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING
 
 from .http import HTTPClient
 
@@ -42,8 +42,6 @@ class LegacyItem:
     -----------
     id: :class:`str`
         The legacy mapping UUID (NOT the new item UUID).
-    type: Literal[``"mapping_id"``]
-        The raw type from the API.
     obj_new_id: :class:`str`
         The target item's new UUID.
     obj_legacy_id: :class:`int`
@@ -56,7 +54,6 @@ class LegacyItem:
         "_http",
         "_data",
         "id",
-        "type",
         "_attributes",
         "obj_new_id",
         "obj_legacy_id",
@@ -67,14 +64,13 @@ class LegacyItem:
         self._http = http
         self._data = payload
         self.id: str = self._data["id"]
-        self.type: Literal["mapping_id"] = self._data["type"]
         self._attributes = self._data["attributes"]
         self.obj_new_id: str = self._attributes["newId"]
         self.obj_legacy_id: int = self._attributes["legacyId"]
         self.obj_type: LegacyMappingType = self._attributes["type"]
 
     def __repr__(self) -> str:
-        return f"<CustomList id='{self.id}' type='{self.type}'>"
+        return f"<LegacyItem id='{self.id}' type='{self.obj_type}' new_id='{self.obj_new_id}' previous_id='{self.obj_legacy_id}'>"
 
     def __eq__(self, other: LegacyItem) -> bool:
         return isinstance(other, LegacyItem) and self.id == other.id
