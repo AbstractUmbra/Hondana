@@ -836,7 +836,9 @@ class Manga:
     def localised_title(self, language_code: LanguageCode, /) -> Optional[str]:
         """
         This method will attempt to return the current manga's title in the provided language code.
-        Falling back to the :attr:`title`
+        Falling back to the :attr:`title`.
+
+        Aliased to :meth:`~Manga.localized_title`
 
         Parameters
         -----------
@@ -855,7 +857,9 @@ class Manga:
     def localised_description(self, language_code: LanguageCode, /) -> Optional[str]:
         """
         This method will attempt to return the current manga's description in the provided language code.
-        Falling back to the :attr:`description`
+        Falling back to the :attr:`description`.
+
+        Aliased to :meth:`~Manga.localized_description`
 
         Parameters
         -----------
