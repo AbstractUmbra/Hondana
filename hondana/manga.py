@@ -851,7 +851,6 @@ class Manga:
         return self.alternate_titles.get(language_code, self.title)
 
     localized_title = localised_title
-    localized_title.__doc__ = localised_title.__doc__
 
     def localised_description(self, language_code: LanguageCode, /) -> Optional[str]:
         """
@@ -871,7 +870,6 @@ class Manga:
         return self._description.get(language_code, self.description)
 
     localized_description = localised_description
-    localized_description.__doc__ = localised_description.__doc__
 
     async def feed(
         self,
