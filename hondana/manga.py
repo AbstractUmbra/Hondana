@@ -848,7 +848,7 @@ class Manga:
         Optional[:class:`str`]
             The manga name in the provided language, if found.
         """
-        return self._title.get(language_code, self.title)
+        return self.alternate_titles.get(language_code, self.title)
 
     localized_title = localised_title
     localized_title.__doc__ = localised_title.__doc__
