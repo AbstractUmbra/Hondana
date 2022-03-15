@@ -265,6 +265,18 @@ class Manga:
         return self._description
 
     @property
+    def alt_titles(self) -> LocalisedString:
+        """The raw alt_titles attribute from the manga's payloaad from the API.
+
+        Returns
+        --------
+        :class:`hondana.types.LocalisedString`
+            The raw object from the manga's payload.
+            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.localised_title` instead.
+        """
+        return self.alternate_titles
+
+    @property
     def created_at(self) -> datetime.datetime:
         """The date this manga was created.
 
