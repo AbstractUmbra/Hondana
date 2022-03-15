@@ -1,0 +1,69 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "3936785f-29e8-4c7a-9de0-25ce34db0b1d",
+            "type": "user",
+            "attributes": {
+                "username": "A006992",
+                "roles": [
+                    "ROLE_MEMBER"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "020020f4-1782-4b0f-bd13-48a144a68cdf",
+            "type": "user",
+            "attributes": {
+                "username": "A01",
+                "roles": [
+                    "ROLE_UNVERIFIED"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "6eb1f4b1-483a-4c73-9d33-729f88ca6823",
+            "type": "user",
+            "attributes": {
+                "username": "a017ad",
+                "roles": [
+                    "ROLE_MEMBER"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "b17a9532-fac8-40db-8395-6983669720b4",
+            "type": "user",
+            "attributes": {
+                "username": "a01isreal",
+                "roles": [
+                    "ROLE_MEMBER"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "9a95fbd6-844d-48a4-8fb2-2e009f7c378a",
+            "type": "user",
+            "attributes": {
+                "username": "A02",
+                "roles": [
+                    "ROLE_MEMBER"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 3167934
+}

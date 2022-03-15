@@ -1,0 +1,156 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "8a1dba2c-4099-4865-b588-67b302fe7cc9",
+            "type": "chapter",
+            "attributes": {
+                "volume": "9",
+                "chapter": "70",
+                "title": "Тогда я дам тебе один тоже, Сэмпай...",
+                "translatedLanguage": "ru",
+                "externalUrl": null,
+                "publishAt": "2020-10-30T17:25:39+00:00",
+                "readableAt": "2020-10-30T17:25:39+00:00",
+                "createdAt": "2020-10-30T17:25:39+00:00",
+                "updatedAt": "2022-01-31T21:21:36+00:00",
+                "pages": 24,
+                "version": 2
+            },
+            "relationships": [
+                {
+                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                    "type": "manga"
+                },
+                {
+                    "id": "e34d68fe-3dfe-498d-9db4-86f5c2685395",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "7b77f997-e736-4c05-8bde-477775620a72",
+            "type": "chapter",
+            "attributes": {
+                "volume": "1",
+                "chapter": "5",
+                "title": "",
+                "translatedLanguage": "id",
+                "externalUrl": null,
+                "publishAt": "2020-11-12T10:19:10+00:00",
+                "readableAt": "2020-11-12T10:19:10+00:00",
+                "createdAt": "2020-11-12T10:19:10+00:00",
+                "updatedAt": "2020-11-12T10:19:10+00:00",
+                "pages": 13,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                    "type": "manga"
+                },
+                {
+                    "id": "7c2530f1-8cab-415f-bec6-2249552a3a62",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "8b554d62-f9f8-4131-b42c-37b6f6a5dfc3",
+            "type": "chapter",
+            "attributes": {
+                "volume": "6",
+                "chapter": "45",
+                "title": "A primavera finalmente chegou para o nosso impopular senpai?",
+                "translatedLanguage": "pt-br",
+                "externalUrl": null,
+                "publishAt": "2020-04-28T20:23:47+00:00",
+                "readableAt": "2020-04-28T20:23:47+00:00",
+                "createdAt": "2020-04-28T20:23:47+00:00",
+                "updatedAt": "2020-04-28T20:23:47+00:00",
+                "pages": 19,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "a0195982-96f5-4948-8966-b5e558391424",
+                    "type": "scanlation_group"
+                },
+                {
+                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                    "type": "manga"
+                },
+                {
+                    "id": "2cbf99b0-a3d9-4191-a3d3-7c11eb9cc3cf",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "71ae6161-d47b-4fb5-ac49-c0069fec8648",
+            "type": "chapter",
+            "attributes": {
+                "volume": "12",
+                "chapter": "94",
+                "title": "Ah, Senpai... This Guy Is...",
+                "translatedLanguage": "en",
+                "externalUrl": null,
+                "publishAt": "2021-11-16T00:32:33+00:00",
+                "readableAt": "2021-11-16T00:32:33+00:00",
+                "createdAt": "2021-11-16T00:32:32+00:00",
+                "updatedAt": "2021-12-09T12:18:51+00:00",
+                "pages": 28,
+                "version": 5
+            },
+            "relationships": [
+                {
+                    "id": "9e43542e-e666-48d0-a23c-c98a016d551c",
+                    "type": "scanlation_group"
+                },
+                {
+                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                    "type": "manga"
+                },
+                {
+                    "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "8c869cdd-be95-43a5-8ccc-c7ee2301fdcb",
+            "type": "chapter",
+            "attributes": {
+                "volume": "3",
+                "chapter": "17",
+                "title": "",
+                "translatedLanguage": "fa",
+                "externalUrl": null,
+                "publishAt": "2020-05-11T23:21:29+00:00",
+                "readableAt": "2020-05-11T23:21:29+00:00",
+                "createdAt": "2020-05-11T23:21:29+00:00",
+                "updatedAt": "2020-05-11T23:21:29+00:00",
+                "pages": 13,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "99b68093-cef0-4122-b25f-2ea7dc1f2a98",
+                    "type": "scanlation_group"
+                },
+                {
+                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                    "type": "manga"
+                },
+                {
+                    "id": "640dec21-121b-4753-bd7c-e2d11af71b85",
+                    "type": "user"
+                }
+            ]
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 752
+}

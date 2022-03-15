@@ -1,0 +1,179 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "96ff321a-44b9-4722-b542-f79d0c73898c",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "ThisIsUTL",
+                "altNames": [
+                    {
+                        "en": "Unreliable Translator L..."
+                    }
+                ],
+                "locked": false,
+                "website": "http:\/\/thisisutl.tumblr.com",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": "I mainly translate Naruto X Hinata doujin. I have a sizable collection of them and I am willing to share with everyone.  \n  \nUTL stands for \"Unreliable Translator L…\". I am not good at Japanese and I rely heavily on translation software to make sense of things so, unless a proof-reader is mentioned, take my translations with a grain of salt.  \n  \nIf you are knowledgeable in Japanese, you are more than welcome to correct me. Contact me on my tumblr and I will send you a copy of my raws.",
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "f295be30-6e65-4ca4-a44f-e8d7378cecae",
+                    "type": "leader"
+                },
+                {
+                    "id": "f295be30-6e65-4ca4-a44f-e8d7378cecae",
+                    "type": "member"
+                }
+            ]
+        },
+        {
+            "id": "97069895-49ba-4606-a45e-8aa9d6fc8863",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "izManga",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "vi"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "97075b9d-d7de-4d67-8c3a-00d7a346d68e",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Translation Texts",
+                "altNames": [],
+                "locked": false,
+                "website": "http:\/\/translationtexts.50webs.com\/index.html",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "970b2640-58df-49e2-908c-57195cea5eee",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Tenko",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "970bdc84-0735-4bc1-8506-b6b9fb582b71",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Bossque Scans",
+                "altNames": [],
+                "locked": true,
+                "website": "https:\/\/discord.gg\/WNVQ76X",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": "WNVQ76X",
+                "contactEmail": "piangree147@gmail.com",
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "ms"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "b8c3b0c1-b8da-49ae-8e92-6288181c3b05",
+                    "type": "leader"
+                },
+                {
+                    "id": "af73183f-b9ae-40ef-8472-64191d3ed758",
+                    "type": "member"
+                },
+                {
+                    "id": "b8c3b0c1-b8da-49ae-8e92-6288181c3b05",
+                    "type": "member"
+                },
+                {
+                    "id": "fc63c912-dec8-4050-9670-618d5e406064",
+                    "type": "member"
+                }
+            ]
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 20637
+}

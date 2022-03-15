@@ -1,0 +1,124 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "8efa4042-f149-4f3b-af6c-4fd63fa7b4fb",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "9",
+                "fileName": "d67d056e-f5d9-4717-9e1a-0e2f7e141024.jpg",
+                "locale": "ja",
+                "createdAt": "2022-03-14T11:02:04+00:00",
+                "updatedAt": "2022-03-14T11:02:04+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d58eb211-a1ae-426c-b504-fc88253de600",
+                    "type": "manga"
+                },
+                {
+                    "id": "dc2db04d-1940-4f7a-9b14-833fa77899ea",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "0900ca7f-56b2-4799-913f-f7ba64bf44c6",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": null,
+                "fileName": "3f0d3671-1dcb-4b8b-ae4c-508014f3ba1c.jpg",
+                "locale": "ja",
+                "createdAt": "2022-03-14T10:08:25+00:00",
+                "updatedAt": "2022-03-14T10:08:25+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "01f70b35-b313-46f0-b22e-16c8e564b449",
+                    "type": "manga"
+                },
+                {
+                    "id": "dc2db04d-1940-4f7a-9b14-833fa77899ea",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "3c8e3933-08cb-4214-b696-6a692623292f",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "2",
+                "fileName": "4a98d917-e54d-4dd2-abc3-876900bc57d1.jpg",
+                "locale": "ja",
+                "createdAt": "2022-03-14T10:04:32+00:00",
+                "updatedAt": "2022-03-14T10:04:32+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "c8eeba12-a4b2-4ff9-b974-8178ef3232f7",
+                    "type": "manga"
+                },
+                {
+                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "1c107e60-8855-4431-a9c3-95a7491a1ce2",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "7",
+                "fileName": "7470795f-f680-40ff-a8eb-db57557c70b9.jpg",
+                "locale": "ja",
+                "createdAt": "2022-03-14T10:03:39+00:00",
+                "updatedAt": "2022-03-14T10:03:39+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "ccc174c5-715c-446e-b115-41ae79e1f268",
+                    "type": "manga"
+                },
+                {
+                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "c7f03aec-161a-4004-9436-975026c0855f",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "4",
+                "fileName": "1f9b7ed7-a35c-4d70-877b-34e6606a3d61.jpg",
+                "locale": "ja",
+                "createdAt": "2022-03-14T10:02:52+00:00",
+                "updatedAt": "2022-03-14T10:02:52+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fe2df12e-ec2f-4f9e-b975-328debfb1f3f",
+                    "type": "manga"
+                },
+                {
+                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "type": "user"
+                }
+            ]
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 131727
+}

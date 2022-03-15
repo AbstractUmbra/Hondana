@@ -1,0 +1,19 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "cd757c05-0dfd-4638-833e-515890fda561",
+            "type": "mapping_id",
+            "attributes": {
+                "type": "manga",
+                "legacyId": 1000,
+                "newId": "5f3810e7-0cec-4239-b5d0-afd4d8bd409a"
+            },
+            "relationships": []
+        }
+    ],
+    "limit": 1,
+    "offset": 0,
+    "total": 1
+}

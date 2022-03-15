@@ -1,0 +1,580 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "a6496721-4d6b-465b-8823-77d9a2b4824a",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "1cf13b4c-fa1c-4832-a4ce-969d10c37a65",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Ijiranaide, Nagatoro-san - Ijirimakutte, Nagatoro-san (Doujinshi)"
+                        },
+                        "altTitles": [],
+                        "description": {
+                            "en": ""
+                        },
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-11-01T03:36:03+00:00",
+                        "updatedAt": "2021-05-25T15:40:04+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "fr"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "1484192e-e9bf-4099-81a2-40be5f39d221",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "side_story",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "2a4bc9ec-2d70-428a-8b46-27f6218ed267",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Ijiranaide, Nagatoro-san: Comic Anthology"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Ijirushikanai! Nagatoro-san Comic Anthology"
+                            },
+                            {
+                                "ja-ro": "Nagatoro-san wo, Ijiritai!! Comic Anthology"
+                            },
+                            {
+                                "en": "Please Don't Bully Me, Nagatoro Comic Anthology"
+                            },
+                            {
+                                "ja-ro": "Soko Ijirunsuka, Nagatoro-san! Comic Anthology"
+                            },
+                            {
+                                "ru": "Не издевайся, Нагаторо-сан Антология"
+                            },
+                            {
+                                "ja": "イジるしかないっ！長瀞さん  Comic Anthology"
+                            },
+                            {
+                                "ja": "そこイジるんすか、長瀞さん Comic Anthology"
+                            },
+                            {
+                                "ja": "長瀞さんを、イジりたいっ‼︎ Comic Anthology"
+                            }
+                        ],
+                        "description": {
+                            "en": "Anthology from various doujin artists about Nagatoro and Senpai keeping to the theme of Nagatoro teasing Senpai and sometimes it backfiring on her.",
+                            "ru": "Антология с короткими историями от разных авторов на тему оригинальной манги \"Не издевайся, Нагаторо-сан\".  \n  \n\n\n---\n\n- **Volume 1** (Nagatoro-san wo, Ijiritai!!)  \nChomoran, Cool Kyoushinja, Hiroe Rei, Hotondo Shindeiru, Konbu Wakame, Najima Keiji, Nanashi, Orimoto Mimana, Shimimaru, Suzumoto Kou, Uchiyama Atsushi(Attsun)  \n- **Volume 2** (Soko Ijirunsuka, Nagatoro-san!)  \nAzu, Katou Yuiichi, Kawamura Taku, Mochinchi, Nanashi, Okamoto Lynn, Sukeno Yoshiaki, Suzuki Kenya, Tanigawa Nico, tugeneko, Watanabe Shizumu, Yamamoto Souichirou  \n- **Volume 3** (Ijirushikanai! Nagatoro-san)  \nManga: Sagara Riri, Nishide Kengoro, Andou Masaki (single page), Morishige Takuma, Enokidu\/Enokids, Kumano Kyu, Sakurai Norio, Bimita  \nIllustrations: Issiki\/Isshiki, Kitada Ryouma, Souji Hougu, Namori, Nekoume, Yamada Yoshinobu  \n- **Volume 4** (Motto Shiritai! Nagatoro-san!)  \nManga and Illustrations: 774 (Nanashi)  \n- **Volume 5** (Ippai Misemasu! Nagatoro-san)  \nIllustrations: Sugiura Jiro, Maki Keigo, CHANxCO, Honjou Raita, nonco, 774 (Nanashi)  \n  \n**Notes:**  \n- The Artist\/Author fields only accepted 19 names before failing which isn't ideal for anthologies so I've split them between the two"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "104616",
+                            "kt": "56972",
+                            "mu": "151069"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "suggestive",
+                        "tags": [
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Anthology"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-08-16T01:01:02+00:00",
+                        "updatedAt": "2022-02-03T03:21:38+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "th",
+                            "en",
+                            "ru",
+                            "pt-br"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "95a00749-9baa-468f-955c-b101cf38c7a2",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "546668d6-b91a-4c4f-8391-29f3e7e5bd86",
+                    "type": "manga",
+                    "attributes": {
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "3",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "contentRating": "pornographic",
+                        "title": {
+                            "en": "Lightning Speed + MAGIC WAYS."
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Bijin Onna Joushi Takizawa-san - Lightning Speed + MAGIC WAYS. (Doujinshi)"
+                            },
+                            {
+                                "en": "Elf-san wa Yaserarenai - Lightning Speed + MAGIC WAYS. (Doujinshi)"
+                            },
+                            {
+                                "en": "Ijiranaide, Nagatoro-san - Lightning Speed + MAGIC WAYS. (Doujinshi)"
+                            },
+                            {
+                                "en": "Uzaki-chan wa Asobitai! - Lightning Speed + MAGIC WAYS. (Doujinshi)"
+                            },
+                            {
+                                "en": "電光石火+MAGIC WAYS."
+                            }
+                        ],
+                        "description": {
+                            "en": "Uzaki is in the first 2 chapters (Full color)  \nOthers are in chapter 3 (No color)"
+                        },
+                        "year": null,
+                        "tags": [
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "version": 1,
+                        "createdAt": "2019-12-08T23:44:35+00:00",
+                        "updatedAt": "2019-12-08T23:44:35+00:00",
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "43303a2e-0a59-4d43-aec5-634645d745e8",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "preserialization",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "b775fa6f-a72e-444c-b78b-a21c370490df",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Nagatoro-san Doujins"
+                        },
+                        "altTitles": [],
+                        "description": {
+                            "en": "Doujins which were released prior to the serialization of the manga Ijiranaide, Nagatoro-san, which is loosely based on the doujins."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "mu": "129904"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "suggestive",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-03-13T23:16:12+00:00",
+                        "updatedAt": "2022-01-25T05:51:17+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "de"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "31086bd8-02a4-44e5-a36e-c1ae514fad50",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "colored",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "df26bf01-110d-4b7c-9b7a-964ca39a784e",
+                    "type": "manga",
+                    "attributes": {
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "contentRating": "suggestive",
+                        "title": {
+                            "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
+                        },
+                        "altTitles": [],
+                        "description": {
+                            "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(…?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
+                        },
+                        "year": null,
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "7b2ce280-79ef-4c09-9b58-12b7c23a9b78",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fan Colored"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "version": 2,
+                        "createdAt": "2019-07-31T06:40:07+00:00",
+                        "updatedAt": "2021-05-25T15:48:42+00:00",
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "ba07932e-aeba-428b-8d95-38b9a9bc278b",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "e7913068-ddf7-4aa4-9be6-35c204efb27a",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Ijiranaide, Nagatoro-san - Don't Do It To 'Em Nagatoro-san! (Doujinshi)"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Ijiranaide, Nagatoro-san - Project Bully"
+                            }
+                        ],
+                        "description": {
+                            "en": ""
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https:\/\/www.pixiv.net\/en\/artworks\/78177763"
+                        },
+                        "originalLanguage": "en",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-04-26T13:28:25+00:00",
+                        "updatedAt": "2021-05-25T15:48:59+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "limit": 6,
+    "offset": 0,
+    "total": 6
+}

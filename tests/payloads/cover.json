@@ -1,0 +1,204 @@
+{
+    "result": "ok",
+    "response": "entity",
+    "data": {
+        "id": "087e7d73-a387-4cc5-a635-d81e7bc71d63",
+        "type": "cover_art",
+        "attributes": {
+            "description": "",
+            "volume": "12",
+            "fileName": "42249797-5952-4ab8-9f85-b45997b54882.png",
+            "locale": "ja",
+            "createdAt": "2022-01-25T00:44:54+00:00",
+            "updatedAt": "2022-01-25T00:44:54+00:00",
+            "version": 1
+        },
+        "relationships": [
+            {
+                "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "ja-ro": "Ijiranaide, Nagatoro-san"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "Don't Toy with Me, Miss Nagatoro"
+                        },
+                        {
+                            "id": "Jangan goda aku, Nagatoro"
+                        },
+                        {
+                            "es-la": "No te burles de mi, Nagatoro"
+                        },
+                        {
+                            "fr": "Arrête de me chauffer, Nagatoro"
+                        },
+                        {
+                            "ru": "Не издевайся, Нагаторо"
+                        },
+                        {
+                            "ja": "イジらないで、長瀞さん"
+                        },
+                        {
+                            "ko": "괴롭히지 말아요, 나가토로 양"
+                        },
+                        {
+                            "de": "Neck mich nicht, Nagatoro"
+                        },
+                        {
+                            "zh-hk": "不要欺負我，長瀞同學"
+                        },
+                        {
+                            "th": "ยัยตัวแสบแอบน่ารัก นางาโทโระ"
+                        },
+                        {
+                            "ar": "لا تلعبي معي يا آنسة ناغاتورو"
+                        },
+                        {
+                            "it": "Non tormentarmi, Nagatoro!"
+                        },
+                        {
+                            "fa": "اذیتم نکن، ناگاتورو سان"
+                        },
+                        {
+                            "he": "אל תשתעשעי איתי, נאגאטורו"
+                        },
+                        {
+                            "es-la": "No me Molestes, Nagatoro-san"
+                        }
+                    ],
+                    "description": {
+                        "en": "Our nameless—and spineless—hero (only known as \"Senpai\") is a second-year high school student and loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.",
+                        "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
+                        "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
+                        "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
+                    },
+                    "isLocked": false,
+                    "links": {
+                        "al": "100664",
+                        "ap": "dont-toy-with-me-miss-nagatoro",
+                        "bw": "series\/155089\/",
+                        "kt": "40324",
+                        "mu": "145530",
+                        "amz": "https:\/\/www.amazon.co.jp\/gp\/product\/B07F7QD132",
+                        "cdj": "https:\/\/www.cdjapan.co.jp\/product\/NEOBK-2193546",
+                        "ebj": "https:\/\/ebookjapan.yahoo.co.jp\/books\/443422\/",
+                        "mal": "110737",
+                        "raw": "https:\/\/pocket.shonenmagazine.com\/episode\/13932016480029136187",
+                        "engtl": "https:\/\/kodansha.us\/series\/dont-toy-with-me-miss-nagatoro\/"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": "",
+                    "lastChapter": "",
+                    "publicationDemographic": "shounen",
+                    "status": "ongoing",
+                    "year": 2017,
+                    "contentRating": "safe",
+                    "tags": [
+                        {
+                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Romance"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Comedy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "School Life"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Slice of Life"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Gyaru"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2019-03-04T12:21:59+00:00",
+                    "updatedAt": "2022-03-12T12:58:16+00:00",
+                    "version": 307,
+                    "availableTranslatedLanguages": [
+                        "id",
+                        "es-la",
+                        "pt-br",
+                        "ru",
+                        "fa",
+                        "it",
+                        "sr",
+                        "cs",
+                        "en",
+                        "hu",
+                        "tr",
+                        "es",
+                        "pt"
+                    ]
+                }
+            },
+            {
+                "id": "f8cc4f8a-e596-4618-ab05-ef6572980bbf",
+                "type": "user",
+                "attributes": {
+                    "username": "tristan9",
+                    "roles": [
+                        "ROLE_DEVELOPER",
+                        "ROLE_MD_AT_HOME",
+                        "ROLE_GROUP_LEADER",
+                        "ROLE_STAFF",
+                        "ROLE_GROUP_MEMBER"
+                    ],
+                    "version": 487
+                }
+            }
+        ]
+    }
+}

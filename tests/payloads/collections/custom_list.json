@@ -1,0 +1,39 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "238f7b80-bb7e-42ca-b56a-342b430b98a8",
+            "type": "custom_list",
+            "attributes": {
+                "name": "TestList1",
+                "visibility": "public",
+                "version": 3
+            },
+            "relationships": [
+                {
+                    "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+                    "type": "user"
+                }
+            ]
+        },
+        {
+            "id": "306e6504-6d52-4e8a-b890-8e94d3f9eca6",
+            "type": "custom_list",
+            "attributes": {
+                "name": "TestList2",
+                "visibility": "public",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+                    "type": "user"
+                }
+            ]
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 2
+}

@@ -1,0 +1,196 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "fe14761f-a541-459c-8ef1-bb240bbb0144",
+            "type": "author",
+            "attributes": {
+                "name": "Marui Maru",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "3e1e79be-4361-4964-b651-7ba2ef3e53c1",
+                    "type": "manga"
+                },
+                {
+                    "id": "63489e35-6b31-4ee1-92cb-a7b9f14b081c",
+                    "type": "manga"
+                },
+                {
+                    "id": "5c8642b5-4353-44cd-aa69-091acb225c3c",
+                    "type": "manga"
+                },
+                {
+                    "id": "3361abfb-49d7-42dc-9437-d03af5279bb2",
+                    "type": "manga"
+                },
+                {
+                    "id": "7d1d6186-c560-4703-b646-767dcf202791",
+                    "type": "manga"
+                },
+                {
+                    "id": "a37eb2ae-b9d5-4a71-95f7-5bad64bc9833",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "fe14eccb-af1b-4fbb-b5fc-ba3e62e4442a",
+            "type": "author",
+            "attributes": {
+                "name": "Latina",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-10-10T14:46:43+00:00",
+                "updatedAt": "2021-10-10T14:46:43+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "0d63b6f1-03b2-4f04-827c-8b2995026cf8",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "fe16d216-8450-422f-8b1b-391fbf7392be",
+            "type": "author",
+            "attributes": {
+                "name": "Namie Shizuku",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "8d235299-449a-47e6-85a4-23d9ecadf883",
+                    "type": "manga"
+                },
+                {
+                    "id": "18289e18-7808-40b0-ab42-0bb0ddf1773d",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "fe17e74a-f840-4fc1-acbd-8582bb16a010",
+            "type": "author",
+            "attributes": {
+                "name": "Hanetsuki Tokei",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-10-28T16:12:51+00:00",
+                "updatedAt": "2021-10-28T16:12:51+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "59649e9d-b149-4fc7-b380-df39efc6f354",
+                    "type": "manga"
+                },
+                {
+                    "id": "b4aa0e29-9131-4f63-a967-ea7d1e43ca93",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "fe1889bf-772c-4eee-bb24-bdf369d77203",
+            "type": "author",
+            "attributes": {
+                "name": "Nobe Toshio",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "050ed1ea-bf98-4612-804a-1e045b90b0f0",
+                    "type": "manga"
+                },
+                {
+                    "id": "5482b367-42f1-4e23-ab46-c0691b9e5c50",
+                    "type": "manga"
+                }
+            ]
+        }
+    ],
+    "limit": 5,
+    "offset": 0,
+    "total": 39409
+}

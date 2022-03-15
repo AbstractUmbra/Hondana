@@ -1,0 +1,1073 @@
+{
+    "result": "ok",
+    "response": "entity",
+    "data": {
+        "id": "7e552c08-f7cf-4e0e-9723-409d749dd77c",
+        "type": "author",
+        "attributes": {
+            "name": "774 (Nanashi)",
+            "imageUrl": null,
+            "biography": [],
+            "twitter": "https:\/\/twitter.com\/774nanash",
+            "pixiv": "https:\/\/www.pixiv.net\/en\/users\/72342",
+            "melonBook": null,
+            "fanBox": null,
+            "booth": null,
+            "nicoVideo": null,
+            "skeb": null,
+            "fantia": null,
+            "tumblr": null,
+            "youtube": null,
+            "weibo": null,
+            "naver": null,
+            "website": null,
+            "createdAt": "2021-04-19T21:59:45+00:00",
+            "updatedAt": "2022-01-11T21:46:18+00:00",
+            "version": 2
+        },
+        "relationships": [
+            {
+                "id": "4441d294-c935-431d-8873-c98207ab23f2",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Naked Princess Honoka"
+                    },
+                    "altTitles": [],
+                    "description": [],
+                    "isLocked": false,
+                    "links": [],
+                    "originalLanguage": "ja",
+                    "lastVolume": "",
+                    "lastChapter": "",
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "pornographic",
+                    "tags": [
+                        {
+                            "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Loli"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Animals"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "81c836c9-914a-4eca-981a-560dad663e73",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Magical Girls"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Sexual Violence"
+                                },
+                                "description": [],
+                                "group": "content",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2022-02-02T08:57:49+00:00",
+                    "updatedAt": "2022-02-17T10:18:19+00:00",
+                    "version": 5,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "cb5b39a5-c8bf-4ad6-89e1-58caf59b5a34",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Uenobon Anthology Booklet 1"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "上野本"
+                        }
+                    ],
+                    "description": {
+                        "en": "An anthology booklet featuring various artists, included with special edition copies of Ueno-san wa Bukiyou volume 6."
+                    },
+                    "isLocked": false,
+                    "links": null,
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": "14",
+                    "publicationDemographic": "seinen",
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "suggestive",
+                    "tags": [
+                        {
+                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Romance"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Comedy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Anthology"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "School Life"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-08-08T06:33:13+00:00",
+                    "updatedAt": "2021-05-25T15:47:46+00:00",
+                    "version": 2,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "ef3b3d04-1136-4d88-b0fe-5f952f27348b",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Neon Genesis Evangelion - A lovey-dovey fanfic about Evangelion's Asuka and a slightly grown-up Shinji-kun (Doujinshi)"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "新世紀エヴァンゲリオン - エヴァのアスカと少し大人なシンジ君のラブラブ妄想話"
+                        }
+                    ],
+                    "description": {
+                        "en": "[![](https:\/\/i.imgur.com\/oiVINmy.png) Artist’s Pixiv](https:\/\/www.pixiv.net\/en\/users\/72342)  \n[![](https:\/\/i.imgur.com\/dQCXZkU.png) Artist’s Twitter](https:\/\/twitter.com\/774nanash)"
+                    },
+                    "isLocked": false,
+                    "links": {
+                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/78757632"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "safe",
+                    "tags": [
+                        {
+                            "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Oneshot"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Romance"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Doujinshi"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Web Comic"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Slice of Life"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-07-25T20:40:02+00:00",
+                    "updatedAt": "2021-05-25T15:49:24+00:00",
+                    "version": 2,
+                    "availableTranslatedLanguages": [
+                        "id",
+                        "pt-br",
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "f12e73c4-9f26-4523-9223-3abdf442749d",
+                "type": "manga",
+                "attributes": {
+                    "isLocked": false,
+                    "links": {
+                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/78708190"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "contentRating": "safe",
+                    "title": {
+                        "en": "Neon Genesis Evangelion - Savage Dog Asuka and Grown-up Shin-chan (Doujinshi)"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "新世紀エヴァンゲリオン - 「猛犬アスカと大人なシンちゃん」"
+                        }
+                    ],
+                    "description": {
+                        "en": "[![](https:\/\/i.imgur.com\/oiVINmy.png) Artist’s Pixiv](https:\/\/www.pixiv.net\/en\/users\/72342)  \n[![](https:\/\/i.imgur.com\/dQCXZkU.png) Artist’s Twitter](https:\/\/twitter.com\/774nanash)"
+                    },
+                    "year": null,
+                    "tags": [
+                        {
+                            "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Oneshot"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Romance"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Doujinshi"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "School Life"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Web Comic"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Slice of Life"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Full Color"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "version": 2,
+                    "createdAt": "2020-07-25T11:41:47+00:00",
+                    "updatedAt": "2021-05-25T15:49:24+00:00",
+                    "availableTranslatedLanguages": [
+                        "pt-br",
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "011e8a9d-8a2e-452b-a5b8-2d2a8d78ffeb",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Eruru"
+                    },
+                    "altTitles": [],
+                    "description": {
+                        "en": "It's the latest fashion."
+                    },
+                    "isLocked": false,
+                    "links": null,
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "suggestive",
+                    "tags": [
+                        {
+                            "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Oneshot"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Magic"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Fantasy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Full Color"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-07-10T07:04:04+00:00",
+                    "updatedAt": "2022-01-24T22:09:04+00:00",
+                    "version": 3,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "d0c95fd4-c69b-4d20-84d4-742c01c9340d",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Towako"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "Akai Mi Hajiketa (Split the Scarlet Fruit of Dawn)"
+                        },
+                        {
+                            "en": "Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis"
+                        },
+                        {
+                            "en": "Boku to Sennin-sama (The Xian and I)"
+                        },
+                        {
+                            "en": "Chuu Chuu Drain"
+                        },
+                        {
+                            "en": "Gedou no Yukari (The Bonds of Gedou)"
+                        },
+                        {
+                            "en": "Hitokui-sama no Chocolate Cake (The Anthropovore's Chocolate Cake)"
+                        },
+                        {
+                            "en": "Kokoroechigai no Oyome-san (The Imprudent Bride)"
+                        },
+                        {
+                            "en": "Kyuuketsuki to Hoshigatari no Yoru (Discussing the Starlit Sky with a Vampire)"
+                        },
+                        {
+                            "en": "Mechanical Instinct"
+                        },
+                        {
+                            "en": "Natsu no Omohide (Memories of Summer)"
+                        },
+                        {
+                            "en": "Nekomimi Kaa-san (Nekomommy)"
+                        },
+                        {
+                            "en": "Ookeyaki no Kouro (Kouro of the Great Zelkova)"
+                        },
+                        {
+                            "en": "Oshikake Kitsune Yome (The Uninvited Fox Wife)"
+                        },
+                        {
+                            "en": "Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku (Dorm Mother Suzuwe-san: One peaceful day)"
+                        },
+                        {
+                            "en": "Yupiel-sama to no Nichijou (Everyday Life with Lady Yupiel)"
+                        },
+                        {
+                            "en": "Zom Zom Biyori"
+                        },
+                        {
+                            "en": "永遠娘"
+                        }
+                    ],
+                    "description": {
+                        "en": "Volume 1:  \n||  \n1. [774 (Nanashi)] Yupiel-sama no Geboku (Lady Yupiel's Servant)  \n2. [Akazawa RED] Sewayaki Zashiki-warashi (Meddlesome Zashiki-warashi)  \n3. [Takatsu] X-Card Frontier! (1)  \n4. [Amagaeru] Lolibabaa to Mago (Lolibabaa and Grandson)  \n5. [Batta] Gedou no Ie (Household of Gedou)  \n6. [Oouso] Hyakunen Shoujo (Centennial Maiden)  \n7. [Cyocyo] Enkyori Renai (Love Across the Aeons)  \n8. [BeNantoka] Eien no Wakaba Girl (Eternally Verdant)  \n9. [Koishi Chikasa] Kinuito no Ude (Silken Arm)  \n10. [Ogata Zen] Suzuwe-san wa Ryoubo (Dorm Mother Suzuwe-san)  \n11. [Yumano Yuuki] Natsu Ouse (Midsummer Tryst)  \n12. [Kinnotama] Tentacle act  \n13. [Esuo] Licking Monster  \n14. [Gengorou] Kawaranai Mono (Unchanging)  \n15. [Miura Yasuto] Hakka Shoujo - Bangaihen (Peppermint Girl - Side Story)  \n15.5. Authors' notes and background information  \n15.6. TL notes  \n||  \nVolume 2:  \n||  \nMD can only credit 3 groups but there are 4 that worked on it.   \n  \nRaws provided by fynolt2 (for the main volume), and dlfnzy1 (the side material by Kinku)  \nTranslated by CapableScoutMan  \nTypesetting, redrawing, cleaning, and all sorts of editing by S.T.A.L.K.E.R., B.E.C. Scans and bigk40k  \n  \n1. [Ogata Zen] Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku (Dorm Mother Suzuwe-san: One peaceful day)  \n2. [Ike] Kyuuketsuki to Hoshigatari no Yoru (Discussing the Starlit Sky with a Vampire)  \n3. [Gengorou] Boku to Sennin-sama (The Xian and I)  \n4. [Yumano Yuuki] Oshikake Kitsune Yome (The Uninvited Fox Wife)  \n5. [774 (Nanashi)] Yupiel-sama to no Nichijou (Everyday Life with Lady Yupiel)  \n6. [BeNantoka] Zom Zom Biyori  \n7. [Tamano Kedama] Chuu Chuu Drain  \n8. [Batta] Gedou no Yukari (The Bonds of Gedou)  \n9. [Oouso] Natsu no Omohide (Memories of Summer)  \n10. [Amagaeru] Ookeyaki no Kouro (Kouro of the Great Zelkova)  \n11. [Mudou Eichi] Mechanical Instinct  \n12. [CyoCyoPolice] Kokoroechigai no Oyome-san (The Imprudent Bride)  \n13. [Yam] Nekomimi Kaa-san (Nekomommy)  \n14. [Mutou Mato] Akai Mi Hajiketa (Split the Scarlet Fruit of Dawn)  \n15. [Koishi Chikasa] Hitokui-sama no Chocolate Cake (The Anthropovore's Chocolate Cake)  \n16. [Kamen no Hito] Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis (1)  \n16.5. [Kinku] Side material and notes  \n||  \nVolume 3:  \n||  \n1. [Cyocyo] Love Across the Aeons (2)  \n2. [Ogata Zen] Dorm Mother Suzuwe-San  \n3. [Kokuesi Roukun] Everlasting Fragrance  \n4. [Tamano Kedama] Beastie Charm: Chuu Chuu Drain (2)  \n5. [Gengorou] Kagachi-Sama  \n6. [Takatsue] X-Card Frontier! (2)  \n7. [Amagaeru] Welcome to the Youkai Bistro  \n8. [Yumano Yuuki] The Demon Lord is Level 1  \n9. [Saryuu] My First Time at the Red (Lolibabaa) Light District  \n10. [Emons] The Masters Hometown  \n11. [Batta] Cycle of Gedou  \n12. [Oouso] Magical Granny Orgasm Chiyo-San  \n13. [yam] Legend of the Invincible Warashi-Sama!  \n14. [Mudou Eichi] Sergeant Reboot  \n15. [Yuzuha] \"Lolibabaa tales from Japan-Oni-Slaying Chapter\"  \n16. [Koishi Chikasa] Witch of the Fire Scene - Stem  \n17. [Kamen No Hito] Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis (2)  \nOmakes: [Miyamarun] Wine for Two  \n||  \nVolume 4:  \n||  \n1. Namake Youko (The Lazy Fox)  \n2. Lusty Charms - Chuu Chuu Drain 3  \n3. Lolikko ni eroi koto shitemo babaa nanode hinan sareru iware wa nai yo ne (I can lewd the loli all I want, and nobody can criticise me because she's a grandma)  \n4. Eisei no Mai Zenpen Part 1(Everlasting Dance Part 1)  \n5. Lolibabaa ni Aitakatta kara Isekai Tensei Shita (I wanted to meet a lolibabaa, so I got reborn into another world)  \n6. Freeze!!  \n7. Tsuzureori (Tapestry)  \n8. Lamp no Majin (Genie of the Lamp)  \n9. Youkai Koryouriya ni Youkoso ~Shizuoka Ryokou Hen~ (Welcome to the Youkai Bistro ~Trip to Shizuoka)  \n10. Ningyou no Oningyou (The Doll's Puppet)  \n11. Furusato no Tama-baasama (Granny Tama from my Hometown)  \n12. Devil's Born  \n13. Witch of the Fire Scene - Bloom  \n13.5 Kamen no Hito - Story Art  \n13.6 Bonus  \n||"
+                    },
+                    "isLocked": false,
+                    "links": {
+                        "mu": "137645"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "ongoing",
+                    "year": null,
+                    "contentRating": "pornographic",
+                    "tags": [
+                        {
+                            "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Sci-Fi"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Loli"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Demons"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Romance"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Comedy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Anthology"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Incest"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Monster Girls"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Mystery"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-05-09T07:31:47+00:00",
+                    "updatedAt": "2021-05-25T15:48:03+00:00",
+                    "version": 2,
+                    "availableTranslatedLanguages": [
+                        "en",
+                        "hu"
+                    ]
+                }
+            },
+            {
+                "id": "4e4e7dae-941f-4a78-b57d-13682be05329",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Hito Kui no Youkai ni Kuuwareru Hanashi"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "Getting Devoured by a Man-Eating Youkai"
+                        },
+                        {
+                            "en": "A Tale of Being Eaten by a Man-Eating Youkai"
+                        },
+                        {
+                            "ja": "人喰いの妖怪に喰われる話"
+                        },
+                        {
+                            "en": "Flirting with a Dangerous Youkai"
+                        },
+                        {
+                            "ja-ro": "Yabai Youkai to Ichaicha Shitai dake no Manga"
+                        },
+                        {
+                            "ja": "ヤバイ妖怪とイチャイチャしたいだけの漫画"
+                        }
+                    ],
+                    "description": {
+                        "en": "A happy misunderstanding."
+                    },
+                    "isLocked": false,
+                    "links": {
+                        "al": "122386",
+                        "kt": "56835",
+                        "mu": "169222",
+                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/77639630"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": "",
+                    "lastChapter": "",
+                    "publicationDemographic": "shounen",
+                    "status": "ongoing",
+                    "year": 2019,
+                    "contentRating": "suggestive",
+                    "tags": [
+                        {
+                            "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Action"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Demons"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Comedy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Fantasy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Monster Girls"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Web Comic"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-03-31T13:45:09+00:00",
+                    "updatedAt": "2022-02-17T14:54:22+00:00",
+                    "version": 12,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "6443ddaf-8a35-4cbe-bd46-8f8967f5f8af",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Inousha Shoujo Kesson Goudou + Kaijou Gentei Omakebon"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "Esper Girl Amputation Union"
+                        }
+                    ],
+                    "description": {
+                        "en": "Gore Warning"
+                    },
+                    "isLocked": false,
+                    "links": null,
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": "2",
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "pornographic",
+                    "tags": [
+                        {
+                            "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Gore"
+                                },
+                                "description": [],
+                                "group": "content",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-01-19T22:02:03+00:00",
+                    "updatedAt": "2020-01-19T22:02:03+00:00",
+                    "version": 1,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "e657f9c6-5f46-42cc-99a5-3d37eb9d29f2",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Saki - 774 Rakugaki Hon C88 (Doujinshi)"
+                    },
+                    "altTitles": [],
+                    "description": {
+                        "en": ""
+                    },
+                    "isLocked": false,
+                    "links": null,
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "pornographic",
+                    "tags": [
+                        {
+                            "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Doujinshi"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2020-01-13T23:01:56+00:00",
+                    "updatedAt": "2021-05-25T15:48:59+00:00",
+                    "version": 2,
+                    "availableTranslatedLanguages": [
+                        "en"
+                    ]
+                }
+            },
+            {
+                "id": "b2c9127f-763d-4da6-994d-cd6e5f19323d",
+                "type": "manga",
+                "attributes": {
+                    "title": {
+                        "en": "Suzuka-sama no Geboku"
+                    },
+                    "altTitles": [
+                        {
+                            "en": "Suzuka-sama's Servant"
+                        },
+                        {
+                            "en": "鈴香様の下僕"
+                        }
+                    ],
+                    "description": {
+                        "en": "Warning: Contains urethral sounding."
+                    },
+                    "isLocked": false,
+                    "links": {
+                        "al": "91392",
+                        "mu": "110698"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": "",
+                    "lastChapter": "",
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "year": null,
+                    "contentRating": "pornographic",
+                    "tags": [
+                        {
+                            "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Oneshot"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Loli"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Sexual Violence"
+                                },
+                                "description": [],
+                                "group": "content",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Doujinshi"
+                                },
+                                "description": [],
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Fantasy"
+                                },
+                                "description": [],
+                                "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "d7d1730f-6eb0-4ba6-9437-602cac38664c",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Vampires"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        }
+                    ],
+                    "state": "published",
+                    "chapterNumbersResetOnNewVolume": false,
+                    "createdAt": "2019-11-14T01:52:42+00:00",
+                    "updatedAt": "2021-12-03T15:49:25+00:00",
+                    "version": 3,
+                    "availableTranslatedLanguages": [
+                        "hu",
+                        "en"
+                    ]
+                }
+            }
+        ]
+    }
+}

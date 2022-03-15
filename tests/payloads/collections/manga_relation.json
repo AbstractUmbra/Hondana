@@ -1,0 +1,93 @@
+{
+    "result": "ok",
+    "response": "collection",
+    "data": [
+        {
+            "id": "a6496721-4d6b-465b-8823-77d9a2b4824a",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "1cf13b4c-fa1c-4832-a4ce-969d10c37a65",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "1484192e-e9bf-4099-81a2-40be5f39d221",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "side_story",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "2a4bc9ec-2d70-428a-8b46-27f6218ed267",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "95a00749-9baa-468f-955c-b101cf38c7a2",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "546668d6-b91a-4c4f-8391-29f3e7e5bd86",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "43303a2e-0a59-4d43-aec5-634645d745e8",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "preserialization",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "b775fa6f-a72e-444c-b78b-a21c370490df",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "31086bd8-02a4-44e5-a36e-c1ae514fad50",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "colored",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "df26bf01-110d-4b7c-9b7a-964ca39a784e",
+                    "type": "manga"
+                }
+            ]
+        },
+        {
+            "id": "ba07932e-aeba-428b-8d95-38b9a9bc278b",
+            "type": "manga_relation",
+            "attributes": {
+                "relation": "doujinshi",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "e7913068-ddf7-4aa4-9be6-35c204efb27a",
+                    "type": "manga"
+                }
+            ]
+        }
+    ],
+    "limit": 6,
+    "offset": 0,
+    "total": 6
+}

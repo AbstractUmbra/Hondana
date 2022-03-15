@@ -1,0 +1,16 @@
+{
+    "result": "ok",
+    "response": "entity",
+    "data": {
+        "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+        "type": "user",
+        "attributes": {
+            "username": "AbstractUmbra",
+            "roles": [
+                "ROLE_MEMBER"
+            ],
+            "version": 107
+        },
+        "relationships": []
+    }
+}

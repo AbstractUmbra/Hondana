@@ -1,0 +1,36 @@
+from __future__ import annotations
+
+import json
+import pathlib
+from copy import deepcopy
+from typing import TYPE_CHECKING
+
+from hondana.http import HTTPClient
+from hondana.legacy import LegacyItem
+
+
+if TYPE_CHECKING:
+    from hondana.types.legacy import GetLegacyMappingResponse
+
+
+PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "legacy_mapping.json"
+
+PAYLOAD: GetLegacyMappingResponse = json.load(open(PATH, "r"))
+HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
+
+
+def clone_legacy() -> LegacyItem:
+    t = deepcopy(PAYLOAD)
+    return LegacyItem(HTTP, t["data"][0])
+
+
+class TestLegacy:
+    def test_id(self):
+        item = clone_legacy()
+        assert item.id == PAYLOAD["data"][0]["id"]
+
+    def test_mapping_ids(self):
+        item = clone_legacy()
+
+        assert item.obj_legacy_id == PAYLOAD["data"][0]["attributes"]["legacyId"]
+        assert item.obj_new_id == PAYLOAD["data"][0]["attributes"]["newId"]
