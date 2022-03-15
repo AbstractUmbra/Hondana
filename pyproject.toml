@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "2.0.12"
+version = "2.1.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
@@ -40,6 +40,7 @@ furo = { version = "*", optional = true }
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
 poethepoet = "^0.11.0"
+pytest = "^7.0.1"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
@@ -80,10 +81,11 @@ spec = "poetry run python _api_dl.py"
 install = "poetry install"
 format = "poetry run black ."
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+tests = "poetry run pytest"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
-pre = ["install", "format", "types", "docs", "tags", "uninstall"]
+pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
