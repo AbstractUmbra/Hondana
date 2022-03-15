@@ -1480,7 +1480,7 @@ class MangaRelation:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = payload.get("relationships")
+        self._relationships = self._data.pop("relationships", [])
         self.source_manga_id: str = parent_id
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]
