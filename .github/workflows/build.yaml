@@ -31,11 +31,15 @@ jobs:
 
       - name: Install Python deps
         run: |
-          poetry install -E docs --no-dev
+          poetry install -E docs
 
       - name: Check it imports
         run: |
           poetry run python -c 'import hondana'
+
+      - name: Test Suite
+        run: |
+          poetry run pytest
 
       - name: Build wheels
         run: |
@@ -55,6 +59,7 @@ jobs:
   # Credits to most of this step go to Gorialis (Devon R [https://github.com/Gorialis])
   # as I found them in their Jishaku builds (https://github.com/Gorialis/jishaku/blob/d3f50749b5a977b544e5fd14894585f656247486/.github/workflows/deploy.yml#L82-L119)
   create_release:
+    name: Create Release
     needs: [ build ]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
