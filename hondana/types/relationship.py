@@ -27,7 +27,7 @@ from typing import TYPE_CHECKING, Union
 
 
 if TYPE_CHECKING:
-    from . import artist, author, chapter, manga, scanlator_group, user
+    from . import artist, author, chapter, cover, manga, scanlator_group, user
 
 
 __all__ = ("RelationshipResponse",)
@@ -40,11 +40,12 @@ RelationshipResponse = Union[
     "author.AuthorResponse",
     "user.UserResponse",
     "scanlator_group.ScanlationGroupResponse",
+    "cover.CoverResponse",
 ]
 """
 id: :class:`str`
 
-type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``]
+type: Literal[``"manga"``, ``"chapter"``, ``"scanlation_group"``, ``"author"``, ``"cover_art"``, ``"artist"``, ``user``]
 
 attributes: Dict[:class:`str`, :class:`str`]
     This key is optional
