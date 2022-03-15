@@ -97,7 +97,7 @@ class _Includes:
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
-        fmt = []
+        fmt: list[str] = []
         for item in dir(self):
             if item.startswith("_"):
                 continue
@@ -194,7 +194,7 @@ class FeedOrderQuery(_OrderQuery):
     __slots__ = (
         "created_at",
         "updated_at",
-        "published_at",
+        "publish_at",  # I hate this too.
         "readable_at",
         "volume",
         "chapter",
@@ -202,7 +202,7 @@ class FeedOrderQuery(_OrderQuery):
 
     created_at: Optional[Order]
     updated_at: Optional[Order]
-    published_at: Optional[Order]
+    publish_at: Optional[Order]
     readable_at: Optional[Order]
     volume: Optional[Order]
     chapter: Optional[Order]
