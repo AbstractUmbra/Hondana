@@ -136,8 +136,10 @@ Examples
 ---------
 A localised string: ::
 
-    {"en": "An english string"}
-    {"fr": "Une corde française"}
+    {
+        "en": "An english string",
+        "fr": "Une corde française"
+    }
 
 """
 LocalisedString = LocalizedString
