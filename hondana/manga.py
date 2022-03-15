@@ -163,7 +163,7 @@ class Manga:
         self._description: LocalisedString = self._attributes["description"] or {}
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
-        self.alternate_titles: list[LocalisedString] = self._attributes["altTitles"]
+        self.alternate_titles: LocalisedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore - this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
