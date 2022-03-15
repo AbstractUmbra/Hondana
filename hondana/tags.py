@@ -90,7 +90,7 @@ class Tag:
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
         self.type: Literal["tag"] = "tag"
-        self.description: list[LocalisedString] = self._attributes["description"]
+        self.description: LocalisedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore - this breaks pylance but pyright is happy. TODO: check a later version.
         self.group: str = self._attributes["group"]
         self.version: int = self._attributes["version"]
 
