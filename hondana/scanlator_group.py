@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Optional, Union
 
 from .relationship import Relationship
 from .user import User
-from .utils import MISSING, cached_slot_property, require_authentication
+from .utils import MISSING, cached_slot_property, iso_to_delta, require_authentication
 
 
 if TYPE_CHECKING:
@@ -75,6 +75,10 @@ class ScanlatorGroup:
         If this scanlator group is considered 'locked' or not.
     official: :class:`bool`
         Whether the group is official or not.
+    verified: :class:`bool`
+        Whether this group is verified or not.
+    inactive: :class:`bool`
+        Whether this group is inactive or not.
     version: :class:`int`
         The version revision of this scanlator group.
     """
@@ -99,9 +103,11 @@ class ScanlatorGroup:
         "locked",
         "official",
         "verified",
+        "inactive",
         "version",
         "_created_at",
         "_updated_at",
+        "_publish_delay",
         "_cs_relationships",
     )
 
@@ -125,9 +131,11 @@ class ScanlatorGroup:
         self.locked: bool = self._attributes.get("locked", False)
         self.official: bool = self._attributes["official"]
         self.verified: bool = self._attributes["verified"]
+        self.inactive: bool = self._attributes["inactive"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
+        self._publish_delay: str = self._attributes["publishDelay"]
 
     def __repr__(self) -> str:
         return f"<ScanlatorGroup id='{self.id}' name='{self.name}'>"
@@ -176,7 +184,7 @@ class ScanlatorGroup:
 
     @cached_slot_property("_cs_relationships")
     def relationships(self) -> list[Relationship]:
-        """The relationships of this Artist.
+        """The relationships of this Scanlator Group.
 
         Returns
         --------
@@ -184,6 +192,17 @@ class ScanlatorGroup:
             The list of relationships this artist has.
         """
         return [Relationship(item) for item in self._relationships]
+
+    @property
+    def publish_delay(self) -> datetime.timedelta:
+        """The publish delay of this scanlation group.
+
+        Returns
+        --------
+        :class:`datetime.timedelta`
+            The default timedelta offset at which this group releases their chapters.
+        """
+        return iso_to_delta(self._publish_delay)
 
     async def get_leader(self) -> Optional[User]:
         """|coro|

@@ -69,6 +69,10 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     verified: :class:`bool`
 
+    inactive: :class:`bool`
+
+    publishDelay: :class:`str`
+
     version: :class:`int`
 
     createdAt: :class:`str`
@@ -90,6 +94,8 @@ class ScanlationGroupAttributesResponse(TypedDict):
     locked: bool
     official: bool
     verified: bool
+    inactive: bool
+    publishDelay: str
     version: int
     createdAt: str
     updatedAt: str

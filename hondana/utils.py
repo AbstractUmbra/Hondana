@@ -80,6 +80,7 @@ __all__ = (
     "get_image_mime_type",
     "as_chunks",
     "delta_to_iso",
+    "iso_to_delta",
     "MANGA_TAGS",
 )
 
@@ -89,7 +90,7 @@ MANGADEX_URL_REGEX = re.compile(
     r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
 )
 MANGADEX_TIME_REGEX = re.compile(
-    r"^(P([1-9]|[1-9][0-9])D)?(P?([1-9])W)?(P?T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"
+    r"^(P(?P<days>[1-9]|[1-9][0-9])D)?(P?(?P<weeks>[1-9])W)?(P?T((?P<hours>[1-9]|1[0-9]|2[0-4])H)?((?P<minutes>[1-9]|[1-5][0-9]|60)M)?((?P<seconds>[1-9]|[1-5][0-9]|60)S)?)?$"
 )
 """
 ``r"^(P([1-9]|[1-9][0-9])D)?(P?([1-9])W)?(P?T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"``
@@ -373,6 +374,17 @@ def delta_to_iso(delta: datetime.timedelta) -> str:
         builder += f"{seconds}S"
 
     return builder
+
+
+def iso_to_delta(iso: str) -> datetime.timedelta:
+    match = MANGADEX_TIME_REGEX.fullmatch(iso)
+    if match is None:
+        raise TypeError("The passed string does not match the regex pattern.")
+
+    match_dict = match.groupdict()
+
+    times: dict[str, float] = {key: float(value) for key, value in match_dict.items() if value}
+    return datetime.timedelta(**times)
 
 
 _path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
