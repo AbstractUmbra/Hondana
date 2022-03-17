@@ -17,3 +17,4 @@ _api*.yaml
 _testing/
 .hondana-refresh-token
 poetry.lock
+docker-compose.yml
