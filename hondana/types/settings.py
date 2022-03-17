@@ -27,6 +27,9 @@ from __future__ import annotations
 from typing import Literal, TypedDict
 
 
+__all__ = ("Settings", "SettingsPayload")
+
+
 class Settings(TypedDict):
     """
     This object is currently not documented.

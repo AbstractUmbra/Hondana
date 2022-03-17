@@ -49,7 +49,8 @@ Please take a look at the [examples](./examples/) directory for working examples
 - The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags`
   - I have added [an example](./examples/updating_local_tags.py) on how to do the above.
   - To use these tags, you can see an example [here](./examples/search_manga.py#L17-L22).
-  - [Settings related endpoints](https://api.mangadex.org/docs.html#operation/get-settings-template) are not currently exposed. I have implemeted their documented use but I do not expect them to currently function.
+- [Settings related endpoints](https://api.mangadex.org/docs.html#operation/get-settings-template) are not currently exposed. I have implemeted their documented use but I do not expect them to currently function.
+  - Once this is exposed fully I will implement a richer interface.
 
 ### Contributing
 If you would like to contribute to Hondana, please take a look at [the contributing guidelines](./.github/CONTRIBUTING.md) and follow the procedure there.

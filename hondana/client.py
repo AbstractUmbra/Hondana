@@ -3880,7 +3880,7 @@ class Client:
 
         Parameters
         -----------
-        template: :class:~hondana.types.Settings`
+        template: :class:`~hondana.types.Settings`
             The template to create.
 
         Raises
