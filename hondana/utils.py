@@ -256,7 +256,7 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
         new_offset = MAX_DEPTH - new_limit
         return new_limit, new_offset
 
-    new_limit = min(max(1, limit), max_limit)
+    new_limit = min(max(0, limit), max_limit)
     new_offset = min(max(0, offset), MAX_DEPTH - new_limit)
 
     return new_limit, new_offset
