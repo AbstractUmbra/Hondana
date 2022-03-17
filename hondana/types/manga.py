@@ -67,22 +67,34 @@ class MangaLinks(TypedDict, total=False):
 
 
     al: Optional[:class:`str`]
+        anilist key
 
     ap: Optional[:class:`str`]
+        animeplanet key
 
     bw: Optional[:class:`str`]
+        bookwalker.jp key
 
     mu: Optional[:class:`str`]
+        mangaupdates key
 
     nu: Optional[:class:`str`]
+        novelupdates key
 
     kt: Optional[:class:`str`]
+        kitsu.io key
 
     amz: Optional[:class:`str`]
+        amazon key
 
     ebj: Optional[:class:`str`]
+        ebookjapan key
 
     mal: Optional[:class:`str`]
+        myanimelist key
+
+    cdj: Optional[:class:`str`]
+        cdjapan key
 
     raw: Optional[:class:`str`]
 
@@ -98,6 +110,7 @@ class MangaLinks(TypedDict, total=False):
     amz: Optional[str]
     ebj: Optional[str]
     mal: Optional[str]
+    cdj: Optional[str]
     raw: Optional[str]
     engtl: Optional[str]
 
