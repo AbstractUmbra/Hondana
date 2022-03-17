@@ -135,7 +135,7 @@ class MangaAttributesResponse(TypedDict):
 
     publicationDemographic: Optional[:class:`~hondana.PublicationDemographic`]
 
-    status: Optional[:class:`~hondana.MangaStatus`]
+    status: :class:`~hondana.MangaStatus`
 
     year: Optional[:class:`int`]
 
@@ -168,7 +168,7 @@ class MangaAttributesResponse(TypedDict):
     lastVolume: Optional[str]
     lastChapter: Optional[str]
     publicationDemographic: Optional[_PublicationDemographic]
-    status: Optional[_MangaStatus]
+    status: _MangaStatus
     year: Optional[int]
     contentRating: Optional[_ContentRating]
     chapterNumbersResetOnNewVolume: bool
