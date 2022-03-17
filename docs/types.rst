@@ -161,6 +161,11 @@ Scanlator Group
 
 .. autoclass:: GetMultiScanlationGroupResponse
 
+Settings
+--------
+.. autoclass:: Settings
+
+.. autoclass:: SettingsPayload
 
 Statistics
 ----------

@@ -117,6 +117,7 @@ if TYPE_CHECKING:
     )
     from .types.account import GetAccountAvailable
     from .types.auth import CheckPayload
+    from .types.settings import Settings, SettingsPayload
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
     from .utils import CustomRoute
@@ -2105,3 +2106,32 @@ class HTTPClient:
         route = Route("DELETE", "/upload/{session_id}", session_id=session_id)
 
         return self.request(route)
+
+    def _get_latest_settings_template(self) -> Response[dict[str, Any]]:
+        route = Route("GET", "/settings/template")
+
+        return self.request(route)
+
+    def _create_settings_template(self, payload: Settings) -> Response[dict[str, Any]]:
+        route = Route("POST", "/settings/template")
+
+        return self.request(route, json=payload)
+
+    def _get_specific_template_version(self, version: str) -> Response[dict[str, Any]]:
+        route = Route("GET", "/settings/template/{version}", version=version)
+
+        return self.request(route)
+
+    def _get_user_settings(self) -> Response[SettingsPayload]:
+        route = Route("GET", "/settings")
+
+        return self.request(route)
+
+    def _upsert_user_settings(self, settings: Settings, updated_at: datetime.datetime) -> Response[SettingsPayload]:
+        route = Route("POST", "/settings")
+
+        query: dict[str, Any] = {}
+        query["settings"] = settings
+        query["updatedAt"] = updated_at.isoformat()
+
+        return self.request(route, json=query)

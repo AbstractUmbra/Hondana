@@ -24,23 +24,31 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from .account import *
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .settings import *
-from .statistics import *
-from .tags import *
-from .token import *
-from .upload import *
-from .user import *
+from typing import Literal, TypedDict
+
+
+class Settings(TypedDict):
+    """
+    This object is currently not documented.
+    """
+
+    ...
+
+
+class SettingsPayload(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    updatedAt: :class:`str`
+        Represents an ISO-8601 datetime.
+
+    settings: :class:`~hondana.types.Settings`
+
+    template: :class:`str`
+        UUID of the template.
+    """
+
+    result: Literal["ok", "error"]
+    updatedAt: str
+    settings: Settings
+    template: str

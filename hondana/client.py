@@ -28,7 +28,7 @@ import json
 import pathlib
 from base64 import b64decode
 from os import PathLike
-from typing import TYPE_CHECKING, Literal, Optional, Union, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
 from aiohttp import ClientSession
 
@@ -93,6 +93,7 @@ from .utils import MISSING, require_authentication
 if TYPE_CHECKING:
     from .tags import QueryTags
     from .types import common, legacy, manga
+    from .types.settings import Settings, SettingsPayload
     from .types.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -3854,3 +3855,129 @@ class Client:
             new_chapter = await session.commit()
 
         return new_chapter
+
+    @require_authentication
+    async def get_latest_settings_template(self) -> dict[str, Any]:
+        """|coro|
+
+        This method will return the json object of the latest settings template.
+
+        Currently there is no formatting done on this key as the api has no documented it.
+
+        Returns
+        --------
+        Dict[:class:`str`, :class:`Any`]
+            The settings template.
+        """
+
+        return await self._http._get_latest_settings_template()
+
+    @require_authentication
+    async def create_settings_template(self, template: Settings) -> dict[str, Any]:
+        """|coro|
+
+        This method will create a settings template within the API.
+
+        Parameters
+        -----------
+        template: :class:~hondana.types.Settings`
+            The template to create.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request failed due to authentication issues.
+
+        Returns
+        --------
+        Dict[:class:`str`, :class:`Any`]
+            The created settings payload.
+        """
+
+        data = await self._http._create_settings_template(template)
+
+        return data
+
+    @require_authentication
+    async def get_specific_template_version(self, version: str) -> dict[str, Any]:
+        """|coro|
+
+        This method will return a specific setting template version.
+
+        Parameters
+        -----------
+        version: :class:`str`
+            The UUID relating to the specified template.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request failed due to authentication issues.
+        :exc:`NotFound`
+            The specified template was not found.
+
+        Returns
+        --------
+        Dict[:class:`str`, :class:`Any`]
+            The returned settings template.
+        """
+
+        data = await self._http._get_specific_template_version(version)
+
+        return data
+
+    @require_authentication
+    async def get_my_settings(self) -> SettingsPayload:
+        """|coro|
+
+        This method will return the current logged in user's settings.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request failed due to authentication issues.
+        :exc:`NotFound`
+            The logged in user's settings were not found.
+
+        Returns
+        --------
+        :class:`hondana.types.SettingsPayload`
+            The user's settings.
+        """
+        data = await self._http._get_user_settings()
+
+        return data
+
+    @require_authentication
+    async def upsert_user_settings(
+        self, payload: Settings, updated_at: Optional[datetime.datetime] = None
+    ) -> SettingsPayload:
+        """|coro|
+
+        This method will update or create user settings based on a formatted settings templates.
+
+        Parameters
+        -----------
+        payload: :class:`hondana.types.Settings`
+            A payload representing the settings.
+        updated_at: :class:`datetime.datetime`
+            The datetime at which you updated the settings.
+            Defaults to a UTC datetime for "now".
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request failed due to authentication issues.
+        :exc:`NotFound`
+            The logged in user's settings were not found.
+
+        Returns
+        --------
+        :class:`~hondana.types.SettingsPayload`
+            The returned (and created) payload.
+        """
+
+        time = updated_at or datetime.datetime.now(datetime.timezone.utc)
+        data = await self._http._upsert_user_settings(payload, updated_at=time)
+
+        return data
