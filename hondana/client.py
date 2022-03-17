@@ -355,6 +355,29 @@ class Client:
 
         return await self._http._close()
 
+    async def check_username_available(self, username: str) -> bool:
+        """|coro|
+
+        This method will check if the username supplied is available for use on MangaDex.
+
+        Parameters
+        -----------
+        username: :class:`str`
+            The username to check for.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request failed due to authorization.
+
+        Returns
+        --------
+        :class:`bool`
+            If the username is available or not.
+        """
+        data = await self._http._account_available(username)
+        return data["available"]
+
     async def update_tags(self) -> dict[str, str]:
         """|coro|
 

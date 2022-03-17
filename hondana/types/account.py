@@ -24,22 +24,15 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from .account import *
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .statistics import *
-from .tags import *
-from .token import *
-from .upload import *
-from .user import *
+from typing import TypedDict
+
+
+__all__ = ("GetAccountAvailable",)
+
+
+class GetAccountAvailable(TypedDict):
+    """
+    available: :class:`bool`
+    """
+
+    available: bool

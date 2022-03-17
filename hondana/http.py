@@ -115,6 +115,7 @@ if TYPE_CHECKING:
         upload,
         user,
     )
+    from .types.account import GetAccountAvailable
     from .types.auth import CheckPayload
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
@@ -532,6 +533,10 @@ class HTTPClient:
                 raise APIException(response, status_code=response.status, errors=[])
 
             raise RuntimeError("Unreachable code in HTTP handling.")
+
+    def _account_available(self, username: str) -> Response[GetAccountAvailable]:
+        route = Route("GET", "/account/available/{username}", username=username)
+        return self.request(route)
 
     def _update_tags(self) -> Response[GetTagListResponse]:
         route = Route("GET", "/manga/tag")
