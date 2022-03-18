@@ -54,7 +54,7 @@ class TestUtils:
         ],
     )
     def test_as_chunks(self, source: Iterable[T], chunk_size: int, chunked: Iterable[Iterable[T]]):
-        assert [x for x in as_chunks(source, chunk_size)] == chunked
+        assert list(as_chunks(source, chunk_size)) == chunked
 
     @pytest.mark.parametrize(
         ("limit", "offset", "max_limit", "output"),
@@ -142,9 +142,6 @@ class TestUtils:
         ],
     )
     def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]]):
-        ret: list[RelationshipResponse] = []
-        for item in relationship_finder(input, "test"):  # type: ignore - narrow needed but this is a test so...
-            if item["type"] == "test":
-                ret.append(item)
+        ret: list[RelationshipResponse] = [item for item in relationship_finder(input, "test") if item["type"] == "test"]
 
         assert ret == output

@@ -32,15 +32,15 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 aiohttp = "^3.7.4"
-aiofiles = "^0.7.0"
+aiofiles = "^0.8.0"
 sphinx = { version = "^4.0.0", optional = true }
 sphinxcontrib-trio = { version = "*", optional = true }
 furo = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
-black = "^21.6b0"
-poethepoet = "^0.11.0"
-pytest = "^7.0.1"
+black = "*"
+poethepoet = "*"
+pytest = "*"
 
 [tool.poetry.extras]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
@@ -60,6 +60,7 @@ lines_after_imports = 2
 
 [tool.pyright]
 ignore = ["docs/conf.py"]
+exclude = ["tests/"]
 useLibraryCodeForTypes = true
 pythonVersion = "3.9"
 strictListInference = true

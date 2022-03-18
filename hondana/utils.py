@@ -311,7 +311,7 @@ def get_image_mime_type(data: bytes) -> str:
     """Returns the image type from the first few bytes."""
     if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
         return "image/png"
-    elif data[0:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
+    elif data[:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
         return "image/jpeg"
     elif data.startswith((b"\x47\x49\x46\x38\x37\x61", b"\x47\x49\x46\x38\x39\x61")):
         return "image/gif"
@@ -380,8 +380,8 @@ def delta_to_iso(delta: datetime.timedelta) -> str:
 
 
 def iso_to_delta(iso: str) -> datetime.timedelta:
-    match = MANGADEX_TIME_REGEX.fullmatch(iso)
-    if match is None:
+
+    if (match := MANGADEX_TIME_REGEX.fullmatch(iso)) is None:
         raise TypeError("The passed string does not match the regex pattern.")
 
     match_dict = match.groupdict()
@@ -391,12 +391,7 @@ def iso_to_delta(iso: str) -> datetime.timedelta:
 
 
 def relationship_finder(relationships: list[RelationshipResponse], relationship_type: str) -> list[RelationshipResponse]:
-    ret: list[RelationshipResponse] = []
-    for rel_resp in relationships:
-        if rel_resp["type"] == relationship_type:
-            ret.append(rel_resp)
-
-    return ret
+    return [rel_resp for rel_resp in relationships if rel_resp["type"] == relationship_type]
 
 
 _path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"

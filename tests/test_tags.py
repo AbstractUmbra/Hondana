@@ -39,8 +39,7 @@ class TestTags:
 
         raw_tags: list[str] = []
         for item in PAYLOAD["data"]["attributes"]["tags"]:
-            for sub_key in item["attributes"]["name"].values():
-                raw_tags.append(str(sub_key))
+            raw_tags.extend(str(sub_key) for sub_key in item["attributes"]["name"].values())
 
         for tag, raw_tag in zip(
             sorted(tags, key=lambda t: t.name),

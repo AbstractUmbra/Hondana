@@ -48,9 +48,7 @@ class TestCustomList:
     def test_relationships(self):
         custom_list = clone_custom_list()
 
-        ret: list[Relationship] = []
-        for relationship in deepcopy(custom_list._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(custom_list._relationships)]
 
         assert len(custom_list.relationships) == len(ret)
 

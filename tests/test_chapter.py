@@ -45,8 +45,7 @@ class TestChapter:
     def test_sub_relationship_create(self):
         ret: list[Relationship] = []
         chapter = clone_chapter()
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret.extend(Relationship(relationship) for relationship in deepcopy(chapter._relationships))
 
         assert len(ret) == len(chapter.relationships)
 
@@ -64,10 +63,7 @@ class TestChapter:
 
     def test_manga_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
 
         ret = [r for r in ret if r.type == "manga"]
 
@@ -82,10 +78,7 @@ class TestChapter:
 
     def test_scanlator_groups_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
 
         ret = [r for r in ret if r.type == "scanlation_group"]
 

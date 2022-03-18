@@ -160,8 +160,7 @@ class APIException(Exception):
         self.response_id: str = response.headers["x-request-id"]
         self._errors: list[ErrorType] = errors
         self.errors: list[Error] = []
-        for item in self._errors:
-            self.errors.append(Error(item))
+        self.errors.extend(Error(item) for item in self._errors)
         super().__init__(self.status_code, self.errors)
 
     def __repr__(self) -> str:

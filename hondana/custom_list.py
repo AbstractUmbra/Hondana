@@ -127,11 +127,10 @@ class CustomList:
         if not self._relationships:
             return None
 
-        owner_key = None
-        for relationship in self._relationships:
-            if relationship["type"] == "user":
-                owner_key = relationship
-                break
+        owner_key = next(
+            (relationship for relationship in self._relationships if relationship["type"] == "user"),
+            None,
+        )
 
         if owner_key is None:
             return None
@@ -162,11 +161,10 @@ class CustomList:
         if not self._relationships:
             return
 
-        owner_key = None
-        for relationship in self._relationships:
-            if relationship["type"] == "user":
-                owner_key = relationship
-                break
+        owner_key = next(
+            (relationship for relationship in self._relationships if relationship["type"] == "user"),
+            None,
+        )
 
         if owner_key is None:
             return None

@@ -51,8 +51,6 @@ class Tag:
     -----------
     id: :class:`str`
         The UUID associated with this tag.
-    type: Literal[:class:`str`]
-        The type of the object, literally "tag".
     description: List[:class:`~hondana.types.LocalisedString`]
         The description(s) of the tag.
     group: :class:`str`

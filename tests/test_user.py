@@ -44,10 +44,7 @@ class TestUser:
 
     def test_sub_relationship_create(self):
         user = clone_user()
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(user._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(user._relationships)]
 
         assert len(ret) == len(user.relationships)
 

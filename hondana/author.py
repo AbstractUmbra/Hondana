@@ -213,10 +213,7 @@ class Author:
         if not self._relationships:
             return None
 
-        manga_: list[MangaResponse] = []
-        for item in self._relationships:
-            if item["type"] == "manga":
-                manga_.append(item)
+        manga_: list[MangaResponse] = [item for item in self._relationships if item["type"] == "manga"]
 
         if not manga_:
             return None
@@ -224,9 +221,7 @@ class Author:
         formatted: list[Manga] = []
         from .manga import Manga
 
-        for item in manga_:
-            if "attributes" in item:
-                formatted.append(Manga(self._http, item))
+        formatted.extend(Manga(self._http, item) for item in manga_ if "attributes" in item)
 
         if not formatted:
             return
@@ -236,12 +231,7 @@ class Author:
 
     @manga.setter
     def manga(self, value: list[Manga]) -> None:
-        fmt = []
-        for item in value:
-            if isinstance(item, Manga):
-                fmt.append(item)
-
-        self.__manga = fmt
+        self.__manga = [item for item in value if isinstance(item, Manga)]
 
     async def get_manga(self) -> Optional[list[Manga]]:
         """|coro|
@@ -259,10 +249,7 @@ class Author:
         if not self._relationships:
             return
 
-        manga_relationships: list[MangaResponse] = []
-        for item in self._relationships:
-            if item["type"] == "manga":
-                manga_relationships.append(item)
+        manga_relationships: list[MangaResponse] = [item for item in self._relationships if item["type"] == "manga"]
 
         if not manga_relationships:
             return

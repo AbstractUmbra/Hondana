@@ -33,16 +33,15 @@ import hondana
 
 
 def show_version() -> None:
-    entries: list[str] = []
 
     version_info = sys.version_info
-    entries.append(f"- Python v{version_info.major}.{version_info.minor}.{version_info.micro}-{version_info.releaselevel}")
-
     md_version_info = hondana.version_info
-    entries.append(
+
+    entries: list[str] = [
+        f"- Python v{version_info.major}.{version_info.minor}.{version_info.micro}-{version_info.releaselevel}",
         f"- Hondana v{md_version_info.major}.{md_version_info.minor}."
-        f"{md_version_info.micro}-{md_version_info.releaselevel}"
-    )
+        f"{md_version_info.micro}-{md_version_info.releaselevel}",
+    ]
 
     if md_version_info.releaselevel != "final":
         try:

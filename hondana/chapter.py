@@ -285,11 +285,10 @@ class Chapter:
         if not self._relationships:
             return
 
-        resolved = None
-        for relationship in self._relationships:
-            if relationship["type"] == "manga":
-                resolved = relationship
-                break
+        resolved = next(
+            (relationship for relationship in self._relationships if relationship["type"] == "manga"),
+            None,
+        )
 
         if resolved is None or not resolved.get("attributes"):
             return
@@ -339,15 +338,11 @@ class Chapter:
         if not self._relationships:
             return
 
-        resolved: list[ScanlationGroupResponse] = []
-        for relationship in self._relationships:
-            if relationship["type"] == "scanlation_group":
-                resolved.append(relationship)
+        resolved: list[ScanlationGroupResponse] = [
+            relationship for relationship in self._relationships if relationship["type"] == "scanlation_group"
+        ]
 
-        fmt = []
-        for payload in resolved:
-            if payload.get("attributes"):
-                fmt.append(ScanlatorGroup(self._http, payload))
+        fmt = [ScanlatorGroup(self._http, payload) for payload in resolved if payload.get("attributes")]
 
         if not fmt:
             return
@@ -401,11 +396,10 @@ class Chapter:
         if not self._relationships:
             return
 
-        manga_id = None
-        for relationship in self._relationships:
-            if relationship["type"] == "manga":
-                manga_id = relationship["id"]
-                break
+        manga_id = next(
+            (relationship["id"] for relationship in self._relationships if relationship["type"] == "manga"),
+            None,
+        )
 
         if manga_id is None:
             return
@@ -432,10 +426,9 @@ class Chapter:
         if not self._relationships:
             return
 
-        resolved: list[ScanlationGroupResponse] = []
-        for relationship in self._relationships:
-            if relationship["type"] == "scanlation_group":
-                resolved.append(relationship)
+        resolved: list[ScanlationGroupResponse] = [
+            relationship for relationship in self._relationships if relationship["type"] == "scanlation_group"
+        ]
 
         if not resolved:
             return
@@ -764,11 +757,7 @@ class ChapterUpload:
         --------
         :class:`~hondana.types.BeginChapterUploadResponse`
         """
-        if isinstance(self.manga, Manga):
-            manga_id = self.manga.id
-        else:
-            manga_id = self.manga
-
+        manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
         return await self._http._open_upload_session(manga_id, scanlator_groups=self.scanlator_groups)
 
     @require_authentication

@@ -120,7 +120,6 @@ if TYPE_CHECKING:
     from .types.settings import Settings, SettingsPayload
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
-    from .utils import CustomRoute
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -266,15 +265,15 @@ class HTTPClient:
         self._refresh_token = refresh_token
         return token
 
-    def _get_expiry(self, token: str) -> datetime.datetime:
+    @staticmethod
+    def _get_expiry(token: str) -> datetime.datetime:
         payload = token.split(".")[1]
         padding = len(payload) % 4
         payload = b64decode(payload + "=" * padding)
         data: TokenPayload = json.loads(payload)
         timestamp = data["exp"]
 
-        expires = datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
-        return expires
+        return datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
 
     async def _perform_token_refresh(self) -> None:
         """|coro|
@@ -2096,10 +2095,7 @@ class HTTPClient:
     ) -> Response[upload.BeginChapterUploadResponse]:
         route = Route("POST", "/upload/begin")
 
-        query: dict[str, Any] = {}
-        query["manga"] = manga_id
-        query["groups"] = scanlator_groups
-
+        query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
         return self.request(route, json=query)
 
     def _abandon_upload_session(self, session_id: str, /) -> Response[None]:
@@ -2130,8 +2126,9 @@ class HTTPClient:
     def _upsert_user_settings(self, settings: Settings, updated_at: datetime.datetime) -> Response[SettingsPayload]:
         route = Route("POST", "/settings")
 
-        query: dict[str, Any] = {}
-        query["settings"] = settings
-        query["updatedAt"] = updated_at.isoformat()
+        query: dict[str, Any] = {
+            "settings": settings,
+            "updatedAt": updated_at.isoformat(),
+        }
 
         return self.request(route, json=query)

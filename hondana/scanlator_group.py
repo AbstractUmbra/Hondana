@@ -226,11 +226,10 @@ class ScanlatorGroup:
         if not self._relationships:
             return
 
-        leader_key = None
-        for relationship in self._relationships:
-            if relationship["type"] == "leader":
-                leader_key = relationship
-                break
+        leader_key = next(
+            (relationship for relationship in self._relationships if relationship["type"] == "leader"),
+            None,
+        )
 
         if leader_key is None:
             return
@@ -269,19 +268,14 @@ class ScanlatorGroup:
         if not self._relationships:
             return
 
-        members: list[User] = []
-        _keys: list[UserResponse] = []
-
-        for relationship in self._relationships:
-            if relationship["type"] == "member":
-                _keys.append(relationship)
+        _keys: list[UserResponse] = [
+            relationship for relationship in self._relationships if relationship["type"] == "member"
+        ]
 
         if not _keys:
             return None
 
-        for key in _keys:
-            if "attributes" in key:
-                members.append(User(self._http, key))
+        members: list[User] = [User(self._http, key) for key in _keys if "attributes" in key]
 
         if members:
             return members

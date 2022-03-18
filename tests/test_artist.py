@@ -43,8 +43,7 @@ class TestArtist:
     def test_sub_relationship_creation(self):
         ret: list[Relationship] = []
         artist = clone_artist()
-        for relationship in artist._relationships:
-            ret.append(Relationship(relationship))
+        ret.extend(Relationship(relationship) for relationship in artist._relationships)
 
         assert len(ret) == len(artist.relationships)
 

@@ -153,11 +153,10 @@ class Cover:
         if parent_id is not None:
             parent_manga_id = parent_id
         else:
-            parent_manga = None
-            for item in self._relationships:
-                if item["type"] == "manga":
-                    parent_manga = item
-                    break
+            parent_manga = next(
+                (item for item in self._relationships if item["type"] == "manga"),
+                None,
+            )
 
             if parent_manga is None:
                 return
