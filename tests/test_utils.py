@@ -5,6 +5,7 @@ from typing import Iterable, Mapping, Optional, TypeVar, Union
 
 import pytest
 
+from hondana.types.relationship import RelationshipResponse
 from hondana.utils import (
     MISSING,
     CustomRoute,
@@ -14,6 +15,7 @@ from hondana.utils import (
     delta_to_iso,
     iso_to_delta,
     php_query_builder,
+    relationship_finder,
     to_camel_case,
     to_snake_case,
 )
@@ -124,3 +126,25 @@ class TestUtils:
     )
     def test_to_snake_case(self, input: str, output: str):
         assert to_snake_case(input) == output
+
+    @pytest.mark.parametrize(
+        ("input", "output"),
+        [
+            ([{"type": "test", "hello": "goodbye"}], [{"type": "test", "hello": "goodbye"}]),
+            (
+                [{"type": "bleh", "hello": "goodbye"}, {"type": "test", "hello": "hello"}],
+                [{"type": "test", "hello": "hello"}],
+            ),
+            (
+                [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
+                [{"type": "test", "pass": "mark", "something": "anything"}],
+            ),
+        ],
+    )
+    def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]]):
+        ret: list[RelationshipResponse] = []
+        for item in relationship_finder(input, "test"):  # type: ignore - narrow needed but this is a test so...
+            if item["type"] == "test":
+                ret.append(item)
+
+        assert ret == output
