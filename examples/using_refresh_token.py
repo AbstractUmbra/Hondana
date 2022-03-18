@@ -9,12 +9,12 @@ client = hondana.Client(refresh_token="...")
 
 
 async def main():
-    # We will attempt to login. This will now skip the initial `/auth/login` endpoint and go straight to using your refresh token.
+    # We will attempt to log in. This will now skip the initial `/auth/login` endpoint and go straight to using your refresh token.
     await client.static_login()
 
-    # For convenience I have added the following:
+    # For convenience, I have added the following:
     client.dump_refresh_token(file=True, path=".hondana_refresh", mode="w")
-    # which will dump your refresh token to a file
+    # Which will dump your refresh token to a file
 
     await client.close()
 

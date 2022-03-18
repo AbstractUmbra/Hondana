@@ -84,7 +84,7 @@ class AuthenticationRequired(Exception):
 
 
 class UploadInProgress(Exception):
-    """An exception to be raised when an upload in progress is already found for the logged in user.
+    """An exception to be raised when an upload in progress is already found for the logged-in user.
 
     Attributes
     -----------

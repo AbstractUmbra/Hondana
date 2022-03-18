@@ -608,7 +608,7 @@ class Chapter:
         data_saver: :class:`bool`
             Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to ``False``.
         ssl: :class:`bool`
-            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting a HTTP url.
+            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting an HTTP url.
             Defaults to ``False``.
         report: :class:`bool`
             Whether to report success or failures to MangaDex per page download.

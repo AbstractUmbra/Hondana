@@ -51,7 +51,7 @@ CollectionType = Literal[
     "legacy_mapping",
     "manga",
     "manga_relation",
-    "report",  # not supporedt, needs moderator access
+    "report",  # not supported, needs moderator access
     "scanlator_group",
     "user",  # needs authentication access
     "user_report",  # not supported, needs moderator access

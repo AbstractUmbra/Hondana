@@ -56,7 +56,7 @@ class TestChapter:
 
         assert bool(ret) is True
 
-    def test_cache_slot_propety_relationships(self):
+    def test_cache_slot_property_relationships(self):
         chapter = clone_chapter()
         assert not hasattr(chapter, "_cs_relationships")
         chapter.relationships
@@ -92,7 +92,7 @@ class TestChapter:
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)
 
-    def test_uploader_propert(self):
+    def test_uploader_property(self):
         chapter = clone_chapter()
 
         assert chapter.uploader is not None

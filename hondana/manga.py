@@ -277,19 +277,19 @@ class Manga:
         --------
         :class:`~hondana.types.LocalisedString`
             The raw object from the manga's api response payload.
-            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
+            Provides no formatting on its own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
         return self._description
 
     @property
     def alt_titles(self) -> LocalisedString:
-        """The raw alt_titles attribute from the manga's payloaad from the API.
+        """The raw alt_titles attribute from the manga's payload from the API.
 
         Returns
         --------
         :class:`hondana.types.LocalisedString`
             The raw object from the manga's payload.
-            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.localised_title` instead.
+            Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
         """
         return self.alternate_titles
 

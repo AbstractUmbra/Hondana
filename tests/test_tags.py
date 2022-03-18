@@ -48,7 +48,7 @@ class TestTags:
         ):
             assert tag.name == raw_tag
 
-    def test_tag_relationships(self):  # currently tags have no relationships, but even so.
+    def test_tag_relationships(self):  # currently, tags have no relationships, but even so.
         tags = clone_tags()
 
         tag_rels: list[Relationship] = [r for tag in tags for r in tag.relationships]
@@ -60,7 +60,7 @@ class TestTags:
         for a, b in zip(sorted(tag_rels, key=lambda r: r.id), sorted(raw_rels, key=lambda r: r["id"])):
             assert a == b
 
-    def test_tag_descriptions(self):  # currently tags have no descriptions, but even so.
+    def test_tag_descriptions(self):  # currently, tags have no descriptions, but even so.
         tags = clone_tags()
         raw_tags = PAYLOAD["data"]["attributes"]["tags"]
 

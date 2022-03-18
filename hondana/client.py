@@ -279,7 +279,7 @@ class Client:
     @property
     def permissions(self) -> Optional[Permissions]:
         """
-        This attribute will return a permissions instance for the current logged in user.
+        This attribute will return a permissions instance for the current logged-in user.
 
         You must be authenticated to access this, and logged in.
 
@@ -1214,7 +1214,7 @@ class Client:
     ) -> MangaCollection:
         """|coro|
 
-        This method will return an object containing all the followed manga from the currently logged in user.
+        This method will return an object containing all the followed manga from the currently logged-in user.
 
         Parameters
         -----------
@@ -2586,7 +2586,7 @@ class Client:
         visibility: Optional[:class:`~hondana.CustomListVisibility`]
             The visibility of this custom list.
         manga: Optional[List[:class:`str`]]
-            A list of manga ids to add to this custom list.
+            A list of manga IDs to add to this custom list.
         version: Optional[:class:`int`]
             The version revision of this custom list.
 
@@ -3077,7 +3077,7 @@ class Client:
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
         publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
-            The publish delay to add to all group releases.
+            The publishing delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
 
@@ -3595,7 +3595,7 @@ class Client:
         Parameters
         -----------
         manga_ids: List[:class:`str`]
-            The ids of the manga you wish to fetch your ratings for.
+            The IDs of the manga you wish to fetch your ratings for.
 
         Raises
         -------
@@ -3688,7 +3688,7 @@ class Client:
         Parameters
         -----------
         manga_ids: List[:class:`str`]
-            The list of manga ids to fetch the statistics for.
+            The list of manga IDs to fetch the statistics for.
 
         Returns
         ---------
@@ -3862,7 +3862,7 @@ class Client:
 
         This method will return the json object of the latest settings template.
 
-        Currently there is no formatting done on this key as the api has no documented it.
+        Currently, there is no formatting done on this key as the api has not documented it.
 
         Returns
         --------
@@ -3930,14 +3930,14 @@ class Client:
     async def get_my_settings(self) -> SettingsPayload:
         """|coro|
 
-        This method will return the current logged in user's settings.
+        This method will return the current logged-in user's settings.
 
         Raises
         -------
         :exc:`Forbidden`
             The request failed due to authentication issues.
         :exc:`NotFound`
-            The logged in user's settings were not found.
+            The logged-in user's settings were not found.
 
         Returns
         --------
@@ -3969,7 +3969,7 @@ class Client:
         :exc:`Forbidden`
             The request failed due to authentication issues.
         :exc:`NotFound`
-            The logged in user's settings were not found.
+            The logged-in user's settings were not found.
 
         Returns
         --------

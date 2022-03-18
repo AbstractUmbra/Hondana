@@ -195,7 +195,7 @@ class ScanlatorGroup:
 
     @property
     def publish_delay(self) -> datetime.timedelta:
-        """The publish delay of this scanlation group.
+        """The publishing delay of this scanlation group.
 
         Returns
         --------
@@ -389,7 +389,7 @@ class ScanlatorGroup:
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
         publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
-            The publish delay to add to all group releases.
+            The publishing delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
 
