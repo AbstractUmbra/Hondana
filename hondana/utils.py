@@ -55,6 +55,8 @@ from .errors import AuthenticationRequired
 if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec
 
+    from .types.relationship import RelationshipResponse
+
 
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
@@ -81,6 +83,7 @@ __all__ = (
     "as_chunks",
     "delta_to_iso",
     "iso_to_delta",
+    "relationship_finder",
     "MANGA_TAGS",
 )
 
@@ -385,6 +388,15 @@ def iso_to_delta(iso: str) -> datetime.timedelta:
 
     times: dict[str, float] = {key: float(value) for key, value in match_dict.items() if value}
     return datetime.timedelta(**times)
+
+
+def relationship_finder(relationships: list[RelationshipResponse], relationship_type: str) -> list[RelationshipResponse]:
+    ret: list[RelationshipResponse] = []
+    for rel_resp in relationships:
+        if rel_resp["type"] == relationship_type:
+            ret.append(rel_resp)
+
+    return ret
 
 
 _path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
