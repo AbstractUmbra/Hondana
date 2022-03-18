@@ -44,8 +44,7 @@ class TestAuthor:
     def test_sub_relationship_creation(self):
         ret: list[Relationship] = []
         author = clone_author()
-        for relationship in author._relationships:
-            ret.append(Relationship(relationship))
+        ret.extend(Relationship(relationship) for relationship in author._relationships)
 
         assert len(ret) == len(author.relationships)
 
@@ -53,9 +52,7 @@ class TestAuthor:
         manga: list[Relationship] = []
         author = clone_author()
         rels = deepcopy(author._relationships)
-        for relationship in rels:
-            manga.append(Relationship(relationship))
-
+        manga.extend(Relationship(relationship) for relationship in rels)
         manga = [r for r in manga if r.type == "manga"]
 
         assert author.manga is not None

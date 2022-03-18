@@ -101,8 +101,7 @@ class TestManga:
         if "relationships" not in PAYLOAD["data"]:
             return True
 
-        for relationship in deepcopy(manga._relationships):
-            ret.append(Relationship(relationship))
+        ret.extend(Relationship(relationship) for relationship in deepcopy(manga._relationships))
 
         assert len(ret) == len(PAYLOAD["data"]["relationships"])
 
@@ -120,10 +119,7 @@ class TestManga:
 
     def test_artists_property(self):
         manga = clone_manga("manga")
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(manga._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(manga._relationships)]
 
         ret = [r for r in ret if r.type == "artist"]
 
@@ -132,10 +128,7 @@ class TestManga:
 
     def test_authors_property(self):
         manga = clone_manga("manga")
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(manga._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(manga._relationships)]
 
         ret = [r for r in ret if r.type == "author"]
 
@@ -149,11 +142,11 @@ class TestManga:
 
         assert "relationships" in PAYLOAD["data"]
 
-        cover_key = None
-        for key in PAYLOAD["data"]["relationships"]:
-            if key["type"] == "cover_art":
-                cover_key = key
-                break
+        cover_key = next(
+            (key for key in PAYLOAD["data"]["relationships"] if key["type"] == "cover_art"),
+            None,
+        )
+
         assert cover_key is not None
 
         assert manga.cover.id == cover_key["id"]
@@ -174,12 +167,9 @@ class TestManga:
 
         assert "relationships" in PAYLOAD["data"]
 
-        related_keys = []
-        for key in PAYLOAD["data"]["relationships"]:
-            if key["type"] == "manga":
-                related_keys.append(key)
+        related_keys = [key for key in PAYLOAD["data"]["relationships"] if key["type"] == "manga"]
 
-        assert bool(related_keys) is True
+        assert bool(related_keys)
 
         assert len(manga.related_manga) == len(related_keys)
 
@@ -202,8 +192,6 @@ class TestManga:
         manga = clone_manga("manga")
 
         for key, value in manga._description.items():
-            print(key)
-            print(value)
             assert manga.localized_description(key) == value  # type: ignore - can't narrow strings
 
 

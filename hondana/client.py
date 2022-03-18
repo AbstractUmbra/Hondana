@@ -279,7 +279,7 @@ class Client:
     @property
     def permissions(self) -> Optional[Permissions]:
         """
-        This attribute will return a permissions instance for the current logged in user.
+        This attribute will return a permissions instance for the current logged-in user.
 
         You must be authenticated to access this, and logged in.
 
@@ -395,7 +395,7 @@ class Client:
         tags = await self.get_tags()
 
         pre_fmt = {tag.name: tag.id for tag in tags}
-        fmt = {tag: item for tag, item in sorted(pre_fmt.items(), key=lambda t: t[0])}
+        fmt = dict(sorted(pre_fmt.items(), key=lambda t: t[0]))
 
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
         with open(path, "w") as fp:
@@ -512,12 +512,11 @@ class Client:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     async def manga_list(
         self,
@@ -646,12 +645,11 @@ class Client:
 
             manga.extend([Manga(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = MangaCollection(self._http, data, manga)
-        return feed
+        return MangaCollection(self._http, data, manga)
 
     @require_authentication
     async def create_manga(
@@ -1125,12 +1123,11 @@ class Client:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def manga_read_markers(
@@ -1214,7 +1211,7 @@ class Client:
     ) -> MangaCollection:
         """|coro|
 
-        This method will return an object containing all the followed manga from the currently logged in user.
+        This method will return an object containing all the followed manga from the currently logged-in user.
 
         Parameters
         -----------
@@ -1241,13 +1238,11 @@ class Client:
             data = await self._http._get_user_followed_manga(limit=inner_limit, offset=offset, includes=includes)
             manga.extend([Manga(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = MangaCollection(self._http, data, manga)
-
-        return collection
+        return MangaCollection(self._http, data, manga)
 
     @require_authentication
     async def get_all_manga_reading_status(
@@ -1540,7 +1535,7 @@ class Client:
         volume: Optional[Union[str, list[str]]] = None,
         chapter: Optional[Union[str, list[str]]] = None,
         translated_language: Optional[list[common.LanguageCode]] = None,
-        excluded_language: Optional[list[common.LanguageCode]] = None,
+        original_language: Optional[list[common.LanguageCode]] = None,
         excluded_original_language: Optional[list[common.LanguageCode]] = None,
         content_rating: Optional[list[ContentRating]] = None,
         excluded_groups: Optional[list[str]] = None,
@@ -1637,7 +1632,7 @@ class Client:
                 volume=volume,
                 chapter=chapter,
                 translated_language=translated_language,
-                original_language=excluded_language,
+                original_language=original_language,
                 excluded_original_language=excluded_original_language,
                 content_rating=content_rating,
                 excluded_groups=excluded_groups,
@@ -1652,12 +1647,11 @@ class Client:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     async def get_chapter(
         self,
@@ -1865,12 +1859,11 @@ class Client:
 
             covers.extend([Cover(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = CoverCollection(self._http, data, covers)
-        return collection
+        return CoverCollection(self._http, data, covers)
 
     @require_authentication
     async def upload_cover(
@@ -2071,13 +2064,11 @@ class Client:
 
             groups.extend([ScanlatorGroup(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = ScanlatorGroupCollection(self._http, data, groups)
-
-        return collection
+        return ScanlatorGroupCollection(self._http, data, groups)
 
     @require_authentication
     async def user_list(
@@ -2130,13 +2121,11 @@ class Client:
             data = await self._http._user_list(limit=inner_limit, offset=offset, ids=ids, username=username, order=order)
             users.extend([User(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = UserCollection(self._http, data, users)
-
-        return collection
+        return UserCollection(self._http, data, users)
 
     async def get_user(self, user_id: str, /) -> User:
         """|coro|
@@ -2332,13 +2321,11 @@ class Client:
             data = await self._http._get_my_followed_users(limit=inner_limit, offset=offset)
             users.extend([User(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = UserCollection(self._http, data, users)
-
-        return collection
+        return UserCollection(self._http, data, users)
 
     @require_authentication
     async def check_if_following_user(self, user_id: str, /) -> bool:
@@ -2586,7 +2573,7 @@ class Client:
         visibility: Optional[:class:`~hondana.CustomListVisibility`]
             The visibility of this custom list.
         manga: Optional[List[:class:`str`]]
-            A list of manga ids to add to this custom list.
+            A list of manga IDs to add to this custom list.
         version: Optional[:class:`int`]
             The version revision of this custom list.
 
@@ -2746,13 +2733,11 @@ class Client:
             data = await self._http._get_my_custom_lists(limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = CustomListCollection(self._http, data, lists)
-
-        return collection
+        return CustomListCollection(self._http, data, lists)
 
     @require_authentication
     async def get_users_custom_lists(
@@ -2793,13 +2778,11 @@ class Client:
             data = await self._http._get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = CustomListCollection(self._http, data, lists)
-
-        return collection
+        return CustomListCollection(self._http, data, lists)
 
     @require_authentication
     async def get_custom_list_manga_feed(
@@ -2897,13 +2880,11 @@ class Client:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def create_scanlation_group(
@@ -3077,7 +3058,7 @@ class Client:
         locked: Optional[:class:`bool`]
             Update the lock status of this scanlator group.
         publish_delay: Optional[Union[:class:`str`, :class:`datetime.timedelta`]]
-            The publish delay to add to all group releases.
+            The publishing delay to add to all group releases.
         version: :class:`int`
             The version revision of this scanlator group.
 
@@ -3239,13 +3220,11 @@ class Client:
 
             authors.extend([Author(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        collection = AuthorCollection(self._http, data, authors)
-
-        return collection
+        return AuthorCollection(self._http, data, authors)
 
     @require_authentication
     async def create_author(
@@ -3587,7 +3566,7 @@ class Client:
         await self._http._create_report(report_category=report_category, reason=reason, object_id=object_id, details=details)
 
     @require_authentication
-    async def get_my_manga_ratings(self, manga_ids: list[str], /) -> list[MangaStatistics]:
+    async def get_my_manga_ratings(self, manga_ids: list[str], /) -> list[MangaRating]:
         """|coro|
 
         This method will return your personal manga ratings for the given manga.
@@ -3595,7 +3574,7 @@ class Client:
         Parameters
         -----------
         manga_ids: List[:class:`str`]
-            The ids of the manga you wish to fetch your ratings for.
+            The IDs of the manga you wish to fetch your ratings for.
 
         Raises
         -------
@@ -3612,11 +3591,7 @@ class Client:
 
         ratings = data["ratings"]
 
-        fmt = []
-        for id_, stats in ratings.items():
-            fmt.append(MangaRating(self._http, id_, stats))
-
-        return fmt
+        return [MangaRating(self._http, id_, stats) for id_, stats in ratings.items()]
 
     @require_authentication
     async def set_manga_rating(self, manga_id: str, /, *, rating: int) -> None:
@@ -3688,7 +3663,7 @@ class Client:
         Parameters
         -----------
         manga_ids: List[:class:`str`]
-            The list of manga ids to fetch the statistics for.
+            The list of manga IDs to fetch the statistics for.
 
         Returns
         ---------
@@ -3696,11 +3671,7 @@ class Client:
         """
         data = await self._http._find_manga_statistics(manga_ids)
 
-        fmt: list[MangaStatistics] = []
-        for id_, stats in data["statistics"].items():
-            fmt.append(MangaStatistics(self._http, id_, stats))
-
-        return fmt
+        return [MangaStatistics(self._http, id_, stats) for id_, stats in data["statistics"].items()]
 
     @require_authentication
     async def abandon_upload_session(self, session_id: str, /) -> None:
@@ -3769,7 +3740,7 @@ class Client:
         --------
         :class:`~hondana.ChapterUpload`
         """
-        upload_session = ChapterUpload(
+        return ChapterUpload(
             self._http,
             manga,
             volume=volume,
@@ -3780,7 +3751,6 @@ class Client:
             scanlator_groups=scanlator_groups,
             existing_upload_session_id=existing_upload_session_id,
         )
-        return upload_session
 
     @require_authentication
     async def upload_chapter(
@@ -3862,7 +3832,7 @@ class Client:
 
         This method will return the json object of the latest settings template.
 
-        Currently there is no formatting done on this key as the api has no documented it.
+        Currently, there is no formatting done on this key as the api has not documented it.
 
         Returns
         --------
@@ -3930,14 +3900,14 @@ class Client:
     async def get_my_settings(self) -> SettingsPayload:
         """|coro|
 
-        This method will return the current logged in user's settings.
+        This method will return the current logged-in user's settings.
 
         Raises
         -------
         :exc:`Forbidden`
             The request failed due to authentication issues.
         :exc:`NotFound`
-            The logged in user's settings were not found.
+            The logged-in user's settings were not found.
 
         Returns
         --------
@@ -3969,7 +3939,7 @@ class Client:
         :exc:`Forbidden`
             The request failed due to authentication issues.
         :exc:`NotFound`
-            The logged in user's settings were not found.
+            The logged-in user's settings were not found.
 
         Returns
         --------

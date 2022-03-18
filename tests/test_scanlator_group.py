@@ -45,9 +45,7 @@ class TestScanlatorGroup:
 
     def test_sub_relationship_create(self):
         group = clone_group()
-        ret: list[Relationship] = []
-        for relationship in deepcopy(group._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(group._relationships)]
 
         assert len(ret) == len(group.relationships)
 

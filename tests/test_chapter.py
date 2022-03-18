@@ -45,8 +45,7 @@ class TestChapter:
     def test_sub_relationship_create(self):
         ret: list[Relationship] = []
         chapter = clone_chapter()
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret.extend(Relationship(relationship) for relationship in deepcopy(chapter._relationships))
 
         assert len(ret) == len(chapter.relationships)
 
@@ -56,7 +55,7 @@ class TestChapter:
 
         assert bool(ret) is True
 
-    def test_cache_slot_propety_relationships(self):
+    def test_cache_slot_property_relationships(self):
         chapter = clone_chapter()
         assert not hasattr(chapter, "_cs_relationships")
         chapter.relationships
@@ -64,10 +63,7 @@ class TestChapter:
 
     def test_manga_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
 
         ret = [r for r in ret if r.type == "manga"]
 
@@ -82,17 +78,14 @@ class TestChapter:
 
     def test_scanlator_groups_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = []
-
-        for relationship in deepcopy(chapter._relationships):
-            ret.append(Relationship(relationship))
+        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
 
         ret = [r for r in ret if r.type == "scanlation_group"]
 
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)
 
-    def test_uploader_propert(self):
+    def test_uploader_property(self):
         chapter = clone_chapter()
 
         assert chapter.uploader is not None

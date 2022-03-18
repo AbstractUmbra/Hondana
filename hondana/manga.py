@@ -277,19 +277,19 @@ class Manga:
         --------
         :class:`~hondana.types.LocalisedString`
             The raw object from the manga's api response payload.
-            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
+            Provides no formatting on its own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
         return self._description
 
     @property
     def alt_titles(self) -> LocalisedString:
-        """The raw alt_titles attribute from the manga's payloaad from the API.
+        """The raw alt_titles attribute from the manga's payload from the API.
 
         Returns
         --------
         :class:`hondana.types.LocalisedString`
             The raw object from the manga's payload.
-            Provides no formatting on it's own. Consider :meth:`~hondana.Manga.localised_title` instead.
+            Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
         """
         return self.alternate_titles
 
@@ -362,10 +362,7 @@ class Manga:
         if not artists:
             return None
 
-        formatted: list[Artist] = []
-        for artist in artists:
-            if "attributes" in artist:
-                formatted.append(Artist(self._http, artist))
+        formatted: list[Artist] = [Artist(self._http, artist) for artist in artists if "attributes" in artist]
 
         if not formatted:
             return None
@@ -375,12 +372,7 @@ class Manga:
 
     @artists.setter
     def artists(self, value: list[Artist]) -> None:
-        fmt = []
-        for item in value:
-            if isinstance(item, Artist):
-                fmt.append(item)
-
-        self.__artists = fmt
+        self.__artists = [item for item in value if isinstance(item, Artist)]
 
     @property
     def authors(self) -> Optional[list[Author]]:
@@ -408,10 +400,7 @@ class Manga:
         if not authors:
             return None
 
-        formatted: list[Author] = []
-        for author in authors:
-            if "attributes" in author:
-                formatted.append(Author(self._http, author))
+        formatted: list[Author] = [Author(self._http, author) for author in authors if "attributes" in author]
 
         if not formatted:
             return
@@ -421,12 +410,7 @@ class Manga:
 
     @authors.setter
     def authors(self, value: list[Author]) -> None:
-        fmt = []
-        for item in value:
-            if isinstance(item, Author):
-                fmt.append(item)
-
-        self.__authors = fmt
+        self.__authors = [item for item in value if isinstance(item, Author)]
 
     @property
     def cover(self) -> Optional[Cover]:
@@ -484,10 +468,7 @@ class Manga:
         if not related_manga:
             return
 
-        formatted = []
-        for item in related_manga:
-            if "attributes" in item:
-                formatted.append(self.__class__(self._http, item))
+        formatted: list[Manga] = [self.__class__(self._http, item) for item in related_manga if "attributes" in item]
 
         if not formatted:
             return
@@ -497,12 +478,7 @@ class Manga:
 
     @related_manga.setter
     def related_manga(self, value: list[Manga]) -> None:
-        fmt = []
-        for item in value:
-            if isinstance(item, self.__class__):
-                fmt.append(item)
-
-        self.__related_manga = fmt
+        self.__related_manga = [item for item in value if isinstance(item, self.__class__)]
 
     async def get_artists(self) -> Optional[list[Artist]]:
         """|coro|
@@ -933,12 +909,11 @@ class Manga:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     @require_authentication
     async def update_read_markers(self) -> manga.MangaReadMarkersResponse:
@@ -1218,12 +1193,11 @@ class Manga:
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
-            offset = offset + inner_limit
+            offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
                 break
 
-        feed = ChapterFeed(self._http, data, chapters)
-        return feed
+        return ChapterFeed(self._http, data, chapters)
 
     async def get_draft(self) -> Manga:
         """|coro|
