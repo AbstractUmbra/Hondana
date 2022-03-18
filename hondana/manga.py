@@ -600,7 +600,7 @@ class Manga:
         if not self.cover:
             return
 
-        return self.cover.url(type)
+        return self.cover.url(type, parent_id=self.id)
 
     async def get_related_manga(self) -> Optional[list[Manga]]:
         """|coro|

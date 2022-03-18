@@ -131,7 +131,7 @@ class Cover:
         """
         return [Relationship(item) for item in self._relationships]
 
-    def url(self, type: Optional[Literal[256, 512]] = None, /) -> Optional[str]:
+    def url(self, type: Optional[Literal[256, 512]] = None, /, parent_id: Optional[str] = None) -> Optional[str]:
         """Method to return the Cover url.
 
         Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
@@ -141,22 +141,28 @@ class Cover:
         type: Optional[Literal[``256``, ``512``]]
             Defaults to ``None`` to return original quality.
             Specifies the return image dimensions.
+        parent_id: Optional[:class:`str`]
+            Parameter where you can potentially set or override the parent manga to skip relationship lookup.
+            Useful for when Cover is part of something else's relationships, holding none of it's own.
 
         Returns
         --------
         Optional[:class:`str`]
             The Cover url.
         """
-        parent_manga = None
-        for item in self._relationships:
-            if item["type"] == "manga":
-                parent_manga = item
-                break
+        if parent_id is not None:
+            parent_manga_id = parent_id
+        else:
+            parent_manga = None
+            for item in self._relationships:
+                if item["type"] == "manga":
+                    parent_manga = item
+                    break
 
-        if parent_manga is None:
-            return
+            if parent_manga is None:
+                return
 
-        parent_manga_id = parent_manga["id"]
+            parent_manga_id = parent_manga["id"]
 
         if type == 256:
             fmt = ".256.jpg"
