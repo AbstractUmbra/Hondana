@@ -29,27 +29,464 @@
             "relationships": [
                 {
                     "id": "3e1e79be-4361-4964-b651-7ba2ef3e53c1",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Dangyakukei Joshi"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Femdom Schoolgirls"
+                            }
+                        ],
+                        "description": {
+                            "en": "1. I Want to Be Their Dog  \n2. Shall We Have a Threesome?  \n3. The Reason She's a Shut-in  \n4. Hour of M  \n5. Splinter Sex  \n6. Training a Pet Doggy  \n7. Degenerate Girlfriend  \n8. Paid-Dating-Service  \n9. Yearning and Lies"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "82775",
+                            "mal": "52775"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "9",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-12-15T14:23:03+00:00",
+                        "updatedAt": "2022-01-05T03:27:03+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": []
+                    }
                 },
                 {
                     "id": "63489e35-6b31-4ee1-92cb-a7b9f14b081c",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Ran-Drop!"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Mating Inferno"
+                            },
+                            {
+                                "en": "Tanetsuke Inferno"
+                            },
+                            {
+                                "en": "\u5375\u3069\u308d\u3063\u3077! + 4P\u30ea\u30fc\u30d5\u30ec\u30c3\u30c8"
+                            },
+                            {
+                                "en": "\u7a2e\u4ed8\u3051\u30a4\u30f3\u30d5\u30a7\u30eb\u30ce"
+                            }
+                        ],
+                        "description": {
+                            "en": "Google Translated from Japanese from Prod Description from Amazon JP  \n  \nntroduction  \nDraw school girls' live births and bottling belly H  \nStarting with the \u201cNyoran!\u201d Series,  \nOne book full of spawning sex in orgy & harem!!  \n  \nSpecial contraceptives were developed,  \nThe world where eggs formed in the womb by fertilization are bought and sold as food.  \nIn order to earn a living cost, sisters and brothers Shota 4P of school girls,  \nSeeding party with black gals and fathers,  \nNet idol estrus public spawn sex in front of the camera,  \nGiant Harlem Etch, etc. that makes the entire lady school a spawning ground,  \nBoth sex and egg laying are full of charm of spawning sex too comfortable!  \nAlso includes a manga drawn by an egg selling girl's bottling stomach!  \n  \n\u25a0 COMIC  \n\"Nyoran!\"  \n\"Nyoran! -Another-\"  \n\"Nyoran! -Live-\"  \n\"Nyoran! -Period ep.1-\"  \n\"Nyoran! -Period ep.2-\"  \n\"Nyoran! -Period Last.ep-\"  \n\"Spawn! Spawn!\"  \n\"Seeding Inferno\"  \n`` Makai study abroad ~ extra edition ~ ''  \n\"Nyoran! -Fantasy-\"  \n  \n  \nCh 8. Tanetsuke Inferno (Mating Inferno)  \nThis guy wakes up in hell, he has died. He\u2019s surrounded by succubi. They shatter his pride in bleeding pieces and next, group sex commences. But wait, there\u2019s more. Here, succubi become impregnated in minutes, give birth in seconds to a new succubus, and the child grows up to \u201cold enough\u201d in as as few seconds as that.  \n  \n  \nAmazon JP ISBN-13: 9784799210673"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "119798",
+                            "amz": "https://www.amazon.co.jp/%E5%8D%B5%E3%81%A9%E3%82%8D%E3%81%A3%E3%81%B7-%E3%82%A2%E3%83%B3%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E4%B8%B8%E5%B1%85%E3%81%BE%E3%82%8B/dp/479921067X/ref=pd_sbs_14_3/356-8602606-1676939?_encoding=UTF8&pd_rd_i=479921067X&pd_rd_r=4c26bb22-9f31-4a57-8024-0110d7bc2771&pd_rd_w=WYkSy&pd_rd_wg=WItQn&pf_rd_p=ad2ea29d-ea11-483c-9db2-6b5875bb9b73&pf_rd_r=075MRHMBBCSCEBQ70JYC&psc=1&refRID=075MRHMBBCSCEBQ70JYC"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "10",
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Loli"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Demons"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Incest"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Harem"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monster Girls"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-03-08T18:01:04+00:00",
+                        "updatedAt": "2021-05-25T15:43:03+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "5c8642b5-4353-44cd-aa69-091acb225c3c",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "MuchiMuchi \u2665 Cream Pie"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Guutara Aniki to Otoutoyome"
+                            },
+                            {
+                                "en": "Hips!"
+                            },
+                            {
+                                "en": "Imouto Video"
+                            },
+                            {
+                                "en": "Inu ga Arukeba Bou ni Ataru"
+                            },
+                            {
+                                "en": "Lesson H"
+                            },
+                            {
+                                "en": "Love Love Coaching"
+                            },
+                            {
+                                "en": "MuchiMuchi CreamPie"
+                            },
+                            {
+                                "en": "Musume Escalation"
+                            },
+                            {
+                                "en": "Shizuhara-san no Nayami Koto"
+                            },
+                            {
+                                "en": "Soredemo Boku wa..."
+                            },
+                            {
+                                "en": "Taigaiteki Jikoai e no Kousatsu (A Study on External Narcissism)"
+                            },
+                            {
+                                "en": "Yui-sensei no Kyoushi Seikatsu (Ms. Yui's Sexual School Activities)"
+                            },
+                            {
+                                "en": "\u3080\u3061\u3080\u3061 \u304f\u308a\u30fc\u3080\u306f\u309a\u3044"
+                            },
+                            {
+                                "en": "\u3080\u3061\u3080\u3061\u2665\u304f\u308a\u30fc\u3080\u3071\u3044"
+                            }
+                        ],
+                        "description": {
+                            "en": "Largely supported/ Translated by EH/EX Bounties  \n  \n1. Lesson H  \n2. Hips!  \n3. Imouto Video  \n4. Soredemo Boku wa\u2026  \n5. Love Love Coaching  \n6. Yui-sensei no Kyoushi Seikatsu (Ms. Yui's Sexual School Activities)  \n7. Guutara Aniki to Otoutoyome  \n8. Musume Escalation  \n9. Taigaiteki Jiko Ai e no Kousatsu (A Study on External Narcissism)  \n10. Shizuhara-san no Nayami Koto  \n11. Inu ga Arukeba Bou ni Ataru"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "93556",
+                            "mu": "118287",
+                            "mal": "84275"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "11",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Incest"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-10-15T10:33:43+00:00",
+                        "updatedAt": "2022-01-05T03:28:25+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "3361abfb-49d7-42dc-9437-d03af5279bb2",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Fuwatoro Jusei Chuudoku!"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Soft & Melty Impregnation Addiction!"
+                            },
+                            {
+                                "en": "\u3075\u308f\u3068\u308d\u2665\u53d7\u7cbe\u3061\u3085\u30fc\u3069\u304f\uff01"
+                            }
+                        ],
+                        "description": {
+                            "en": "1. Kitty Cafe in Heat  \n2. Tanetsuke Tokutaisei (Breeding Scholarship)  \n3. Shiritsu Maid Gakuen! (Private Maid Academy!)  \n4. Welcome to the Tanezuke Dormitory  \n5. Sister's Pact  \n6. Topping Angels  \n7. Merry Kozukuri! (Merry Baby Making!)  \n8. First Time Debauchery  \n9. Anal Until Marriage  \nExtra Toranoana Bonus Booklet"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "100396",
+                            "kt": "47667",
+                            "mu": "140773",
+                            "mal": "104447"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "10",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Incest"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gyaru"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-09-26T21:43:31+00:00",
+                        "updatedAt": "2021-05-25T15:40:59+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "7d1d6186-c560-4703-b646-767dcf202791",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Panpan Yawaraka Ecchi ana"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Omedeta Idol Shidou! (The Idol Debut!)"
+                            },
+                            {
+                                "en": "Smack Smack Soft Lewd Hole"
+                            },
+                            {
+                                "en": "\u304a\u3081\u3067\u305f\u30a2\u30a4\u30c9\u30eb\u59cb\u52d5!"
+                            }
+                        ],
+                        "description": {
+                            "en": "Index:  \n  \n01. I Get Boners Even Outside of Japanese Class  \n02. I Get Boners in Japanese Class  \n03. Over-protectiveness for Adults  \n04. School Trip  \n05. positive CHINking  \n06. Chiyo-chan Does Her Best!  \n07. Kindness 120%  \n08. The Reason Why Girls Are Warm  \n09. Jack-off Girls  \n10. The Idol Debut!  \n10.5. Chiyo-chan Does Her Best! [Extra]  \n  \nTags: big breasts, group, stockings, sole male, nakadashi, shotacon, tankoubon, x-ray, threesome, impregnation, big ass, ponytail, teacher, twintails, harem, tanlines, gyaru, bisexual, sumata, age regression"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "119802"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "10.5",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Harem"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Shota"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-08-18T02:05:30+00:00",
+                        "updatedAt": "2021-05-25T15:44:18+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "a37eb2ae-b9d5-4a71-95f7-5bad64bc9833",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Shita no Okuchi de Chu \u2665 Chu \u2665 Shiyo"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Let's Kiss With The Lower \u2665 Mouth"
+                            },
+                            {
+                                "en": "\u4e0b\u306e\u304a\u304f\u3061\u3067\u3061\u3085\u3063\u2665\u3061\u3085\u2665\u3057\u3088"
+                            }
+                        ],
+                        "description": [],
+                        "isLocked": false,
+                        "links": {
+                            "al": "119800",
+                            "mu": "154999",
+                            "mal": "114256"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "9",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2016,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Harem"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-07-03T05:20:43+00:00",
+                        "updatedAt": "2022-01-05T03:26:27+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 }
             ]
         },
@@ -80,7 +517,255 @@
             "relationships": [
                 {
                     "id": "0d63b6f1-03b2-4f04-827c-8b2995026cf8",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "I Became the Male Lead\u2019s Adopted Daughter"
+                        },
+                        "altTitles": [
+                            {
+                                "ko": "\ub0a8\uc8fc\uc758 \uc785\uc591\ub538\uc774 \ub418\uc5c8\uc2b5\ub2c8\ub2e4"
+                            },
+                            {
+                                "en": "The Male Lead's Little Lion Daughter"
+                            }
+                        ],
+                        "description": {
+                            "en": "\u201cI\u2019m going to adopt a child.\u201d Duke Ferio Voreoti\u2019s impulsive decision shocked everyone in the mansion. Not only did he make her his daughter, but he also gave her the name of a \u2018beast\u2019 that only direct members of the bloodline could receive. \u201cEven as you breathe right now, I\u2019m earning money.\u201d \u201cIt\u2019s confidence, not arrogance.\u201d \u201cMy face really does have its advantages.\u201d The most arrogant father in the whole world, and \u201cI love muscles the most. Let\u2019s get muscular.\u201d \u201cShow me your thigh muscles! Your butt would be even better!\u201d \u201cYou\u2019re nothing but a flower if you have a calm personality\u2026\u201d his corrupted(?) daughter. And\u2026 \u201cI will give his excellency the information he wants most.\u201d \u201cInformation I want most, you say\u2026\u201d \u201cYou won\u2019t regret it.\u201d \u2026A stepmother(?) with a strange secret as well."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "ap": "i-became-the-male-leads-adopted-daughter",
+                            "mu": "186861",
+                            "raw": "https://page.kakao.com/home?seriesId=57616627",
+                            "engtl": "https://tapas.io/series/the-male-leads-little-lion-daughter/info"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "shoujo",
+                        "status": "ongoing",
+                        "year": 2021,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Reincarnation"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Historical"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monsters"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Psychological"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Long Strip"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Survival"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Magic"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Isekai"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-10-10T14:48:18+00:00",
+                        "updatedAt": "2022-02-04T21:35:03+00:00",
+                        "version": 10,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 }
             ]
         },
@@ -111,11 +796,219 @@
             "relationships": [
                 {
                     "id": "8d235299-449a-47e6-85a4-23d9ecadf883",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Shijuuhatte - Hihou-kan (Anthology)"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "48 Positions Anthology - Hihou-kan"
+                            },
+                            {
+                                "en": "\u56db\u5341\u516b\u624b\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u79d8\u5b9d\u9928"
+                            }
+                        ],
+                        "description": {
+                            "en": "Hundreds of years ago, 48 sexual positions were created and named. It is the equivalent to the Japanese kamasutra. These moves were likely devised during the Edo period (1603-1868), reflecting the 48 set of moves that Sumo wrestling recognizes. 48 different manga artists came together and created oneshots for each different position. In this first volume, 24 of those positions are featured."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "mu": "144728",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/348880/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "5",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Historical"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Anthology"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Boys' Love"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-11-11T02:06:48+00:00",
+                        "updatedAt": "2019-11-11T02:06:48+00:00",
+                        "version": 1,
+                        "availableTranslatedLanguages": [
+                            "es-la",
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "18289e18-7808-40b0-ab42-0bb0ddf1773d",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Zutto Kitto"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Now and Forever"
+                            },
+                            {
+                                "en": "Zutto Kimi to"
+                            },
+                            {
+                                "en": "Zutto Tonari de"
+                            },
+                            {
+                                "en": "\u305a\u3063\u3068\u304d\u3063\u3068"
+                            },
+                            {
+                                "en": "\u305a\u3063\u3068\u304d\u307f\u3068"
+                            },
+                            {
+                                "en": "\u305a\u3063\u3068\u3068\u306a\u308a\u3067"
+                            }
+                        ],
+                        "description": {
+                            "en": "During high school, Hamura hurt Jin with the lowest of words and the most foolish of actions. Having regretted this ever since, his only wish is that they can be reunited. But when it finally happens\u2026  \n  \n\u2014\u2014\u2014\u2014  \n  \nCollege student Hamura Yuzuki is a track-and-field athlete who has competed at the National Championship level during middle and senior high school. However, he focuses strictly on pole-vaulting, to the detriment of his team. This is due to a casual comment by Akishima Jin, a fellow athlete with whom he parted ways after graduation, about the sky being the means through which they are connected. He cannot forget Jin or detach from their past, and this causes problems with his girlfriend, one of which leads to a coincidental reunion with his obsession."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "101056",
+                            "kt": "50017",
+                            "mu": "116833",
+                            "mal": "108201"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "4",
+                        "lastChapter": "5.5",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Boys' Love"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "69964a64-2f90-4d33-beeb-f3ed2875eb4c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sports"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-02-13T05:35:19+00:00",
+                        "updatedAt": "2021-05-25T15:39:55+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 }
             ]
         },
@@ -146,7 +1039,68 @@
             "relationships": [
                 {
                     "id": "59649e9d-b149-4fc7-b380-df39efc6f354",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Azur Lane - Tenshi na Hisyokan no Daisuki no Kimochi (Doujinshi)"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u5929\u4f7f\u306a\u79d8\u66f8\u8266\u306e\u5927\u597d\u304d\u306e\u30ad\u30e2\u30c1"
+                            },
+                            {
+                                "ja": "\u5929\u4f7f\u306a\u79d8\u66f8\u8266\u306e\u5927\u597d\u304d\u306e\u30ad\u30e2\u30c1 (\u30a2\u30ba\u30fc\u30eb\u30ec\u30fc\u30f3)"
+                            }
+                        ],
+                        "description": {
+                            "en": "Tags: Pantyhose, Schoolgirl Uniform, Sole Female, Sole Male, Twintails"
+                        },
+                        "isLocked": false,
+                        "links": [],
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-10-28T16:13:53+00:00",
+                        "updatedAt": "2021-10-28T18:16:16+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "b4aa0e29-9131-4f63-a967-ea7d1e43ca93",
@@ -181,16 +1135,206 @@
             "relationships": [
                 {
                     "id": "050ed1ea-bf98-4612-804a-1e045b90b0f0",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "The Time Leaper Yuki"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Chao Shi Kong Shao Nu"
+                            },
+                            {
+                                "en": "Time Slipper - Yuki no Choujikuu"
+                            },
+                            {
+                                "en": "Time Slipper Yuki"
+                            },
+                            {
+                                "en": "\u30bf\u30a4\u30e0\u30b9\u30ea\u30c3\u30d1\u30fc \u2212YUKI\u306e\u8df3\u6642\u7a7a\u2212"
+                            },
+                            {
+                                "en": "\u8d85\u6642\u7a7a\u5c11\u5973: \u7531\u5e0c\u7684\u6642\u7a7a\u7a7f\u68ad"
+                            }
+                        ],
+                        "description": {
+                            "en": "The year is 2008, and Mikuru is a 16-year-old high schooler who often disagrees with her mother Yuki. One day a girl appears in front of her with toughts, memories and body are from 24 years earlier. In short, Yuki has time-slipped from 1984 to the present, and when Yuki wakes up she is shocked to find that the year is not 1984, and that Mikuru is her daughter.  \n  \nNow both mother and daughter are the same age and living in the same house together, with an older man who is supposed to be her husband. Until when she can return home, the girl who has crossed space-time decides to discover her future.   \n(From: MU)  \n  \nNote: \"The Time Leaper Yuki\" is the English name provided by the publisher."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "81501",
+                            "ap": "time-slipper-yuki-no-choujikuu",
+                            "kt": "9786",
+                            "mu": "33916",
+                            "mal": "51501"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "suggestive",
+                        "tags": [
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Mystery"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-07-21T08:05:35+00:00",
+                        "updatedAt": "2021-05-25T15:38:58+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 },
                 {
                     "id": "5482b367-42f1-4e23-ab46-c0691b9e5c50",
-                    "type": "manga"
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Monaco no Sora e - We Never Stop Boxing"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Monaco no Sora e"
+                            },
+                            {
+                                "en": "Monaco no Sorae"
+                            },
+                            {
+                                "en": "Monaco\u306e\u7a7a\u3078"
+                            },
+                            {
+                                "en": "\u64c2\u53f0\u4e00\u7247\u5929"
+                            }
+                        ],
+                        "description": {
+                            "en": ""
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "44796",
+                            "ap": "monaco-no-sorae",
+                            "kt": "25113",
+                            "mu": "6853",
+                            "amz": "https://www.amazon.co.jp/gp/product/B078RZQS2W",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/373574/",
+                            "mal": "14796"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "suggestive",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "69964a64-2f90-4d33-beeb-f3ed2875eb4c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sports"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-06-05T16:37:24+00:00",
+                        "updatedAt": "2021-05-25T15:42:25+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
                 }
             ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 39409
+    "total": 39488
 }

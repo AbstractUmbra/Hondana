@@ -3,154 +3,1077 @@
     "response": "collection",
     "data": [
         {
-            "id": "8a1dba2c-4099-4865-b588-67b302fe7cc9",
+            "id": "0aaf8b27-0013-4ae0-8935-91a089466874",
             "type": "chapter",
             "attributes": {
-                "volume": "9",
-                "chapter": "70",
-                "title": "Тогда я дам тебе один тоже, Сэмпай...",
-                "translatedLanguage": "ru",
+                "volume": "1",
+                "chapter": "1",
+                "title": "",
+                "translatedLanguage": "en",
                 "externalUrl": null,
-                "publishAt": "2020-10-30T17:25:39+00:00",
-                "readableAt": "2020-10-30T17:25:39+00:00",
-                "createdAt": "2020-10-30T17:25:39+00:00",
-                "updatedAt": "2022-01-31T21:21:36+00:00",
-                "pages": 24,
-                "version": 2
+                "publishAt": "2018-01-15T16:38:24+00:00",
+                "readableAt": "2018-01-15T16:38:24+00:00",
+                "createdAt": "2018-01-15T16:38:24+00:00",
+                "updatedAt": "2018-01-15T16:38:24+00:00",
+                "pages": 15,
+                "version": 1
             },
             "relationships": [
                 {
-                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
-                    "type": "manga"
+                    "id": "caf0d1da-a790-49d0-833c-ce74d651c8a1",
+                    "type": "scanlation_group",
+                    "attributes": {
+                        "name": "Doki Fansubs",
+                        "altNames": [
+                            {
+                                "en": "Doki"
+                            },
+                            {
+                                "en": "Doki Scans"
+                            }
+                        ],
+                        "locked": true,
+                        "website": "https://doki.co/",
+                        "ircServer": "irc.rizon.net",
+                        "ircChannel": "doki",
+                        "discord": "Y2YKXUP",
+                        "contactEmail": "holo@doki.co",
+                        "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
+                        "twitter": null,
+                        "mangaUpdates": null,
+                        "focusedLanguages": [
+                            "en"
+                        ],
+                        "official": false,
+                        "verified": false,
+                        "inactive": false,
+                        "publishDelay": null,
+                        "createdAt": "2021-04-19T21:45:59+00:00",
+                        "updatedAt": "2021-04-19T21:45:59+00:00",
+                        "version": 1
+                    }
                 },
                 {
-                    "id": "e34d68fe-3dfe-498d-9db4-86f5c2685395",
-                    "type": "user"
+                    "id": "127820bd-8fc5-47b8-8782-e680317bf41d",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Boku wa Ohime-sama ni Narenai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Boku ha Ohimesama ni Narenai"
+                            },
+                            {
+                                "en": "I Can't Be a Princess"
+                            },
+                            {
+                                "ru": "\u042f \u043d\u0435 \u043c\u043e\u0433\u0443 \u0441\u0442\u0430\u0442\u044c \u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u043e\u0439!"
+                            },
+                            {
+                                "th": "\u0e09\u0e31\u0e19\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e44\u0e14\u0e49\u0e2b\u0e23\u0e2d\u0e01!"
+                            },
+                            {
+                                "ja": "\u50d5\u306f\u304a\u59eb\u69d8\u306b\u306a\u308c\u306a\u3044"
+                            },
+                            {
+                                "zh-hk": "\u6211\u6c92\u8fa6\u6cd5\u6210\u70ba\u516c\u4e3b"
+                            },
+                            {
+                                "zh": "\u6211\u6ca1\u529e\u6cd5\u6210\u4e3a\u516c\u4e3b"
+                            },
+                            {
+                                "ko": "\ub098\ub294 \uacf5\uc8fc\ub2d8\uc774 \ub420 \uc218 \uc5c6\ub2e4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Shindou Rei (Cinderella) comes from a very poor family. Her only clothes are hand-me-downs from her brother, even her school uniform. So everyone always mistakes her for a boy. Even her close friend Hakuba Ouji (white horse prince), who starts developing confusing feelings toward her all the while believing she\u2019s a boy. Tsukumo Yuki (Snow White) is the leader of a delinquent gang and falls in love with Rei at first sight, also believing her to be a boy."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "86578",
+                            "ap": "boku-wa-ohime-sama-ni-narenai",
+                            "bw": "series/19938",
+                            "kt": "32976",
+                            "mu": "103838",
+                            "amz": "https://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&rh=i%3Aaps%2Ck%3A%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5",
+                            "cdj": "http://www.cdjapan.co.jp/searches?term.media_format=book&f=major&q=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84&f=artist&q=%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/469805/",
+                            "mal": "80539"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "30.1",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crossdressing"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-11-16T06:35:01+00:00",
+                        "updatedAt": "2022-02-19T22:31:01+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "es-la",
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "16cf9cc6-78a4-4037-abdc-abf9145d74c8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "ixlone",
+                        "roles": [
+                            "ROLE_ADMIN",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
                 }
             ]
         },
         {
-            "id": "7b77f997-e736-4c05-8bde-477775620a72",
+            "id": "bbf176a0-ea53-4b8b-8e23-8aa192e838d5",
+            "type": "chapter",
+            "attributes": {
+                "volume": "1",
+                "chapter": "2",
+                "title": "",
+                "translatedLanguage": "en",
+                "externalUrl": null,
+                "publishAt": "2018-01-15T16:38:57+00:00",
+                "readableAt": "2018-01-15T16:38:57+00:00",
+                "createdAt": "2018-01-15T16:38:57+00:00",
+                "updatedAt": "2018-01-15T16:38:57+00:00",
+                "pages": 14,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "caf0d1da-a790-49d0-833c-ce74d651c8a1",
+                    "type": "scanlation_group",
+                    "attributes": {
+                        "name": "Doki Fansubs",
+                        "altNames": [
+                            {
+                                "en": "Doki"
+                            },
+                            {
+                                "en": "Doki Scans"
+                            }
+                        ],
+                        "locked": true,
+                        "website": "https://doki.co/",
+                        "ircServer": "irc.rizon.net",
+                        "ircChannel": "doki",
+                        "discord": "Y2YKXUP",
+                        "contactEmail": "holo@doki.co",
+                        "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
+                        "twitter": null,
+                        "mangaUpdates": null,
+                        "focusedLanguages": [
+                            "en"
+                        ],
+                        "official": false,
+                        "verified": false,
+                        "inactive": false,
+                        "publishDelay": null,
+                        "createdAt": "2021-04-19T21:45:59+00:00",
+                        "updatedAt": "2021-04-19T21:45:59+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "127820bd-8fc5-47b8-8782-e680317bf41d",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Boku wa Ohime-sama ni Narenai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Boku ha Ohimesama ni Narenai"
+                            },
+                            {
+                                "en": "I Can't Be a Princess"
+                            },
+                            {
+                                "ru": "\u042f \u043d\u0435 \u043c\u043e\u0433\u0443 \u0441\u0442\u0430\u0442\u044c \u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u043e\u0439!"
+                            },
+                            {
+                                "th": "\u0e09\u0e31\u0e19\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e44\u0e14\u0e49\u0e2b\u0e23\u0e2d\u0e01!"
+                            },
+                            {
+                                "ja": "\u50d5\u306f\u304a\u59eb\u69d8\u306b\u306a\u308c\u306a\u3044"
+                            },
+                            {
+                                "zh-hk": "\u6211\u6c92\u8fa6\u6cd5\u6210\u70ba\u516c\u4e3b"
+                            },
+                            {
+                                "zh": "\u6211\u6ca1\u529e\u6cd5\u6210\u4e3a\u516c\u4e3b"
+                            },
+                            {
+                                "ko": "\ub098\ub294 \uacf5\uc8fc\ub2d8\uc774 \ub420 \uc218 \uc5c6\ub2e4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Shindou Rei (Cinderella) comes from a very poor family. Her only clothes are hand-me-downs from her brother, even her school uniform. So everyone always mistakes her for a boy. Even her close friend Hakuba Ouji (white horse prince), who starts developing confusing feelings toward her all the while believing she\u2019s a boy. Tsukumo Yuki (Snow White) is the leader of a delinquent gang and falls in love with Rei at first sight, also believing her to be a boy."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "86578",
+                            "ap": "boku-wa-ohime-sama-ni-narenai",
+                            "bw": "series/19938",
+                            "kt": "32976",
+                            "mu": "103838",
+                            "amz": "https://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&rh=i%3Aaps%2Ck%3A%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5",
+                            "cdj": "http://www.cdjapan.co.jp/searches?term.media_format=book&f=major&q=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84&f=artist&q=%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/469805/",
+                            "mal": "80539"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "30.1",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crossdressing"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-11-16T06:35:01+00:00",
+                        "updatedAt": "2022-02-19T22:31:01+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "es-la",
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "16cf9cc6-78a4-4037-abdc-abf9145d74c8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "ixlone",
+                        "roles": [
+                            "ROLE_ADMIN",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                }
+            ]
+        },
+        {
+            "id": "aff0e720-88f2-45c5-8d9e-817f84d4c306",
+            "type": "chapter",
+            "attributes": {
+                "volume": "1",
+                "chapter": "3",
+                "title": "",
+                "translatedLanguage": "en",
+                "externalUrl": null,
+                "publishAt": "2018-01-15T16:39:53+00:00",
+                "readableAt": "2018-01-15T16:39:53+00:00",
+                "createdAt": "2018-01-15T16:39:53+00:00",
+                "updatedAt": "2018-01-15T16:39:53+00:00",
+                "pages": 12,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "caf0d1da-a790-49d0-833c-ce74d651c8a1",
+                    "type": "scanlation_group",
+                    "attributes": {
+                        "name": "Doki Fansubs",
+                        "altNames": [
+                            {
+                                "en": "Doki"
+                            },
+                            {
+                                "en": "Doki Scans"
+                            }
+                        ],
+                        "locked": true,
+                        "website": "https://doki.co/",
+                        "ircServer": "irc.rizon.net",
+                        "ircChannel": "doki",
+                        "discord": "Y2YKXUP",
+                        "contactEmail": "holo@doki.co",
+                        "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
+                        "twitter": null,
+                        "mangaUpdates": null,
+                        "focusedLanguages": [
+                            "en"
+                        ],
+                        "official": false,
+                        "verified": false,
+                        "inactive": false,
+                        "publishDelay": null,
+                        "createdAt": "2021-04-19T21:45:59+00:00",
+                        "updatedAt": "2021-04-19T21:45:59+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "127820bd-8fc5-47b8-8782-e680317bf41d",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Boku wa Ohime-sama ni Narenai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Boku ha Ohimesama ni Narenai"
+                            },
+                            {
+                                "en": "I Can't Be a Princess"
+                            },
+                            {
+                                "ru": "\u042f \u043d\u0435 \u043c\u043e\u0433\u0443 \u0441\u0442\u0430\u0442\u044c \u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u043e\u0439!"
+                            },
+                            {
+                                "th": "\u0e09\u0e31\u0e19\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e44\u0e14\u0e49\u0e2b\u0e23\u0e2d\u0e01!"
+                            },
+                            {
+                                "ja": "\u50d5\u306f\u304a\u59eb\u69d8\u306b\u306a\u308c\u306a\u3044"
+                            },
+                            {
+                                "zh-hk": "\u6211\u6c92\u8fa6\u6cd5\u6210\u70ba\u516c\u4e3b"
+                            },
+                            {
+                                "zh": "\u6211\u6ca1\u529e\u6cd5\u6210\u4e3a\u516c\u4e3b"
+                            },
+                            {
+                                "ko": "\ub098\ub294 \uacf5\uc8fc\ub2d8\uc774 \ub420 \uc218 \uc5c6\ub2e4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Shindou Rei (Cinderella) comes from a very poor family. Her only clothes are hand-me-downs from her brother, even her school uniform. So everyone always mistakes her for a boy. Even her close friend Hakuba Ouji (white horse prince), who starts developing confusing feelings toward her all the while believing she\u2019s a boy. Tsukumo Yuki (Snow White) is the leader of a delinquent gang and falls in love with Rei at first sight, also believing her to be a boy."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "86578",
+                            "ap": "boku-wa-ohime-sama-ni-narenai",
+                            "bw": "series/19938",
+                            "kt": "32976",
+                            "mu": "103838",
+                            "amz": "https://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&rh=i%3Aaps%2Ck%3A%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5",
+                            "cdj": "http://www.cdjapan.co.jp/searches?term.media_format=book&f=major&q=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84&f=artist&q=%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/469805/",
+                            "mal": "80539"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "30.1",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crossdressing"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-11-16T06:35:01+00:00",
+                        "updatedAt": "2022-02-19T22:31:01+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "es-la",
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "16cf9cc6-78a4-4037-abdc-abf9145d74c8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "ixlone",
+                        "roles": [
+                            "ROLE_ADMIN",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                }
+            ]
+        },
+        {
+            "id": "dfc5a5cc-8b36-4f0c-a272-ae69802c91f8",
+            "type": "chapter",
+            "attributes": {
+                "volume": "1",
+                "chapter": "4",
+                "title": "",
+                "translatedLanguage": "en",
+                "externalUrl": null,
+                "publishAt": "2018-01-15T16:41:00+00:00",
+                "readableAt": "2018-01-15T16:41:00+00:00",
+                "createdAt": "2018-01-15T16:41:00+00:00",
+                "updatedAt": "2018-01-15T16:41:00+00:00",
+                "pages": 14,
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "caf0d1da-a790-49d0-833c-ce74d651c8a1",
+                    "type": "scanlation_group",
+                    "attributes": {
+                        "name": "Doki Fansubs",
+                        "altNames": [
+                            {
+                                "en": "Doki"
+                            },
+                            {
+                                "en": "Doki Scans"
+                            }
+                        ],
+                        "locked": true,
+                        "website": "https://doki.co/",
+                        "ircServer": "irc.rizon.net",
+                        "ircChannel": "doki",
+                        "discord": "Y2YKXUP",
+                        "contactEmail": "holo@doki.co",
+                        "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
+                        "twitter": null,
+                        "mangaUpdates": null,
+                        "focusedLanguages": [
+                            "en"
+                        ],
+                        "official": false,
+                        "verified": false,
+                        "inactive": false,
+                        "publishDelay": null,
+                        "createdAt": "2021-04-19T21:45:59+00:00",
+                        "updatedAt": "2021-04-19T21:45:59+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "127820bd-8fc5-47b8-8782-e680317bf41d",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Boku wa Ohime-sama ni Narenai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Boku ha Ohimesama ni Narenai"
+                            },
+                            {
+                                "en": "I Can't Be a Princess"
+                            },
+                            {
+                                "ru": "\u042f \u043d\u0435 \u043c\u043e\u0433\u0443 \u0441\u0442\u0430\u0442\u044c \u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u043e\u0439!"
+                            },
+                            {
+                                "th": "\u0e09\u0e31\u0e19\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e44\u0e14\u0e49\u0e2b\u0e23\u0e2d\u0e01!"
+                            },
+                            {
+                                "ja": "\u50d5\u306f\u304a\u59eb\u69d8\u306b\u306a\u308c\u306a\u3044"
+                            },
+                            {
+                                "zh-hk": "\u6211\u6c92\u8fa6\u6cd5\u6210\u70ba\u516c\u4e3b"
+                            },
+                            {
+                                "zh": "\u6211\u6ca1\u529e\u6cd5\u6210\u4e3a\u516c\u4e3b"
+                            },
+                            {
+                                "ko": "\ub098\ub294 \uacf5\uc8fc\ub2d8\uc774 \ub420 \uc218 \uc5c6\ub2e4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Shindou Rei (Cinderella) comes from a very poor family. Her only clothes are hand-me-downs from her brother, even her school uniform. So everyone always mistakes her for a boy. Even her close friend Hakuba Ouji (white horse prince), who starts developing confusing feelings toward her all the while believing she\u2019s a boy. Tsukumo Yuki (Snow White) is the leader of a delinquent gang and falls in love with Rei at first sight, also believing her to be a boy."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "86578",
+                            "ap": "boku-wa-ohime-sama-ni-narenai",
+                            "bw": "series/19938",
+                            "kt": "32976",
+                            "mu": "103838",
+                            "amz": "https://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&rh=i%3Aaps%2Ck%3A%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5",
+                            "cdj": "http://www.cdjapan.co.jp/searches?term.media_format=book&f=major&q=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84&f=artist&q=%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/469805/",
+                            "mal": "80539"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "30.1",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crossdressing"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-11-16T06:35:01+00:00",
+                        "updatedAt": "2022-02-19T22:31:01+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "es-la",
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "16cf9cc6-78a4-4037-abdc-abf9145d74c8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "ixlone",
+                        "roles": [
+                            "ROLE_ADMIN",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                }
+            ]
+        },
+        {
+            "id": "68b3cde2-0acd-4e4b-9842-780c301852c1",
             "type": "chapter",
             "attributes": {
                 "volume": "1",
                 "chapter": "5",
                 "title": "",
-                "translatedLanguage": "id",
-                "externalUrl": null,
-                "publishAt": "2020-11-12T10:19:10+00:00",
-                "readableAt": "2020-11-12T10:19:10+00:00",
-                "createdAt": "2020-11-12T10:19:10+00:00",
-                "updatedAt": "2020-11-12T10:19:10+00:00",
-                "pages": 13,
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
-                    "type": "manga"
-                },
-                {
-                    "id": "7c2530f1-8cab-415f-bec6-2249552a3a62",
-                    "type": "user"
-                }
-            ]
-        },
-        {
-            "id": "8b554d62-f9f8-4131-b42c-37b6f6a5dfc3",
-            "type": "chapter",
-            "attributes": {
-                "volume": "6",
-                "chapter": "45",
-                "title": "A primavera finalmente chegou para o nosso impopular senpai?",
-                "translatedLanguage": "pt-br",
-                "externalUrl": null,
-                "publishAt": "2020-04-28T20:23:47+00:00",
-                "readableAt": "2020-04-28T20:23:47+00:00",
-                "createdAt": "2020-04-28T20:23:47+00:00",
-                "updatedAt": "2020-04-28T20:23:47+00:00",
-                "pages": 19,
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "a0195982-96f5-4948-8966-b5e558391424",
-                    "type": "scanlation_group"
-                },
-                {
-                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
-                    "type": "manga"
-                },
-                {
-                    "id": "2cbf99b0-a3d9-4191-a3d3-7c11eb9cc3cf",
-                    "type": "user"
-                }
-            ]
-        },
-        {
-            "id": "71ae6161-d47b-4fb5-ac49-c0069fec8648",
-            "type": "chapter",
-            "attributes": {
-                "volume": "12",
-                "chapter": "94",
-                "title": "Ah, Senpai... This Guy Is...",
                 "translatedLanguage": "en",
                 "externalUrl": null,
-                "publishAt": "2021-11-16T00:32:33+00:00",
-                "readableAt": "2021-11-16T00:32:33+00:00",
-                "createdAt": "2021-11-16T00:32:32+00:00",
-                "updatedAt": "2021-12-09T12:18:51+00:00",
-                "pages": 28,
-                "version": 5
-            },
-            "relationships": [
-                {
-                    "id": "9e43542e-e666-48d0-a23c-c98a016d551c",
-                    "type": "scanlation_group"
-                },
-                {
-                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
-                    "type": "manga"
-                },
-                {
-                    "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
-                    "type": "user"
-                }
-            ]
-        },
-        {
-            "id": "8c869cdd-be95-43a5-8ccc-c7ee2301fdcb",
-            "type": "chapter",
-            "attributes": {
-                "volume": "3",
-                "chapter": "17",
-                "title": "",
-                "translatedLanguage": "fa",
-                "externalUrl": null,
-                "publishAt": "2020-05-11T23:21:29+00:00",
-                "readableAt": "2020-05-11T23:21:29+00:00",
-                "createdAt": "2020-05-11T23:21:29+00:00",
-                "updatedAt": "2020-05-11T23:21:29+00:00",
-                "pages": 13,
+                "publishAt": "2018-01-15T16:41:28+00:00",
+                "readableAt": "2018-01-15T16:41:28+00:00",
+                "createdAt": "2018-01-15T16:41:28+00:00",
+                "updatedAt": "2018-01-15T16:41:28+00:00",
+                "pages": 12,
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "99b68093-cef0-4122-b25f-2ea7dc1f2a98",
-                    "type": "scanlation_group"
+                    "id": "caf0d1da-a790-49d0-833c-ce74d651c8a1",
+                    "type": "scanlation_group",
+                    "attributes": {
+                        "name": "Doki Fansubs",
+                        "altNames": [
+                            {
+                                "en": "Doki"
+                            },
+                            {
+                                "en": "Doki Scans"
+                            }
+                        ],
+                        "locked": true,
+                        "website": "https://doki.co/",
+                        "ircServer": "irc.rizon.net",
+                        "ircChannel": "doki",
+                        "discord": "Y2YKXUP",
+                        "contactEmail": "holo@doki.co",
+                        "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
+                        "twitter": null,
+                        "mangaUpdates": null,
+                        "focusedLanguages": [
+                            "en"
+                        ],
+                        "official": false,
+                        "verified": false,
+                        "inactive": false,
+                        "publishDelay": null,
+                        "createdAt": "2021-04-19T21:45:59+00:00",
+                        "updatedAt": "2021-04-19T21:45:59+00:00",
+                        "version": 1
+                    }
                 },
                 {
-                    "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
-                    "type": "manga"
+                    "id": "127820bd-8fc5-47b8-8782-e680317bf41d",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Boku wa Ohime-sama ni Narenai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Boku ha Ohimesama ni Narenai"
+                            },
+                            {
+                                "en": "I Can't Be a Princess"
+                            },
+                            {
+                                "ru": "\u042f \u043d\u0435 \u043c\u043e\u0433\u0443 \u0441\u0442\u0430\u0442\u044c \u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u043e\u0439!"
+                            },
+                            {
+                                "th": "\u0e09\u0e31\u0e19\u0e44\u0e21\u0e48\u0e2a\u0e32\u0e21\u0e32\u0e23\u0e16\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e0d\u0e34\u0e07\u0e44\u0e14\u0e49\u0e2b\u0e23\u0e2d\u0e01!"
+                            },
+                            {
+                                "ja": "\u50d5\u306f\u304a\u59eb\u69d8\u306b\u306a\u308c\u306a\u3044"
+                            },
+                            {
+                                "zh-hk": "\u6211\u6c92\u8fa6\u6cd5\u6210\u70ba\u516c\u4e3b"
+                            },
+                            {
+                                "zh": "\u6211\u6ca1\u529e\u6cd5\u6210\u4e3a\u516c\u4e3b"
+                            },
+                            {
+                                "ko": "\ub098\ub294 \uacf5\uc8fc\ub2d8\uc774 \ub420 \uc218 \uc5c6\ub2e4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Shindou Rei (Cinderella) comes from a very poor family. Her only clothes are hand-me-downs from her brother, even her school uniform. So everyone always mistakes her for a boy. Even her close friend Hakuba Ouji (white horse prince), who starts developing confusing feelings toward her all the while believing she\u2019s a boy. Tsukumo Yuki (Snow White) is the leader of a delinquent gang and falls in love with Rei at first sight, also believing her to be a boy."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "86578",
+                            "ap": "boku-wa-ohime-sama-ni-narenai",
+                            "bw": "series/19938",
+                            "kt": "32976",
+                            "mu": "103838",
+                            "amz": "https://www.amazon.co.jp/s/ref=nb_sb_noss_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&rh=i%3Aaps%2Ck%3A%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84+%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5",
+                            "cdj": "http://www.cdjapan.co.jp/searches?term.media_format=book&f=major&q=%E5%83%95%E3%81%AF%E3%81%8A%E5%A7%AB%E6%A7%98%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%AA%E3%81%84&f=artist&q=%E8%8B%A5%E6%9E%97+%E7%A8%94%E5%BC%A5&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/469805/",
+                            "mal": "80539"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "30.1",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crossdressing"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-11-16T06:35:01+00:00",
+                        "updatedAt": "2022-02-19T22:31:01+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "es-la",
+                            "pt-br"
+                        ]
+                    }
                 },
                 {
-                    "id": "640dec21-121b-4753-bd7c-e2d11af71b85",
-                    "type": "user"
+                    "id": "16cf9cc6-78a4-4037-abdc-abf9145d74c8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "ixlone",
+                        "roles": [
+                            "ROLE_ADMIN",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
                 }
             ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 752
+    "total": 1288558
 }

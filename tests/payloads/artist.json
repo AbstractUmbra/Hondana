@@ -8,8 +8,8 @@
             "name": "774 (Nanashi)",
             "imageUrl": null,
             "biography": [],
-            "twitter": "https:\/\/twitter.com\/774nanash",
-            "pixiv": "https:\/\/www.pixiv.net\/en\/users\/72342",
+            "twitter": "https://twitter.com/774nanash",
+            "pixiv": "https://www.pixiv.net/en/users/72342",
             "melonBook": null,
             "fanBox": null,
             "booth": null,
@@ -117,7 +117,7 @@
                     },
                     "altTitles": [
                         {
-                            "en": "上野本"
+                            "en": "\u4e0a\u91ce\u672c"
                         }
                     ],
                     "description": {
@@ -205,15 +205,15 @@
                     },
                     "altTitles": [
                         {
-                            "en": "新世紀エヴァンゲリオン - エヴァのアスカと少し大人なシンジ君のラブラブ妄想話"
+                            "en": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u30a8\u30f4\u30a1\u306e\u30a2\u30b9\u30ab\u3068\u5c11\u3057\u5927\u4eba\u306a\u30b7\u30f3\u30b8\u541b\u306e\u30e9\u30d6\u30e9\u30d6\u5984\u60f3\u8a71"
                         }
                     ],
                     "description": {
-                        "en": "[![](https:\/\/i.imgur.com\/oiVINmy.png) Artist’s Pixiv](https:\/\/www.pixiv.net\/en\/users\/72342)  \n[![](https:\/\/i.imgur.com\/dQCXZkU.png) Artist’s Twitter](https:\/\/twitter.com\/774nanash)"
+                        "en": "[![](https://i.imgur.com/oiVINmy.png) Artist\u2019s Pixiv](https://www.pixiv.net/en/users/72342)  \n[![](https://i.imgur.com/dQCXZkU.png) Artist\u2019s Twitter](https://twitter.com/774nanash)"
                     },
                     "isLocked": false,
                     "links": {
-                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/78757632"
+                        "raw": "https://www.pixiv.net/en/artworks/78757632"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": null,
@@ -307,7 +307,7 @@
                 "attributes": {
                     "isLocked": false,
                     "links": {
-                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/78708190"
+                        "raw": "https://www.pixiv.net/en/artworks/78708190"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": null,
@@ -320,11 +320,11 @@
                     },
                     "altTitles": [
                         {
-                            "en": "新世紀エヴァンゲリオン - 「猛犬アスカと大人なシンちゃん」"
+                            "en": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u300c\u731b\u72ac\u30a2\u30b9\u30ab\u3068\u5927\u4eba\u306a\u30b7\u30f3\u3061\u3083\u3093\u300d"
                         }
                     ],
                     "description": {
-                        "en": "[![](https:\/\/i.imgur.com\/oiVINmy.png) Artist’s Pixiv](https:\/\/www.pixiv.net\/en\/users\/72342)  \n[![](https:\/\/i.imgur.com\/dQCXZkU.png) Artist’s Twitter](https:\/\/twitter.com\/774nanash)"
+                        "en": "[![](https://i.imgur.com/oiVINmy.png) Artist\u2019s Pixiv](https://www.pixiv.net/en/users/72342)  \n[![](https://i.imgur.com/dQCXZkU.png) Artist\u2019s Twitter](https://twitter.com/774nanash)"
                     },
                     "year": null,
                     "tags": [
@@ -572,7 +572,7 @@
                             "en": "Zom Zom Biyori"
                         },
                         {
-                            "en": "永遠娘"
+                            "en": "\u6c38\u9060\u5a18"
                         }
                     ],
                     "description": {
@@ -734,7 +734,7 @@
                             "en": "A Tale of Being Eaten by a Man-Eating Youkai"
                         },
                         {
-                            "ja": "人喰いの妖怪に喰われる話"
+                            "ja": "\u4eba\u55b0\u3044\u306e\u5996\u602a\u306b\u55b0\u308f\u308c\u308b\u8a71"
                         },
                         {
                             "en": "Flirting with a Dangerous Youkai"
@@ -743,7 +743,7 @@
                             "ja-ro": "Yabai Youkai to Ichaicha Shitai dake no Manga"
                         },
                         {
-                            "ja": "ヤバイ妖怪とイチャイチャしたいだけの漫画"
+                            "ja": "\u30e4\u30d0\u30a4\u5996\u602a\u3068\u30a4\u30c1\u30e3\u30a4\u30c1\u30e3\u3057\u305f\u3044\u3060\u3051\u306e\u6f2b\u753b"
                         }
                     ],
                     "description": {
@@ -754,7 +754,7 @@
                         "al": "122386",
                         "kt": "56835",
                         "mu": "169222",
-                        "raw": "https:\/\/www.pixiv.net\/en\/artworks\/77639630"
+                        "raw": "https://www.pixiv.net/en/artworks/77639630"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": "",
@@ -959,7 +959,7 @@
                             "en": "Suzuka-sama's Servant"
                         },
                         {
-                            "en": "鈴香様の下僕"
+                            "en": "\u9234\u9999\u69d8\u306e\u4e0b\u50d5"
                         }
                     ],
                     "description": {

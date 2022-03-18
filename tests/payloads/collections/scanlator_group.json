@@ -3,51 +3,283 @@
     "response": "collection",
     "data": [
         {
-            "id": "96ff321a-44b9-4722-b542-f79d0c73898c",
+            "id": "0000fc58-fdfd-4e6f-9033-0cdfa6bb8baa",
             "type": "scanlation_group",
             "attributes": {
-                "name": "ThisIsUTL",
-                "altNames": [
-                    {
-                        "en": "Unreliable Translator L..."
+                "name": "LegACy",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "0008dd9f-00f2-4e44-b6f8-385e5caa93f8",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Annie's Scanlations",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": "Reincarnated as a Slime manga translation team",
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "ko"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "00094e62-9bc6-44f2-b1e6-44a4df55f439",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "CLAMP world",
+                "altNames": [],
+                "locked": false,
+                "website": "http://clamp.ru/",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "ru"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "000ce330-f6a2-45fa-9b51-e95eedb591af",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Tomboy Society",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": "hqbPqvjQbC",
+                "contactEmail": null,
+                "description": "Need JTLs and Typesetters. We love tomboys. Consider joining if you want a chill time working on a couple monthly series.  \n  \n<https://discord.gg/hqbPqvjQbC>",
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "3ec63354-8fbe-4ea9-a59f-fe1828065b31",
+                    "type": "leader",
+                    "attributes": {
+                        "username": "NeedTomboyGF",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_GROUP_LEADER"
+                        ],
+                        "version": 1
                     }
-                ],
-                "locked": false,
-                "website": "http:\/\/thisisutl.tumblr.com",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": "I mainly translate Naruto X Hinata doujin. I have a sizable collection of them and I am willing to share with everyone.  \n  \nUTL stands for \"Unreliable Translator L…\". I am not good at Japanese and I rely heavily on translation software to make sense of things so, unless a proof-reader is mentioned, take my translations with a grain of salt.  \n  \nIf you are knowledgeable in Japanese, you are more than welcome to correct me. Contact me on my tumblr and I will send you a copy of my raws.",
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f295be30-6e65-4ca4-a44f-e8d7378cecae",
-                    "type": "leader"
                 },
                 {
-                    "id": "f295be30-6e65-4ca4-a44f-e8d7378cecae",
-                    "type": "member"
+                    "id": "04b8ec00-0ecb-41c7-90d5-8ea8cdbe4ce9",
+                    "type": "member",
+                    "attributes": {
+                        "username": "TheEternalOne",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 3
+                    }
+                },
+                {
+                    "id": "16c1cb83-c8d1-43a9-bed8-37cca8013400",
+                    "type": "member",
+                    "attributes": {
+                        "username": "MC2k",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_GROUP_LEADER"
+                        ],
+                        "version": 14
+                    }
+                },
+                {
+                    "id": "29a012d8-0e1e-4816-b05b-4a6249fc1d93",
+                    "type": "member",
+                    "attributes": {
+                        "username": "gasterny",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "3ec63354-8fbe-4ea9-a59f-fe1828065b31",
+                    "type": "member",
+                    "attributes": {
+                        "username": "NeedTomboyGF",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_GROUP_LEADER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "7c7a1c19-4fa3-485d-a775-7d9c54013e50",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Grimshacklekid",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 5
+                    }
+                },
+                {
+                    "id": "7ccf168c-471f-425a-ab75-f27b016f293d",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Swezed",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 3
+                    }
+                },
+                {
+                    "id": "8a9d9e45-eac4-4b40-8550-2a88c075263c",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Darkly21",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "93c11bef-6908-4109-afc7-4873cc3bac88",
+                    "type": "member",
+                    "attributes": {
+                        "username": "trblagi",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "bd7f8d8c-4c36-40cd-9f3f-e85da3c3438e",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Wills",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "d111b64e-a9f7-4eb5-a53a-f15d350f7d9a",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Zelckip",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "e6f101ad-f027-4bc0-a650-336925235b7d",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Akuma_-1",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "f81ddd58-f781-4fbb-b44f-9bcc2e96fbd6",
+                    "type": "member",
+                    "attributes": {
+                        "username": "Darknorth",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 4
+                    }
                 }
             ]
         },
         {
-            "id": "97069895-49ba-4606-a45e-8aa9d6fc8863",
+            "id": "00116e0d-77d2-4db8-90cf-4fa2479e05e2",
             "type": "scanlation_group",
             "attributes": {
-                "name": "izManga",
+                "name": "Scan sem nome ainda",
                 "altNames": [],
                 "locked": false,
                 "website": null,
@@ -55,11 +287,11 @@
                 "ircChannel": null,
                 "discord": null,
                 "contactEmail": null,
-                "description": null,
+                "description": "Ol\u00e1 estou criando uma scan pra lan\u00e7ar caps de mang\u00e1s que gosto. Interessado em fazer parte? Entre em contato cmg por aqui msm!",
                 "twitter": null,
                 "mangaUpdates": null,
                 "focusedLanguages": [
-                    "vi"
+                    "pt-br"
                 ],
                 "official": false,
                 "verified": false,
@@ -70,110 +302,9 @@
                 "version": 1
             },
             "relationships": []
-        },
-        {
-            "id": "97075b9d-d7de-4d67-8c3a-00d7a346d68e",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Translation Texts",
-                "altNames": [],
-                "locked": false,
-                "website": "http:\/\/translationtexts.50webs.com\/index.html",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "970b2640-58df-49e2-908c-57195cea5eee",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Tenko",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "970bdc84-0735-4bc1-8506-b6b9fb582b71",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Bossque Scans",
-                "altNames": [],
-                "locked": true,
-                "website": "https:\/\/discord.gg\/WNVQ76X",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "WNVQ76X",
-                "contactEmail": "piangree147@gmail.com",
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "ms"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "b8c3b0c1-b8da-49ae-8e92-6288181c3b05",
-                    "type": "leader"
-                },
-                {
-                    "id": "af73183f-b9ae-40ef-8472-64191d3ed758",
-                    "type": "member"
-                },
-                {
-                    "id": "b8c3b0c1-b8da-49ae-8e92-6288181c3b05",
-                    "type": "member"
-                },
-                {
-                    "id": "fc63c912-dec8-4050-9670-618d5e406064",
-                    "type": "member"
-                }
-            ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 20637
+    "total": 20707
 }
