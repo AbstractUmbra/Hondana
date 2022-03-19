@@ -26,14 +26,16 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
-from .relationship import Relationship
-from .utils import MISSING, cached_slot_property, require_authentication
+from .user import User
+from .utils import MISSING, relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.common import LanguageCode
     from .types.cover import CoverResponse
+    from .types.manga import MangaResponse
+    from .types.user import UserResponse
 
 
 __all__ = ("Cover",)
@@ -60,7 +62,6 @@ class Cover:
         "_http",
         "_data",
         "_attributes",
-        "_relationships",
         "id",
         "volume",
         "file_name",
@@ -69,14 +70,15 @@ class Cover:
         "version",
         "_created_at",
         "_updated_at",
-        "_cs_relationships",
+        "_manga_relationship",
+        "_uploader_relationship",
     )
 
     def __init__(self, http: HTTPClient, payload: CoverResponse) -> None:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = self._data.pop("relationships", [])
+        relationships = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.volume: Optional[str] = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
@@ -85,6 +87,8 @@ class Cover:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore - can't narrow this
+        self._uploader_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow this
 
     def __repr__(self) -> str:
         return f"<Cover id='{self.id}' filename={self.file_name}>"
@@ -120,16 +124,23 @@ class Cover:
         """
         return datetime.datetime.fromisoformat(self._updated_at)
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Cover.
+    @property
+    def uploader(self) -> Optional[User]:
+        """The user who uploaded this cover.
+
+        .. note::
+            This is only populated if the Cover has populated relationships.
 
         Returns
         --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this cover has.
+        Optional[:class:`~hondana.User`]
+            The user who uploaded this cover, if present.
         """
-        return [Relationship(item) for item in self._relationships]
+        if not self._uploader_relationship:
+            return
+
+        if "attributes" in self._uploader_relationship:
+            return User(self._http, self._uploader_relationship)
 
     def url(self, type: Optional[Literal[256, 512]] = None, /, parent_id: Optional[str] = None) -> Optional[str]:
         """Method to return the Cover url.
@@ -150,18 +161,9 @@ class Cover:
         Optional[:class:`str`]
             The Cover url.
         """
-        if parent_id is not None:
-            parent_manga_id = parent_id
-        else:
-            parent_manga = next(
-                (item for item in self._relationships if item["type"] == "manga"),
-                None,
-            )
-
-            if parent_manga is None:
-                return
-
-            parent_manga_id = parent_manga["id"]
+        manga_id = parent_id or (self._manga_relationship["id"] if self._manga_relationship else None)
+        if manga_id is None:
+            return
 
         if type == 256:
             fmt = ".256.jpg"
@@ -170,7 +172,7 @@ class Cover:
         else:
             fmt = ""
 
-        return f"https://uploads.mangadex.org/covers/{parent_manga_id}/{self.file_name}{fmt}"
+        return f"https://uploads.mangadex.org/covers/{manga_id}/{self.file_name}{fmt}"
 
     async def fetch_image(self, size: Optional[Literal[256, 512]] = None, /) -> Optional[bytes]:
         """|coro|

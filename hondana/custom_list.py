@@ -26,14 +26,17 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from .enums import CustomListVisibility
-from .relationship import Relationship
+from .manga import Manga
+from .query import MangaIncludes
 from .user import User
-from .utils import cached_slot_property, require_authentication
+from .utils import relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.custom_list import CustomListResponse
+    from .types.manga import MangaResponse
+    from .types.user import UserResponse
 
 
 __all__ = ("CustomList",)
@@ -58,25 +61,29 @@ class CustomList:
         "_http",
         "_data",
         "_attributes",
-        "_relationships",
         "id",
         "name",
         "visibility",
         "version",
+        "_owner_relationship",
+        "_manga_relationships",
         "__owner",
-        "_cs_relationships",
+        "__manga",
     )
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = self._data.pop("relationships", [])
+        relationships = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
+        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow further
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - can't narrow further
         self.__owner: Optional[User] = None
+        self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
         return f"<CustomList id='{self.id}' name='{self.name}'>"
@@ -101,17 +108,6 @@ class CustomList:
         """
         return f"https://mangadex.org/list/{self.id}"
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Custom List.
-
-        Returns
-        --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this custom list has.
-        """
-        return [Relationship(item) for item in self._relationships]
-
     @property
     def owner(self) -> Optional[User]:
         """Returns the owner of this custom list.
@@ -124,26 +120,48 @@ class CustomList:
         if self.__owner is not None:
             return self.__owner
 
-        if not self._relationships:
+        if not self._owner_relationship:
             return None
 
-        owner_key = next(
-            (relationship for relationship in self._relationships if relationship["type"] == "user"),
-            None,
-        )
-
-        if owner_key is None:
-            return None
-
-        if "attributes" in owner_key:
-            self.__owner = User(self._http, owner_key)
+        if "attributes" in self._owner_relationship:
+            self.__owner = User(self._http, self._owner_relationship)
             return self.__owner
-        return None
 
     @owner.setter
     def owner(self, other: User) -> None:
         if isinstance(other, User):
             self.__owner = other
+
+    @property
+    def manga(self) -> Optional[list[Manga]]:
+        """Returns the of manga present in this custom list, if any.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+            The list of manga present, if any.
+        """
+
+        if self.__manga is not None:
+            return self.__manga
+
+        if not self._manga_relationships:
+            return
+
+        fmt: list[Manga] = []
+        for manga in self._manga_relationships:
+            if "attributes" in manga:
+                fmt.append(Manga(self._http, manga))
+
+        if not fmt:
+            return
+
+        return fmt
+
+    @manga.setter
+    def manga(self, other: list[Manga]) -> None:
+        fmt = [item for item in other if isinstance(item, Manga)]
+        self.__manga = fmt
 
     async def get_owner(self) -> Optional[User]:
         """|coro|
@@ -158,20 +176,55 @@ class CustomList:
         if self.owner is not None:
             return self.owner
 
-        if not self._relationships:
+        if not self._owner_relationship:
             return
 
-        owner_key = next(
-            (relationship for relationship in self._relationships if relationship["type"] == "user"),
-            None,
-        )
-
-        if owner_key is None:
-            return None
-
-        data = await self._http._get_user(owner_key["id"])
+        data = await self._http._get_user(self._owner_relationship["id"])
         self.__owner = User(self._http, data["data"])
         return self.__owner
+
+    async def get_manga(self) -> Optional[list[Manga]]:
+        """|coro|"""
+        if self.manga is not None:
+            return self.manga
+
+        if not self._manga_relationships:
+            return
+
+        ids = [r["id"] for r in self._manga_relationships]
+
+        data = await self._http._manga_list(
+            limit=100,
+            offset=0,
+            title=None,
+            authors=None,
+            artists=None,
+            year=None,
+            included_tags=None,
+            excluded_tags=None,
+            status=None,
+            original_language=None,
+            excluded_original_language=None,
+            available_translated_language=None,
+            publication_demographic=None,
+            ids=ids,
+            content_rating=None,
+            created_at_since=None,
+            updated_at_since=None,
+            order=None,
+            includes=MangaIncludes(),
+            has_available_chapters=None,
+            group=None,
+        )
+
+        ret: list[Manga] = []
+        for item in data["data"]:
+            ret.append(Manga(self._http, item))
+
+        if not ret:
+            return
+
+        return ret
 
     @require_authentication
     async def update(

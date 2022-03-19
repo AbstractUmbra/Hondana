@@ -23,15 +23,17 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
-from .relationship import Relationship
-from .utils import cached_slot_property, require_authentication
+from .query import ScanlatorGroupIncludes
+from .scanlator_group import ScanlatorGroup
+from .utils import relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.relationship import RelationshipResponse
+    from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
 
 __all__ = ("User",)
@@ -49,6 +51,14 @@ class User:
         The user's username.
     version: :class:`int`
         The user's version revision.
+    roles: List[:class:`str`]
+        The list of roles this person has.
+
+
+    .. note::
+        Unlike most other api objects, this type does not have related relationship properties due to not returning a full ``relationships`` key.
+
+
     """
 
     __slots__ = (
@@ -60,18 +70,21 @@ class User:
         "username",
         "version",
         "roles",
-        "_cs_relationships",
+        "_group_relationships",
+        "__groups",
     )
 
     def __init__(self, http: HTTPClient, payload: UserResponse) -> None:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]
         self.roles: list[str] = self._attributes["roles"]
+        self._group_relationships: list[ScanlationGroupResponse] = relationship_finder(relationships, "scanlation_group", limit=None)  # type: ignore - cannot narrow this further
+        self.__groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
         return f"<User id='{self.id}' username='{self.username}'>"
@@ -96,16 +109,34 @@ class User:
         """
         return f"https://mangadex.org/user/{self.id}"
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this User.
+    async def get_scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
+        """|coro|
+
+        This method will fetch the scanlator groups of this user from the API.
 
         Returns
         --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this user has.
+        Optional[List[:class:`~hondana.ScanlatorGroup`]]
+            The list of groups for this user, if any.
         """
-        return [Relationship(item) for item in self._relationships]
+        if not self._group_relationships:
+            return
+
+        ids = [r["id"] for r in self._group_relationships]
+
+        data = await self._http._scanlation_group_list(
+            limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
+        )
+
+        fmt: list[ScanlatorGroup] = []
+        for payload in data["data"]:
+            fmt.append(ScanlatorGroup(self._http, payload))
+
+        if not fmt:
+            return
+
+        self.__groups = fmt
+        return self.__groups
 
     @require_authentication
     async def delete(self) -> None:

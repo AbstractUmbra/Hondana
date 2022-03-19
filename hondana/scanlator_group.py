@@ -26,9 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
-from .relationship import Relationship
-from .user import User
-from .utils import MISSING, cached_slot_property, iso_to_delta, require_authentication
+from .utils import MISSING, iso_to_delta, relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
@@ -37,6 +35,7 @@ if TYPE_CHECKING:
     from .types.relationship import RelationshipResponse
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
+    from .user import User
 
 __all__ = ("ScanlatorGroup",)
 
@@ -87,7 +86,6 @@ class ScanlatorGroup:
         "_http",
         "_data",
         "_attributes",
-        "_relationships",
         "id",
         "name",
         "alt_names",
@@ -108,7 +106,10 @@ class ScanlatorGroup:
         "_created_at",
         "_updated_at",
         "_publish_delay",
-        "_cs_relationships",
+        "_leader_relationship",
+        "_member_relationships",
+        "__leader",
+        "__members",
     )
 
     def __init__(self, http: HTTPClient, payload: ScanlationGroupResponse) -> None:
@@ -116,7 +117,7 @@ class ScanlatorGroup:
         self._data = payload
         self._attributes = self._data["attributes"]
         self.id: str = self._data["id"]
-        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
         self.website: Optional[str] = self._attributes["website"]
@@ -136,6 +137,10 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
+        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)  # type: ignore - cannot narrow further
+        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)  # type: ignore - cannot narrow further
+        self.__leader: Optional[User] = None
+        self.__members: Optional[list[User]] = None
 
     def __repr__(self) -> str:
         return f"<ScanlatorGroup id='{self.id}' name='{self.name}'>"
@@ -182,17 +187,6 @@ class ScanlatorGroup:
         """
         return f"https://mangadex.org/group/{self.id}"
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Scanlator Group.
-
-        Returns
-        --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this artist has.
-        """
-        return [Relationship(item) for item in self._relationships]
-
     @property
     def publish_delay(self) -> Optional[datetime.timedelta]:
         """The publishing delay of this scanlation group.
@@ -204,6 +198,62 @@ class ScanlatorGroup:
         """
         if self._publish_delay:
             return iso_to_delta(self._publish_delay)
+
+    @property
+    def leader(self) -> Optional[User]:
+        """The leader of this scanlation group, if any.
+
+        Returns
+        --------
+        Optional[:class:`~hondana.User`]
+            The leader of the scanlation group.
+        """
+        if self.__leader is not None:
+            return self.__leader
+
+        if not self._leader_relationship:
+            return
+
+        if "attributes" in self._leader_relationship:
+            from .user import User
+
+            user = User(self._http, self._leader_relationship)
+            self.__leader = user
+            return self.__leader
+
+    @leader.setter
+    def leader(self, other: User) -> None:
+        if isinstance(other, User):
+            self.__leader = other
+
+    @property
+    def members(self) -> Optional[list[User]]:
+        """The members of this scanlation group, if any.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.User`]]
+            The members of the scanlation group.
+        """
+        if self.__members is not None:
+            return self.__members
+
+        if not self._member_relationships:
+            return
+
+        fmt: list[User] = []
+
+        for relationship in self._member_relationships:
+            from .user import User
+
+            if "attributes" in relationship:
+                fmt.append(User(self._http, relationship))
+
+        if not fmt:
+            return
+
+        self.__members = fmt
+        return self.__members
 
     async def get_leader(self) -> Optional[User]:
         """|coro|
@@ -224,23 +274,20 @@ class ScanlatorGroup:
         Optional[User]
             The leader of the ScanlatorGroup, if present.
         """
-        if not self._relationships:
+        if self.leader is not None:
+            return self.leader
+
+        if not self._leader_relationship:
             return
 
-        leader_key = next(
-            (relationship for relationship in self._relationships if relationship["type"] == "leader"),
-            None,
-        )
+        leader_id = self._leader_relationship["id"]
+        data = await self._http._get_user(leader_id)
 
-        if leader_key is None:
-            return
+        from .user import User
 
-        if "attributes" in leader_key:
-            return User(self._http, leader_key)
-
-        leader_id = leader_key["id"]
-        leader = await self._http._get_user(leader_id)
-        return User(self._http, leader["data"])
+        leader = User(self._http, data["data"])
+        self.__leader = leader
+        return self.__leader
 
     async def get_members(self) -> Optional[list[User]]:
         """|coro|
@@ -255,37 +302,27 @@ class ScanlatorGroup:
             If this object was created as part of another object's ``includes`` then this will return None.
             This is due to having no relationship data.
 
-
-        .. danger::
-            Due to the nature of this request, this is N many API calls depending on the amount of members.
-            It is *strongly* suggested you request the ScanlatorGroup with the ``member`` includes.
-
-
         Returns
         --------
         Optional[List[User]]
             The list of members of the scanlation group.
         """
-        if not self._relationships:
+        if self.members is not None:
+            return self.members
+
+        if not self._member_relationships:
             return
 
-        _keys: list[UserResponse] = [
-            relationship for relationship in self._relationships if relationship["type"] == "member"
-        ]
+        ids = [r["id"] for r in self._member_relationships]
 
-        if not _keys:
-            return None
+        data = await self._http._user_list(limit=100, offset=0, ids=ids, username=None, order=None)
 
-        members: list[User] = [User(self._http, key) for key in _keys if "attributes" in key]
+        members: list[User] = []
+        for payload in data["data"]:
+            members.append(User(self._http, payload))
 
-        if members:
-            return members
-
-        for key in _keys:
-            user = await self._http._get_user(key["id"])
-            members.append(User(self._http, user["data"]))
-
-        return members
+        self.__members = members
+        return self.__members
 
     @require_authentication
     async def delete(self) -> None:

@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
 
 if TYPE_CHECKING:
@@ -196,6 +196,7 @@ class _OptionalMangaResponse(TypedDict, total=False):
     related: _MangaRelationType
 
 
+@final
 class MangaResponse(_OptionalMangaResponse):
     """
     id: :class:`str`

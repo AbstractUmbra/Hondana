@@ -36,7 +36,6 @@ import aiohttp
 from .errors import NotFound, UploadInProgress
 from .manga import Manga
 from .query import MangaIncludes, ScanlatorGroupIncludes
-from .relationship import Relationship
 from .scanlator_group import ScanlatorGroup
 from .user import User
 from .utils import (
@@ -44,8 +43,8 @@ from .utils import (
     CustomRoute,
     Route,
     as_chunks,
-    cached_slot_property,
     clean_isoformat,
+    relationship_finder,
     require_authentication,
 )
 
@@ -58,6 +57,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.chapter import ChapterResponse, GetAtHomeResponse
     from .types.common import LanguageCode
+    from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.upload import (
@@ -65,6 +65,7 @@ if TYPE_CHECKING:
         GetUploadSessionResponse,
         UploadedChapterResponse,
     )
+    from .types.user import UserResponse
 
 ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 
@@ -110,7 +111,6 @@ class Chapter:
         "_http",
         "_data",
         "_attributes",
-        "_relationships",
         "id",
         "title",
         "volume",
@@ -123,6 +123,9 @@ class Chapter:
         "_updated_at",
         "_published_at",
         "_readable_at",
+        "_manga_relationship",
+        "_scanlator_group_relationships",
+        "_uploader_relationship",
         "_at_home_url",
         "__uploader",
         "__parent",
@@ -134,7 +137,7 @@ class Chapter:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.title: Optional[str] = self._attributes["title"]
         self.volume: Optional[str] = self._attributes["volume"]
@@ -147,6 +150,11 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore - can't narrow this further
+        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore - can't narrow this further
+            relationships, "scanlation_group", limit=None
+        )
+        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow this further
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
@@ -260,17 +268,6 @@ class Chapter:
         """
         return datetime.datetime.fromisoformat(self._readable_at)
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Chapter.
-
-        Returns
-        --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this chapter has.
-        """
-        return [Relationship(item) for item in self._relationships]
-
     @property
     def manga(self) -> Optional[Manga]:
         """The parent Manga of the chapter.
@@ -283,20 +280,13 @@ class Chapter:
         if self.__parent is not None:
             return self.__parent
 
-        if not self._relationships:
+        if not self._manga_relationship:
             return
 
-        resolved = next(
-            (relationship for relationship in self._relationships if relationship["type"] == "manga"),
-            None,
-        )
-
-        if resolved is None or not resolved.get("attributes"):
-            return
-
-        manga = Manga(self._http, resolved)
-        self.__parent = manga
-        return self.__parent
+        if "attributes" in self._manga_relationship:
+            manga = Manga(self._http, self._manga_relationship)
+            self.__parent = manga
+            return self.__parent
 
     @manga.setter
     def manga(self, other: Manga) -> None:
@@ -317,12 +307,7 @@ class Chapter:
             The manga id.
         """
 
-        if not self._relationships:
-            return
-
-        for relationship in self._relationships:
-            if relationship["type"] == "manga":
-                return relationship["id"]
+        return self._manga_relationship["id"] if self._manga_relationship else None
 
     @property
     def scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
@@ -336,14 +321,12 @@ class Chapter:
         if self.__scanlator_groups is not None:
             return self.__scanlator_groups
 
-        if not self._relationships:
+        if not self._scanlator_group_relationships:
             return
 
-        resolved: list[ScanlationGroupResponse] = [
-            relationship for relationship in self._relationships if relationship["type"] == "scanlation_group"
+        fmt = [
+            ScanlatorGroup(self._http, payload) for payload in self._scanlator_group_relationships if "attributes" in payload
         ]
-
-        fmt = [ScanlatorGroup(self._http, payload) for payload in resolved if payload.get("attributes")]
 
         if not fmt:
             return
@@ -367,19 +350,12 @@ class Chapter:
         if self.__uploader is not None:
             return self.__uploader
 
-        if not self._relationships:
+        if not self._uploader_relationship:
             return
 
-        resolved = None
-        for relationship in self._relationships:
-            if relationship["type"] == "user":
-                resolved = relationship
-                break
-
-        if resolved is not None:
-            if resolved.get("attributes"):
-                self.__uploader = User(self._http, resolved)
-                return self.__uploader
+        if "attributes" in self._uploader_relationship:
+            self.__uploader = User(self._http, self._uploader_relationship)
+            return self.__uploader
 
     async def get_parent_manga(self) -> Optional[Manga]:
         """|coro|
@@ -391,21 +367,16 @@ class Chapter:
         Optional[:class:`~hondana.Manga`]
             The Manga that was fetched from the API.
         """
-        if self.__parent is not None:
-            return self.__parent
+        if self.manga is not None:
+            return self.manga
 
-        if not self._relationships:
+        if not self._manga_relationship:
             return
 
-        manga_id = next(
-            (relationship["id"] for relationship in self._relationships if relationship["type"] == "manga"),
-            None,
-        )
-
-        if manga_id is None:
+        if self.manga_id is None:
             return
 
-        manga = await self._http._view_manga(manga_id, includes=MangaIncludes())
+        manga = await self._http._view_manga(self.manga_id, includes=MangaIncludes())
 
         resolved = Manga(self._http, manga["data"])
         self.__parent = resolved
@@ -416,27 +387,24 @@ class Chapter:
 
         This method will fetch the scanlator group from a chapter's relationships.
 
+        .. warning::
+            It is recommended to request this Chapter with the ``scanlator_group`` reference expansion,
+            as this method will make an API call to request this data.
+
         Returns
         --------
         Optional[:class:`~hondana.ScanlatorGroup`]
             The scanlator group that was fetched from the API.
         """
-        if self.__scanlator_groups is not None:
-            return self.__scanlator_groups
+        if self.scanlator_groups is not None:
+            return self.scanlator_groups
 
-        if not self._relationships:
+        if not self._scanlator_group_relationships:
             return
 
-        resolved: list[ScanlationGroupResponse] = [
-            relationship for relationship in self._relationships if relationship["type"] == "scanlation_group"
-        ]
-
-        if not resolved:
-            return
-
-        ids = [item["id"] for item in resolved]
+        ids = [item["id"] for item in self._scanlator_group_relationships]
         groups = await self._http._scanlation_group_list(
-            limit=25, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
+            limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
         )
 
         resolved_groups = [ScanlatorGroup(self._http, item) for item in groups["data"]]

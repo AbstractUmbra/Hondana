@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
 
 if TYPE_CHECKING:
@@ -101,6 +101,7 @@ class ScanlationGroupAttributesResponse(TypedDict):
     updatedAt: str
 
 
+@final
 class ScanlationGroupResponse(TypedDict):
     """
     id: :class:`str`

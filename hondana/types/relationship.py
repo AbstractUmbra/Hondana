@@ -34,13 +34,13 @@ __all__ = ("RelationshipResponse",)
 
 
 RelationshipResponse = Union[
-    "manga.MangaResponse",
-    "chapter.ChapterResponse",
     "artist.ArtistResponse",
     "author.AuthorResponse",
+    "cover.CoverResponse",
+    "manga.MangaResponse",
+    "chapter.ChapterResponse",
     "user.UserResponse",
     "scanlator_group.ScanlationGroupResponse",
-    "cover.CoverResponse",
 ]
 """
 id: :class:`str`

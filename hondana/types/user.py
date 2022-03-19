@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, TypedDict
+from typing import TYPE_CHECKING, Literal, TypedDict, final
 
 
 if TYPE_CHECKING:
@@ -53,6 +53,7 @@ class GetUserAttributesResponse(TypedDict):
     roles: list[str]
 
 
+@final
 class UserResponse(TypedDict):
     """
     id: :class:`str`

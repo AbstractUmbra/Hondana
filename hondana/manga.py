@@ -48,7 +48,6 @@ from .query import (
     FeedOrderQuery,
     MangaIncludes,
 )
-from .relationship import Relationship
 from .tags import Tag
 from .utils import (
     MISSING,
@@ -130,7 +129,6 @@ class Manga:
         "_http",
         "_data",
         "_attributes",
-        "_relationships",
         "_title",
         "_description",
         "id",
@@ -153,10 +151,10 @@ class Manga:
         "_tags",
         "_created_at",
         "_updated_at",
-        "_artist_ids",
-        "_author_ids",
-        "_related_manga_ids",
-        "_cover_id",
+        "_artist_relationships",
+        "_author_relationships",
+        "_related_manga_relationships",
+        "_cover_relationship",
         "__authors",
         "__artists",
         "__cover",
@@ -168,7 +166,7 @@ class Manga:
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
         self._data = payload
-        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
@@ -199,11 +197,10 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._author_ids: list[str] = [rel["id"] for rel in relationship_finder(self._relationships, "author")]
-        self._artist_ids: list[str] = [rel["id"] for rel in relationship_finder(self._relationships, "artist")]
-        self._related_manga_ids: list[str] = [rel["id"] for rel in relationship_finder(self._relationships, "manga")]
-        _cover_rel: list[str] = [rel["id"] for rel in relationship_finder(self._relationships, "cover_art")]
-        self._cover_id: Optional[str] = _cover_rel[0] if _cover_rel else None
+        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)  # type: ignore - cannot narrow this further
+        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)  # type: ignore - cannot narrow this further
+        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - cannot narrow this further
+        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)  # type: ignore - cannot narrow this further
         self.__authors: Optional[list[Author]] = None
         self.__artists: Optional[list[Artist]] = None
         self.__cover: Optional[Cover] = None
@@ -326,17 +323,6 @@ class Manga:
         """
         return [Tag(item) for item in self._tags]
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Manga.
-
-        Returns
-        --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this manga has.
-        """
-        return [Relationship(item) for item in self._relationships]
-
     @property
     def artists(self) -> Optional[list[Artist]]:
         """The artists of the parent Manga.
@@ -354,15 +340,12 @@ class Manga:
         if self.__artists is not None:
             return self.__artists
 
-        if not self._relationships:
+        if not self._artist_relationships:
             return
 
-        artists: list[ArtistResponse] = relationship_finder(self._relationships, "artist")  # type: ignore - truth is this type works but I do not know how to narrow it.
-
-        if not artists:
-            return None
-
-        formatted: list[Artist] = [Artist(self._http, artist) for artist in artists if "attributes" in artist]
+        formatted: list[Artist] = [
+            Artist(self._http, artist) for artist in self._artist_relationships if "attributes" in artist
+        ]
 
         if not formatted:
             return None
@@ -392,15 +375,12 @@ class Manga:
         if self.__authors is not None:
             return self.__authors
 
-        if not self._relationships:
+        if not self._author_relationships:
             return
 
-        authors: list[AuthorResponse] = relationship_finder(self._relationships, "author")  # type: ignore - truth is this type works but I do not know how to narrow it.
-
-        if not authors:
-            return None
-
-        formatted: list[Author] = [Author(self._http, author) for author in authors if "attributes" in author]
+        formatted: list[Author] = [
+            Author(self._http, author) for author in self._author_relationships if "attributes" in author
+        ]
 
         if not formatted:
             return
@@ -429,18 +409,11 @@ class Manga:
         if self.__cover is not None:
             return self.__cover
 
-        if not self._relationships:
+        if not self._cover_relationship:
             return
 
-        covers: list[CoverResponse] = relationship_finder(self._relationships, "cover_art")  # type: ignore - truth is this type works but I do not know how to narrow it.
-
-        if not covers:
-            return
-
-        cover = covers[0]
-
-        if "attributes" in cover:
-            self.__cover = Cover(self._http, cover)
+        if "attributes" in self._cover_relationship:
+            self.__cover = Cover(self._http, self._cover_relationship)
             return self.__cover
 
     @cover.setter
@@ -460,15 +433,12 @@ class Manga:
         if self.__related_manga is not None:
             return self.__related_manga
 
-        if not self._related_manga_ids:
+        if not self._related_manga_relationships:
             return
 
-        related_manga: list[MangaResponse] = relationship_finder(self._relationships, "manga")  # type: ignore - truth is this type works but I do not know how to narrow it.
-
-        if not related_manga:
-            return
-
-        formatted: list[Manga] = [self.__class__(self._http, item) for item in related_manga if "attributes" in item]
+        formatted: list[Manga] = [
+            self.__class__(self._http, item) for item in self._related_manga_relationships if "attributes" in item
+        ]
 
         if not formatted:
             return
@@ -498,11 +468,13 @@ class Manga:
         if self.artists is not None:
             return self.artists
 
-        if not self._artist_ids:
+        if not self._artist_relationships:
             return
 
+        ids = [r["id"] for r in self._artist_relationships]
+
         formatted: list[Artist] = []
-        for item in self._artist_ids:
+        for item in ids:
             data = await self._http._get_artist(item, includes=ArtistIncludes())
             formatted.append(Artist(self._http, data["data"]))
 
@@ -530,11 +502,13 @@ class Manga:
         if self.authors is not None:
             return self.authors
 
-        if not self._author_ids:
+        if not self._author_relationships:
             return
 
+        ids = [r["id"] for r in self._related_manga_relationships]
+
         formatted: list[Author] = []
-        for item in self._author_ids:
+        for item in ids:
             data = await self._http._get_author(item, includes=AuthorIncludes())
             formatted.append(Author(self._http, data["data"]))
 
@@ -557,10 +531,10 @@ class Manga:
         if self.cover is not None:
             return self.cover
 
-        if not self._cover_id:
+        if not self._cover_relationship:
             return
 
-        data = await self._http._get_cover(self._cover_id, includes=CoverIncludes())
+        data = await self._http._get_cover(self._cover_relationship["id"], includes=CoverIncludes())
         self.cover = Cover(self._http, data["data"])
         return self.cover
 
@@ -596,19 +570,44 @@ class Manga:
         if self.related_manga is not None:
             return self.related_manga
 
-        if not self._relationships:
+        if not self._related_manga_relationships:
             return
 
-        formatted: list[Manga] = []
-        for item in self._related_manga_ids:
-            data = await self._http._view_manga(item, includes=MangaIncludes())
-            formatted.append(Manga(self._http, data["data"]))
+        ids = [r["id"] for r in self._related_manga_relationships]
 
-        if not formatted:
+        data = await self._http._manga_list(
+            limit=100,
+            offset=0,
+            title=None,
+            authors=None,
+            artists=None,
+            year=None,
+            included_tags=None,
+            excluded_tags=None,
+            status=None,
+            original_language=None,
+            excluded_original_language=None,
+            available_translated_language=None,
+            publication_demographic=None,
+            ids=ids,
+            content_rating=None,
+            created_at_since=None,
+            updated_at_since=None,
+            order=None,
+            includes=MangaIncludes(),
+            has_available_chapters=None,
+            group=None,
+        )
+
+        ret: list[Manga] = []
+        for item in data["data"]:
+            ret.append(Manga(self._http, item))
+
+        if not ret:
             return
 
-        self.related_manga = formatted
-        return formatted
+        self.related_manga = ret
+        return self.related_manga
 
     @require_authentication
     async def update(
