@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -8,7 +9,7 @@ from typing import TYPE_CHECKING
 from hondana.http import HTTPClient
 from hondana.relationship import Relationship
 from hondana.scanlator_group import ScanlatorGroup
-from hondana.utils import to_snake_case
+from hondana.utils import iso_to_delta, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -54,3 +55,12 @@ class TestScanlatorGroup:
         assert not hasattr(group, "_cs_relationships")
         group.relationships
         assert hasattr(group, "_cs_relationships")
+
+    def test_datetime_properties(self):
+        group = clone_group()
+
+        assert group.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert group.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])
+
+        if group.publish_delay is not None or PAYLOAD["data"]["attributes"]["publishDelay"] is not None:
+            assert group.publish_delay == iso_to_delta(PAYLOAD["data"]["attributes"]["publishDelay"])

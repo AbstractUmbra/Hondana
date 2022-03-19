@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -57,3 +58,9 @@ class TestAuthor:
 
         assert author.manga is not None
         assert len(manga) == len(author.manga)
+
+    def test_timezone_properties(self):
+        author = clone_author()
+
+        assert author.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert author.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])

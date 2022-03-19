@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -58,3 +59,9 @@ class TestArtist:
 
         assert artist.manga is not None
         assert len(manga) == len(artist.manga)
+
+    def test_datetime_props(self):
+        artist = clone_artist()
+
+        assert artist.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert artist.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])

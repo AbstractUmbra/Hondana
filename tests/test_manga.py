@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -193,6 +194,12 @@ class TestManga:
 
         for key, value in manga._description.items():
             assert manga.localized_description(key) == value  # type: ignore - can't narrow strings
+
+    def test_date_attributes(self):
+        manga = clone_manga("manga")
+
+        assert manga.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert manga.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])
 
 
 class TestMangaRelation:

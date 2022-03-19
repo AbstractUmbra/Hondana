@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -91,3 +92,10 @@ class TestChapter:
         assert chapter.uploader is not None
 
         assert chapter.uploader.id == "62d0ea7c-7350-4759-ab6c-58e421dbde79"
+
+    def test_datetime_props(self):
+        chapter = clone_chapter()
+
+        assert chapter.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert chapter.published_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["publishAt"])
+        assert chapter.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 import pathlib
 from copy import deepcopy
@@ -52,3 +53,9 @@ class TestCover:
         cover.url(256)
 
         cover.url(512)
+
+    def test_datetime_properties(self):
+        cover = clone_cover()
+
+        assert cover.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
+        assert cover.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])

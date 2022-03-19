@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import zoneinfo
 from typing import Iterable, Mapping, Optional, TypeVar, Union
 
 import pytest
@@ -12,6 +13,7 @@ from hondana.utils import (
     Route,
     as_chunks,
     calculate_limits,
+    clean_isoformat,
     delta_to_iso,
     iso_to_delta,
     php_query_builder,
@@ -142,6 +144,37 @@ class TestUtils:
         ],
     )
     def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]]):
-        ret: list[RelationshipResponse] = [item for item in relationship_finder(input, "test") if item["type"] == "test"]
+        ret: list[RelationshipResponse] = [item for item in relationship_finder(input, "test") if item["type"] == "test"]  # type: ignore - can't narrow this in this context.
 
         assert ret == output
+
+    @pytest.mark.parametrize(
+        ("input", "output"),
+        [
+            (
+                datetime.datetime(
+                    year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0, tzinfo=datetime.timezone.utc
+                ),
+                "2022-03-19T12:00:00",
+            ),
+            (
+                datetime.datetime(year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0),
+                "2022-03-19T12:00:00",
+            ),
+            (
+                datetime.datetime(
+                    year=2022,
+                    month=3,
+                    day=19,
+                    hour=12,
+                    minute=0,
+                    second=0,
+                    microsecond=0,
+                    tzinfo=zoneinfo.ZoneInfo("Asia/Tokyo"),
+                ),
+                "2022-03-19T03:00:00",
+            ),
+        ],
+    )
+    def test_isoformatter(self, input: datetime.datetime, output: str):
+        assert clean_isoformat(input) == output
