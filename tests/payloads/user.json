@@ -2,15 +2,26 @@
     "result": "ok",
     "response": "entity",
     "data": {
-        "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+        "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
         "type": "user",
         "attributes": {
-            "username": "AbstractUmbra",
+            "username": "DaddyCathy",
             "roles": [
-                "ROLE_MEMBER"
+                "ROLE_MEMBER",
+                "ROLE_GROUP_LEADER",
+                "ROLE_GROUP_MEMBER"
             ],
-            "version": 107
+            "version": 5
         },
-        "relationships": []
+        "relationships": [
+            {
+                "id": "1de55410-9b56-404b-8908-cfbf10836467",
+                "type": "scanlation_group"
+            },
+            {
+                "id": "9e43542e-e666-48d0-a23c-c98a016d551c",
+                "type": "scanlation_group"
+            }
+        ]
     }
 }

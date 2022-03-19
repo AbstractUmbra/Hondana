@@ -19,12 +19,9 @@
                 "type": "manga",
                 "attributes": {
                     "title": {
-                        "ja-ro": "Ijiranaide, Nagatoro-san"
+                        "ja-ro": "Don't Toy with Me, Miss Nagatoro"
                     },
                     "altTitles": [
-                        {
-                            "en": "Don't Toy with Me, Miss Nagatoro"
-                        },
                         {
                             "id": "Jangan goda aku, Nagatoro"
                         },
@@ -66,6 +63,9 @@
                         },
                         {
                             "es-la": "No me Molestes, Nagatoro-san"
+                        },
+                        {
+                            "ja-ro": "Ijiranaide, Nagatoro-san"
                         }
                     ],
                     "description": {
@@ -94,7 +94,7 @@
                     "publicationDemographic": "shounen",
                     "status": "ongoing",
                     "year": 2017,
-                    "contentRating": "safe",
+                    "contentRating": "suggestive",
                     "tags": [
                         {
                             "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
@@ -165,8 +165,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2022-03-12T12:58:16+00:00",
-                    "version": 307,
+                    "updatedAt": "2022-03-19T18:01:21+00:00",
+                    "version": 309,
                     "availableTranslatedLanguages": [
                         "id",
                         "es-la",
