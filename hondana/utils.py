@@ -84,6 +84,7 @@ __all__ = (
     "delta_to_iso",
     "iso_to_delta",
     "relationship_finder",
+    "clean_isoformat",
     "MANGA_TAGS",
 )
 
@@ -392,6 +393,16 @@ def iso_to_delta(iso: str) -> datetime.timedelta:
 
 def relationship_finder(relationships: list[RelationshipResponse], relationship_type: str) -> list[RelationshipResponse]:
     return [rel_resp for rel_resp in relationships if rel_resp["type"] == relationship_type]
+
+
+def clean_isoformat(dt: datetime.datetime) -> str:
+    if dt.tzinfo != datetime.timezone.utc:
+        dt = dt.astimezone(datetime.timezone.utc)
+
+    if dt.tzinfo is not None:
+        dt = dt.replace(tzinfo=None)
+
+    return dt.isoformat(timespec="seconds")
 
 
 _path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"

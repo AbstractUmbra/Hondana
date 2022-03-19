@@ -71,6 +71,7 @@ from .utils import (
     CustomRoute,
     Route,
     calculate_limits,
+    clean_isoformat,
     delta_to_iso,
     get_image_mime_type,
     json_or_text,
@@ -617,10 +618,10 @@ class HTTPClient:
             query["contentRating"] = content_rating
 
         if created_at_since:
-            query["createdAtSince"] = created_at_since.isoformat()
+            query["createdAtSince"] = clean_isoformat(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = updated_at_since.isoformat()
+            query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if order:
             query["order"] = order.to_dict()
@@ -861,13 +862,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = created_at_since.isoformat()
+            query["createdAtSince"] = clean_isoformat(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = updated_at_since.isoformat()
+            query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if published_at_since:
-            query["publishAtSince"] = published_at_since.isoformat()
+            query["publishAtSince"] = clean_isoformat(published_at_since)
 
         if order:
             query["order"] = order.to_dict()
@@ -1096,13 +1097,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = created_at_since.isoformat()
+            query["createdAtSince"] = clean_isoformat(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = updated_at_since.isoformat()
+            query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if published_at_since:
-            query["publishedAtSince"] = published_at_since.isoformat()
+            query["publishedAtSince"] = clean_isoformat(published_at_since)
 
         if order:
             query["order"] = order.to_dict()
@@ -1576,13 +1577,13 @@ class HTTPClient:
             query["includeFutureUpdates"] = resolved
 
         if created_at_since:
-            query["createdAtSince"] = created_at_since.isoformat()
+            query["createdAtSince"] = clean_isoformat(created_at_since)
 
         if updated_at_since:
-            query["updatedAtSince"] = updated_at_since.isoformat()
+            query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if published_at_since:
-            query["publishAtSince"] = published_at_since.isoformat()
+            query["publishAtSince"] = clean_isoformat(published_at_since)
 
         if order:
             query["order"] = order.to_dict()
@@ -2128,7 +2129,7 @@ class HTTPClient:
 
         query: dict[str, Any] = {
             "settings": settings,
-            "updatedAt": updated_at.isoformat(),
+            "updatedAt": clean_isoformat(updated_at),
         }
 
         return self.request(route, json=query)
