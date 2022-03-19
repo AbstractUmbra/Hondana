@@ -38,6 +38,7 @@ from typing import (
     ClassVar,
     Generic,
     Iterable,
+    Literal,
     Mapping,
     Optional,
     Type,
@@ -56,7 +57,6 @@ if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec
 
     from .types.relationship import RelationshipResponse
-
 
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
@@ -391,8 +391,39 @@ def iso_to_delta(iso: str) -> datetime.timedelta:
     return datetime.timedelta(**times)
 
 
-def relationship_finder(relationships: list[RelationshipResponse], relationship_type: str) -> list[RelationshipResponse]:
-    return [rel_resp for rel_resp in relationships if rel_resp["type"] == relationship_type]
+RT = TypeVar("RT", bound="RelationshipResponse", covariant=True)
+RelType = Literal["manga", "cover_art", "scanlation_group", "artist", "author", "user", "leader", "member"]
+
+
+@overload
+def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: Literal[1]) -> Optional[RT]:
+    ...
+
+
+@overload
+def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: Optional[int]) -> list[RT]:
+    ...
+
+
+def relationship_finder(
+    relationships: list[RT], relationship_type: RelType, *, limit: Optional[int] = None
+) -> Optional[Union[list[RT], RT]]:
+    ret: list[RT] = []
+
+    for relationship in relationships:
+        if relationship["type"] == relationship_type:
+            if limit == 1:
+                return relationship
+            else:
+                ret.append(relationship)
+
+    if limit is not None:
+        return ret[:limit]
+
+    if limit == 1:
+        return
+
+    return ret
 
 
 def clean_isoformat(dt: datetime.datetime) -> str:

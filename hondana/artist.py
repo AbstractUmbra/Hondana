@@ -27,8 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
 from .query import MangaIncludes
-from .relationship import Relationship
-from .utils import MISSING, cached_slot_property, require_authentication
+from .utils import MISSING, relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
@@ -109,18 +108,18 @@ class Artist:
         "weibo",
         "naver",
         "website",
+        "version",
         "_created_at",
         "_updated_at",
-        "version",
+        "_manga_relationships",
         "__manga",
-        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
@@ -139,8 +138,9 @@ class Artist:
         self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
-        self._created_at = self._attributes["createdAt"]
-        self._updated_at = self._attributes["updatedAt"]
+        self._created_at: str = self._attributes["createdAt"]
+        self._updated_at: str = self._attributes["updatedAt"]
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - can't narrow this
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
@@ -183,17 +183,6 @@ class Artist:
         """
         return f"https://mangadex.org/author/{self.id}"
 
-    @cached_slot_property("_cs_relationships")
-    def relationships(self) -> list[Relationship]:
-        """The relationships of this Artist.
-
-        Returns
-        --------
-        List[:class:`~hondana.Relationship`]
-            The list of relationships this artist has.
-        """
-        return [Relationship(item) for item in self._relationships]
-
     @property
     def manga(self) -> Optional[list[Manga]]:
         """Returns a list Manga related to this artist.
@@ -211,18 +200,13 @@ class Artist:
         if self.__manga is not None:
             return self.__manga
 
-        if not self._relationships:
-            return None
-
-        manga_: list[MangaResponse] = [item for item in self._relationships if item["type"] == "manga"]
-
-        if not manga_:
+        if not self._manga_relationships:
             return None
 
         formatted: list[Manga] = []
         from .manga import Manga
 
-        formatted.extend(Manga(self._http, item) for item in manga_ if "attributes" in item)
+        formatted.extend(Manga(self._http, item) for item in self._manga_relationships if "attributes" in item)
 
         if not formatted:
             return
@@ -237,8 +221,12 @@ class Artist:
     async def get_manga(self) -> Optional[list[Manga]]:
         """|coro|
 
-        This method will make API requests to get all manga attributed to this artist.
+        This method will return cached manga responses, or attempt to fetch them from the API.
         It also caches the response and populates :attr:`~hondana.Artist.manga`.
+
+        .. warning::
+            This method will make N API quests for N amount of manga this artist is attributed to.
+            Consider requesting this object with the ``manga[]`` includes/expansion so save on more API requests.
 
         Returns
         --------
@@ -247,23 +235,17 @@ class Artist:
         if self.manga is not None:
             return self.manga
 
-        if not self._relationships:
+        if not self._manga_relationships:
             return
 
-        manga_relationships: list[MangaResponse] = [item for item in self._relationships if item["type"] == "manga"]
-
-        if not manga_relationships:
-            return
+        ids = [r["id"] for r in self._manga_relationships]
 
         formatted: list[Manga] = []
-        from .manga import Manga  # TODO: Fix circular.
+        from .manga import Manga
 
-        for manga in manga_relationships:
-            if "attributes" in manga:
-                formatted.append(Manga(self._http, manga))
-            else:
-                data = await self._http._view_manga(manga["id"], includes=MangaIncludes())
-                formatted.append(Manga(self._http, data["data"]))
+        for manga_id in ids:
+            data = await self._http._view_manga(manga_id, includes=MangaIncludes())
+            formatted.append(Manga(self._http, data["data"]))
 
         if not formatted:
             return
