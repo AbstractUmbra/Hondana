@@ -6,7 +6,6 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
 from hondana.user import User
 from hondana.utils import to_snake_case
 
@@ -40,13 +39,10 @@ class TestUser:
     def test_relationships_length(self):
         user = clone_user()
 
-        assert len(user.relationships) == len(PAYLOAD["data"]["relationships"])
+        assert user._group_relationships is not None
+        obj_len = len(user._group_relationships)
 
-    def test_sub_relationship_create(self):
-        user = clone_user()
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(user._relationships)]
-
-        assert len(ret) == len(user.relationships)
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_attribute_matching(self):
         user = clone_user()

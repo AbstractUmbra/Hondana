@@ -9,9 +9,8 @@ from typing import TYPE_CHECKING, Literal, Union, overload
 from hondana.enums import MangaRelationType
 from hondana.http import HTTPClient
 from hondana.manga import Manga, MangaRating, MangaRelation, MangaStatistics
-from hondana.relationship import Relationship
 from hondana.types.common import LocalisedString
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -90,51 +89,43 @@ class TestManga:
 
     def test_relationship_length(self):
         manga = clone_manga("manga")
-        if "relationships" in PAYLOAD["data"]:
-            assert len(manga.relationships) == len(PAYLOAD["data"]["relationships"])
-        else:
-            assert True
+        assert manga.artists is not None
+        assert manga.authors is not None
+        assert manga.related_manga is not None
+        assert manga.cover is not None
 
-    def test_sub_relationship_create(self):
-        ret: list[Relationship] = []
-        manga = clone_manga("manga")
+        obj_len = len(manga.artists) + len(manga.authors) + len(manga.related_manga) + 1  # cover
 
-        if "relationships" not in PAYLOAD["data"]:
-            return True
+        assert "relationships" in PAYLOAD["data"]
 
-        ret.extend(Relationship(relationship) for relationship in deepcopy(manga._relationships))
-
-        assert len(ret) == len(PAYLOAD["data"]["relationships"])
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_cache_slot_property(self):
         manga = clone_manga("manga")
 
-        assert not hasattr(manga, "_cs_relationships")
         assert not hasattr(manga, "_cs_tags")
 
-        manga.relationships
         manga.tags
 
-        assert hasattr(manga, "_cs_relationships")
         assert hasattr(manga, "_cs_tags")
 
     def test_artists_property(self):
         manga = clone_manga("manga")
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(manga._relationships)]
-
-        ret = [r for r in ret if r.type == "artist"]
 
         assert manga.artists is not None
-        assert len(ret) == len(manga.artists)
+        assert "relationships" in PAYLOAD["data"]
+        artist_rels = relationship_finder(PAYLOAD["data"]["relationships"], "artist", limit=None)
+
+        assert len(manga.artists) == len(artist_rels)
 
     def test_authors_property(self):
         manga = clone_manga("manga")
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(manga._relationships)]
-
-        ret = [r for r in ret if r.type == "author"]
 
         assert manga.authors is not None
-        assert len(ret) == len(manga.authors)
+        assert "relationships" in PAYLOAD["data"]
+        author_rels = relationship_finder(PAYLOAD["data"]["relationships"], "author", limit=None)
+
+        assert len(manga.authors) == len(author_rels)
 
     def test_cover_property(self):
         manga = clone_manga("manga")
@@ -142,23 +133,18 @@ class TestManga:
         assert manga.cover is not None
 
         assert "relationships" in PAYLOAD["data"]
+        cover_rel = relationship_finder(PAYLOAD["data"]["relationships"], "cover_art", limit=1)
+        assert cover_rel is not None
 
-        cover_key = next(
-            (key for key in PAYLOAD["data"]["relationships"] if key["type"] == "cover_art"),
-            None,
-        )
-
-        assert cover_key is not None
-
-        assert manga.cover.id == cover_key["id"]
-        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_key['attributes']['fileName']}"
+        assert manga.cover.id == cover_rel["id"]
+        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"  # type: ignore - can't narrow here
         assert (
             manga.cover_url(type=256)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_key['attributes']['fileName']}.256.jpg"
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"  # type: ignore - can't narrow here
         )
         assert (
             manga.cover_url(type=512)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_key['attributes']['fileName']}.512.jpg"
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"  # type: ignore - can't narrow here
         )
 
     def test_related_manga_property(self):
@@ -167,9 +153,7 @@ class TestManga:
         assert manga.related_manga is not None
 
         assert "relationships" in PAYLOAD["data"]
-
-        related_keys = [key for key in PAYLOAD["data"]["relationships"] if key["type"] == "manga"]
-
+        related_keys = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
         assert bool(related_keys)
 
         assert len(manga.related_manga) == len(related_keys)

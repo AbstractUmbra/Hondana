@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 
 from hondana.cover import Cover
 from hondana.http import HTTPClient
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -36,14 +36,13 @@ class TestCover:
         for item in PAYLOAD["data"]["attributes"]:
             getattr(cover, to_snake_case(item))
 
-    def test_slot_property_relationships(self):
+    def test_uploader(self):
         cover = clone_cover()
 
-        assert not hasattr(cover, "_cs_relationships")
-
-        cover.relationships
-
-        assert hasattr(cover, "_cs_relationships")
+        assert cover.uploader is not None
+        rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        assert rel is not None
+        assert cover.uploader.id == rel["id"]
 
     def test_url(self):
         cover = clone_cover()

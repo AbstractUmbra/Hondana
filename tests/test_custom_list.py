@@ -7,8 +7,7 @@ from typing import TYPE_CHECKING
 
 from hondana.custom_list import CustomList
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -36,24 +35,22 @@ class TestCustomList:
         for item in PAYLOAD["data"]["attributes"]:
             getattr(custom_list, to_snake_case(item))
 
-    def test_cached_slot_property_relationships(self):
-        custom_list = clone_custom_list()
-
-        assert not hasattr(custom_list, "_cs_relationships")
-
-        custom_list.relationships
-
-        assert hasattr(custom_list, "_cs_relationships")
-
-    def test_relationships(self):
-        custom_list = clone_custom_list()
-
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(custom_list._relationships)]
-
-        assert len(custom_list.relationships) == len(ret)
-
     def test_owner(self):
         custom_list = clone_custom_list()
 
         assert custom_list.owner is not None
-        assert custom_list.owner.id == "fd14373d-6c5f-483a-bf40-1df9326d68d2"
+
+        owner_rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        assert owner_rel is not None
+
+        assert custom_list.owner.id == owner_rel["id"]
+
+    def test_mangas(self):
+        custom_list = clone_custom_list()
+
+        assert custom_list.manga is not None
+
+        manga_rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
+        assert manga_rels is not None
+
+        assert len(custom_list.manga) == len(manga_rels)

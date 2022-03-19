@@ -8,8 +8,7 @@ from typing import TYPE_CHECKING
 
 from hondana.artist import Artist
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -39,26 +38,15 @@ class TestArtist:
 
     def test_relationship_length(self):
         artist = clone_artist()
-        assert len(artist.relationships) == len(PAYLOAD["data"]["relationships"])
+        obj_len = len(artist._manga_relationships)
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
-    def test_sub_relationship_creation(self):
-        ret: list[Relationship] = []
+    def test_manga_relationships(self):
         artist = clone_artist()
-        ret.extend(Relationship(relationship) for relationship in artist._relationships)
-
-        assert len(ret) == len(artist.relationships)
-
-    def test_manga_prop(self):
-        manga: list[Relationship] = []
-        artist = clone_artist()
-        rels = deepcopy(artist._relationships)
-        for relationship in rels:
-            manga.append(Relationship(relationship))
-
-        manga = [r for r in manga if r.type == "manga"]
+        rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
 
         assert artist.manga is not None
-        assert len(manga) == len(artist.manga)
+        assert len(rels) == len(artist.manga)
 
     def test_datetime_props(self):
         artist = clone_artist()

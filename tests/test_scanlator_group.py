@@ -7,7 +7,6 @@ from copy import deepcopy
 from typing import TYPE_CHECKING
 
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
 from hondana.scanlator_group import ScanlatorGroup
 from hondana.utils import iso_to_delta, to_snake_case
 
@@ -42,19 +41,12 @@ class TestScanlatorGroup:
     def test_relationship_length(self):
         group = clone_group()
 
-        assert len(group.relationships) == len(PAYLOAD["data"]["relationships"])
+        assert group.members is not None
+        assert group.leader is not None
 
-    def test_sub_relationship_create(self):
-        group = clone_group()
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(group._relationships)]
+        obj_len = len(group.members) + 1  # leader
 
-        assert len(ret) == len(group.relationships)
-
-    def test_cached_slot_property_relationships(self):
-        group = clone_group()
-        assert not hasattr(group, "_cs_relationships")
-        group.relationships
-        assert hasattr(group, "_cs_relationships")
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_datetime_properties(self):
         group = clone_group()

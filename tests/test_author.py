@@ -8,8 +8,7 @@ from typing import TYPE_CHECKING
 
 from hondana.author import Author
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -40,24 +39,15 @@ class TestAuthor:
 
     def test_relationship_length(self):
         author = clone_author()
-        assert len(author.relationships) == len(PAYLOAD["data"]["relationships"])
+        obj_len = len(author._manga_relationships)
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
-    def test_sub_relationship_creation(self):
-        ret: list[Relationship] = []
+    def test_manga_relationships(self):
         author = clone_author()
-        ret.extend(Relationship(relationship) for relationship in author._relationships)
-
-        assert len(ret) == len(author.relationships)
-
-    def test_manga_prop(self):
-        manga: list[Relationship] = []
-        author = clone_author()
-        rels = deepcopy(author._relationships)
-        manga.extend(Relationship(relationship) for relationship in rels)
-        manga = [r for r in manga if r.type == "manga"]
+        rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
 
         assert author.manga is not None
-        assert len(manga) == len(author.manga)
+        assert len(rels) == len(author.manga)
 
     def test_timezone_properties(self):
         author = clone_author()

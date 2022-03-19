@@ -8,8 +8,7 @@ from typing import TYPE_CHECKING, Any
 
 from hondana.chapter import Chapter
 from hondana.http import HTTPClient
-from hondana.relationship import Relationship
-from hondana.utils import to_snake_case
+from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
@@ -41,14 +40,12 @@ class TestChapter:
 
     def test_relationship_length(self):
         chapter = clone_chapter()
-        assert len(chapter.relationships) == len(PAYLOAD["data"]["relationships"])
+        assert chapter.manga is not None
+        assert chapter.scanlator_groups is not None
+        assert chapter.uploader is not None
+        obj_len = len(chapter.scanlator_groups) + 2  # scanlator and manga
 
-    def test_sub_relationship_create(self):
-        ret: list[Relationship] = []
-        chapter = clone_chapter()
-        ret.extend(Relationship(relationship) for relationship in deepcopy(chapter._relationships))
-
-        assert len(ret) == len(chapter.relationships)
+        assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_to_dict(self):
         chapter = clone_chapter()
@@ -56,20 +53,13 @@ class TestChapter:
 
         assert bool(ret) is True
 
-    def test_cache_slot_property_relationships(self):
-        chapter = clone_chapter()
-        assert not hasattr(chapter, "_cs_relationships")
-        chapter.relationships
-        assert hasattr(chapter, "_cs_relationships")
-
     def test_manga_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
-
-        ret = [r for r in ret if r.type == "manga"]
 
         assert chapter.manga is not None
-        assert len(ret) == 1
+        manga_rel = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=1)
+        assert manga_rel is not None
+        assert chapter.manga.id == manga_rel["id"]
 
     def test_manga_id_property(self):
         chapter = clone_chapter()
@@ -79,9 +69,8 @@ class TestChapter:
 
     def test_scanlator_groups_property(self):
         chapter = clone_chapter()
-        ret: list[Relationship] = [Relationship(relationship) for relationship in deepcopy(chapter._relationships)]
 
-        ret = [r for r in ret if r.type == "scanlation_group"]
+        ret = relationship_finder(PAYLOAD["data"]["relationships"], "scanlation_group", limit=None)
 
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)
@@ -91,7 +80,10 @@ class TestChapter:
 
         assert chapter.uploader is not None
 
-        assert chapter.uploader.id == "62d0ea7c-7350-4759-ab6c-58e421dbde79"
+        uploader_rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        assert uploader_rel is not None
+
+        assert chapter.uploader.id == uploader_rel["id"]
 
     def test_datetime_props(self):
         chapter = clone_chapter()
