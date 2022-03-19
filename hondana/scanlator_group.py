@@ -194,15 +194,16 @@ class ScanlatorGroup:
         return [Relationship(item) for item in self._relationships]
 
     @property
-    def publish_delay(self) -> datetime.timedelta:
+    def publish_delay(self) -> Optional[datetime.timedelta]:
         """The publishing delay of this scanlation group.
 
         Returns
         --------
-        :class:`datetime.timedelta`
-            The default timedelta offset at which this group releases their chapters.
+        Optional[:class:`datetime.timedelta`]
+            The default timedelta offset at which this group releases their chapters, if any.
         """
-        return iso_to_delta(self._publish_delay)
+        if self._publish_delay:
+            return iso_to_delta(self._publish_delay)
 
     async def get_leader(self) -> Optional[User]:
         """|coro|
