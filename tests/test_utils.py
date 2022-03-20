@@ -6,7 +6,6 @@ from typing import Iterable, Mapping, Optional, TypeVar, Union
 
 import pytest
 
-from hondana.types.relationship import RelationshipResponse
 from hondana.utils import (
     MISSING,
     CustomRoute,
@@ -130,21 +129,32 @@ class TestUtils:
         assert to_snake_case(input) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input", "output", "limit"),
         [
-            ([{"type": "test", "hello": "goodbye"}], [{"type": "test", "hello": "goodbye"}]),
+            ([{"type": "test", "hello": "goodbye"}], [{"type": "test", "hello": "goodbye"}], None),
             (
                 [{"type": "bleh", "hello": "goodbye"}, {"type": "test", "hello": "hello"}],
                 [{"type": "test", "hello": "hello"}],
+                None,
             ),
             (
                 [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
                 [{"type": "test", "pass": "mark", "something": "anything"}],
+                None,
+            ),
+            (
+                [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
+                {"type": "test", "pass": "mark", "something": "anything"},
+                1,
             ),
         ],
     )
-    def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]]):
-        ret: list[RelationshipResponse] = [item for item in relationship_finder(input, "test") if item["type"] == "test"]  # type: ignore - can't narrow this in this context.
+    def test_relationship_finder(
+        self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]], limit: Optional[int]
+    ):
+        ret = relationship_finder(input, "test", limit=limit)  # type: ignore - the types here all fail but this is only a test.
+
+        assert ret is not None
 
         assert ret == output
 
