@@ -23,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import logging
 import pathlib
@@ -30,7 +31,6 @@ import time
 from types import TracebackType
 from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Type, TypeVar, Union
 
-import aiofiles
 import aiohttp
 
 from .errors import NotFound, UploadInProgress
@@ -583,10 +583,11 @@ class Chapter:
 
         idx = 1
         async for page_data, page_ext in self._pages(start=start_page, data_saver=data_saver, ssl=ssl, report=report):
-            download_path = f"{path_}/{idx}.{page_ext}"
-            async with aiofiles.open(download_path, "wb") as f:
-                await f.write(page_data)
+            download_path = path_ / f"{idx}.{page_ext}"
+            with open(download_path, "wb") as f:
+                f.write(page_data)
                 LOGGER.info("Downloaded to: %s", download_path)
+                await asyncio.sleep(0)
             idx += 1
 
 
@@ -620,7 +621,7 @@ class ChapterAtHome:
         self._http: HTTPClient = http
         self._data: GetAtHomeResponse = payload
         self.base_url: str = payload["baseUrl"]
-        chapter = payload["chapter"]
+        chapter = payload.pop("chapter")
         self.hash: str = chapter["hash"]
         self.data: list[str] = chapter["data"]
         self.data_saver: list[str] = chapter["dataSaver"]
