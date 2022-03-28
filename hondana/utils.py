@@ -50,6 +50,14 @@ from urllib.parse import quote as _uriquote
 
 import aiohttp
 
+
+try:
+    import orjson
+except ModuleNotFoundError:
+    HAS_ORJSON = False
+else:
+    HAS_ORJSON = True
+
 from .errors import AuthenticationRequired
 
 
@@ -266,9 +274,21 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
     return new_limit, new_offset
 
 
-def to_json(obj: Any) -> str:
-    """A quick object that dumps a Python type to JSON object."""
-    return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+if HAS_ORJSON is True:
+
+    def to_json(obj: Any) -> str:
+        """A quick method that dumps a Python type to JSON object."""
+        return orjson.dumps(obj).decode("utf-8")
+
+    _from_json = orjson.loads  # type: ignore # this is guarded in an if.
+
+else:
+
+    def to_json(obj: Any) -> str:
+        """A quick method that dumps a Python type to JSON object."""
+        return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+
+    _from_json = json.loads
 
 
 async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
@@ -277,7 +297,7 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
     try:
         if response.headers["content-type"] == "application/json":
             try:
-                return json.loads(text)
+                return _from_json(text)
             except json.JSONDecodeError:
                 pass
     except KeyError:

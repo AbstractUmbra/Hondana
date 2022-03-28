@@ -32,16 +32,20 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 aiohttp = "^3.7.4"
+
+pytest = { version = "*", optional = true }
+orjson = { version = "^3.6.7", optional = true }
+
 sphinx = { version = "^4.0.0", optional = true }
 sphinxcontrib-trio = { version = "*", optional = true }
 furo = { version = "*", optional = true }
-pytest = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
 black = "*"
 poethepoet = "*"
 
 [tool.poetry.extras]
+speedups = ["orjson"]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
 tests = ["pytest"]
 
