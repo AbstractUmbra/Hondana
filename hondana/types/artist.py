@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
 
 if TYPE_CHECKING:
-    from .common import LocalisedString
+    from .common import LocalizedString
     from .relationship import RelationshipResponse
 
 
@@ -46,7 +46,7 @@ class ArtistAttributesResponse(TypedDict):
 
     imageUrl: Optional[:class:`str`]
 
-    biography: :class:`~hondana.types.LocalisedString`
+    biography: :class:`~hondana.types.LocalizedString`
 
     twitter: Optional[:class:`str`]
 
@@ -83,7 +83,7 @@ class ArtistAttributesResponse(TypedDict):
 
     name: str
     imageUrl: Optional[str]
-    biography: LocalisedString
+    biography: LocalizedString
     twitter: Optional[str]
     pixiv: Optional[str]
     melonBook: Optional[str]

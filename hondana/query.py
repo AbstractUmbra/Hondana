@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Optional, Type
 
-from .enums import Order as Order
+from .enums import Order
 from .utils import to_camel_case
 
 

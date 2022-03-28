@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Literal, TypedDict
 
 
 if TYPE_CHECKING:
-    from .common import LocalisedString
+    from .common import LocalizedString
     from .relationship import RelationshipResponse
 
 
@@ -41,17 +41,17 @@ __all__ = (
 
 class TagAttributesResponse(TypedDict):
     """
-    name: :class:`~hondana.types.LocalisedString`
+    name: :class:`~hondana.types.LocalizedString`
 
-    description: List[:class:`~hondana.types.LocalisedString`]
+    description: List[:class:`~hondana.types.LocalizedString`]
 
     group: :class:`str`
 
     version: :class:`int`
     """
 
-    name: LocalisedString
-    description: list[LocalisedString]
+    name: LocalizedString
+    description: list[LocalizedString]
     group: str
     version: int
 

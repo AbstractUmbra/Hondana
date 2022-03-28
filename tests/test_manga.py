@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Literal, Union, overload
 from hondana.enums import MangaRelationType
 from hondana.http import HTTPClient
 from hondana.manga import Manga, MangaRating, MangaRelation, MangaStatistics
-from hondana.types.common import LocalisedString
+from hondana.types.common import LocalizedString
 from hondana.utils import relationship_finder, to_snake_case
 
 
@@ -163,7 +163,7 @@ class TestManga:
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
 
-        fmt: LocalisedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore - silly narrowing
+        fmt: LocalizedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore - silly narrowing
 
         for code, title in fmt.items():
             assert manga.alternate_titles.get(code) == title

@@ -37,37 +37,37 @@ Chapter Upload
 
 Collections
 ~~~~~~~~~~~
-.. autoclass:: hondana.collections.BaseCollection
+.. autoclass:: hondana.collections.BaseCollection()
     :members: items
 
-.. autoclass:: MangaCollection
+.. autoclass:: MangaCollection()
     :members: items
 
-.. autoclass:: MangaRelationCollection
+.. autoclass:: MangaRelationCollection()
     :members: items
 
-.. autoclass:: ChapterFeed
+.. autoclass:: ChapterFeed()
     :members: items
 
-.. autoclass:: AuthorCollection
+.. autoclass:: AuthorCollection()
     :members: items
 
-.. autoclass:: CoverCollection
+.. autoclass:: CoverCollection()
     :members: items
 
-.. autoclass:: ScanlatorGroupCollection
+.. autoclass:: ScanlatorGroupCollection()
     :members: items
 
-.. autoclass:: ReportCollection
+.. autoclass:: ReportCollection()
     :members: items
 
-.. autoclass:: UserCollection
+.. autoclass:: UserCollection()
     :members: items
 
-.. autoclass:: CustomListCollection
+.. autoclass:: CustomListCollection()
     :members: items
 
-.. autoclass:: LegacyMappingCollection
+.. autoclass:: LegacyMappingCollection()
     :members: items
 
 Cover
@@ -130,10 +130,10 @@ Query
 
 .. autoclass:: ScanlatorGroupIncludes
 
-Relationship
-~~~~~~~~~~~~
 .. currentmodule:: hondana
 
+Relationship
+~~~~~~~~~~~~
 .. autoclass:: Relationship()
     :members:
 

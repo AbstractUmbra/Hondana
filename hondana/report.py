@@ -31,7 +31,7 @@ from .http import HTTPClient
 
 
 if TYPE_CHECKING:
-    from .types.common import LocalisedString
+    from .types.common import LocalizedString
     from .types.report import ReportReasonResponse, UserReportReasonResponse
 
 
@@ -73,7 +73,7 @@ class Report:
         self._data = payload
         self.id: str = self._data["id"]
         self._attributes = self._data["attributes"]
-        self.reason: LocalisedString = self._attributes["reason"]
+        self.reason: LocalizedString = self._attributes["reason"]
         self.details_required: bool = self._attributes["detailsRequired"]
         self.category: ReportCategory = ReportCategory(self._attributes["category"])
         self.version: int = self._attributes["version"]

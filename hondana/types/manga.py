@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
 
 if TYPE_CHECKING:
-    from .common import LocalisedString, LanguageCode
+    from .common import LocalizedString, LanguageCode
     from .relationship import RelationshipResponse
     from .tags import TagResponse
 
@@ -117,11 +117,11 @@ class MangaLinks(TypedDict, total=False):
 
 class MangaAttributesResponse(TypedDict):
     """
-    title: :class:`~hondana.types.LocalisedString`
+    title: :class:`~hondana.types.LocalizedString`
 
-    altTitle: List[:class:`~hondana.types.LocalisedString`]
+    altTitle: List[:class:`~hondana.types.LocalizedString`]
 
-    description: :class:`~hondana.types.LocalisedString`
+    description: :class:`~hondana.types.LocalizedString`
 
     isLocked: :class:`bool`
 
@@ -159,9 +159,9 @@ class MangaAttributesResponse(TypedDict):
         This key is optional
     """
 
-    title: LocalisedString
-    altTitles: list[LocalisedString]
-    description: LocalisedString
+    title: LocalizedString
+    altTitles: list[LocalizedString]
+    description: LocalizedString
     isLocked: bool
     links: MangaLinks
     originalLanguage: str

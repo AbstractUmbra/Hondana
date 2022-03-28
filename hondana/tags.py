@@ -31,7 +31,7 @@ from .utils import MANGA_TAGS, cached_slot_property
 
 
 if TYPE_CHECKING:
-    from .types.common import LocalisedString
+    from .types.common import LocalizedString
     from .types.relationship import RelationshipResponse
     from .types.tags import TagResponse
 
@@ -51,7 +51,7 @@ class Tag:
     -----------
     id: :class:`str`
         The UUID associated with this tag.
-    description: List[:class:`~hondana.types.LocalisedString`]
+    description: List[:class:`~hondana.types.LocalizedString`]
         The description(s) of the tag.
     group: :class:`str`
         The group (or kind) of tag.
@@ -88,7 +88,7 @@ class Tag:
         )  # TODO: remove this when they have relationships to be in line.
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
-        self.description: LocalisedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore - this breaks pylance but pyright is happy. TODO: check a later version.
+        self.description: LocalizedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore - this breaks pylance but pyright is happy. TODO: check a later version.
         self.group: str = self._attributes["group"]
         self.version: int = self._attributes["version"]
 
