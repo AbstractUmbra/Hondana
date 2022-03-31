@@ -690,6 +690,9 @@ class ChapterUpload:
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
     ) -> None:
+        if len(scanlator_groups) > 10:
+            raise ValueError("You can only attribute up to 10 scanlator groups per upload.")
+
         self._http: HTTPClient = http
         self.manga: Union[Manga, str] = manga
         self.volume: str = volume
