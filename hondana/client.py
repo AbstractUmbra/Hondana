@@ -87,7 +87,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, require_authentication
+from .utils import MISSING, deprecated, require_authentication
 
 
 if TYPE_CHECKING:
@@ -786,6 +786,7 @@ class Client:
 
         return data
 
+    @deprecated("Client.get_manga")
     async def view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
 

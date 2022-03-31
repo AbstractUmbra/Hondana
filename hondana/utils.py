@@ -29,6 +29,7 @@ import json
 import logging
 import pathlib
 import re
+import warnings
 from enum import Enum
 from functools import wraps
 from typing import (
@@ -85,6 +86,7 @@ __all__ = (
     "to_json",
     "json_or_text",
     "php_query_builder",
+    "deprecated",
     "to_snake_case",
     "to_camel_case",
     "get_image_mime_type",
@@ -239,6 +241,36 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
         return func(item, *args, **kwargs)
 
     return wrapper
+
+
+def deprecated(
+    alternate: Optional[str] = None,
+) -> Callable[[Callable[B, T]], Callable[B, T]]:
+    """A decorator to mark a method as deprecated.
+
+    Parameters
+    -----------
+    alternate: Optional[:class:`str`]
+        The alternate method to use.
+    """
+
+    def decorator(func: Callable[B, T]) -> Callable[B, T]:
+        @wraps(func)
+        def wrapper(*args: B.args, **kwargs: B.kwargs) -> T:
+            warnings.simplefilter("always", DeprecationWarning)  # turn off filter.
+            if alternate is not None:
+                fmt = "{0.__qualname__} is deprecated, use {1} instead."
+            else:
+                fmt = "{0.__qualname__} is deprecated."
+
+            warnings.warn(fmt.format(func, alternate), stacklevel=2, category=DeprecationWarning)
+
+            warnings.simplefilter("default", DeprecationWarning)  # reset filter.
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 
 def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
