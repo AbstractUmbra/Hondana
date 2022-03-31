@@ -32,7 +32,7 @@ Chapter
 
 Chapter Upload
 ~~~~~~~~~~~~~~
-.. autoclass:: ChapterUpload
+.. autoclass:: ChapterUpload()
     :members:
 
 Collections
@@ -188,7 +188,9 @@ We provide some enumeration types to avoid the API from being stringly typed
 in case the strings change in future.
 
 .. currentmodule:: hondana.query
+
 .. class:: Order
+    :canonical: hondana.enums.Order
 
     Decides the ordering of the query.
 
@@ -202,6 +204,7 @@ in case the strings change in future.
 
 .. currentmodule:: hondana
 .. class:: ContentRating
+    :canonical: hondana.enums.ContentRating
 
     Specifies the content rating of the manga.
 
@@ -222,6 +225,7 @@ in case the strings change in future.
         Rated pornographic.
 
 .. class:: PublicationDemographic
+    :canonical: hondana.enums.PublicationDemographic
 
     Specifies the demographic aim.
 
@@ -242,6 +246,7 @@ in case the strings change in future.
         This manga is aimed at seinen fans.
 
 .. class:: CustomListVisibility
+    :canonical: hondana.enums.CustomListVisibility
 
     Specifies the visibility of a custom list.
 
@@ -254,6 +259,7 @@ in case the strings change in future.
         This custom list is private.
 
 .. class:: ReportCategory
+    :canonical: hondana.enums.ReportCategory
 
     Specifies the category a report belongs to.
 
@@ -278,6 +284,7 @@ in case the strings change in future.
         This report is about an author.
 
 .. class:: MangaStatus
+    :canonical: hondana.enums.MangaStatus
 
     Specifies the current manga publication status.
 
@@ -298,6 +305,7 @@ in case the strings change in future.
         This manga has been cancelled.
 
 .. class:: ReadingStatus
+    :canonical: hondana.enums.ReadingStatus
 
     Specifies the current reading status for this manga
 
@@ -326,6 +334,7 @@ in case the strings change in future.
         This manga has been completed.
 
 .. class:: MangaState
+    :canonical: hondana.enums.MangaState
 
     The current state of this manga draft.
 
@@ -346,6 +355,7 @@ in case the strings change in future.
         This manga was rejected.
 
 .. class:: MangaRelationType
+    :canonical: hondana.enums.MangaRelationType
 
     Specifies the relation type to the parent manga.
 
