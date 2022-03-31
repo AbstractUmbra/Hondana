@@ -37,9 +37,6 @@ Chapter Upload
 
 Collections
 ~~~~~~~~~~~
-.. autoclass:: hondana.collections.BaseCollection()
-    :members: items
-
 .. autoclass:: MangaCollection()
     :members: items
 
