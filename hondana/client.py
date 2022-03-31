@@ -2385,6 +2385,43 @@ class Client:
         else:
             return True
 
+    @require_authentication
+    async def get_my_custom_list_follows(self, limit: int = 10, offset: int = 0) -> list[CustomList]:
+        """|coro|
+
+        This method will return the current authenticated user's custom list follows.
+
+        Returns
+        --------
+        list[:class:`CustomList`]
+            The list of custom lists you follow.
+        """
+        data = await self._http._get_user_custom_list_follows(limit=limit, offset=offset)
+
+        fmt: list[CustomList] = []
+        for item in data["data"]:
+            fmt.append(CustomList(self._http, item))
+
+        return fmt
+
+    @require_authentication
+    async def check_if_following_custom_list(self, custom_list_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the current authenticated user is following the specified custom list.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether you follow this custom list or not.
+        """
+        try:
+            await self._http._check_if_following_list(custom_list_id)
+        except errors.NotFound:
+            return False
+        else:
+            return True
+
     async def create_account(self, *, username: str, password: str, email: str) -> User:
         """|coro|
 
@@ -2697,6 +2734,48 @@ class Client:
             The custom list with this UUID was not found.
         """
         await self._http._delete_custom_list(custom_list_id)
+
+    @require_authentication
+    async def follow_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        This method will follow a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID relating to the custom list we wish to follow.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request was malformed.
+        :exc:`Forbidden`
+            You are not authorized to follow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._follow_custom_list(custom_list_id)
+
+    @require_authentication
+    async def unfollow_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        The method will unfollow a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID relating to the custom list we wish to unfollow.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to unfollow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._unfollow_custom_list(custom_list_id)
 
     @require_authentication
     async def get_my_custom_lists(self, *, limit: Optional[int] = 10, offset: int = 0) -> CustomListCollection:

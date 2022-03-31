@@ -1385,6 +1385,18 @@ class HTTPClient:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
+    def _get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+        route = Route("GET", "/user/follows/list")
+
+        limit, offset = calculate_limits(limit, offset, max_limit=100)
+        query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        return self.request(route, params=query)
+
+    def _check_if_following_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id)
+        return self.request(route)
+
     def _get_user_followed_manga(
         self, limit: int, offset: int, includes: Optional[MangaIncludes]
     ) -> Response[manga.MangaSearchResponse]:
@@ -1499,6 +1511,14 @@ class HTTPClient:
 
     def _delete_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _follow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
+        return self.request(route)
+
+    def _unfollow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
         return self.request(route)
 
     def _add_manga_to_custom_list(
