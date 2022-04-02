@@ -506,13 +506,14 @@ class Chapter:
         await self._http._mark_chapter_as_unread(self.id)
 
     async def _pages(
-        self, *, start: int, data_saver: bool, ssl: bool, report: bool
+        self, *, start: int, end: Optional[int], data_saver: bool, ssl: bool, report: bool
     ) -> AsyncGenerator[tuple[bytes, str], None]:
         at_home_data = await self.get_at_home(ssl=ssl)
         self._at_home_url = at_home_data.base_url
 
         _pages = at_home_data.data_saver if data_saver else at_home_data.data
-        for i, url in enumerate(_pages[start:], start=1):
+        _actual_pages = _pages[start:] if end is None else _pages[start:end]
+        for i, url in enumerate(_actual_pages, start=1):
             route = CustomRoute(
                 "GET",
                 self._at_home_url,
@@ -544,6 +545,8 @@ class Chapter:
         else:
             return
 
+        # This codepath will only be reached if there was an error downloading any of the pages.
+        # It basically restarts the entire process starting from the page with errors.
         async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl, report=report):
             yield page
 
@@ -552,6 +555,7 @@ class Chapter:
         path: Optional[Union[PathLike[str], str]] = None,
         *,
         start_page: int = 0,
+        end_page: Optional[int] = None,
         data_saver: bool = False,
         ssl: bool = False,
         report: bool = True,
@@ -567,6 +571,8 @@ class Chapter:
             Defaults to ``"chapter number - chapter title"``
         start_page: :class:`int`
             The page at which to start downloading, leave at 0 (default) to download all.
+        end_page: Optional[:class:`int`]
+            The page at which to stop downloading, leave at ``None`` to download all pages after the start page.
         data_saver: :class:`bool`
             Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to ``False``.
         ssl: :class:`bool`
@@ -582,13 +588,60 @@ class Chapter:
             path_.mkdir(parents=True, exist_ok=True)
 
         idx = 1
-        async for page_data, page_ext in self._pages(start=start_page, data_saver=data_saver, ssl=ssl, report=report):
+        async for page_data, page_ext in self._pages(
+            start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
+        ):
             download_path = path_ / f"{idx}.{page_ext}"
             with open(download_path, "wb") as f:
                 f.write(page_data)
                 LOGGER.info("Downloaded to: %s", download_path)
                 await asyncio.sleep(0)
             idx += 1
+
+    async def download_bytes(
+        self,
+        *,
+        start_page: int = 0,
+        end_page: Optional[int] = None,
+        data_saver: bool = False,
+        ssl: bool = False,
+        report: bool = True,
+    ) -> AsyncGenerator[bytes, None]:
+        """|coro|
+
+        This method will attempt to download a chapter for you using the MangaDex process, and return the bytes
+        of each page. This is similar to :meth:`.download`, but instead of writing to a directory it returns
+        the bytes directly.
+
+        Parameters
+        -----------
+        path: Optional[Union[:class:`os.PathLike`, :class:`str`]]
+            The path at which to use (or create) a directory to save the pages of the chapter.
+            Defaults to ``"chapter number - chapter title"``
+        start_page: :class:`int`
+            The page at which to start downloading, leave at 0 (default) to download all.
+        end_page: Optional[:class:`int`]
+            The page at which to stop downloading, leave at ``None`` to download all pages after the start page.
+        data_saver: :class:`bool`
+            Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to
+            ``False``.
+        ssl: :class:`bool`
+            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to
+            potentially getting an HTTP url.
+            Defaults to ``False``.
+        report: :class:`bool`
+            Whether to report success or failures to MangaDex per page download.
+            The API guidelines ask us to do this, so it defaults to ``True``.
+
+        Returns
+        --------
+        :class:`asyncio.AsyncGenerator`
+            The bytes of each page.
+        """
+        async for page_data, page_ext in self._pages(
+            start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
+        ):
+            yield page_data
 
 
 class ChapterAtHome:
