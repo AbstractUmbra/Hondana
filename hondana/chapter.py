@@ -635,7 +635,7 @@ class Chapter:
 
         Returns
         --------
-        :class:`asyncio.AsyncGenerator`
+        :class:`AsyncGenerator`
             The bytes of each page.
         """
         async for page_data, page_ext in self._pages(
