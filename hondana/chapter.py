@@ -530,7 +530,7 @@ class Chapter:
                 await self._http._at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
-                    cached=("X-Cache" in page_resp.headers),
+                    cached=("X-Cache" in page_resp.headers and page_resp.headers["X-Cache"].upper().startswith("HIT")),
                     size=(page_resp.content_length or 0),
                     duration=int(_total * 1000),
                 )
