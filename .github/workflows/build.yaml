@@ -14,24 +14,30 @@ on:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ '3.9', '3.10' ]
 
+    name: "Build @ ${{ matrix.python-version }}"
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v1
         with:
-          python-version: 3.9
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Set up Poetry
-        uses: Gr1N/setup-poetry@v4
+        uses: Gr1N/setup-poetry@v7
 
       - name: Install Python deps
         run: |
-          poetry install -E docs -E tests --no-dev
+          poetry install -E docs -E tests -E speedups --no-dev
 
       - name: Check it imports
         run: |

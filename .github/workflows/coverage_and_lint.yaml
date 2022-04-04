@@ -2,33 +2,43 @@ name: Type Coverage and Linting
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
-    types: [opened, synchronize]
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
 
 jobs:
   job:
-    name: Type Coverage and Linting
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ '3.9', '3.10' ]
+
+    name: "Type Coverage and Linting @ ${{ matrix.python-version }}"
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python 3.9
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python-version }}
 
       - uses: actions/setup-node@v2
         with:
-            node-version: "14"
+            node-version: "17"
       - run: npm install -g pyright@latest
 
       - name: Install Python dependencies
         run: |
-          pip install .
+          pip install '.[tests, speedups]'
 
-      - name: Type Coverage
+      - name: "Type Coverage @ ${{ matrix.python-version }}"
         run: |
+          pyright
           pyright --ignoreexternal --lib --verifytypes hondana
 
 

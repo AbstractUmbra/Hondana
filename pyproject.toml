@@ -65,6 +65,7 @@ lines_after_imports = 2
 [tool.pyright]
 ignore = ["docs/conf.py"]
 useLibraryCodeForTypes = true
+typeCheckingMode = "basic"
 pythonVersion = "3.9"
 strictListInference = true
 strictDictionaryInference = true
@@ -79,17 +80,19 @@ reportGeneralTypeIssues = "error"
 reportFunctionMemberAccess = "error"
 reportDuplicateImport = "error"
 reportUntypedFunctionDecorator = "error"
+reportUnnecessaryTypeIgnoreComment = "warning"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
 install = "poetry install"
 format = "poetry run black ."
+pyright = "poetry run pyright"
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
 tests = "poetry run pytest"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
-pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
+pre = ["install", "format", "pyright", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
