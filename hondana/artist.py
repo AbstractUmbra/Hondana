@@ -140,7 +140,7 @@ class Artist:
         self.version: int = self._attributes["version"]
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - can't narrow this
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # can't narrow this
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:

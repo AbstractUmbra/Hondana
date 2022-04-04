@@ -88,7 +88,7 @@ class Tag:
         )  # TODO: remove this when they have relationships to be in line.
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
-        self.description: LocalisedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore - this breaks pylance but pyright is happy. TODO: check a later version.
+        self.description: LocalisedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore # this breaks pylance but pyright is happy. TODO: check a later version.
         self.group: str = self._attributes["group"]
         self.version: int = self._attributes["version"]
 

@@ -173,7 +173,7 @@ class Manga:
         self._description: LocalisedString = self._attributes["description"] or {}
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
-        self.alternate_titles: LocalisedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore - this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
+        self.alternate_titles: LocalisedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
@@ -197,10 +197,10 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)  # type: ignore - cannot narrow this further
-        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)  # type: ignore - cannot narrow this further
-        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - cannot narrow this further
-        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)  # type: ignore - cannot narrow this further
+        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)  # type: ignore # cannot narrow this further
+        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)  # type: ignore # cannot narrow this further
+        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # cannot narrow this further
+        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)  # type: ignore # cannot narrow this further
         self.__authors: Optional[list[Author]] = None
         self.__artists: Optional[list[Artist]] = None
         self.__cover: Optional[Cover] = None

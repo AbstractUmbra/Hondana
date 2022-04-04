@@ -150,11 +150,11 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore - can't narrow this further
-        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore - can't narrow this further
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore # cannot narrow this further
+        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore # can't narrow this further
             relationships, "scanlation_group", limit=None
         )
-        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow this further
+        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow this further
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
@@ -280,7 +280,9 @@ class Chapter:
         if self.__parent is not None:
             return self.__parent
 
+        print(self._manga_relationship)
         if not self._manga_relationship:
+            print("no rel")
             return
 
         if "attributes" in self._manga_relationship:
@@ -547,7 +549,7 @@ class Chapter:
 
         # This codepath will only be reached if there was an error downloading any of the pages.
         # It basically restarts the entire process starting from the page with errors.
-        async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl, report=report):
+        async for page in self._pages(start=i, end=end, data_saver=data_saver, ssl=ssl, report=report):
             yield page
 
     async def download(
@@ -638,9 +640,7 @@ class Chapter:
         :class:`AsyncGenerator`
             The bytes of each page.
         """
-        async for page_data, page_ext in self._pages(
-            start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
-        ):
+        async for page_data, _ in self._pages(start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report):
             yield page_data
 
 

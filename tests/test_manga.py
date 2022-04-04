@@ -137,14 +137,14 @@ class TestManga:
         assert cover_rel is not None
 
         assert manga.cover.id == cover_rel["id"]
-        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"  # type: ignore - can't narrow here
+        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"  # type: ignore # can't narrow here
         assert (
             manga.cover_url(type=256)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"  # type: ignore - can't narrow here
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"  # type: ignore # can't narrow here
         )
         assert (
             manga.cover_url(type=512)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"  # type: ignore - can't narrow here
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"  # type: ignore # can't narrow here
         )
 
     def test_related_manga_property(self):
@@ -163,7 +163,7 @@ class TestManga:
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
 
-        fmt: LocalisedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore - silly narrowing
+        fmt: LocalisedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore # silly narrowing
 
         for code, title in fmt.items():
             assert manga.alternate_titles.get(code) == title
@@ -177,7 +177,7 @@ class TestManga:
         manga = clone_manga("manga")
 
         for key, value in manga._description.items():
-            assert manga.localized_description(key) == value  # type: ignore - can't narrow strings
+            assert manga.localized_description(key) == value  # type: ignore # can't narrow strings
 
     def test_date_attributes(self):
         manga = clone_manga("manga")

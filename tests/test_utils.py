@@ -152,7 +152,7 @@ class TestUtils:
     def test_relationship_finder(
         self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]], limit: Optional[int]
     ):
-        ret = relationship_finder(input, "test", limit=limit)  # type: ignore - the types here all fail but this is only a test.
+        ret = relationship_finder(input, "test", limit=limit)  # type: ignore # the types here all fail but this is only a test.
 
         assert ret is not None
 

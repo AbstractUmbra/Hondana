@@ -137,8 +137,8 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
-        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)  # type: ignore - cannot narrow further
-        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)  # type: ignore - cannot narrow further
+        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)  # type: ignore # cannot narrow further
+        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)  # type: ignore # cannot narrow further
         self.__leader: Optional[User] = None
         self.__members: Optional[list[User]] = None
 
