@@ -617,9 +617,6 @@ class Chapter:
 
         Parameters
         -----------
-        path: Optional[Union[:class:`os.PathLike`, :class:`str`]]
-            The path at which to use (or create) a directory to save the pages of the chapter.
-            Defaults to ``"chapter number - chapter title"``
         start_page: :class:`int`
             The page at which to start downloading, leave at 0 (default) to download all.
         end_page: Optional[:class:`int`]
@@ -635,9 +632,9 @@ class Chapter:
             Whether to report success or failures to MangaDex per page download.
             The API guidelines ask us to do this, so it defaults to ``True``.
 
-        Returns
-        --------
-        :class:`AsyncGenerator`
+        Yields
+        -------
+        :class:`bytes`
             The bytes of each page.
         """
         async for page_data, _ in self._pages(start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report):
