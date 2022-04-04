@@ -100,7 +100,7 @@
                 "type": "manga",
                 "attributes": {
                     "title": {
-                        "ja-ro": "Don't Toy with Me, Miss Nagatoro"
+                        "ja-ro": "Ijiranaide, Nagatoro-san"
                     },
                     "altTitles": [
                         {
@@ -122,7 +122,7 @@
                             "ko": "\uad34\ub86d\ud788\uc9c0 \ub9d0\uc544\uc694, \ub098\uac00\ud1a0\ub85c \uc591"
                         },
                         {
-                            "de": "Neck mich nicht, Nagatoro"
+                            "de": "Neck mich nicht, Nagatoro-san"
                         },
                         {
                             "zh-hk": "\u4e0d\u8981\u6b3a\u8ca0\u6211\uff0c\u9577\u701e\u540c\u5b78"
@@ -147,6 +147,12 @@
                         },
                         {
                             "ja-ro": "Ijiranaide, Nagatoro-san"
+                        },
+                        {
+                            "en": "Don't Toy with Me, Nagatoro-san"
+                        },
+                        {
+                            "en": "Don't Toy With Me, Miss Nagatoro"
                         }
                     ],
                     "description": {
@@ -246,8 +252,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2022-03-19T18:01:21+00:00",
-                    "version": 309,
+                    "updatedAt": "2022-04-02T00:51:16+00:00",
+                    "version": 312,
                     "availableTranslatedLanguages": [
                         "id",
                         "es-la",
@@ -273,7 +279,7 @@
                     "roles": [
                         "ROLE_MEMBER"
                     ],
-                    "version": 107
+                    "version": 110
                 }
             }
         ]

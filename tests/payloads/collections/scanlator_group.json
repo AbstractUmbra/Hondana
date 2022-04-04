@@ -148,7 +148,7 @@
                             "ROLE_GROUP_MEMBER",
                             "ROLE_GROUP_LEADER"
                         ],
-                        "version": 14
+                        "version": 24
                     }
                 },
                 {
@@ -306,5 +306,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 20719
+    "total": 21009
 }
