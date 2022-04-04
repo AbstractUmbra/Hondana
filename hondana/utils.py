@@ -453,7 +453,12 @@ def relationship_finder(relationships: list[RT], relationship_type: RelType, *, 
 
 
 @overload
-def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: Optional[int]) -> list[RT]:
+def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: int) -> list[RT]:
+    ...
+
+
+@overload
+def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: None) -> list[RT]:
     ...
 
 
@@ -461,13 +466,16 @@ def relationship_finder(
     relationships: list[RT], relationship_type: RelType, *, limit: Optional[int] = None
 ) -> Optional[Union[list[RT], RT]]:
     ret: list[RT] = []
+    relationships_copy = relationships.copy()
 
-    for relationship in relationships:
+    for relationship in relationships_copy:
         if relationship["type"] == relationship_type:
             if limit == 1:
+                relationships.remove(relationship)
                 return relationship
             else:
                 ret.append(relationship)
+            relationships.remove(relationship)
 
     if limit is not None:
         return ret[:limit]
