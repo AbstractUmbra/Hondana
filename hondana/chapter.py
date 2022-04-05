@@ -55,7 +55,11 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import ChapterResponse, GetAtHomeResponse
+    from .types.chapter import (
+        ChapterResponse,
+        GetAtHomeResponse,
+        GetSingleChapterResponse,
+    )
     from .types.common import LanguageCode
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
@@ -692,12 +696,14 @@ class ChapterUpload:
     -----------
     manga: :class:`~hondana.Manga`
         The manga we are uploading a chapter for.
-    volume: :class:`str`
+    volume: Optional[:class:`str`]
         The volume name/number this chapter is/for.
+        Defaults to ``None``.
     chapter: :class:`str`
         The chapter name/number.
-    title: :class:`str`
+    title: Optional[:class:`str`]
         The chapter's title.
+        Defaults to ``None``.
     translated_language: :class:`~hondana.types.LanguageCode`
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
@@ -731,9 +737,9 @@ class ChapterUpload:
         manga: Union[Manga, str],
         /,
         *,
-        volume: str,
+        volume: Optional[str] = None,
         chapter: str,
-        title: str,
+        title: Optional[str] = None,
         translated_language: LanguageCode,
         scanlator_groups: list[str],
         external_url: Optional[str] = None,
@@ -745,9 +751,9 @@ class ChapterUpload:
 
         self._http: HTTPClient = http
         self.manga: Union[Manga, str] = manga
-        self.volume: str = volume
+        self.volume: Optional[str] = volume
         self.chapter: str = chapter
-        self.title: str = title
+        self.title: Optional[str] = title
         self.translated_language: LanguageCode = translated_language
         self.external_url: Optional[str] = external_url
         self.publish_at: Optional[datetime.datetime] = publish_at
@@ -893,10 +899,10 @@ class ChapterUpload:
             payload["chapterDraft"]["publishAt"] = clean_isoformat(self.publish_at)
 
         route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id)
-        data: ChapterResponse = await self._http.request(route, json=payload)
+        data: GetSingleChapterResponse = await self._http.request(route, json=payload)
 
         self.__committed = True
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def __aenter__(self: ChapterUploadT) -> ChapterUploadT:

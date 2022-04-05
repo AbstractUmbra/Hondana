@@ -3772,9 +3772,9 @@ class Client:
         manga: Union[Manga, str],
         /,
         *,
-        volume: str,
+        volume: Optional[str] = None,
         chapter: str,
-        title: str,
+        title: Optional[str] = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
         publish_at: Optional[datetime.datetime] = None,
@@ -3797,14 +3797,16 @@ class Client:
         -----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
-        volume: :class:`str`
+        volume: Optional[:class:`str`]
             The volume we are uploading a chapter for.
             Typically, this is a numerical identifier.
+            Defaults to ``None`` in the API.
         chapter: :class:`str`
             The chapter we are uploading.
             Typically, this is a numerical identifier.
-        title: :class:`str`
+        title: Optional[:class:`str`]
             The chapter's title.
+            Defaults to ``None``.
         translated_language: :class:`~hondana.types.LanguageCode`
             The language this chapter is translated in.
         scanlator_groups: List[:class:`str`]
