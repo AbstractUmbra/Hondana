@@ -22,22 +22,26 @@ jobs:
 
     name: "Build @ ${{ matrix.python-version }}"
     steps:
-      - name: Checkout Source
+      - name: "Checkout Repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: "Setup Poetry @ ${{ matrix.python-version }}"
+        run: pipx install poetry
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
         uses: actions/setup-python@v3
         with:
           python-version: "${{ matrix.python-version }}"
+          cache: poetry
 
-      - name: "Setup Poetry @ ${{ matrix.python-version }}"
-        uses: Gr1N/setup-poetry@v7
-
-      - name: Install Python deps
+      - name: "Install deps @ ${{ matrix.python-version }}"
+        env:
+          PY_VER: "${{ matrix.python-version }}"
         run: |
-          poetry install -E docs -E tests -E speedups --no-dev
+          poetry env use "$PY_VER"
+          poetry install -E docs -E tests -E speedups --no-dev --no-interaction
 
       - name: Check it imports
         run: |
@@ -71,8 +75,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           submodules: true

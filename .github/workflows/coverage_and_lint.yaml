@@ -21,19 +21,26 @@ jobs:
 
     name: "Type Coverage and Linting @ ${{ matrix.python-version }}"
     steps:
-      - name: Checkout Source
+      - name: "Checkout Repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: "Setup Poetry @ ${{ matrix.python-version }}"
+        run: pipx install poetry
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
         uses: actions/setup-python@v3
         with:
           python-version: "${{ matrix.python-version }}"
+          cache: poetry
 
-      - name: Install Python dependencies
+      - name: "Install Python deps @ ${{ matrix.python-version }}"
+        env:
+          PY_VER: "${{ matrix.python-version }}"
         run: |
-          pip install -U '.[tests, speedups]'
+          poetry env use "$PY_VER"
+          poetry install -E speedups --no-dev
 
       - uses: actions/setup-node@v3
         with:
@@ -42,8 +49,8 @@ jobs:
 
       - name: "Type Coverage @ ${{ matrix.python-version }}"
         run: |
-          pyright
-          pyright --ignoreexternal --lib --verifytypes hondana
+          poetry run pyright
+          poetry run pyright --ignoreexternal --lib --verifytypes hondana
 
       - name: Lint
         if: ${{ github.event_name != 'pull_request' }}
