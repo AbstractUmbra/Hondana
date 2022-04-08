@@ -43,8 +43,7 @@ furo = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
 poethepoet = "*"
-black = "^22.1.0"
-click = "8.0.0"
+black = "*"
 
 [tool.poetry.extras]
 speedups = ["orjson"]
