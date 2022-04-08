@@ -382,7 +382,7 @@ class Chapter:
         if self.manga_id is None:
             return
 
-        manga = await self._http._view_manga(self.manga_id, includes=MangaIncludes())
+        manga = await self._http._get_manga(self.manga_id, includes=MangaIncludes())
 
         resolved = Manga(self._http, manga["data"])
         self.__parent = resolved

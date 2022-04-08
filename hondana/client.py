@@ -817,7 +817,7 @@ class Client:
         :class:`~hondana.Manga`
             The Manga that was returned from the API.
         """
-        data = await self._http._view_manga(manga_id, includes=includes)
+        data = await self._http._get_manga(manga_id, includes=includes)
 
         return Manga(self._http, data["data"])
 
@@ -848,7 +848,7 @@ class Client:
 
         .. versionadded:: 2.0.11
         """
-        data = await self._http._view_manga(manga_id, includes=includes)
+        data = await self._http._get_manga(manga_id, includes=includes)
 
         return Manga(self._http, data["data"])
 

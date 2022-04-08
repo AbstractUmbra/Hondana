@@ -244,7 +244,7 @@ class Artist:
         from .manga import Manga
 
         for manga_id in ids:
-            data = await self._http._view_manga(manga_id, includes=MangaIncludes())
+            data = await self._http._get_manga(manga_id, includes=MangaIncludes())
             formatted.append(Manga(self._http, data["data"]))
 
         if not formatted:
