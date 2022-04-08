@@ -80,8 +80,8 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow further
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore - can't narrow further
+        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow further
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # can't narrow further
         self.__owner: Optional[User] = None
         self.__manga: Optional[list[Manga]] = None
 
@@ -287,3 +287,33 @@ class CustomList:
             The custom list with this UUID was not found.
         """
         await self._http._delete_custom_list(self.id)
+
+    @require_authentication
+    async def follow(self) -> None:
+        """|coro|
+
+        The method will follow a custom list within the MangaDex API.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to follow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._follow_custom_list(self.id)
+
+    @require_authentication
+    async def unfollow(self) -> None:
+        """|coro|
+
+        The method will unfollow a custom list within the MangaDex API.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to unfollow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._unfollow_custom_list(self.id)

@@ -35,8 +35,8 @@ I have followed the API guidelines to the letter for these, but they may not wor
 Any help in testing them is greatly appreciated.
 
 ### Upload & Creation
-Following the above, this means I also cannot test manga creation or chapter creation/upload.
-These are currently implemented but untested.
+Following the above, I can only use the public test manga for upload testing.
+These are currently implemented and tested to the best of my ability.
 
 ## Examples
 Please take a look at the [examples](./examples/) directory for working examples.

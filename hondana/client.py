@@ -85,7 +85,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, require_authentication
+from .utils import MISSING, deprecated, require_authentication
 
 
 if TYPE_CHECKING:
@@ -786,6 +786,7 @@ class Client:
 
         return data
 
+    @deprecated("Client.get_manga")
     async def view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
 
@@ -816,7 +817,7 @@ class Client:
         :class:`~hondana.Manga`
             The Manga that was returned from the API.
         """
-        data = await self._http._view_manga(manga_id, includes=includes)
+        data = await self._http._get_manga(manga_id, includes=includes)
 
         return Manga(self._http, data["data"])
 
@@ -847,7 +848,7 @@ class Client:
 
         .. versionadded:: 2.0.11
         """
-        data = await self._http._view_manga(manga_id, includes=includes)
+        data = await self._http._get_manga(manga_id, includes=includes)
 
         return Manga(self._http, data["data"])
 
@@ -2385,6 +2386,43 @@ class Client:
         else:
             return True
 
+    @require_authentication
+    async def get_my_custom_list_follows(self, limit: int = 10, offset: int = 0) -> list[CustomList]:
+        """|coro|
+
+        This method will return the current authenticated user's custom list follows.
+
+        Returns
+        --------
+        list[:class:`CustomList`]
+            The list of custom lists you follow.
+        """
+        data = await self._http._get_user_custom_list_follows(limit=limit, offset=offset)
+
+        fmt: list[CustomList] = []
+        for item in data["data"]:
+            fmt.append(CustomList(self._http, item))
+
+        return fmt
+
+    @require_authentication
+    async def check_if_following_custom_list(self, custom_list_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the current authenticated user is following the specified custom list.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether you follow this custom list or not.
+        """
+        try:
+            await self._http._check_if_following_list(custom_list_id)
+        except errors.NotFound:
+            return False
+        else:
+            return True
+
     async def create_account(self, *, username: str, password: str, email: str) -> User:
         """|coro|
 
@@ -2697,6 +2735,48 @@ class Client:
             The custom list with this UUID was not found.
         """
         await self._http._delete_custom_list(custom_list_id)
+
+    @require_authentication
+    async def follow_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        This method will follow a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID relating to the custom list we wish to follow.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The request was malformed.
+        :exc:`Forbidden`
+            You are not authorized to follow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._follow_custom_list(custom_list_id)
+
+    @require_authentication
+    async def unfollow_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        The method will unfollow a custom list within the MangaDex API.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID relating to the custom list we wish to unfollow.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to unfollow this custom list.
+        :exc:`NotFound`
+            The specified custom list does not exist.
+        """
+        await self._http._unfollow_custom_list(custom_list_id)
 
     @require_authentication
     async def get_my_custom_lists(self, *, limit: Optional[int] = 10, offset: int = 0) -> CustomListCollection:
@@ -3692,13 +3772,16 @@ class Client:
         manga: Union[Manga, str],
         /,
         *,
-        volume: str,
         chapter: str,
-        title: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
+        title: Optional[str] = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
+        external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
     ) -> ChapterUpload:
         """
         This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
@@ -3709,7 +3792,14 @@ class Client:
 
         Using the async context manager: ::
 
-            async with Client.upload_session(manga, volume=volume, chapter=chapter, title=title, translated_language=translated_language) as session:
+            async with Client.upload_session(
+                manga,
+                chapter=chapter,
+                volume=volume,
+                title=title,
+                translated_language=translated_language,
+                scanlator_groups=scanlator_groups
+            ) as session:
                 await session.upload_images(your_list_of_bytes)
 
 
@@ -3717,24 +3807,35 @@ class Client:
         -----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
-        volume: :class:`str`
-            The volume we are uploading a chapter for.
-            Typically, this is a numerical identifier.
         chapter: :class:`str`
             The chapter we are uploading.
             Typically, this is a numerical identifier.
-        title: :class:`str`
+        chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+            The chapter you intend to edit.
+            Defaults to ``None``.
+        volume: Optional[:class:`str`]
+            The volume we are uploading a chapter for.
+            Typically, this is a numerical identifier.
+            Defaults to ``None`` in the API.
+        title: Optional[:class:`str`]
             The chapter's title.
+            Defaults to ``None``.
         translated_language: :class:`~hondana.types.LanguageCode`
             The language this chapter is translated in.
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
             Only 5 are allowed on a given chapter.
+        external_url: Optional[:class:`str`]
+            The external URL of this chapter.
+            Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
+        version: Optional[:class:`int`]
+            The new version of the chapter you are editing.
+            Only necessary if ``chapter_to_edit`` is not ``None``.
 
         Returns
         --------
@@ -3743,13 +3844,16 @@ class Client:
         return ChapterUpload(
             self._http,
             manga,
-            volume=volume,
             chapter=chapter,
+            chapter_to_edit=chapter_to_edit,
+            volume=volume,
             title=title,
             translated_language=translated_language,
-            publish_at=publish_at,
             scanlator_groups=scanlator_groups,
+            external_url=external_url,
+            publish_at=publish_at,
             existing_upload_session_id=existing_upload_session_id,
+            version=version,
         )
 
     @require_authentication
@@ -3758,13 +3862,16 @@ class Client:
         manga: Union[Manga, str],
         /,
         *,
-        volume: str,
         chapter: str,
-        title: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
+        title: Optional[str] = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
+        external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
         images: list[bytes],
     ) -> Chapter:
         """|coro|
@@ -3775,24 +3882,35 @@ class Client:
         -----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
-        volume: :class:`str`
-            The volume we are uploading a chapter for.
-            Typically, this is a numerical identifier.
         chapter: :class:`str`
             The chapter we are uploading.
             Typically, this is a numerical identifier.
-        title: :class:`str`
+        chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+            The chapter you intend to edit.
+            Defaults to ``None``.
+        volume: Optional[:class:`str`]
+            The volume we are uploading a chapter for.
+            Typically, this is a numerical identifier.
+            Defaults to ``None``.
+        title: Optional[:class:`str`]
             The chapter's title.
+            Defaults to ``None``.
         translated_language: :class:`~hondana.types.LanguageCode`
             The language this chapter is translated in.
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
             Only 5 are allowed on a given chapter.
+        external_url: Optional[:class:`str`]
+            The external URL of this chapter.
+            Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
+        version: Optional[:class:`int`]
+            The new version of the chapter you are editing.
+            Only necessary if ``chapter_to_edit`` is not ``None``.
         images: List[:class:`bytes`]
             The list of images to upload.
 
@@ -3813,13 +3931,16 @@ class Client:
         async with ChapterUpload(
             self._http,
             manga,
-            volume=volume,
             chapter=chapter,
+            chapter_to_edit=chapter_to_edit,
+            volume=volume,
             title=title,
             translated_language=translated_language,
             publish_at=publish_at,
             scanlator_groups=scanlator_groups,
+            external_url=external_url,
             existing_upload_session_id=existing_upload_session_id,
+            version=version,
         ) as session:
             await session.upload_images(images)
             new_chapter = await session.commit()

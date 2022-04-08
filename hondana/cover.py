@@ -87,8 +87,8 @@ class Cover:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore - can't narrow this
-        self._uploader_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow this
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore # can't narrow this
+        self._uploader_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow this
 
     def __repr__(self) -> str:
         return f"<Cover id='{self.id}' filename={self.file_name}>"

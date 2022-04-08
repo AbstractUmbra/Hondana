@@ -3,55 +3,74 @@
     "response": "collection",
     "data": [
         {
-            "id": "cabe610f-46d4-41df-9873-2af80f868699",
+            "id": "65e18f05-49cf-403c-8390-88d3cc821c6b",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "12",
-                "fileName": "609d5d1a-0ec9-4caa-b83c-d69dea5e9dad.png",
+                "volume": "1",
+                "fileName": "5466cece-710e-4749-a2f6-9a4d275f512a.png",
                 "locale": "ja",
-                "createdAt": "2022-03-19T19:02:27+00:00",
-                "updatedAt": "2022-03-19T19:02:27+00:00",
+                "createdAt": "2022-04-07T13:55:50+00:00",
+                "updatedAt": "2022-04-07T13:55:50+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "8a1ca2e4-d83b-4ce6-a074-4102231bebb5",
+                    "id": "3841715d-2585-4358-a658-c3ebe3a3785d",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Rakujitsu no Pathos"
+                            "en": "Makeshift Maid"
                         },
                         "altTitles": [
                             {
-                                "en": "Sunset of Passion"
+                                "ja": "\u30e1\u30a4\u30c9\u30fb\u30e1\u30a4\u30af\u30b7\u30d5\u30c8"
                             },
                             {
-                                "ja": "\u843d\u65e5\u306e\u30d1\u30c8\u30b9"
+                                "ja-ro": "Meido Meikushifuto"
                             }
                         ],
                         "description": {
-                            "en": "What happens when next door to upcoming mangaka Fujiwara moves Yuuki, who was his teacher back in high school and first crush?  \n  \nYuuki, now a married woman, is starting a new life in the city, however her husband is always away on business trips. She finds comfort in the company of her former student, but what she doesn't realize is that Fujiwara can listen to everything happening in her apartment through the building's thin walls\u2026"
+                            "en": "A guy works out some kinks with his sassy robot maid. Have you tried reinstalling the drivers?"
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "101883",
-                            "ap": "rakujitsu-no-pathos",
-                            "bw": "series/52038",
-                            "kt": "40478",
-                            "mu": "116821",
-                            "amz": "https://www.amazon.co.jp/dp/B074CG5JVY",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/325847",
-                            "mal": "92476"
+                            "raw": "https://twitter.com/hamita1220"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2014,
-                        "contentRating": "erotica",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "safe",
                         "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sci-Fi"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
                             {
                                 "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                                 "type": "tag",
@@ -79,11 +98,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Drama"
+                                        "en": "Slice of Life"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -94,418 +113,82 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-03-23T01:43:50+00:00",
-                        "updatedAt": "2022-03-19T19:02:28+00:00",
-                        "version": 10,
+                        "createdAt": "2022-04-07T13:55:46+00:00",
+                        "updatedAt": "2022-04-07T14:05:00+00:00",
+                        "version": 3,
                         "availableTranslatedLanguages": [
-                            "en",
-                            "id"
+                            "en"
                         ]
                     }
                 },
                 {
-                    "id": "1b660eb2-c434-47c9-8ff6-7ce657b30386",
+                    "id": "e58f36bf-257e-484f-8e16-dc926275a182",
                     "type": "user",
                     "attributes": {
-                        "username": "DarknessAssassin",
+                        "username": "Duralumin",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_GROUP_LEADER"
                         ],
-                        "version": 3
+                        "version": 159
                     }
                 }
             ]
         },
         {
-            "id": "9241e1f8-7caa-4616-9534-e2a1cc6b4f63",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "90a38bb9-9a51-46dd-99ff-aa139b068715.png",
-                "locale": "zh",
-                "createdAt": "2022-03-19T19:01:43+00:00",
-                "updatedAt": "2022-03-19T19:34:56+00:00",
-                "version": 2
-            },
-            "relationships": [
-                {
-                    "id": "faf9e508-56cf-4898-b847-3f2b3fc32cb7",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Inverse God Doctor"
-                        },
-                        "altTitles": [
-                            {
-                                "zh": "\u9006\u5929\u795e\u533b"
-                            }
-                        ],
-                        "description": {
-                            "en": "This is a different kind of magician; he rejuvenated his hand, and some people wrote his name on the longevity card and offered it day and night. He was scolded by others, and some people wished to peel him and cramp, cursing day and night. He captured Ji Shihu on the left and crossed the bitter sea with a golden needle in his hand. He held a killing sword on the right and gave it to the guillotine."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "188375",
-                            "raw": "https://ac.qq.com/Comic/comicInfo/id/639980"
-                        },
-                        "originalLanguage": "zh",
-                        "lastVolume": "0",
-                        "lastChapter": "78",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Thriller"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Harem"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "acc803a4-c95a-4c22-86fc-eb6b582d82a2",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Wuxia"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "c8cbe35b-1b2b-4a3f-9c37-db84c4514856",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Medical"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-03-19T18:59:25+00:00",
-                        "updatedAt": "2022-03-19T19:38:13+00:00",
-                        "version": 7,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "b3882367-5b94-47d1-8631-35685ca16c5d",
-                    "type": "user",
-                    "attributes": {
-                        "username": "RageMist",
-                        "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "9a2d8a5a-6905-41b8-9287-d3e20931ad80",
+            "id": "d9292a31-e30c-4ce6-932d-04552d28d2df",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "c136225e-05ce-4057-a9e8-28178b0349f9.png",
-                "locale": "zh",
-                "createdAt": "2022-03-19T18:59:30+00:00",
-                "updatedAt": "2022-03-19T19:34:56+00:00",
-                "version": 2
-            },
-            "relationships": [
-                {
-                    "id": "faf9e508-56cf-4898-b847-3f2b3fc32cb7",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Inverse God Doctor"
-                        },
-                        "altTitles": [
-                            {
-                                "zh": "\u9006\u5929\u795e\u533b"
-                            }
-                        ],
-                        "description": {
-                            "en": "This is a different kind of magician; he rejuvenated his hand, and some people wrote his name on the longevity card and offered it day and night. He was scolded by others, and some people wished to peel him and cramp, cursing day and night. He captured Ji Shihu on the left and crossed the bitter sea with a golden needle in his hand. He held a killing sword on the right and gave it to the guillotine."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "188375",
-                            "raw": "https://ac.qq.com/Comic/comicInfo/id/639980"
-                        },
-                        "originalLanguage": "zh",
-                        "lastVolume": "0",
-                        "lastChapter": "78",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Thriller"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Harem"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "acc803a4-c95a-4c22-86fc-eb6b582d82a2",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Wuxia"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "c8cbe35b-1b2b-4a3f-9c37-db84c4514856",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Medical"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-03-19T18:59:25+00:00",
-                        "updatedAt": "2022-03-19T19:38:13+00:00",
-                        "version": 7,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "b3882367-5b94-47d1-8631-35685ca16c5d",
-                    "type": "user",
-                    "attributes": {
-                        "username": "RageMist",
-                        "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "91e5f160-5e11-4a6a-ad26-9c8bdb78a1f8",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "100ef22e-15a5-43ad-9b71-0c04ed3455f1.png",
+                "fileName": "e10bb274-18ef-4507-b251-55dbf9428ddb.jpg",
                 "locale": "ja",
-                "createdAt": "2022-03-19T18:58:49+00:00",
-                "updatedAt": "2022-03-19T18:58:49+00:00",
+                "createdAt": "2022-04-07T13:52:31+00:00",
+                "updatedAt": "2022-04-07T13:52:31+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "13ecfc67-9481-4045-974a-292c81288077",
+                    "id": "1a84531f-a38a-468a-972d-f98e58ecca4c",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Brides of Iberis"
+                            "en": "The Marriage Partner of My Dreams Turned Out to Be... My Female Junior at Work?!"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u30a4\u30d9\u30ea\u30b9\u306e\u82b1\u5ac1"
+                                "ja-ro": "Kekkon Aite no Jouken ni Perfect datta no wa Shokuba no Kouhai Joshi deshita"
                             },
                             {
-                                "ja-ro": "Iberis no Hanayome"
+                                "ja": "\u7d50\u5a5a\u76f8\u624b\u306e\u6761\u4ef6\u306b\u30d4\u30c3\u30bf\u30ea\u3060\u3063\u305f\u306e\u306f\u8077\u5834\u306e\u5f8c\u8f29\u5973\u5b50\u3067\u3057\u305f"
                             }
                         ],
-                        "description": [],
+                        "description": {
+                            "en": "Still single at age 33, Haruki Shiina is standing at the biggest crossroads of her life. While unlucky in love, she's popular among her female coworkers for her laidback and boyish personality. The only one who gives her the cold shoulder is Risa Takagai, a beautiful and capable new hire who is already climbing her way up the corporate ladder. Haruki sees her as her biggest rival and is sure that the feeling is mutual, but why does Risa always seem to be watching her...?"
+                        },
                         "isLocked": false,
                         "links": {
-                            "mu": "193476"
+                            "mu": "199083",
+                            "raw": "https://www.ebookrenta.com/renta/sc/frm/item/142845"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
+                        "lastChapter": "6",
+                        "publicationDemographic": null,
+                        "status": "completed",
                         "year": 2021,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Romance"
+                                        "en": "Office Workers"
                                     },
                                     "description": [],
-                                    "group": "genre",
+                                    "group": "theme",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -522,13 +205,204 @@
                                     "version": 1
                                 },
                                 "relationships": []
-                            },
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2022-04-07T13:52:28+00:00",
+                        "updatedAt": "2022-04-07T13:53:12+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": []
+                    }
+                },
+                {
+                    "id": "ba810e96-2522-4426-9f89-8267b1b56eba",
+                    "type": "user",
+                    "attributes": {
+                        "username": "youdontknowwho",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_POWER_UPLOADER"
+                        ],
+                        "version": 310
+                    }
+                }
+            ]
+        },
+        {
+            "id": "46d5692e-56da-45bc-976d-0defc9bbd493",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "90b2e322-7ab8-4f77-a13e-e823f124e8c7.png",
+                "locale": "ja",
+                "createdAt": "2022-04-07T13:52:10+00:00",
+                "updatedAt": "2022-04-07T13:52:10+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fb86726d-fd0e-4fcd-ba0b-acbb9dc81329",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "The Non-photogenic Friend"
+                        },
+                        "altTitles": [
                             {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "ja": "\u5199\u771f\u5199\u308a\u306e\u60aa\u3044\u53cb\u4eba"
+                            }
+                        ],
+                        "description": [],
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https://twitter.com/mt_sugiage/status/970270805207662592"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2018,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Drama"
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Horror"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2022-04-07T13:52:06+00:00",
+                        "updatedAt": "2022-04-07T13:59:03+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ]
+                    }
+                },
+                {
+                    "id": "5690663d-d01a-4451-b899-f17bc0211f84",
+                    "type": "user",
+                    "attributes": {
+                        "username": "slime_sleeper",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 4
+                    }
+                }
+            ]
+        },
+        {
+            "id": "94637c6f-79f9-4491-a741-d59524b51977",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "98d00e36-05e6-4aa2-bd60-63d145946c0d.jpg",
+                "locale": "ja",
+                "createdAt": "2022-04-07T13:48:22+00:00",
+                "updatedAt": "2022-04-07T13:48:22+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "34e06d1f-0a43-42c6-9c8b-2b3eac318801",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Daily Life of My Childhood Friend, the Airy Esper High School Girl"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u5e7c\u99b4\u67d3\u304c\u3075\u308f\u3075\u308f\u30a8\u30b9\u30d1\u30fc\u5973\u5b50\u9ad8\u751f\u306e\u65e5\u5e38"
+                            }
+                        ],
+                        "description": [],
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https://twitter.com/ichiiro_hako/status/1368034093401743360"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2021,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -539,136 +413,80 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-03-19T18:58:47+00:00",
-                        "updatedAt": "2022-03-19T19:01:06+00:00",
-                        "version": 2,
+                        "createdAt": "2022-04-07T13:48:17+00:00",
+                        "updatedAt": "2022-04-07T13:59:05+00:00",
+                        "version": 3,
                         "availableTranslatedLanguages": [
                             "en"
                         ]
                     }
                 },
                 {
-                    "id": "1506afdb-df09-46b0-bd05-fdf309110d8a",
+                    "id": "5690663d-d01a-4451-b899-f17bc0211f84",
                     "type": "user",
                     "attributes": {
-                        "username": "Kirin-kun",
+                        "username": "slime_sleeper",
                         "roles": [
                             "ROLE_MEMBER",
                             "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 8
+                        "version": 4
                     }
                 }
             ]
         },
         {
-            "id": "88c5d34b-ee50-47f8-b692-f1b2b70b8892",
+            "id": "078844b1-51a7-4722-b6ec-da643f86bfb3",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "2",
-                "fileName": "87450372-eca8-43fe-addd-7c83eddd2b4a.jpg",
+                "fileName": "7360877d-8a5d-4578-8847-b6aea421c759.jpg",
                 "locale": "ja",
-                "createdAt": "2022-03-19T18:33:02+00:00",
-                "updatedAt": "2022-03-19T18:33:02+00:00",
+                "createdAt": "2022-04-07T13:48:20+00:00",
+                "updatedAt": "2022-04-07T13:48:20+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "2a70b30d-f3d9-4a4e-95d1-6c2285bdb02e",
+                    "id": "692263fa-9215-476c-a769-01e204d3aacc",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Phoenix Wright: Ace Attorney - Official Casebook"
+                            "en": "Psychopath Kanojo to Houkai Suru Boku no Nichijou"
                         },
                         "altTitles": [
                             {
-                                "ja-ro": "Gyakuten Saiban Official Anthology Comic: Naruhodou-hen"
-                            },
-                            {
-                                "en": "Phoenix Wright: Ace Attorney Official Casebook Vol. 1: The Phoenix Wright Files"
-                            },
-                            {
-                                "ja": "\u9006\u8ee2\u88c1\u5224\u30aa\u30d5\u30a3\u30b7\u30e3\u30eb\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u30b3\u30df\u30c3\u30af\u3000\u6210\u6b69\u5802\u7de8"
-                            },
-                            {
-                                "ja-ro": "Gyakuten Saiban Official Anthology Comic: Mitsurugi-hen"
-                            },
-                            {
-                                "en": "Phoenix Wright: Ace Attorney Official Casebook Vol. 2: The Miles Edgeworth Files"
-                            },
-                            {
-                                "ja": "\u9006\u8ee2\u88c1\u5224 \u30aa\u30d5\u30a3\u30b7\u30e3\u30eb\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u30b3\u30df\u30c3\u30af \u5fa1\u5263\u7de8"
+                                "ja": "\u30b5\u30a4\u30b3\u30cf\u309a\u30b9\u5f7c\u5973\u3068\u5d29\u58ca\u3059\u308b\u50d5\u306e\u65e5\u5e38"
                             }
                         ],
-                        "description": {
-                            "en": "This set of manga are collections of officially published fan-comics, or doujinshi, with stories produced by a range of different artists. This manga is the first Phoenix Wright manga to be made officially available in English. As with the range of artists, the stories range from comedy to serious short stories or 4-koma (stories consisting of 4 panels, usually gags). \n\nThe Title was published in Japan by Capcom Comics in 4 volumes (28th Mar to 28th Sept, 2006)\nLater, DelRey licensed this for the US in 2 omnibus volumes 23rd September 2008 & 24th February 2009\nThe series also had combined single volume reprint in Japan released on 25th March 2010\n\n\n*An Overview* (of the DelRey omnibus version)\n\n  \n**OBJECTION!**\n**Volume 1**: *The Phoenix Wright Files*\n\nOnly one name strikes fear into the hearts of evildoers everywhere: *Phoenix Wright, Ace Attorney*. \n\nJoin Phoenix Wright and his adorable assistant Maya\u2013plus Miles Edgeworth, Detective Gumshoe, Franziska von Karma, and others\u2013as they investigate twenty intriguing cases. And find out why Phoenix Wright has devoted his life to fighting injustice!  \n\n**TAKE THAT!**\n**Volume 2**: *The Miles Edgeworth Files*    \n\nPhoenix Wright, Ace Attorney, has faced down many clever and corrupt prosecutors in the courtroom: Winston Payne, Manfred von Karma & his whip-cracking daughter, Franziska, and Godot. But only one is his true rival: the mysterious *Miles Edgeworth*. \n\nGet ready for these new stories of crime, justice, and courtroom drama! \n\n\n---\nSources & References\n- Main Landing page for the title on Ace Attorney Neoseeker - [Link]()\n- Vol 1 Index: 20 Anthology Stories and 2 4-koma shorts\n  - [AL](https://anilist.co/manga/40603/Gyakuten-Saiban-Official-Anthology-Comic-Naruhodouhen/)\n  - [MAL](https://myanimelist.net/manga/10603/Gyakuten_Saiban_Official_Anthology_Comic__Naruhodou-hen)\n  - [Wiki](https://aceattorney.neoseeker.com/wiki/Phoenix_Wright:_Ace_Attorney_-_Official_Casebook_Vol_1_-_The_Phoenix_Wright_Files)\n- Vol 2 Index: 20 Anthology Stories and 2 4-koma shorts\n  - [AL](https://anilist.co/manga/40604/Gyakuten-Saiban-Official-Anthology-Comic-Mitsurugihen/)\n  - [MAL](https://myanimelist.net/manga/10604/Gyakuten_Saiban_Official_Anthology_Comic__Mitsurugi-hen)\n  - [Wiki](https://aceattorney.neoseeker.com/wiki/Phoenix_Wright:_Ace_Attorney_-_Official_Casebook_Vol_2_-_The_Miles_Edgeworth_Files)\n- The Tracking Entries, except Mangaupdates, links to the entry for First Casebook"
-                        },
+                        "description": [],
                         "isLocked": false,
                         "links": {
-                            "al": "40603",
-                            "mu": "36298",
-                            "amz": "https://www.amazon.co.jp/dp/4862332595",
-                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-718402",
-                            "mal": "10603"
+                            "bw": "series/266896/list/",
+                            "amz": "https://www.amazon.co.jp/gp/product/B0921B6BB6",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/608535/",
+                            "raw": "https://www.ganganonline.com/title/697"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
                         "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": 2006,
+                        "status": "ongoing",
+                        "year": null,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Comedy"
+                                        "en": "Psychological"
                                     },
                                     "description": [],
                                     "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Anthology"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b11fda93-8f1d-4bef-b2ed-8803d3733170",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "4-Koma"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -682,19 +500,6 @@
                                     },
                                     "description": [],
                                     "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "df33b754-73a3-4c54-80e6-1a74a8058539",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Police"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -711,39 +516,29 @@
                                     "version": 1
                                 },
                                 "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
                             }
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-09-10T16:17:43+00:00",
-                        "updatedAt": "2022-03-19T18:33:02+00:00",
+                        "createdAt": "2020-09-12T04:30:50+00:00",
+                        "updatedAt": "2022-04-07T13:51:00+00:00",
                         "version": 4,
                         "availableTranslatedLanguages": []
                     }
                 },
                 {
-                    "id": "71102a28-fa60-4ca2-8275-ad77950aa221",
+                    "id": "dc2db04d-1940-4f7a-9b14-833fa77899ea",
                     "type": "user",
                     "attributes": {
-                        "username": "curiousCheck",
+                        "username": "kouyo_qt",
                         "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_CONTRIBUTOR"
+                            "ROLE_USER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_CONTRIBUTOR",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 84
+                        "version": 232
                     }
                 }
             ]
@@ -751,5 +546,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 132303
+    "total": 133898
 }

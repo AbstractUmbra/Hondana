@@ -23,6 +23,8 @@ HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
 
 def clone_chapter() -> Chapter:
     t = deepcopy(PAYLOAD)
+    print(t["data"]["relationships"])
+    print(len(t["data"]["relationships"]))
     return Chapter(HTTP, t["data"])
 
 
@@ -56,8 +58,10 @@ class TestChapter:
     def test_manga_property(self):
         chapter = clone_chapter()
 
+        cloned = deepcopy(PAYLOAD)
+        manga_rel = relationship_finder(cloned["data"]["relationships"], "manga", limit=1)
+
         assert chapter.manga is not None
-        manga_rel = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=1)
         assert manga_rel is not None
         assert chapter.manga.id == manga_rel["id"]
 
@@ -70,7 +74,8 @@ class TestChapter:
     def test_scanlator_groups_property(self):
         chapter = clone_chapter()
 
-        ret = relationship_finder(PAYLOAD["data"]["relationships"], "scanlation_group", limit=None)
+        cloned = deepcopy(PAYLOAD)
+        ret = relationship_finder(cloned["data"]["relationships"], "scanlation_group", limit=None)
 
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)

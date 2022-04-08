@@ -55,7 +55,11 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import ChapterResponse, GetAtHomeResponse
+    from .types.chapter import (
+        ChapterResponse,
+        GetAtHomeResponse,
+        GetSingleChapterResponse,
+    )
     from .types.common import LanguageCode
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
@@ -150,11 +154,11 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore - can't narrow this further
-        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore - can't narrow this further
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore # cannot narrow this further
+        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore # can't narrow this further
             relationships, "scanlation_group", limit=None
         )
-        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore - can't narrow this further
+        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow this further
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
@@ -280,7 +284,9 @@ class Chapter:
         if self.__parent is not None:
             return self.__parent
 
+        print(self._manga_relationship)
         if not self._manga_relationship:
+            print("no rel")
             return
 
         if "attributes" in self._manga_relationship:
@@ -376,7 +382,7 @@ class Chapter:
         if self.manga_id is None:
             return
 
-        manga = await self._http._view_manga(self.manga_id, includes=MangaIncludes())
+        manga = await self._http._get_manga(self.manga_id, includes=MangaIncludes())
 
         resolved = Manga(self._http, manga["data"])
         self.__parent = resolved
@@ -506,13 +512,14 @@ class Chapter:
         await self._http._mark_chapter_as_unread(self.id)
 
     async def _pages(
-        self, *, start: int, data_saver: bool, ssl: bool, report: bool
+        self, *, start: int, end: Optional[int], data_saver: bool, ssl: bool, report: bool
     ) -> AsyncGenerator[tuple[bytes, str], None]:
         at_home_data = await self.get_at_home(ssl=ssl)
         self._at_home_url = at_home_data.base_url
 
         _pages = at_home_data.data_saver if data_saver else at_home_data.data
-        for i, url in enumerate(_pages[start:], start=1):
+        _actual_pages = _pages[start:] if end is None else _pages[start:end]
+        for i, url in enumerate(_actual_pages, start=1):
             route = CustomRoute(
                 "GET",
                 self._at_home_url,
@@ -530,7 +537,7 @@ class Chapter:
                 await self._http._at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
-                    cached=("X-Cache" in page_resp.headers),
+                    cached=("X-Cache" in page_resp.headers and page_resp.headers["X-Cache"].upper().startswith("HIT")),
                     size=(page_resp.content_length or 0),
                     duration=int(_total * 1000),
                 )
@@ -544,7 +551,9 @@ class Chapter:
         else:
             return
 
-        async for page in self._pages(start=i, data_saver=data_saver, ssl=ssl, report=report):
+        # This codepath will only be reached if there was an error downloading any of the pages.
+        # It basically restarts the entire process starting from the page with errors.
+        async for page in self._pages(start=i, end=end, data_saver=data_saver, ssl=ssl, report=report):
             yield page
 
     async def download(
@@ -552,6 +561,7 @@ class Chapter:
         path: Optional[Union[PathLike[str], str]] = None,
         *,
         start_page: int = 0,
+        end_page: Optional[int] = None,
         data_saver: bool = False,
         ssl: bool = False,
         report: bool = True,
@@ -567,6 +577,8 @@ class Chapter:
             Defaults to ``"chapter number - chapter title"``
         start_page: :class:`int`
             The page at which to start downloading, leave at 0 (default) to download all.
+        end_page: Optional[:class:`int`]
+            The page at which to stop downloading, leave at ``None`` to download all pages after the start page.
         data_saver: :class:`bool`
             Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to ``False``.
         ssl: :class:`bool`
@@ -582,13 +594,55 @@ class Chapter:
             path_.mkdir(parents=True, exist_ok=True)
 
         idx = 1
-        async for page_data, page_ext in self._pages(start=start_page, data_saver=data_saver, ssl=ssl, report=report):
+        async for page_data, page_ext in self._pages(
+            start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
+        ):
             download_path = path_ / f"{idx}.{page_ext}"
             with open(download_path, "wb") as f:
                 f.write(page_data)
                 LOGGER.info("Downloaded to: %s", download_path)
                 await asyncio.sleep(0)
             idx += 1
+
+    async def download_bytes(
+        self,
+        *,
+        start_page: int = 0,
+        end_page: Optional[int] = None,
+        data_saver: bool = False,
+        ssl: bool = False,
+        report: bool = True,
+    ) -> AsyncGenerator[bytes, None]:
+        """|coro|
+
+        This method will attempt to download a chapter for you using the MangaDex process, and return the bytes
+        of each page. This is similar to :meth:`.download`, but instead of writing to a directory it returns
+        the bytes directly.
+
+        Parameters
+        -----------
+        start_page: :class:`int`
+            The page at which to start downloading, leave at 0 (default) to download all.
+        end_page: Optional[:class:`int`]
+            The page at which to stop downloading, leave at ``None`` to download all pages after the start page.
+        data_saver: :class:`bool`
+            Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to
+            ``False``.
+        ssl: :class:`bool`
+            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to
+            potentially getting an HTTP url.
+            Defaults to ``False``.
+        report: :class:`bool`
+            Whether to report success or failures to MangaDex per page download.
+            The API guidelines ask us to do this, so it defaults to ``True``.
+
+        Yields
+        -------
+        :class:`bytes`
+            The bytes of each page.
+        """
+        async for page_data, _ in self._pages(start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report):
+            yield page_data
 
 
 class ChapterAtHome:
@@ -642,12 +696,17 @@ class ChapterUpload:
     -----------
     manga: :class:`~hondana.Manga`
         The manga we are uploading a chapter for.
-    volume: :class:`str`
+    volume: Optional[:class:`str`]
         The volume name/number this chapter is/for.
+        Defaults to ``None``.
     chapter: :class:`str`
         The chapter name/number.
-    title: :class:`str`
+    chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+        The chapter we are editing, if we are editing a chapter.
+        Defaults to ``None``.
+    title: Optional[:class:`str`]
         The chapter's title.
+        Defaults to ``None``.
     translated_language: :class:`~hondana.types.LanguageCode`
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
@@ -658,6 +717,16 @@ class ChapterUpload:
         The list of scanlator group IDs to attribute to this chapter.
     existing_upload_session_id: :class:`str`
         If you already have an open upload session and wish to resume there, please pass the ID to this attribute.
+    version: Optional[:class:`int`]
+        The version you are updating a chapter to.
+        Parameter is ignored if ``chapter_to_edit`` is ``None``.
+
+    Raises
+    -------
+    :exc:`TypeError`
+        If you provide more than 10 ScanlatorGroups.
+    :exc:`TypeError`
+        If you provide a chapter to edit but do not specify the version.
     """
 
     __slots__ = (
@@ -665,6 +734,7 @@ class ChapterUpload:
         "manga",
         "volume",
         "chapter",
+        "chapter_to_edit",
         "title",
         "translated_language",
         "external_url",
@@ -672,6 +742,7 @@ class ChapterUpload:
         "scanlator_groups",
         "uploaded",
         "upload_session_id",
+        "version",
         "__committed",
     )
 
@@ -681,26 +752,36 @@ class ChapterUpload:
         manga: Union[Manga, str],
         /,
         *,
-        volume: str,
         chapter: str,
-        title: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
+        title: Optional[str] = None,
         translated_language: LanguageCode,
         scanlator_groups: list[str],
         external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
     ) -> None:
+        if len(scanlator_groups) > 10:
+            raise ValueError("You can only attribute up to 10 scanlator groups per upload.")
+
+        if chapter_to_edit and not version:
+            raise ValueError("You must specify a version if you are editing a chapter.")
+
         self._http: HTTPClient = http
         self.manga: Union[Manga, str] = manga
-        self.volume: str = volume
+        self.volume: Optional[str] = volume
         self.chapter: str = chapter
-        self.title: str = title
+        self.chapter_to_edit: Optional[Union[Chapter, str]] = chapter_to_edit
+        self.title: Optional[str] = title
         self.translated_language: LanguageCode = translated_language
         self.external_url: Optional[str] = external_url
         self.publish_at: Optional[datetime.datetime] = publish_at
         self.scanlator_groups: list[str] = scanlator_groups
         self.uploaded: list[str] = []
         self.upload_session_id: Optional[str] = existing_upload_session_id
+        self.version: Optional[int] = version
         self.__committed: bool = False
 
     def __repr__(self) -> str:
@@ -728,7 +809,14 @@ class ChapterUpload:
         :class:`~hondana.types.BeginChapterUploadResponse`
         """
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
-        return await self._http._open_upload_session(manga_id, scanlator_groups=self.scanlator_groups)
+        if self.chapter_to_edit is not None:
+            chapter_id = self.chapter_to_edit.id if isinstance(self.chapter_to_edit, Chapter) else self.chapter_to_edit
+            return await self._http._open_upload_session(
+                manga_id, scanlator_groups=self.scanlator_groups, chapter_id=chapter_id, version=self.version
+            )
+        return await self._http._open_upload_session(
+            manga_id, scanlator_groups=self.scanlator_groups, chapter_id=None, version=None
+        )
 
     @require_authentication
     async def upload_images(self, images: list[bytes]) -> list[UploadedChapterResponse]:
@@ -840,10 +928,10 @@ class ChapterUpload:
             payload["chapterDraft"]["publishAt"] = clean_isoformat(self.publish_at)
 
         route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id)
-        data: ChapterResponse = await self._http.request(route, json=payload)
+        data: GetSingleChapterResponse = await self._http.request(route, json=payload)
 
         self.__committed = True
-        return Chapter(self._http, data)
+        return Chapter(self._http, data["data"])
 
     @require_authentication
     async def __aenter__(self: ChapterUploadT) -> ChapterUploadT:

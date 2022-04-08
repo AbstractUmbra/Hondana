@@ -117,20 +117,22 @@
                     },
                     "altTitles": [
                         {
-                            "en": "\u4e0a\u91ce\u672c"
+                            "ja": "\u4e0a\u91ce\u672c"
                         }
                     ],
                     "description": {
                         "en": "An anthology booklet featuring various artists, included with special edition copies of Ueno-san wa Bukiyou volume 6."
                     },
                     "isLocked": false,
-                    "links": null,
+                    "links": {
+                        "al": "129486"
+                    },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
+                    "lastVolume": "",
                     "lastChapter": "14",
                     "publicationDemographic": "seinen",
                     "status": "completed",
-                    "year": null,
+                    "year": 2019,
                     "contentRating": "suggestive",
                     "tags": [
                         {
@@ -189,8 +191,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-08-08T06:33:13+00:00",
-                    "updatedAt": "2021-05-25T15:47:46+00:00",
-                    "version": 2,
+                    "updatedAt": "2022-03-24T13:36:11+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -205,22 +207,20 @@
                     },
                     "altTitles": [
                         {
-                            "en": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u30a8\u30f4\u30a1\u306e\u30a2\u30b9\u30ab\u3068\u5c11\u3057\u5927\u4eba\u306a\u30b7\u30f3\u30b8\u541b\u306e\u30e9\u30d6\u30e9\u30d6\u5984\u60f3\u8a71"
+                            "ja": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u30a8\u30f4\u30a1\u306e\u30a2\u30b9\u30ab\u3068\u5c11\u3057\u5927\u4eba\u306a\u30b7\u30f3\u30b8\u541b\u306e\u30e9\u30d6\u30e9\u30d6\u5984\u60f3\u8a71"
                         }
                     ],
-                    "description": {
-                        "en": "[![](https://i.imgur.com/oiVINmy.png) Artist\u2019s Pixiv](https://www.pixiv.net/en/users/72342)  \n[![](https://i.imgur.com/dQCXZkU.png) Artist\u2019s Twitter](https://twitter.com/774nanash)"
-                    },
+                    "description": [],
                     "isLocked": false,
                     "links": {
-                        "raw": "https://www.pixiv.net/en/artworks/78757632"
+                        "raw": "https://www.pixiv.net/artworks/78757632"
                     },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
+                    "lastVolume": "",
+                    "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "completed",
-                    "year": null,
+                    "year": 2020,
                     "contentRating": "safe",
                     "tags": [
                         {
@@ -292,8 +292,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-07-25T20:40:02+00:00",
-                    "updatedAt": "2021-05-25T15:49:24+00:00",
-                    "version": 2,
+                    "updatedAt": "2022-03-24T13:31:27+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "id",
                         "pt-br",
@@ -307,11 +307,11 @@
                 "attributes": {
                     "isLocked": false,
                     "links": {
-                        "raw": "https://www.pixiv.net/en/artworks/78708190"
+                        "raw": "https://www.pixiv.net/artworks/78708190"
                     },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
+                    "lastVolume": "",
+                    "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "completed",
                     "contentRating": "safe",
@@ -320,13 +320,11 @@
                     },
                     "altTitles": [
                         {
-                            "en": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u300c\u731b\u72ac\u30a2\u30b9\u30ab\u3068\u5927\u4eba\u306a\u30b7\u30f3\u3061\u3083\u3093\u300d"
+                            "ja": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u300c\u731b\u72ac\u30a2\u30b9\u30ab\u3068\u5927\u4eba\u306a\u30b7\u30f3\u3061\u3083\u3093\u300d"
                         }
                     ],
-                    "description": {
-                        "en": "[![](https://i.imgur.com/oiVINmy.png) Artist\u2019s Pixiv](https://www.pixiv.net/en/users/72342)  \n[![](https://i.imgur.com/dQCXZkU.png) Artist\u2019s Twitter](https://twitter.com/774nanash)"
-                    },
-                    "year": null,
+                    "description": [],
+                    "year": 2020,
                     "tags": [
                         {
                             "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
@@ -405,26 +403,13 @@
                                 "version": 1
                             },
                             "relationships": []
-                        },
-                        {
-                            "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Full Color"
-                                },
-                                "description": [],
-                                "group": "format",
-                                "version": 1
-                            },
-                            "relationships": []
                         }
                     ],
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
-                    "version": 2,
+                    "version": 3,
                     "createdAt": "2020-07-25T11:41:47+00:00",
-                    "updatedAt": "2021-05-25T15:49:24+00:00",
+                    "updatedAt": "2022-03-24T13:34:18+00:00",
                     "availableTranslatedLanguages": [
                         "pt-br",
                         "en"
@@ -865,19 +850,56 @@
                             "en": "Esper Girl Amputation Union"
                         }
                     ],
-                    "description": {
-                        "en": "Gore Warning"
-                    },
+                    "description": [],
                     "isLocked": false,
-                    "links": null,
+                    "links": [],
                     "originalLanguage": "ja",
-                    "lastVolume": null,
+                    "lastVolume": "",
                     "lastChapter": "2",
                     "publicationDemographic": null,
                     "status": "completed",
                     "year": null,
                     "contentRating": "pornographic",
                     "tags": [
+                        {
+                            "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Loli"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Sexual Violence"
+                                },
+                                "description": [],
+                                "group": "content",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Magic"
+                                },
+                                "description": [],
+                                "group": "theme",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
                         {
                             "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
                             "type": "tag",
@@ -895,8 +917,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-01-19T22:02:03+00:00",
-                    "updatedAt": "2020-01-19T22:02:03+00:00",
-                    "version": 1,
+                    "updatedAt": "2022-03-24T13:25:03+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "en"
                     ]

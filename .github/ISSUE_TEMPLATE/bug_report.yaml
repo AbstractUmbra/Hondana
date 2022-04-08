@@ -43,7 +43,7 @@ body:
       required: true
   - type: input
     attributes:
-      label: Related item UUIDs
+      label: Related item types and UUIDs
       description: >
         What type of item were you interacting with?
         If applicable, also include it's UUID for testing purposes.

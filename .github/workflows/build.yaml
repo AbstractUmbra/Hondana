@@ -14,24 +14,34 @@ on:
 
 jobs:
   build:
-    name: Build
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ '3.9', '3.10' ]
 
+    name: "Build @ ${{ matrix.python-version }}"
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v1
+      - name: "Checkout Repository"
+        uses: actions/checkout@v3
         with:
-          python-version: 3.9
+          fetch-depth: 0
 
-      - name: Set up Poetry
-        uses: Gr1N/setup-poetry@v4
+      - name: "Setup Poetry @ ${{ matrix.python-version }}"
+        run: pipx install poetry
 
-      - name: Install Python deps
+      - name: "Setup Python @ ${{ matrix.python-version }}"
+        uses: actions/setup-python@v3
+        with:
+          python-version: "${{ matrix.python-version }}"
+          cache: poetry
+
+      - name: "Install deps @ ${{ matrix.python-version }}"
+        env:
+          PY_VER: "${{ matrix.python-version }}"
         run: |
-          poetry install -E docs -E tests --no-dev
+          poetry env use "$PY_VER"
+          poetry install -E docs -E tests -E speedups --no-dev --no-interaction
 
       - name: Check it imports
         run: |
@@ -65,8 +75,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           submodules: true
