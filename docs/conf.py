@@ -92,7 +92,7 @@ napoleon_use_admonition_for_notes: bool = True
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns: list[str] = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns: list[str] = ["build", "Thumbs.db", ".DS_Store"]
 
 # Links used for cross-referencing other documentation
 intersphinx_mapping: dict[str, tuple[str, None]] = {

@@ -89,7 +89,7 @@ format = "poetry run black ."
 pyright = "poetry run pyright"
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
 tests = "poetry run pytest"
-docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/_build"
+docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
 pre = ["install", "format", "pyright", "types", "tests", "docs", "tags", "uninstall"]
