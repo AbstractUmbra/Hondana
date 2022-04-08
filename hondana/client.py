@@ -89,7 +89,7 @@ from .utils import MISSING, deprecated, require_authentication
 
 
 if TYPE_CHECKING:
-    from aiohttp import ClientSession
+    import aiohttp
 
     from .tags import QueryTags
     from .types import common, legacy, manga
@@ -141,7 +141,7 @@ class Client:
         username: None = ...,
         email: None = ...,
         password: None = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: None = ...,
     ) -> None:
         ...
@@ -153,7 +153,7 @@ class Client:
         username: None = ...,
         email: str = ...,
         password: str = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: None = ...,
     ) -> None:
         ...
@@ -165,7 +165,7 @@ class Client:
         username: None = ...,
         email: str = ...,
         password: str = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: str = ...,
     ) -> None:
         ...
@@ -177,7 +177,7 @@ class Client:
         username: str = ...,
         email: None = ...,
         password: str = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: None = ...,
     ) -> None:
         ...
@@ -189,7 +189,7 @@ class Client:
         username: str = ...,
         email: None = ...,
         password: str = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: str = ...,
     ) -> None:
         ...
@@ -201,7 +201,7 @@ class Client:
         username: None = ...,
         email: None = ...,
         password: None = ...,
-        session: Optional[ClientSession] = ...,
+        session: Optional[aiohttp.ClientSession] = ...,
         refresh_token: str = ...,
     ) -> None:
         ...
@@ -212,7 +212,7 @@ class Client:
         username: Optional[str] = None,
         email: Optional[str] = None,
         password: Optional[str] = None,
-        session: Optional[ClientSession] = None,
+        session: Optional[aiohttp.ClientSession] = None,
         refresh_token: Optional[str] = None,
     ) -> None:
         self._http = HTTPClient(
