@@ -701,6 +701,9 @@ class ChapterUpload:
         Defaults to ``None``.
     chapter: :class:`str`
         The chapter name/number.
+    chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+        The chapter we are editing, if we are editing a chapter.
+        Defaults to ``None``.
     title: Optional[:class:`str`]
         The chapter's title.
         Defaults to ``None``.
@@ -714,6 +717,16 @@ class ChapterUpload:
         The list of scanlator group IDs to attribute to this chapter.
     existing_upload_session_id: :class:`str`
         If you already have an open upload session and wish to resume there, please pass the ID to this attribute.
+    version: Optional[:class:`int`]
+        The version you are updating a chapter to.
+        Parameter is ignored if ``chapter_to_edit`` is ``None``.
+
+    Raises
+    -------
+    :exc:`TypeError`
+        If you provide more than 10 ScanlatorGroups.
+    :exc:`TypeError`
+        If you provide a chapter to edit but do not specify the version.
     """
 
     __slots__ = (
@@ -721,6 +734,7 @@ class ChapterUpload:
         "manga",
         "volume",
         "chapter",
+        "chapter_to_edit",
         "title",
         "translated_language",
         "external_url",
@@ -728,6 +742,7 @@ class ChapterUpload:
         "scanlator_groups",
         "uploaded",
         "upload_session_id",
+        "version",
         "__committed",
     )
 
@@ -737,22 +752,28 @@ class ChapterUpload:
         manga: Union[Manga, str],
         /,
         *,
-        volume: Optional[str] = None,
         chapter: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
         title: Optional[str] = None,
         translated_language: LanguageCode,
         scanlator_groups: list[str],
         external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
     ) -> None:
         if len(scanlator_groups) > 10:
             raise ValueError("You can only attribute up to 10 scanlator groups per upload.")
+
+        if chapter_to_edit and not version:
+            raise ValueError("You must specify a version if you are editing a chapter.")
 
         self._http: HTTPClient = http
         self.manga: Union[Manga, str] = manga
         self.volume: Optional[str] = volume
         self.chapter: str = chapter
+        self.chapter_to_edit: Optional[Union[Chapter, str]] = chapter_to_edit
         self.title: Optional[str] = title
         self.translated_language: LanguageCode = translated_language
         self.external_url: Optional[str] = external_url
@@ -760,6 +781,7 @@ class ChapterUpload:
         self.scanlator_groups: list[str] = scanlator_groups
         self.uploaded: list[str] = []
         self.upload_session_id: Optional[str] = existing_upload_session_id
+        self.version: Optional[int] = version
         self.__committed: bool = False
 
     def __repr__(self) -> str:
@@ -787,7 +809,14 @@ class ChapterUpload:
         :class:`~hondana.types.BeginChapterUploadResponse`
         """
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
-        return await self._http._open_upload_session(manga_id, scanlator_groups=self.scanlator_groups)
+        if self.chapter_to_edit is not None:
+            chapter_id = self.chapter_to_edit.id if isinstance(self.chapter_to_edit, Chapter) else self.chapter_to_edit
+            return await self._http._open_upload_session(
+                manga_id, scanlator_groups=self.scanlator_groups, chapter_id=chapter_id, version=self.version
+            )
+        return await self._http._open_upload_session(
+            manga_id, scanlator_groups=self.scanlator_groups, chapter_id=None, version=None
+        )
 
     @require_authentication
     async def upload_images(self, images: list[bytes]) -> list[UploadedChapterResponse]:

@@ -3772,13 +3772,16 @@ class Client:
         manga: Union[Manga, str],
         /,
         *,
-        volume: Optional[str] = None,
         chapter: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
         title: Optional[str] = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
+        external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
     ) -> ChapterUpload:
         """
         This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
@@ -3789,7 +3792,14 @@ class Client:
 
         Using the async context manager: ::
 
-            async with Client.upload_session(manga, volume=volume, chapter=chapter, title=title, translated_language=translated_language) as session:
+            async with Client.upload_session(
+                manga,
+                chapter=chapter,
+                volume=volume,
+                title=title,
+                translated_language=translated_language,
+                scanlator_groups=scanlator_groups
+            ) as session:
                 await session.upload_images(your_list_of_bytes)
 
 
@@ -3797,13 +3807,16 @@ class Client:
         -----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
+        chapter: :class:`str`
+            The chapter we are uploading.
+            Typically, this is a numerical identifier.
+        chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+            The chapter you intend to edit.
+            Defaults to ``None``.
         volume: Optional[:class:`str`]
             The volume we are uploading a chapter for.
             Typically, this is a numerical identifier.
             Defaults to ``None`` in the API.
-        chapter: :class:`str`
-            The chapter we are uploading.
-            Typically, this is a numerical identifier.
         title: Optional[:class:`str`]
             The chapter's title.
             Defaults to ``None``.
@@ -3812,11 +3825,17 @@ class Client:
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
             Only 5 are allowed on a given chapter.
+        external_url: Optional[:class:`str`]
+            The external URL of this chapter.
+            Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
+        version: Optional[:class:`int`]
+            The new version of the chapter you are editing.
+            Only necessary if ``chapter_to_edit`` is not ``None``.
 
         Returns
         --------
@@ -3825,13 +3844,16 @@ class Client:
         return ChapterUpload(
             self._http,
             manga,
-            volume=volume,
             chapter=chapter,
+            chapter_to_edit=chapter_to_edit,
+            volume=volume,
             title=title,
             translated_language=translated_language,
-            publish_at=publish_at,
             scanlator_groups=scanlator_groups,
+            external_url=external_url,
+            publish_at=publish_at,
             existing_upload_session_id=existing_upload_session_id,
+            version=version,
         )
 
     @require_authentication
@@ -3840,13 +3862,16 @@ class Client:
         manga: Union[Manga, str],
         /,
         *,
-        volume: Optional[str] = None,
         chapter: str,
+        chapter_to_edit: Optional[Union[Chapter, str]] = None,
+        volume: Optional[str] = None,
         title: Optional[str] = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
+        external_url: Optional[str] = None,
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
+        version: Optional[int] = None,
         images: list[bytes],
     ) -> Chapter:
         """|coro|
@@ -3857,13 +3882,16 @@ class Client:
         -----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
+        chapter: :class:`str`
+            The chapter we are uploading.
+            Typically, this is a numerical identifier.
+        chapter_to_edit: Optional[Union[:class:`~hondana.Chapter`, :class:`str`]]
+            The chapter you intend to edit.
+            Defaults to ``None``.
         volume: Optional[:class:`str`]
             The volume we are uploading a chapter for.
             Typically, this is a numerical identifier.
             Defaults to ``None``.
-        chapter: :class:`str`
-            The chapter we are uploading.
-            Typically, this is a numerical identifier.
         title: Optional[:class:`str`]
             The chapter's title.
             Defaults to ``None``.
@@ -3872,11 +3900,17 @@ class Client:
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
             Only 5 are allowed on a given chapter.
+        external_url: Optional[:class:`str`]
+            The external URL of this chapter.
+            Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
             When to publish this chapter represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
+        version: Optional[:class:`int`]
+            The new version of the chapter you are editing.
+            Only necessary if ``chapter_to_edit`` is not ``None``.
         images: List[:class:`bytes`]
             The list of images to upload.
 
@@ -3897,13 +3931,16 @@ class Client:
         async with ChapterUpload(
             self._http,
             manga,
-            volume=volume,
             chapter=chapter,
+            chapter_to_edit=chapter_to_edit,
+            volume=volume,
             title=title,
             translated_language=translated_language,
             publish_at=publish_at,
             scanlator_groups=scanlator_groups,
+            external_url=external_url,
             existing_upload_session_id=existing_upload_session_id,
+            version=version,
         ) as session:
             await session.upload_images(images)
             new_chapter = await session.commit()

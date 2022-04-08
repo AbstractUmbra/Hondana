@@ -2112,11 +2112,15 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _open_upload_session(
-        self, manga_id: str, /, *, scanlator_groups: list[str]
+        self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: Optional[str], version: Optional[int]
     ) -> Response[upload.BeginChapterUploadResponse]:
-        route = Route("POST", "/upload/begin")
-
         query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
+        if chapter_id is not None:
+            route = Route("POST", "/upload/begin/{chapter_id}", chapter_id=chapter_id)
+            query["version"] = version
+        else:
+            route = Route("POST", "/upload/begin")
+
         return self.request(route, json=query)
 
     def _abandon_upload_session(self, session_id: str, /) -> Response[None]:
