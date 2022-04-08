@@ -50,7 +50,7 @@ from .utils import (
 
 
 if TYPE_CHECKING:
-    import os
+    from os import PathLike
 
     from aiohttp import ClientResponse
 
@@ -558,7 +558,7 @@ class Chapter:
 
     async def download(
         self,
-        path: Optional[Union[os.PathLike[str], str]] = None,
+        path: Optional[Union[PathLike[str], str]] = None,
         *,
         start_page: int = 0,
         end_page: Optional[int] = None,
