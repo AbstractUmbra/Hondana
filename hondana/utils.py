@@ -110,6 +110,13 @@ MAX_DEPTH: int = 10_000
 MANGADEX_URL_REGEX = re.compile(
     r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
 )
+r"""
+``r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"``
+
+This `regex pattern <https://docs.python.org/3/library/re.html#re-objects>`_ can be used to isolate common elements from a MangaDex URL.
+This means that Manga, Chapter, Author or Tag urls can be parsed for their ``type``, ``ID`` and ``title``.
+"""
+
 MANGADEX_TIME_REGEX = re.compile(
     r"^(P(?P<days>[1-9]|[1-9][0-9])D)?(P?(?P<weeks>[1-9])W)?(P?T((?P<hours>[1-9]|1[0-9]|2[0-4])H)?((?P<minutes>[1-9]|[1-5][0-9]|60)M)?((?P<seconds>[1-9]|[1-5][0-9]|60)S)?)?$"
 )
@@ -230,7 +237,7 @@ class CachedSlotProperty(Generic[T, T_co]):
             return value
 
 
-def cached_slot_property(name: str) -> Callable[[Callable[[T], T_co]], CachedSlotProperty[T, T_co]]:
+def cached_slot_property(name: str, /) -> Callable[[Callable[[T], T_co]], CachedSlotProperty[T, T_co]]:
     def decorator(func: Callable[[T], T_co]) -> CachedSlotProperty[T, T_co]:
         return CachedSlotProperty(name, func)
 
@@ -250,9 +257,7 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
     return wrapper
 
 
-def deprecated(
-    alternate: Optional[str] = None,
-) -> Callable[[Callable[B, T]], Callable[B, T]]:
+def deprecated(alternate: Optional[str] = None, /) -> Callable[[Callable[B, T]], Callable[B, T]]:
     """A decorator to mark a method as deprecated.
 
     Parameters
@@ -280,7 +285,7 @@ def deprecated(
     return decorator
 
 
-def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[int, int]:
+def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tuple[int, int]:
     """A helper function that will calculate the offset and limit parameters for API endpoints.
 
     Parameters
@@ -291,6 +296,11 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
         The offset (or pagination start point) for the objects you are requesting.
     max_limit: :class:`int`
         The maximum limit value for the API Endpoint.
+
+    Raises
+    -------
+    :exc:`ValueError`
+        Exceeding the maximum pagination limit.
 
     Returns
     --------
@@ -315,7 +325,7 @@ def calculate_limits(limit: int, offset: int, *, max_limit: int = 100) -> tuple[
 
 if HAS_ORJSON is True:
 
-    def to_json(obj: Any) -> str:
+    def to_json(obj: Any, /) -> str:
         """A quick method that dumps a Python type to JSON object."""
         return orjson.dumps(obj).decode("utf-8")
 
@@ -323,14 +333,14 @@ if HAS_ORJSON is True:
 
 else:
 
-    def to_json(obj: Any) -> str:
+    def to_json(obj: Any, /) -> str:
         """A quick method that dumps a Python type to JSON object."""
         return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
 
     _from_json = json.loads
 
 
-async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any], str]:
+async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, Any], str]:
     """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text."""
     text = await response.text(encoding="utf-8")
     try:
@@ -345,11 +355,22 @@ async def json_or_text(response: aiohttp.ClientResponse) -> Union[dict[str, Any]
     return text
 
 
-def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]) -> str:
+def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], /) -> str:
     """
-    {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
-    ->
-    "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
+    A helper function that builds a MangaDex (PHP) query string from a mapping.
+
+    Parameters
+    -----------
+    obj: Mapping[:class:`str`, Optional[Union[:class:`str`, :class:`int`, :class:`bool`, List[:class:`str`], Dict[:class:`str`, :class:`str`]]]]
+        The mapping to build the query string from.
+
+
+    .. code-block:: python
+        :caption: The input and output of this function.
+
+        >>> {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
+        "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
+
     """
     fmt = []
     for key, value in obj.items():
@@ -367,7 +388,7 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     return "&".join(fmt)
 
 
-def get_image_mime_type(data: bytes) -> str:
+def get_image_mime_type(data: bytes, /) -> str:
     """Returns the image type from the first few bytes."""
     if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
         return "image/png"
@@ -381,7 +402,7 @@ def get_image_mime_type(data: bytes) -> str:
         raise ValueError("Unsupported image type given")
 
 
-def to_snake_case(string: str) -> str:
+def to_snake_case(string: str, /) -> str:
     """Quick function to return snake_case from camelCase."""
     fmt: list[str] = []
     for character in string:
@@ -392,7 +413,7 @@ def to_snake_case(string: str) -> str:
     return "".join(fmt)
 
 
-def to_camel_case(string: str) -> str:
+def to_camel_case(string: str, /) -> str:
     """Quick function to return camelCase from snake_case."""
     first, *rest = string.split("_")
     chunks = [first.lower(), *map(str.capitalize, rest)]
@@ -400,7 +421,7 @@ def to_camel_case(string: str) -> str:
     return "".join(chunks)
 
 
-def as_chunks(iterator: Iterable[T], max_size: int) -> Iterable[list[T]]:
+def as_chunks(iterator: Iterable[T], /, max_size: int) -> Iterable[list[T]]:
     ret = []
     n = 0
     for item in iterator:
@@ -414,7 +435,19 @@ def as_chunks(iterator: Iterable[T], max_size: int) -> Iterable[list[T]]:
         yield ret
 
 
-def delta_to_iso(delta: datetime.timedelta) -> str:
+def delta_to_iso(delta: datetime.timedelta, /) -> str:
+    """A helper method to dump a timedelta to an ISO 8601 timedelta string.
+
+    Parameters
+    -----------
+    delta: :class:`datetime.timedelta`
+        The timedelta to convert.
+
+    Returns
+    --------
+    :class:`str`
+        The converted string.
+    """
     seconds = round(delta.total_seconds())
     weeks, seconds = divmod(seconds, 60 * 60 * 24 * 7)
     days, seconds = divmod(seconds, 60 * 60 * 24)
@@ -439,8 +472,24 @@ def delta_to_iso(delta: datetime.timedelta) -> str:
     return builder
 
 
-def iso_to_delta(iso: str) -> datetime.timedelta:
+def iso_to_delta(iso: str, /) -> datetime.timedelta:
+    """A helper method to load a timedelta from an ISO8601 string.
 
+    Parameters
+    -----------
+    iso: :class:`str`
+        The ISO8601 datetime string to parse.
+
+    Raises
+    -------
+    :exc:`TypeError`
+        If the given string is not a valid ISO8601 string and does not match :class:`~hondana.utils.MANGADEX_TIME_REGEX`.
+
+    Returns
+    --------
+    :class:`datetime.timedelta`
+        The timedelta based on the parsed string.
+    """
     if (match := MANGADEX_TIME_REGEX.fullmatch(iso)) is None:
         raise TypeError("The passed string does not match the regex pattern.")
 
@@ -613,7 +662,24 @@ def relationship_finder(
     return ret
 
 
-def clean_isoformat(dt: datetime.datetime) -> str:
+def clean_isoformat(dt: datetime.datetime, /) -> str:
+    """A helper method to cleanly convert a datetime (aware or naive) to a timezoneless ISO8601 string.
+
+    Parameters
+    -----------
+    dt: :class:`datetime.datetime`
+        The datetime to convert.
+
+    Returns
+    --------
+    :class:`str`
+        The ISO8601 string.
+
+
+    .. note::
+        The passed datetime will have it's timezone converted to UTC and then it's timezone stripped.
+
+    """
     if dt.tzinfo != datetime.timezone.utc:
         dt = dt.astimezone(datetime.timezone.utc)
 

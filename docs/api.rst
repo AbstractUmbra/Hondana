@@ -8,7 +8,6 @@ Client
 .. autoclass:: Client
     :members:
 
-
 API Models
 ----------
 
@@ -37,9 +36,6 @@ Chapter Upload
 
 Collections
 ~~~~~~~~~~~
-.. autoclass:: hondana.collections.BaseCollection
-    :members: items
-
 .. autoclass:: MangaCollection
     :members: items
 
@@ -78,6 +74,7 @@ Cover
 CustomList
 ~~~~~~~~~~
 .. autoclass:: CustomList()
+    :members:
 
 Legacy
 ~~~~~~
@@ -130,16 +127,15 @@ Query
 
 .. autoclass:: ScanlatorGroupIncludes
 
-Relationship
-~~~~~~~~~~~~
 .. currentmodule:: hondana
 
+Relationship
+~~~~~~~~~~~~
 .. autoclass:: Relationship()
     :members:
 
 Report
 ~~~~~~
-
 .. autoclass:: Report()
     :members:
 
@@ -157,7 +153,6 @@ QueryTags
 ~~~~~~~~~
 .. autoclass:: QueryTags
     :members:
-
 
 Token
 ~~~~~
@@ -180,6 +175,18 @@ Utilities
 
 .. autoclass:: hondana.utils.MANGADEX_TIME_REGEX
     :members:
+
+.. autoclass:: hondana.utils.MANGADEX_URL_REGEX
+    :members:
+
+.. autofunction:: hondana.utils.php_query_builder
+
+.. autofunction:: hondana.utils.delta_to_iso
+
+.. autofunction:: hondana.utils.iso_to_delta
+
+.. autofunction:: hondana.utils.clean_isoformat
+
 
 Enumerations
 -------------

@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 project = "Hondana"
-copyright = "2021, Alex Nørgaard"
+copyright = "2021 - Present, Alex Nørgaard"
 author = "Alex Nørgaard"
 
 # The full version, including alpha/beta/rc tags
