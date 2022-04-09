@@ -550,7 +550,7 @@ python-versions = ">=3.7"
 name = "typing-extensions"
 version = "4.1.1"
 description = "Backported and Experimental Type Hints for Python 3.6+"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -599,7 +599,7 @@ tests = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "2b8f0712ef9c9cc6c974a1f0fae782fcaedf0f04b85f8d410e7c3609c3e2fddc"
+content-hash = "c3a65f3c72ffc1ac040b793ea3aaa9e49c9029edb7e77e2163021619f91c27b0"
 
 [metadata.files]
 aiohttp = [

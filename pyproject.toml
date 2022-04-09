@@ -32,6 +32,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 aiohttp = "^3.7.4"
+typing-extensions = "^4.1.1"
 
 pytest = { version = "*", optional = true }
 orjson = { version = "^3.6.7", optional = true }
@@ -84,7 +85,7 @@ reportUnnecessaryTypeIgnoreComment = "warning"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
-install = "poetry install"
+install = "poetry install -E tests -E docs -E speedups"
 format = "poetry run black ."
 pyright = "poetry run pyright"
 types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
