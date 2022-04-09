@@ -1651,55 +1651,119 @@
             ]
         },
         {
-            "id": "13d5ac2b-e606-4f81-81f6-198de2af8536",
+            "id": "d31d0aee-c7df-481f-ac60-bce111cdd8b0",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "PPPPPP"
+                    "en": "Tokyo Shinobi Squad"
                 },
                 "altTitles": [
                     {
-                        "ja": "\u30d4\u30d4\u30d4\u30d4\u30d4\u30d4"
+                        "en": "\u0422\u043e\u043a\u0438\u0439\u0441\u043a\u0438\u0439 \u043e\u0442\u0440\u044f\u0434 \u0448\u0438\u043d\u043e\u0431\u0438"
                     },
                     {
-                        "ru": "\u041f\u0438\u043f\u0438\u043f\u0438\u043f\u0438\u043f\u0438\u043f\u0438"
+                        "en": "\u30c8\u30fc\u30ad\u30e7\u30fc\u5fcd\u30b9\u30af\u30ef\u30c3\u30c9"
                     },
                     {
-                        "hi": "\u092a\u0940\u092a\u0940\u092a\u0940\u092a\u0940\u092a\u0940\u092a\u0940"
+                        "en": "\u4e1c\u4eac\u5fcd\u8005\u5c0f\u961f"
+                    },
+                    {
+                        "en": "\u6771\u4eac\u5fcd\u8005\u5c0f\u968a"
                     }
                 ],
                 "description": {
-                    "en": "Kuon Otogami was a genius pianist whose name is among the greatest in the annals of the music world. He had seven children who also all became genius pianists. All seven except for the one named Lucky that is. This is the miraculous story of a regular kid taking on godly talent!",
-                    "ru": "\u041a\u0443\u043e\u043d \u041e\u0442\u043e\u0433\u0430\u043c\u0438 \u0431\u044b\u043b \u0433\u0435\u043d\u0438\u0430\u043b\u044c\u043d\u044b\u043c \u043f\u0438\u0430\u043d\u0438\u0441\u0442\u043e\u043c, \u0447\u044c\u0435 \u0438\u043c\u044f \u0432\u043e\u0448\u043b\u043e \u0432 \u0430\u043d\u043d\u0430\u043b\u044b \u043c\u0443\u0437\u044b\u043a\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u043c\u0438\u0440\u0430. \u0423 \u043d\u0435\u0433\u043e \u0431\u044b\u043b\u043e \u0441\u0435\u043c\u0435\u0440\u043e \u0434\u0435\u0442\u0435\u0439, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0442\u043e\u0436\u0435 \u0441\u0442\u0430\u043b\u0438 \u0433\u0435\u043d\u0438\u0430\u043b\u044c\u043d\u044b\u043c\u0438 \u043f\u0438\u0430\u043d\u0438\u0441\u0442\u0430\u043c\u0438. \u0412\u0441\u0435 \u0441\u0435\u043c\u0435\u0440\u043e, \u043a\u0440\u043e\u043c\u0435 \u043e\u0434\u043d\u043e\u0433\u043e \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041b\u0430\u043a\u0438. \u042d\u0442\u043e \u0447\u0443\u0434\u0435\u0441\u043d\u0430\u044f \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043e \u0442\u043e\u043c, \u043a\u0430\u043a \u043e\u0431\u044b\u0447\u043d\u044b\u0439 \u0440\u0435\u0431\u0435\u043d\u043e\u043a \u043e\u0431\u0440\u0435\u043b \u0431\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0439 \u0442\u0430\u043b\u0430\u043d\u0442!"
+                    "en": "Tokyo, 2049\u2026 Thanks to the Galapagos Reform enacted by the government, Russia, China, America and Japan are now connected by a Hyper Loop system. This globalization has turned Tokyo into the most crime-ridden city in the world. To fight the rising crime, those who have been working in the shadows since the Sengoku period are needed\u2026 They are\u2026the Shinobi!  \n  \n\n\n---\n\n**Officially Translated:**  \n- In French by [Kaz\u00e9](http://manga.kaze.fr/)\n"
                 },
                 "isLocked": false,
                 "links": {
-                    "al": "139358",
-                    "ap": "pppppp",
-                    "bw": "series/332395/",
-                    "kt": "pppppp",
-                    "mu": "188766",
-                    "amz": "https://www.amazon.co.jp/PPPPPP-1-\u30b8\u30e3\u30f3\u30d7\u30b3\u30df\u30c3\u30af\u30b9DIGITAL-\u30de\u30dd\u30ed3\u53f7-ebook/dp/B09MRZTHBT/",
-                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2688036",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/675240/",
-                    "mal": "140199",
-                    "raw": "https://shonenjumpplus.com/episode/3269754496510244302",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100175"
+                    "al": "109174",
+                    "ap": "tokyo-shinobi-squad",
+                    "bw": "series/214389",
+                    "mu": "153837",
+                    "amz": "https://www.amazon.co.jp/dp/B07VGBHT79",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/557277/",
+                    "mal": "120176",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100062"
                 },
                 "originalLanguage": "ja",
-                "lastVolume": "",
-                "lastChapter": "",
+                "lastVolume": "3",
+                "lastChapter": "27",
                 "publicationDemographic": "shounen",
-                "status": "ongoing",
-                "year": 2021,
+                "status": "completed",
+                "year": null,
                 "contentRating": "safe",
                 "tags": [
+                    {
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sci-Fi"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "489dd859-9b61-4c37-af75-5b18e88daafc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Ninja"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
                     {
                         "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
                                 "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Martial Arts"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
                             },
                             "description": [],
                             "group": "genre",
@@ -1721,32 +1785,6 @@
                         "relationships": []
                     },
                     {
-                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "School Life"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Slice of Life"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
                         "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
                         "type": "tag",
                         "attributes": {
@@ -1758,41 +1796,31 @@
                             "version": 1
                         },
                         "relationships": []
-                    },
-                    {
-                        "id": "f42fbf9e-188a-447b-9fdc-f19dc1e4d685",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Music"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
                     }
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2021-10-10T11:55:44+00:00",
-                "updatedAt": "2022-03-14T09:40:33+00:00",
-                "version": 16,
+                "createdAt": "2019-12-08T13:11:22+00:00",
+                "updatedAt": "2021-05-25T15:48:03+00:00",
+                "version": 2,
                 "availableTranslatedLanguages": [
-                    "fr",
-                    "en",
-                    "pt-br"
+                    "es-la",
+                    "pt-br",
+                    "zh-hk",
+                    "ru",
+                    "vi",
+                    "en"
                 ]
             },
             "relationships": [
                 {
-                    "id": "d7f5de82-7e73-4f76-ae07-c750d196a573",
+                    "id": "61240cc6-4f2c-4be7-bccd-29ca3903b404",
                     "type": "author",
                     "attributes": {
-                        "name": "MAPOLLO 3-go",
+                        "name": "Tanaka Yuuki",
                         "imageUrl": null,
                         "biography": [],
-                        "twitter": "http://twitter.com/Mapollo3_off",
+                        "twitter": null,
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -1805,97 +1833,47 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-10-10T11:44:47+00:00",
-                        "updatedAt": "2022-03-03T00:18:17+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "d7f5de82-7e73-4f76-ae07-c750d196a573",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "MAPOLLO 3-go",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": "http://twitter.com/Mapollo3_off",
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-10-10T11:44:47+00:00",
-                        "updatedAt": "2022-03-03T00:18:17+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "de214d37-adbf-4e92-941b-7b339d49aa56",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "2",
-                        "fileName": "252a2e60-1d4f-4d79-98b7-0303f539b028.jpg",
-                        "locale": "ja",
-                        "createdAt": "2022-03-14T09:40:32+00:00",
-                        "updatedAt": "2022-03-14T09:40:32+00:00",
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "e5eb7dec-6f9f-4c66-a16d-c7aaf0d377bd",
-                    "type": "manga",
-                    "related": "preserialization",
+                    "id": "c1ca4b81-79e7-4b9c-9c52-037121630450",
+                    "type": "artist",
                     "attributes": {
-                        "title": {
-                            "en": "Dadadadaan"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30c0\u30c0\u30c0\u30c0\u30fc\u30f3"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "mal": "138793"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": 2020,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "f42fbf9e-188a-447b-9fdc-f19dc1e4d685",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Music"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-02-23T09:29:47+00:00",
-                        "updatedAt": "2022-02-23T20:36:59+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
+                        "name": "Matsuura Kento",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/matsukenmanga",
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-15T19:06:23+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "daadfb51-cf26-4f33-89c7-e9008271b76a",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": null,
+                        "fileName": "a34d4872-6ebf-41da-be93-8086cbab1cae.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-24T17:36:45+00:00",
+                        "updatedAt": "2021-05-24T17:36:45+00:00",
+                        "version": 1
                     }
                 }
             ]
@@ -1903,5 +1881,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 48352
+    "total": 48415
 }

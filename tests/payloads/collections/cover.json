@@ -3,54 +3,78 @@
     "response": "collection",
     "data": [
         {
-            "id": "65e18f05-49cf-403c-8390-88d3cc821c6b",
+            "id": "a3bbe122-4dc6-42c8-8f25-0bd0fe985bdc",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "5466cece-710e-4749-a2f6-9a4d275f512a.png",
-                "locale": "ja",
-                "createdAt": "2022-04-07T13:55:50+00:00",
-                "updatedAt": "2022-04-07T13:55:50+00:00",
+                "fileName": "30dd25cd-36de-470b-a8b7-8b99e388e033.png",
+                "locale": "ko",
+                "createdAt": "2022-04-09T07:10:00+00:00",
+                "updatedAt": "2022-04-09T07:10:00+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "3841715d-2585-4358-a658-c3ebe3a3785d",
+                    "id": "9cfa0ad8-5c01-4d03-823d-117470f540d7",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Makeshift Maid"
+                            "en": "Wind Spirit"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u30e1\u30a4\u30c9\u30fb\u30e1\u30a4\u30af\u30b7\u30d5\u30c8"
+                                "ko": "\ud48d\ud63c"
                             },
                             {
-                                "ja-ro": "Meido Meikushifuto"
+                                "en": "Soul of The Wind"
+                            },
+                            {
+                                "ru": "\u0414\u0443\u0448\u0430 \u0432\u0435\u0442\u0440\u0430"
+                            },
+                            {
+                                "ja": "\u98a8\u9b42\u301c\u6700\u5f37\u306e\u5263\u58eb\u301c"
                             }
                         ],
                         "description": {
-                            "en": "A guy works out some kinks with his sassy robot maid. Have you tried reinstalling the drivers?"
+                            "en": "I fought like a demon to live. I survived. I got lucky and survived this mission, but there\u2019s no guarantee that I\u2019ll survive the next. Next time, I\u2019m going to be treated as a deserter just like my friends who never returned. I\u2019m probably going to be fed by crows in valleys while everyone forgets my name. The smell of blood that forces you to hold your breath! Hell\u2019s screams that howl from below! Now, I want to throw everything away and become the wind. Become the wind, free I fly.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ja": "\u7fa4\u96c4\u57ce\u306e\u6557\u6b8b\u5175\u305f\u3061\u3092\u96c6\u3081\u305f\u96c6\u56e3\u300c\u8840\u72fc\u7d44\u300d\u3002 \u3042\u308b\u65e5\u3001\u8840\u72fc\u7d44\u306f\u7fa4\u96c4\u57ce\u3068\u53cc\u74a7\u3092\u306a\u3059\u8840\u5bae\u306b\u6295\u5165\u3055\u308c\u308b\u3053\u3068\u306b\u306a\u308a\u3001\u79d8\u5bc6\u4efb\u52d9\u9042\u884c\u4e2d\u306b\u7d44\u9577\u3067\u3042\u308b\u300c\u9280\u5263\u8c6a\u300d\u3060\u3051\u751f\u304d\u6b8b\u3063\u3066\u5e30\u3063\u3066\u304f\u308b\u3002 \u7fa4\u96c4\u57ce\u306e\u57ce\u4e3b\u306b\u6c17\u306b\u5165\u3089\u308c\u305f\u9280\u5263\u8c6a\u306f\u9ed2\u8c79\u968a\u306e\u968a\u4e3b\u306b\u306a\u308a\u3001\u5929\u4f7f\u5bae\u306e\u5bae\u4e3b\u3060\u3063\u305f\u300c\u5b89\u904b\u514b\u300d\u306b\u51fa\u4f1a\u3044\u3001\u6b66\u529f\u3092\u4f1d\u6388\u3055\u308c\u308b\u3002 \u305d\u3057\u3066\u57ce\u4e3b\u306e\u5a18\u3067\u3042\u308b\u300c\u5433\u67da\u862d\u300d\u3092\u63a2\u3057\u3066\u307b\u3057\u3044\u3068\u983c\u307e\u308c\u305f\u9280\u5263\u8c6a\u306f\u3001\u7fa4\u96c4\u57ce\u3092\u96e2\u308c\u6d1b\u967d\u3067\u958b\u304b\u308c\u308b\u6b66\u8853\u5927\u4f1a\u306b\u5411\u304b\u3046\u306e\u3060\u3063\u305f\u2026\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ko": "\uc0b4\uae30 \uc704\ud574\uc11c \uc545\uadc0\ucc98\ub7fc \uc2f8\uc6e0\ub2e4. \uadf8\ub9ac\uace0 \uc0b4\uc544\ub0a8\uc558\ub2e4.\n\uc784\ubb34\uc5d0 \uc0b4\ub2e4 \uc784\ubb34\uc5d0 \uc8fd\ub294 \ud2b9\uc784\uc870!\n\uc774\ubc88\uc5d0\ub294 \uc6b4 \uc88b\uac8c \uc0b4\uc544\ub0a8\uc558\uc9c0\ub9cc \ub2e4\uc74c \uc784\ubb34\uc5d0\uc11c\ub3c4 \uadf8\ub807\uac8c \ub418\ub77c\ub294 \ubcf4\uc7a5\uc740 \uc5c6\ub2e4.\n\n\ub2e4\uc74c\ubc88\uc5d0\ub294 \uc774\ubc88 \uc784\ubb34\uc5d0\uc11c \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub3d9\ub8cc\ub4e4\ucc98\ub7fc \ud0c8\uc601\ubcd1\uc73c\ub85c \ucc98\ub9ac\ub418\uc5b4 \uc774\ub984 \ubaa8\ub97c \uace8\uc9dc\uae30\uc5d0\uc11c \uae4c\ub9c8\uadc0\ubc25\uc73c\ub85c \uc0ac\ub77c\uc9c8 \uc218\ub3c4 \uc788\ub2e4.\n\uc228 \ub9c9\ud788\ub294 \ud53c \ub0c4\uc0c8! \uc544\ube44\uaddc\ud658\uc758 \ube44\uba85 \uc18c\ub9ac! \uc774\uc820 \uadf8 \ubaa8\ub4e0 \uac83\ub4e4\uc744 \ub5a8\uce58\uace0 \ubc14\ub78c\uc774 \ub418\uace0 \uc2f6\ub2e4.\n\ud55c \uc904\uae30 \ubc14\ub78c\uc774 \ub418\uc5b4 \uc628 \uc138\uc0c1\uc744 \uc790\uc720\ub86d\uac8c \ud718\ub3cc\uace0 \uc2f6\ub2e4.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ru": "\u0427\u0442\u043e\u0431\u044b \u0436\u0438\u0442\u044c, \u043e\u043d \u0436\u0438\u043b \u043a\u0430\u043a \u0434\u0435\u043c\u043e\u043d. \u0418 \u0432\u044b\u0436\u0438\u043b. \n\n\u041d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0436\u0438\u043b, \u043d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0438 \u0441\u0434\u043e\u0445\u043d\u0435\u0448\u044c. \n\n\u0412 \u044d\u0442\u043e\u0442 \u0440\u0430\u0437 \u043e\u043d \u0447\u0443\u0434\u043e\u043c \u0432\u044b\u0436\u0438\u043b, \u043d\u043e \u043d\u0435\u0442 \u0433\u0430\u0440\u0430\u043d\u0442\u0438\u0438,  \u0447\u0442\u043e \u0442\u0430\u043a \u0441\u043b\u0443\u0447\u0438\u0442\u0441\u044f \u0438 \u0432 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437. \u0412 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437, \u043a\u0430\u043a \u0438 \u0442\u0435\u0445, \u043a\u0442\u043e \u043d\u0435 \u043f\u043e\u044f\u0432\u0438\u043b\u0441\u044f \u0432 \u044d\u0442\u043e\u0442, \u0435\u0433\u043e \u043c\u043e\u0433\u0443\u0442 \u043f\u0440\u043e\u0441\u0442\u043e \u043d\u0430\u0437\u0432\u0430\u0442\u044c \u0434\u0435\u0437\u0435\u0440\u0442\u0438\u0440\u043e\u043c \u0438 \u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u043d\u0430 \u0441\u044a\u0435\u0434\u0435\u043d\u0438\u0435 \u0432\u043e\u0440\u043e\u043d\u0430\u043c \u0432 \u043a\u0430\u043a\u043e\u0439-\u043d\u0438\u0431\u0443\u0434\u044c \u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0439 \u0434\u043e\u043b\u0438\u043d\u0435. \n\n\u0417\u0430\u043f\u0430\u0445 \u043a\u0440\u043e\u0432\u0438, \u043e\u0442 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u0445\u0432\u0430\u0442\u044b\u0432\u0430\u0435\u0442 \u0434\u0443\u0445! \n\n\u0417\u0432\u0443\u043a\u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u044b\u0445 \u043a\u0440\u0438\u043a\u043e\u0432!\n\n\u042f \u0445\u043e\u0447\u0443 \u0432\u0441\u0435 \u044d\u0442\u043e \u0437\u0430\u0431\u044b\u0442\u044c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c. \n\n\u042f \u0445\u043e\u0447\u0443 \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0431\u0440\u043e\u0434\u0438\u0442\u044c \u043f\u043e \u044d\u0442\u043e\u043c\u0443 \u043c\u0438\u0440\u0443.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "pt-br": "Ele lutou como um dem\u00f4nio para sobreviver. E sobreviveu. Uma for\u00e7a-tarefa que vive em uma miss\u00e3o e morre em uma miss\u00e3o! Voc\u00ea tem sorte de sobreviver desta vez, mas n\u00e3o h\u00e1 garantia de que isso acontecer\u00e1 em sua pr\u00f3xima miss\u00e3o. Da pr\u00f3xima vez, como aliados que n\u00e3o voltaram desta miss\u00e3o, eles podem ser tratados como desertores e desaparecer como comida de corvo em um vale desconhecido. O cheiro de sangue de tirar o f\u00f4lego! O grito de Abigail! Agora quero me livrar de tudo isso e me tornar o vento. Eu quero me tornar uma brisa e me mover livremente ao redor do mundo. Solit\u00e1rio, mas n\u00e3o solit\u00e1rio, invis\u00edvel, mas envolvente, dizendo muitas coisas, mas n\u00e3o falando sobre seus pensamentos, Eu quero viver assim.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)"
                         },
                         "isLocked": false,
                         "links": {
-                            "raw": "https://twitter.com/hamita1220"
+                            "mu": "188543",
+                            "raw": "https://page.kakao.com/home?seriesId=55722226"
                         },
-                        "originalLanguage": "ja",
+                        "originalLanguage": "ko",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
+                        "publicationDemographic": "seinen",
+                        "status": "ongoing",
+                        "year": 2020,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Oneshot"
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Long Strip"
                                     },
                                     "description": [],
                                     "group": "format",
@@ -59,133 +83,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Sci-Fi"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-07T13:55:46+00:00",
-                        "updatedAt": "2022-04-07T14:05:00+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "e58f36bf-257e-484f-8e16-dc926275a182",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Duralumin",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 159
-                    }
-                }
-            ]
-        },
-        {
-            "id": "d9292a31-e30c-4ce6-932d-04552d28d2df",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "e10bb274-18ef-4507-b251-55dbf9428ddb.jpg",
-                "locale": "ja",
-                "createdAt": "2022-04-07T13:52:31+00:00",
-                "updatedAt": "2022-04-07T13:52:31+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "1a84531f-a38a-468a-972d-f98e58ecca4c",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Marriage Partner of My Dreams Turned Out to Be... My Female Junior at Work?!"
-                        },
-                        "altTitles": [
-                            {
-                                "ja-ro": "Kekkon Aite no Jouken ni Perfect datta no wa Shokuba no Kouhai Joshi deshita"
-                            },
-                            {
-                                "ja": "\u7d50\u5a5a\u76f8\u624b\u306e\u6761\u4ef6\u306b\u30d4\u30c3\u30bf\u30ea\u3060\u3063\u305f\u306e\u306f\u8077\u5834\u306e\u5f8c\u8f29\u5973\u5b50\u3067\u3057\u305f"
-                            }
-                        ],
-                        "description": {
-                            "en": "Still single at age 33, Haruki Shiina is standing at the biggest crossroads of her life. While unlucky in love, she's popular among her female coworkers for her laidback and boyish personality. The only one who gives her the cold shoulder is Risa Takagai, a beautiful and capable new hire who is already climbing her way up the corporate ladder. Haruki sees her as her biggest rival and is sure that the feeling is mutual, but why does Risa always seem to be watching her...?"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "199083",
-                            "raw": "https://www.ebookrenta.com/renta/sc/frm/item/142845"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "6",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Office Workers"
+                                        "en": "Martial Arts"
                                     },
                                     "description": [],
                                     "group": "theme",
@@ -194,296 +96,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-07T13:52:28+00:00",
-                        "updatedAt": "2022-04-07T13:53:12+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "ba810e96-2522-4426-9f89-8267b1b56eba",
-                    "type": "user",
-                    "attributes": {
-                        "username": "youdontknowwho",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 310
-                    }
-                }
-            ]
-        },
-        {
-            "id": "46d5692e-56da-45bc-976d-0defc9bbd493",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "90b2e322-7ab8-4f77-a13e-e823f124e8c7.png",
-                "locale": "ja",
-                "createdAt": "2022-04-07T13:52:10+00:00",
-                "updatedAt": "2022-04-07T13:52:10+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "fb86726d-fd0e-4fcd-ba0b-acbb9dc81329",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Non-photogenic Friend"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u5199\u771f\u5199\u308a\u306e\u60aa\u3044\u53cb\u4eba"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "raw": "https://twitter.com/mt_sugiage/status/970270805207662592"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2018,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Horror"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-07T13:52:06+00:00",
-                        "updatedAt": "2022-04-07T13:59:03+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "5690663d-d01a-4451-b899-f17bc0211f84",
-                    "type": "user",
-                    "attributes": {
-                        "username": "slime_sleeper",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_POWER_UPLOADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "94637c6f-79f9-4491-a741-d59524b51977",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "98d00e36-05e6-4aa2-bd60-63d145946c0d.jpg",
-                "locale": "ja",
-                "createdAt": "2022-04-07T13:48:22+00:00",
-                "updatedAt": "2022-04-07T13:48:22+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "34e06d1f-0a43-42c6-9c8b-2b3eac318801",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Daily Life of My Childhood Friend, the Airy Esper High School Girl"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u5e7c\u99b4\u67d3\u304c\u3075\u308f\u3075\u308f\u30a8\u30b9\u30d1\u30fc\u5973\u5b50\u9ad8\u751f\u306e\u65e5\u5e38"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "raw": "https://twitter.com/ichiiro_hako/status/1368034093401743360"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-07T13:48:17+00:00",
-                        "updatedAt": "2022-04-07T13:59:05+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "5690663d-d01a-4451-b899-f17bc0211f84",
-                    "type": "user",
-                    "attributes": {
-                        "username": "slime_sleeper",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_POWER_UPLOADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "078844b1-51a7-4722-b6ec-da643f86bfb3",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "7360877d-8a5d-4578-8847-b6aea421c759.jpg",
-                "locale": "ja",
-                "createdAt": "2022-04-07T13:48:20+00:00",
-                "updatedAt": "2022-04-07T13:48:20+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "692263fa-9215-476c-a769-01e204d3aacc",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Psychopath Kanojo to Houkai Suru Boku no Nichijou"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30b5\u30a4\u30b3\u30cf\u309a\u30b9\u5f7c\u5973\u3068\u5d29\u58ca\u3059\u308b\u50d5\u306e\u65e5\u5e38"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "bw": "series/266896/list/",
-                            "amz": "https://www.amazon.co.jp/gp/product/B0921B6BB6",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/608535/",
-                            "raw": "https://www.ganganonline.com/title/697"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Psychological"
+                                        "en": "Adventure"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -505,14 +122,53 @@
                                 "relationships": []
                             },
                             {
-                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Mystery"
+                                        "en": "Fantasy"
                                     },
                                     "description": [],
                                     "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -520,25 +176,868 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-09-12T04:30:50+00:00",
-                        "updatedAt": "2022-04-07T13:51:00+00:00",
+                        "createdAt": "2021-02-16T03:38:31+00:00",
+                        "updatedAt": "2022-04-09T07:10:00+00:00",
                         "version": 4,
-                        "availableTranslatedLanguages": []
+                        "availableTranslatedLanguages": [
+                            "pt-br"
+                        ]
                     }
                 },
                 {
-                    "id": "dc2db04d-1940-4f7a-9b14-833fa77899ea",
+                    "id": "3678de43-a55d-43be-b2ab-5c32a8219021",
                     "type": "user",
                     "attributes": {
-                        "username": "kouyo_qt",
+                        "username": "YumGumYum",
                         "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_POWER_UPLOADER",
-                            "ROLE_CONTRIBUTOR",
-                            "ROLE_GROUP_MEMBER"
+                            "ROLE_MEMBER",
+                            "ROLE_CONTRIBUTOR"
                         ],
-                        "version": 232
+                        "version": 278
+                    }
+                }
+            ]
+        },
+        {
+            "id": "ccc3f0a5-28bd-4bc1-affb-61ed65b92090",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "2",
+                "fileName": "c0c37e18-2e1d-412a-bde4-fb2b27e1a20f.jpg",
+                "locale": "ko",
+                "createdAt": "2022-04-09T07:09:59+00:00",
+                "updatedAt": "2022-04-09T07:09:59+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "9cfa0ad8-5c01-4d03-823d-117470f540d7",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Wind Spirit"
+                        },
+                        "altTitles": [
+                            {
+                                "ko": "\ud48d\ud63c"
+                            },
+                            {
+                                "en": "Soul of The Wind"
+                            },
+                            {
+                                "ru": "\u0414\u0443\u0448\u0430 \u0432\u0435\u0442\u0440\u0430"
+                            },
+                            {
+                                "ja": "\u98a8\u9b42\u301c\u6700\u5f37\u306e\u5263\u58eb\u301c"
+                            }
+                        ],
+                        "description": {
+                            "en": "I fought like a demon to live. I survived. I got lucky and survived this mission, but there\u2019s no guarantee that I\u2019ll survive the next. Next time, I\u2019m going to be treated as a deserter just like my friends who never returned. I\u2019m probably going to be fed by crows in valleys while everyone forgets my name. The smell of blood that forces you to hold your breath! Hell\u2019s screams that howl from below! Now, I want to throw everything away and become the wind. Become the wind, free I fly.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ja": "\u7fa4\u96c4\u57ce\u306e\u6557\u6b8b\u5175\u305f\u3061\u3092\u96c6\u3081\u305f\u96c6\u56e3\u300c\u8840\u72fc\u7d44\u300d\u3002 \u3042\u308b\u65e5\u3001\u8840\u72fc\u7d44\u306f\u7fa4\u96c4\u57ce\u3068\u53cc\u74a7\u3092\u306a\u3059\u8840\u5bae\u306b\u6295\u5165\u3055\u308c\u308b\u3053\u3068\u306b\u306a\u308a\u3001\u79d8\u5bc6\u4efb\u52d9\u9042\u884c\u4e2d\u306b\u7d44\u9577\u3067\u3042\u308b\u300c\u9280\u5263\u8c6a\u300d\u3060\u3051\u751f\u304d\u6b8b\u3063\u3066\u5e30\u3063\u3066\u304f\u308b\u3002 \u7fa4\u96c4\u57ce\u306e\u57ce\u4e3b\u306b\u6c17\u306b\u5165\u3089\u308c\u305f\u9280\u5263\u8c6a\u306f\u9ed2\u8c79\u968a\u306e\u968a\u4e3b\u306b\u306a\u308a\u3001\u5929\u4f7f\u5bae\u306e\u5bae\u4e3b\u3060\u3063\u305f\u300c\u5b89\u904b\u514b\u300d\u306b\u51fa\u4f1a\u3044\u3001\u6b66\u529f\u3092\u4f1d\u6388\u3055\u308c\u308b\u3002 \u305d\u3057\u3066\u57ce\u4e3b\u306e\u5a18\u3067\u3042\u308b\u300c\u5433\u67da\u862d\u300d\u3092\u63a2\u3057\u3066\u307b\u3057\u3044\u3068\u983c\u307e\u308c\u305f\u9280\u5263\u8c6a\u306f\u3001\u7fa4\u96c4\u57ce\u3092\u96e2\u308c\u6d1b\u967d\u3067\u958b\u304b\u308c\u308b\u6b66\u8853\u5927\u4f1a\u306b\u5411\u304b\u3046\u306e\u3060\u3063\u305f\u2026\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ko": "\uc0b4\uae30 \uc704\ud574\uc11c \uc545\uadc0\ucc98\ub7fc \uc2f8\uc6e0\ub2e4. \uadf8\ub9ac\uace0 \uc0b4\uc544\ub0a8\uc558\ub2e4.\n\uc784\ubb34\uc5d0 \uc0b4\ub2e4 \uc784\ubb34\uc5d0 \uc8fd\ub294 \ud2b9\uc784\uc870!\n\uc774\ubc88\uc5d0\ub294 \uc6b4 \uc88b\uac8c \uc0b4\uc544\ub0a8\uc558\uc9c0\ub9cc \ub2e4\uc74c \uc784\ubb34\uc5d0\uc11c\ub3c4 \uadf8\ub807\uac8c \ub418\ub77c\ub294 \ubcf4\uc7a5\uc740 \uc5c6\ub2e4.\n\n\ub2e4\uc74c\ubc88\uc5d0\ub294 \uc774\ubc88 \uc784\ubb34\uc5d0\uc11c \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub3d9\ub8cc\ub4e4\ucc98\ub7fc \ud0c8\uc601\ubcd1\uc73c\ub85c \ucc98\ub9ac\ub418\uc5b4 \uc774\ub984 \ubaa8\ub97c \uace8\uc9dc\uae30\uc5d0\uc11c \uae4c\ub9c8\uadc0\ubc25\uc73c\ub85c \uc0ac\ub77c\uc9c8 \uc218\ub3c4 \uc788\ub2e4.\n\uc228 \ub9c9\ud788\ub294 \ud53c \ub0c4\uc0c8! \uc544\ube44\uaddc\ud658\uc758 \ube44\uba85 \uc18c\ub9ac! \uc774\uc820 \uadf8 \ubaa8\ub4e0 \uac83\ub4e4\uc744 \ub5a8\uce58\uace0 \ubc14\ub78c\uc774 \ub418\uace0 \uc2f6\ub2e4.\n\ud55c \uc904\uae30 \ubc14\ub78c\uc774 \ub418\uc5b4 \uc628 \uc138\uc0c1\uc744 \uc790\uc720\ub86d\uac8c \ud718\ub3cc\uace0 \uc2f6\ub2e4.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ru": "\u0427\u0442\u043e\u0431\u044b \u0436\u0438\u0442\u044c, \u043e\u043d \u0436\u0438\u043b \u043a\u0430\u043a \u0434\u0435\u043c\u043e\u043d. \u0418 \u0432\u044b\u0436\u0438\u043b. \n\n\u041d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0436\u0438\u043b, \u043d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0438 \u0441\u0434\u043e\u0445\u043d\u0435\u0448\u044c. \n\n\u0412 \u044d\u0442\u043e\u0442 \u0440\u0430\u0437 \u043e\u043d \u0447\u0443\u0434\u043e\u043c \u0432\u044b\u0436\u0438\u043b, \u043d\u043e \u043d\u0435\u0442 \u0433\u0430\u0440\u0430\u043d\u0442\u0438\u0438,  \u0447\u0442\u043e \u0442\u0430\u043a \u0441\u043b\u0443\u0447\u0438\u0442\u0441\u044f \u0438 \u0432 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437. \u0412 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437, \u043a\u0430\u043a \u0438 \u0442\u0435\u0445, \u043a\u0442\u043e \u043d\u0435 \u043f\u043e\u044f\u0432\u0438\u043b\u0441\u044f \u0432 \u044d\u0442\u043e\u0442, \u0435\u0433\u043e \u043c\u043e\u0433\u0443\u0442 \u043f\u0440\u043e\u0441\u0442\u043e \u043d\u0430\u0437\u0432\u0430\u0442\u044c \u0434\u0435\u0437\u0435\u0440\u0442\u0438\u0440\u043e\u043c \u0438 \u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u043d\u0430 \u0441\u044a\u0435\u0434\u0435\u043d\u0438\u0435 \u0432\u043e\u0440\u043e\u043d\u0430\u043c \u0432 \u043a\u0430\u043a\u043e\u0439-\u043d\u0438\u0431\u0443\u0434\u044c \u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0439 \u0434\u043e\u043b\u0438\u043d\u0435. \n\n\u0417\u0430\u043f\u0430\u0445 \u043a\u0440\u043e\u0432\u0438, \u043e\u0442 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u0445\u0432\u0430\u0442\u044b\u0432\u0430\u0435\u0442 \u0434\u0443\u0445! \n\n\u0417\u0432\u0443\u043a\u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u044b\u0445 \u043a\u0440\u0438\u043a\u043e\u0432!\n\n\u042f \u0445\u043e\u0447\u0443 \u0432\u0441\u0435 \u044d\u0442\u043e \u0437\u0430\u0431\u044b\u0442\u044c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c. \n\n\u042f \u0445\u043e\u0447\u0443 \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0431\u0440\u043e\u0434\u0438\u0442\u044c \u043f\u043e \u044d\u0442\u043e\u043c\u0443 \u043c\u0438\u0440\u0443.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "pt-br": "Ele lutou como um dem\u00f4nio para sobreviver. E sobreviveu. Uma for\u00e7a-tarefa que vive em uma miss\u00e3o e morre em uma miss\u00e3o! Voc\u00ea tem sorte de sobreviver desta vez, mas n\u00e3o h\u00e1 garantia de que isso acontecer\u00e1 em sua pr\u00f3xima miss\u00e3o. Da pr\u00f3xima vez, como aliados que n\u00e3o voltaram desta miss\u00e3o, eles podem ser tratados como desertores e desaparecer como comida de corvo em um vale desconhecido. O cheiro de sangue de tirar o f\u00f4lego! O grito de Abigail! Agora quero me livrar de tudo isso e me tornar o vento. Eu quero me tornar uma brisa e me mover livremente ao redor do mundo. Solit\u00e1rio, mas n\u00e3o solit\u00e1rio, invis\u00edvel, mas envolvente, dizendo muitas coisas, mas n\u00e3o falando sobre seus pensamentos, Eu quero viver assim.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "mu": "188543",
+                            "raw": "https://page.kakao.com/home?seriesId=55722226"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "seinen",
+                        "status": "ongoing",
+                        "year": 2020,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Long Strip"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Martial Arts"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-02-16T03:38:31+00:00",
+                        "updatedAt": "2022-04-09T07:10:00+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "3678de43-a55d-43be-b2ab-5c32a8219021",
+                    "type": "user",
+                    "attributes": {
+                        "username": "YumGumYum",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 278
+                    }
+                }
+            ]
+        },
+        {
+            "id": "1dde2c0b-4780-4b63-85cd-59c0242c4c7b",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "792efad8-6ab5-4e48-ac0b-8a035420dfa5.jpg",
+                "locale": "ja",
+                "createdAt": "2022-04-09T07:09:59+00:00",
+                "updatedAt": "2022-04-09T07:09:59+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "9cfa0ad8-5c01-4d03-823d-117470f540d7",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Wind Spirit"
+                        },
+                        "altTitles": [
+                            {
+                                "ko": "\ud48d\ud63c"
+                            },
+                            {
+                                "en": "Soul of The Wind"
+                            },
+                            {
+                                "ru": "\u0414\u0443\u0448\u0430 \u0432\u0435\u0442\u0440\u0430"
+                            },
+                            {
+                                "ja": "\u98a8\u9b42\u301c\u6700\u5f37\u306e\u5263\u58eb\u301c"
+                            }
+                        ],
+                        "description": {
+                            "en": "I fought like a demon to live. I survived. I got lucky and survived this mission, but there\u2019s no guarantee that I\u2019ll survive the next. Next time, I\u2019m going to be treated as a deserter just like my friends who never returned. I\u2019m probably going to be fed by crows in valleys while everyone forgets my name. The smell of blood that forces you to hold your breath! Hell\u2019s screams that howl from below! Now, I want to throw everything away and become the wind. Become the wind, free I fly.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ja": "\u7fa4\u96c4\u57ce\u306e\u6557\u6b8b\u5175\u305f\u3061\u3092\u96c6\u3081\u305f\u96c6\u56e3\u300c\u8840\u72fc\u7d44\u300d\u3002 \u3042\u308b\u65e5\u3001\u8840\u72fc\u7d44\u306f\u7fa4\u96c4\u57ce\u3068\u53cc\u74a7\u3092\u306a\u3059\u8840\u5bae\u306b\u6295\u5165\u3055\u308c\u308b\u3053\u3068\u306b\u306a\u308a\u3001\u79d8\u5bc6\u4efb\u52d9\u9042\u884c\u4e2d\u306b\u7d44\u9577\u3067\u3042\u308b\u300c\u9280\u5263\u8c6a\u300d\u3060\u3051\u751f\u304d\u6b8b\u3063\u3066\u5e30\u3063\u3066\u304f\u308b\u3002 \u7fa4\u96c4\u57ce\u306e\u57ce\u4e3b\u306b\u6c17\u306b\u5165\u3089\u308c\u305f\u9280\u5263\u8c6a\u306f\u9ed2\u8c79\u968a\u306e\u968a\u4e3b\u306b\u306a\u308a\u3001\u5929\u4f7f\u5bae\u306e\u5bae\u4e3b\u3060\u3063\u305f\u300c\u5b89\u904b\u514b\u300d\u306b\u51fa\u4f1a\u3044\u3001\u6b66\u529f\u3092\u4f1d\u6388\u3055\u308c\u308b\u3002 \u305d\u3057\u3066\u57ce\u4e3b\u306e\u5a18\u3067\u3042\u308b\u300c\u5433\u67da\u862d\u300d\u3092\u63a2\u3057\u3066\u307b\u3057\u3044\u3068\u983c\u307e\u308c\u305f\u9280\u5263\u8c6a\u306f\u3001\u7fa4\u96c4\u57ce\u3092\u96e2\u308c\u6d1b\u967d\u3067\u958b\u304b\u308c\u308b\u6b66\u8853\u5927\u4f1a\u306b\u5411\u304b\u3046\u306e\u3060\u3063\u305f\u2026\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ko": "\uc0b4\uae30 \uc704\ud574\uc11c \uc545\uadc0\ucc98\ub7fc \uc2f8\uc6e0\ub2e4. \uadf8\ub9ac\uace0 \uc0b4\uc544\ub0a8\uc558\ub2e4.\n\uc784\ubb34\uc5d0 \uc0b4\ub2e4 \uc784\ubb34\uc5d0 \uc8fd\ub294 \ud2b9\uc784\uc870!\n\uc774\ubc88\uc5d0\ub294 \uc6b4 \uc88b\uac8c \uc0b4\uc544\ub0a8\uc558\uc9c0\ub9cc \ub2e4\uc74c \uc784\ubb34\uc5d0\uc11c\ub3c4 \uadf8\ub807\uac8c \ub418\ub77c\ub294 \ubcf4\uc7a5\uc740 \uc5c6\ub2e4.\n\n\ub2e4\uc74c\ubc88\uc5d0\ub294 \uc774\ubc88 \uc784\ubb34\uc5d0\uc11c \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub3d9\ub8cc\ub4e4\ucc98\ub7fc \ud0c8\uc601\ubcd1\uc73c\ub85c \ucc98\ub9ac\ub418\uc5b4 \uc774\ub984 \ubaa8\ub97c \uace8\uc9dc\uae30\uc5d0\uc11c \uae4c\ub9c8\uadc0\ubc25\uc73c\ub85c \uc0ac\ub77c\uc9c8 \uc218\ub3c4 \uc788\ub2e4.\n\uc228 \ub9c9\ud788\ub294 \ud53c \ub0c4\uc0c8! \uc544\ube44\uaddc\ud658\uc758 \ube44\uba85 \uc18c\ub9ac! \uc774\uc820 \uadf8 \ubaa8\ub4e0 \uac83\ub4e4\uc744 \ub5a8\uce58\uace0 \ubc14\ub78c\uc774 \ub418\uace0 \uc2f6\ub2e4.\n\ud55c \uc904\uae30 \ubc14\ub78c\uc774 \ub418\uc5b4 \uc628 \uc138\uc0c1\uc744 \uc790\uc720\ub86d\uac8c \ud718\ub3cc\uace0 \uc2f6\ub2e4.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "ru": "\u0427\u0442\u043e\u0431\u044b \u0436\u0438\u0442\u044c, \u043e\u043d \u0436\u0438\u043b \u043a\u0430\u043a \u0434\u0435\u043c\u043e\u043d. \u0418 \u0432\u044b\u0436\u0438\u043b. \n\n\u041d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0436\u0438\u043b, \u043d\u0430 \u043c\u0438\u0441\u0441\u0438\u0438 \u0438 \u0441\u0434\u043e\u0445\u043d\u0435\u0448\u044c. \n\n\u0412 \u044d\u0442\u043e\u0442 \u0440\u0430\u0437 \u043e\u043d \u0447\u0443\u0434\u043e\u043c \u0432\u044b\u0436\u0438\u043b, \u043d\u043e \u043d\u0435\u0442 \u0433\u0430\u0440\u0430\u043d\u0442\u0438\u0438,  \u0447\u0442\u043e \u0442\u0430\u043a \u0441\u043b\u0443\u0447\u0438\u0442\u0441\u044f \u0438 \u0432 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437. \u0412 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0430\u0437, \u043a\u0430\u043a \u0438 \u0442\u0435\u0445, \u043a\u0442\u043e \u043d\u0435 \u043f\u043e\u044f\u0432\u0438\u043b\u0441\u044f \u0432 \u044d\u0442\u043e\u0442, \u0435\u0433\u043e \u043c\u043e\u0433\u0443\u0442 \u043f\u0440\u043e\u0441\u0442\u043e \u043d\u0430\u0437\u0432\u0430\u0442\u044c \u0434\u0435\u0437\u0435\u0440\u0442\u0438\u0440\u043e\u043c \u0438 \u043e\u0441\u0442\u0430\u0432\u0438\u0442\u044c \u043d\u0430 \u0441\u044a\u0435\u0434\u0435\u043d\u0438\u0435 \u0432\u043e\u0440\u043e\u043d\u0430\u043c \u0432 \u043a\u0430\u043a\u043e\u0439-\u043d\u0438\u0431\u0443\u0434\u044c \u043d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0439 \u0434\u043e\u043b\u0438\u043d\u0435. \n\n\u0417\u0430\u043f\u0430\u0445 \u043a\u0440\u043e\u0432\u0438, \u043e\u0442 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u043f\u0435\u0440\u0435\u0445\u0432\u0430\u0442\u044b\u0432\u0430\u0435\u0442 \u0434\u0443\u0445! \n\n\u0417\u0432\u0443\u043a\u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u044b\u0445 \u043a\u0440\u0438\u043a\u043e\u0432!\n\n\u042f \u0445\u043e\u0447\u0443 \u0432\u0441\u0435 \u044d\u0442\u043e \u0437\u0430\u0431\u044b\u0442\u044c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c. \n\n\u042f \u0445\u043e\u0447\u0443 \u0441\u0442\u0430\u0442\u044c \u0432\u0435\u0442\u0440\u043e\u043c \u0438 \u043f\u0440\u043e\u0441\u0442\u043e \u0431\u0440\u043e\u0434\u0438\u0442\u044c \u043f\u043e \u044d\u0442\u043e\u043c\u0443 \u043c\u0438\u0440\u0443.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)",
+                            "pt-br": "Ele lutou como um dem\u00f4nio para sobreviver. E sobreviveu. Uma for\u00e7a-tarefa que vive em uma miss\u00e3o e morre em uma miss\u00e3o! Voc\u00ea tem sorte de sobreviver desta vez, mas n\u00e3o h\u00e1 garantia de que isso acontecer\u00e1 em sua pr\u00f3xima miss\u00e3o. Da pr\u00f3xima vez, como aliados que n\u00e3o voltaram desta miss\u00e3o, eles podem ser tratados como desertores e desaparecer como comida de corvo em um vale desconhecido. O cheiro de sangue de tirar o f\u00f4lego! O grito de Abigail! Agora quero me livrar de tudo isso e me tornar o vento. Eu quero me tornar uma brisa e me mover livremente ao redor do mundo. Solit\u00e1rio, mas n\u00e3o solit\u00e1rio, invis\u00edvel, mas envolvente, dizendo muitas coisas, mas n\u00e3o falando sobre seus pensamentos, Eu quero viver assim.\n\n---\n\n- [Original Webtoon <Mr.Blue>](https://www.mrblue.com/webtoon/wt_poong_wz)\n\n- [Original e-Book <Mr.Blue>](https://www.mrblue.com/comic/C000048076)\n\n---\n\n- [Official Japanese Translation](https://piccoma.com/web/product/66650)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "mu": "188543",
+                            "raw": "https://page.kakao.com/home?seriesId=55722226"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "seinen",
+                        "status": "ongoing",
+                        "year": 2020,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Long Strip"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Martial Arts"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-02-16T03:38:31+00:00",
+                        "updatedAt": "2022-04-09T07:10:00+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "pt-br"
+                        ]
+                    }
+                },
+                {
+                    "id": "3678de43-a55d-43be-b2ab-5c32a8219021",
+                    "type": "user",
+                    "attributes": {
+                        "username": "YumGumYum",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 278
+                    }
+                }
+            ]
+        },
+        {
+            "id": "54013bcc-2fd3-4030-a23c-dbcb158a3c13",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "6",
+                "fileName": "76eee81a-935e-4a2c-b2d3-e5e60119487a.jpg",
+                "locale": "ja",
+                "createdAt": "2022-04-09T07:05:11+00:00",
+                "updatedAt": "2022-04-09T07:05:11+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "f903876b-bfcf-43d3-82f6-ebe03eef9260",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "\"Kouryakubon\" wo Kushi Suru Saikyou no Mahoutsukai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u300c\u653b\u7565\u672c\u300d\u3092\u99c6\u4f7f\u3059\u308b\u6700\u5f37\u306e\u9b54\u6cd5\u4f7f\u3044"
+                            },
+                            {
+                                "ja": "\u300c\u653b\u7565\u672c\u300d\u3092\u99c6\u4f7f\u3059\u308b\u6700\u5f37\u306e\u9b54\u6cd5\u4f7f\u3044 \uff5e\uff1c\u547d\u4ee4\u3055\u305b\u308d\uff1e\u3068\u306f\u8a00\u308f\u305b\u306a\u3044\u4ffa\u6d41\u9b54\u738b\u8a0e\u4f10\u6700\u5584\u30eb\u30fc\u30c8\uff5e"
+                            },
+                            {
+                                "ja": "\"Kouryakubon\" wo Kushi Suru Saikyou no Mahoutsukai: \"Meirei Sasero\" to wa Iwasenai Oreryuu Maou Toubatsu Saizen Route"
+                            },
+                            {
+                                "ja": "Kouryakuhon o Kushi Suru Saikyou no Mahoutsukai ~<Meirei sa Sero> to wa Iwa Senai Oreryuu Mao Tobatsu Saizen Ruuto~"
+                            },
+                            {
+                                "ja": "\"K\u014dryakuhon\" o kushi suru saiky\u014d no mah\u014dtsukai ~< meirei sa sero > to wa iwa senai orery\u016b ma\u014d t\u014dbatsu saizen r\u016bto ~"
+                            },
+                            {
+                                "ja": "\"Kouryakuhon\" o Kushi Suru Saikyou no Mahoutsukai ~< Meirei sa sero > to wa Iwa Senai Oreryuu Mao Tobatsu Saizen Ruuto ~"
+                            },
+                            {
+                                "en": "The Strongest Sorcerer Who Makes Full Use of the \"Strategy Guide\""
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the \"Strategy Book\""
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the \"Strategy Guide\" ~The Best Route for Subjugating the Demon King~"
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the Strategy Book"
+                            },
+                            {
+                                "ru": "\u0421\u0438\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0439 \u0432\u043e\u043b\u0448\u0435\u0431\u043d\u0438\u043a, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0449\u0438\u0439 \"\u041a\u043d\u0438\u0433\u0443 \u041c\u0438\u0440\u0430\" \u043d\u0430\u043f\u043e\u043b\u043d\u0443\u044e"
+                            },
+                            {
+                                "ko": "'\uacf5\ub7b5\ubcf8'\uc744 \uad6c\uc0ac\ud558\ub294 \ucd5c\uac15\uc758 \ub9c8\ubc95\uc0ac"
+                            },
+                            {
+                                "ko": "'\uacf5\ub7b5\ubcf8'\uc744 \uad6c\uc0ac\ud558\ub294 \ucd5c\uac15\uc758 \ub9c8\ubc95\uc0ac ~\uba85\ub839\ud560 \uc5ec\uc9c0\ub97c \uc8fc\uc9c0 \uc54a\ub294 \uc790\uae30\ub958 \ub9c8\uc655\ud1a0\ubc8c \ucd5c\uc120 \ub8e8\ud2b8~"
+                            },
+                            {
+                                "zh": "\u5e26\u7740\u653b\u7565\u7684\u6700\u5f3a\u9b54\u6cd5\u5e08"
+                            },
+                            {
+                                "zh-hk": "\u300c\u653b\u7565\u672c\u300d\u4f7f\u8005\u7684\u6700\u5f37\u9b54\u6cd5\u5e2b \uff5e\u4e0d\u807d\uff1c\u9075\u5b88\u547d\u4ee4\uff1e\u4e4b\u8a00\u7684\u6211\u6d41\u8a0e\u4f10\u9b54\u738b\u6700\u4f73\u8def\u7dda\uff5e"
+                            }
+                        ],
+                        "description": {
+                            "en": "Magnus, a mage who always got yelled at \"just shut up and follow my orders!\" by the Hero because he was deemed \"useless.\" One day after getting fed up with his party he left, upon leaving he met a merchant that sold him a mysterious book.\n\nAnd it turned out that the book which was written in the god's language was actually an ultimate encyclopaedia book that had a lot of useful information on how to defeat the Demon Lord!\n\nThanks to that book, he was able to know about boss monsters' weaknesses and raise his level more efficiently, data about important people, and it even had info on complete gourmet spots in any city! Moreover, by using his wits and scheming mind, he's even able to outclass the hero party! With the ultimate encyclopaedia in his hands, advance to the true route to defeat the Demon Lord!\n\nMagnus wasn't chosen by destiny to be the hero. That's why, He's going to beat the Demon Lord with his own power and wits and save the world.\n\n---\n\n**Links:**\n- [Webnovel](https://ncode.syosetu.com/n6309ex)\n- [Japanese Light Novel (Bookwalker)](https://bookwalker.jp/series/185687/list/)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "111361",
+                            "ap": "kouryakubon-wo-kushi-suru-saikyou-no-mahoutsukai-meirei-sasero-to-wa-iwasenai-oreryuu-maoh-toubatsu-saizen-route",
+                            "bw": "series/219004",
+                            "kt": "kouryakuhon-o-kushi-suru-saikyou-no-mahoutsukai-meirei-sa-sero-to-wa-iwa-senai-oreryuu-mao-tobatsu-saizen-ruuto",
+                            "mu": "155370",
+                            "nu": "the-strongest-wizard-who-makes-full-use-of-the-strategy-book",
+                            "amz": "https://www.amazon.co.jp/-/en/dp/B084Z79DXJ?binding=kindle_edition&ref=dbs_dp_rwt_sb_pc_tukn",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/558405",
+                            "mal": "121341",
+                            "raw": "https://www.ganganonline.com/contents/kouryaku/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "shounen",
+                        "status": "ongoing",
+                        "year": 2019,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monsters"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Magic"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-01-27T13:08:24+00:00",
+                        "updatedAt": "2022-04-09T07:05:11+00:00",
+                        "version": 13,
+                        "availableTranslatedLanguages": [
+                            "ru",
+                            "en",
+                            "pt-br",
+                            "th"
+                        ]
+                    }
+                },
+                {
+                    "id": "01642be8-72b8-48ae-9199-d8c747946ca5",
+                    "type": "user",
+                    "attributes": {
+                        "username": "Steamarino",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_CONTRIBUTOR",
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_POWER_UPLOADER"
+                        ],
+                        "version": 644
+                    }
+                }
+            ]
+        },
+        {
+            "id": "1c012ab4-cf57-4cdd-827b-1c455213dc9c",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "6.1",
+                "fileName": "c07a4a78-eee8-43f0-b7b6-79c0a53d7562.jpg",
+                "locale": "ja",
+                "createdAt": "2022-04-09T07:05:10+00:00",
+                "updatedAt": "2022-04-09T07:05:10+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "f903876b-bfcf-43d3-82f6-ebe03eef9260",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "\"Kouryakubon\" wo Kushi Suru Saikyou no Mahoutsukai"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u300c\u653b\u7565\u672c\u300d\u3092\u99c6\u4f7f\u3059\u308b\u6700\u5f37\u306e\u9b54\u6cd5\u4f7f\u3044"
+                            },
+                            {
+                                "ja": "\u300c\u653b\u7565\u672c\u300d\u3092\u99c6\u4f7f\u3059\u308b\u6700\u5f37\u306e\u9b54\u6cd5\u4f7f\u3044 \uff5e\uff1c\u547d\u4ee4\u3055\u305b\u308d\uff1e\u3068\u306f\u8a00\u308f\u305b\u306a\u3044\u4ffa\u6d41\u9b54\u738b\u8a0e\u4f10\u6700\u5584\u30eb\u30fc\u30c8\uff5e"
+                            },
+                            {
+                                "ja": "\"Kouryakubon\" wo Kushi Suru Saikyou no Mahoutsukai: \"Meirei Sasero\" to wa Iwasenai Oreryuu Maou Toubatsu Saizen Route"
+                            },
+                            {
+                                "ja": "Kouryakuhon o Kushi Suru Saikyou no Mahoutsukai ~<Meirei sa Sero> to wa Iwa Senai Oreryuu Mao Tobatsu Saizen Ruuto~"
+                            },
+                            {
+                                "ja": "\"K\u014dryakuhon\" o kushi suru saiky\u014d no mah\u014dtsukai ~< meirei sa sero > to wa iwa senai orery\u016b ma\u014d t\u014dbatsu saizen r\u016bto ~"
+                            },
+                            {
+                                "ja": "\"Kouryakuhon\" o Kushi Suru Saikyou no Mahoutsukai ~< Meirei sa sero > to wa Iwa Senai Oreryuu Mao Tobatsu Saizen Ruuto ~"
+                            },
+                            {
+                                "en": "The Strongest Sorcerer Who Makes Full Use of the \"Strategy Guide\""
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the \"Strategy Book\""
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the \"Strategy Guide\" ~The Best Route for Subjugating the Demon King~"
+                            },
+                            {
+                                "en": "The Strongest Wizard Who Makes Full Use of the Strategy Book"
+                            },
+                            {
+                                "ru": "\u0421\u0438\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0439 \u0432\u043e\u043b\u0448\u0435\u0431\u043d\u0438\u043a, \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u044e\u0449\u0438\u0439 \"\u041a\u043d\u0438\u0433\u0443 \u041c\u0438\u0440\u0430\" \u043d\u0430\u043f\u043e\u043b\u043d\u0443\u044e"
+                            },
+                            {
+                                "ko": "'\uacf5\ub7b5\ubcf8'\uc744 \uad6c\uc0ac\ud558\ub294 \ucd5c\uac15\uc758 \ub9c8\ubc95\uc0ac"
+                            },
+                            {
+                                "ko": "'\uacf5\ub7b5\ubcf8'\uc744 \uad6c\uc0ac\ud558\ub294 \ucd5c\uac15\uc758 \ub9c8\ubc95\uc0ac ~\uba85\ub839\ud560 \uc5ec\uc9c0\ub97c \uc8fc\uc9c0 \uc54a\ub294 \uc790\uae30\ub958 \ub9c8\uc655\ud1a0\ubc8c \ucd5c\uc120 \ub8e8\ud2b8~"
+                            },
+                            {
+                                "zh": "\u5e26\u7740\u653b\u7565\u7684\u6700\u5f3a\u9b54\u6cd5\u5e08"
+                            },
+                            {
+                                "zh-hk": "\u300c\u653b\u7565\u672c\u300d\u4f7f\u8005\u7684\u6700\u5f37\u9b54\u6cd5\u5e2b \uff5e\u4e0d\u807d\uff1c\u9075\u5b88\u547d\u4ee4\uff1e\u4e4b\u8a00\u7684\u6211\u6d41\u8a0e\u4f10\u9b54\u738b\u6700\u4f73\u8def\u7dda\uff5e"
+                            }
+                        ],
+                        "description": {
+                            "en": "Magnus, a mage who always got yelled at \"just shut up and follow my orders!\" by the Hero because he was deemed \"useless.\" One day after getting fed up with his party he left, upon leaving he met a merchant that sold him a mysterious book.\n\nAnd it turned out that the book which was written in the god's language was actually an ultimate encyclopaedia book that had a lot of useful information on how to defeat the Demon Lord!\n\nThanks to that book, he was able to know about boss monsters' weaknesses and raise his level more efficiently, data about important people, and it even had info on complete gourmet spots in any city! Moreover, by using his wits and scheming mind, he's even able to outclass the hero party! With the ultimate encyclopaedia in his hands, advance to the true route to defeat the Demon Lord!\n\nMagnus wasn't chosen by destiny to be the hero. That's why, He's going to beat the Demon Lord with his own power and wits and save the world.\n\n---\n\n**Links:**\n- [Webnovel](https://ncode.syosetu.com/n6309ex)\n- [Japanese Light Novel (Bookwalker)](https://bookwalker.jp/series/185687/list/)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "111361",
+                            "ap": "kouryakubon-wo-kushi-suru-saikyou-no-mahoutsukai-meirei-sasero-to-wa-iwasenai-oreryuu-maoh-toubatsu-saizen-route",
+                            "bw": "series/219004",
+                            "kt": "kouryakuhon-o-kushi-suru-saikyou-no-mahoutsukai-meirei-sa-sero-to-wa-iwa-senai-oreryuu-mao-tobatsu-saizen-ruuto",
+                            "mu": "155370",
+                            "nu": "the-strongest-wizard-who-makes-full-use-of-the-strategy-book",
+                            "amz": "https://www.amazon.co.jp/-/en/dp/B084Z79DXJ?binding=kindle_edition&ref=dbs_dp_rwt_sb_pc_tukn",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/558405",
+                            "mal": "121341",
+                            "raw": "https://www.ganganonline.com/contents/kouryaku/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "shounen",
+                        "status": "ongoing",
+                        "year": 2019,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monsters"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Magic"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adaptation"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-01-27T13:08:24+00:00",
+                        "updatedAt": "2022-04-09T07:05:11+00:00",
+                        "version": 13,
+                        "availableTranslatedLanguages": [
+                            "ru",
+                            "en",
+                            "pt-br",
+                            "th"
+                        ]
+                    }
+                },
+                {
+                    "id": "01642be8-72b8-48ae-9199-d8c747946ca5",
+                    "type": "user",
+                    "attributes": {
+                        "username": "Steamarino",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_CONTRIBUTOR",
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_POWER_UPLOADER"
+                        ],
+                        "version": 644
                     }
                 }
             ]
@@ -546,5 +1045,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 133898
+    "total": 134105
 }
