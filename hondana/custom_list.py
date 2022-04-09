@@ -80,8 +80,8 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow further
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # can't narrow further
+        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
         self.__owner: Optional[User] = None
         self.__manga: Optional[list[Manga]] = None
 

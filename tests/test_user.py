@@ -42,6 +42,7 @@ class TestUser:
         assert user._group_relationships is not None
         obj_len = len(user._group_relationships)
 
+        assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_attribute_matching(self):

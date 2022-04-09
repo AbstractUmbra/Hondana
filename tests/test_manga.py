@@ -137,14 +137,14 @@ class TestManga:
         assert cover_rel is not None
 
         assert manga.cover.id == cover_rel["id"]
-        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"  # type: ignore # can't narrow here
+        assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"
         assert (
             manga.cover_url(type=256)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"  # type: ignore # can't narrow here
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"
         )
         assert (
             manga.cover_url(type=512)
-            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"  # type: ignore # can't narrow here
+            == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"
         )
 
     def test_related_manga_property(self):

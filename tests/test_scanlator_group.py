@@ -46,6 +46,7 @@ class TestScanlatorGroup:
 
         obj_len = len(group.members) + 1  # leader
 
+        assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_datetime_properties(self):

@@ -65,7 +65,14 @@ from .errors import AuthenticationRequired
 if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec
 
+    from .types.artist import ArtistResponse
+    from .types.author import AuthorResponse
+    from .types.chapter import ChapterResponse
+    from .types.cover import CoverResponse
+    from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
+    from .types.scanlator_group import ScanlationGroupResponse
+    from .types.user import UserResponse
 
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
@@ -443,27 +450,152 @@ def iso_to_delta(iso: str) -> datetime.timedelta:
     return datetime.timedelta(**times)
 
 
-RT = TypeVar("RT", bound="RelationshipResponse", covariant=True)
-RelType = Literal["manga", "cover_art", "scanlation_group", "artist", "author", "user", "leader", "member"]
+RelType = Literal[
+    "artist",
+    "author",
+    "chapter",
+    "cover_art",
+    "leader",
+    "manga",
+    "member",
+    "scanlation_group",
+    "user",
+]
 
 
 @overload
-def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: Literal[1]) -> Optional[RT]:
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["artist"], *, limit: Literal[1]
+) -> ArtistResponse:
     ...
 
 
 @overload
-def relationship_finder(relationships: list[RT], relationship_type: RelType, *, limit: Optional[int] = ...) -> list[RT]:
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["artist"], *, limit: Optional[int] = ...
+) -> list[ArtistResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["author"], *, limit: Literal[1]
+) -> AuthorResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["author"], *, limit: Optional[int] = ...
+) -> list[AuthorResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["chapter"], *, limit: Literal[1]
+) -> ChapterResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["chapter"], *, limit: Optional[int] = ...
+) -> list[ChapterResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["cover_art"], *, limit: Literal[1]
+) -> CoverResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["cover_art"], *, limit: Optional[int] = ...
+) -> list[CoverResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["leader"], *, limit: Literal[1]
+) -> UserResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["leader"], *, limit: Optional[int] = ...
+) -> list[UserResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["manga"], *, limit: Literal[1]
+) -> MangaResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["manga"], *, limit: Optional[int] = ...
+) -> list[MangaResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["member"], *, limit: Literal[1]
+) -> UserResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["member"], *, limit: Optional[int] = ...
+) -> list[UserResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["scanlation_group"], *, limit: Literal[1]
+) -> ScanlationGroupResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["scanlation_group"], *, limit: Optional[int] = ...
+) -> list[ScanlationGroupResponse]:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["user"], *, limit: Literal[1]
+) -> UserResponse:
+    ...
+
+
+@overload
+def relationship_finder(
+    relationships: list[RelationshipResponse], relationship_type: Literal["user"], *, limit: Optional[int] = ...
+) -> list[UserResponse]:
     ...
 
 
 def relationship_finder(
-    relationships: list[RT], relationship_type: RelType, *, limit: Optional[int] = None
-) -> Optional[Union[list[RT], RT]]:
+    relationships: list[RelationshipResponse], relationship_type: RelType, *, limit: Optional[int] = None
+) -> Optional[Union[list[Any], Any]]:
     if not relationships:
         return
 
-    ret: list[RT] = []
+    ret: list[RelationshipResponse] = []
     relationships_copy = relationships.copy()
 
     for relationship in relationships_copy:

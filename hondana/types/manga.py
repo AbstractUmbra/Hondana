@@ -26,6 +26,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
+from typing_extensions import NotRequired
+
 
 if TYPE_CHECKING:
     from .common import LocalisedString, LanguageCode
@@ -191,13 +193,8 @@ class MangaRelationAttributesResponse(TypedDict):
     version: int
 
 
-class _OptionalMangaResponse(TypedDict, total=False):
-    relationships: list[RelationshipResponse]
-    related: _MangaRelationType
-
-
 @final
-class MangaResponse(_OptionalMangaResponse):
+class MangaResponse(TypedDict):
     """
     id: :class:`str`
 
@@ -206,7 +203,10 @@ class MangaResponse(_OptionalMangaResponse):
     attributes: :class:`~hondana.types.MangaAttributesResponse`
 
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
-        This key is optional.
+        This key is optional, in the event this payload is gotten from the "relationships" of another object.
+
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
 
     related: :class:`~hondana.MangaRelationType`
         This key is optional.
@@ -215,6 +215,8 @@ class MangaResponse(_OptionalMangaResponse):
     id: str
     type: Literal["manga"]
     attributes: MangaAttributesResponse
+    relationships: NotRequired[list[RelationshipResponse]]
+    related: NotRequired[_MangaRelationType]
 
 
 class GetMangaResponse(TypedDict):
@@ -268,7 +270,7 @@ class MangaSearchResponse(TypedDict):
     total: int
 
 
-class MangaRelation(_OptionalMangaResponse):
+class MangaRelation(TypedDict):
     """
     id: :class:`str`
 
@@ -276,13 +278,21 @@ class MangaRelation(_OptionalMangaResponse):
 
     attributes: :class:`~hondana.types.MangaRelationAttributesResponse`
 
-    relationships: :class:`~hondana.types.RelationshipResponse`
-        The key is optional.
+    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+        This key is optional, in the event this payload is gotten from the "relationships" of another object.
+
+        This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
+        See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
+
+    related: :class:`~hondana.MangaRelationType`
+        This key is optional.
     """
 
     id: str
     type: Literal["manga_relation"]
     attributes: MangaRelationAttributesResponse
+    relationships: NotRequired[list[RelationshipResponse]]
+    related: NotRequired[_MangaRelationType]
 
 
 class MangaRelationResponse(TypedDict):

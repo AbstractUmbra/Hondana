@@ -23,6 +23,7 @@ HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
 
 def clone_chapter() -> Chapter:
     t = deepcopy(PAYLOAD)
+    assert "relationships" in t["data"]
     print(t["data"]["relationships"])
     print(len(t["data"]["relationships"]))
     return Chapter(HTTP, t["data"])
@@ -47,6 +48,7 @@ class TestChapter:
         assert chapter.uploader is not None
         obj_len = len(chapter.scanlator_groups) + 2  # scanlator and manga
 
+        assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_to_dict(self):
@@ -59,6 +61,7 @@ class TestChapter:
         chapter = clone_chapter()
 
         cloned = deepcopy(PAYLOAD)
+        assert "relationships" in cloned["data"]
         manga_rel = relationship_finder(cloned["data"]["relationships"], "manga", limit=1)
 
         assert chapter.manga is not None
@@ -75,6 +78,7 @@ class TestChapter:
         chapter = clone_chapter()
 
         cloned = deepcopy(PAYLOAD)
+        assert "relationships" in cloned["data"]
         ret = relationship_finder(cloned["data"]["relationships"], "scanlation_group", limit=None)
 
         assert chapter.scanlator_groups is not None
@@ -85,6 +89,7 @@ class TestChapter:
 
         assert chapter.uploader is not None
 
+        assert "relationships" in PAYLOAD["data"]
         uploader_rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
         assert uploader_rel is not None
 

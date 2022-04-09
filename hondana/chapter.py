@@ -154,11 +154,11 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)  # type: ignore # cannot narrow this further
-        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(  # type: ignore # can't narrow this further
+        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)
+        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(
             relationships, "scanlation_group", limit=None
         )
-        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow this further
+        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
