@@ -15,6 +15,7 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Internet",
     "Typing :: Typed",
 ]
@@ -28,6 +29,7 @@ packages = [
 
 [tool.poetry.urls]
 "Issue Tracker" = "https://github.com/AbstractUmbra/hondana/issues"
+"Discord" = "https://discord.gg/aYGYJxwqe5"
 
 [tool.poetry.dependencies]
 python = "^3.9"
