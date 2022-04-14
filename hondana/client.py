@@ -87,7 +87,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, deprecated, require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
@@ -785,41 +785,6 @@ class Client:
         )
 
         return data
-
-    @deprecated("Client.get_manga")
-    async def view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
-        """|coro|
-
-        The method will fetch a Manga from the MangaDex API.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to view.
-        includes: Optional[:class:`~hondana.query.MangaIncludes`]
-            The includes query parameter for this manga.
-            If not given, it defaults to all possible reference expansions.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            The query failed due to authorization failure.
-        :exc:`NotFound`
-            The passed manga ID was not found, likely due to an incorrect ID.
-
-
-        .. warning::
-            This method is marked for deprecation (as of 2.0.11) in favour of :meth:`~Client.get_manga` and will be removed in
-            version 3.0.
-
-        Returns
-        --------
-        :class:`~hondana.Manga`
-            The Manga that was returned from the API.
-        """
-        data = await self._http._get_manga(manga_id, includes=includes)
-
-        return Manga(self._http, data["data"])
 
     async def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|

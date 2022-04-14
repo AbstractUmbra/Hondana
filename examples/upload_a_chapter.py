@@ -30,7 +30,7 @@ async def main():
     scanlator_groups = ["..."]
 
     # Get the manga we are going to upload a chapter for.
-    manga = await client.view_manga("...")
+    manga = await client.get_manga("...")
 
     # Open our upload session
     async with client.upload_session(
