@@ -890,20 +890,21 @@ class ChapterUpload:
 
 
         .. warning::
-            The list of bytes must be ordered, this is the order they will be presented in the frontend.
+            If ``sort`` is set to ``True`` then the library will sort the list of image paths alphabetically.
+            This means that ``1.png``, ``11.png``, and ``2.png`` will be sorted to ``1.png``, ``2.png``, and ``11.png``.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
 
         if sort:
-            images = sorted(images, key=lambda p: p.name)
+            images = sorted(images, key=lambda p: (len(p.stem), p.stem))
 
         chunks = as_chunks(images, 10)
         outer_idx = 1
         for batch in chunks:
             form = aiohttp.FormData()
             for _, item in enumerate(batch, start=outer_idx):
-                with open(item, "rb") as f:
+                with item.open("rb") as f:
                     data = f.read()
 
                 form.add_field(name=item.name, value=data)
