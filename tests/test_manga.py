@@ -171,7 +171,7 @@ class TestManga:
     def test_localized_title(self):
         manga = clone_manga("manga")
 
-        assert manga.title == next(iter(PAYLOAD["data"]["attributes"]["title"].values()))  # why did i need to do this
+        assert manga.title == next(iter(PAYLOAD["data"]["attributes"]["title"].values()))  # why did I need to do this
 
     def test_localized_description(self):
         manga = clone_manga("manga")

@@ -554,7 +554,7 @@ class Chapter:
         else:
             return
 
-        # This codepath will only be reached if there was an error downloading any of the pages.
+        # This code path will only be reached if there was an error downloading any of the pages.
         # It basically restarts the entire process starting from the page with errors.
         async for page in self._pages(start=i, end=end, data_saver=data_saver, ssl=ssl, report=report):
             yield page
@@ -692,7 +692,7 @@ class ChapterAtHome:
 
 class UploadData:
     """
-    A smmall helper object to store the upload data for each upload session and holds respective responses and errors.
+    A small helper object to store the upload data for each upload session and holds respective responses and errors.
 
     Attributes
     -----------

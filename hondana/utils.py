@@ -663,7 +663,7 @@ def relationship_finder(
 
 
 def clean_isoformat(dt: datetime.datetime, /) -> str:
-    """A helper method to cleanly convert a datetime (aware or naive) to a timezoneless ISO8601 string.
+    """A helper method to cleanly convert a datetime (aware or naive) to a timezone-less ISO8601 string.
 
     Parameters
     -----------
@@ -677,7 +677,7 @@ def clean_isoformat(dt: datetime.datetime, /) -> str:
 
 
     .. note::
-        The passed datetime will have it's timezone converted to UTC and then it's timezone stripped.
+        The passed datetime will have its timezone converted to UTC and then have its timezone stripped.
 
     """
     if dt.tzinfo != datetime.timezone.utc:

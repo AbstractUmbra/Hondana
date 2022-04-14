@@ -3883,7 +3883,7 @@ class Client:
         .. warning::
             The ``images`` parameter MUST be ordered how you would expect the images to be shown in the frontend.
             E.g. ``list[0]`` would be page 1, and so on.
-            The upload method will sort them alphbetically for you by default, to which I recommend naming the files
+            The upload method will sort them alphabetically for you by default, to which I recommend naming the files
             ``1.png``, ``2.png``, etc.
 
         .. warning::
