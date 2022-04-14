@@ -599,10 +599,7 @@ class Manga:
             group=None,
         )
 
-        ret: list[Manga] = []
-        for item in data["data"]:
-            ret.append(Manga(self._http, item))
-
+        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 
@@ -627,7 +624,7 @@ class Manga:
         year: Optional[int] = MISSING,
         content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
-        primary_cover: Optional[str] = MISSING,
+        primary_cover: Optional[str] = MISSING,  # Missing section in docstring for this param.
         version: int,
     ) -> Manga:
         """|coro|

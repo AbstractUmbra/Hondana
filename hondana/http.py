@@ -918,7 +918,7 @@ class HTTPClient:
         ...
 
     def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: bool = False):
-        if grouped is False:
+        if not grouped:
             if len(manga_ids) != 1:
                 raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
 

@@ -36,9 +36,7 @@ class TestClient:
 
         client.dump_refresh_token(file=True, path=TOKEN_PATH, mode="w")
 
-        with open(TOKEN_PATH) as fp:
-            text = fp.read()
-
+        text = pathlib.Path(TOKEN_PATH).read_text()
         assert text == token
 
         TOKEN_PATH.unlink(missing_ok=True)

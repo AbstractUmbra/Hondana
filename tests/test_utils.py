@@ -28,7 +28,7 @@ T = TypeVar("T")
 class TestUtils:
     def test_missing(self):
         assert MISSING is not None
-        assert bool(MISSING) is False
+        assert not bool(MISSING)
 
     def test_custom_route(self):
         route = CustomRoute("GET", "https://uploads.mangadex.org", "/chapter/{chapter_id}", chapter_id="abcd")

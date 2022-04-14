@@ -317,11 +317,7 @@ class ScanlatorGroup:
 
         data = await self._http._user_list(limit=100, offset=0, ids=ids, username=None, order=None)
 
-        members: list[User] = []
-        for payload in data["data"]:
-            members.append(User(self._http, payload))
-
-        self.__members = members
+        self.__members = [User(self._http, payload) for payload in data["data"]]
         return self.__members
 
     @require_authentication

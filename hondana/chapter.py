@@ -536,7 +536,7 @@ class Chapter:
             _total = _end - _start
             LOGGER.debug("Downloaded: %s", route.url)
 
-            if report is True and self._at_home_url != "https://uploads.mangadex.org":
+            if report and self._at_home_url != "https://uploads.mangadex.org":
                 await self._http._at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
@@ -554,7 +554,7 @@ class Chapter:
         else:
             return
 
-        # This codepath will only be reached if there was an error downloading any of the pages.
+        # This code path will only be reached if there was an error downloading any of the pages.
         # It basically restarts the entire process starting from the page with errors.
         async for page in self._pages(start=i, end=end, data_saver=data_saver, ssl=ssl, report=report):
             yield page
@@ -692,7 +692,7 @@ class ChapterAtHome:
 
 class UploadData:
     """
-    A smmall helper object to store the upload data for each upload session and holds respective responses and errors.
+    A small helper object to store the upload data for each upload session and holds respective responses and errors.
 
     Attributes
     -----------
@@ -895,7 +895,7 @@ class ChapterUpload:
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
 
-        if sort is True:
+        if sort:
             images = sorted(images, key=lambda p: p.name)
 
         chunks = as_chunks(images, 10)

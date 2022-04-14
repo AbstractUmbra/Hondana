@@ -148,11 +148,7 @@ class CustomList:
         if not self._manga_relationships:
             return
 
-        fmt: list[Manga] = []
-        for manga in self._manga_relationships:
-            if "attributes" in manga:
-                fmt.append(Manga(self._http, manga))
-
+        fmt: list[Manga] = [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]
         if not fmt:
             return
 
@@ -217,10 +213,7 @@ class CustomList:
             group=None,
         )
 
-        ret: list[Manga] = []
-        for item in data["data"]:
-            ret.append(Manga(self._http, item))
-
+        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 
