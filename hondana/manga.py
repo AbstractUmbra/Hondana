@@ -624,7 +624,7 @@ class Manga:
         year: Optional[int] = MISSING,
         content_rating: Optional[ContentRating] = None,
         tags: Optional[QueryTags] = None,
-        primary_cover: Optional[str] = MISSING,  # Missing section in docstring for this param.
+        primary_cover: Optional[str] = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -665,6 +665,8 @@ class Manga:
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
+        primmary_cover: Optional[:class:`str`]
+            The UUID representing the cover that should show for this manga as it's primary.
         version: :class:`int`
             The revision version of this manga.
 
