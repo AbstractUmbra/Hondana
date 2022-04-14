@@ -43,6 +43,7 @@ from .utils import (
     CustomRoute,
     Route,
     as_chunks,
+    cached_slot_property,
     clean_isoformat,
     relationship_finder,
     require_authentication,
@@ -61,6 +62,7 @@ if TYPE_CHECKING:
         GetSingleChapterResponse,
     )
     from .types.common import LanguageCode
+    from .types.errors import ErrorType
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
     from .types.scanlator_group import ScanlationGroupResponse
@@ -76,6 +78,7 @@ ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 __all__ = (
     "Chapter",
     "ChapterAtHome",
+    "UploadData",
     "ChapterUpload",
 )
 
@@ -687,6 +690,51 @@ class ChapterAtHome:
         return isinstance(other, ChapterAtHome) and self.hash == other.hash
 
 
+class UploadData:
+    """
+    A smmall helper object to store the upload data for each upload session and holds respective responses and errors.
+
+    Attributes
+    -----------
+    succeeded: List[:class:`~hondana.types.UploadedChapterResponse`]
+        The succeeded responses from the upload session.
+    errors: List[:class:`~hondana.types.ErrorType`]
+        The errors from the upload session.
+    has_failures: :class:`bool`
+        The upload has errors.
+    """
+
+    __slots__ = (
+        "succeeded",
+        "errors",
+        "has_failures",
+        "_filenames",
+        "_cs_errored_files",
+    )
+
+    def __init__(self, succeeded: list[UploadedChapterResponse], errors: list[ErrorType], /, *, filenames: set[str]) -> None:
+        self.succeeded: list[UploadedChapterResponse] = succeeded
+        self.errors: list[ErrorType] = errors
+        self.has_failures: bool = len(errors) > 0
+        self._filenames: set[str] = filenames
+
+    def __repr__(self) -> str:
+        return f"<UploadData success_count={len(self.succeeded)} error_count={len(self.errors)}>"
+
+    def __str__(self) -> str:
+        return f"UploadData with {len(self.succeeded)} succeeded and {len(self.errors)} errors."
+
+    @cached_slot_property("_cs_errored_files")
+    def errored_files(self) -> set[str]:
+        _succeeded: set[str] = set()
+        for item in self.succeeded:
+            for data in item["data"]:
+                print(data["attributes"]["originalFileName"])
+                _succeeded.add(data["attributes"]["originalFileName"])
+
+        return self._filenames ^ _succeeded
+
+
 class ChapterUpload:
     """
 
@@ -741,8 +789,10 @@ class ChapterUpload:
         "publish_at",
         "scanlator_groups",
         "uploaded",
+        "upload_errors",
         "upload_session_id",
         "version",
+        "_uploaded_filenames",
         "__committed",
     )
 
@@ -780,8 +830,10 @@ class ChapterUpload:
         self.publish_at: Optional[datetime.datetime] = publish_at
         self.scanlator_groups: list[str] = scanlator_groups
         self.uploaded: list[str] = []
+        self.upload_errors: list[ErrorType] = []
         self.upload_session_id: Optional[str] = existing_upload_session_id
         self.version: Optional[int] = version
+        self._uploaded_filenames: set[str] = set()
         self.__committed: bool = False
 
     def __repr__(self) -> str:
@@ -819,41 +871,58 @@ class ChapterUpload:
         )
 
     @require_authentication
-    async def upload_images(self, images: list[bytes]) -> list[UploadedChapterResponse]:
+    async def upload_images(self, images: list[pathlib.Path], *, sort: bool = True) -> UploadData:
         """|coro|
 
         This method will take a list of bytes and upload them to the MangaDex API.
 
         Parameters
         -----------
-        images: List[:class:`bytes`]
-            A list of images as bytes.
+        images: List[:class:`pathlib.Path`]
+            A list of images files as their Path objects.
+        sort: :class:`bool`
+            A bool to toggle if we sort the list of Paths alphabetically.
 
         Returns
         --------
-        List[:class:`~hondana.types.UploadedChapterResponse`]
+        :class:`~hondana.chapter.UploadData`
+            The upload data object of this upload session.
 
 
         .. warning::
             The list of bytes must be ordered, this is the order they will be presented in the frontend.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
-        ret = []
+        success: list[UploadedChapterResponse] = []
+
+        if sort is True:
+            images = sorted(images, key=lambda p: p.name)
 
         chunks = as_chunks(images, 10)
         outer_idx = 1
         for batch in chunks:
             form = aiohttp.FormData()
-            for idx, item in enumerate(batch, start=outer_idx):
-                form.add_field(name=f"{idx}", value=item)
+            for _, item in enumerate(batch, start=outer_idx):
+                with open(item, "rb") as f:
+                    data = f.read()
+
+                form.add_field(name=item.name, value=data)
+                self._uploaded_filenames.add(item.name)
                 outer_idx += 1
 
             response: UploadedChapterResponse = await self._http.request(route, data=form)
             for item in response["data"]:
                 self.uploaded.append(item["id"])
-            ret.append(response)
 
-        return ret
+            # check for errors in upload
+            if response["errors"]:
+                self.upload_errors.extend(response["errors"])
+
+            success.append(response)
+
+        data = UploadData(success, self.upload_errors, filenames=self._uploaded_filenames)
+
+        return data
 
     @require_authentication
     async def delete_images(self, image_ids: list[str], /) -> None:

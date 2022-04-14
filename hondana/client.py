@@ -3872,7 +3872,7 @@ class Client:
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
         version: Optional[int] = None,
-        images: list[bytes],
+        images: list[pathlib.Path],
     ) -> Chapter:
         """|coro|
 
@@ -3911,13 +3911,15 @@ class Client:
         version: Optional[:class:`int`]
             The new version of the chapter you are editing.
             Only necessary if ``chapter_to_edit`` is not ``None``.
-        images: List[:class:`bytes`]
-            The list of images to upload.
+        images: List[:class:`pathlib.Path`]
+            The list of images to upload as their Paths.
 
 
         .. warning::
             The ``images`` parameter MUST be ordered how you would expect the images to be shown in the frontend.
             E.g. ``list[0]`` would be page 1, and so on.
+            The upload method will sort them alphbetically for you by default, to which I recommend naming the files
+            ``1.png``, ``2.png``, etc.
 
         .. warning::
             This method is for ease of use, but offers little control over the upload session.

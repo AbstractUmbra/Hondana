@@ -8,6 +8,7 @@ If you ask me: I prefer the first.
 """
 
 import asyncio
+import pathlib
 
 import hondana
 
@@ -31,11 +32,6 @@ async def main():
     # Get the manga we are going to upload a chapter for.
     manga = await client.view_manga("...")
 
-    # let's open up some images, and store their ``bytes`` in memory
-    ## NOTE: The order of this list is important, this is the order in which the pages will be presented in the finished upload.
-    ## Please ensure you order this correctly.
-    files: list[bytes] = []
-
     # Open our upload session
     async with client.upload_session(
         manga,
@@ -46,8 +42,18 @@ async def main():
         scanlator_groups=scanlator_groups,
     ) as upload_session:
 
-        # First we upload the bytes we stored in memory, adhering to the earlier note.
-        await upload_session.upload_images(files)
+        # let's open up some files and use their paths...
+        files = [*pathlib.Path("./to_upload").iterdir()]
+        # the above is a quick and easy method to create a list of pathlib.Path objects based on the `./to_upload` directory.
+
+        # First we pass the list of paths, adhering to the earlier note.
+        # this method does sort them (alphabetically) by default, you can toggle this behaviour by passing `sort=False`
+        # I recommend naming your files `1.png`, `2.png`, `3.png`, etc.
+        data = await upload_session.upload_images(files)
+        if data.has_failures:
+            print(
+                data.errored_files
+            )  # this means the upload request has one or more errors, you may wish to restart the session once fixing the error or other steps.
 
         # Then we choose to commit that data, which returns a valid ``hondana.Chapter`` instance.
         chapter = await upload_session.commit()
@@ -77,11 +83,14 @@ async def alternative_main():
     # I recommend the context manager method, since the session checking and committing are done for you.
     await upload_session._check_for_session()
 
-    # Create and upload your images.
-    ## NOTE: The order of this list is important, this is the order in which the pages will be presented in the finished upload.
-    ## Please ensure you order this correctly.
-    images: list[bytes] = []
-    await upload_session.upload_images(images)
+    # let's open up some files and use their paths...
+    files = [*pathlib.Path("./to_upload").iterdir()]
+    # the above is a quick and easy method to create a list of pathlib.Path objects based on the `./to_upload` directory.
+    data = await upload_session.upload_images(files)
+    if data.has_failures:
+        print(
+            data.errored_files
+        )  # this means the upload request has one or more errors, you may wish to restart the session once fixing the error or other steps.
 
     ## NOTE: You **MUST** commit when not using the context manager.
     chapter = await upload_session.commit()
@@ -95,10 +104,9 @@ async def other_alternative_main():
     title = "..."
     scanlator_groups = ["..."]
 
-    # Create and upload your images.
-    ## NOTE: The order of this list is important, this is the order in which the pages will be presented in the finished upload.
-    ## Please ensure you order this correctly.
-    images: list[bytes] = []
+    # let's open up some files and use their paths...
+    files = [*pathlib.Path("./to_upload").iterdir()]
+    # the above is a quick and easy method to create a list of pathlib.Path objects based on the `./to_upload` directory.
 
     chapter = await client.upload_chapter(
         "...",
@@ -106,7 +114,7 @@ async def other_alternative_main():
         chapter=chapter,
         title=title,
         translated_language=translated_language,
-        images=images,
+        images=files,
         scanlator_groups=scanlator_groups,
     )
 

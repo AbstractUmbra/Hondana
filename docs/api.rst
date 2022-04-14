@@ -29,6 +29,9 @@ Chapter
 .. autoclass:: ChapterAtHome()
     :members:
 
+.. autoclass:: UploadData()
+    :members:
+
 Chapter Upload
 ~~~~~~~~~~~~~~
 .. autoclass:: ChapterUpload
