@@ -47,6 +47,7 @@ from .utils import (
     clean_isoformat,
     relationship_finder,
     require_authentication,
+    upload_file_sort,
 )
 
 
@@ -889,15 +890,19 @@ class ChapterUpload:
             The upload data object of this upload session.
 
 
-        .. warning::
+        .. note::
             If ``sort`` is set to ``True`` then the library will sort the list of image paths alphabetically.
             This means that ``1.png``, ``11.png``, and ``2.png`` will be sorted to ``1.png``, ``2.png``, and ``11.png``.
+
+            The autosort the library provides only supports the following filename formats:
+                - ``1.png``
+                - ``1-something.png``
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
 
         if sort:
-            images = sorted(images, key=lambda p: (len(p.stem), p.stem))
+            images = sorted(images, key=upload_file_sort)
 
         chunks = as_chunks(images, 10)
         outer_idx = 1

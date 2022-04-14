@@ -63,6 +63,7 @@ from .errors import AuthenticationRequired
 
 
 if TYPE_CHECKING:
+    from _typeshed import SupportsRichComparison
     from typing_extensions import Concatenate, ParamSpec
 
     from .types.artist import ArtistResponse
@@ -687,6 +688,20 @@ def clean_isoformat(dt: datetime.datetime, /) -> str:
         dt = dt.replace(tzinfo=None)
 
     return dt.isoformat(timespec="seconds")
+
+
+_SIMPLE_PATH = re.compile(r"(?P<num>\d+)\.(?P<ext>png|jpg|gif|webm)")
+_PATH_WITH_EXTRA = re.compile(r"(?P<num>\d+)(\-?(?P<extra>\w*))?\.(?P<ext>png|jpg|gif|webm)")
+
+
+def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
+    if isinstance(key, pathlib.Path):
+        if _SIMPLE_PATH.fullmatch(key.name):
+            return (len(key.stem), key.stem)
+        elif match := _PATH_WITH_EXTRA.fullmatch(key.name):
+            return (len(match["num"]), match["num"])
+
+    raise ValueError("Invalid filename format given.")
 
 
 _path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
