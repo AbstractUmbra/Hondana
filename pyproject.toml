@@ -67,6 +67,7 @@ lines_after_imports = 2
 
 [tool.pyright]
 ignore = ["docs/conf.py"]
+exclude = ["_testing/**.py"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "basic"
 pythonVersion = "3.9"
