@@ -90,12 +90,13 @@ spec = "poetry run python _api_dl.py"
 install = "poetry install -E tests -E docs -E speedups"
 format = "poetry run black ."
 pyright = "poetry run pyright"
-types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+types_ = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+types = ["pyright", "types_"]
 tests = "poetry run pytest"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
-pre = ["install", "format", "pyright", "types", "tests", "docs", "tags", "uninstall"]
+pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
