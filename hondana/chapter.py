@@ -536,7 +536,7 @@ class Chapter:
             _total = _end - _start
             LOGGER.debug("Downloaded: %s", route.url)
 
-            if report is True and self._at_home_url != "https://uploads.mangadex.org":
+            if report and self._at_home_url != "https://uploads.mangadex.org":
                 await self._http._at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
@@ -895,7 +895,7 @@ class ChapterUpload:
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
 
-        if sort is True:
+        if sort:
             images = sorted(images, key=lambda p: p.name)
 
         chunks = as_chunks(images, 10)

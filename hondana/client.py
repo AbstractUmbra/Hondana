@@ -333,7 +333,7 @@ class Client:
             raise TypeError(
                 "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
             )
-        if file is True:
+        if file:
             with open(path, mode) as fp:
                 fp.write(self._http._refresh_token)
 
@@ -2364,11 +2364,7 @@ class Client:
         """
         data = await self._http._get_user_custom_list_follows(limit=limit, offset=offset)
 
-        fmt: list[CustomList] = []
-        for item in data["data"]:
-            fmt.append(CustomList(self._http, item))
-
-        return fmt
+        return [CustomList(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def check_if_following_custom_list(self, custom_list_id: str, /) -> bool:

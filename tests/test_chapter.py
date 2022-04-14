@@ -55,7 +55,7 @@ class TestChapter:
         chapter = clone_chapter()
         ret: dict[str, Any] = chapter.to_dict()
 
-        assert bool(ret) is True
+        assert bool(ret)
 
     def test_manga_property(self):
         chapter = clone_chapter()

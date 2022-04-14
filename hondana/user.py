@@ -130,10 +130,7 @@ class User:
             limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
         )
 
-        fmt: list[ScanlatorGroup] = []
-        for payload in data["data"]:
-            fmt.append(ScanlatorGroup(self._http, payload))
-
+        fmt: list[ScanlatorGroup] = [ScanlatorGroup(self._http, payload) for payload in data["data"]]
         if not fmt:
             return
 

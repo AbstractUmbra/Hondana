@@ -599,10 +599,7 @@ class Manga:
             group=None,
         )
 
-        ret: list[Manga] = []
-        for item in data["data"]:
-            ret.append(Manga(self._http, item))
-
+        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 
