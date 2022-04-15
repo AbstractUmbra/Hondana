@@ -690,15 +690,12 @@ def clean_isoformat(dt: datetime.datetime, /) -> str:
     return dt.isoformat(timespec="seconds")
 
 
-_SIMPLE_PATH = re.compile(r"(?P<num>\d+)\.(?P<ext>png|jpg|gif|webm)")
 _PATH_WITH_EXTRA = re.compile(r"(?P<num>\d+)(\-?(?P<extra>\w*))?\.(?P<ext>png|jpg|gif|webm)")
 
 
 def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
     if isinstance(key, pathlib.Path):
-        if _SIMPLE_PATH.fullmatch(key.name):
-            return (len(key.stem), key.stem)
-        elif match := _PATH_WITH_EXTRA.fullmatch(key.name):
+        if match := _PATH_WITH_EXTRA.fullmatch(key.name):
             return (len(match["num"]), match["num"])
 
     raise ValueError("Invalid filename format given.")

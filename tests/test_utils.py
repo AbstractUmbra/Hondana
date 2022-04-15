@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import datetime
+import pathlib
+import random
 import zoneinfo
 from typing import Iterable, Mapping, Optional, TypeVar, Union
 
@@ -19,6 +21,7 @@ from hondana.utils import (
     relationship_finder,
     to_camel_case,
     to_snake_case,
+    upload_file_sort,
 )
 
 
@@ -188,3 +191,34 @@ class TestUtils:
     )
     def test_isoformatter(self, input: datetime.datetime, output: str):
         assert clean_isoformat(input) == output
+
+    @pytest.mark.parametrize(
+        ("input", "output"),
+        [
+            (
+                random.sample([pathlib.Path(f"{x}.png") for x in range(1, 15)], 14),
+                [
+                    pathlib.Path(f"1.png"),
+                    pathlib.Path(f"2.png"),
+                    pathlib.Path(f"3.png"),
+                    pathlib.Path(f"4.png"),
+                    pathlib.Path(f"5.png"),
+                    pathlib.Path(f"6.png"),
+                    pathlib.Path(f"7.png"),
+                    pathlib.Path(f"8.png"),
+                    pathlib.Path(f"9.png"),
+                    pathlib.Path(f"10.png"),
+                    pathlib.Path(f"11.png"),
+                    pathlib.Path(f"12.png"),
+                    pathlib.Path(f"13.png"),
+                    pathlib.Path(f"14.png"),
+                ],
+            ),
+            (
+                [pathlib.Path("1.png"), pathlib.Path("11.png"), pathlib.Path("2.png"), pathlib.Path("22.png")],
+                [pathlib.Path("1.png"), pathlib.Path("2.png"), pathlib.Path("11.png"), pathlib.Path("22.png")],
+            ),
+        ],
+    )
+    def test_path_sorter(self, input: list[pathlib.Path], output: list[pathlib.Path]):
+        assert sorted(input, key=upload_file_sort) == output
