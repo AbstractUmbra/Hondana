@@ -85,7 +85,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, deprecated, require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
@@ -333,7 +333,7 @@ class Client:
             raise TypeError(
                 "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
             )
-        if file is True:
+        if file:
             with open(path, mode) as fp:
                 fp.write(self._http._refresh_token)
 
@@ -785,41 +785,6 @@ class Client:
         )
 
         return data
-
-    @deprecated("Client.get_manga")
-    async def view_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
-        """|coro|
-
-        The method will fetch a Manga from the MangaDex API.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID of the manga to view.
-        includes: Optional[:class:`~hondana.query.MangaIncludes`]
-            The includes query parameter for this manga.
-            If not given, it defaults to all possible reference expansions.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            The query failed due to authorization failure.
-        :exc:`NotFound`
-            The passed manga ID was not found, likely due to an incorrect ID.
-
-
-        .. warning::
-            This method is marked for deprecation (as of 2.0.11) in favour of :meth:`~Client.get_manga` and will be removed in
-            version 3.0.
-
-        Returns
-        --------
-        :class:`~hondana.Manga`
-            The Manga that was returned from the API.
-        """
-        data = await self._http._get_manga(manga_id, includes=includes)
-
-        return Manga(self._http, data["data"])
 
     async def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
@@ -2399,11 +2364,7 @@ class Client:
         """
         data = await self._http._get_user_custom_list_follows(limit=limit, offset=offset)
 
-        fmt: list[CustomList] = []
-        for item in data["data"]:
-            fmt.append(CustomList(self._http, item))
-
-        return fmt
+        return [CustomList(self._http, item) for item in data["data"]]
 
     @require_authentication
     async def check_if_following_custom_list(self, custom_list_id: str, /) -> bool:
@@ -3872,7 +3833,7 @@ class Client:
         publish_at: Optional[datetime.datetime] = None,
         existing_upload_session_id: Optional[str] = None,
         version: Optional[int] = None,
-        images: list[bytes],
+        images: list[pathlib.Path],
     ) -> Chapter:
         """|coro|
 
@@ -3911,13 +3872,15 @@ class Client:
         version: Optional[:class:`int`]
             The new version of the chapter you are editing.
             Only necessary if ``chapter_to_edit`` is not ``None``.
-        images: List[:class:`bytes`]
-            The list of images to upload.
+        images: List[:class:`pathlib.Path`]
+            The list of images to upload as their Paths.
 
 
         .. warning::
             The ``images`` parameter MUST be ordered how you would expect the images to be shown in the frontend.
             E.g. ``list[0]`` would be page 1, and so on.
+            The upload method will sort them alphabetically for you by default, to which I recommend naming the files
+            ``1.png``, ``2.png``, etc.
 
         .. warning::
             This method is for ease of use, but offers little control over the upload session.

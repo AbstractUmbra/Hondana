@@ -26,6 +26,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
+from typing_extensions import NotRequired
+
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
@@ -111,6 +113,8 @@ class ScanlationGroupResponse(TypedDict):
     attributes: :class:`~hondana.types.ScanlationGroupAttributesResponse`
 
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
+        This key is optional, in the event this payload is gotten from the "relationships" of another object.
+
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
@@ -118,7 +122,7 @@ class ScanlationGroupResponse(TypedDict):
     id: str
     type: Literal["scanlation_group"]
     attributes: ScanlationGroupAttributesResponse
-    relationships: list[RelationshipResponse]
+    relationships: NotRequired[list[RelationshipResponse]]
 
 
 class GetSingleScanlationGroupResponse(TypedDict):

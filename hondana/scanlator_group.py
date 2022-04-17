@@ -137,8 +137,8 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
-        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)  # type: ignore # cannot narrow further
-        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)  # type: ignore # cannot narrow further
+        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)
+        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)
         self.__leader: Optional[User] = None
         self.__members: Optional[list[User]] = None
 
@@ -317,11 +317,7 @@ class ScanlatorGroup:
 
         data = await self._http._user_list(limit=100, offset=0, ids=ids, username=None, order=None)
 
-        members: list[User] = []
-        for payload in data["data"]:
-            members.append(User(self._http, payload))
-
-        self.__members = members
+        self.__members = [User(self._http, payload) for payload in data["data"]]
         return self.__members
 
     @require_authentication

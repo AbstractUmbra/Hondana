@@ -83,7 +83,9 @@ class User:
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]
         self.roles: list[str] = self._attributes["roles"]
-        self._group_relationships: list[ScanlationGroupResponse] = relationship_finder(relationships, "scanlation_group", limit=None)  # type: ignore # cannot narrow this further
+        self._group_relationships: list[ScanlationGroupResponse] = relationship_finder(
+            relationships, "scanlation_group", limit=None
+        )
         self.__groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
@@ -128,10 +130,7 @@ class User:
             limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
         )
 
-        fmt: list[ScanlatorGroup] = []
-        for payload in data["data"]:
-            fmt.append(ScanlatorGroup(self._http, payload))
-
+        fmt: list[ScanlatorGroup] = [ScanlatorGroup(self._http, payload) for payload in data["data"]]
         if not fmt:
             return
 

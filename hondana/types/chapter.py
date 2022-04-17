@@ -26,6 +26,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
 
+from typing_extensions import NotRequired
+
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
@@ -89,6 +91,8 @@ class ChapterResponse(TypedDict):
     attributes: :class:`~hondana.types.ChapterAttributesResponse`
 
     relationships: List[:class:`~hondana.types.RelationshipResponse`]
+        This key is optional, in the event this payload is gotten from the "relationships" of another object.
+
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
         See here for more info: https://api.mangadex.org/docs.html#section/Reference-Expansion
     """
@@ -96,7 +100,7 @@ class ChapterResponse(TypedDict):
     id: str
     type: Literal["chapter"]
     attributes: ChapterAttributesResponse
-    relationships: list[RelationshipResponse]
+    relationships: NotRequired[list[RelationshipResponse]]
 
 
 class GetSingleChapterResponse(TypedDict):

@@ -509,55 +509,91 @@
                     },
                     "altTitles": [
                         {
-                            "en": "Akai Mi Hajiketa (Split the Scarlet Fruit of Dawn)"
+                            "ja-ro": "Akai Mi Hajiketa"
                         },
                         {
                             "en": "Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis"
                         },
                         {
-                            "en": "Boku to Sennin-sama (The Xian and I)"
+                            "ja-ro": "Boku to Sennin-sama"
                         },
                         {
-                            "en": "Chuu Chuu Drain"
+                            "ja-ro": "Chuu Chuu Drain"
                         },
                         {
-                            "en": "Gedou no Yukari (The Bonds of Gedou)"
+                            "ja-ro": "Gedou no Yukari"
                         },
                         {
-                            "en": "Hitokui-sama no Chocolate Cake (The Anthropovore's Chocolate Cake)"
+                            "ja-ro": "Hitokui-sama no Chocolate Cake"
                         },
                         {
-                            "en": "Kokoroechigai no Oyome-san (The Imprudent Bride)"
+                            "ja-ro": "Kokoroechigai no Oyome-san"
                         },
                         {
-                            "en": "Kyuuketsuki to Hoshigatari no Yoru (Discussing the Starlit Sky with a Vampire)"
+                            "ja-ro": "Kyuuketsuki to Hoshigatari no Yoru"
                         },
                         {
                             "en": "Mechanical Instinct"
                         },
                         {
-                            "en": "Natsu no Omohide (Memories of Summer)"
+                            "ja-ro": "Natsu no Omohide"
                         },
                         {
-                            "en": "Nekomimi Kaa-san (Nekomommy)"
+                            "ja-ro": "Nekomimi Kaa-san"
                         },
                         {
-                            "en": "Ookeyaki no Kouro (Kouro of the Great Zelkova)"
+                            "ja-ro": "Ookeyaki no Kouro"
                         },
                         {
-                            "en": "Oshikake Kitsune Yome (The Uninvited Fox Wife)"
+                            "ja-ro": "Oshikake Kitsune Yome"
                         },
                         {
-                            "en": "Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku (Dorm Mother Suzuwe-san: One peaceful day)"
+                            "ja-ro": "Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku"
                         },
                         {
-                            "en": "Yupiel-sama to no Nichijou (Everyday Life with Lady Yupiel)"
+                            "ja-ro": "Yupiel-sama to no Nichijou"
                         },
                         {
-                            "en": "Zom Zom Biyori"
+                            "ja-ro": "Zom Zom Biyori"
                         },
                         {
-                            "en": "\u6c38\u9060\u5a18"
+                            "ja": "\u6c38\u9060\u5a18"
+                        },
+                        {
+                            "en": "Split the Scarlet Fruit of Dawn"
+                        },
+                        {
+                            "en": "The Xian and I"
+                        },
+                        {
+                            "en": "The Bonds of Gedou"
+                        },
+                        {
+                            "en": "The Anthropovore's Chocolate Cake"
+                        },
+                        {
+                            "en": "The Imprudent Bride"
+                        },
+                        {
+                            "en": "Discussing the Starlit Sky with a Vampire"
+                        },
+                        {
+                            "en": "Memories of Summer"
+                        },
+                        {
+                            "en": "Nekomommy"
+                        },
+                        {
+                            "en": "Kouro of the Great Zelkova"
+                        },
+                        {
+                            "en": "The Uninvited Fox Wife"
+                        },
+                        {
+                            "en": "Dorm Mother Suzuwe-san: One peaceful day"
+                        },
+                        {
+                            "en": "Everyday Life with Lady Yupiel"
                         }
                     ],
                     "description": {
@@ -568,8 +604,8 @@
                         "mu": "137645"
                     },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
+                    "lastVolume": "",
+                    "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "ongoing",
                     "year": null,
@@ -696,8 +732,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-05-09T07:31:47+00:00",
-                    "updatedAt": "2021-05-25T15:48:03+00:00",
-                    "version": 2,
+                    "updatedAt": "2022-04-08T21:50:42+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "en",
                         "hu"

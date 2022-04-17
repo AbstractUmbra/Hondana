@@ -40,6 +40,7 @@ class TestCover:
         cover = clone_cover()
 
         assert cover.uploader is not None
+        assert "relationships" in PAYLOAD["data"]
         rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
         assert rel is not None
         assert cover.uploader.id == rel["id"]

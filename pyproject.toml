@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "2.2.2"
+version = "3.0.1"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
@@ -15,6 +15,7 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
     "Topic :: Internet",
     "Typing :: Typed",
 ]
@@ -33,6 +34,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.9"
 aiohttp = "^3.7.4"
+typing-extensions = "^4.1.1"
 
 pytest = { version = "*", optional = true }
 orjson = { version = "^3.6.7", optional = true }
@@ -64,6 +66,8 @@ known_first_party = "hondana"
 lines_after_imports = 2
 
 [tool.pyright]
+ignore = ["docs/conf.py"]
+exclude = ["_testing/**.py"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "basic"
 pythonVersion = "3.9"
@@ -84,15 +88,16 @@ reportUnnecessaryTypeIgnoreComment = "warning"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
-install = "poetry install -E tests -E docs"
+install = "poetry install -E tests -E docs -E speedups"
 format = "poetry run black ."
 pyright = "poetry run pyright"
-types = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+types_ = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+types = ["pyright", "types_"]
 tests = "poetry run pytest"
 docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
-pre = ["install", "format", "pyright", "types", "tests", "docs", "tags", "uninstall"]
+pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

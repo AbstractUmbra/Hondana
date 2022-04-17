@@ -80,8 +80,8 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)  # type: ignore # can't narrow further
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # can't narrow further
+        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
         self.__owner: Optional[User] = None
         self.__manga: Optional[list[Manga]] = None
 
@@ -148,11 +148,7 @@ class CustomList:
         if not self._manga_relationships:
             return
 
-        fmt: list[Manga] = []
-        for manga in self._manga_relationships:
-            if "attributes" in manga:
-                fmt.append(Manga(self._http, manga))
-
+        fmt: list[Manga] = [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]
         if not fmt:
             return
 
@@ -217,10 +213,7 @@ class CustomList:
             group=None,
         )
 
-        ret: list[Manga] = []
-        for item in data["data"]:
-            ret.append(Manga(self._http, item))
-
+        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 

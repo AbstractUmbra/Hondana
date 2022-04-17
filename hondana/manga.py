@@ -196,10 +196,10 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)  # type: ignore # cannot narrow this further
-        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)  # type: ignore # cannot narrow this further
-        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)  # type: ignore # cannot narrow this further
-        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)  # type: ignore # cannot narrow this further
+        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)
+        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)
+        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
+        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)
         self.__authors: Optional[list[Author]] = None
         self.__artists: Optional[list[Artist]] = None
         self.__cover: Optional[Cover] = None
@@ -598,10 +598,7 @@ class Manga:
             group=None,
         )
 
-        ret: list[Manga] = []
-        for item in data["data"]:
-            ret.append(Manga(self._http, item))
-
+        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 
@@ -667,6 +664,8 @@ class Manga:
             The content rating of the manga.
         tags: Optional[:class:`QueryTags`]
             The QueryTags instance for the list of tags to attribute to this manga.
+        primmary_cover: Optional[:class:`str`]
+            The UUID representing the cover that should show for this manga as it's primary.
         version: :class:`int`
             The revision version of this manga.
 

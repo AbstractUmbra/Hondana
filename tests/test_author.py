@@ -40,10 +40,12 @@ class TestAuthor:
     def test_relationship_length(self):
         author = clone_author()
         obj_len = len(author._manga_relationships)
+        assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_manga_relationships(self):
         author = clone_author()
+        assert "relationships" in PAYLOAD["data"]
         rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
 
         assert author.manga is not None

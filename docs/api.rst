@@ -8,7 +8,6 @@ Client
 .. autoclass:: Client
     :members:
 
-
 API Models
 ----------
 
@@ -28,6 +27,9 @@ Chapter
     :members:
 
 .. autoclass:: ChapterAtHome()
+    :members:
+
+.. autoclass:: UploadData()
     :members:
 
 Chapter Upload
@@ -75,6 +77,7 @@ Cover
 CustomList
 ~~~~~~~~~~
 .. autoclass:: CustomList()
+    :members:
 
 Legacy
 ~~~~~~
@@ -136,7 +139,6 @@ Relationship
 
 Report
 ~~~~~~
-
 .. autoclass:: Report()
     :members:
 
@@ -154,7 +156,6 @@ QueryTags
 ~~~~~~~~~
 .. autoclass:: QueryTags
     :members:
-
 
 Token
 ~~~~~
@@ -177,6 +178,18 @@ Utilities
 
 .. autoclass:: hondana.utils.MANGADEX_TIME_REGEX
     :members:
+
+.. autoclass:: hondana.utils.MANGADEX_URL_REGEX
+    :members:
+
+.. autofunction:: hondana.utils.php_query_builder
+
+.. autofunction:: hondana.utils.delta_to_iso
+
+.. autofunction:: hondana.utils.iso_to_delta
+
+.. autofunction:: hondana.utils.clean_isoformat
+
 
 Enumerations
 -------------

@@ -158,8 +158,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-03-04T12:21:59+00:00",
-            "updatedAt": "2022-04-02T00:51:16+00:00",
-            "version": 312,
+            "updatedAt": "2022-04-08T18:57:16+00:00",
+            "version": 316,
             "availableTranslatedLanguages": [
                 "id",
                 "es-la",
@@ -229,16 +229,16 @@
                 }
             },
             {
-                "id": "d7df4a94-927d-4f54-b25d-d03f97609441",
+                "id": "4789cf28-bb92-4e6a-9791-60d211e0b3cd",
                 "type": "cover_art",
                 "attributes": {
                     "description": "",
                     "volume": "13",
-                    "fileName": "856684fb-b119-4492-9507-9f99de206fe3.jpg",
+                    "fileName": "65e2ae0f-0333-4e2d-986b-fa4af7e8d790.png",
                     "locale": "ja",
-                    "createdAt": "2022-04-01T08:01:20+00:00",
-                    "updatedAt": "2022-04-01T08:01:20+00:00",
-                    "version": 1
+                    "createdAt": "2022-04-08T18:56:49+00:00",
+                    "updatedAt": "2022-04-08T18:57:15+00:00",
+                    "version": 2
                 }
             },
             {

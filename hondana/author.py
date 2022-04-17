@@ -138,7 +138,7 @@ class Author:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")  # type: ignore # can't narrow this
+        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:

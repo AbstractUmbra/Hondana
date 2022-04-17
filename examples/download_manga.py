@@ -11,7 +11,7 @@ client = hondana.Client(username="my-username", password="my-password")
 
 async def main():
     # Get the manga, we will need its chapters
-    manga = await client.view_manga("some-manga-id-here")
+    manga = await client.get_manga("some-manga-id-here")
 
     # Load the feed of the manga, that contains all chapters.
     # To note... I would filter by language here, else you'll potentially have random translations downloaded.
