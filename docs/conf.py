@@ -78,9 +78,6 @@ extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-")
 # Add any paths that contain templates here, relative to this directory.
 templates_path: list[str] = ["_templates"]
 
-# autodoc_typehints: str = "none"
-# autodoc_typehints: str = "description"
-# autodoc_typehints: str = "signature"
 autodoc_typehints: str = "both"
 autodoc_typehints_format: str = "short"
 autodoc_typehints_description_target: str = "documented"
