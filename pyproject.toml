@@ -44,8 +44,8 @@ sphinxcontrib-trio = { version = "*", optional = true }
 furo = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
-black = "*"
 poethepoet = "*"
+black = "*"
 
 [tool.poetry.extras]
 speedups = ["orjson"]
@@ -94,7 +94,7 @@ pyright = "poetry run pyright"
 types_ = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
 types = ["pyright", "types_"]
 tests = "poetry run pytest"
-docs = "poetry run sphinx-build -a -E -n -T -W --keep-going docs/ docs/build"
+docs = "poetry run sphinx-build -a -n -E -W -T --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "poetry run pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]

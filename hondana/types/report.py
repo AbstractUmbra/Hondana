@@ -29,7 +29,7 @@ from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
     from ..enums import ReportStatus
-    from .common import LocalisedString
+    from .common import LocalizedString
     from .relationship import RelationshipResponse
 
 
@@ -45,7 +45,7 @@ _ReportCategory = Literal["manga", "chapter", "scanlation_group", "user", "autho
 
 class GetReportReasonAttributesResponse(TypedDict):
     """
-    reason: :class:`~hondana.types.LocalisedString`
+    reason: :class:`~hondana.types.LocalizedString`
 
     detailsRequired: :class:`bool`
 
@@ -54,7 +54,7 @@ class GetReportReasonAttributesResponse(TypedDict):
     version: :class:`int`
     """
 
-    reason: LocalisedString
+    reason: LocalizedString
     detailsRequired: bool
     category: _ReportCategory
     version: int

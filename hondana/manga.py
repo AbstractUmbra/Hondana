@@ -160,7 +160,6 @@ class Manga:
         "__cover",
         "__related_manga",
         "_cs_tags",
-        "_cs_relationships",
     )
 
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:

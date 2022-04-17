@@ -30,7 +30,7 @@ from typing_extensions import NotRequired
 
 
 if TYPE_CHECKING:
-    from .common import LocalisedString
+    from .common import LocalizedString
     from .relationship import RelationshipResponse
 
 
@@ -48,7 +48,7 @@ class AuthorAttributesResponse(TypedDict):
 
     imageUrl: Optional[:class:`str`]
 
-    biography: Optional[:class:`~hondana.types.LocalisedString`]
+    biography: Optional[:class:`~hondana.types.LocalizedString`]
 
     twitter: Optional[:class:`str`]
 
@@ -85,7 +85,7 @@ class AuthorAttributesResponse(TypedDict):
 
     name: str
     imageUrl: Optional[str]
-    biography: Optional[LocalisedString]
+    biography: Optional[LocalizedString]
     twitter: Optional[str]
     pixiv: Optional[str]
     melonBook: Optional[str]

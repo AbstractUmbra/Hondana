@@ -35,7 +35,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .manga import Manga
     from .types.author import AuthorResponse
-    from .types.common import LocalisedString
+    from .types.common import LocalizedString
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
 
@@ -121,7 +121,7 @@ class Author:
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
-        self.biography: Optional[LocalisedString] = self._attributes["biography"]
+        self.biography: Optional[LocalizedString] = self._attributes["biography"]
         self.twitter: Optional[str] = self._attributes["twitter"]
         self.pixiv: Optional[str] = self._attributes["pixiv"]
         self.melon_book: Optional[str] = self._attributes["melonBook"]
@@ -257,7 +257,7 @@ class Author:
         /,
         *,
         name: Optional[str] = None,
-        biography: Optional[LocalisedString] = None,
+        biography: Optional[LocalizedString] = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
@@ -279,7 +279,7 @@ class Author:
         -----------
         name: Optional[:class:`str`]
             The new name to update the author with.
-        biography: Optional[:class:`~hondana.types.LocalisedString`]
+        biography: Optional[:class:`~hondana.types.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.

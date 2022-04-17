@@ -30,8 +30,6 @@ from base64 import b64decode
 from os import PathLike
 from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
-from aiohttp import ClientSession
-
 from . import errors
 from .artist import Artist
 from .author import Author
@@ -91,6 +89,8 @@ from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
+    from aiohttp import ClientSession
+
     from .tags import QueryTags
     from .types import common, legacy, manga
     from .types.settings import Settings, SettingsPayload
@@ -656,8 +656,8 @@ class Client:
         self,
         *,
         title: common.LocalizedString,
-        alt_titles: Optional[list[common.LocalisedString]] = None,
-        description: Optional[common.LocalisedString] = None,
+        alt_titles: Optional[list[common.LocalizedString]] = None,
+        description: Optional[common.LocalizedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -678,13 +678,13 @@ class Client:
 
         Parameters
         -----------
-        title: :class:`~hondana.types.LocalisedString`
+        title: :class:`~hondana.types.LocalizedString`
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[:class:`~hondana.types.LocalisedString`]
+        description: Optional[:class:`~hondana.types.LocalizedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
@@ -823,9 +823,9 @@ class Client:
         manga_id: str,
         /,
         *,
-        title: Optional[common.LocalisedString] = None,
-        alt_titles: Optional[list[common.LocalisedString]] = None,
-        description: Optional[common.LocalisedString] = None,
+        title: Optional[common.LocalizedString] = None,
+        alt_titles: Optional[list[common.LocalizedString]] = None,
+        description: Optional[common.LocalizedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -848,11 +848,11 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga to update.
-        title: Optional[:class:`~hondana.types.LocalisedString`]
+        title: Optional[:class:`~hondana.types.LocalizedString`]
             The manga titles in the format of ``language_key: title``
-        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
-        description: Optional[:class:`~hondana.types.LocalisedString`]
+        description: Optional[:class:`~hondana.types.LocalizedString`]
             The manga description in the format of ``language_key: description``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
@@ -3272,7 +3272,7 @@ class Client:
         self,
         *,
         name: str,
-        biography: Optional[common.LocalisedString] = None,
+        biography: Optional[common.LocalizedString] = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
@@ -3294,7 +3294,7 @@ class Client:
         -----------
         name: :class:`str`
             The name of the author we are creating.
-        biography: Optional[:class:`~hondana.types.LocalisedString`]
+        biography: Optional[:class:`~hondana.types.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.
@@ -3420,7 +3420,7 @@ class Client:
         /,
         *,
         name: Optional[str] = None,
-        biography: Optional[common.LocalisedString] = None,
+        biography: Optional[common.LocalizedString] = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
@@ -3444,7 +3444,7 @@ class Client:
             The UUID relating to the author we wish to update.
         name: Optional[:class:`str`]
             The new name to update the author with.
-        biography: Optional[:class:`~hondana.types.LocalisedString`]
+        biography: Optional[:class:`~hondana.types.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.

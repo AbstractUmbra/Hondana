@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING, Literal, Union, overload
 from hondana.enums import MangaRelationType
 from hondana.http import HTTPClient
 from hondana.manga import Manga, MangaRating, MangaRelation, MangaStatistics
-from hondana.types.common import LocalisedString
 from hondana.utils import relationship_finder, to_snake_case
 
 
