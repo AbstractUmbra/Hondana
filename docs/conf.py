@@ -86,6 +86,15 @@ autodoc_typehints_format: str = "short"
 autodoc_typehints_description_target: str = "documented"
 autodoc_member_order: str = "bysource"
 autodoc_preserve_defaults: bool = False
+autodoc_type_aliases: dict[str, str] = {
+    "ClientSession": "aiohttp.ClientSession",
+    "common.LanguadeCode": "hondana.types.LanguadeCode",
+    "LanguadeCode": "hondana.types.LanguadeCode",
+    "LocalizedString": "hondana.types.LocalizedString",
+    "LocalisedString": "hondana.types.LocalisedString",
+    "legacy.LegacyMappingType": "hondana.types.LegacyMappingType",
+    "PathLike": "os.PathLike",
+}
 napoleon_use_admonition_for_examples: bool = True
 napoleon_use_admonition_for_notes: bool = True
 
