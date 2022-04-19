@@ -537,7 +537,7 @@ class Manga:
         self.cover = Cover(self._http, data["data"])
         return self.cover
 
-    def cover_url(self, *, type: Optional[Literal[256, 512]] = None) -> Optional[str]:
+    def cover_url(self, *, size: Optional[Literal[256, 512]] = None) -> Optional[str]:
         """This method will return a direct url to the cover art of the parent Manga.
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
@@ -549,7 +549,7 @@ class Manga:
         if not self.cover:
             return
 
-        return self.cover.url(type, parent_id=self.id)
+        return self.cover.url(size, parent_id=self.id)
 
     async def get_related_manga(self) -> Optional[list[Manga]]:
         """|coro|

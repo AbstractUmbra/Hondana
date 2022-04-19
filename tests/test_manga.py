@@ -138,11 +138,11 @@ class TestManga:
         assert manga.cover.id == cover_rel["id"]
         assert manga.cover_url() == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}"
         assert (
-            manga.cover_url(type=256)
+            manga.cover_url(size=256)
             == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.256.jpg"
         )
         assert (
-            manga.cover_url(type=512)
+            manga.cover_url(size=512)
             == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"
         )
 
