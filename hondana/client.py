@@ -1625,6 +1625,7 @@ class Client:
         /,
         *,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        fetch_full_manga: bool = False,
     ) -> Chapter:
         """|coro|
 
@@ -1637,6 +1638,13 @@ class Client:
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The reference expansion includes we are requesting with this payload.
             Defaults to all possible expansions.
+        fetch_full_manga: :class:`bool`
+            This parameter will fetch the full manga object with the chapter if set to ``True``.
+            Defaults to ``False``.
+
+
+        .. note::
+            ``fetch_full_manga`` when True will result in an extra API request to fetch the full manga data.
 
         Returns
         --------
@@ -1645,7 +1653,17 @@ class Client:
         """
         data = await self._http._get_chapter(chapter_id, includes=includes)
 
-        return Chapter(self._http, data["data"])
+        chapter = Chapter(self._http, data["data"])
+
+        if fetch_full_manga:
+            if chapter.manga_id is None:
+                return chapter
+
+            manga = await self.get_manga(chapter.manga_id)
+            chapter.manga = manga
+            return chapter
+
+        return chapter
 
     @require_authentication
     async def update_chapter(
