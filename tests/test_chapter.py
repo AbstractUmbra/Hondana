@@ -24,8 +24,6 @@ HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
 def clone_chapter() -> Chapter:
     t = deepcopy(PAYLOAD)
     assert "relationships" in t["data"]
-    print(t["data"]["relationships"])
-    print(len(t["data"]["relationships"]))
     return Chapter(HTTP, t["data"])
 
 

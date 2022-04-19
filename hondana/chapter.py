@@ -288,9 +288,7 @@ class Chapter:
         if self.__parent is not None:
             return self.__parent
 
-        print(self._manga_relationship)
         if not self._manga_relationship:
-            print("no rel")
             return
 
         if "attributes" in self._manga_relationship:
@@ -730,7 +728,6 @@ class UploadData:
         _succeeded: set[str] = set()
         for item in self.succeeded:
             for data in item["data"]:
-                print(data["attributes"]["originalFileName"])
                 _succeeded.add(data["attributes"]["originalFileName"])
 
         return self._filenames ^ _succeeded
