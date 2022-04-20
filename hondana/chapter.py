@@ -28,6 +28,7 @@ import datetime
 import logging
 import pathlib
 import time
+from collections.abc import Callable
 from types import TracebackType
 from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Type, TypeVar, Union
 
@@ -869,7 +870,13 @@ class ChapterUpload:
         )
 
     @require_authentication
-    async def upload_images(self, images: list[pathlib.Path], *, sort: bool = True) -> UploadData:
+    async def upload_images(
+        self,
+        images: list[pathlib.Path],
+        *,
+        sort: bool = True,
+        sorting_key: Optional[Callable[[pathlib.Path], Any]] = None,
+    ) -> UploadData:
         """|coro|
 
         This method will take a list of bytes and upload them to the MangaDex API.
@@ -880,6 +887,10 @@ class ChapterUpload:
             A list of images files as their Path objects.
         sort: :class:`bool`
             A bool to toggle if we sort the list of Paths alphabetically.
+        sorting_key: Optional[Callable[[Any], Any]]
+            A key to use in the sorting of the list of above paths.
+            This callable is passed to the ``key`` parameter of the ``sorted`` builtin.
+            If ``None``, the default sorting key is used.
 
         Returns
         --------
@@ -894,12 +905,18 @@ class ChapterUpload:
             The autosort the library provides only supports the following filename formats:
                 - ``1.png``
                 - ``1-something.png``
+
+
+        .. note::
+            If ``sorting_key`` is provided, then it must be a callable that takes a single parameter of ``pathlib.Path`` and returns a sortable value.
+            This means that the return value of ``sorting_key`` must be comparable.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
 
         if sort:
-            images = sorted(images, key=upload_file_sort)
+            sort_key = sorting_key or upload_file_sort
+            images = sorted(images, key=sort_key)
 
         chunks = as_chunks(images, 10)
         outer_idx = 1
