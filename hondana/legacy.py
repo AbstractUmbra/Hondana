@@ -70,7 +70,7 @@ class LegacyItem:
         self.obj_type: LegacyMappingType = self._attributes["type"]
 
     def __repr__(self) -> str:
-        return f"<LegacyItem id='{self.id}' type='{self.obj_type}' new_id='{self.obj_new_id}' previous_id='{self.obj_legacy_id}'>"
+        return f"<LegacyItem id='{self.id}' obj_type='{self.obj_type}' obj_new_id='{self.obj_new_id}' obj_legacy_id='{self.obj_legacy_id}'>"
 
     def __eq__(self, other: LegacyItem) -> bool:
         return isinstance(other, LegacyItem) and self.id == other.id
