@@ -14,6 +14,8 @@ import os
 import re
 import sys
 
+# from typing import Literal, Optional
+
 
 _DISCORD: str = "https://discord.gg/aYGYJxwqe5"
 _DISCORD_SVG: str = """
@@ -67,8 +69,10 @@ sys.path.append(os.path.abspath("extensions"))
 extensions: list[str] = [
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
+    # "sphinx.ext.linkcode",
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
     "sphinxcontrib_trio",
     "resource_links",
 ]
@@ -135,3 +139,14 @@ resource_links: dict[str, str] = {
     "examples": f"{_GITHUB}/tree/main/examples",
     "discord": _DISCORD,
 }
+
+
+# def linkcode_resolve(domain: Literal["c", "py", "cpp", "javascript"], info: dict[str, str]) -> Optional[str]:
+#     if domain != "py":
+#         return
+#     if not info["module"]:
+#         return
+
+#     filename: str = info["module"].replace(".", "/")
+#     return f"https://github.com/AbstractUmbra/Hondana/blob/main/{filename}.py"
+# TODO: let's try this another time
