@@ -39,6 +39,9 @@ Chapter Upload
 
 Collections
 ~~~~~~~~~~~
+.. autoclass:: MangaCollection()
+    :members: items
+
 .. autoclass:: MangaRelationCollection()
     :members: items
 
