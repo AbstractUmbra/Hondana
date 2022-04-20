@@ -40,7 +40,7 @@ jobs:
           PY_VER: "${{ matrix.python-version }}"
         run: |
           poetry env use "$PY_VER"
-          poetry install -E speedups --no-dev
+          poetry install -E docs -E tests -E speedups --no-dev
 
       - uses: actions/setup-node@v3
         with:
