@@ -60,7 +60,7 @@ class LegacyItem:
         "obj_type",
     )
 
-    def __init__(self, http: HTTPClient, payload: LegacyMappingResponse):
+    def __init__(self, http: HTTPClient, payload: LegacyMappingResponse) -> None:
         self._http = http
         self._data = payload
         self.id: str = self._data["id"]

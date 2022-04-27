@@ -726,6 +726,13 @@ class UploadData:
 
     @cached_slot_property("_cs_errored_files")
     def errored_files(self) -> set[str]:
+        """A property that returns a set of filenames that failed to upload.
+
+        Returns
+        --------
+        Set[:class:`str`]
+            The filenames of the failed uploads.
+        """
         _succeeded: set[str] = set()
         for item in self.succeeded:
             for data in item["data"]:
@@ -887,7 +894,7 @@ class ChapterUpload:
             A list of images files as their Path objects.
         sort: :class:`bool`
             A bool to toggle if we sort the list of Paths alphabetically.
-        sorting_key: Optional[Callable[[Any], Any]]
+        sorting_key: Optional[Callable[[:class:`pathlib.Path`], Any]]
             A key to use in the sorting of the list of above paths.
             This callable is passed to the ``key`` parameter of the ``sorted`` builtin.
             If ``None``, the default sorting key is used.
@@ -909,7 +916,7 @@ class ChapterUpload:
 
         .. note::
             If ``sorting_key`` is provided, then it must be a callable that takes a single parameter of ``pathlib.Path`` and returns a sortable value.
-            This means that the return value of ``sorting_key`` must be comparable.
+            This means that the return value of ``sorting_key`` must be richly comparable, with ``__lt__`` and ``__gt__``.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
         success: list[UploadedChapterResponse] = []
