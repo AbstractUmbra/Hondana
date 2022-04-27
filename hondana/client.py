@@ -2862,6 +2862,7 @@ class Client:
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
+        includes: Optional[ChapterIncludes] = ChapterIncludes(),
     ) -> ChapterFeed:
         """|coro|
 
@@ -2898,6 +2899,9 @@ class Client:
         order: Optional[:class:`~hondana.query.FeedOrderQuery`]
             A query parameter to choose how the responses are ordered.
             i.e. ``{"chapters": "desc"}``
+        includes: Optional[:class:`~hondana.query.ChapterIncludes`]
+            The list of optional includes we request the data for.
+            Defaults to all possible expansions.
 
         Raises
         -------
@@ -2935,6 +2939,7 @@ class Client:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
+                includes=includes,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])

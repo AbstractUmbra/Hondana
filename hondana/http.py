@@ -1567,6 +1567,7 @@ class HTTPClient:
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
         order: Optional[FeedOrderQuery],
+        includes: Optional[ChapterIncludes],
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
@@ -1607,6 +1608,9 @@ class HTTPClient:
 
         if order:
             query["order"] = order.to_dict()
+
+        if includes:
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 
