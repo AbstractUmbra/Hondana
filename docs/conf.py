@@ -14,6 +14,7 @@ import os
 import re
 import sys
 
+
 # from typing import Literal, Optional
 
 
@@ -46,14 +47,12 @@ copyright: str = "2021 - Present, Alex Nørgaard"
 author: str = "Alex Nørgaard"
 
 # The full version, including alpha/beta/rc tags
-version: str = ""
-
 with open("../hondana/__init__.py") as f:
     match = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE)
     if match is not None:
-        group = match.group(1)
+        version = match.group(1)
     else:
-        group = None
+        version = ""
 
 release = version
 
