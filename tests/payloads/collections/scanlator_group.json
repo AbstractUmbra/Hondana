@@ -120,10 +120,10 @@
                         "username": "NeedTomboyGF",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 1
+                        "version": 2
                     }
                 },
                 {
@@ -170,10 +170,10 @@
                         "username": "NeedTomboyGF",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 1
+                        "version": 2
                     }
                 },
                 {
@@ -306,5 +306,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 21073
+    "total": 21508
 }

@@ -3,6 +3,1116 @@
     "response": "collection",
     "data": [
         {
+            "id": "dcc3f064-9eee-44c1-b409-f6df242a3496",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Heart Gear"
+                },
+                "altTitles": [
+                    {
+                        "ja": "\u30cf\u30fc\u30c8\u30ae\u30a2"
+                    }
+                ],
+                "description": {
+                    "en": "Young teenage girl Roue lives a peaceful life with her \"uncle\", a gear named Zett. She spends her days exploring the ruins of the old world, destroyed by World War III two hundred years ago. During one of those explorations, she finds a strange cylindrical gear who calls himself Chrome, who for some reason doesn't have a \"base program\", which determines a gear's main purpose. Chrome may have to find that purpose himself in his new life with Roue and Zett\u2026  \n  \n**Officially published:**  \n- In spanish free on [MangaPlus](https://mangaplus.shueisha.co.jp/titles/200028)  \n- In french by [Ki-oon](http://www.ki-oon.com/mangas/tomes-1187-heart-gear.html)"
+                },
+                "isLocked": false,
+                "links": {
+                    "bw": "series/206643",
+                    "kt": "54445",
+                    "mu": "153488",
+                    "amz": "https://www.amazon.co.jp/gp/product/B081ZG23JY",
+                    "cdj": "http://www.cdjapan.co.jp/product/NEOBK-2369846?s_ssid=e3462d5d23242a253c",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/549185",
+                    "mal": "119321",
+                    "raw": "https://shonenjumpplus.com/episode/10834108156649693707",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100057"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "hiatus",
+                "year": null,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sci-Fi"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "50880a9d-5440-4732-9afb-8f457127e836",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Mecha"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "9467335a-1b83-4497-9231-765337a00b96",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Post-Apocalyptic"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Slice of Life"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Mystery"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2019-11-18T04:01:38+00:00",
+                "updatedAt": "2022-02-11T15:38:40+00:00",
+                "version": 4,
+                "availableTranslatedLanguages": [
+                    "en",
+                    "id",
+                    "es-la",
+                    "pt-br",
+                    "ru"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "3be207c4-87b1-4eda-b3aa-4e7dd7194065",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Takaki Tsuyoshi",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/takatsuyo320",
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-15T18:57:48+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "3be207c4-87b1-4eda-b3aa-4e7dd7194065",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Takaki Tsuyoshi",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/takatsuyo320",
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-15T18:57:48+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "5eded27a-b20a-4f93-a803-791c5a6e7a74",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": null,
+                        "fileName": "c7c00be4-93f2-4dc9-9f7d-0ee40a109134.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-24T17:34:11+00:00",
+                        "updatedAt": "2021-05-24T17:34:11+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "ac28f3f4-1bfd-491c-8403-0162379f953d",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Agravity Boys"
+                },
+                "altTitles": [
+                    {
+                        "ru": "\u0412\u043d\u0435\u0437\u0435\u043c\u043d\u044b\u0435 \u043f\u0430\u0446\u0430\u043d\u044b"
+                    },
+                    {
+                        "ja": "\u30a2\u30b0\u30e9\u30d3\u30c6\u30a3\u30dc\u30fc\u30a4\u30ba"
+                    }
+                ],
+                "description": {
+                    "en": "The year 2118\u2026 Four young astronauts head out to the stars to find humanity's new frontier\u2026or so they thought! Two days after they depart, earth is devoured by a black hole! Plunged into a destiny they cannot escape, these unique young men reach their destination of Alpha Jumbro and plan to live out the rest of their lives there. How will humanity survive in this wacky space-survival comedy?!  \n\n\n---",
+                    "ru": "2118 \u0433\u043e\u0434\u2026 \u0447\u0435\u0442\u0432\u0435\u0440\u043e \u044e\u043d\u044b\u0445 \u0430\u0441\u0442\u0440\u043e\u043d\u0430\u0432\u0442\u043e\u0432 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u043f\u043e\u043a\u043e\u0440\u044f\u0442\u044c \u043d\u043e\u0432\u044b\u0435 \u0440\u0443\u0431\u0435\u0436\u0438 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430\u2026 \u0442\u043e\u0447\u043d\u0435\u0435, \u0442\u0430\u043a \u0438\u043c \u043a\u0430\u0437\u0430\u043b\u043e\u0441\u044c! \u0427\u0435\u0440\u0435\u0437 \u0434\u0432\u0430 \u0434\u043d\u044f \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0430 \u0417\u0435\u043c\u043b\u0435 \u0443\u0441\u0442\u0440\u043e\u0438\u043b\u0438 \u044f\u0434\u0435\u0440\u043d\u0443\u044e \u0432\u043e\u0439\u043d\u0443, \u0430 \u043f\u043e\u0442\u043e\u043c \u0435\u0451 \u043f\u043e\u0433\u043b\u043e\u0442\u0438\u043b\u0430 \u0447\u0451\u0440\u043d\u0430\u044f \u0434\u044b\u0440\u0430. \u041e\u043a\u0430\u0437\u0430\u0432\u0448\u0438\u0441\u044c \u0432 \u043b\u0430\u043f\u0430\u0445 \u043d\u0435\u0438\u0437\u0431\u0435\u0436\u043d\u043e\u0439 \u0441\u0443\u0434\u044c\u0431\u044b, \u044d\u0442\u0438 \u044e\u043d\u043e\u0448\u0438 \u0434\u043e\u0441\u0442\u0438\u0433\u043b\u0438 \u0442\u043e\u0447\u043a\u0438 \u0441\u0432\u043e\u0435\u0433\u043e \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f \u2014 \u043f\u043b\u0430\u043d\u0435\u0442\u044b \u0410\u043b\u044c\u0444\u0430 \u0414\u0436\u0430\u043c\u0431\u0440\u043e, \u0438 \u0440\u0435\u0448\u0438\u043b\u0438 \u043f\u0440\u043e\u0436\u0438\u0442\u044c \u0442\u0430\u043c \u0434\u043e \u043a\u043e\u043d\u0446\u0430 \u0441\u0432\u043e\u0438\u0445 \u0434\u043d\u0435\u0439. \u041a\u0430\u043a \u0436\u0435 \u0432\u044b\u0436\u0438\u0432\u0435\u0442 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u043e \u0432 \u044d\u0442\u043e\u0439 \u0431\u0435\u0437\u0443\u043c\u043d\u043e\u0439 \u043a\u043e\u043c\u0435\u0434\u0438\u0438 \u043e \u043a\u043e\u0441\u043c\u0438\u0447\u0435\u0441\u043a\u043e\u043c \u0432\u044b\u0436\u0438\u0432\u0430\u043d\u0438\u0438?!"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "113629",
+                    "ap": "agravity-boys",
+                    "bw": "series/239993",
+                    "kt": "55707",
+                    "mu": "158809",
+                    "amz": "https://www.amazon.co.jp/dp/B0855D38T8",
+                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2625707",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/584523/",
+                    "mal": "123188",
+                    "raw": "https://shonenjumpplus.com/episode/3269754496370783987",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100077"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "7",
+                "lastChapter": "50.5",
+                "publicationDemographic": "shounen",
+                "status": "completed",
+                "year": 2019,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sci-Fi"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Genderswap"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Monsters"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Survival"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Crossdressing"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Drama"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Monster Girls"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Slice of Life"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e64f6742-c834-471d-8d72-dd51fc02b835",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Aliens"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Supernatural"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2020-04-12T08:03:46+00:00",
+                "updatedAt": "2022-01-25T09:03:16+00:00",
+                "version": 8,
+                "availableTranslatedLanguages": [
+                    "ru",
+                    "pt-br",
+                    "en",
+                    "vi",
+                    "zh-hk"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "fece46bf-b1f0-4485-8200-11b665f1db91",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Nakamura Atsushi",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "fece46bf-b1f0-4485-8200-11b665f1db91",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Nakamura Atsushi",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "ccabd41e-e8c1-4fef-880f-0f349ad505b8",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "7",
+                        "fileName": "3ef47337-6677-4d3d-bffc-6a5ca48d1dee.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-11-10T20:04:51+00:00",
+                        "updatedAt": "2021-11-10T20:04:51+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "ed6ba867-0472-4f8f-af40-a2697fcd5cfc",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Kiruru Kill Me"
+                },
+                "altTitles": [
+                    {
+                        "en": "Kill Me."
+                    },
+                    {
+                        "ja": "\u304d\u308b\u308b KILL ME"
+                    },
+                    {
+                        "es-la": "Kiruru M\u00e1tame"
+                    }
+                ],
+                "description": {
+                    "en": "Aoi, who is one of Japan's biggest entrepreneurs has a price on his head and the name of the assassin who is coming to collect on it is Kiruru Akaumi. But the one who commissioned this hit\u2026 was Aoi himself! He fell head over heels in love with Kiruru from the moment he saw her and, in order to spend more time with her to deepen their relationship, he himself commissioned the Kiruru company to kill him.  \n  \n[Official Spanish (Mangaplus)](https://mangaplus.shueisha.co.jp/titles/200046)",
+                    "ja": "\u65e5\u672c\u5c48\u6307\u306e\u5927\u4f01\u696d\u306e\u5fa1\u66f9\u53f8\u30fb\u78a7\u97f3\u6301\uff08\u3042\u304a\u3044\u306d\u3082\uff09\u306f\u4e00\u4eba\u306e\u5973\u6027\u306b\u604b\u3092\u3057\u305f\u3002\u540d\u524d\u306f\u8d64\u6d77\uff08\u3042\u304b\u3046\u307f\uff09\u304d\u308b\u308b\u3002\u8077\u696d\u306f\u6bba\u3057\u5c4b\u3001\u95c7\u793e\u4f1a\u306e\u4f4f\u4eba\u3060\u3063\u305f\u2026\u3002\u305d\u3093\u306a\u5f7c\u5973\u306b\u3082\u3046\u4e00\u5ea6\u4f1a\u3046\u305f\u3081\u306b\u3001\u97f3\u6301\u304c\u3068\u3063\u305f\u884c\u52d5\u3068\u306f\u2026!?\u3000\uff1c\u6a19\u7684\u2642\u00d7\u6697\u6bba\u8005\u2640\uff1e\u306b\u3088\u308b\u6975\u9650\u306eLOVE\u30b2\u30fc\u30e0\u304c\u5e55\u3092\u958b\u3051\u308b\uff01",
+                    "es-la": "Aoi Nemo, due\u00f1o de una de las mayores empresas de Jap\u00f3n, se ha enamorado de una mujer. Su nombre es Kiruru Akaumi. Es una asesina y residente de los bajos mundos... \u00bfQu\u00e9 debe hacer Aoi para poder volver a verla?\u3000\u00a1Un juego de amor extremo entre un objetivo \u2642 y una asesina \u2640 est\u00e1 a punto de comenzar!"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "117004",
+                    "ap": "kiruru-kill-me",
+                    "bw": "de0f7f4938-5ff3-47d4-b555-17c5d3211f56",
+                    "kt": "58720",
+                    "mu": "162439",
+                    "amz": "https://www.amazon.co.jp/dp/4088823680",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/591780/A002388195/",
+                    "mal": "125043",
+                    "raw": "https://shonenjumpplus.com/episode/10834108156763543098",
+                    "engtl": "https://sevenseasentertainment.com/series/kiruru-kill-me/"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": 2020,
+                "contentRating": "suggestive",
+                "tags": [
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Romance"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2020-07-17T00:32:19+00:00",
+                "updatedAt": "2022-02-09T22:34:59+00:00",
+                "version": 10,
+                "availableTranslatedLanguages": [
+                    "en",
+                    "es-la",
+                    "it",
+                    "fr",
+                    "pt-br"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "886439ce-58bb-4d16-ba26-4c1a8da25111",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Kano Yasuhiro",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "886439ce-58bb-4d16-ba26-4c1a8da25111",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Kano Yasuhiro",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "c36c1396-e741-4679-a49f-a332eda41e04",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "3",
+                        "fileName": "f82b92a3-2ed8-4c70-8931-6a669c6a4aca.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-02-09T22:23:54+00:00",
+                        "updatedAt": "2022-02-09T22:23:54+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "94bfc769-f5e5-4f88-838c-4f69e7a663c2",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Kuchi ga Saketemo Kimi Ni Wa"
+                },
+                "altTitles": [
+                    {
+                        "en": "Even If You Slit My Mouth"
+                    },
+                    {
+                        "ja": "\u53e3\u304c\u88c2\u3051\u3066\u3082\u541b\u306b\u306f"
+                    },
+                    {
+                        "ja-ro": "Kuchi ga Saketemo Kimi Niwa"
+                    },
+                    {
+                        "ne": "\u0924\u093f\u092e\u0940\u0932\u0947 \u092e\u0947\u0930\u094b \u092e\u0941\u0916 \u091a\u093f\u0925\u0930\u094d\u0926\u0948 \u092a\u0928\u093f"
+                    }
+                ],
+                "description": {
+                    "en": "Miroku-san, the slit-mouth woman, is to marry high school student Kouichi to maintain her existence as his family has been in charge of upkeeping superstitions for generations. To add, there seems to be another reason that he seems more than willing\u2026   \r\n  \r\nMiroku, however, would rather use her own strength than borrow that of others. Thus, they establish a contract as follows.  \r\n1. For a trial period of a year, they are to act as though they were married.  \r\n2. If she is able to scare him within that year, the engagement will be broken.  \r\n  \r\n*This page refers to the three-part short story's official serialization, which began on the Shonen Jump+ website on November 10, 2020.*",
+                    "fr": "Miroku-san, la femme \u00e0 la bouche fendue, doit \u00e9pouser Kouichi, un lyc\u00e9en, pour maintenir son existence, car sa famille est responsable de l'entretien des superstitions depuis des g\u00e9n\u00e9rations. Pour ajouter, il semble y avoir une autre raison pour laquelle il semble plus que dispos\u00e9 \u2026   \r\n  \r\nMiroku, cependant, pr\u00e9f\u00e8re utiliser sa propre force plut\u00f4t que d'emprunter celle des autres. Ainsi, ils \u00e9tablissent un contrat comme suit.   \r\n1. Pendant une p\u00e9riode d'essai d'un an, ils doivent agir comme s'ils \u00e9taient mari\u00e9s.   \r\n2. Si elle parvient \u00e0 lui faire peur dans l'ann\u00e9e, l'engagement sera rompu."
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "125624",
+                    "ap": "kuchi-ga-saketemo-kimi-ni-wa-2020",
+                    "bw": "series/287411",
+                    "mu": "174799",
+                    "mal": "128093",
+                    "raw": "https://shonenjumpplus.com/episode/13933686331735620819",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100179"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": 2020,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Romance"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Monster Girls"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Web Comic"
+                            },
+                            "description": [],
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Supernatural"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2020-12-02T02:54:52+00:00",
+                "updatedAt": "2022-03-27T16:14:59+00:00",
+                "version": 43,
+                "availableTranslatedLanguages": [
+                    "es-la",
+                    "en",
+                    "fr",
+                    "pt-br"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "65b85a3f-bdd1-4a74-8e76-e470aedac9fd",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Kajimoto Akari",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "65b85a3f-bdd1-4a74-8e76-e470aedac9fd",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Kajimoto Akari",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "6db5060f-444e-4665-800c-330643af8eae",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "5",
+                        "fileName": "8da637ba-b458-49fc-bbbf-aec11a5d63b1.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-03-27T16:14:58+00:00",
+                        "updatedAt": "2022-03-27T16:14:58+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "1c5a193e-973e-4ddd-90fc-4e09e5da4c18",
+                    "type": "manga",
+                    "related": "alternate_story",
+                    "attributes": {
+                        "title": {
+                            "en": "Kuchi ga Saketemo Kimi ni wa (2018)"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Kuchi ga Saketemo Kimi Niwa (2018)"
+                            },
+                            {
+                                "en": "\u53e3\u304c\u88c2\u3051\u3066\u3082\u541b\u306b\u306f (2018)"
+                            },
+                            {
+                                "pl": "KOBIETA O ROZCI\u0118TYCH USTACH"
+                            }
+                        ],
+                        "description": {
+                            "en": "A slit-mouth woman encounters a young boy she's unable to scare.",
+                            "pl": "Kobieta z dziwnymi ustami spotyka m\u0142odego ch\u0142opca, kt\u00f3rego nie potrafi przestraszy\u0107."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "118647",
+                            "ap": "kuchi-ga-saketemo-kimi-ni-wa",
+                            "kt": "56408",
+                            "mu": "167120",
+                            "mal": "126801",
+                            "raw": "https://twitter.com/kajimotoakari/status/1186639011428761601"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "3",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 2018,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gore"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Horror"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monster Girls"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Shota"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-07-14T03:56:23+00:00",
+                        "updatedAt": "2022-02-12T19:29:03+00:00",
+                        "version": 9,
+                        "availableTranslatedLanguages": [
+                            "pt-br",
+                            "es-la",
+                            "en",
+                            "hu",
+                            "pl",
+                            "tr",
+                            "fa"
+                        ]
+                    }
+                },
+                {
+                    "id": "cc8c1e64-1980-46b8-9a68-6d94efa674c1",
+                    "type": "manga",
+                    "related": "preserialization",
+                    "attributes": {
+                        "title": {
+                            "en": "Kuchi ga Saketemo Kimi ni wa (2020 Short)"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Kuchi ga Saketemo Kimi Niwa (2020 Short)"
+                            },
+                            {
+                                "en": "\u53e3\u304b\u3099\u88c2\u3051\u3066\u3082\u541b\u306b\u306f (2020 Short)"
+                            }
+                        ],
+                        "description": {
+                            "en": "Miroku-san, the slit-mouth woman, is to marry high school student Kouichi to maintain her existence as his family has been in charge of upkeeping superstitions for generations. To add, there seems to be another reason that he seems more than willing\u2026   \n  \nMiroku, however, would rather use her own strength than borrow that of others. Thus, they establish a contract as follows.  \n1. For a trial period of a year, they are to act as though they were married.  \n2. If she is able to scare him within that year, the engagement will be broken.  \n  \nA three part short story."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "120493",
+                            "ap": "kuchi-ga-saketemo-kimi-ni-wa-2020",
+                            "kt": "57686",
+                            "mu": "169060",
+                            "mal": "128093",
+                            "raw": "https://shonenjumpplus.com/episode/13933686331668662412"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": "3",
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Horror"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Monster Girls"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-08-13T15:18:30+00:00",
+                        "updatedAt": "2022-01-25T07:40:33+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "pt-br",
+                            "en",
+                            "tr",
+                            "vi",
+                            "es-la"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": "5c0094b6-ae83-4298-814d-48b99059aedc",
             "type": "manga",
             "attributes": {
@@ -139,1747 +1249,9 @@
                     }
                 }
             ]
-        },
-        {
-            "id": "6a0d3c6e-a5d4-4f61-ae5c-fcff2a789145",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Build King"
-                },
-                "altTitles": [
-                    {
-                        "en": "\u041a\u043e\u0440\u043e\u043b\u044c \u0441\u0442\u0440\u043e\u0439\u043a\u0438"
-                    },
-                    {
-                        "en": "\u30d3\u30eb\u30c9\u30ad\u30f3\u30b0"
-                    }
-                ],
-                "description": {
-                    "en": "Tonkachi and Renge live on mysterious Hammer Island, a place where no human should be able to survive. The two are carpenters who build houses for the island's inhabitants, but what are their special powers? And what are their dreams? Construction soon begins on this megabuild of a battle fantasy story!"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "125829",
-                    "ap": "build-king",
-                    "bw": "series/292318",
-                    "kt": "53767",
-                    "mu": "148391",
-                    "amz": "https://www.amazon.co.jp/dp/B08XM9SQ5L",
-                    "mal": "130977",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100125"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "3",
-                "lastChapter": "25",
-                "publicationDemographic": "shounen",
-                "status": "completed",
-                "year": 2020,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adventure"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Fantasy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2020-12-12T23:35:24+00:00",
-                "updatedAt": "2022-01-25T09:46:41+00:00",
-                "version": 7,
-                "availableTranslatedLanguages": [
-                    "en",
-                    "ar",
-                    "pt-br"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "97c42414-f1fc-49d2-9947-e2a1807c9cc6",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Shimabukuro Mitsutoshi",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "97c42414-f1fc-49d2-9947-e2a1807c9cc6",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Shimabukuro Mitsutoshi",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "a92cb261-3717-4f20-9b88-b4a97d91fd29",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": null,
-                        "fileName": "00471416-1316-44a7-8822-64bf1f25fa3d.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-05-24T18:22:37+00:00",
-                        "updatedAt": "2021-05-24T18:22:37+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "96713f5e-ba57-4b6b-945d-a31002e78d24",
-                    "type": "manga",
-                    "related": "preserialization",
-                    "attributes": {
-                        "title": {
-                            "en": "Build King (One-shot)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "\u30d3\u30eb\u30c9\u30ad\u30f3\u30b0"
-                            }
-                        ],
-                        "description": {
-                            "en": "Special oneshot from the creator of Toriko."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "105450",
-                            "ap": "build-king-pilot",
-                            "kt": "53469",
-                            "mu": "148391",
-                            "mal": "114061"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-06-09T09:20:13+00:00",
-                        "updatedAt": "2021-05-25T15:45:20+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "it"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "73743311-2118-42eb-9af2-c64d05e97edd",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Ghost Girl"
-                },
-                "altTitles": [
-                    {
-                        "en": "Ghost Reaper Girl"
-                    },
-                    {
-                        "ru": "\u041f\u0440\u0438\u0437\u0440\u0430\u0447\u043d\u0430\u044f \u0434\u0435\u0432\u0443\u0448\u043a\u0430"
-                    },
-                    {
-                        "ja": "\u30b4\u30fc\u30b9\u30c8\u30ac\u30fc\u30eb"
-                    }
-                ],
-                "description": {
-                    "en": "A new series from the creator of *Rosario+Vampire* with artwork that's beyond this dimension! Chlo\u00e9 dreams of being an actress, but her path to success may be closed as she's now twenty-eight with very little to show for it. However, she does happen to have a special occult body type!",
-                    "ja": "\u5973\u512a\u3092\u5922\u898b\u3066\u751f\u304d\u308b\u3082\u82b1\u958b\u304b\u305a\u30a2\u30e9\u30b5\u30fc\u306b\u306a\u3063\u3066\u3057\u307e\u3063\u305f\u30af\u30ed\u30a8\u306f\u3001\u985e\u3044\u7a00\u306a\u308b\u30aa\u30ab\u30eb\u30c8\u4f53\u8cea\u306e\u6301\u3061\u4e3b\u3060\u3063\u305f\u3002\u3042\u308b\u6642\u3001\u9000\u9b54\u8acb\u8ca0\u4eba\uff08\u30b4\u30fc\u30b9\u30c8\u30ea\u30fc\u30d1\u30fc\uff09\u3092\u540d\u4e57\u308b\u9752\u5e74\u30fb\u30ab\u30a4\u3068\u51fa\u4f1a\u3063\u305f\u3053\u3068\u3092\u304d\u3063\u304b\u3051\u306b\u9ec4\u6cc9\u3092\u8131\u7344\u3057\u73fe\u4e16\u3078\u821e\u3044\u623b\u3063\u305f\u60aa\u970a\u305f\u3061\u3092\u9000\u6cbb\u3059\u308b\u3053\u3068\u306b\u306a\u3063\u3066\u2026!?",
-                    "ru": "\u041d\u043e\u0432\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 \u043e\u0442 \u0430\u0432\u0442\u043e\u0440\u0430 \u00abRosario + Vampire\u00bb.  \n\u0425\u043b\u043e\u044f \u0441 \u0434\u0435\u0442\u0441\u0442\u0432\u0430 \u043c\u0435\u0447\u0442\u0430\u043b\u0430 \u0441\u0442\u0430\u0442\u044c \u0430\u043a\u0442\u0440\u0438\u0441\u043e\u0439, \u043d\u043e \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0442\u0430\u043b\u0430\u043d\u0442\u0430 \u0432\u0441\u0451 \u0432\u0440\u0435\u043c\u044f \u0432\u0441\u0442\u0430\u0432\u043b\u044f\u043b\u043e \u0435\u0439 \u043f\u0430\u043b\u043a\u0438 \u0432 \u043a\u043e\u043b\u0451\u0441\u0430. \u0412\u0440\u0435\u043c\u044f \u0448\u043b\u043e, \u0435\u0439 \u0443\u0436\u0435 28, \u0437\u0430 \u0441\u043f\u0438\u043d\u043e\u0439 \u043e\u0434\u043d\u0438 \u043f\u0440\u043e\u0432\u0430\u043b\u044c\u043d\u044b\u0435 \u0440\u0430\u0431\u043e\u0442\u044b, \u043d\u0430\u0434\u0435\u0436\u0434\u044b \u043d\u0430 \u043a\u0430\u043a\u043e\u0439-\u043b\u0438\u0431\u043e \u0443\u0441\u043f\u0435\u0445 \u0432\u0441\u0451 \u043d\u0438\u0436\u0435 \u0438 \u043d\u0438\u0436\u0435. \u0418 \u0432\u043e\u0442, \u043f\u043e\u043f\u044b\u0442\u0430\u0432 \u0441\u0447\u0430\u0441\u0442\u044c\u0435 \u043d\u0430 \u043e\u0447\u0435\u0440\u0435\u0434\u043d\u043e\u043c \u0441\u043e\u0431\u0435\u0441\u0435\u0434\u043e\u0432\u0430\u043d\u0438\u0438, \u0435\u0451 \u0436\u0438\u0437\u043d\u044c \u043f\u0440\u0438\u043e\u0431\u0440\u0435\u0442\u0430\u0435\u0442 \u043d\u043e\u0432\u044b\u0435 \u043a\u0440\u0430\u0441\u043a\u0438: \u0441\u0443\u0434\u044c\u0431\u043e\u043d\u043e\u0441\u043d\u0430\u044f \u0432\u0441\u0442\u0440\u0435\u0447\u0430, \u0447\u0442\u043e \u0441\u043b\u0443\u0447\u0438\u043b\u0430\u0441\u044c \u0432 \u0442\u043e\u0442 \u0434\u0435\u043d\u044c, \u043c\u0435\u043d\u044f\u0435\u0442 \u0432\u0441\u044e \u0435\u0451 \u0436\u0438\u0437\u043d\u044c \u0438 \u043f\u0440\u0438\u043e\u0442\u043a\u0440\u044b\u0432\u0430\u0435\u0442 \u0437\u0430\u0432\u0435\u0441\u0443 \u043d\u0430\u0434 \u043f\u043e\u0442\u0443\u0441\u0442\u043e\u0440\u043e\u043d\u043d\u0438\u043c."
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "120734",
-                    "ap": "ghost-reaper-girl",
-                    "bw": "series/275381/",
-                    "mu": "169893",
-                    "mal": "128150",
-                    "raw": "https://shonenjumpplus.com/episode/13933686331679018626",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100109"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "",
-                "lastChapter": "",
-                "publicationDemographic": "shounen",
-                "status": "ongoing",
-                "year": 2020,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2020-08-29T02:16:10+00:00",
-                "updatedAt": "2022-02-09T04:47:31+00:00",
-                "version": 7,
-                "availableTranslatedLanguages": [
-                    "ru",
-                    "fr",
-                    "en",
-                    "ar"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "1315af4f-c181-4a2f-8542-8bcb85a80062",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Ikeda Akihisa",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "1315af4f-c181-4a2f-8542-8bcb85a80062",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Ikeda Akihisa",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "98c81101-b894-4781-b3bb-caa228441e30",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "3",
-                        "fileName": "19e1ff7e-ab9f-46a0-8dc2-f3d4cffa3327.jpg",
-                        "locale": "ja",
-                        "createdAt": "2022-02-09T04:47:30+00:00",
-                        "updatedAt": "2022-02-09T04:47:30+00:00",
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
-            "id": "46e530ce-0766-4cbd-b005-5e6fb0ba5e71",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Boruto: Naruto Next Generations"
-                },
-                "altTitles": [
-                    {
-                        "ja": "BORUTO-\u30dc\u30eb\u30c8- -NARUTO NEXT GENERATIONS-"
-                    },
-                    {
-                        "id": "Boruto: Naruto Generasi Selanjutnya"
-                    },
-                    {
-                        "ru": "\u0411\u043e\u0440\u0443\u0442\u043e: \u041d\u043e\u0432\u043e\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435 \u041d\u0430\u0440\u0443\u0442\u043e"
-                    },
-                    {
-                        "ru": "\u0411\u043e\u0440\u0443\u0442\u043e. \u041d\u0430\u0440\u0443\u0442\u043e: \u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435"
-                    }
-                ],
-                "description": {
-                    "en": "Naruto was a young shinobi with an incorrigible knack for mischief. He achieved his dream to become the greatest ninja in the village and his face sits atop the Hokage monument. But this is not his story\u2026 A new generation of ninja are ready to take the stage, led by Naruto's own son, Boruto!",
-                    "pt": "Continua\u00e7\u00e3o direta de Naruto. O mang\u00e1 ter\u00e1 foco no filho de Naruto e Hinata, Boruto (Bolt), em Sarada, a filha de Sasuke e Sakura e na nova gera\u00e7\u00e3o de ninjas ap\u00f3s a 4\u00b0 Grande Guerra Ninja.",
-                    "ru": "C\u0435\u0440\u0438\u044f \u043c\u0430\u043d\u0433\u0438 \u0437\u0430 \u0441\u043e\u0432\u043c\u0435\u0441\u0442\u043d\u044b\u043c \u0430\u0432\u0442\u043e\u0440\u0441\u0442\u0432\u043e\u043c \u041a\u043e\u0434\u0430\u0447\u0438 \u0423\u043a\u044c\u0451 \u0438 \u0418\u043a\u0435\u043c\u043e\u0442\u043e \u041c\u0438\u043a\u0438\u043e \u0432 \u0436\u0430\u043d\u0440\u0435 \u0441\u0451\u043d\u044d\u043d, \u043f\u0440\u0438\u0448\u0435\u0434\u0448\u0430\u044f \u043d\u0430 \u0441\u043c\u0435\u043d\u0443 \"\u041d\u0430\u0440\u0443\u0442\u043e\"."
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "87178",
-                    "ap": "boruto",
-                    "bw": "series/112484",
-                    "kt": "36766",
-                    "mu": "132770",
-                    "amz": "https://www.amazon.co.jp/gp/product/B0756Y2NNW",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/375535/",
-                    "mal": "95210",
-                    "engtl": "https://www.viz.com/any/boruto/section/38691/more"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "",
-                "lastChapter": "",
-                "publicationDemographic": "shounen",
-                "status": "ongoing",
-                "year": 2016,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Martial Arts"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adventure"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Fantasy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2019-03-12T01:53:21+00:00",
-                "updatedAt": "2022-01-25T09:35:43+00:00",
-                "version": 11,
-                "availableTranslatedLanguages": [
-                    "ru",
-                    "pt-br",
-                    "en",
-                    "es-la",
-                    "es",
-                    "tr",
-                    "ar",
-                    "de",
-                    "ro",
-                    "id"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "54d2c255-f4a9-4bd5-b927-587ef9c4e3d2",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Kodachi Ukyou",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "7f718dfa-e5be-45ea-a5cb-0fcd3ed52d5f",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Kishimoto Masashi",
-                        "imageUrl": null,
-                        "biography": {
-                            "en": "Masashi Kishimoto (\u5cb8\u672c \u6589\u53f2, Kishimoto Masashi, born November 8, 1974) is a Japanese manga artist. His best known work, Naruto, was in serialization from 1999 to 2014 and has sold over 250 million copies worldwide in 46 countries as of May 2019. The series has been adapted into two anime and multiple films, video games, and related media. Besides the Naruto manga, Kishimoto also personally supervised the two canonical anime films, The Last: Naruto the Movie and Boruto: Naruto the Movie, and has written several one-shot stories. In 2019, Kishimoto wrote Samurai 8: The Tale of Hachimaru which ended in March 2020. From May 2016 through October 2020 he supervised the Boruto: Naruto Next Generations manga written by [Uky\u014d Kodachi](https://mangadex.org/author/54d2c255-f4a9-4bd5-b927-587ef9c4e3d2/kodachi-ukyou) and illustrated by [Mikio Ikemoto](https://mangadex.org/author/99fd0ae9-cac3-47ed-85c9-e9983b93c839/ikemoto-mikio). In November 2020 it was announced that he had taken over as writer on the series, replacing Kodachi.\n\nA reader of manga from a young age, Kishimoto showed a desire to write his own manga, citing authors [Akira Toriyama](https://mangadex.org/author/7bb20b16-0f35-4510-b2b3-bbeffba54c23/toriyama-akira) and [Katsuhiro Otomo](https://mangadex.org/author/42390fa3-1ff3-4ca9-871a-2133783a28a1/otomo-katsuhiro) as his main inspirations. As a result, Kishimoto spent several years working to write his own sh\u014dnen manga for Weekly Sh\u014dnen Jump magazine which he was a fan of."
-                        },
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-01-25T10:21:48+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "99fd0ae9-cac3-47ed-85c9-e9983b93c839",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Ikemoto Mikio",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "3b2d5f83-7bec-4cce-8b53-661c1854cfaf",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "16",
-                        "fileName": "13602dc7-7e87-4bfb-9597-be7448a04ca6.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-12-14T11:25:23+00:00",
-                        "updatedAt": "2021-12-14T11:25:23+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "538812c5-54c2-43c2-938b-5079ec21b04e",
-                    "type": "manga",
-                    "related": "colored",
-                    "attributes": {
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "contentRating": "safe",
-                        "title": {
-                            "en": "Boruto: Naruto Next Generations (Fan Colored)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "BORUTO-\u30dc\u30eb\u30c8- -NARUTO NEXT GENERATIONS- "
-                            },
-                            {
-                                "en": "\u0411\u043e\u0440\u0443\u0442\u043e: \u041d\u043e\u0432\u043e\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435 \u041d\u0430\u0440\u0443\u0442\u043e "
-                            },
-                            {
-                                "en": "\u0411\u043e\u0440\u0443\u0442\u043e. \u041d\u0430\u0440\u0443\u0442\u043e: \u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0435 \u043f\u043e\u043a\u043e\u043b\u0435\u043d\u0438\u0435"
-                            }
-                        ],
-                        "description": {
-                            "en": "Naruto was a young shinobi with an incorrigible knack for mischief. He achieved his dream to become the greatest ninja in the village and his face sits atop the Hokage monument. But this is not his story\u2026 A new generation of ninja are ready to take the stage, led by Naruto's own son, Boruto!  \n  \nFan colored."
-                        },
-                        "year": null,
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "7b2ce280-79ef-4c09-9b58-12b7c23a9b78",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fan Colored"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "version": 2,
-                        "createdAt": "2019-12-29T05:44:20+00:00",
-                        "updatedAt": "2021-05-25T15:42:24+00:00",
-                        "availableTranslatedLanguages": [
-                            "fr"
-                        ]
-                    }
-                },
-                {
-                    "id": "65a45094-1875-4ac1-8945-31a273c3846b",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Naruto - Kage Bunshin \u00d7\u00d7\u00d7\u00d7-Tte Shitteru!? (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": "\"Did you know\u2026 you can use Shadow Clones to masturbate\u2026?\"  \n  \nCharacters:  \n||  \nBoruto Uzumaki  \nHimawari Uzumaki  \nHinata Hyuga  \nKakashi Hatake  \nNaruko  \nNaruto Uzumaki  \n||  \n  \nHentai Tags:  \n||  \nBig Breasts \u2640  \nFilming \u2640  \nNakadashi \u2640  \nSelfcest \u2640  \nTwintails \u2640  \nGender Bender \u2642  \nSelfcest \u2642  \n||"
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Genderswap"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-09-09T05:59:45+00:00",
-                        "updatedAt": "2021-05-25T15:43:11+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "66ed626c-a40c-4fc8-b351-e1a400a9f99c",
-                    "type": "manga",
-                    "related": "colored",
-                    "attributes": {
-                        "title": {
-                            "en": "Kawaki's Childhood (Fan colored)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Boruto"
-                            },
-                            {
-                                "en": "More Edgy Sasuke's childhood"
-                            }
-                        ],
-                        "description": {
-                            "en": "Fan colored pages of Kawaki\u2019s childhood collected in a mini chapter."
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "489dd859-9b61-4c37-af75-5b18e88daafc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Ninja"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "7b2ce280-79ef-4c09-9b58-12b7c23a9b78",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fan Colored"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-02-23T16:18:03+00:00",
-                        "updatedAt": "2021-05-25T15:43:19+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "6b1eb93e-473a-4ab3-9922-1a66d2a29a4a",
-                    "type": "manga",
-                    "related": "prequel",
-                    "attributes": {
-                        "title": {
-                            "en": "Naruto"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "-\u30ca\u30eb\u30c8-"
-                            },
-                            {
-                                "ja": "NARUTO -\u30ca\u30eb\u30c8-"
-                            },
-                            {
-                                "ru": "\u041d\u0430\u0440\u0443\u0442\u043e"
-                            },
-                            {
-                                "th": "\u0e19\u0e34\u0e19\u0e08\u0e32\u0e04\u0e32\u0e16\u0e32\u0e42\u0e2d\u0e49\u0e42\u0e2e\u0e40\u0e2e\u0e30"
-                            },
-                            {
-                                "ja": "\u30ca\u30eb\u30c8"
-                            },
-                            {
-                                "zh": "\u706b\u5f71\u5fcd\u8005"
-                            },
-                            {
-                                "zh-hk": "\u72d0\u5fcd"
-                            },
-                            {
-                                "ko": "\ub098\ub8e8\ud1a0"
-                            },
-                            {
-                                "ar": "\u0646\u0627\u0631\u0648\u062a\u0648"
-                            },
-                            {
-                                "hi": "\u0928\u093e\u0930\u0941\u0924\u094b"
-                            }
-                        ],
-                        "description": {
-                            "en": "Before Naruto's birth, a great demon fox had attacked the Hidden Leaf Village. The 4th Hokage from the leaf village sealed the demon inside the newly born Naruto, causing him to unknowingly grow up detested by his fellow villagers. Despite his lack of talent in many areas of ninjutsu, Naruto strives for only one goal: to gain the title of Hokage, the strongest ninja in his village. Desiring the respect he never received, Naruto works toward his dream with fellow friends Sasuke and Sakura and mentor Kakashi as they go through many trials and battles that come with being a ninja.  \n\n\n---",
-                            "ru": "\u0414\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u044c \u043b\u0435\u0442 \u043d\u0430\u0437\u0430\u0434, \u043c\u043e\u0449\u043d\u044b\u0439 \u0414\u0435\u0432\u044f\u0442\u0438\u0445\u0432\u043e\u0441\u0442\u044b\u0439 \u0414\u0435\u043c\u043e\u043d-\u041b\u0438\u0441 \u043d\u0430\u043f\u0430\u043b \u043d\u0430 \u0434\u0435\u0440\u0435\u0432\u043d\u044e \u043d\u0438\u043d\u0434\u0437\u044f, \u041a\u043e\u043d\u043e\u0445\u0443. \u0414\u0435\u043c\u043e\u043d \u0431\u044b\u043b \u0431\u044b\u0441\u0442\u0440\u043e \u043f\u043e\u0431\u0435\u0436\u0434\u0435\u043d \u0438 \u0437\u0430\u043f\u0435\u0447\u0430\u0442\u0430\u043d \u0432 \u043c\u043b\u0430\u0434\u0435\u043d\u0446\u0435 \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041d\u0430\u0440\u0443\u0442\u043e \u0423\u0437\u0443\u043c\u0430\u043a\u0438. \u041d\u043e \u0434\u043b\u044f \u044d\u0442\u043e\u0433\u043e, \u0433\u043b\u0430\u0432\u043d\u043e\u043c\u0443 \u043d\u0438\u043d\u0434\u0437\u044f \u041a\u043e\u043d\u043e\u0445\u0438, \u0447\u0435\u0442\u0432\u0451\u0440\u0442\u043e\u043c\u0443 \u0445\u043e\u043a\u0430\u0433\u0435 \u043f\u0440\u0438\u0448\u043b\u043e\u0441\u044c \u043f\u043e\u0436\u0435\u0440\u0442\u0432\u043e\u0432\u0430\u0442\u044c \u0436\u0438\u0437\u043d\u044c\u044e\u2026 \u0422\u0435\u043f\u0435\u0440\u044c, \u043f\u043e \u043f\u0440\u043e\u0448\u0435\u0441\u0442\u0432\u0438\u0438 12-\u0438 \u043b\u0435\u0442, \u041d\u0430\u0440\u0443\u0442\u043e \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043d\u043e\u043c\u0435\u0440\u043e\u043c \u043e\u0434\u0438\u043d \u0441\u0440\u0435\u0434\u0438 \u043f\u0440\u0438\u0434\u0443\u0440\u043a\u043e\u0432 \u043d\u0438\u043d\u0434\u0437\u044f, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u043f\u043e\u043b\u043e\u043d \u0440\u0435\u0448\u0438\u043c\u043e\u0441\u0442\u0438 \u0441\u0442\u0430\u0442\u044c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u043c \u0425\u043e\u043a\u0430\u0433\u0435 \u0438 \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043f\u0440\u0438\u0437\u043d\u0430\u043d\u0438\u0435 \u0432\u0441\u0435\u0445, \u043a\u0442\u043e \u043a\u043e\u0433\u0434\u0430-\u043b\u0438\u0431\u043e \u0441\u043e\u043c\u043d\u0435\u0432\u0430\u043b\u0441\u044f \u0432 \u043d\u0435\u043c!"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "30011",
-                            "ap": "naruto",
-                            "bw": "series/13003/",
-                            "kt": "35",
-                            "mu": "15",
-                            "amz": "https://www.amazon.co.jp/gp/product/B07571D6J4/",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/132083/",
-                            "mal": "11",
-                            "raw": "https://shonenjumpplus.com/episode/10833519556325021854",
-                            "engtl": "https://www.viz.com/naruto"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "72",
-                        "lastChapter": "700",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": 1999,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "489dd859-9b61-4c37-af75-5b18e88daafc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Ninja"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-01-18T02:06:39+00:00",
-                        "updatedAt": "2022-02-15T22:56:56+00:00",
-                        "version": 10,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "ru",
-                            "pt-br",
-                            "tr",
-                            "es-la",
-                            "ro",
-                            "id",
-                            "ar",
-                            "bg"
-                        ]
-                    }
-                },
-                {
-                    "id": "6cdd7d8e-ccef-46e4-adad-6a77642e344a",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Naruto - Chain (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Naruto dj - Chain"
-                            }
-                        ],
-                        "description": {
-                            "en": "Sasuke loses his vision for a period of time and Naruto tends to him."
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Boys' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-05-22T15:26:03+00:00",
-                        "updatedAt": "2018-05-22T15:26:03+00:00",
-                        "version": 1,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "af3b5bcd-9ad4-466a-9f1b-89f0673865fd",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Naruto Next Generation (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": "Cuando todos pensaban que el mundo de naruto ya no pod\ufffd a seguir expandi\u00e9ndose les presento mi fanmanga el cual inicia 3 a\u00f1os despues de los eventos ocurridos en Boruto The Movie."
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": null,
-                        "contentRating": "suggestive",
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-12-30T18:05:10+00:00",
-                        "updatedAt": "2018-12-30T18:05:10+00:00",
-                        "version": 1,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "e9d5052d-6fc2-4a14-b08e-1ed36e3c647a",
-                    "type": "manga",
-                    "related": "prequel",
-                    "attributes": {
-                        "title": {
-                            "en": "The Day Naruto Became Hokage"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Boruto - Naruto the Movie"
-                            },
-                            {
-                                "en": "Naruto ga Hokage ni Natta Hi"
-                            }
-                        ],
-                        "description": {
-                            "en": "Naruto's Hokage inauguration day."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "87402",
-                            "ap": "boruto-naruto-the-movie-tokubetsu-bangai-hen-naruto-ga-hokage-ni-natta-hi",
-                            "kt": "37051",
-                            "mu": "124776",
-                            "mal": "92286"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Supernatural"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-11-13T16:19:02+00:00",
-                        "updatedAt": "2021-05-25T15:49:07+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "es"
-                        ]
-                    }
-                },
-                {
-                    "id": "f8781b2c-7677-44d1-a0b4-b2a3c4752601",
-                    "type": "manga",
-                    "related": "side_story",
-                    "attributes": {
-                        "title": {
-                            "en": "Naruto Gaiden: Michita Tsuki ga Terasu Michi"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Naruto Side Story: The Road Illuminated by the Full Moon"
-                            },
-                            {
-                                "en": "NARUTO-\u30ca\u30eb\u30c8-\u5916\u4f1d \uff5e\u6e80\u3061\u305f\u6708\u304c\u7167\u3089\u3059\u9053"
-                            },
-                            {
-                                "en": "Naruto: The Path Lit by the Full Moon"
-                            }
-                        ],
-                        "description": {
-                            "en": "A side story about the back story of Boruto's teammate, Mitsuki"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "87175",
-                            "ap": "naruto-gaiden-michita-tsuki-ga-terasu-michi",
-                            "kt": "37632",
-                            "mu": "120994",
-                            "mal": "97372"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-08-26T03:13:25+00:00",
-                        "updatedAt": "2019-08-26T03:13:25+00:00",
-                        "version": 1,
-                        "availableTranslatedLanguages": []
-                    }
-                }
-            ]
-        },
-        {
-            "id": "d31d0aee-c7df-481f-ac60-bce111cdd8b0",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Tokyo Shinobi Squad"
-                },
-                "altTitles": [
-                    {
-                        "en": "\u0422\u043e\u043a\u0438\u0439\u0441\u043a\u0438\u0439 \u043e\u0442\u0440\u044f\u0434 \u0448\u0438\u043d\u043e\u0431\u0438"
-                    },
-                    {
-                        "en": "\u30c8\u30fc\u30ad\u30e7\u30fc\u5fcd\u30b9\u30af\u30ef\u30c3\u30c9"
-                    },
-                    {
-                        "en": "\u4e1c\u4eac\u5fcd\u8005\u5c0f\u961f"
-                    },
-                    {
-                        "en": "\u6771\u4eac\u5fcd\u8005\u5c0f\u968a"
-                    }
-                ],
-                "description": {
-                    "en": "Tokyo, 2049\u2026 Thanks to the Galapagos Reform enacted by the government, Russia, China, America and Japan are now connected by a Hyper Loop system. This globalization has turned Tokyo into the most crime-ridden city in the world. To fight the rising crime, those who have been working in the shadows since the Sengoku period are needed\u2026 They are\u2026the Shinobi!  \n  \n\n\n---\n\n**Officially Translated:**  \n- In French by [Kaz\u00e9](http://manga.kaze.fr/)\n"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "109174",
-                    "ap": "tokyo-shinobi-squad",
-                    "bw": "series/214389",
-                    "mu": "153837",
-                    "amz": "https://www.amazon.co.jp/dp/B07VGBHT79",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/557277/",
-                    "mal": "120176",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100062"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "3",
-                "lastChapter": "27",
-                "publicationDemographic": "shounen",
-                "status": "completed",
-                "year": null,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Sci-Fi"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "489dd859-9b61-4c37-af75-5b18e88daafc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Ninja"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Martial Arts"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adventure"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2019-12-08T13:11:22+00:00",
-                "updatedAt": "2021-05-25T15:48:03+00:00",
-                "version": 2,
-                "availableTranslatedLanguages": [
-                    "es-la",
-                    "pt-br",
-                    "zh-hk",
-                    "ru",
-                    "vi",
-                    "en"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "61240cc6-4f2c-4be7-bccd-29ca3903b404",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Tanaka Yuuki",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "c1ca4b81-79e7-4b9c-9c52-037121630450",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Matsuura Kento",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": "https://twitter.com/matsukenmanga",
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-02-15T19:06:23+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "daadfb51-cf26-4f33-89c7-e9008271b76a",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": null,
-                        "fileName": "a34d4872-6ebf-41da-be93-8086cbab1cae.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-05-24T17:36:45+00:00",
-                        "updatedAt": "2021-05-24T17:36:45+00:00",
-                        "version": 1
-                    }
-                }
-            ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 48415
+    "total": 49135
 }

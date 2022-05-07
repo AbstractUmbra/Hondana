@@ -113,7 +113,7 @@
                 "type": "manga",
                 "attributes": {
                     "title": {
-                        "en": "Uenobon Anthology Booklet 1"
+                        "en": "Uenobon Anthology Booklet"
                     },
                     "altTitles": [
                         {
@@ -121,15 +121,15 @@
                         }
                     ],
                     "description": {
-                        "en": "An anthology booklet featuring various artists, included with special edition copies of Ueno-san wa Bukiyou volume 6."
+                        "en": "Anthology booklets featuring various artists, included with special edition copies of Ueno-san wa Bukiyou volumes 6 & 7."
                     },
                     "isLocked": false,
                     "links": {
                         "al": "129486"
                     },
                     "originalLanguage": "ja",
-                    "lastVolume": "",
-                    "lastChapter": "14",
+                    "lastVolume": "2",
+                    "lastChapter": "12",
                     "publicationDemographic": "seinen",
                     "status": "completed",
                     "year": 2019,
@@ -191,8 +191,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-08-08T06:33:13+00:00",
-                    "updatedAt": "2022-03-24T13:36:11+00:00",
-                    "version": 3,
+                    "updatedAt": "2022-04-18T01:43:00+00:00",
+                    "version": 6,
                     "availableTranslatedLanguages": [
                         "en"
                     ]

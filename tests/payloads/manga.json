@@ -59,6 +59,9 @@
                 },
                 {
                     "en": "Don't Toy With Me, Miss Nagatoro"
+                },
+                {
+                    "uk": "\u041d\u0435 \u0434\u0440\u0430\u0436\u043d\u0438 \u043c\u0435\u043d\u0435, \u041d\u0430\u0433\u0430\u0442\u043e\u0440\u043e-\u0441\u0430\u043d"
                 }
             ],
             "description": {
@@ -158,8 +161,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-03-04T12:21:59+00:00",
-            "updatedAt": "2022-04-08T18:57:16+00:00",
-            "version": 316,
+            "updatedAt": "2022-04-13T10:59:12+00:00",
+            "version": 317,
             "availableTranslatedLanguages": [
                 "id",
                 "es-la",
@@ -170,6 +173,7 @@
                 "sr",
                 "cs",
                 "en",
+                "zh",
                 "hu",
                 "tr",
                 "uk",
@@ -349,21 +353,24 @@
                         }
                     ],
                     "description": {
-                        "en": "Anthology from various doujin artists about Nagatoro and Senpai keeping to the theme of Nagatoro teasing Senpai and sometimes it backfiring on her.",
+                        "en": "Anthology from various doujin artists about Nagatoro and Senpai keeping to the theme of Nagatoro teasing Senpai and sometimes it backfiring on her.\n\nVolume 4\n1. *Does It Feel Good, Senpai?* by **Okinaga Umanosuke**\n2. *Were You Hoping for It, Senpai?* by **Kimidori Hana**\n3. *Do Not Grow Your Breasts without Thought.* by **Mozu**\n4. *It\u2019s Hot, but What\u2019s Up, Senpai?* by **Haiba Nemumi**\n5. *But This Is Obviously Your Drawing?* by **Ogushi Aritomo**\n6. *I\u2019ll Let You See, Senpai.* by **fu-ta**\n7. *Senpai\u2026 What\u2019s Going On Here\u2026?* by **Zeroyon**\n8. *I Love You Game* by **Yuichi**\n9. *Welcome to Nagatoro\u2019s Massage!* by **INU**\n10. *If Nagatoro-San Changed into a Swimsuit.* by **Arato Asato**\n11. *Do You Want to Be a Baby, Senpai?* by **Kurou**\n12. *Can I Squeeze You?* by **Manno**\n13. *Kouhai of the Dead* by **Magokoro Kurage**\n14. *Nagatoro-San vs Senpai* by **Mizumi**",
                         "ru": "\u0410\u043d\u0442\u043e\u043b\u043e\u0433\u0438\u044f \u0441 \u043a\u043e\u0440\u043e\u0442\u043a\u0438\u043c\u0438 \u0438\u0441\u0442\u043e\u0440\u0438\u044f\u043c\u0438 \u043e\u0442 \u0440\u0430\u0437\u043d\u044b\u0445 \u0430\u0432\u0442\u043e\u0440\u043e\u0432 \u043d\u0430 \u0442\u0435\u043c\u0443 \u043e\u0440\u0438\u0433\u0438\u043d\u0430\u043b\u044c\u043d\u043e\u0439 \u043c\u0430\u043d\u0433\u0438 \"\u041d\u0435 \u0438\u0437\u0434\u0435\u0432\u0430\u0439\u0441\u044f, \u041d\u0430\u0433\u0430\u0442\u043e\u0440\u043e-\u0441\u0430\u043d\".  \n  \n\n\n---\n\n- **Volume 1** (Nagatoro-san wo, Ijiritai!!)  \nChomoran, Cool Kyoushinja, Hiroe Rei, Hotondo Shindeiru, Konbu Wakame, Najima Keiji, Nanashi, Orimoto Mimana, Shimimaru, Suzumoto Kou, Uchiyama Atsushi(Attsun)  \n- **Volume 2** (Soko Ijirunsuka, Nagatoro-san!)  \nAzu, Katou Yuiichi, Kawamura Taku, Mochinchi, Nanashi, Okamoto Lynn, Sukeno Yoshiaki, Suzuki Kenya, Tanigawa Nico, tugeneko, Watanabe Shizumu, Yamamoto Souichirou  \n- **Volume 3** (Ijirushikanai! Nagatoro-san)  \nManga: Sagara Riri, Nishide Kengoro, Andou Masaki (single page), Morishige Takuma, Enokidu/Enokids, Kumano Kyu, Sakurai Norio, Bimita  \nIllustrations: Issiki/Isshiki, Kitada Ryouma, Souji Hougu, Namori, Nekoume, Yamada Yoshinobu  \n- **Volume 4** (Motto Shiritai! Nagatoro-san!)  \nManga and Illustrations: 774 (Nanashi)  \n- **Volume 5** (Ippai Misemasu! Nagatoro-san)  \nIllustrations: Sugiura Jiro, Maki Keigo, CHANxCO, Honjou Raita, nonco, 774 (Nanashi)  \n  \n**Notes:**  \n- The Artist/Author fields only accepted 19 names before failing which isn't ideal for anthologies so I've split them between the two"
                     },
                     "isLocked": false,
                     "links": {
                         "al": "104616",
+                        "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe/",
                         "kt": "56972",
-                        "mu": "151069"
+                        "mu": "151069",
+                        "amz": "https://www.amazon.co.jp/dp/4758022445/",
+                        "mal": "136168"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": "",
                     "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "ongoing",
-                    "year": null,
+                    "year": 2021,
                     "contentRating": "suggestive",
                     "tags": [
                         {
@@ -422,10 +429,11 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-08-16T01:01:02+00:00",
-                    "updatedAt": "2022-02-03T03:21:38+00:00",
-                    "version": 5,
+                    "updatedAt": "2022-04-22T22:38:19+00:00",
+                    "version": 12,
                     "availableTranslatedLanguages": [
                         "th",
+                        "zh",
                         "en",
                         "ru",
                         "pt-br"

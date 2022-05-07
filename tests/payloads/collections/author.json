@@ -921,70 +921,6 @@
             ]
         },
         {
-            "id": "b319c571-19fd-4d68-a575-5a4ec453e562",
-            "type": "author",
-            "attributes": {
-                "name": "Tsutsumi",
-                "imageUrl": null,
-                "biography": [],
-                "twitter": null,
-                "pixiv": null,
-                "melonBook": null,
-                "fanBox": null,
-                "booth": null,
-                "nicoVideo": null,
-                "skeb": null,
-                "fantia": null,
-                "tumblr": null,
-                "youtube": null,
-                "weibo": null,
-                "naver": null,
-                "website": null,
-                "createdAt": "2021-04-19T21:59:45+00:00",
-                "updatedAt": "2021-04-19T21:59:45+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "4c84ac27-01d5-41f2-89fd-220b9cc11e20",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Junjou Midara"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Chotto Matte yo Suima-chan (Just Hold On, Suima-chan)"
-                            }
-                        ],
-                        "description": {
-                            "en": "8. Chotto Matte yo Suima-chan (Just Hold On, Suima-chan)"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "121075"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-20T10:15:01+00:00",
-                        "updatedAt": "2021-05-25T15:42:09+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
             "id": "b31d01b2-28bb-45e0-8def-f32c10925087",
             "type": "author",
             "attributes": {
@@ -1251,9 +1187,232 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "e6f64ed9-c6fe-4ff5-a058-3b06f1fa23fb",
+            "type": "author",
+            "attributes": {
+                "name": "Haga Yuina",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "a4c586f1-b065-4666-ae21-100599965685",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "16-sai Kiss"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "16 Sai Kiss - Night Sky Kiss"
+                            },
+                            {
+                                "en": "16 Sai kisu"
+                            },
+                            {
+                                "en": "16 Year Old Kiss"
+                            },
+                            {
+                                "en": "16-sai Kissu"
+                            },
+                            {
+                                "en": "16-sai: KISS"
+                            },
+                            {
+                                "en": "16sai Kiss"
+                            },
+                            {
+                                "en": "16\u6b73 KISS"
+                            },
+                            {
+                                "en": "First Kiss (Indonesia)"
+                            },
+                            {
+                                "en": "Kiss of a Sixteen-Year-Old"
+                            },
+                            {
+                                "en": "Night Sky Kiss"
+                            },
+                            {
+                                "en": "Powder Snow ni Kiss"
+                            },
+                            {
+                                "en": "Yozora ni Kiss"
+                            }
+                        ],
+                        "description": {
+                            "en": "A collection of oneshots.  \n  \n1. Yozora ni Kiss (\u591c\u7a7a\u306bKISS, Night Sky Kiss) by Miyasaka Kaho  \nHitomi is about to change schools, and before she does, she wants to go out with a bang at the cultural festival. Will committee chair Matsunaga-kun help?  \n  \n2. Powder Snow ni KISS (\u7c89\u96ea\u306bKISS) by Miyasaka Kaho  \nContinuation of the first story.  \n  \n3. Shinai (\u6df1\u611b) by Nakamura Sayumi  \n  \n4. Dakara, zutto\u2026 (\u3060\u304b\u3089\u3001\u305a\u3063\u3068\u30fb\u30fb\u30fb) by Haga Yuina  \n  \n5. Koi to Iu Shiromono (\u604b\u3068\u3044\u3046\u30b7\u30ed\u30e2\u30ce) by Fukami Sakana  \n  \n6. Dream by Ibuki Kaede  \n  \n7. Dakkai Letter Sakusou Love (\u596a\u56deLetter \u932f\u7d9cLove) by Minami Kanan  \n  \n8. Wild Cinderella (\u30ef\u30a4\u30eb\u30c9\u30fb\u30b7\u30f3\u30c7\u30ec\u30e9) by Satsuki Mikiko"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "34255",
+                            "ap": "16-sai-kiss",
+                            "kt": "9288",
+                            "mu": "2631",
+                            "mal": "4255"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "8",
+                        "publicationDemographic": "shoujo",
+                        "status": "completed",
+                        "year": 2001,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-08-31T19:49:50+00:00",
+                        "updatedAt": "2022-04-14T14:44:24+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "fr"
+                        ]
+                    }
+                },
+                {
+                    "id": "3ff92abf-7c3a-4d5f-88e7-67dbdd613e34",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Maji Love"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Serious Love"
+                            }
+                        ],
+                        "description": {
+                            "en": "Nagisa's biology teacher, Mr. Fujiki, always warned her to watch out for guys who would take advantage of her. But it's the last day of summer break, and Nagisa is determined to find love before she goes back to school! The handsome man she meets gives Nagisa the same warning Mr. Fujiki did\u2026 but there's something important that neither of them has mentioned to her!"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "35915",
+                            "ap": "maji-love",
+                            "kt": "12952",
+                            "mu": "6207",
+                            "mal": "5915"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": "shoujo",
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "erotica",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-07-20T16:47:25+00:00",
+                        "updatedAt": "2021-05-25T15:41:38+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "fr"
+                        ]
+                    }
+                }
+            ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 40255
+    "total": 41107
 }
