@@ -612,7 +612,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.MangaCollection`]
+        :class:`~hondana.MangaCollection`
             Returns a collection of Manga.
         """
         inner_limit = limit or 100
@@ -1194,7 +1194,7 @@ class Client:
 
         Returns
         --------
-        List[:class:`~hondana.MangaCollection`]
+        :class:`~hondana.MangaCollection`
             Returns a collection of manga.
         """
         inner_limit = limit or 100
@@ -3712,7 +3712,7 @@ class Client:
 
         Returns
         ---------
-        List[:class:`~hondana.MangaStatistics`]
+        :class:`~hondana.MangaStatistics`
         """
         data = await self._http._get_manga_statistics(manga_id)
 
