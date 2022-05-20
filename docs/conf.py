@@ -91,7 +91,6 @@ autodoc_type_aliases: dict[str, str] = {
     "common.LanguadeCode": "hondana.types.LanguadeCode",
     "LanguadeCode": "hondana.types.LanguadeCode",
     "LocalizedString": "hondana.types.LocalizedString",
-    "LocalisedString": "hondana.types.LocalisedString",
     "legacy.LegacyMappingType": "hondana.types.LegacyMappingType",
     "PathLike": "os.PathLike",
 }

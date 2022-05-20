@@ -12,8 +12,6 @@ Common
 
 .. autoclass:: LocalizedString
 
-.. autoclass:: LocalisedString
-
 
 Artist
 ------

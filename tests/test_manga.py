@@ -162,7 +162,7 @@ class TestManga:
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
 
-        fmt: LocalisedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore # silly narrowing
+        fmt: LocalizedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore # silly narrowing
 
         for code, title in fmt.items():
             assert manga.alternate_titles.get(code) == title

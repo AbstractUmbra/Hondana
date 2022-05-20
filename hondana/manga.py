@@ -63,7 +63,7 @@ if TYPE_CHECKING:
     from .types import manga
     from .types.artist import ArtistResponse
     from .types.author import AuthorResponse
-    from .types.common import LanguageCode, LocalisedString
+    from .types.common import LanguageCode, LocalizedString
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
     from .types.statistics import (
@@ -91,7 +91,7 @@ class Manga:
     relation_type: Optional[:class:`~hondana.MangaRelationType`]
         The type of relation this is, to the parent manga requested.
         Only available when :meth:`get_related_manga` is called.
-    alternate_titles: :class:`~hondana.types.LocalisedString`
+    alternate_titles: :class:`~hondana.types.LocalizedString`
         The alternative title mapping for the Manga.
         i.e. ``{"en": "Some Other Title"}``
     locked: :class:`bool`
@@ -169,10 +169,10 @@ class Manga:
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
-        self._description: LocalisedString = self._attributes["description"] or {}
+        self._description: LocalizedString = self._attributes["description"] or {}
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
-        self.alternate_titles: LocalisedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
+        self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
@@ -266,24 +266,24 @@ class Manga:
         return desc
 
     @property
-    def raw_description(self) -> LocalisedString:
+    def raw_description(self) -> LocalizedString:
         """The raw description attribute from the manga's payload from the API.
 
         Returns
         --------
-        :class:`~hondana.types.LocalisedString`
+        :class:`~hondana.types.LocalizedString`
             The raw object from the manga's api response payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
         return self._description
 
     @property
-    def alt_titles(self) -> LocalisedString:
+    def alt_titles(self) -> LocalizedString:
         """The raw alt_titles attribute from the manga's payload from the API.
 
         Returns
         --------
-        :class:`hondana.types.LocalisedString`
+        :class:`hondana.types.LocalizedString`
             The raw object from the manga's payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
         """
@@ -609,9 +609,9 @@ class Manga:
     async def update(
         self,
         *,
-        title: Optional[LocalisedString] = None,
-        alt_titles: Optional[list[LocalisedString]] = None,
-        description: Optional[LocalisedString] = None,
+        title: Optional[LocalizedString] = None,
+        alt_titles: Optional[list[LocalizedString]] = None,
+        description: Optional[LocalizedString] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         links: Optional[manga.MangaLinks] = None,
@@ -632,13 +632,13 @@ class Manga:
 
         Parameters
         -----------
-        title: Optional[:class:`~hondana.types.LocalisedString`]
+        title: Optional[:class:`~hondana.types.LocalizedString`]
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~hondana.types.LocalisedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[:class:`~hondana.types.LocalisedString`]
+        description: Optional[:class:`~hondana.types.LocalizedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
@@ -1000,7 +1000,7 @@ class Manga:
     async def get_volumes_and_chapters(
         self,
         *,
-        translated_language: Optional[list[str]] = None,
+        translated_language: Optional[list[LanguageCode]] = None,
         groups: Optional[list[str]] = None,
     ) -> manga.GetMangaVolumesAndChaptersResponse:
         """|coro|
@@ -1009,7 +1009,7 @@ class Manga:
 
         Parameters
         -----------
-        translated_language: Optional[List[:class:`str`]]
+        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The list of language codes you want to limit the search to.
         groups: Optional[List[:class:`str`]]
             A list of scanlator groups to filter the results by.

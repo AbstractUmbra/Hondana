@@ -30,7 +30,6 @@ from typing import Literal, TypedDict
 __all__ = (
     "LanguageCode",
     "LocalizedString",
-    "LocalisedString",
 )
 
 LanguageCode = Literal[
@@ -142,4 +141,3 @@ A localised string: ::
     }
 
 """
-LocalisedString = LocalizedString
