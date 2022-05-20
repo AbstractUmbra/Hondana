@@ -178,9 +178,9 @@
                     "version": 317,
                     "availableTranslatedLanguages": [
                         "id",
+                        "ru",
                         "es-la",
                         "pt-br",
-                        "ru",
                         "fa",
                         "it",
                         "sr",
@@ -207,7 +207,7 @@
                         "ROLE_STAFF",
                         "ROLE_GROUP_MEMBER"
                     ],
-                    "version": 514
+                    "version": 544
                 }
             }
         ]

@@ -88,8 +88,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-06-03T08:01:58+00:00",
-                    "updatedAt": "2022-02-10T05:30:07+00:00",
-                    "version": 17,
+                    "updatedAt": "2022-05-18T15:21:40+00:00",
+                    "version": 18,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -259,9 +259,9 @@
                     "version": 317,
                     "availableTranslatedLanguages": [
                         "id",
+                        "ru",
                         "es-la",
                         "pt-br",
-                        "ru",
                         "fa",
                         "it",
                         "sr",

@@ -3,6 +3,624 @@
     "response": "collection",
     "data": [
         {
+            "id": "d8323b7b-9a7a-462b-90f0-2759fed52511",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Hokkaido Gals Are Super Adorable!"
+                },
+                "altTitles": [
+                    {
+                        "ja-ro": "Dosanko Gyaru Is Mega Cute"
+                    },
+                    {
+                        "ja-ro": "Dosanko Gyaru wa Namaramenkoi"
+                    },
+                    {
+                        "es": "Esa gal de Hokkaido es demasiado linda"
+                    },
+                    {
+                        "en": "Gals from Hokkaido Are So Precious"
+                    },
+                    {
+                        "en": "Gyarus from Hokkaido Are So Precious"
+                    },
+                    {
+                        "en": "Hokkaido Gals Are Super Adorable!"
+                    },
+                    {
+                        "ru": "\u0414\u043e\u0441\u0430\u043d\u043a\u043e-\u0433\u044f\u0440\u0443 \u0447\u0443\u0434\u043e \u043a\u0430\u043a \u043c\u0438\u043b\u044b"
+                    },
+                    {
+                        "ja": "\u9053\u7523\u5b50\u30ae\u30e3\u30eb\u306f\u306a\u307e\u3089\u3081\u3093\u3053\u3044"
+                    },
+                    {
+                        "ko": "\ub3c4\uc0b0\ucf54 \uac38\ub8e8\ub294 \ucc38\ub9d0\ub85c \uadc0\uc5ec\uc6cc"
+                    },
+                    {
+                        "uk": "\u0414\u043e\u0441\u0430\u043d\u043a\u043e-\u0433\u044f\u0440\u0443 \u0441\u0442\u0440\u0430\u0445 \u044f\u043a\u0456 \u0433\u0430\u0440\u043d\u0435\u043d\u044c\u043a\u0456"
+                    }
+                ],
+                "description": {
+                    "en": "Shiki Tsubasa has just moved from Tokyo to Hokkaido in the middle of winter. Not quite appreciating how far apart towns are in the country, he gets off the taxi at the next town over from his destination so he can see the sights around his home, but he is shocked when he learns the \"next town\" is a 3-hour walk away. However, he also meets a cute Dosanko (born and raised in Hokkaido) gyaru named Fuyuki Minami who is braving 8 degrees celcius below 0 weather in the standard gyaru outfit of short skirts and bare legs!",
+                    "fr": "Natsukawa Tsubasa vient de d\u00e9m\u00e9nager de Tokyo \u00e0 Hokkaido, en plein hiver. Ne se rendant pas compte de la r\u00e9alit\u00e9 des distances \u00e0 la campagne, il se retrouve perdu \u00e0 3 heures de marche de sa destination. Mais il fait \u00e9galement la rencontre d\u2019une Dosanko (\u00ab n\u00e9e et \u00e9lev\u00e9e \u00e0 Hokkaido \u00bb) gyaru, en minijupe par \u2013 8\u00b0C !  \n\n\n---\n\n**Links:**  \n- [Author's Twitter](https://twitter.com/ikada_kai) | [Author's YouTube channel](https://www.youtube.com/channel/UC-U4OJu-cEF2VlnM61B77bQ) | [Author's Pixiv](https://www.pixiv.net/en/users/21326958)",
+                    "ru": "\u041d\u0430\u0446\u0443\u043a\u0430\u0432\u0430 \u0426\u0443\u0431\u0430\u0441\u0430 \u0442\u043e\u043b\u044c\u043a\u043e \u0447\u0442\u043e \u043f\u0435\u0440\u0435\u0435\u0445\u0430\u043b \u0438\u0437 \u0422\u043e\u043a\u0438\u043e \u043d\u0430 \u0425\u043e\u043a\u043a\u0430\u0439\u0434\u043e. \u00a0\u041d\u0435 \u0438\u043c\u0435\u044f \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u044f, \u043e \u0442\u043e\u043c \u043a\u0430\u043a\u043e\u0435 \u0431\u043e\u043b\u044c\u0448\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u043e\u044f\u043d\u0438\u0435 \u043c\u0435\u0436\u0434\u0443 \u043d\u0430\u0441\u0435\u043b\u0451\u043d\u043d\u044b\u043c\u0438 \u043f\u0443\u043d\u043a\u0442\u0430\u043c\u0438 \u0432 \u0437\u0430\u0445\u043e\u043b\u0443\u0441\u0442\u044c\u0435 \u043e\u043d \u0440\u0435\u0448\u0438\u043b \u0432\u044b\u0439\u0442\u0438 \u0438\u0437 \u0442\u0430\u043a\u0441\u0438 \u0432 \u0441\u043e\u0441\u0435\u0434\u043d\u0435\u043c \u0433\u043e\u0440\u043e\u0434\u0435, \u043f\u043e\u0441\u0440\u0435\u0434\u0438 \u0437\u0438\u043c\u044b. \u041e\u0434\u043d\u0430\u043a\u043e \u043e\u043d \u0431\u044b\u043b \u0448\u043e\u043a\u0438\u0440\u043e\u0432\u0430\u043d \u0443\u0437\u043d\u0430\u0432, \u0447\u0442\u043e \u0434\u043e \u0441\u043e\u0441\u0435\u0434\u043d\u0435\u0433\u043e \u0433\u043e\u0440\u043e\u0434\u0430 \u0438\u0434\u0442\u0438 \u0446\u0435\u043b\u044b\u0445 3 \u0447\u0430\u0441\u0430. \u0422\u0443\u0442 \u0436\u0435 \u043e\u043d \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442 \u0414\u043e\u0441\u0430\u043d\u043a\u043e-\u0433\u044f\u0440\u0443 (\u0440\u043e\u0434\u043e\u043c \u0438\u0437 \u0425\u043e\u043a\u043a\u0430\u0439\u0434\u043e) \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u0424\u0443\u044e\u043a\u0438 \u041c\u0438\u043d\u0430\u043c\u0438, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043f\u0440\u0438 \u043c\u0438\u043d\u0443\u0441 8 \u0433\u0440\u0430\u0434\u0443\u0441\u0430\u0445 \u0446\u0435\u043b\u044c\u0441\u0438\u044f \u0445\u043e\u0434\u0438\u0442 \u0432 \u0441\u0442\u0430\u043d\u0434\u0430\u0440\u0442\u043d\u043e\u0439 \u043e\u0434\u0435\u0436\u0434\u0435 \u0433\u044f\u0440\u0443: \u043a\u043e\u0440\u043e\u0442\u043a\u043e\u0439 \u044e\u0431\u043a\u0435 \u0438 \u0441 \u0433\u043e\u043b\u044b\u043c\u0438 \u043d\u043e\u0433\u0430\u043c\u0438.  \n\n\n---"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "111403",
+                    "ap": "dosanko-gyaru-wa-namaramenkoi",
+                    "bw": "series/225993/list",
+                    "kt": "55322",
+                    "mu": "152497",
+                    "amz": "https://www.amazon.co.jp/dp/B084NT3Q8X",
+                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2635186",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/568854",
+                    "mal": "121597",
+                    "raw": "https://shonenjumpplus.com/episode/10834108156684177150",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100116"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": 2019,
+                "contentRating": "suggestive",
+                "tags": [
+                    {
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Romance"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Harem"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Drama"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "School Life"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Web Comic"
+                            },
+                            "description": [],
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Slice of Life"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Gyaru"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2019-10-12T20:49:23+00:00",
+                "updatedAt": "2022-05-17T11:57:03+00:00",
+                "version": 22,
+                "availableTranslatedLanguages": [
+                    "es-la",
+                    "en",
+                    "ru",
+                    "id",
+                    "pt-br",
+                    "fr",
+                    "it"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "b77fe548-6f64-4380-8cca-faee8891a7d3",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Ikada Kai",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/ikada_kai",
+                        "pixiv": "http://www.pixiv.net/member.php?id=21326958",
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": "https://www.youtube.com/channel/UC-U4OJu-cEF2VlnM61B77bQ",
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-06T22:13:45+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "b77fe548-6f64-4380-8cca-faee8891a7d3",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Ikada Kai",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/ikada_kai",
+                        "pixiv": "http://www.pixiv.net/member.php?id=21326958",
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": "https://www.youtube.com/channel/UC-U4OJu-cEF2VlnM61B77bQ",
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-06T22:13:45+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "6e97058c-142a-4028-975d-98249265ace3",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "8",
+                        "fileName": "4a32ee1f-9bc6-4383-aef9-0a3dc7a0d42f.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-05-19T10:17:15+00:00",
+                        "updatedAt": "2022-05-19T10:17:15+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "5c0094b6-ae83-4298-814d-48b99059aedc",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Beast Children"
+                },
+                "altTitles": [
+                    {
+                        "ja": "\u30d3\u30fc\u30b9\u30c8\u30c1\u30eb\u30c9\u30ec\u30f3"
+                    }
+                ],
+                "description": {
+                    "en": "Blood, guts and glory! You can find it all on the rugby field. A young man is about to be introduced to the sport of rugby in this brand-new series!"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "109173",
+                    "ap": "beast-children",
+                    "bw": "series/214391/list",
+                    "kt": "54748",
+                    "mu": "153836",
+                    "amz": "https://www.amazon.co.jp/dp/B07VGB49MM",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/557275",
+                    "mal": "120062",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100061"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "3",
+                "lastChapter": "27",
+                "publicationDemographic": "shounen",
+                "status": "completed",
+                "year": null,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "69964a64-2f90-4d33-beeb-f3ed2875eb4c",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sports"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "School Life"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2019-12-22T20:10:59+00:00",
+                "updatedAt": "2022-03-13T05:06:33+00:00",
+                "version": 3,
+                "availableTranslatedLanguages": [
+                    "es-la",
+                    "en"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "8594398e-4386-4705-a1be-d5fbbab72bef",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Terasaka Kento",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "8594398e-4386-4705-a1be-d5fbbab72bef",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Terasaka Kento",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "7d28128a-784d-4fdb-add1-d9ebebf28e8c",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "3",
+                        "fileName": "a84d61c7-4431-443e-b38d-a64ffa5587c3.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-23T07:08:51+00:00",
+                        "updatedAt": "2021-05-23T07:08:51+00:00",
+                        "version": 2
+                    }
+                }
+            ]
+        },
+        {
+            "id": "d31d0aee-c7df-481f-ac60-bce111cdd8b0",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Tokyo Shinobi Squad"
+                },
+                "altTitles": [
+                    {
+                        "ru": "\u0422\u043e\u043a\u0438\u0439\u0441\u043a\u0438\u0439 \u043e\u0442\u0440\u044f\u0434 \u0448\u0438\u043d\u043e\u0431\u0438"
+                    },
+                    {
+                        "ja": "\u30c8\u30fc\u30ad\u30e7\u30fc\u5fcd\u30b9\u30af\u30ef\u30c3\u30c9"
+                    },
+                    {
+                        "zh": "\u4e1c\u4eac\u5fcd\u8005\u5c0f\u961f"
+                    },
+                    {
+                        "zh-hk": "\u6771\u4eac\u5fcd\u8005\u5c0f\u968a"
+                    }
+                ],
+                "description": {
+                    "en": "Tokyo, 2049\u2026 Thanks to the Galapagos Reform enacted by the government, Russia, China, America and Japan are now connected by a Hyper Loop system. This globalization has turned Tokyo into the most crime-ridden city in the world. To fight the rising crime, those who have been working in the shadows since the Sengoku period are needed\u2026 They are\u2026the Shinobi!  \n  \n\n\n---\n\n**Officially Translated:**  \n- In French by [Kaz\u00e9](http://manga.kaze.fr/)"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "109174",
+                    "ap": "tokyo-shinobi-squad",
+                    "bw": "series/214389",
+                    "mu": "153837",
+                    "amz": "https://www.amazon.co.jp/dp/B07VGBHT79",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/557277/",
+                    "mal": "120176",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100062"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "3",
+                "lastChapter": "27",
+                "publicationDemographic": "shounen",
+                "status": "completed",
+                "year": 2019,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sci-Fi"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "489dd859-9b61-4c37-af75-5b18e88daafc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Ninja"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Martial Arts"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Drama"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Supernatural"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2019-12-08T13:11:22+00:00",
+                "updatedAt": "2022-04-09T13:12:52+00:00",
+                "version": 3,
+                "availableTranslatedLanguages": [
+                    "es-la",
+                    "pt-br",
+                    "zh-hk",
+                    "ru",
+                    "vi",
+                    "en"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "61240cc6-4f2c-4be7-bccd-29ca3903b404",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Tanaka Yuuki",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "c1ca4b81-79e7-4b9c-9c52-037121630450",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Matsuura Kento",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/matsukenmanga",
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-02-15T19:06:23+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "37ced13c-45bb-4f09-9eb1-1c8bb6ea61cb",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "1",
+                        "fileName": "20a63889-2cbb-4c8b-bbd7-e56c449eae14.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-23T07:07:10+00:00",
+                        "updatedAt": "2021-05-23T07:07:10+00:00",
+                        "version": 2
+                    }
+                }
+            ]
+        },
+        {
             "id": "dcc3f064-9eee-44c1-b409-f6df242a3496",
             "type": "manga",
             "attributes": {
@@ -209,296 +827,6 @@
             ]
         },
         {
-            "id": "ac28f3f4-1bfd-491c-8403-0162379f953d",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Agravity Boys"
-                },
-                "altTitles": [
-                    {
-                        "ru": "\u0412\u043d\u0435\u0437\u0435\u043c\u043d\u044b\u0435 \u043f\u0430\u0446\u0430\u043d\u044b"
-                    },
-                    {
-                        "ja": "\u30a2\u30b0\u30e9\u30d3\u30c6\u30a3\u30dc\u30fc\u30a4\u30ba"
-                    }
-                ],
-                "description": {
-                    "en": "The year 2118\u2026 Four young astronauts head out to the stars to find humanity's new frontier\u2026or so they thought! Two days after they depart, earth is devoured by a black hole! Plunged into a destiny they cannot escape, these unique young men reach their destination of Alpha Jumbro and plan to live out the rest of their lives there. How will humanity survive in this wacky space-survival comedy?!  \n\n\n---",
-                    "ru": "2118 \u0433\u043e\u0434\u2026 \u0447\u0435\u0442\u0432\u0435\u0440\u043e \u044e\u043d\u044b\u0445 \u0430\u0441\u0442\u0440\u043e\u043d\u0430\u0432\u0442\u043e\u0432 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u044e\u0442\u0441\u044f \u043f\u043e\u043a\u043e\u0440\u044f\u0442\u044c \u043d\u043e\u0432\u044b\u0435 \u0440\u0443\u0431\u0435\u0436\u0438 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u0430\u2026 \u0442\u043e\u0447\u043d\u0435\u0435, \u0442\u0430\u043a \u0438\u043c \u043a\u0430\u0437\u0430\u043b\u043e\u0441\u044c! \u0427\u0435\u0440\u0435\u0437 \u0434\u0432\u0430 \u0434\u043d\u044f \u043f\u043e\u0441\u043b\u0435 \u043e\u0442\u043f\u0440\u0430\u0432\u043a\u0438 \u043d\u0430 \u0417\u0435\u043c\u043b\u0435 \u0443\u0441\u0442\u0440\u043e\u0438\u043b\u0438 \u044f\u0434\u0435\u0440\u043d\u0443\u044e \u0432\u043e\u0439\u043d\u0443, \u0430 \u043f\u043e\u0442\u043e\u043c \u0435\u0451 \u043f\u043e\u0433\u043b\u043e\u0442\u0438\u043b\u0430 \u0447\u0451\u0440\u043d\u0430\u044f \u0434\u044b\u0440\u0430. \u041e\u043a\u0430\u0437\u0430\u0432\u0448\u0438\u0441\u044c \u0432 \u043b\u0430\u043f\u0430\u0445 \u043d\u0435\u0438\u0437\u0431\u0435\u0436\u043d\u043e\u0439 \u0441\u0443\u0434\u044c\u0431\u044b, \u044d\u0442\u0438 \u044e\u043d\u043e\u0448\u0438 \u0434\u043e\u0441\u0442\u0438\u0433\u043b\u0438 \u0442\u043e\u0447\u043a\u0438 \u0441\u0432\u043e\u0435\u0433\u043e \u043d\u0430\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u044f \u2014 \u043f\u043b\u0430\u043d\u0435\u0442\u044b \u0410\u043b\u044c\u0444\u0430 \u0414\u0436\u0430\u043c\u0431\u0440\u043e, \u0438 \u0440\u0435\u0448\u0438\u043b\u0438 \u043f\u0440\u043e\u0436\u0438\u0442\u044c \u0442\u0430\u043c \u0434\u043e \u043a\u043e\u043d\u0446\u0430 \u0441\u0432\u043e\u0438\u0445 \u0434\u043d\u0435\u0439. \u041a\u0430\u043a \u0436\u0435 \u0432\u044b\u0436\u0438\u0432\u0435\u0442 \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u043e \u0432 \u044d\u0442\u043e\u0439 \u0431\u0435\u0437\u0443\u043c\u043d\u043e\u0439 \u043a\u043e\u043c\u0435\u0434\u0438\u0438 \u043e \u043a\u043e\u0441\u043c\u0438\u0447\u0435\u0441\u043a\u043e\u043c \u0432\u044b\u0436\u0438\u0432\u0430\u043d\u0438\u0438?!"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "113629",
-                    "ap": "agravity-boys",
-                    "bw": "series/239993",
-                    "kt": "55707",
-                    "mu": "158809",
-                    "amz": "https://www.amazon.co.jp/dp/B0855D38T8",
-                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2625707",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/584523/",
-                    "mal": "123188",
-                    "raw": "https://shonenjumpplus.com/episode/3269754496370783987",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100077"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "7",
-                "lastChapter": "50.5",
-                "publicationDemographic": "shounen",
-                "status": "completed",
-                "year": 2019,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Sci-Fi"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Genderswap"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Monsters"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Survival"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adventure"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Crossdressing"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Monster Girls"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Slice of Life"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e64f6742-c834-471d-8d72-dd51fc02b835",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Aliens"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2020-04-12T08:03:46+00:00",
-                "updatedAt": "2022-01-25T09:03:16+00:00",
-                "version": 8,
-                "availableTranslatedLanguages": [
-                    "ru",
-                    "pt-br",
-                    "en",
-                    "vi",
-                    "zh-hk"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "fece46bf-b1f0-4485-8200-11b665f1db91",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Nakamura Atsushi",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "fece46bf-b1f0-4485-8200-11b665f1db91",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Nakamura Atsushi",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "ccabd41e-e8c1-4fef-880f-0f349ad505b8",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "7",
-                        "fileName": "3ef47337-6677-4d3d-bffc-6a5ca48d1dee.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-11-10T20:04:51+00:00",
-                        "updatedAt": "2021-11-10T20:04:51+00:00",
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
             "id": "ed6ba867-0472-4f8f-af40-a2697fcd5cfc",
             "type": "manga",
             "attributes": {
@@ -660,598 +988,9 @@
                     }
                 }
             ]
-        },
-        {
-            "id": "94bfc769-f5e5-4f88-838c-4f69e7a663c2",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Kuchi ga Saketemo Kimi Ni Wa"
-                },
-                "altTitles": [
-                    {
-                        "en": "Even If You Slit My Mouth"
-                    },
-                    {
-                        "ja": "\u53e3\u304c\u88c2\u3051\u3066\u3082\u541b\u306b\u306f"
-                    },
-                    {
-                        "ja-ro": "Kuchi ga Saketemo Kimi Niwa"
-                    },
-                    {
-                        "ne": "\u0924\u093f\u092e\u0940\u0932\u0947 \u092e\u0947\u0930\u094b \u092e\u0941\u0916 \u091a\u093f\u0925\u0930\u094d\u0926\u0948 \u092a\u0928\u093f"
-                    }
-                ],
-                "description": {
-                    "en": "Miroku-san, the slit-mouth woman, is to marry high school student Kouichi to maintain her existence as his family has been in charge of upkeeping superstitions for generations. To add, there seems to be another reason that he seems more than willing\u2026   \r\n  \r\nMiroku, however, would rather use her own strength than borrow that of others. Thus, they establish a contract as follows.  \r\n1. For a trial period of a year, they are to act as though they were married.  \r\n2. If she is able to scare him within that year, the engagement will be broken.  \r\n  \r\n*This page refers to the three-part short story's official serialization, which began on the Shonen Jump+ website on November 10, 2020.*",
-                    "fr": "Miroku-san, la femme \u00e0 la bouche fendue, doit \u00e9pouser Kouichi, un lyc\u00e9en, pour maintenir son existence, car sa famille est responsable de l'entretien des superstitions depuis des g\u00e9n\u00e9rations. Pour ajouter, il semble y avoir une autre raison pour laquelle il semble plus que dispos\u00e9 \u2026   \r\n  \r\nMiroku, cependant, pr\u00e9f\u00e8re utiliser sa propre force plut\u00f4t que d'emprunter celle des autres. Ainsi, ils \u00e9tablissent un contrat comme suit.   \r\n1. Pendant une p\u00e9riode d'essai d'un an, ils doivent agir comme s'ils \u00e9taient mari\u00e9s.   \r\n2. Si elle parvient \u00e0 lui faire peur dans l'ann\u00e9e, l'engagement sera rompu."
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "125624",
-                    "ap": "kuchi-ga-saketemo-kimi-ni-wa-2020",
-                    "bw": "series/287411",
-                    "mu": "174799",
-                    "mal": "128093",
-                    "raw": "https://shonenjumpplus.com/episode/13933686331735620819",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100179"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "",
-                "lastChapter": "",
-                "publicationDemographic": "shounen",
-                "status": "ongoing",
-                "year": 2020,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Monster Girls"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Web Comic"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2020-12-02T02:54:52+00:00",
-                "updatedAt": "2022-03-27T16:14:59+00:00",
-                "version": 43,
-                "availableTranslatedLanguages": [
-                    "es-la",
-                    "en",
-                    "fr",
-                    "pt-br"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "65b85a3f-bdd1-4a74-8e76-e470aedac9fd",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Kajimoto Akari",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "65b85a3f-bdd1-4a74-8e76-e470aedac9fd",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Kajimoto Akari",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "6db5060f-444e-4665-800c-330643af8eae",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "5",
-                        "fileName": "8da637ba-b458-49fc-bbbf-aec11a5d63b1.jpg",
-                        "locale": "ja",
-                        "createdAt": "2022-03-27T16:14:58+00:00",
-                        "updatedAt": "2022-03-27T16:14:58+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "1c5a193e-973e-4ddd-90fc-4e09e5da4c18",
-                    "type": "manga",
-                    "related": "alternate_story",
-                    "attributes": {
-                        "title": {
-                            "en": "Kuchi ga Saketemo Kimi ni wa (2018)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Kuchi ga Saketemo Kimi Niwa (2018)"
-                            },
-                            {
-                                "en": "\u53e3\u304c\u88c2\u3051\u3066\u3082\u541b\u306b\u306f (2018)"
-                            },
-                            {
-                                "pl": "KOBIETA O ROZCI\u0118TYCH USTACH"
-                            }
-                        ],
-                        "description": {
-                            "en": "A slit-mouth woman encounters a young boy she's unable to scare.",
-                            "pl": "Kobieta z dziwnymi ustami spotyka m\u0142odego ch\u0142opca, kt\u00f3rego nie potrafi przestraszy\u0107."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "118647",
-                            "ap": "kuchi-ga-saketemo-kimi-ni-wa",
-                            "kt": "56408",
-                            "mu": "167120",
-                            "mal": "126801",
-                            "raw": "https://twitter.com/kajimotoakari/status/1186639011428761601"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "3",
-                        "publicationDemographic": "seinen",
-                        "status": "completed",
-                        "year": 2018,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Gore"
-                                    },
-                                    "description": [],
-                                    "group": "content",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Horror"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monster Girls"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Shota"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-07-14T03:56:23+00:00",
-                        "updatedAt": "2022-02-12T19:29:03+00:00",
-                        "version": 9,
-                        "availableTranslatedLanguages": [
-                            "pt-br",
-                            "es-la",
-                            "en",
-                            "hu",
-                            "pl",
-                            "tr",
-                            "fa"
-                        ]
-                    }
-                },
-                {
-                    "id": "cc8c1e64-1980-46b8-9a68-6d94efa674c1",
-                    "type": "manga",
-                    "related": "preserialization",
-                    "attributes": {
-                        "title": {
-                            "en": "Kuchi ga Saketemo Kimi ni wa (2020 Short)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Kuchi ga Saketemo Kimi Niwa (2020 Short)"
-                            },
-                            {
-                                "en": "\u53e3\u304b\u3099\u88c2\u3051\u3066\u3082\u541b\u306b\u306f (2020 Short)"
-                            }
-                        ],
-                        "description": {
-                            "en": "Miroku-san, the slit-mouth woman, is to marry high school student Kouichi to maintain her existence as his family has been in charge of upkeeping superstitions for generations. To add, there seems to be another reason that he seems more than willing\u2026   \n  \nMiroku, however, would rather use her own strength than borrow that of others. Thus, they establish a contract as follows.  \n1. For a trial period of a year, they are to act as though they were married.  \n2. If she is able to scare him within that year, the engagement will be broken.  \n  \nA three part short story."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "120493",
-                            "ap": "kuchi-ga-saketemo-kimi-ni-wa-2020",
-                            "kt": "57686",
-                            "mu": "169060",
-                            "mal": "128093",
-                            "raw": "https://shonenjumpplus.com/episode/13933686331668662412"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": "3",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Horror"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monster Girls"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Supernatural"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-08-13T15:18:30+00:00",
-                        "updatedAt": "2022-01-25T07:40:33+00:00",
-                        "version": 4,
-                        "availableTranslatedLanguages": [
-                            "pt-br",
-                            "en",
-                            "tr",
-                            "vi",
-                            "es-la"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "5c0094b6-ae83-4298-814d-48b99059aedc",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Beast Children"
-                },
-                "altTitles": [
-                    {
-                        "ja": "\u30d3\u30fc\u30b9\u30c8\u30c1\u30eb\u30c9\u30ec\u30f3"
-                    }
-                ],
-                "description": {
-                    "en": "Blood, guts and glory! You can find it all on the rugby field. A young man is about to be introduced to the sport of rugby in this brand-new series!"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "109173",
-                    "ap": "beast-children",
-                    "bw": "series/214391/list",
-                    "kt": "54748",
-                    "mu": "153836",
-                    "amz": "https://www.amazon.co.jp/dp/B07VGB49MM",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/557275",
-                    "mal": "120062",
-                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100061"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "3",
-                "lastChapter": "27",
-                "publicationDemographic": "shounen",
-                "status": "completed",
-                "year": null,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "69964a64-2f90-4d33-beeb-f3ed2875eb4c",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Sports"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "School Life"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2019-12-22T20:10:59+00:00",
-                "updatedAt": "2022-03-13T05:06:33+00:00",
-                "version": 3,
-                "availableTranslatedLanguages": [
-                    "es-la",
-                    "en"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "8594398e-4386-4705-a1be-d5fbbab72bef",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Terasaka Kento",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "8594398e-4386-4705-a1be-d5fbbab72bef",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Terasaka Kento",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "7d28128a-784d-4fdb-add1-d9ebebf28e8c",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "3",
-                        "fileName": "a84d61c7-4431-443e-b38d-a64ffa5587c3.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-05-23T07:08:51+00:00",
-                        "updatedAt": "2021-05-23T07:08:51+00:00",
-                        "version": 2
-                    }
-                }
-            ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 49135
+    "total": 49356
 }

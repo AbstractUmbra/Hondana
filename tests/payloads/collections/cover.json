@@ -3,530 +3,203 @@
     "response": "collection",
     "data": [
         {
-            "id": "d13b3d91-5e05-42d5-810a-97070c598a81",
+            "id": "5d949e31-b1c9-4d9f-a0e4-d3e6d84bdcf2",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "6",
+                "fileName": "3de6b00b-d5d4-4438-a252-a3881deaea31.jpg",
+                "locale": "ja",
+                "createdAt": "2022-05-20T10:10:10+00:00",
+                "updatedAt": "2022-05-20T10:10:10+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "b6a5d154-7845-4129-b473-ba0aec3deffd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Nige Jouzu no Wakagimi"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "The Elusive Samurai"
+                            },
+                            {
+                                "ru": "\u042e\u043d\u044b\u0439 \u043b\u043e\u0440\u0434-\u043c\u0430\u0441\u0442\u0435\u0440 \u043f\u043e\u0431\u0435\u0433\u0430"
+                            },
+                            {
+                                "ja": "\u9003\u3052\u4e0a\u624b\u306e\u82e5\u541b"
+                            }
+                        ],
+                        "description": {
+                            "en": "Yusei Matsui, creator of Assassination Classroom and Neuro: Supernatural Detective, is back! Set in feudal Japan in between the Kamakura and Muromachi periods, our hero Hojo Takatoki is a boy on the run that history all but forgot! When the Kamakura shogunate is overthrown by Ashikaga Takauji, Takatoki's family and standing are visciously taken away from him, and he must flee to the far reaches of the land to survive and seek out his revenge!",
+                            "ru": "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u0432 \u0444\u0435\u043e\u0434\u0430\u043b\u044c\u043d\u043e\u0439 \u042f\u043f\u043e\u043d\u0438\u0438 \u043c\u0435\u0436\u0434\u0443 \u043f\u0435\u0440\u0438\u043e\u0434\u0430\u043c\u0438 \u041a\u0430\u043c\u0430\u043a\u0443\u0440\u0430 \u0438 \u041c\u0443\u0440\u043e\u043c\u0430\u0442\u0438, \u043d\u0430\u0448 \u0433\u0435\u0440\u043e\u0439 \u0425\u043e\u0434\u0437\u0435 \u0422\u0430\u043a\u0430\u0442\u043e\u043a\u0438 - \u043c\u0430\u043b\u044c\u0447\u0438\u043a \u0432 \u0431\u0435\u0433\u0430\u0445, \u043e \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043f\u043e\u0447\u0442\u0438 \u0437\u0430\u0431\u044b\u043b\u0430! \u041a\u043e\u0433\u0434\u0430 \u0441\u0435\u0433\u0443\u043d\u0430\u0442 \u041a\u0430\u043c\u0430\u043a\u0443\u0440\u0430 \u0441\u0432\u0435\u0440\u0433\u043d\u0443\u0442 \u0410\u0441\u0438\u043a\u0430\u0433\u043e\u0439 \u0422\u0430\u043a\u0430\u0443\u0434\u0437\u0438, \u0441\u0435\u043c\u044c\u044f \u0438 \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435 \u0422\u0430\u043a\u0430\u0442\u043e\u043a\u0438 \u043d\u0430\u0441\u0438\u043b\u044c\u043d\u043e \u043e\u0442\u043d\u0438\u043c\u0430\u044e\u0442\u0441\u044f \u0443 \u043d\u0435\u0433\u043e, \u0438 \u043e\u043d \u0434\u043e\u043b\u0436\u0435\u043d \u0431\u0435\u0436\u0430\u0442\u044c \u0432 \u0434\u0430\u043b\u044c\u043d\u0438\u0435 \u043a\u0440\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u044b, \u0447\u0442\u043e\u0431\u044b \u0432\u044b\u0436\u0438\u0442\u044c \u0438 \u043e\u0442\u043e\u043c\u0441\u0442\u0438\u0442\u044c!"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "128666",
+                            "ap": "nige-jouzu-no-wakagimi",
+                            "bw": "series/303509",
+                            "kt": "58641",
+                            "mu": "176634",
+                            "amz": "https://www.amazon.co.jp/gp/product/B09CZFD6YP",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2665800",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/645413/",
+                            "mal": "132845",
+                            "raw": "https://shonenjumpplus.com/episode/13933686331810316817",
+                            "engtl": "https://mangaplus.shueisha.co.jp/titles/100139"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "shounen",
+                        "status": "ongoing",
+                        "year": 2021,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Historical"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "81183756-1453-4c81-aa9e-f6e1b63be016",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Samurai"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-01-30T09:32:51+00:00",
+                        "updatedAt": "2022-05-20T10:10:10+00:00",
+                        "version": 14,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "fr",
+                            "ru",
+                            "es-la"
+                        ]
+                    }
+                },
+                {
+                    "id": "0218ac4d-c69e-4670-8ea0-3bb161a3ef8d",
+                    "type": "user",
+                    "attributes": {
+                        "username": "assasin1993",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 336
+                    }
+                }
+            ]
+        },
+        {
+            "id": "6f2b4361-2863-4fcc-ba3b-e735b7802883",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "359dbe2b-e654-4d90-933b-6e01b6272ae5.jpg",
-                "locale": "ja",
-                "createdAt": "2022-05-07T18:53:06+00:00",
-                "updatedAt": "2022-05-07T18:53:06+00:00",
+                "fileName": "f1c9086d-cdce-4bfa-9744-4228889b6084.jpg",
+                "locale": "zh",
+                "createdAt": "2022-05-20T08:29:30+00:00",
+                "updatedAt": "2022-05-20T08:29:30+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "5ea44441-b7d9-4f63-8343-089c5b21eb06",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Amaku Nureru Uso - Kekkon to Iu nano Fukushuu"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Seeking Revenge Through Marriage"
-                            },
-                            {
-                                "ja": "\u7518\u304f\u6fe1\u308c\u308b\u5618\uff5e\u7d50\u5a5a\u3068\u3044\u3046\u540d\u306e\u5fa9\u8b90\uff5e"
-                            }
-                        ],
-                        "description": {
-                            "en": "Rie's boyfriend was handsome and skillful, and everyone in her office adored him! Moreover, they hid their relationship from everyone, so every day was thrilling. One day, her boyfriend told her that he had something important to discuss, and Rie thought that he was going to propose to her, but... her heart was broken instead. Her boyfriend told her that he was getting married to a woman who had conceived his child and asked her to break up with him. Then, Rie's manager brought up the idea of a blind date to Rie who had been suffering alone. The man she would meet up with was Yuichi Kuroki, Yasushi's only rival. Kuroki, who was highly regarded in the office for his appearance and skills, said to Rie, \"I've decided on you.\" Rie, who was not able to read Kuroki's feelings, thought that the whole blind date had been arranged beforehand, but...?"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "174391",
-                            "amz": "https://www.amazon.co.jp/%25E7%2594%2598%25E3%2581%258F%25E6%25BF%25A1%25E3%2582%258C%25E3%2582%258B%25E5%2598%2598%25EF%25BD%259E%25E7%25B5%2590%25E5%25A9%259A%25E3%2581%25A8%25E3%2581%2584%25E3%2581%2586%25E5%2590%258D%25E3%2581%25AE%25E5%25BE%25A9%25E8%25AE%2590%25EF%25BD%259E-%25E5%2585%25A818%25E5%25B7%25BB/dp/B077LFJ7MV",
-                            "engtl": "https://coolmic.me/titles/702"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "josei",
-                        "status": "ongoing",
-                        "year": 2017,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Office Workers"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-05-07T18:53:06+00:00",
-                        "updatedAt": "2022-05-07T18:53:48+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
+                    "id": "7431ff7d-ad63-4831-bd1e-e63aef2da6bc",
+                    "type": "manga"
                 },
                 {
-                    "id": "66fa5e4a-4024-440a-b748-4f784053e865",
+                    "id": "9ade4a5f-4b49-4009-be01-93fd49512403",
                     "type": "user",
                     "attributes": {
-                        "username": "shoujo-dump",
+                        "username": "Ibblebibble",
                         "roles": [
-                            "ROLE_USER",
-                            "ROLE_CONTRIBUTOR"
+                            "ROLE_MEMBER"
                         ],
-                        "version": 869
+                        "version": 17
                     }
                 }
             ]
         },
         {
-            "id": "df0dc07a-07ce-49ac-9515-e2c84f1e42eb",
+            "id": "b495eaf8-f4d3-4ef1-923b-3f2afa994e8f",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "0",
-                "fileName": "58e78841-169c-474e-af74-51aefb4f3d61.jpg",
+                "volume": "1",
+                "fileName": "9bda4324-7870-4095-a1d0-afd5bd652627.jpg",
                 "locale": "ja",
-                "createdAt": "2022-05-07T18:37:19+00:00",
-                "updatedAt": "2022-05-07T18:37:19+00:00",
+                "createdAt": "2022-05-20T08:13:05+00:00",
+                "updatedAt": "2022-05-20T08:13:05+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "1f40ca79-8be4-4119-b5c9-ad00f5bbff99",
+                    "id": "b487bb41-6526-425f-ab97-1979012031eb",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Seijo to Maou no Gisou Konyaku"
+                            "en": "Hatsugao"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04"
+                                "ja": "\u521d\u9854"
                             },
                             {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04 \uff5e\u624b\u306b\u624b\u3092\u3068\u3063\u3066\u30db\u30ef\u30a4\u30c8\u56fd\u5bb6\u3092\u4f5c\u308a\u307e\u3059\uff5e"
-                            },
-                            {
-                                "ja-ro": "Seijo to Maou no Gisou Konyaku - Te ni Te wo Totte White Kokka wo Tsukurimasu"
+                                "ru": "\u041d\u0435\u0437\u043d\u0430\u043a\u043e\u043c\u043e\u0435 \u043b\u0438\u0446\u043e"
                             }
                         ],
-                        "description": {
-                            "en": "From a black company to another world! Hinata, an employee of a black company, is summoned to the otherworldly human country of Exia as a \"holy woman.\" However, it is also a black country with corrupt internal conditions. Hinata tries her best to do well at her new job, but she is cut off as an obstacle by the appearance of a junior saint. She ends up as a prisoner of the demon nation of Dominus, where she meets a young demon tribe member named Atra, with whom she complains about her work and they hit it off! And then the story takes an unexpected turn...!"
-                        },
+                        "description": [],
                         "isLocked": false,
-                        "links": {
-                            "mu": "199262",
-                            "raw": "https://comic.pixiv.net/works/8248"
-                        },
+                        "links": [],
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": 2022,
-                        "contentRating": "safe",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2019,
+                        "contentRating": "pornographic",
                         "tags": [
                             {
-                                "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Demons"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Isekai"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-05-07T18:37:17+00:00",
-                        "updatedAt": "2022-05-07T18:39:18+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "60d89dcf-1df2-4f5d-9ab8-08958e5c9b74",
-                    "type": "user",
-                    "attributes": {
-                        "username": "blackLuna",
-                        "roles": [
-                            "ROLE_CONTRIBUTOR"
-                        ],
-                        "version": 547
-                    }
-                }
-            ]
-        },
-        {
-            "id": "16f83c60-8b03-4fe8-80bb-5cd34ac8fc61",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "0.2",
-                "fileName": "f08360b6-0a3a-442c-950a-19f2a6151557.jpg",
-                "locale": "ja",
-                "createdAt": "2022-05-07T18:37:19+00:00",
-                "updatedAt": "2022-05-07T18:37:19+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "1f40ca79-8be4-4119-b5c9-ad00f5bbff99",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Seijo to Maou no Gisou Konyaku"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04"
-                            },
-                            {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04 \uff5e\u624b\u306b\u624b\u3092\u3068\u3063\u3066\u30db\u30ef\u30a4\u30c8\u56fd\u5bb6\u3092\u4f5c\u308a\u307e\u3059\uff5e"
-                            },
-                            {
-                                "ja-ro": "Seijo to Maou no Gisou Konyaku - Te ni Te wo Totte White Kokka wo Tsukurimasu"
-                            }
-                        ],
-                        "description": {
-                            "en": "From a black company to another world! Hinata, an employee of a black company, is summoned to the otherworldly human country of Exia as a \"holy woman.\" However, it is also a black country with corrupt internal conditions. Hinata tries her best to do well at her new job, but she is cut off as an obstacle by the appearance of a junior saint. She ends up as a prisoner of the demon nation of Dominus, where she meets a young demon tribe member named Atra, with whom she complains about her work and they hit it off! And then the story takes an unexpected turn...!"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "199262",
-                            "raw": "https://comic.pixiv.net/works/8248"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": 2022,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Demons"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Isekai"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-05-07T18:37:17+00:00",
-                        "updatedAt": "2022-05-07T18:39:18+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "60d89dcf-1df2-4f5d-9ab8-08958e5c9b74",
-                    "type": "user",
-                    "attributes": {
-                        "username": "blackLuna",
-                        "roles": [
-                            "ROLE_CONTRIBUTOR"
-                        ],
-                        "version": 547
-                    }
-                }
-            ]
-        },
-        {
-            "id": "efca8c96-fd68-4d73-a804-32cc35f78467",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "0.1",
-                "fileName": "f3d782dc-f0ea-45aa-bd11-2385bf5cac83.jpg",
-                "locale": "ja",
-                "createdAt": "2022-05-07T18:37:18+00:00",
-                "updatedAt": "2022-05-07T18:37:18+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "1f40ca79-8be4-4119-b5c9-ad00f5bbff99",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Seijo to Maou no Gisou Konyaku"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04"
-                            },
-                            {
-                                "ja": "\u8056\u5973\u3068\u9b54\u738b\u306e\u507d\u88c5\u5a5a\u7d04 \uff5e\u624b\u306b\u624b\u3092\u3068\u3063\u3066\u30db\u30ef\u30a4\u30c8\u56fd\u5bb6\u3092\u4f5c\u308a\u307e\u3059\uff5e"
-                            },
-                            {
-                                "ja-ro": "Seijo to Maou no Gisou Konyaku - Te ni Te wo Totte White Kokka wo Tsukurimasu"
-                            }
-                        ],
-                        "description": {
-                            "en": "From a black company to another world! Hinata, an employee of a black company, is summoned to the otherworldly human country of Exia as a \"holy woman.\" However, it is also a black country with corrupt internal conditions. Hinata tries her best to do well at her new job, but she is cut off as an obstacle by the appearance of a junior saint. She ends up as a prisoner of the demon nation of Dominus, where she meets a young demon tribe member named Atra, with whom she complains about her work and they hit it off! And then the story takes an unexpected turn...!"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "199262",
-                            "raw": "https://comic.pixiv.net/works/8248"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": 2022,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Demons"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Isekai"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-05-07T18:37:17+00:00",
-                        "updatedAt": "2022-05-07T18:39:18+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "60d89dcf-1df2-4f5d-9ab8-08958e5c9b74",
-                    "type": "user",
-                    "attributes": {
-                        "username": "blackLuna",
-                        "roles": [
-                            "ROLE_CONTRIBUTOR"
-                        ],
-                        "version": 547
-                    }
-                }
-            ]
-        },
-        {
-            "id": "4d737491-ae4a-4981-83bc-2676a7760187",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "5",
-                "fileName": "9cbd28b3-1985-467b-b06b-3a830b0356f2.jpg",
-                "locale": "ja",
-                "createdAt": "2022-05-07T18:28:14+00:00",
-                "updatedAt": "2022-05-07T18:28:14+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "15db1e46-ef82-47e0-82d8-360753dfc95d",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Yuria-sensei no Akai Ito"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Yuria's Red String"
-                            },
-                            {
-                                "ja": "\u3086\u308a\u3042\u5148\u751f\u306e\u8d64\u3044\u7cf8"
-                            }
-                        ],
-                        "description": {
-                            "en": "Fifty-year-old Yuria has a quiet life teaching embroidery classes in her home, where she lives with her writer husband and his mother. Then one day her world is turned upside down when husband has a subarachnoid hemorrhage and upon arriving at the hospital, Yuria is met by a tearful young man who announces that he is her husband's lover.\n\nWon the 45th Kodansha Manga Award in General Category in 2021."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "ap": "yuria-sensei-no-akai-ito",
-                            "kt": "yuria-sensei-no-akai-ito",
-                            "mu": "147197",
-                            "amz": "https://www.amazon.co.jp/%E5%85%A5%E6%B1%9F%E5%96%9C%E5%92%8C-ebook/dp/B07F2CKDN2/ref=sr_1_1?dchild=1&keywords=%E3%82%86%E3%82%8A%E3%81%82%E5%85%88%E7%94%9F%E3%81%AE%E8%B5%A4%E3%81%84%E7%B3%B8+1&qid=1597852863&s=digital-text&sr=1-1",
-                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2239315?s_ssid=e459f35f3d4c0ac7a7",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/462405/A001893117/",
-                            "mal": "112812"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "josei",
-                        "status": "ongoing",
-                        "year": 2018,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0a39b5a1-b235-4886-a747-1d05d216532d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Award Winning"
+                                        "en": "Oneshot"
                                     },
                                     "description": [],
                                     "group": "format",
@@ -540,19 +213,6 @@
                                 "attributes": {
                                     "name": {
                                         "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -576,25 +236,357 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-09-25T06:29:07+00:00",
-                        "updatedAt": "2022-05-07T18:28:15+00:00",
-                        "version": 6,
+                        "createdAt": "2022-05-20T08:13:03+00:00",
+                        "updatedAt": "2022-05-20T08:13:14+00:00",
+                        "version": 2,
                         "availableTranslatedLanguages": [
+                            "ru",
                             "en"
                         ]
                     }
                 },
                 {
-                    "id": "396ee075-b695-4361-b8d5-0b9a2ae29152",
+                    "id": "f959d51a-07b4-4455-9811-67271a878ade",
                     "type": "user",
                     "attributes": {
-                        "username": "bakasennin",
+                        "username": "Tengutara",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 331
+                    }
+                }
+            ]
+        },
+        {
+            "id": "9b6bd12d-bce2-42af-a72c-b7198058d6ef",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "19a0dd67-1927-4bfb-afae-31d9e49331c1.jpg",
+                "locale": "ja",
+                "createdAt": "2022-05-20T08:01:11+00:00",
+                "updatedAt": "2022-05-20T08:01:11+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "5178014d-7de9-4ce0-a1a2-c1fab5b0c643",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "A Yankee-Gyaru That Changes the More Buzz This Generates"
+                        },
+                        "altTitles": [
+                            {
+                                "ru": "\u041d\u0435\u0434\u043e\u0432\u043e\u043b\u044c\u043d\u043e\u0435 \u0448\u0438\u043f\u0435\u043d\u0438\u0435 \u042f\u043d\u043a\u0438-\u0433\u044f\u0440\u0443 \u0441\u0442\u043e\u043b\u044c \u0433\u0440\u043e\u0437\u043d\u043e, \u043a\u0430\u043a \u043d\u0435\u0432\u0438\u043d\u043d\u043e \u0438 \u043c\u0438\u043b\u043e"
+                            },
+                            {
+                                "ja": "\u30d0\u30ba\u3063\u305f\u5206\u3060\u3051\u53ef\u611b\u304f\u3066\u3048\u3063\u3061\u3067\u5f93\u9806\u306b\u5c3d\u304f\u3059\u30e4\u30f3\u30c7\u30ec\u306b\u306a\u308b\u30e4\u30f3\u30ad\u30fc\u30ae\u30e3\u30eb"
+                            }
+                        ],
+                        "description": {
+                            "en": "Pretty Gyaru or a badass yankee delinquent? Will these two sides of the person be able to live together in the same girl?",
+                            "ru": "\u041c\u0438\u043b\u0430\u044f \u0433\u044f\u0440\u0443 \u0438\u043b\u0438 \u0433\u0440\u043e\u0437\u043d\u0430\u044f \u0441\u043c\u0443\u0442\u044c\u044f\u043d\u043a\u0430 \u044f\u043d\u043a\u0438? \u0421\u043c\u043e\u0433\u0443\u0442 \u043b\u0438 \u0443\u0436\u0438\u0442\u044c\u0441\u044f \u0432 \u043e\u0434\u043d\u043e\u0439 \u0434\u0435\u0432\u0443\u0448\u043a\u0435 \u044d\u0442\u0438 \u0434\u0432\u0435 \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438?"
+                        },
+                        "isLocked": false,
+                        "links": [],
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": 2021,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "320831a8-4026-470b-94f6-8353740e6f04",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Official Colored"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Full Color"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gyaru"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2022-05-20T08:01:10+00:00",
+                        "updatedAt": "2022-05-20T08:01:43+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "ru"
+                        ]
+                    }
+                },
+                {
+                    "id": "f959d51a-07b4-4455-9811-67271a878ade",
+                    "type": "user",
+                    "attributes": {
+                        "username": "Tengutara",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 331
+                    }
+                }
+            ]
+        },
+        {
+            "id": "251b56c0-a2ef-42ae-be3a-645e66fcbd12",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "3",
+                "fileName": "9767d04f-1d37-4e3c-93e2-773b00e6247d.png",
+                "locale": "ja",
+                "createdAt": "2022-05-20T07:56:35+00:00",
+                "updatedAt": "2022-05-20T07:56:35+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "88bd7fe5-7c21-4d9e-84c9-06b9c7cce236",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Sekimen Shinaide Sekime-san"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Don't Blush, Sekime-san!"
+                            },
+                            {
+                                "ja": "\u8d64\u9762\u3057\u306a\u3044\u3067\u95a2\u76ee\u3055\u3093"
+                            },
+                            {
+                                "id": "Jangan Tersipu Sekime-san!"
+                            },
+                            {
+                                "pt-br": "N\u00e3o Fique Vermelha, Sekime-san!"
+                            }
+                        ],
+                        "description": {
+                            "en": "I'm the only one who knows the true face of the popular girl, Sekime-san! Thus begins the romantic comedy between my overly shy girlfriend and me!",
+                            "pt-br": "S\u00f3 eu que conhe\u00e7o o rosto envergonhado da garota popular, Sekime-san! Come\u00e7a agora o romance entre a minha namorada excessivamente envergonhada e eu!"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "127778",
+                            "ap": "sekimen-shinaide-sekime-san",
+                            "bw": "series/295594",
+                            "kt": "58575",
+                            "mu": "175937",
+                            "amz": "https://www.amazon.co.jp/dp/B0912ZY2GC",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2592090",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/635916",
+                            "mal": "132519",
+                            "raw": "https://shonenjumpplus.com/episode/13933686331779151708",
+                            "engtl": "https://mangaplus.shueisha.co.jp/titles/100146"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "3",
+                        "lastChapter": "43",
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": 2020,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2021-01-12T01:27:36+00:00",
+                        "updatedAt": "2022-05-20T07:56:35+00:00",
+                        "version": 16,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "id",
+                            "pt-br",
+                            "tr",
+                            "fr",
+                            "vi",
+                            "it"
+                        ]
+                    }
+                },
+                {
+                    "id": "b4cc7846-a551-4515-868b-3f7bc09f4014",
+                    "type": "user",
+                    "attributes": {
+                        "username": "hatadesuu",
                         "roles": [
                             "ROLE_MEMBER",
                             "ROLE_GROUP_LEADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 121
+                        "version": 5
                     }
                 }
             ]
@@ -602,5 +594,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 136928
+    "total": 138436
 }

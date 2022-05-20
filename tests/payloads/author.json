@@ -36,7 +36,9 @@
                     "altTitles": [],
                     "description": [],
                     "isLocked": false,
-                    "links": [],
+                    "links": {
+                        "mu": "118051"
+                    },
                     "originalLanguage": "ja",
                     "lastVolume": "",
                     "lastChapter": "",
@@ -101,8 +103,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2022-02-02T08:57:49+00:00",
-                    "updatedAt": "2022-02-17T10:18:19+00:00",
-                    "version": 5,
+                    "updatedAt": "2022-05-11T18:00:16+00:00",
+                    "version": 6,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -428,10 +430,12 @@
                         "en": "It's the latest fashion."
                     },
                     "isLocked": false,
-                    "links": null,
+                    "links": {
+                        "mu": "81099"
+                    },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
+                    "lastVolume": "",
+                    "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "completed",
                     "year": null,
@@ -493,8 +497,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-07-10T07:04:04+00:00",
-                    "updatedAt": "2022-01-24T22:09:04+00:00",
-                    "version": 3,
+                    "updatedAt": "2022-05-11T18:00:09+00:00",
+                    "version": 4,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -968,14 +972,14 @@
                         "en": "Saki - 774 Rakugaki Hon C88 (Doujinshi)"
                     },
                     "altTitles": [],
-                    "description": {
-                        "en": ""
-                    },
+                    "description": [],
                     "isLocked": false,
-                    "links": null,
+                    "links": {
+                        "mu": "125568"
+                    },
                     "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
+                    "lastVolume": "",
+                    "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "completed",
                     "year": null,
@@ -998,8 +1002,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-01-13T23:01:56+00:00",
-                    "updatedAt": "2021-05-25T15:48:59+00:00",
-                    "version": 2,
+                    "updatedAt": "2022-05-11T18:00:23+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
