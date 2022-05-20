@@ -168,6 +168,7 @@ class HTTPClient:
         "_token",
         "_refresh_token",
         "__refresh_after",
+        "__token_lock",
         "user_agent",
         "_connection",
     )
@@ -190,6 +191,7 @@ class HTTPClient:
         self._token: Optional[str] = None
         self._refresh_token: Optional[str] = refresh_token
         self.__refresh_after: Optional[datetime.datetime] = None
+        self.__token_lock: asyncio.Lock = asyncio.Lock()
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
@@ -425,7 +427,8 @@ class HTTPClient:
             self._locks[bucket] = lock
 
         headers = kwargs.pop("headers", {})
-        token = await self._try_token() if self._authenticated else None
+        async with self.__token_lock:
+            token = await self._try_token() if self._authenticated else None
 
         if token is not None:
             headers["Authorization"] = f"Bearer {token}"
@@ -709,7 +712,7 @@ class HTTPClient:
         self,
         *,
         manga_id: str,
-        translated_language: Optional[list[str]],
+        translated_language: Optional[list[common.LanguageCode]],
         groups: Optional[list[str]],
     ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
