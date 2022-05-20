@@ -6,9 +6,6 @@
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml'>
         <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml/badge.svg' alt='Linting and Typechecking' />
     </a>
-    <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/analysis.yml'>
-        <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/analysis.yml/badge.svg' alt='Code Analysis' />
-    </a>
 </div>
 <div align="center">
     <a href='https://api.mangadex.org/'>
