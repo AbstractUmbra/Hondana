@@ -35,7 +35,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .manga import Manga
     from .types.author import AuthorResponse
-    from .types.common import LocalizedString
+    from .types.common import LanguageCode, LocalizedString
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
 
@@ -53,8 +53,6 @@ class Author:
         The author's name.
     image_url: Optional[:class:`str`]
         The author's image url, if any.
-    biography: Optional[:class:`str`]
-        The author's biography, if any.
     twitter: Optional[:class:`str`]
         The author's Twitter url, if any.
     pixiv: Optional[:class:`str`]
@@ -92,7 +90,6 @@ class Author:
         "id",
         "name",
         "image_url",
-        "biography",
         "twitter",
         "pixiv",
         "melon_book",
@@ -107,6 +104,7 @@ class Author:
         "naver",
         "website",
         "version",
+        "_biography",
         "_created_at",
         "_updated_at",
         "_manga_relationships",
@@ -121,7 +119,6 @@ class Author:
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
-        self.biography: Optional[LocalizedString] = self._attributes["biography"]
         self.twitter: Optional[str] = self._attributes["twitter"]
         self.pixiv: Optional[str] = self._attributes["pixiv"]
         self.melon_book: Optional[str] = self._attributes["melonBook"]
@@ -136,6 +133,7 @@ class Author:
         self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
+        self._biography: Optional[LocalizedString] = self._attributes["biography"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")
@@ -149,6 +147,40 @@ class Author:
 
     def __eq__(self, other: Union[Author, Artist]) -> bool:
         return self.id == other.id
+
+    @property
+    def biography(self) -> Optional[str]:
+        """The author's biography, if present.
+
+        Returns
+        -------
+        Optional[:class:`str`]
+            The author's biography.
+            This property will attempt to get the ``"en"`` key first, and fallback to the first key in the object.
+        """
+        if self._biography is None:
+            return
+
+        key = self._biography.get("en", next(iter(self._biography)))
+        return self._biography[key]
+
+    def localised_biography(self, language: LanguageCode) -> Optional[str]:
+        """The author's biography in the specified language, if present.
+
+        Parameters
+        ----------
+        language: :class:`~hondana.LanguageCode`
+            The language code of the language to return.
+
+        Returns
+        -------
+        Optional[:class:`str`]
+            The author's biography in the specified language.
+        """
+        if self._biography is None:
+            return
+
+        return self._biography.get(language)
 
     @property
     def created_at(self) -> datetime.datetime:
