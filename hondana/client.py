@@ -759,7 +759,7 @@ class Client:
         manga_id: str,
         /,
         *,
-        translated_language: Optional[list[str]] = None,
+        translated_language: Optional[list[common.LanguageCode]] = None,
         groups: Optional[list[str]] = None,
     ) -> manga.GetMangaVolumesAndChaptersResponse:
         """|coro|
@@ -770,7 +770,7 @@ class Client:
         -----------
         manga_id: :class:`str`
             The manga UUID we are querying against.
-        translated_language: Optional[List[:class:`str`]]
+        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
             The list of language codes you want to limit the search to.
         groups: Optional[List[:class:`str`]]
             A list of scanlator groups to filter the results by.
@@ -1924,7 +1924,7 @@ class Client:
 
     @require_authentication
     async def edit_cover(
-        self, cover_id: str, /, *, volume: Optional[str] = MISSING, description: Optional[str] = MISSING, version: int
+        self, cover_id: str, /, *, volume: str = MISSING, description: str = MISSING, version: int
     ) -> Cover:
         """|coro|
 
@@ -1947,7 +1947,7 @@ class Client:
 
         Raises
         -------
-        TypeError
+        :exc:`TypeError`
             The volume key was not given a value. This is required.
         :exc:`BadRequest`
             The request body was malformed.
@@ -2214,6 +2214,11 @@ class Client:
         -------
         :exc:`Forbidden`
             The request returned an error due to authentication failure.
+
+        Returns
+        --------
+        :class:`~hondana.User`
+            Your current user details returned from the API.
         """
         data = await self._http._get_my_details()
 
