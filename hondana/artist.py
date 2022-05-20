@@ -135,7 +135,7 @@ class Artist:
         self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
-        self._biography: Optional[LocalizedString] = self._attributes["biography"]
+        self._biography: Optional[LocalizedString] = self._attributes["biography"] or {}
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
@@ -160,7 +160,7 @@ class Artist:
             The artist's biography.
             This property will attempt to get the ``"en"`` key first, and fallback to the first key in the object.
         """
-        if self._biography is None:
+        if not self._biography:
             return
 
         key = self._biography.get("en", next(iter(self._biography)))
@@ -179,7 +179,7 @@ class Artist:
         Optional[:class:`str`]
             The artist's biography in the specified language.
         """
-        if self._biography is None:
+        if not self._biography:
             return
 
         return self._biography.get(language)

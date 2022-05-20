@@ -133,7 +133,7 @@ class Author:
         self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
-        self._biography: Optional[LocalizedString] = self._attributes["biography"]
+        self._biography: Optional[LocalizedString] = self._attributes["biography"] or {}
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")
@@ -158,7 +158,7 @@ class Author:
             The author's biography.
             This property will attempt to get the ``"en"`` key first, and fallback to the first key in the object.
         """
-        if self._biography is None:
+        if not self._biography:
             return
 
         key = self._biography.get("en", next(iter(self._biography)))
@@ -177,7 +177,7 @@ class Author:
         Optional[:class:`str`]
             The author's biography in the specified language.
         """
-        if self._biography is None:
+        if not self._biography:
             return
 
         return self._biography.get(language)
