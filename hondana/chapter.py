@@ -402,7 +402,7 @@ class Chapter:
 
         Returns
         --------
-        Optional[:class:`~hondana.ScanlatorGroup`]
+        Optional[List[:class:`~hondana.ScanlatorGroup`]]
             The scanlator group that was fetched from the API.
         """
         if self.scanlator_groups is not None:
@@ -412,8 +412,15 @@ class Chapter:
             return
 
         ids = [item["id"] for item in self._scanlator_group_relationships]
+
         groups = await self._http._scanlation_group_list(
-            limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
+            limit=100,
+            offset=0,
+            ids=ids,
+            name=None,
+            focused_language=None,
+            includes=ScanlatorGroupIncludes(),
+            order=None,
         )
 
         resolved_groups = [ScanlatorGroup(self._http, item) for item in groups["data"]]
@@ -445,7 +452,7 @@ class Chapter:
             The chapter identity marking this chapter, if any.
         translated_language: Optional[:class:`str`]
             The language code this chapter is translated to.
-        groups: Optional[:class:`str`]
+        groups: Optional[List[:class:`str`]]
             The UUIDs representing credited scanlation groups for this chapter.
         version: :class:`int`
             The version revision of this chapter.
@@ -743,7 +750,6 @@ class UploadData:
 
 class ChapterUpload:
     """
-
     A context manager for handling the uploading of chapters to the MangaDex API.
 
     Parameters
@@ -853,7 +859,8 @@ class ChapterUpload:
             LOGGER.info("No upload session found, continuing.")
         else:
             raise UploadInProgress(
-                "You already have an existing session, please terminate it.", session_id=data["data"]["id"]
+                f"You already have an existing session, please terminate it: {data['data']['id']}",
+                session_id=data["data"]["id"],
             )
 
     @require_authentication
