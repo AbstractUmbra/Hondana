@@ -48,7 +48,7 @@ class ArtistAttributesResponse(TypedDict):
 
     imageUrl: Optional[:class:`str`]
 
-    biography: :class:`~hondana.types.LocalizedString`
+    biography: :class:`~hondana.types.common.LocalizedString`
 
     twitter: Optional[:class:`str`]
 
@@ -111,9 +111,9 @@ class ArtistResponse(TypedDict):
 
     type: Literal[``"artist"``]
 
-    attributes: :class:`~hondana.types.ArtistAttributesResponse`
+    attributes: :class:`~hondana.types.artist.ArtistAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -132,7 +132,7 @@ class GetSingleArtistResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: List[:class:`~hondana.types.ArtistResponse`]
+    data: List[:class:`~hondana.types.artist.ArtistResponse`]
     """
 
     result: Literal["ok", "error"]
@@ -146,7 +146,7 @@ class GetMultiArtistResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.ArtistResponse`]
+    data: List[:class:`~hondana.types.artist.ArtistResponse`]
 
     limit: :class:`int`
 

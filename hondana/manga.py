@@ -91,12 +91,12 @@ class Manga:
     relation_type: Optional[:class:`~hondana.MangaRelationType`]
         The type of relation this is, to the parent manga requested.
         Only available when :meth:`get_related_manga` is called.
-    alternate_titles: :class:`~hondana.types.LocalizedString`
+    alternate_titles: :class:`~hondana.types.common.LocalizedString`
         The alternative title mapping for the Manga.
         i.e. ``{"en": "Some Other Title"}``
     locked: :class:`bool`
         If the Manga is considered 'locked' or not in the API.
-    links: :class:`~hondana.types.MangaLinks`
+    links: :class:`~hondana.types.manga.MangaLinks`
         The mapping of links the API has attributed to the Manga.
         (see: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data)
     original_language: :class:`str`
@@ -271,7 +271,7 @@ class Manga:
 
         Returns
         --------
-        :class:`~hondana.types.LocalizedString`
+        :class:`~hondana.types.common.LocalizedString`
             The raw object from the manga's api response payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
@@ -283,7 +283,7 @@ class Manga:
 
         Returns
         --------
-        :class:`hondana.types.LocalizedString`
+        :class:`hondana.types.common.LocalizedString`
             The raw object from the manga's payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
         """
@@ -632,20 +632,20 @@ class Manga:
 
         Parameters
         -----------
-        title: Optional[:class:`~hondana.types.LocalizedString`]
+        title: Optional[:class:`~hondana.types.common.LocalizedString`]
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~hondana.types.LocalizedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types.common.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[:class:`~hondana.types.LocalizedString`]
+        description: Optional[:class:`~hondana.types.common.LocalizedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[:class:`~hondana.types.MangaLinks`]
+        links: Optional[:class:`~hondana.types.manga.MangaLinks`]
             The links relevant to the manga.
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: Optional[:class:`str`]
@@ -777,7 +777,7 @@ class Manga:
 
         Parameters
         -----------
-        language_code: :class:`~hondana.types.LanguageCode`
+        language_code: :class:`~hondana.types.common.LanguageCode`
             The language code to attempt to return the manga name in.
 
         Returns
@@ -798,7 +798,7 @@ class Manga:
 
         Parameters
         -----------
-        language_code: :class:`~hondana.types.LanguageCode`
+        language_code: :class:`~hondana.types.common.LanguageCode`
             The language code to attempt to return the manga description in.
 
         Returns
@@ -840,9 +840,9 @@ class Manga:
             Defaults to 0. The pagination offset for the request.
         translated_language: List[:class:`str`]
             A list of language codes to filter the returned chapters with.
-        original_language: List[:class:`~hondana.types.LanguageCode`]
+        original_language: List[:class:`~hondana.types.common.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_language: List[:class:`~hondana.types.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types.common.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -920,7 +920,7 @@ class Manga:
 
         Returns
         --------
-        :class:`hondana.types.MangaReadMarkersResponse`
+        :class:`hondana.types.manga.MangaReadMarkersResponse`
             The raw payload of the API.
             Contains a list of read chapter UUIDs.
         """
@@ -966,7 +966,7 @@ class Manga:
 
         Returns
         --------
-        :class:`~hondana.types.MangaSingleReadingStatusResponse`
+        :class:`~hondana.types.manga.MangaSingleReadingStatusResponse`
             The raw payload from the API response.
         """
         return await self._http._get_manga_reading_status(self.id)
@@ -1009,14 +1009,14 @@ class Manga:
 
         Parameters
         -----------
-        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        translated_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
             The list of language codes you want to limit the search to.
         groups: Optional[List[:class:`str`]]
             A list of scanlator groups to filter the results by.
 
         Returns
         --------
-        :class:`~hondana.types.GetMangaVolumesAndChaptersResponse`
+        :class:`~hondana.types.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
         data = await self._http._get_manga_volumes_and_chapters(
@@ -1113,11 +1113,11 @@ class Manga:
             The volume UUID or UUIDs to limit the request with.
         chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
             The chapter UUID or UUIDs to limit the request with.
-        translated_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        translated_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
             The list of languages codes to filter the request with.
-        original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
             The list of languages to specifically target in the request.
-        excluded_original_language: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        excluded_original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
             The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -1275,7 +1275,7 @@ class Manga:
             The volume this cover relates to.
         description: :class:`str`
             The description of this cover.
-        locale: Optional[:class:`~hondana.types.LanguageCode`]
+        locale: Optional[:class:`~hondana.types.common.LanguageCode`]
             The locale of this cover.
 
         Raises

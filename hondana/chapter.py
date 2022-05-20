@@ -703,9 +703,9 @@ class UploadData:
 
     Attributes
     -----------
-    succeeded: List[:class:`~hondana.types.UploadedChapterResponse`]
+    succeeded: List[:class:`~hondana.types.upload.UploadedChapterResponse`]
         The succeeded responses from the upload session.
-    errors: List[:class:`~hondana.types.ErrorType`]
+    errors: List[:class:`~hondana.types.errors.ErrorType`]
         The errors from the upload session.
     has_failures: :class:`bool`
         The upload has errors.
@@ -767,7 +767,7 @@ class ChapterUpload:
     title: Optional[:class:`str`]
         The chapter's title.
         Defaults to ``None``.
-    translated_language: :class:`~hondana.types.LanguageCode`
+    translated_language: :class:`~hondana.types.common.LanguageCode`
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
         The external link to this chapter, if any.
@@ -871,7 +871,7 @@ class ChapterUpload:
 
         Returns
         --------
-        :class:`~hondana.types.BeginChapterUploadResponse`
+        :class:`~hondana.types.upload.BeginChapterUploadResponse`
         """
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
         if self.chapter_to_edit is not None:

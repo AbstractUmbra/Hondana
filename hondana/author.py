@@ -311,7 +311,7 @@ class Author:
         -----------
         name: Optional[:class:`str`]
             The new name to update the author with.
-        biography: Optional[:class:`~hondana.types.LocalizedString`]
+        biography: Optional[:class:`~hondana.types.common.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.

@@ -62,9 +62,9 @@ class UserResponse(TypedDict):
 
     type: Literal[``"user"``]
 
-    attributes: :class:`~hondana.types.GetUserAttributesResponse`
+    attributes: :class:`~hondana.types.user.GetUserAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -83,7 +83,7 @@ class GetSingleUserResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.UserResponse`
+    data: :class:`~hondana.types.user.UserResponse`
 
     limit: :class:`int`
 
@@ -103,7 +103,7 @@ class GetMultiUserResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.UserResponse`]
+    data: List[:class:`~hondana.types.user.UserResponse`]
 
     limit: :class:`int`
 

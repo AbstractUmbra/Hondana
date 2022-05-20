@@ -24,23 +24,22 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from .account import *
-from .artist import *
-from .auth import *
-from .author import *
-from .chapter import *
-from .common import *
-from .cover import *
-from .custom_list import *
-from .errors import *
-from .legacy import *
-from .manga import *
-from .relationship import *
-from .report import *
-from .scanlator_group import *
-from .settings import *
-from .statistics import *
-from .tags import *
-from .token import *
-from .upload import *
-from .user import *
+from . import account as account
+from . import auth as auth
+from . import author as author
+from . import chapter as chapter
+from . import common as common
+from . import cover as cover
+from . import custom_list as custom_list
+from . import errors as errors
+from . import legacy as legacy
+from . import manga as manga
+from . import relationship as relationship
+from . import report as report
+from . import scanlator_group as scanlator_group
+from . import settings as settings
+from . import statistics as statistics
+from . import tags as tags
+from . import token as token
+from . import upload as upload
+from . import user as user

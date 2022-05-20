@@ -119,15 +119,15 @@ class MangaLinks(TypedDict, total=False):
 
 class MangaAttributesResponse(TypedDict):
     """
-    title: :class:`~hondana.types.LocalizedString`
+    title: :class:`~hondana.types.common.LocalizedString`
 
-    altTitle: List[:class:`~hondana.types.LocalizedString`]
+    altTitle: List[:class:`~hondana.types.common.LocalizedString`]
 
-    description: :class:`~hondana.types.LocalizedString`
+    description: :class:`~hondana.types.common.LocalizedString`
 
     isLocked: :class:`bool`
 
-    links: :class:`~hondana.types.MangaLinks`
+    links: :class:`~hondana.types.manga.MangaLinks`
 
     originalLanguage: :class:`str`
 
@@ -145,9 +145,9 @@ class MangaAttributesResponse(TypedDict):
 
     chapterNumbersResetOnNewVolume: :class:`bool`
 
-    availableTranslatedLanguages: List[:class:`~hondana.types.LanguageCode`]
+    availableTranslatedLanguages: List[:class:`~hondana.types.common.LanguageCode`]
 
-    tags: List[:class:`~hondana.types.TagResponse`]
+    tags: List[:class:`~hondana.types.tags.TagResponse`]
 
     state: :class:`~hondana.MangaState`
 
@@ -200,9 +200,9 @@ class MangaResponse(TypedDict):
 
     type: Literal[``"manga"``]
 
-    attributes: :class:`~hondana.types.MangaAttributesResponse`
+    attributes: :class:`~hondana.types.manga.MangaAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -225,7 +225,7 @@ class GetMangaResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.MangaResponse`
+    data: :class:`~hondana.types.manga.MangaResponse`
     """
 
     result: Literal["ok", "error"]
@@ -239,7 +239,7 @@ class MangaRelationCreateResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.MangaRelation`
+    data: :class:`~hondana.types.manga.MangaRelation`
     """
 
     result: Literal["ok", "error"]
@@ -253,7 +253,7 @@ class MangaSearchResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.MangaResponse`]
+    data: List[:class:`~hondana.types.manga.MangaResponse`]
 
     limit: :class:`int`
 
@@ -276,9 +276,9 @@ class MangaRelation(TypedDict):
 
     type: Literal[``"manga_relation"``]
 
-    attributes: :class:`~hondana.types.MangaRelationAttributesResponse`
+    attributes: :class:`~hondana.types.manga.MangaRelationAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -301,7 +301,7 @@ class MangaRelationResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.MangaRelation`]
+    data: List[:class:`~hondana.types.manga.MangaRelation`]
 
     limit: :class:`int`
 
@@ -331,7 +331,7 @@ class ChaptersResponse(TypedDict):
 
 class VolumesAndChaptersResponse(TypedDict, total=False):
     """
-    chapters: Dict[:class:`str`, :class:`~hondana.types.ChaptersResponse`]
+    chapters: Dict[:class:`str`, :class:`~hondana.types.manga.ChaptersResponse`]
 
     count: :class:`int`
 
@@ -347,7 +347,7 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    volumes: Optional[Dict[:class:`str`, :class:`~hondana.types.VolumesAndChaptersResponse`]]
+    volumes: Optional[Dict[:class:`str`, :class:`~hondana.types.manga.VolumesAndChaptersResponse`]]
     """
 
     result: Literal["ok", "error"]

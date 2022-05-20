@@ -1,227 +1,227 @@
 Response Types and Payloads
 ===========================
-
 .. currentmodule:: hondana.types
 
 
 Common
 ------
-.. autoclass:: LanguageCode
+
+.. autoclass:: hondana.types.common.LanguageCode
     :members:
     :undoc-members:
 
-.. autoclass:: LocalizedString
+.. autoclass:: hondana.types.common.LocalizedString
 
 
 Artist
 ------
-.. autoclass:: ArtistResponse
+.. autoclass:: hondana.types.artist.ArtistResponse
 
-.. autoclass:: ArtistAttributesResponse
+.. autoclass:: hondana.types.artist.ArtistAttributesResponse
 
-.. autoclass:: GetSingleArtistResponse
+.. autoclass:: hondana.types.artist.GetSingleArtistResponse
 
-.. autoclass:: GetMultiArtistResponse
+.. autoclass:: hondana.types.artist.GetMultiArtistResponse
 
 Auth
 ----
-.. autoclass:: TokenResponse
+.. autoclass:: hondana.types.auth.TokenResponse
 
-.. autoclass:: CheckPayload
+.. autoclass:: hondana.types.auth.CheckPayload
 
-.. autoclass:: RefreshPayload
+.. autoclass:: hondana.types.auth.RefreshPayload
 
-.. autoclass:: LoginPayload
+.. autoclass:: hondana.types.auth.LoginPayload
 
 
 Author
 ------
-.. autoclass:: AuthorResponse
+.. autoclass:: hondana.types.author.AuthorResponse
 
-.. autoclass:: AuthorAttributesResponse
+.. autoclass:: hondana.types.author.AuthorAttributesResponse
 
-.. autoclass:: GetSingleAuthorResponse
+.. autoclass:: hondana.types.author.GetSingleAuthorResponse
 
-.. autoclass:: GetMultiAuthorResponse
+.. autoclass:: hondana.types.author.GetMultiAuthorResponse
 
 Chapter
 -------
-.. autoclass:: ChapterResponse
+.. autoclass:: hondana.types.chapter.ChapterResponse
 
-.. autoclass:: ChapterAttributesResponse
+.. autoclass:: hondana.types.chapter.ChapterAttributesResponse
 
-.. autoclass:: GetSingleChapterResponse
+.. autoclass:: hondana.types.chapter.GetSingleChapterResponse
 
-.. autoclass:: GetMultiChapterResponse
+.. autoclass:: hondana.types.chapter.GetMultiChapterResponse
 
-.. autoclass:: GetAtHomeResponse
+.. autoclass:: hondana.types.chapter.GetAtHomeResponse
 
-.. autoclass:: GetAtHomeChapterResponse
+.. autoclass:: hondana.types.chapter.GetAtHomeChapterResponse
 
 
 Cover
 -----
-.. autoclass:: CoverResponse
+.. autoclass:: hondana.types.cover.CoverResponse
 
-.. autoclass:: CoverAttributesResponse
+.. autoclass:: hondana.types.cover.CoverAttributesResponse
 
-.. autoclass:: GetSingleCoverResponse
+.. autoclass:: hondana.types.cover.GetSingleCoverResponse
 
-.. autoclass:: GetMultiCoverResponse
+.. autoclass:: hondana.types.cover.GetMultiCoverResponse
 
 
 CustomList
 ----------
-.. autoclass:: CustomListResponse
+.. autoclass:: hondana.types.custom_list.CustomListResponse
 
-.. autoclass:: CustomListAttributesResponse
+.. autoclass:: hondana.types.custom_list.CustomListAttributesResponse
 
-.. autoclass:: GetSingleCustomListResponse
+.. autoclass:: hondana.types.custom_list.GetSingleCustomListResponse
 
-.. autoclass:: GetMultiCustomListResponse
+.. autoclass:: hondana.types.custom_list.GetMultiCustomListResponse
 
 Errors
 ------
-.. autoclass:: ErrorType
+.. autoclass:: hondana.types.errors.ErrorType
 
-.. autoclass:: APIError
+.. autoclass:: hondana.types.errors.APIError
 
 
 Legacy
 ------
-.. autoclass:: LegacyMappingType
+.. autoclass:: hondana.types.legacy.LegacyMappingType
     :members:
     :undoc-members:
 
-.. autoclass:: LegacyMappingResponse
+.. autoclass:: hondana.types.legacy.LegacyMappingResponse
 
-.. autoclass:: LegacyMappingAttributesResponse
+.. autoclass:: hondana.types.legacy.LegacyMappingAttributesResponse
 
-.. autoclass:: GetLegacyMappingResponse
+.. autoclass:: hondana.types.legacy.GetLegacyMappingResponse
 
 
 Manga
 -----
-.. autoclass:: MangaLinks
+.. autoclass:: hondana.types.manga.MangaLinks
 
-.. autoclass:: MangaResponse
+.. autoclass:: hondana.types.manga.MangaResponse
 
-.. autoclass:: GetMangaResponse
+.. autoclass:: hondana.types.manga.GetMangaResponse
 
-.. autoclass:: MangaAttributesResponse
+.. autoclass:: hondana.types.manga.MangaAttributesResponse
 
-.. autoclass:: MangaRelationAttributesResponse
+.. autoclass:: hondana.types.manga.MangaRelationAttributesResponse
 
-.. autoclass:: MangaRelationCreateResponse
+.. autoclass:: hondana.types.manga.MangaRelationCreateResponse
 
-.. autoclass:: MangaSearchResponse
+.. autoclass:: hondana.types.manga.MangaSearchResponse
 
-.. autoclass:: MangaRelation
+.. autoclass:: hondana.types.manga.MangaRelation
 
-.. autoclass:: MangaRelationResponse
+.. autoclass:: hondana.types.manga.MangaRelationResponse
 
-.. autoclass:: VolumesAndChaptersResponse
+.. autoclass:: hondana.types.manga.VolumesAndChaptersResponse
 
-.. autoclass:: ChaptersResponse
+.. autoclass:: hondana.types.manga.ChaptersResponse
 
-.. autoclass:: GetMangaVolumesAndChaptersResponse
+.. autoclass:: hondana.types.manga.GetMangaVolumesAndChaptersResponse
 
-.. autoclass:: MangaReadMarkersResponse
+.. autoclass:: hondana.types.manga.MangaReadMarkersResponse
 
-.. autoclass:: MangaGroupedReadMarkersResponse
+.. autoclass:: hondana.types.manga.MangaGroupedReadMarkersResponse
 
-.. autoclass:: MangaSingleReadingStatusResponse
+.. autoclass:: hondana.types.manga.MangaSingleReadingStatusResponse
 
-.. autoclass:: MangaMultipleReadingStatusResponse
+.. autoclass:: hondana.types.manga.MangaMultipleReadingStatusResponse
 
 
 Relationship
 ------------
-.. autoclass:: RelationshipResponse
+.. autoclass:: hondana.types.relationship.RelationshipResponse
 
 
 Report
 ------
-.. autoclass:: ReportReasonResponse
+.. autoclass:: hondana.types.report.ReportReasonResponse
 
-.. autoclass:: GetReportReasonAttributesResponse
+.. autoclass:: hondana.types.report.GetReportReasonAttributesResponse
 
-.. autoclass:: GetReportReasonResponse
+.. autoclass:: hondana.types.report.GetReportReasonResponse
 
 
 Scanlator Group
 ---------------
-.. autoclass:: ScanlationGroupResponse
+.. autoclass:: hondana.types.scanlator_group.ScanlationGroupResponse
 
-.. autoclass:: ScanlationGroupAttributesResponse
+.. autoclass:: hondana.types.scanlator_group.ScanlationGroupAttributesResponse
 
-.. autoclass:: GetSingleScanlationGroupResponse
+.. autoclass:: hondana.types.scanlator_group.GetSingleScanlationGroupResponse
 
-.. autoclass:: GetMultiScanlationGroupResponse
+.. autoclass:: hondana.types.scanlator_group.GetMultiScanlationGroupResponse
 
 Settings
 --------
-.. autoclass:: Settings
+.. autoclass:: hondana.types.settings.Settings
 
-.. autoclass:: SettingsPayload
+.. autoclass:: hondana.types.settings.SettingsPayload
 
 Statistics
 ----------
-.. autoclass:: StatisticsRatingResponse
+.. autoclass:: hondana.types.statistics.StatisticsRatingResponse
 
-.. autoclass:: BatchStatisticsRatingResponse
+.. autoclass:: hondana.types.statistics.BatchStatisticsRatingResponse
 
-.. autoclass:: StatisticsResponse
+.. autoclass:: hondana.types.statistics.StatisticsResponse
 
-.. autoclass:: BatchStatisticsResponse
+.. autoclass:: hondana.types.statistics.BatchStatisticsResponse
 
-.. autoclass:: GetStatisticsResponse
+.. autoclass:: hondana.types.statistics.GetStatisticsResponse
 
-.. autoclass:: BatchGetStatisticsResponse
+.. autoclass:: hondana.types.statistics.BatchGetStatisticsResponse
 
-.. autoclass:: PersonalMangaRatingsResponse
+.. autoclass:: hondana.types.statistics.PersonalMangaRatingsResponse
 
-.. autoclass:: GetPersonalMangaRatingsResponse
+.. autoclass:: hondana.types.statistics.GetPersonalMangaRatingsResponse
 
 
 Tags
 ----
-.. autoclass:: TagResponse
+.. autoclass:: hondana.types.tags.TagResponse
 
-.. autoclass:: TagAttributesResponse
+.. autoclass:: hondana.types.tags.TagAttributesResponse
 
-.. autoclass:: GetTagListResponse
+.. autoclass:: hondana.types.tags.GetTagListResponse
 
 
 Token
 -----
-.. autoclass:: TokenPayload
+.. autoclass:: hondana.types.token.TokenPayload
 
 
 User
 ----
-.. autoclass:: UserResponse
+.. autoclass:: hondana.types.user.UserResponse
 
-.. autoclass:: GetUserAttributesResponse
+.. autoclass:: hondana.types.user.GetUserAttributesResponse
 
-.. autoclass:: GetSingleUserResponse
+.. autoclass:: hondana.types.user.GetSingleUserResponse
 
-.. autoclass:: GetMultiUserResponse
+.. autoclass:: hondana.types.user.GetMultiUserResponse
 
 Upload
 ------
-.. autoclass:: UploadSessionAttributes
+.. autoclass:: hondana.types.upload.UploadSessionAttributes
 
-.. autoclass:: GetUploadSessionResponse
+.. autoclass:: hondana.types.upload.GetUploadSessionResponse
 
-.. autoclass:: ChapterUploadAttributes
+.. autoclass:: hondana.types.upload.ChapterUploadAttributes
 
-.. autoclass:: ChapterUploadData
+.. autoclass:: hondana.types.upload.ChapterUploadData
 
-.. autoclass:: BeginChapterUploadResponse
+.. autoclass:: hondana.types.upload.BeginChapterUploadResponse
 
-.. autoclass:: UploadedChapterPageAttributes
+.. autoclass:: hondana.types.upload.UploadedChapterPageAttributes
 
-.. autoclass:: UploadedChapterDataResponse
+.. autoclass:: hondana.types.upload.UploadedChapterDataResponse
 
-.. autoclass:: UploadedChapterResponse
+.. autoclass:: hondana.types.upload.UploadedChapterResponse

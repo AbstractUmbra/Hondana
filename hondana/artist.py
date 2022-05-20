@@ -313,7 +313,7 @@ class Artist:
         -----------
         name: Optional[:class:`str`]
             The new name to update the artist with.
-        biography: Optional[:class:`~hondana.types.LocalizedString`]
+        biography: Optional[:class:`~hondana.types.common.LocalizedString`]
             The biography of the artist we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the artist.

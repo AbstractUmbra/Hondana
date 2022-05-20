@@ -73,9 +73,9 @@ class GetUploadSessionDataResponse(TypedDict):
 
     type: Literal[``"upload_session"``]
 
-    attributes: :class:`~hondana.types.UploadSessionAttributes`
+    attributes: :class:`~hondana.types.upload.UploadSessionAttributes`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
     """
 
     id: str
@@ -118,9 +118,9 @@ class ChapterUploadData(TypedDict):
 
     type: Literal[``"upload_session"``]
 
-    attributes: :class:`~hondana.types.ChapterUploadAttributes`
+    attributes: :class:`~hondana.types.upload.ChapterUploadAttributes`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
     """
 
     id: str
@@ -133,7 +133,7 @@ class BeginChapterUploadResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`~hondana.types.ChapterUploadData`
+    data: :class:`~hondana.types.upload.ChapterUploadData`
     """
 
     result: Literal["ok", "error"]
@@ -166,7 +166,7 @@ class UploadedChapterDataResponse(TypedDict):
 
     type: Literal[``"upload_session_file"``]
 
-    attributes: :class:`~hondana.types.UploadedChapterPageAttributes`
+    attributes: :class:`~hondana.types.upload.UploadedChapterPageAttributes`
     """
 
     id: str
@@ -178,9 +178,9 @@ class UploadedChapterResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    errors: List[:class:`~hondana.types.ErrorType`]
+    errors: List[:class:`~hondana.types.errors.ErrorType`]
 
-    data: List[:class:`~hondana.types.UploadedChapterDataResponse`]
+    data: List[:class:`~hondana.types.upload.UploadedChapterDataResponse`]
     """
 
     result: Literal["ok", "error"]

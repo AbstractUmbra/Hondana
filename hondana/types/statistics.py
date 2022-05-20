@@ -60,7 +60,7 @@ class BatchStatisticsRatingResponse(TypedDict):
 
 class StatisticsResponse(TypedDict):
     """
-    rating: :class:`~hondana.types.StatisticsRatingResponse`
+    rating: :class:`~hondana.types.statistics.StatisticsRatingResponse`
 
     follows: :class:`int`
     """
@@ -71,7 +71,7 @@ class StatisticsResponse(TypedDict):
 
 class BatchStatisticsResponse(TypedDict):
     """
-    rating: :class:`~hondana.types.BatchStatisticsRatingResponse`
+    rating: :class:`~hondana.types.statistics.BatchStatisticsRatingResponse`
 
     follows: :class:`int`
     """
@@ -84,7 +84,7 @@ class GetStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types.StatisticsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types.statistics.StatisticsResponse`]
     """
 
     result: Literal["ok"]
@@ -95,7 +95,7 @@ class BatchGetStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types.BatchStatisticsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types.statistics.BatchStatisticsResponse`]
     """
 
     result: Literal["ok"]
@@ -117,7 +117,7 @@ class GetPersonalMangaRatingsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    ratings: Dict[:class:`str`, :class:`~hondana.types.PersonalMangaRatingsResponse`]
+    ratings: Dict[:class:`str`, :class:`~hondana.types.statistics.PersonalMangaRatingsResponse`]
     """
 
     result: Literal["ok"]

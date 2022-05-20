@@ -410,7 +410,7 @@ class ScanlatorGroup:
             The new twitter url to update the group with.
         manga_updates: Optional[:class:`str`]
             The URL for this group's manga updates page, if any.
-        focused_languages: Optional[List[:class:`~hondana.types.LanguageCode`]]
+        focused_languages: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
             If the group is inactive or not.

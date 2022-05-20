@@ -46,7 +46,7 @@ class LegacyItem:
         The target item's new UUID.
     obj_legacy_id: :class:`int`
         The target item's old API integer ID.
-    obj_type: :class:`~hondana.types.LegacyMappingType`
+    obj_type: :class:`~hondana.types.legacy.LegacyMappingType`
         The type of the legacy item we resolved.
     """
 

@@ -45,7 +45,7 @@ _ReportCategory = Literal["manga", "chapter", "scanlation_group", "user", "autho
 
 class GetReportReasonAttributesResponse(TypedDict):
     """
-    reason: :class:`~hondana.types.LocalizedString`
+    reason: :class:`~hondana.types.common.LocalizedString`
 
     detailsRequired: :class:`bool`
 
@@ -83,7 +83,7 @@ class ReportReasonResponse(TypedDict):
 
     type: Literal[``"report_reason"``]
 
-    attributes: :class:`~hondana.types.GetReportReasonAttributesResponse`
+    attributes: :class:`~hondana.types.report.GetReportReasonAttributesResponse`
     """
 
     id: str
@@ -97,9 +97,9 @@ class UserReportReasonResponse(TypedDict):
 
     type: Literal[``"report"``]
 
-    attributes: :class:`~hondana.types.GetUserReportReasonAttributesResponse`
+    attributes: :class:`~hondana.types.report.GetUserReportReasonAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is Optional.
     """
 
@@ -115,7 +115,7 @@ class GetReportReasonResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.GetReportReasonResponse`]
+    data: List[:class:`~hondana.types.report.GetReportReasonResponse`]
 
     limit: :class:`int`
 
@@ -138,7 +138,7 @@ class GetUserReportReasonResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.UserReportReasonResponse`]
+    data: List[:class:`~hondana.types.user.UserReportReasonResponse`]
 
     limit: :class:`int`
 

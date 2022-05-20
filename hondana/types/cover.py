@@ -50,7 +50,7 @@ class CoverAttributesResponse(TypedDict):
 
     description: Optional[:class:`str`]
 
-    locale: Optional[:class:`~hondana.types.LanguageCode`]
+    locale: Optional[:class:`~hondana.types.common.LanguageCode`]
 
     version: :class:`int`
 
@@ -75,9 +75,9 @@ class CoverResponse(TypedDict):
 
     type: Literal[``"cover_art"``]
 
-    attributes: :class:`~hondana.types.CoverAttributesResponse`
+    attributes: :class:`~hondana.types.cover.CoverAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -96,7 +96,7 @@ class GetSingleCoverResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.CoverResponse`
+    data: :class:`~hondana.types.cover.CoverResponse`
     """
 
     result: Literal["ok", "error"]
@@ -110,7 +110,7 @@ class GetMultiCoverResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.CoverResponse`]
+    data: List[:class:`~hondana.types.cover.CoverResponse`]
 
     limit: :class:`int`
 
