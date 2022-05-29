@@ -166,6 +166,7 @@ class HTTPClient:
         "_session",
         "_locks",
         "_token",
+        "_token_lock",
         "_refresh_token",
         "__refresh_after",
         "user_agent",
@@ -188,6 +189,7 @@ class HTTPClient:
         self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
         self._token: Optional[str] = None
+        self._token_lock: asyncio.Lock = asyncio.Lock()
         self._refresh_token: Optional[str] = refresh_token
         self.__refresh_after: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
@@ -425,7 +427,7 @@ class HTTPClient:
             self._locks[bucket] = lock
 
         headers = kwargs.pop("headers", {})
-        async with asyncio.Lock():
+        async with self._token_lock:
             token = await self._try_token() if self._authenticated else None
 
         if token is not None:
