@@ -46,6 +46,7 @@ furo = { version = "*", optional = true }
 [tool.poetry.dev-dependencies]
 poethepoet = "*"
 black = "*"
+pytest-asyncio = "^0.18.3"
 
 [tool.poetry.extras]
 speedups = ["orjson"]
@@ -84,6 +85,9 @@ reportFunctionMemberAccess = "error"
 reportDuplicateImport = "error"
 reportUntypedFunctionDecorator = "error"
 reportUnnecessaryTypeIgnoreComment = "warning"
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
 
 [tool.poe.tasks]
 spec = "poetry run python _api_dl.py"
