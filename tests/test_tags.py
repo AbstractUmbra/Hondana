@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
 
 PAYLOAD: GetMangaResponse = json.load(open(PATH, "r"))
-HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
+HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
 def clone_tags() -> list[Tag]:

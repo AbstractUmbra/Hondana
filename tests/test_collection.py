@@ -40,8 +40,7 @@ if TYPE_CHECKING:
     from hondana.types.user import GetMultiUserResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections"
-
-HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
+HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 CollectionType = Literal[
     "author",

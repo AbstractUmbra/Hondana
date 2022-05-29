@@ -18,7 +18,7 @@ PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "user.json"
 
 
 PAYLOAD: GetSingleUserResponse = json.load(open(PATH, "r"))
-HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
+HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
 def clone_user() -> User:

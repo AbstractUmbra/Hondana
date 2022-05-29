@@ -29,7 +29,7 @@ PAYLOAD: GetMangaResponse = json.load(open(PATH, "r"))
 RELATION_PAYLOAD: MangaRelationResponse = json.load(open(RELATION_PATH, "r"))
 STATISTICS_PAYLOAD: GetStatisticsResponse = json.load(open(STATISTICS_PATH, "r"))
 RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(open(RATING_PATH, "r"))
-HTTP: HTTPClient = HTTPClient(username=None, password=None, email=None)
+HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
 @overload

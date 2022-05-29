@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import pathlib
 
+import pytest
+
 from hondana.client import Client
 
 
@@ -15,7 +17,8 @@ def clone_client(auth: bool = False) -> Client:
 
 
 class TestClient:
-    def test_auth(self):
+    @pytest.mark.asyncio
+    async def test_auth(self):
         client = clone_client()
 
         assert client._http._authenticated is False
@@ -28,7 +31,8 @@ class TestClient:
         assert client._http.username is not None
         assert client._http.password is not None
 
-    def test_refresh_token_dump(self):
+    @pytest.mark.asyncio
+    async def test_refresh_token_dump(self):
         client = clone_client(auth=True)
 
         token = "This is a token"
