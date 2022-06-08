@@ -76,7 +76,7 @@ extensions: list[str] = [
     "resource_links",
 ]
 
-extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-")}
+extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-%s")}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path: list[str] = ["_templates"]
