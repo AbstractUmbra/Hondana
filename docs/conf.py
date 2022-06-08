@@ -87,12 +87,12 @@ autodoc_typehints_description_target: str = "documented"
 autodoc_member_order: str = "bysource"
 autodoc_preserve_defaults: bool = False
 autodoc_type_aliases: dict[str, str] = {
-    "common.LanguadeCode": "hondana.types.common.LanguadeCode",
-    "LanguadeCode": "hondana.types.common.LanguadeCode",
-    "common.LocalizedString": "hondana.types.common.LocalizedString",
+    "LanguageCode": "hondana.types.common.LanguageCode",
+    "common.LanguageCode": "hondana.types.common.LanguageCode",
     "LocalizedString": "hondana.types.common.LocalizedString",
-    "legacy.LegacyMappingType": "hondana.types.legacy.LegacyMappingType",
+    "common.LocalizedString": "hondana.types.common.LocalizedString",
     "LegacyMappingType": "hondana.types.legacy.LegacyMappingType",
+    "legacy.LegacyMappingType": "hondana.types.legacy.LegacyMappingType",
     "PathLike": "os.PathLike",
     "ClientSession": "aiohttp.ClientSession",
 }
@@ -139,14 +139,3 @@ resource_links: dict[str, str] = {
     "examples": f"{_GITHUB}/tree/main/examples",
     "discord": _DISCORD,
 }
-
-
-# def linkcode_resolve(domain: Literal["c", "py", "cpp", "javascript"], info: dict[str, str]) -> Optional[str]:
-#     if domain != "py":
-#         return
-#     if not info["module"]:
-#         return
-
-#     filename: str = info["module"].replace(".", "/")
-#     return f"https://github.com/AbstractUmbra/Hondana/blob/main/{filename}.py"
-# TODO: let's try this another time
