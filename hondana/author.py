@@ -140,7 +140,7 @@ class Author:
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
-        return f"<Author id='{self.id}' name='{self.name}'>"
+        return f"<Author id={self.id!r} name={self.name!r}>"
 
     def __str__(self) -> str:
         return self.name
@@ -169,7 +169,7 @@ class Author:
 
         Parameters
         ----------
-        language: :class:`~hondana.LanguageCode`
+        language: :class:`~LanguageCode`
             The language code of the language to return.
 
         Returns

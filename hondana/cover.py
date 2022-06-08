@@ -91,7 +91,7 @@ class Cover:
         self._uploader_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)
 
     def __repr__(self) -> str:
-        return f"<Cover id='{self.id}' filename={self.file_name}>"
+        return f"<Cover id={self.id!r} filename={self.file_name!r}>"
 
     def __str__(self) -> str:
         return self.file_name

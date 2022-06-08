@@ -66,4 +66,4 @@ class Relationship:
         self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})
 
     def __repr__(self) -> str:
-        return f"<Relationship id='{self.id}' type='{self.type}'>"
+        return f"<Relationship id={self.id!r} type={self.type!r}>"

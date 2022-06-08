@@ -89,7 +89,7 @@ class User:
         self.__groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
-        return f"<User id='{self.id}' username='{self.username}'>"
+        return f"<User id={self.id!r} username={self.username!r}>"
 
     def __str__(self) -> str:
         return self.username

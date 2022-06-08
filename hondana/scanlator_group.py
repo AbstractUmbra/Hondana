@@ -143,7 +143,7 @@ class ScanlatorGroup:
         self.__members: Optional[list[User]] = None
 
     def __repr__(self) -> str:
-        return f"<ScanlatorGroup id='{self.id}' name='{self.name}'>"
+        return f"<ScanlatorGroup id={self.id!r} name={self.name!r}>"
 
     def __str__(self) -> str:
         return self.name

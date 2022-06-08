@@ -79,7 +79,7 @@ class Report:
         self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
-        return f"<Report id='{self.id}'>"
+        return f"<Report id={self.id!r}>"
 
     def __str__(self) -> str:
         return f"Report for {str(self.category).title()} and reason: {self.reason}"
@@ -129,7 +129,7 @@ class UserReport:
         self._created_at: str = self._attributes["createdAt"]
 
     def __repr__(self) -> str:
-        return f"<UserReport id='{self.id}' status={self.status.value}>"
+        return f"<UserReport id={self.id!r} status={self.status.value!r}>"
 
     def __eq__(self, other: UserReport) -> bool:
         return isinstance(other, self.__class__) and self.id == other.id

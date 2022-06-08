@@ -206,7 +206,7 @@ class Manga:
         self.__related_manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
-        return f"<Manga id='{self.id}' title='{self.title}'>"
+        return f"<Manga id={self.id!r} title={self.title!r}>"
 
     def __str__(self) -> str:
         return self.title
@@ -1422,7 +1422,7 @@ class MangaRelation:
         self.relation_type: MangaRelationType = MangaRelationType(self._attributes["relation"])
 
     def __repr__(self) -> str:
-        return f"<MangaRelation id='{self.id}' source_id={self.source_manga_id}>"
+        return f"<MangaRelation id={self.id!r} source_manga_id={self.source_manga_id!r}>"
 
     def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
         return self.id == other.id or self.source_manga_id == other.id
@@ -1474,7 +1474,7 @@ class MangaStatistics:
         self.distribution: Optional[dict[str, int]] = self._rating.get("distribution")
 
     def __repr__(self) -> str:
-        return f"<MangaStatistics for='{self.parent_id}'>"
+        return f"<MangaStatistics for={self.parent_id!r}>"
 
 
 class MangaRating:
@@ -1507,4 +1507,4 @@ class MangaRating:
         self.created_at: datetime.datetime = datetime.datetime.fromisoformat(self._data["createdAt"])
 
     def __repr__(self) -> str:
-        return f"<MangaRating parent='{self.parent_id}'>"
+        return f"<MangaRating parent_id={self.parent_id!r}>"

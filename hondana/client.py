@@ -219,6 +219,9 @@ class Client:
             username=username, email=email, password=password, session=session, refresh_token=refresh_token
         )
 
+    def __repr__(self) -> str:
+        return f"<Client authenticated={self._http._authenticated}>"
+
     @overload
     def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: None = ...) -> None:
         ...

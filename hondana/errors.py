@@ -73,7 +73,7 @@ class Error:
         self.error_detail: str = error["detail"]
 
     def __repr__(self) -> str:
-        return f"<Error status={self.error_status} title='{self.error_title}' detail='{self.error_detail}'>"
+        return f"<Error status={self.error_status} title={self.error_title!r} detail={self.error_detail!r}>"
 
     def __str__(self) -> str:
         return f"Error: {self.error_title}: {self.error_detail}"

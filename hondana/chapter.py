@@ -170,10 +170,10 @@ class Chapter:
         self.__scanlator_groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
-        return f"<Chapter id='{self.id}' title='{self.title}'>"
+        return f"<Chapter id={self.id!r} title={self.title!r}>"
 
     def __str__(self) -> str:
-        return self.title or "No title for this chapter..."
+        return self.title or f"No title for this chapter, with ID: {self.id!r}"
 
     def __eq__(self, other: Chapter) -> bool:
         return isinstance(other, Chapter) and self.id == other.id
@@ -691,7 +691,7 @@ class ChapterAtHome:
         self.data_saver: list[str] = chapter["dataSaver"]
 
     def __repr__(self) -> str:
-        return f"<ChapterAtHome hash='{self.hash}'>"
+        return f"<ChapterAtHome hash={self.hash!r}>"
 
     def __eq__(self, other: ChapterAtHome) -> bool:
         return isinstance(other, ChapterAtHome) and self.hash == other.hash
@@ -849,7 +849,7 @@ class ChapterUpload:
         self.__committed: bool = False
 
     def __repr__(self) -> str:
-        return f"<ChapterUpload id='{self.upload_session_id}' current_uploads={len(self.uploaded)}>"
+        return f"<ChapterUpload id={self.upload_session_id!r} current_uploads={len(self.uploaded)}>"
 
     async def _check_for_session(self) -> None:
         route = Route("GET", "/upload")

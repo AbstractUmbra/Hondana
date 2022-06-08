@@ -93,7 +93,7 @@ class Tag:
         self.version: int = self._attributes["version"]
 
     def __repr__(self) -> str:
-        return f"<Tag id='{self.id}' name='{self.name}'>"
+        return f"<Tag id={self.id!r} name={self.name!r}>"
 
     def __str__(self) -> str:
         return self.name
