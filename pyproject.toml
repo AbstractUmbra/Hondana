@@ -43,7 +43,7 @@ sphinx = { version = "^5.0.0", optional = true }
 sphinxcontrib-trio = { version = "*", optional = true }
 furo = { version = "*", optional = true }
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 pytest-asyncio = "*"
 poethepoet = "*"
 black = "*"
