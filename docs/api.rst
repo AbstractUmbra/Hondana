@@ -32,6 +32,9 @@ Chapter
 .. autoclass:: UploadData()
     :members:
 
+.. autoclass:: PreviouslyReadChapter()
+    :members:
+
 Chapter Upload
 ~~~~~~~~~~~~~~
 .. autoclass:: ChapterUpload()
@@ -67,6 +70,9 @@ Collections
     :members: items
 
 .. autoclass:: LegacyMappingCollection()
+    :members: items
+
+.. autoclass:: ChapterReadHistoryCollection()
     :members: items
 
 Cover

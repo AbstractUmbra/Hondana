@@ -36,7 +36,7 @@ import aiohttp
 
 from .errors import NotFound, UploadInProgress
 from .manga import Manga
-from .query import MangaIncludes, ScanlatorGroupIncludes
+from .query import ChapterIncludes, MangaIncludes, ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
 from .user import User
 from .utils import (
@@ -82,6 +82,7 @@ __all__ = (
     "ChapterAtHome",
     "UploadData",
     "ChapterUpload",
+    "PreviouslyReadChapter",
 )
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
@@ -506,12 +507,17 @@ class Chapter:
         await self._http._delete_chapter(self.id)
 
     @require_authentication
-    async def mark_as_read(self) -> None:
+    async def mark_as_read(self, *, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark the current chapter as read for the current authenticated user in the MangaDex API.
+
+        Parameters
+        -----------
+        update_history: :class:`bool`
+            Whether to update the chapter history for the current user.
         """
-        await self._http._mark_chapter_as_read(self.id)
+        await self._http._mark_chapter_as_read(self.id, update_history=update_history)
 
     @require_authentication
     async def mark_chapter_as_unread(self) -> None:
@@ -1051,3 +1057,35 @@ class ChapterUpload:
     ) -> None:
         if self.__committed is False:
             await self.commit()
+
+
+class PreviouslyReadChapter:
+    """
+    A richer interface for chapter read histories.
+
+    Attributes
+    -----------
+    chapter_id: :class:`str`
+        The previously read chapter's ID.
+    read_date: :class:`datetime.datetime`
+        The datetime (in UTC) when this chapter was marked as read.
+    """
+
+    def __init__(self, http: HTTPClient, data: tuple[str, str]) -> None:
+        self._http = http
+        self.chapter_id: str = data[0]
+        dt = datetime.datetime.strptime(data[1], "%Y-%m-%dT%H:%M:%S.%fZ")
+        dt.replace(tzinfo=datetime.timezone.utc)
+        self.read_date: datetime.datetime = dt
+
+    async def fetch_chapter(self, *, includes: ChapterIncludes = ChapterIncludes()) -> Chapter:
+        """|coro|
+
+        This method will fetch the chapter from the ID in the read payload.
+
+        Returns
+        ---------
+        :class:`~hondana.Chapter`
+        """
+        data = await self._http._get_chapter(self.chapter_id, includes=includes)
+        return Chapter(self._http, data["data"])

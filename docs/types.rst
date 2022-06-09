@@ -58,6 +58,10 @@ Chapter
 
 .. autoclass:: hondana.types.chapter.GetAtHomeChapterResponse
 
+.. autoclass:: hondana.types.chapter.ChapterReadResponse
+
+.. autoclass:: hondana.types.chapter.ChapterReadHistoryResponse
+
 
 Cover
 -----

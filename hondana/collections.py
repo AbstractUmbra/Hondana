@@ -29,7 +29,7 @@ from typing import TYPE_CHECKING, Generic, TypeVar
 
 if TYPE_CHECKING:
     from .author import Author
-    from .chapter import Chapter
+    from .chapter import Chapter, PreviouslyReadChapter
     from .cover import Cover
     from .custom_list import CustomList
     from .http import HTTPClient
@@ -38,7 +38,7 @@ if TYPE_CHECKING:
     from .report import Report, UserReport
     from .scanlator_group import ScanlatorGroup
     from .types.author import GetMultiAuthorResponse
-    from .types.chapter import GetMultiChapterResponse
+    from .types.chapter import ChapterReadHistoryResponse, GetMultiChapterResponse
     from .types.cover import GetMultiCoverResponse
     from .types.custom_list import GetMultiCustomListResponse
     from .types.legacy import GetLegacyMappingResponse
@@ -60,6 +60,7 @@ __all__ = (
     "UserCollection",
     "CustomListCollection",
     "LegacyMappingCollection",
+    "ChapterReadHistoryCollection",
 )
 
 T = TypeVar("T")
@@ -121,18 +122,6 @@ class MangaCollection(BaseCollection["Manga"]):
         "limit",
         "offset",
     )
-
-    @property
-    def items(self) -> list[Manga]:
-        """
-        Returns the mangas in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.Manga`]
-        """
-        return self.manga
 
     def __init__(self, http: HTTPClient, payload: MangaSearchResponse, manga: list[Manga]) -> None:
         self._http: HTTPClient = http
@@ -210,16 +199,6 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
         """
         return self.relations
 
-    def __init__(self, http: HTTPClient, payload: MangaRelationResponse, relations: list[MangaRelation]) -> None:
-        self._http: HTTPClient = http
-        payload.pop("data", [])
-        self._data = payload
-        self.relations: list[MangaRelation] = relations
-        self.total: int = payload.get("total", 0)
-        self.offset: int = payload.get("offset", 0)
-        self.limit: int = payload.get("limit", 0)
-        super().__init__()
-
 
 class ChapterFeed(BaseCollection["Chapter"]):
     """
@@ -245,18 +224,6 @@ class ChapterFeed(BaseCollection["Chapter"]):
         "limit",
         "offset",
     )
-
-    @property
-    def items(self) -> list[Chapter]:
-        """
-        Returns the chapters in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.Chapter`]
-        """
-        return self.chapters
 
     def __init__(self, http: HTTPClient, payload: GetMultiChapterResponse, chapters: list[Chapter]) -> None:
         self._http: HTTPClient = http
@@ -309,18 +276,6 @@ class AuthorCollection(BaseCollection["Author"]):
         "offset",
     )
 
-    @property
-    def items(self) -> list[Author]:
-        """
-        Returns the authors in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.Author`]
-        """
-        return self.authors
-
     def __init__(self, http: HTTPClient, payload: GetMultiAuthorResponse, authors: list[Author]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -371,18 +326,6 @@ class CoverCollection(BaseCollection["Cover"]):
         "limit",
         "offset",
     )
-
-    @property
-    def items(self) -> list[Cover]:
-        """
-        Returns the covers in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.Cover`]
-        """
-        return self.covers
 
     def __init__(self, http: HTTPClient, payload: GetMultiCoverResponse, covers: list[Cover]) -> None:
         self._http: HTTPClient = http
@@ -435,18 +378,6 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
         "offset",
     )
 
-    @property
-    def items(self) -> list[ScanlatorGroup]:
-        """
-        Returns the groups in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.ScanlatorGroup`]
-        """
-        return self.groups
-
     def __init__(self, http: HTTPClient, payload: GetMultiScanlationGroupResponse, groups: list[ScanlatorGroup]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -498,18 +429,6 @@ class ReportCollection(BaseCollection["Report"]):
         "offset",
     )
 
-    @property
-    def items(self) -> list[Report]:
-        """
-        Returns the reports in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.Report`]
-        """
-        return self.reports
-
     def __init__(self, http: HTTPClient, payload: GetReportReasonResponse, reports: list[Report]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -560,18 +479,6 @@ class UserReportCollection(BaseCollection["UserReport"]):
         "limit",
         "offset",
     )
-
-    @property
-    def items(self) -> list[UserReport]:
-        """
-        Returns the reports in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.UserReport`]
-        """
-        return self.reports
 
     def __init__(self, http: HTTPClient, payload: GetUserReportReasonResponse, reports: list[UserReport]) -> None:
         self._http: HTTPClient = http
@@ -626,18 +533,6 @@ class UserCollection(BaseCollection["User"]):
         "offset",
     )
 
-    @property
-    def items(self) -> list[User]:
-        """
-        Returns the users in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.User`]
-        """
-        return self.users
-
     def __init__(self, http: HTTPClient, payload: GetMultiUserResponse, users: list[User]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
@@ -688,18 +583,6 @@ class CustomListCollection(BaseCollection["CustomList"]):
         "limit",
         "offset",
     )
-
-    @property
-    def items(self) -> list[CustomList]:
-        """
-        Returns the custom lists in the collection.
-
-        Returns
-        -------
-
-        List[:class:`~hondana.CustomList`]
-        """
-        return self.lists
 
     def __init__(self, http: HTTPClient, payload: GetMultiCustomListResponse, lists: list[CustomList]) -> None:
         self._http: HTTPClient = http
@@ -777,15 +660,53 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
         """
         return self.legacy_mappings
 
-    def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
+
+class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
+    """
+    A collection object type to represent chapter read history.
+
+    Attributes
+    -----------
+    chapter_read_histories: List[:class:`~hondana.ChapterReadHistory`]
+        The chapter read histories returned from this collection.
+    total: :class:`int`
+        The total possible results with this query could return.
+    offset: :class:`int`
+        The offset used in this query.
+    limit: :class:`int`
+        The limit used in this query.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "chapter_read_histories",
+        "total",
+        "limit",
+        "offset",
+    )
+
+    def __init__(self, http: HTTPClient, payload: ChapterReadHistoryResponse, history: list[PreviouslyReadChapter]) -> None:
         self._http: HTTPClient = http
         payload.pop("data", [])
-        self._data: GetLegacyMappingResponse = payload
-        self.legacy_mappings: list[LegacyItem] = mappings
+        self._data = payload
+        self.history: list[PreviouslyReadChapter] = history
         self.total: int = payload.get("total", 0)
         self.limit: int = payload.get("limit", 0)
         self.offset: int = payload.get("offset", 0)
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<LegacyMappingCollection legacy_mappings={len(self.legacy_mappings)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return f"<ChapterReadHistoryCollection history={len(self.history)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+    @property
+    def items(self) -> list[PreviouslyReadChapter]:
+        """
+        Returns the legacy mappings in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.PreviouslyReadChapter`]
+        """
+        return self.history

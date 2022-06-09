@@ -1170,6 +1170,10 @@ class HTTPClient:
         route = Route("DELETE", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
         return self.request(route)
 
+    def _user_read_history(self) -> Response[chapter.ChapterReadHistoryResponse]:
+        route = Route("GET", "/user/history")
+        return self.request(route)
+
     def _cover_art_list(
         self,
         *,

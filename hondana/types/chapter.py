@@ -40,6 +40,8 @@ __all__ = (
     "GetMultiChapterResponse",
     "GetAtHomeResponse",
     "GetAtHomeChapterResponse",
+    "ChapterReadResponse",
+    "ChapterReadHistoryResponse",
 )
 
 
@@ -166,3 +168,37 @@ class GetAtHomeChapterResponse(TypedDict):
     hash: str
     data: list[str]
     dataSaver: list[str]
+
+
+class ChapterReadResponse(TypedDict):
+    """
+    chapterId: :class:`str`
+
+    readDate: :class:`str`
+    """
+
+    chapterId: str
+    readDate: str  # utc timezone
+
+
+class ChapterReadHistoryResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`~hondana.types.chapter.ChapterReadResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[ChapterReadResponse]
+    limit: int
+    offset: int
+    total: int

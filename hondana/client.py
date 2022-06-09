@@ -1781,6 +1781,32 @@ class Client:
         """
         await self._http._mark_chapter_as_unread(chapter_id)
 
+    @require_authentication
+    async def my_chapter_read_history(self) -> ChapterReadHistoryCollection:
+        """|coro|
+
+        This method will return the last 30 chapters of read history for the currently logged in user.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorized to access this endpoint.
+        :exc:`NotFound`
+            You do not have any read history.
+
+        Returns
+        --------
+        :class:`~hondana.ChapterReadHistoryCollection`
+            A rich type around the returned data.
+        """
+        data = await self._http._user_read_history()
+
+        history: list[PreviouslyReadChapter] = []
+        for payload in data["data"]:
+            history.append(PreviouslyReadChapter(self._http, (payload["chapterId"], payload["readDate"])))
+
+        return ChapterReadHistoryCollection(self._http, data, history)
+
     async def cover_art_list(
         self,
         *,
