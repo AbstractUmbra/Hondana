@@ -147,6 +147,18 @@ class MangaCollection(BaseCollection["Manga"]):
     def __repr__(self) -> str:
         return f"<MangaFeed manga={len(self.manga)} total={self.total} offset={self.offset} limit={self.limit}>"
 
+    @property
+    def items(self) -> list[Manga]:
+        """
+        Returns the mangas in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Manga`]
+        """
+        return self.manga
+
 
 class MangaRelationCollection(BaseCollection["MangaRelation"]):
     """
@@ -172,6 +184,19 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
         "offset",
         "limit",
     )
+
+    def __init__(self, http: HTTPClient, payload: MangaRelationResponse, relations: list[MangaRelation]) -> None:
+        self._http: HTTPClient = http
+        payload.pop("data", [])
+        self._data = payload
+        self.relations: list[MangaRelation] = relations
+        self.total: int = payload.get("total", 0)
+        self.offset: int = payload.get("offset", 0)
+        self.limit: int = payload.get("limit", 0)
+        super().__init__()
+
+    def __repr__(self) -> str:
+        return f"<MangaRelationCollection authors={len(self.relations)} total={self.total} offset={self.offset} limit={self.limit}>"
 
     @property
     def items(self) -> list[MangaRelation]:
@@ -246,6 +271,18 @@ class ChapterFeed(BaseCollection["Chapter"]):
     def __repr__(self) -> str:
         return f"<ChapterFeed chapters={len(self.chapters)} total={self.total} offset={self.offset} limit={self.limit}>"
 
+    @property
+    def items(self) -> list[Chapter]:
+        """
+        Returns the chapters in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Chapter`]
+        """
+        return self.chapters
+
 
 class AuthorCollection(BaseCollection["Author"]):
     """
@@ -296,6 +333,18 @@ class AuthorCollection(BaseCollection["Author"]):
 
     def __repr__(self) -> str:
         return f"<ArtistCollection authors={len(self.authors)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+    @property
+    def items(self) -> list[Author]:
+        """
+        Returns the authors in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Author`]
+        """
+        return self.authors
 
 
 class CoverCollection(BaseCollection["Cover"]):
@@ -348,6 +397,18 @@ class CoverCollection(BaseCollection["Cover"]):
     def __repr__(self) -> str:
         return f"<CoverCollection covers={len(self.covers)} total={self.total} offset={self.offset} limit={self.limit}>"
 
+    @property
+    def items(self) -> list[Cover]:
+        """
+        Returns the covers in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Cover`]
+        """
+        return self.covers
+
 
 class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
     """
@@ -399,6 +460,18 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
     def __repr__(self) -> str:
         return f"<ScanlatorGroupCollection groups={len(self.groups)} total={self.total} offset={self.offset} limit={self.limit}>"
 
+    @property
+    def items(self) -> list[ScanlatorGroup]:
+        """
+        Returns the groups in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.ScanlatorGroup`]
+        """
+        return self.groups
+
 
 class ReportCollection(BaseCollection["Report"]):
     """
@@ -449,6 +522,18 @@ class ReportCollection(BaseCollection["Report"]):
 
     def __repr__(self) -> str:
         return f"<ReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+    @property
+    def items(self) -> list[Report]:
+        """
+        Returns the reports in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.Report`]
+        """
+        return self.reports
 
 
 class UserReportCollection(BaseCollection["UserReport"]):
@@ -503,6 +588,18 @@ class UserReportCollection(BaseCollection["UserReport"]):
             f"<UserReportCollection reports={len(self.reports)} total={self.total} offset={self.offset} limit={self.limit}>"
         )
 
+    @property
+    def items(self) -> list[UserReport]:
+        """
+        Returns the reports in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.UserReport`]
+        """
+        return self.reports
+
 
 class UserCollection(BaseCollection["User"]):
     """
@@ -553,6 +650,18 @@ class UserCollection(BaseCollection["User"]):
 
     def __repr__(self) -> str:
         return f"<UserCollection users={len(self.users)} total={self.total} offset={self.offset} limit={self.limit}>"
+
+    @property
+    def items(self) -> list[User]:
+        """
+        Returns the users in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.User`]
+        """
+        return self.users
 
 
 class CustomListCollection(BaseCollection["CustomList"]):
@@ -605,6 +714,18 @@ class CustomListCollection(BaseCollection["CustomList"]):
     def __repr__(self) -> str:
         return f"<CustomListCollection lists={len(self.lists)} total={self.total} offset={self.offset} limit={self.limit}>"
 
+    @property
+    def items(self) -> list[CustomList]:
+        """
+        Returns the custom lists in the collection.
+
+        Returns
+        -------
+
+        List[:class:`~hondana.CustomList`]
+        """
+        return self.lists
+
 
 class LegacyMappingCollection(BaseCollection["LegacyItem"]):
     """
@@ -630,6 +751,19 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
         "limit",
         "offset",
     )
+
+    def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
+        self._http: HTTPClient = http
+        payload.pop("data", [])
+        self._data: GetLegacyMappingResponse = payload
+        self.legacy_mappings: list[LegacyItem] = mappings
+        self.total: int = payload.get("total", 0)
+        self.limit: int = payload.get("limit", 0)
+        self.offset: int = payload.get("offset", 0)
+        super().__init__()
+
+    def __repr__(self) -> str:
+        return f"<LegacyMappingCollection legacy_mappings={len(self.legacy_mappings)} total={self.total} offset={self.offset} limit={self.limit}>"
 
     @property
     def items(self) -> list[LegacyItem]:
