@@ -33,10 +33,11 @@ from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 from . import errors
 from .artist import Artist
 from .author import Author
-from .chapter import Chapter, ChapterUpload
+from .chapter import Chapter, ChapterUpload, PreviouslyReadChapter
 from .collections import (
     AuthorCollection,
     ChapterFeed,
+    ChapterReadHistoryCollection,
     CoverCollection,
     CustomListCollection,
     LegacyMappingCollection,
@@ -1756,7 +1757,7 @@ class Client:
         await self._http._delete_chapter(chapter_id)
 
     @require_authentication
-    async def mark_chapter_as_read(self, chapter_id: str, /) -> None:
+    async def mark_chapter_as_read(self, chapter_id: str, /, *, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark a chapter as read for the current authenticated user in the MangaDex API.
@@ -1765,8 +1766,11 @@ class Client:
         -----------
         chapter_id: :class:`str`
             The UUID of the chapter you wish to mark as read.
+        update_history: :class:`bool`
+            Whether or not to update the user's read history.
+            Defaults to ``True``.
         """
-        await self._http._mark_chapter_as_read(chapter_id)
+        await self._http._mark_chapter_as_read(chapter_id, update_history=update_history)
 
     @require_authentication
     async def mark_chapter_as_unread(self, chapter_id: str, /) -> None:
