@@ -1,27 +1,25 @@
-3.0.3
+3.0.4
 
-API Version 5.5.8!
+API Version 5.5.10
 
 # Hondana Changelog
 
 ## Added
+- `Client.my_chapter_read_history()` method to return the current logged in user's read history as a rich type. Also adds necessary payloads and helper objects. (8e9c00467b3342a90f932c824e9a059c5eb12e97)
+- Add `update_history` parameter to `Client.mark_chapter_as_read()` and `Chapter.mark_as_read()`, adds a default of `True` so it is not breaking. (371a1e90452db30d5893d62f94fb3cbea9a2f3b2)
 
 ## Changes
-- `Client.get_chapter` has a new key word argument `fetch_full_manga`, as the Manga relationship has no relationships of it's own, so details are not present without another HTTP request. (390d47a13dd353747eef079072bdbbd1a97eca70)
-- `Manga.cover_url` method's parameter was renamed from `type` to `size` to avoid a rare issue due to a reserved keyword. (26a39c272890023082b9be9aa0d39b66e938c7ef)
-- Large documentation overhaul, which enabled type-hint signatures. This seems like overkill in most scenarios but it can help resolve types and defaults in the documentation. (daa063e69409cd70e4bdc2015bce77b27436c9ea)
-  - More changes are intended, however I am waiting on a [bug in Sphinx](https://github.com/sphinx-doc/sphinx/issues/10305#issuecomment-1100726410) to be fixed before these can be done.
-- Also added the documentation capability of showing the source code from the docs pages. (39e3283d353bd264f0f6780886bd7bd48d65ebc9)
-- Allow user code to pass a custom sorting key to `ChapterUpload.upload_images`. (9a209e66fd3a7bbe97c4083bea49ebecb3e4ce2b)
+- `types.LocalisedString` has been removed in favour of the already existing `types.LocalizedString`. (c1b51f923e0e68aabd8ac181a23a93ac9e8ebb52)
+- `Author.biography` and `Artist.biography` were reworked as they are localised. Also added the `localized_biography` method. (681ee6f5e2a27126ad875ae2fc1915673b2def56)
 
 ## Fixes
-- The underlying HTTP request method did not handle HTTP 503 errors from MangaDex, which are common when a cache lookup fails and the endpoint needs to be re-hit. This was fixed in #28. (f1a79e5b9430b529aa2bcdaddafc665393144848)
-- `LegacyItem`'s `__repr__` displayed incorrect names for the attributes, this has been fixed. (17b7a73c85129b2a8202ccf14d200dacddde361f)
-- Cleaned up the internal sorting method for chapter upload and removed an unneeded regex. (6264e51aa44cd8d44ce290defa4560df0736eabf)
-- Added missing `includes` parameter on CustomList Manga Feed. (b3bbce089d982cddb9dab96b2f71d24eedaa6069)
+- Add a mutex/lock around the token generation at login/re-auth stages. Fixes a rare occurrence of doubly generating tokens with asynchronous requests. (8989537d009958b4e60ef932a07cdd5805478a8b)
+- Fix incorrect types in `Author/Artist` biographies when the data is empty. Thanks PHP. (80b1aa4d34a7745e7d2b439b9e32be93cb15c3f0)
+- Fix library `__repr__` and `__str__` methods be all uniform. (c44b9ed9211ad976a70e995370fdd0b16da2389f)
 
 ### Notes
-Version 3.0.2 had a bad push cycle so was immediately deprecated and removed from GH and PyPi.
+- The `types` submodule has been reworked to not have all items imported at the top level to avoid namespace clutter. (3ff4ff5f16953935c4aa359ba7f581ae6c735481)
+    - This means that `hondana.types.MangaResponse` should now be `hondana.types.manga.MangaResponse`.
+
 
 ### Noted Contributors
-@PythonCoderAS - Fixing common errors HTTP error handling.
