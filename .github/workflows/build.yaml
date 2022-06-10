@@ -27,14 +27,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: "Setup Poetry @ ${{ matrix.python-version }}"
+        run: pipx install poetry
+
       - name: "Setup Python @ ${{ matrix.python-version }}"
         uses: actions/setup-python@v3
         with:
           python-version: "${{ matrix.python-version }}"
           cache: poetry
-
-      - name: "Setup Poetry @ ${{ matrix.python-version }}"
-        run: pipx install poetry
 
       - name: "Install deps @ ${{ matrix.python-version }}"
         env:
