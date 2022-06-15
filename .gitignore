@@ -13,6 +13,7 @@ target/
 *.webp
 *.gif
 _*.py
+_*.ipynb
 _api*.yaml
 _testing/
 .hondana-refresh-token
