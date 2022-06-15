@@ -41,7 +41,6 @@ jobs:
           PY_VER: "${{ matrix.python-version }}"
         run: |
           poetry env use "$PY_VER"
-          poetry update
           poetry install -E docs -E tests -E speedups --no-dev --no-interaction
 
       - name: Check it imports
