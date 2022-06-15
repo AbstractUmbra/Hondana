@@ -58,6 +58,7 @@ from .enums import (
 )
 from .errors import (
     APIException,
+    AuthenticationRequired,
     BadRequest,
     Forbidden,
     MangaDexServerError,
@@ -249,7 +250,7 @@ class HTTPClient:
         elif self.email:
             auth = {"email": self.email, "password": self.password}
         else:
-            raise ValueError("No authentication methods set before attempting an API request.")
+            raise AuthenticationRequired("No authentication methods set before attempting an API request.")
 
         route = Route("POST", "/auth/login")
         async with self._session.post(route.url, json=auth) as response:
