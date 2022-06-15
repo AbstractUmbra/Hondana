@@ -60,6 +60,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.chapter import (
         ChapterResponse,
+        GetAtHomeChapterResponse,
         GetAtHomeResponse,
         GetSingleChapterResponse,
     )
@@ -691,7 +692,7 @@ class ChapterAtHome:
         self._http: HTTPClient = http
         self._data: GetAtHomeResponse = payload
         self.base_url: str = payload["baseUrl"]
-        chapter = payload.pop("chapter")
+        chapter: GetAtHomeChapterResponse = payload.pop("chapter")  # type: ignore # can't pop from a TypedDict
         self.hash: str = chapter["hash"]
         self.data: list[str] = chapter["data"]
         self.data_saver: list[str] = chapter["dataSaver"]

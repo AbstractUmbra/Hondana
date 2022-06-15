@@ -83,8 +83,8 @@ class Tag:
     def __init__(self, payload: TagResponse) -> None:
         self._data = payload
         self._attributes = payload["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data.pop(
-            "relationships", []
+        self._relationships: list[RelationshipResponse] = self._data.pop(  # type: ignore # can't pop from a TypedDict
+            "relationships", []  # type: ignore # can't pop from a TypedDict
         )  # TODO: remove this when they have relationships to be in line.
         self._name = self._attributes["name"]
         self.id: str = payload["id"]

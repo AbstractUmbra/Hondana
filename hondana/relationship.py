@@ -63,7 +63,7 @@ class Relationship:
         self._data: RelationshipResponse = payload
         self.id: str = self._data["id"]
         self.type: str = self._data["type"]
-        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})
+        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})  # type: ignore # can't pop from a TypedDict
 
     def __repr__(self) -> str:
         return f"<Relationship id={self.id!r} type={self.type!r}>"

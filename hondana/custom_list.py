@@ -36,6 +36,7 @@ if TYPE_CHECKING:
     from .http import HTTPClient
     from .types.custom_list import CustomListResponse
     from .types.manga import MangaResponse
+    from .types.relationship import RelationshipResponse
     from .types.user import UserResponse
 
 
@@ -75,7 +76,7 @@ class CustomList:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # can't pop from a TypedDict
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
