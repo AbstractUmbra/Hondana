@@ -43,19 +43,25 @@ class StatisticsRatingResponse(TypedDict):
     """
     average: Optional[:class:`float`]
 
+    bayesian: Optional[:class:`float`]
+
     distribution: Dict[:class:`str`, :class:`int`]
     """
 
     average: Optional[float]
+    bayesian: Optional[float]
     distribution: dict[str, int]
 
 
 class BatchStatisticsRatingResponse(TypedDict):
     """
     average: :class:`float`
+
+    bayesian: :class:`float`
     """
 
     average: float
+    bayesian: float
 
 
 class StatisticsResponse(TypedDict):

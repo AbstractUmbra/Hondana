@@ -217,6 +217,12 @@ class TestMangaStatistics:
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))
         assert manga.average == STATISTICS_PAYLOAD["statistics"][key]["rating"]["average"]
 
+    def test_bayesian(self):
+        manga = clone_manga("stats")
+
+        key = next(iter(STATISTICS_PAYLOAD["statistics"]))
+        assert manga.bayesian == STATISTICS_PAYLOAD["statistics"][key]["rating"]["bayesian"]
+
 
 class TestMangaRating:
     def test_id(self):

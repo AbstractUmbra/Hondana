@@ -1442,7 +1442,9 @@ class MangaStatistics:
     parent_id: :class:`str`
         The manga these statistics belong to.
     average: Optional[:class:`float`]
-        The average mean score of the manga.
+        The average mean score of the manga ratings.
+    bayesian: Optional[:class:`float`]
+        The bayesian average score of the manga ratings.
     distribution: Optional[Dict[:class:`str`, :class:`int`]]
         The scoring distribution of the manga.
         Keys are 1-10 and values are total amount of ratings per key.
@@ -1459,6 +1461,7 @@ class MangaStatistics:
         "follows",
         "parent_id",
         "average",
+        "bayesian",
         "distribution",
     )
 
@@ -1471,6 +1474,7 @@ class MangaStatistics:
         self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
         self.average: Optional[float] = self._rating["average"]
+        self.bayesian: Optional[float] = self._rating["bayesian"]
         self.distribution: Optional[dict[str, int]] = self._rating.get("distribution")
 
     def __repr__(self) -> str:
