@@ -149,6 +149,8 @@ class MangaListOrderQuery(_OrderQuery):
         Ordering by followed count.
     relevance: :class:`~hondana.query.Order`
         Ordering by relevance to search query.
+    rating: :class:`~hondana.query.Order`
+        Ordering by rating.
     """
 
     __slots__ = (
@@ -159,6 +161,7 @@ class MangaListOrderQuery(_OrderQuery):
         "latest_uploaded_chapter",
         "followed_count",
         "relevance",
+        "rating",
     )
 
     title: Optional[Order]
@@ -168,6 +171,7 @@ class MangaListOrderQuery(_OrderQuery):
     latest_uploaded_chapter: Optional[Order]
     followed_count: Optional[Order]
     relevance: Optional[Order]
+    rating: Optional[Order]
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
