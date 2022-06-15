@@ -227,14 +227,6 @@
                     "id": "546668d6-b91a-4c4f-8391-29f3e7e5bd86",
                     "type": "manga",
                     "attributes": {
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "3",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "contentRating": "pornographic",
                         "title": {
                             "en": "Lightning Speed + MAGIC WAYS."
                         },
@@ -258,7 +250,15 @@
                         "description": {
                             "en": "Uzaki is in the first 2 chapters (Full color)  \nOthers are in chapter 3 (No color)"
                         },
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": "1",
+                        "lastChapter": "3",
+                        "publicationDemographic": null,
+                        "status": "completed",
                         "year": null,
+                        "contentRating": "pornographic",
                         "tags": [
                             {
                                 "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
@@ -276,9 +276,9 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "version": 1,
                         "createdAt": "2019-12-08T23:44:35+00:00",
                         "updatedAt": "2019-12-08T23:44:35+00:00",
+                        "version": 1,
                         "availableTranslatedLanguages": [
                             "en"
                         ]
@@ -299,19 +299,19 @@
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Nagatoro-san Doujins"
+                            "en": "Nagatoro-san Doujin"
                         },
                         "altTitles": [],
                         "description": {
-                            "en": "Doujins which were released prior to the serialization of the manga Ijiranaide, Nagatoro-san, which is loosely based on the doujins."
+                            "en": "Doujin which were released prior to the serialization of the manga Ijiranaide, Nagatoro-san, which is loosely based on the doujin."
                         },
                         "isLocked": false,
                         "links": {
                             "mu": "129904"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
+                        "lastVolume": "",
+                        "lastChapter": "",
                         "publicationDemographic": null,
                         "status": "completed",
                         "year": null,
@@ -373,8 +373,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2019-03-13T23:16:12+00:00",
-                        "updatedAt": "2022-01-25T05:51:17+00:00",
-                        "version": 4,
+                        "updatedAt": "2022-06-09T23:19:01+00:00",
+                        "version": 5,
                         "availableTranslatedLanguages": [
                             "en",
                             "de"
@@ -395,14 +395,6 @@
                     "id": "df26bf01-110d-4b7c-9b7a-964ca39a784e",
                     "type": "manga",
                     "attributes": {
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "contentRating": "suggestive",
                         "title": {
                             "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
                         },
@@ -410,7 +402,15 @@
                         "description": {
                             "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(\u2026?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
                         },
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
                         "year": null,
+                        "contentRating": "suggestive",
                         "tags": [
                             {
                                 "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
@@ -493,9 +493,9 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "version": 2,
                         "createdAt": "2019-07-31T06:40:07+00:00",
                         "updatedAt": "2021-05-25T15:48:42+00:00",
+                        "version": 2,
                         "availableTranslatedLanguages": [
                             "en"
                         ]
