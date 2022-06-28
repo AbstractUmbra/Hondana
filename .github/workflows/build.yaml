@@ -28,7 +28,11 @@ jobs:
           fetch-depth: 0
 
       - name: "Setup Poetry @ ${{ matrix.python-version }}"
-        run: pipx install poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.2.0b2
+          virtualenvs-create: true
+          virtualenvs-in-project: true
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
         uses: actions/setup-python@v3
@@ -41,7 +45,7 @@ jobs:
           PY_VER: "${{ matrix.python-version }}"
         run: |
           poetry env use "$PY_VER"
-          poetry install -E docs -E tests -E speedups --no-dev --no-interaction
+          poetry install --with docs --with tests --with speedups --no-interaction
 
       - name: Check it imports
         run: |

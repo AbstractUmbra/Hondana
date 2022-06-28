@@ -667,7 +667,7 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
 
     Attributes
     -----------
-    chapter_read_histories: List[:class:`~hondana.ChapterReadHistory`]
+    chapter_read_histories: List[:class:`~hondana.PreviouslyReadChapter`]
         The chapter read histories returned from this collection.
     total: :class:`int`
         The total possible results with this query could return.

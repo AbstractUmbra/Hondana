@@ -49,15 +49,10 @@ furo = "*"
 pytest = "*"
 pytest-asyncio = "*"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest-asyncio = "*"
 poethepoet = "*"
 black = "*"
-
-[tool.poetry.extras]
-speedups = ["orjson"]
-docs = ["sphinx", "sphinxcontrib-trio", "furo"]
-tests = ["pytest", "pytest-asyncio"]
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
