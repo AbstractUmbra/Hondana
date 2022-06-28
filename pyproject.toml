@@ -36,12 +36,18 @@ python = "^3.9"
 aiohttp = "^3.7.4"
 typing-extensions = "^4.1.1"
 
-pytest = { version = "*", optional = true }
-orjson = { version = "^3.6.7", optional = true }
+[tool.poetry.group.speedups.dependencies]
+aiohttp = { version = "*", extras = ["speedups"] }
+orjson = "*"
 
-sphinx = { version = "^5.0.0", optional = true }
-sphinxcontrib-trio = { version = "*", optional = true }
-furo = { version = "*", optional = true }
+[tool.poetry.group.docs.dependencies]
+sphinx = "^5.0.0"
+sphinxcontrib-trio = "*"
+furo = "*"
+
+[tool.poetry.group.tests.dependencies]
+pytest = "*"
+pytest-asyncio = "*"
 
 [tool.poetry.dev-dependencies]
 pytest-asyncio = "*"
@@ -90,16 +96,16 @@ reportUnnecessaryTypeIgnoreComment = "warning"
 asyncio_mode = "strict"
 
 [tool.poe.tasks]
-spec = "poetry run python _api_dl.py"
+spec = "python _api_dl.py"
 install = "poetry install -E tests -E docs -E speedups"
-format = "poetry run black ."
-pyright = "poetry run pyright"
-types_ = "poetry run pyright --ignoreexternal --lib --verifytypes hondana"
+format = "black ."
+pyright = "pyright"
+types_ = "pyright --ignoreexternal --lib --verifytypes hondana"
 types = ["pyright", "types_"]
-tests = "poetry run pytest"
-docs = "poetry run sphinx-build -a -n -E -W -T --keep-going docs/ docs/build"
+tests = "pytest"
+docs = "sphinx-build -a -n -E -W -T --keep-going docs/ docs/build"
 tags = { script = "hondana.utils:__build_tags()" }
-uninstall = "poetry run pip uninstall hondana -y"
+uninstall = "pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
