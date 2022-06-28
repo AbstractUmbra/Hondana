@@ -7,14 +7,18 @@ docs/_build
 docs/_static
 hondana.log
 target/
+
+# local testing
+_api*.yaml
+.hondana-refresh-token
+_testing/
+*.ipynb
+_*.py
+docker-compose.yml
+
+# media files
 *.png
 *.jpg
 *.jpeg
 *.webp
 *.gif
-_*.py
-_*.ipynb
-_api*.yaml
-_testing/
-.hondana-refresh-token
-docker-compose.yml
