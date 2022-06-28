@@ -23,6 +23,7 @@ If the bug report is missing this information then it'll take us longer to fix t
 
 Submitting a pull request is fairly simple, just make sure it focuses on a single aspect and doesn't manage to have scope creep, and it's probably good to go. It would be incredibly lovely if the style is consistent to that found in the project. This project follows PEP-8 guidelines (mostly) with a column limit of 125.
 There are provided tool rules in `pyproject.toml` for `isort`, `black` and `pyright` when committing here.
+There are optional dependencies for running the defined test suite. You may need to install these with `pip install '.[tests]'` or `poetry install -E tests`. You can run them with `pytest`.
 There are actions that run on new PRs and if those checks fail then the PR will not be accepted.
 
 ### Git Commit Guidelines
