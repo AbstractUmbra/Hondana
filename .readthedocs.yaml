@@ -1,18 +1,17 @@
 version: 2
-formats: []
 
 build:
-  image: testing
+  image: ubuntu-20.04
+  tools:
+    python: "3.9"
+  jobs:
+    post_install:
+      - pip install poetry==1.2.0b1
+      - poetry config virtualenvs.create false
+      - poetry install --with docs
+
 
 sphinx:
   configuration: docs/conf.py
   fail_on_warning: false
   builder: html
-
-python:
-  version: 3.9
-  install:
-    - method: pip
-      path: .
-      extra_requirements:
-        - docs
