@@ -68,7 +68,7 @@ known_first_party = "hondana"
 lines_after_imports = 2
 
 [tool.pyright]
-exclude = ["_testing/**.py"]
+include = ["hondana", "tests", "docs", "examples"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "basic"
 pythonVersion = "3.9"
