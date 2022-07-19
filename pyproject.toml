@@ -92,7 +92,7 @@ asyncio_mode = "strict"
 
 [tool.poe.tasks]
 spec = "python _api_dl.py"
-install = "poetry install -E tests -E docs -E speedups"
+install = "poetry install --with tests,docs,speedups"
 format = "black ."
 pyright = "pyright"
 types_ = "pyright --ignoreexternal --lib --verifytypes hondana"
