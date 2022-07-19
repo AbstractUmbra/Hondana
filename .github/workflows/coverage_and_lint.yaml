@@ -43,12 +43,12 @@ jobs:
           PY_VER: "${{ matrix.python-version }}"
         run: |
           poetry env use "$PY_VER"
-          poetry install --with docs,tests,speedups --no-interaction
+          poetry install --without=dev,tests,speedups --no-interaction
 
       - uses: actions/setup-node@v3
         with:
             node-version: "17"
-      - run: npm install -g pyright@latest
+      - run: npm install --location=global pyright@latest
 
       - name: "Type Coverage @ ${{ matrix.python-version }}"
         run: |
