@@ -3842,13 +3842,17 @@ class Client:
             The external URL of this chapter.
             Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
-            When to publish this chapter represented as a *UTC* datetime.
+            When to publish this chapter (and pages) on MangaDex, represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
         version: Optional[:class:`int`]
             The new version of the chapter you are editing.
             Only necessary if ``chapter_to_edit`` is not ``None``.
+
+
+        .. note::
+            The ``external_url`` parameter requires an explicit permission on MangaDex to set.
 
         Returns
         --------
@@ -3917,7 +3921,7 @@ class Client:
             The external URL of this chapter.
             Defaults to ``None``.
         publish_at: Optional[:class:`datetime.datetime`]
-            When to publish this chapter represented as a *UTC* datetime.
+            When to publish this chapter (and pages) on MangaDex, represented as a *UTC* datetime.
             This must be a future date.
         existing_upload_session_id: Optional[:class:`str`]
             Pass this parameter if you wish to resume an existing upload session.
@@ -3927,6 +3931,9 @@ class Client:
         images: List[:class:`pathlib.Path`]
             The list of images to upload as their Paths.
 
+
+        .. note::
+            The ``external_url`` parameter requires an explicit permission on MangaDex to set.
 
         .. warning::
             The ``images`` parameter MUST be ordered how you would expect the images to be shown in the frontend.

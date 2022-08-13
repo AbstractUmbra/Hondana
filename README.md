@@ -51,6 +51,9 @@ Please take a look at the [examples](./examples/) directory for working examples
 - Currently, if there are any errors in a chapter upload process, the error key does not contain filenames or identifiable information on exactly what file failed upload.
   - This means that I locally compare the succeeded files with the ones missing from the full response payload. The examples have been updated with how to check for an error.
 
+### Further information/tidbits
+- For a bit more clarity on a Chapter's `readableAt` vs `publishAt`, see [this page](https://api.mangadex.org/docs/dates/#readableat) on the MangaDex docs.
+
 ### Contributing
 If you would like to contribute to Hondana, please take a look at [the contributing guidelines](./.github/CONTRIBUTING.md) and follow the procedure there.
 

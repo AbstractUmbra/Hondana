@@ -770,7 +770,7 @@ class ChapterUpload:
     external_url: Optional[:class:`str`]
         The external link to this chapter, if any.
     publish_at: Optional[:class:`datetime.datetime`]
-        The future date at which to publish this chapter.
+        The future date at which to publish this chapter (and pages) to MangaDex.
     scanlator_groups: List[:class:`str`]
         The list of scanlator group IDs to attribute to this chapter.
     existing_upload_session_id: :class:`str`
