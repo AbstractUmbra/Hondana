@@ -497,14 +497,6 @@ class HTTPClient:
                             await asyncio.sleep(sleep)
                             continue
 
-                        if response.status == 412:
-                            assert retry is not None
-                            captcha = response.headers.get("x-captcha-sitekey")
-                            if captcha is not None:
-                                LOGGER.warning("Captcha required, key is: %s - trying now.", captcha)
-                                kwargs["headers"]["X-Captcha-Result"] = captcha
-                                continue
-
                         if response.status in {500, 502, 503, 504}:
                             sleep_ = 1 + tries * 2
                             LOGGER.warning("Hit an API error, trying again in: %d", sleep_)
