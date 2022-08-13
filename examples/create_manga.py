@@ -25,11 +25,10 @@ async def main():
     original_language = "en"
     status = hondana.MangaStatus.ongoing
     content_rating = hondana.ContentRating.safe
-    version = 1
 
     # Create the manga with them:
     draft_manga = await client.create_manga(
-        title=manga_title, original_language=original_language, status=status, content_rating=content_rating, version=version
+        title=manga_title, original_language=original_language, status=status, content_rating=content_rating
     )
 
     # This manga is now created in "draft" state. This is outlined more here:
@@ -42,8 +41,8 @@ async def main():
     uploaded_cover = await draft_manga.upload_cover(cover=cover, volume=None, description="My awesome cover", locale="en")
     print(uploaded_cover)
 
-    # Now that our manga is covered and uploaded, let's submit it for approval:
-    submitted_manga = await draft_manga.submit_draft(version=version)
+    # Now that our manga is covered and uploaded, let's submit it for approval with a version of 1:
+    submitted_manga = await draft_manga.submit_draft(version=1)
     print(submitted_manga)
 
     # NOTE: Something to note is that the version of draft MUST match the version of submitted manga during the approval stage.

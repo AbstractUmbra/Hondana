@@ -674,7 +674,6 @@ class Client:
         content_rating: ContentRating,
         tags: Optional[QueryTags] = None,
         mod_notes: Optional[str] = None,
-        version: int,
     ) -> Manga:
         """|coro|
 
@@ -716,8 +715,6 @@ class Client:
             The QueryTags instance for the list of tags to attribute to this manga.
         mod_notes: Optional[:class:`str`]
             The moderator notes to add to this Manga.
-        version: :class:`int`
-            The revision version of this manga.
 
 
         .. note::
@@ -753,7 +750,6 @@ class Client:
             content_rating=content_rating,
             tags=tags,
             mod_notes=mod_notes,
-            version=version,
         )
 
         return Manga(self._http, data["data"])
@@ -2617,7 +2613,6 @@ class Client:
         name: str,
         visibility: Optional[CustomListVisibility] = None,
         manga: Optional[list[str]] = None,
-        version: Optional[int] = None,
     ) -> CustomList:
         """|coro|
 
@@ -2631,8 +2626,6 @@ class Client:
             The visibility of this custom list.
         manga: Optional[List[:class:`str`]]
             A list of manga IDs to add to this custom list.
-        version: Optional[:class:`int`]
-            The version revision of this custom list.
 
         Raises
         -------
@@ -2646,7 +2639,7 @@ class Client:
         :class:`~hondana.CustomList`
             The custom list that was created.
         """
-        data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga, version=version)
+        data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga)
 
         return CustomList(self._http, data["data"])
 
@@ -3347,7 +3340,6 @@ class Client:
         tumblr: str = MISSING,
         youtube: str = MISSING,
         website: str = MISSING,
-        version: Optional[int],
     ) -> Author:
         """|coro|
 
@@ -3381,8 +3373,6 @@ class Client:
             The youtube  URL of the author.
         website: Optional[:class:`str`]
             The website URL of the author.
-        version: Optional[:class:`int`]
-            The version revision of this author.
 
         Raises
         -------
@@ -3410,7 +3400,6 @@ class Client:
             tumblr=tumblr,
             youtube=youtube,
             website=website,
-            version=version,
         )
         return Author(self._http, data["data"])
 

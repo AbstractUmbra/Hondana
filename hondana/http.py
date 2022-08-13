@@ -651,11 +651,10 @@ class HTTPClient:
         content_rating: ContentRating,
         tags: Optional[QueryTags],
         mod_notes: Optional[str],
-        version: int,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("POST", "/manga")
 
-        query: dict[str, Any] = {"title": title, "version": version}
+        query: dict[str, Any] = {"title": title}
 
         if alt_titles:
             query["altTitles"] = alt_titles
@@ -1463,7 +1462,6 @@ class HTTPClient:
         name: str,
         visibility: Optional[CustomListVisibility],
         manga: Optional[list[str]],
-        version: Optional[int],
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("POST", "/list")
 
@@ -1474,9 +1472,6 @@ class HTTPClient:
 
         if manga:
             query["manga"] = manga
-
-        if version:
-            query["version"] = version
 
         return self.request(route, json=query)
 
@@ -1824,7 +1819,6 @@ class HTTPClient:
         tumblr: str,
         youtube: str,
         website: str,
-        version: Optional[int],
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("POST", "/author")
 
@@ -1865,9 +1859,6 @@ class HTTPClient:
 
         if website is not MISSING:
             query["website"] = website
-
-        if version:
-            query["version"] = version
 
         return self.request(route, json=query)
 
