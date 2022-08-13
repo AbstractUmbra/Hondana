@@ -30,17 +30,7 @@ import logging
 import sys
 import weakref
 from base64 import b64decode
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Coroutine,
-    Literal,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    overload,
-)
+from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
 
 import aiohttp
 
@@ -56,15 +46,7 @@ from .enums import (
     ReportCategory,
     ReportStatus,
 )
-from .errors import (
-    APIException,
-    AuthenticationRequired,
-    BadRequest,
-    Forbidden,
-    MangaDexServerError,
-    NotFound,
-    Unauthorized,
-)
+from .errors import APIException, AuthenticationRequired, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -1749,7 +1731,7 @@ class HTTPClient:
                 publish_delay = delta_to_iso(publish_delay)
 
             if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
-                raise ValueError("The `publish_at` parameter's string must match the regex pattern.")
+                raise ValueError("The `publish_delay` parameter's string must match the regex pattern.")
 
             query["publishDelay"] = publish_delay
 
