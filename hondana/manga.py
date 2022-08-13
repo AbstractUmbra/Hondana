@@ -955,7 +955,7 @@ class Manga:
 
         Parameters
         -----------
-        status: Optional[:class:`~hondana.ReadingStatus`]
+        status: :class:`~hondana.ReadingStatus`
             The reading status you wish to update this manga with.
 
 
