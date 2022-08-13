@@ -2167,7 +2167,7 @@ class Client:
     async def delete_user(self, user_id: str, /) -> None:
         """|coro|
 
-        This method will delete a user from the MangaDex API.
+        This method will initiate the deletion of a user from the MangaDex API.
 
         Parameters
         -----------
