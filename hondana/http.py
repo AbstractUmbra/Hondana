@@ -2151,11 +2151,6 @@ class HTTPClient:
 
         return self.request(route)
 
-    def _create_settings_template(self, payload: Settings) -> Response[dict[str, Any]]:
-        route = Route("POST", "/settings/template")
-
-        return self.request(route, json=payload)
-
     def _get_specific_template_version(self, version: str) -> Response[dict[str, Any]]:
         route = Route("GET", "/settings/template/{version}", version=version)
 

@@ -3988,32 +3988,6 @@ class Client:
         return await self._http._get_latest_settings_template()
 
     @require_authentication
-    async def create_settings_template(self, template: Settings) -> dict[str, Any]:
-        """|coro|
-
-        This method will create a settings template within the API.
-
-        Parameters
-        -----------
-        template: :class:`~hondana.types.settings.Settings`
-            The template to create.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            The request failed due to authentication issues.
-
-        Returns
-        --------
-        Dict[:class:`str`, :class:`Any`]
-            The created settings payload.
-        """
-
-        data = await self._http._create_settings_template(template)
-
-        return data
-
-    @require_authentication
     async def get_specific_template_version(self, version: str) -> dict[str, Any]:
         """|coro|
 
