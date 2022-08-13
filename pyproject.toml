@@ -64,8 +64,9 @@ target-version = ["py39"]
 [tool.isort]
 profile = "black"
 src_paths = ["hondana"]
-known_first_party = "hondana"
+# known_first_party = ["hondana"]
 lines_after_imports = 2
+line_length = 125
 
 [tool.pyright]
 include = ["hondana", "tests", "docs", "examples"]
