@@ -2594,7 +2594,8 @@ class Client:
         chapter_id: :class:`str`
             The UUID of the chapter we are retrieving a URL for.
         ssl: :class:`bool`
-            Defaults to ``True``. Whether we request a server/url that uses HTTPS or not.
+            Defaults to ``True``. Whether to require the MangaDex @ Home node be available on port 443.
+            If ``False`` is selected, then the MD@H node we request may be available on a non-standard port.
 
         Raises
         -------
