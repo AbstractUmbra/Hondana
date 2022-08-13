@@ -14,10 +14,7 @@ from hondana.utils import relationship_finder, to_snake_case
 
 if TYPE_CHECKING:
     from hondana.types.manga import GetMangaResponse, MangaRelationResponse
-    from hondana.types.statistics import (
-        GetPersonalMangaRatingsResponse,
-        GetStatisticsResponse,
-    )
+    from hondana.types.statistics import GetPersonalMangaRatingsResponse, GetStatisticsResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
