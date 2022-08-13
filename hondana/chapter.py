@@ -769,6 +769,7 @@ class ChapterUpload:
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
         The external link to this chapter, if any.
+        Using this parameter requires an explicit permission MD side.
     publish_at: Optional[:class:`datetime.datetime`]
         The future date at which to publish this chapter (and pages) to MangaDex.
     scanlator_groups: List[:class:`str`]
