@@ -595,6 +595,7 @@ class Chapter:
         report: :class:`bool`
             Whether to report success or failures to MangaDex per page download.
             The API guidelines ask us to do this, so it defaults to ``True``.
+            Does not count towards your (user) rate-limits.
         """
         path = path or f"{self.chapter} - {self.title}"
         path_ = pathlib.Path(path)
