@@ -198,7 +198,7 @@ class FeedOrderQuery(_OrderQuery):
     __slots__ = (
         "created_at",
         "updated_at",
-        "publish_at",  # I hate this too.
+        "publish_at",
         "readable_at",
         "volume",
         "chapter",
