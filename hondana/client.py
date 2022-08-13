@@ -2511,6 +2511,7 @@ class Client:
         """|coro|
 
         This method will start an account recovery process on the given account.
+        Effectively triggering the "forgotten password" email to be sent.
 
         Parameters
         -----------
