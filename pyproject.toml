@@ -33,11 +33,11 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-aiohttp = "^3.7.4"
-typing-extensions = "^4.1.1"
+aiohttp = "^3.8.1"
+typing-extensions = "*"
 
 [tool.poetry.group.speedups.dependencies]
-aiohttp = { version = "*", extras = ["speedups"] }
+aiohttp = { version = "^3.8.1", extras = ["speedups"] }
 orjson = "*"
 
 [tool.poetry.group.docs.dependencies]
@@ -99,11 +99,11 @@ pyright = "pyright"
 types_ = "pyright --ignoreexternal --lib --verifytypes hondana"
 types = ["pyright", "types_"]
 tests = "pytest"
-docs = "sphinx-build -a -n -E -W -T --keep-going docs/ docs/build"
+docs = "sphinx-build -a -E -W -T --keep-going docs/ docs/build" # TODO: add -n when sphinx is fixed
 tags = { script = "hondana.utils:__build_tags()" }
 uninstall = "pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
-requires = ["poetry-core>=1.1.0b2"]
+requires = ["poetry-core>=1.2.0b2"]
 build-backend = "poetry.core.masonry.api"
