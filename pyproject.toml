@@ -105,5 +105,5 @@ uninstall = "pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
 
 [build-system]
-requires = ["poetry-core>=1.1.0rc3"]
+requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"
