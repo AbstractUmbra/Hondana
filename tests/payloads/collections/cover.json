@@ -3,688 +3,85 @@
     "response": "collection",
     "data": [
         {
-            "id": "e4244bd3-ffa9-45e3-84c4-b893456d6a47",
+            "id": "c1d856c9-904a-4d4f-a8c6-246aa57164ef",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "2",
-                "fileName": "fa9fd481-2ec7-44e8-bb95-b1ed20c9d76b.jpg",
-                "locale": "ko",
-                "createdAt": "2022-06-15T09:23:33+00:00",
-                "updatedAt": "2022-06-15T09:23:33+00:00",
+                "volume": "1",
+                "fileName": "0bce1534-71b7-434a-bba0-ad1f69e12e69.jpg",
+                "locale": "fr",
+                "createdAt": "2022-09-02T19:09:53+00:00",
+                "updatedAt": "2022-09-02T19:09:53+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "a9c03a3c-b1e8-4f2c-8336-976961530193",
+                    "id": "fd0638a8-2bf3-4e9c-85c2-2e5d72bf34fd",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Don't Hire My Brother, Your Highness!"
+                            "en": "Youkai Apaato no Yuuga na Nichijou"
                         },
                         "altTitles": [
                             {
-                                "ko": "\uc624\ub77c\ubc84\ub2c8\uac00 \ub108\ubb34 \uc21c\ud574\uc11c \uac71\uc815\uc774\ub2e4"
+                                "en": "Elegant Yokai Apartment Life"
                             },
                             {
-                                "en": "I\u2019m Worried that My Brother is Too Gentle"
+                                "vi": "X\u00f3m Tr\u1ecd Y\u00eau Qu\u00e1i"
                             },
                             {
-                                "ja": "\u304a\u5144\u69d8\u304c\u304a\u3068\u306a\u3057\u3059\u304e\u3066\u5fc3\u914d\u306a\u306e"
+                                "ja": "\u5996\u602a\u30a2\u30d1\u30fc\u30c8\u306e\u5e7d\u96c5\u306a\u65e5\u5e38"
                             },
                             {
-                                "ja-ro": "Onii-sama ga otonashisugite Shinpai na no"
+                                "zh-hk": "\u5996\u602a\u516c\u5bd3\u7684\u512a\u96c5\u65e5\u5e38"
                             },
                             {
-                                "ko-ro": "Orabeoniga Neomu Sunhaeseo Geokjeong-ida"
+                                "ja-ro": "Y\u014dkai Ap\u0101to no Y\u016bgana Nichij\u014d"
                             },
                             {
-                                "zh": "\u54e5\u54e5\u592a\u5355\u7eaf\u4e86\u600e\u4e48\u529e\uff1f"
+                                "zh": "\u5996\u602a\u516c\u5bd3\u7684\u4f18\u96c5\u65e5\u5e38"
                             },
                             {
-                                "zh-hk": "\u54e5\u54e5\u592a\u5584\u826f\u4e86\uff0c\u771f\u4ee4\u4eba\u62c5\u5fc3"
+                                "ar": "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0631\u0627\u0626\u0639\u0629 \u0641\u064a \u0634\u0642\u0629 \u0627\u0644\u064a\u0648\u0643\u0627\u064a"
                             },
                             {
-                                "en": "I Am Worried Because My Brother Is Too Gentle"
+                                "it": "La raffinata vita quotidiana dell'appartamento degli y\u014dkai"
                             },
                             {
-                                "en": "My Oppa Is Too Innocent"
+                                "ko": "\uc694\uad34 \uc544\ud30c\ud2b8\uc758 \uc6b0\uc544\ud55c \uc77c\uc0c1"
                             }
                         ],
                         "description": {
-                            "en": "\u201cYour Highness! The papers have piled up like this\u2026\u2026!\u201d\n\nI reincarnated as Irene Weber, the younger sister of an aide who is suffering from overtime because of the prince who is in love and neglects his work.\n\nIrene, who was buried in work before the reincarnation and died of overwork, intends to protect her beloved brother from such a terrible thing.\n\nNo overtime! No call after work! Evil boss, go away! Work less and earn more, brother!\n\nTo the end, Irene tries to separate the prince from her brother.\n\nA method to win by knowing your enemy and knowing yourself. Irene scraps a little record without leaving any details, of the Prince whose face she doesn\u2019t even know about, for the future.\n\nSomehow, her brother\u2019s face, looking at such Irene, is dark\u2026\u2026 \n\n\u201cBrother, if you\u2019re meeting the Crown Prince today, I\u2019ll go with\u2026..\u201d\n\n\u201cAbsolutely not.\u201d\n\n'Do you want to meet him alone so much?\u2019\n\n***\n\n\u201cBefore that, Benjamin Weber, when can I meet your sister?\u201d \n\n\u201cNot for the rest of your life.\u201d\n\nThe most affectionate brother and sister of the continent.\n\nWill the day come when these two siblings can resolve their growing misunderstanding?"
+                            "en": "Inaba Yuushi's parents died in his first year of middle school, and he moved in with his relatives. Though they did care for him, he could tell he was a burden. After he graduated, he happily prepared to move to a high school with a dormitory. Unfortunately, the dormitory burned to the ground before he could move in! Yuushi doesn't want to live with his grudging relatives, but it's rough finding lodging as an orphaned student with little money. He finally finds a room in a nice old building which seems too good to be true.  \n  \nThe catch is that it is a Monster House, a place where humans and supernatural creatures\u2013ghosts, mononoke, etc.\u2013 live together. Another high schooler lives there, a cute girl named Akine, and she's completely unfazed by the monsters. In fact, she can even exorcise evil spirits! Yuushi's high school life just got much stranger than he ever bargained for!  \n  \n[See AnimeNewsNetwork for anime.](https://www.animenewsnetwork.com/encyclopedia/anime.php?id=19391)\n\n**Wikipedia**\n- [Arabic](https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D8%B1%D8%A7%D8%A6%D8%B9%D8%A9_%D9%81%D9%8A_%D8%B4%D9%82%D8%A9_%D8%A7%D9%84%D9%8A%D9%88%D9%83%D8%A7%D9%8A)\n- [Chinese (Traditional)](https://zh.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E5%85%AC%E5%AF%93%E7%9A%84%E5%84%AA%E9%9B%85%E6%97%A5%E5%B8%B8)\n- [English](https://en.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Indonesian](https://id.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Italian](https://it.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Japanese](https://ja.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E3%82%A2%E3%83%91%E3%83%BC%E3%83%88%E3%81%AE%E5%B9%BD%E9%9B%85%E3%81%AA%E6%97%A5%E5%B8%B8)"
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "140554",
-                            "ap": "im-worried-that-my-brother-is-too-gentle",
-                            "mu": "180312",
-                            "nu": "im-worried-that-my-brother-is-too-gentle",
-                            "raw": "https://page.kakao.com/home?seriesId=57906830"
-                        },
-                        "originalLanguage": "ko",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Reincarnation"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Historical"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-10-10T01:32:41+00:00",
-                        "updatedAt": "2022-06-15T09:23:37+00:00",
-                        "version": 9,
-                        "availableTranslatedLanguages": [
-                            "pt-br",
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "8cde8a4f-f064-419c-840b-a9c4b30bd8d8",
-                    "type": "user",
-                    "attributes": {
-                        "username": "_Captain_America_or_CAP",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_POWER_UPLOADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "eea7b323-f5de-481e-a53a-9471e43da144",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "22.06151",
-                "fileName": "dc049885-4171-4262-aa9c-7849d46e5e6d.png",
-                "locale": "en",
-                "createdAt": "2022-06-15T08:27:37+00:00",
-                "updatedAt": "2022-06-15T08:27:37+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f9c33607-9180-4ba6-b85c-e4b5faee7192",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Official \"Test\" Manga"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "TEST"
-                            },
-                            {
-                                "ko": "Korean"
-                            },
-                            {
-                                "en": "test title"
-                            }
-                        ],
-                        "description": {
-                            "en": "From the creator of popu***l***ar ser***i***es like ***T***wo Pi***e***ce, Da***r***uto, ***a***nd Detergent, comes the series Test, an award winning romantic comedy about a high schoo***l*** weapon meister named Yugi as he trave***l***s the entire world collecting all the Life Notes, so that one da***y*** ***h***e can recover h***i***s bro***t***her's body after performing the taboo of one punching the Titan we saw that day with his Stand and becoming the Nokage Pirate King -dattebayo. Watch as he roams through the Ho***l***y ***E***mpi***r***e of Britannia with his Onii-chan and generic harem girls as they conquer all odds with the power of friendship, love and\u2026(why don't they just bang each other.) In this feature length epic rivaling that of Gilgamesh and the Iliad we will explore the mentality and sociology of these societal menaces as they ravage the Earth in their never quenchable thirst for imoutos.  \r\n  \r\nReviewers gives this series a 10/10 for the unconventional portrayal of the magical girl genre.  \r\nNominated for the 1st Mangadex Award for Worst Manga of the Year.  \r\nWinner of the 2nd Mangadex Awards for Best Manga of the Year.  \r\nBest manga ever written, as stated by meichiro noda  \r\n  \r\n\u201cUmm\u2026 so, personally\u2026 this is the first time this has happened, so I'm a bit surprised. Only a centimeter away\u2026 I mean, I don't think there's ever been someone who's gotten that close to me\u2026 without a, you know\u2026 calamity occurring. I'm not really\u2026 not really sure what happens at one centimeter away\u2026 'cause it's my first time. I don't really understand it either. Seriously. But in the flow of calamity\u2026 there's nobody who can attack me. Not a single person. That, I know for sure. Wonder of U.\u201d - Unknown   \r\n  \r\n\"Thanos kills Dumbledore\" - Anonymous Reviewer  \r\n  \r\n\"Like zoinks, man it's Mr Bombastic.\" - Shaggy  \r\n  \r\n\"DEUS VULT!!\" - Knight Templars  \r\n  \r\n\"There are zombies on my Lawn\" - Crazy Astel  \r\n  \r\n\"I FINALLY HAVE A F*CKING NOSE\" - Lord Coco  \r\n  \r\n\"NOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!\" - Darth Vader  \r\n  \r\n\"The turtles! *They're everywhere!*\" - #8699  \r\n  \r\n\"Who's Rem?\" - Subaru Impreza  \r\n  \r\n\"I approb\" - Oozora Subaru  \r\n  \r\n \"PURGE THE HERETICS\" - The Space Marines  \r\n  \r\n![WHOAAAAAA](<https://i.ibb.co/dM9yv89/WHOAAAAAA.gif>)  \r\n  \r\n![EHE](<https://media1.tenor.com/images/fdcd995c9db4af798c2daa4380c79a8c/tenor.gif>)  \r\n  \r\n![HEH](<https://cdn.discordapp.com/emojis/650248281091342346.png>)  \r\n  \r\nNote: Please do *NOT* add genres or Test will pollute genre searches. Because this manga is the most purest form of any manga [The plural of manga is manga]  \r\n  \r\nFun fact: In the year 127, when this manga was originally released, it used to be called Taest, but because of American per/letter printing costs it was shortened to Test.  \r\n  \r\nI have so many questions.\r\n\r\nTest2\r\n\r\n---\r\n- [YumGumYum](https://mangadex.org/user/3678de43-a55d-43be-b2ab-5c32a8219021/yumgumyum) **:**\r\n\r\n      remind me to write something here",
-                            "fr": "Sandrine Cacheton mena\u00eet une vie de lyc\u00e9enne ordinaire, jusqu'\u00e0 ce qu'elle se fasse agresser dans une ruelle obscure. Car un homme myst\u00e9rieux vint la sauver d'un destin funeste et d\u00e9fit l'agresseur\u2026 Et quelle ne fut pas la surprise de notre h\u00e9ro\u00cfne, quand elle s'aper\u00e7ut que son sauveur n'\u00e9tait nul autre que Xavier Dupont de Ligonn\u00e8s.  \r\n  \r\nTant\u00f4t charmant, tant\u00f4t bucolique, TEST est un conte politique sans pr\u00e9c\u00e9dent qui saura vous extirper du morne quotidien de la conjoncture actuelle.  \r\n  \r\nTest"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "1",
-                            "ap": "b",
-                            "bw": "1",
-                            "kt": "1",
-                            "mu": "1",
-                            "nu": "a",
-                            "cdj": "https://www.cdjapan.co.jp/",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/",
-                            "mal": "1",
-                            "raw": "https://miku.mangadex.org",
-                            "engtl": "https://mangadex.org"
-                        },
-                        "originalLanguage": "en",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": 2018,
-                        "contentRating": "safe",
-                        "tags": [],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-06-15T08:27:37+00:00",
-                        "version": 66,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "id",
-                            "es-la",
-                            "fa",
-                            "vi",
-                            "fr",
-                            "ca",
-                            "it",
-                            "zh-hk",
-                            "tr",
-                            "nl",
-                            "pt-br",
-                            "my",
-                            "es",
-                            "ms",
-                            "zh",
-                            "pl",
-                            "ru"
-                        ]
-                    }
-                },
-                {
-                    "id": "f8cc4f8a-e596-4618-ab05-ef6572980bbf",
-                    "type": "user",
-                    "attributes": {
-                        "username": "tristan9",
-                        "roles": [
-                            "ROLE_DEVELOPER",
-                            "ROLE_MD_AT_HOME",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_STAFF",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 564
-                    }
-                }
-            ]
-        },
-        {
-            "id": "9ac45b4f-5223-4ee1-9d76-45f3a9c5477c",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "22.06152",
-                "fileName": "3d1cb1c9-5924-4f3a-8f64-4988f9256ac9.png",
-                "locale": "en",
-                "createdAt": "2022-06-15T08:27:37+00:00",
-                "updatedAt": "2022-06-15T08:27:37+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f9c33607-9180-4ba6-b85c-e4b5faee7192",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Official \"Test\" Manga"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "TEST"
-                            },
-                            {
-                                "ko": "Korean"
-                            },
-                            {
-                                "en": "test title"
-                            }
-                        ],
-                        "description": {
-                            "en": "From the creator of popu***l***ar ser***i***es like ***T***wo Pi***e***ce, Da***r***uto, ***a***nd Detergent, comes the series Test, an award winning romantic comedy about a high schoo***l*** weapon meister named Yugi as he trave***l***s the entire world collecting all the Life Notes, so that one da***y*** ***h***e can recover h***i***s bro***t***her's body after performing the taboo of one punching the Titan we saw that day with his Stand and becoming the Nokage Pirate King -dattebayo. Watch as he roams through the Ho***l***y ***E***mpi***r***e of Britannia with his Onii-chan and generic harem girls as they conquer all odds with the power of friendship, love and\u2026(why don't they just bang each other.) In this feature length epic rivaling that of Gilgamesh and the Iliad we will explore the mentality and sociology of these societal menaces as they ravage the Earth in their never quenchable thirst for imoutos.  \r\n  \r\nReviewers gives this series a 10/10 for the unconventional portrayal of the magical girl genre.  \r\nNominated for the 1st Mangadex Award for Worst Manga of the Year.  \r\nWinner of the 2nd Mangadex Awards for Best Manga of the Year.  \r\nBest manga ever written, as stated by meichiro noda  \r\n  \r\n\u201cUmm\u2026 so, personally\u2026 this is the first time this has happened, so I'm a bit surprised. Only a centimeter away\u2026 I mean, I don't think there's ever been someone who's gotten that close to me\u2026 without a, you know\u2026 calamity occurring. I'm not really\u2026 not really sure what happens at one centimeter away\u2026 'cause it's my first time. I don't really understand it either. Seriously. But in the flow of calamity\u2026 there's nobody who can attack me. Not a single person. That, I know for sure. Wonder of U.\u201d - Unknown   \r\n  \r\n\"Thanos kills Dumbledore\" - Anonymous Reviewer  \r\n  \r\n\"Like zoinks, man it's Mr Bombastic.\" - Shaggy  \r\n  \r\n\"DEUS VULT!!\" - Knight Templars  \r\n  \r\n\"There are zombies on my Lawn\" - Crazy Astel  \r\n  \r\n\"I FINALLY HAVE A F*CKING NOSE\" - Lord Coco  \r\n  \r\n\"NOOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!!!\" - Darth Vader  \r\n  \r\n\"The turtles! *They're everywhere!*\" - #8699  \r\n  \r\n\"Who's Rem?\" - Subaru Impreza  \r\n  \r\n\"I approb\" - Oozora Subaru  \r\n  \r\n \"PURGE THE HERETICS\" - The Space Marines  \r\n  \r\n![WHOAAAAAA](<https://i.ibb.co/dM9yv89/WHOAAAAAA.gif>)  \r\n  \r\n![EHE](<https://media1.tenor.com/images/fdcd995c9db4af798c2daa4380c79a8c/tenor.gif>)  \r\n  \r\n![HEH](<https://cdn.discordapp.com/emojis/650248281091342346.png>)  \r\n  \r\nNote: Please do *NOT* add genres or Test will pollute genre searches. Because this manga is the most purest form of any manga [The plural of manga is manga]  \r\n  \r\nFun fact: In the year 127, when this manga was originally released, it used to be called Taest, but because of American per/letter printing costs it was shortened to Test.  \r\n  \r\nI have so many questions.\r\n\r\nTest2\r\n\r\n---\r\n- [YumGumYum](https://mangadex.org/user/3678de43-a55d-43be-b2ab-5c32a8219021/yumgumyum) **:**\r\n\r\n      remind me to write something here",
-                            "fr": "Sandrine Cacheton mena\u00eet une vie de lyc\u00e9enne ordinaire, jusqu'\u00e0 ce qu'elle se fasse agresser dans une ruelle obscure. Car un homme myst\u00e9rieux vint la sauver d'un destin funeste et d\u00e9fit l'agresseur\u2026 Et quelle ne fut pas la surprise de notre h\u00e9ro\u00cfne, quand elle s'aper\u00e7ut que son sauveur n'\u00e9tait nul autre que Xavier Dupont de Ligonn\u00e8s.  \r\n  \r\nTant\u00f4t charmant, tant\u00f4t bucolique, TEST est un conte politique sans pr\u00e9c\u00e9dent qui saura vous extirper du morne quotidien de la conjoncture actuelle.  \r\n  \r\nTest"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "1",
-                            "ap": "b",
-                            "bw": "1",
-                            "kt": "1",
-                            "mu": "1",
-                            "nu": "a",
-                            "cdj": "https://www.cdjapan.co.jp/",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/",
-                            "mal": "1",
-                            "raw": "https://miku.mangadex.org",
-                            "engtl": "https://mangadex.org"
-                        },
-                        "originalLanguage": "en",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": 2018,
-                        "contentRating": "safe",
-                        "tags": [],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-06-15T08:27:37+00:00",
-                        "version": 66,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "id",
-                            "es-la",
-                            "fa",
-                            "vi",
-                            "fr",
-                            "ca",
-                            "it",
-                            "zh-hk",
-                            "tr",
-                            "nl",
-                            "pt-br",
-                            "my",
-                            "es",
-                            "ms",
-                            "zh",
-                            "pl",
-                            "ru"
-                        ]
-                    }
-                },
-                {
-                    "id": "f8cc4f8a-e596-4618-ab05-ef6572980bbf",
-                    "type": "user",
-                    "attributes": {
-                        "username": "tristan9",
-                        "roles": [
-                            "ROLE_DEVELOPER",
-                            "ROLE_MD_AT_HOME",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_STAFF",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 564
-                    }
-                }
-            ]
-        },
-        {
-            "id": "52fe184d-bf4b-4e46-83b3-0b26c1ecac2c",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "3",
-                "fileName": "d3df49bd-2d9b-46ea-9026-e0805db40bdb.jpg",
-                "locale": "ja",
-                "createdAt": "2022-06-15T07:30:21+00:00",
-                "updatedAt": "2022-06-15T07:30:21+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "d0ac97ce-cf5a-4040-a7d1-ef1ee8b9773c",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Siariz no Shugosha"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Guardian of the Alice"
-                            },
-                            {
-                                "en": "Guardian of the Siariz"
-                            },
-                            {
-                                "ja": "Seimiko no Shugosha"
-                            },
-                            {
-                                "ja": "\u8056\u5deb\u5973\uff08\u30b7\u30a2\u30ea\u30ba\uff09\u306e\u5b88\u8b77\u8005"
-                            },
-                            {
-                                "ja": "\u8056\u5deb\u5973\u306e\u5b88\u8b77\u8005"
-                            },
-                            {
-                                "zh": "\u5723\u5deb\u5973\u7684\u5b88\u62a4\u8005"
-                            },
-                            {
-                                "ja": "Siariz no Shugosha"
-                            }
-                        ],
-                        "description": {
-                            "en": "A master-slave fantasy between the guardian who lost his beloved and the legendary saint! Sabi, who is shunned as a heretic in his town, meets Alice, a girl with a special fate. Alice chooses Sabi as her partner\u2014 the \u201cGuardian\u201d \u2014but she loses her life to a strange incident in the town. But she suddenly comes back to life with the soul of the exalted \u201cHoly Saint\u201d that resides inside her...?!"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "bw": "series/322380",
-                            "mu": "180438",
-                            "amz": "https://www.amazon.co.jp/-/en/\u53cb\u85e4\u7d50-ebook/dp/B09HC29GY7/ref=sr_1_1?keywords=\u8056\u5deb\u5973\u306e\u5b88\u8b77\u8005&qid=1639198345&sr=8-1",
-                            "mal": "141291"
+                            "al": "61497",
+                            "ap": "elegant-youkai-apartment-life",
+                            "bw": "series/4519/list",
+                            "kt": "2805",
+                            "mu": "64842",
+                            "amz": "https://www.amazon.co.jp/dp/B07RWF8SZ3",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-1028336",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/130134/",
+                            "mal": "31497",
+                            "raw": "https://shonen-sirius.com/series/sirius/youapa/",
+                            "engtl": "https://kodansha.us/series/elegant-yokai-apartment-life/"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": "3",
-                        "lastChapter": "",
-                        "publicationDemographic": "shoujo",
+                        "lastVolume": "24",
+                        "lastChapter": "120",
+                        "publicationDemographic": "shounen",
                         "status": "completed",
-                        "year": 2021,
+                        "year": 2011,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-12-11T04:38:40+00:00",
-                        "updatedAt": "2022-06-15T07:30:21+00:00",
-                        "version": 8,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Dreik",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 429
-                    }
-                }
-            ]
-        },
-        {
-            "id": "a9a68a69-5ccd-4392-bb81-679c7167154a",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "9e201e2b-dcd4-483f-8005-e67990fc0576.jpg",
-                "locale": "ja",
-                "createdAt": "2022-06-15T07:29:10+00:00",
-                "updatedAt": "2022-06-15T07:29:10+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "9538256e-d9ba-4f57-81a1-dd3d8c4a4546",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "86 \u2014 Eighty Six \u2014 Fragmental Neoteny"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "86\uff0d\u30a8\u30a4\u30c6\u30a3\u30b7\u30c3\u30af\u30b9\uff0d \u30d5\u30e9\u30b0\u30e1\u30f3\u30bf\u30eb\u30cd\u30aa\u30c6\u30cb\u30fc"
-                            },
-                            {
-                                "en": "86: Fragmental Neoteny"
-                            },
-                            {
-                                "en": "Eighty Six: Fragmental Neoteny"
-                            },
-                            {
-                                "ru": "86: \u0412\u043e\u0441\u0435\u043c\u044c\u0434\u0435\u0441\u044f\u0442 \u0448\u0435\u0441\u0442\u044c \u2014 \u0424\u0440\u0430\u0433\u043c\u0435\u043d\u0442\u0430\u0440\u043d\u0430\u044f \u043d\u0435\u043e\u0442\u0435\u043d\u0438\u044f"
-                            }
-                        ],
-                        "description": {
-                            "en": "Fragmented Neotenia is a manga adaptation of short stories that tells about lost battles, through which the boy's eyes gradually fade and finally die.",
-                            "ru": "\u0424\u0440\u0430\u0433\u043c\u0435\u043d\u0442\u0430\u0440\u043d\u0430\u044f \u041d\u0435\u043e\u0442\u0435\u043d\u0438\u044f \u2014 \u043c\u0430\u043d\u0433\u0430-\u0430\u0434\u0430\u043f\u0442\u0430\u0446\u0438\u044f \u043a\u043e\u0440\u043e\u0442\u043a\u0438\u0445 \u0438\u0441\u0442\u043e\u0440\u0438\u0439, \u0433\u0434\u0435 \u0440\u0430\u0441\u0441\u043a\u0430\u0437\u044b\u0432\u0430\u0435\u0442\u0441\u044f \u043e \u043f\u0440\u043e\u0438\u0433\u0440\u0430\u043d\u043d\u044b\u0445 \u0431\u0438\u0442\u0432\u0430\u0445, \u043f\u0440\u043e\u0439\u0434\u044f \u0447\u0435\u0440\u0435\u0437 \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u0433\u043b\u0430\u0437\u0430 \u043c\u0430\u043b\u044c\u0447\u0438\u043a\u0430 \u043f\u043e\u0441\u0442\u0435\u043f\u0435\u043d\u043d\u043e \u0442\u0443\u0441\u043a\u043d\u0435\u044e\u0442 \u0438 \u043e\u043a\u043e\u043d\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u043e \u0443\u043c\u0438\u0440\u0430\u044e\u0442."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "133115",
-                            "ap": "86-eighty-six-fragmental-neoteny",
-                            "bw": "series/318600",
-                            "kt": "86-eighty-six-fragmental-neoteny",
-                            "mu": "180567",
-                            "amz": "https://www.amazon.co.jp/dp/B09FKVGR7F",
-                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2657133",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/656668/",
-                            "mal": "136649",
-                            "raw": "https://comic-walker.com/contents/detail/KDCW_MF02202433010000_68/"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Sci-Fi"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Psychological"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "50880a9d-5440-4732-9afb-8f457127e836",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Mecha"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Survival"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Military"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Gore"
-                                    },
-                                    "description": [],
-                                    "group": "content",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
+                                        "en": "Comedy"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -717,13 +114,274 @@
                                     "version": 1
                                 },
                                 "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-04-05T10:29:56+00:00",
+                        "updatedAt": "2022-09-02T19:09:53+00:00",
+                        "version": 19,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "pl"
+                        ]
+                    }
+                },
+                {
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
+                    "type": "user",
+                    "attributes": {
+                        "username": "astromath",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 94
+                    }
+                }
+            ]
+        },
+        {
+            "id": "e7cf8c13-3925-47b8-a7f4-a9db5b4f2da3",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "2",
+                "fileName": "3a95ac7b-f22a-482d-b3ab-844469b45413.jpg",
+                "locale": "fr",
+                "createdAt": "2022-09-02T19:09:52+00:00",
+                "updatedAt": "2022-09-02T19:09:52+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fd0638a8-2bf3-4e9c-85c2-2e5d72bf34fd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Youkai Apaato no Yuuga na Nichijou"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Elegant Yokai Apartment Life"
                             },
                             {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                                "vi": "X\u00f3m Tr\u1ecd Y\u00eau Qu\u00e1i"
+                            },
+                            {
+                                "ja": "\u5996\u602a\u30a2\u30d1\u30fc\u30c8\u306e\u5e7d\u96c5\u306a\u65e5\u5e38"
+                            },
+                            {
+                                "zh-hk": "\u5996\u602a\u516c\u5bd3\u7684\u512a\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ja-ro": "Y\u014dkai Ap\u0101to no Y\u016bgana Nichij\u014d"
+                            },
+                            {
+                                "zh": "\u5996\u602a\u516c\u5bd3\u7684\u4f18\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ar": "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0631\u0627\u0626\u0639\u0629 \u0641\u064a \u0634\u0642\u0629 \u0627\u0644\u064a\u0648\u0643\u0627\u064a"
+                            },
+                            {
+                                "it": "La raffinata vita quotidiana dell'appartamento degli y\u014dkai"
+                            },
+                            {
+                                "ko": "\uc694\uad34 \uc544\ud30c\ud2b8\uc758 \uc6b0\uc544\ud55c \uc77c\uc0c1"
+                            }
+                        ],
+                        "description": {
+                            "en": "Inaba Yuushi's parents died in his first year of middle school, and he moved in with his relatives. Though they did care for him, he could tell he was a burden. After he graduated, he happily prepared to move to a high school with a dormitory. Unfortunately, the dormitory burned to the ground before he could move in! Yuushi doesn't want to live with his grudging relatives, but it's rough finding lodging as an orphaned student with little money. He finally finds a room in a nice old building which seems too good to be true.  \n  \nThe catch is that it is a Monster House, a place where humans and supernatural creatures\u2013ghosts, mononoke, etc.\u2013 live together. Another high schooler lives there, a cute girl named Akine, and she's completely unfazed by the monsters. In fact, she can even exorcise evil spirits! Yuushi's high school life just got much stranger than he ever bargained for!  \n  \n[See AnimeNewsNetwork for anime.](https://www.animenewsnetwork.com/encyclopedia/anime.php?id=19391)\n\n**Wikipedia**\n- [Arabic](https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D8%B1%D8%A7%D8%A6%D8%B9%D8%A9_%D9%81%D9%8A_%D8%B4%D9%82%D8%A9_%D8%A7%D9%84%D9%8A%D9%88%D9%83%D8%A7%D9%8A)\n- [Chinese (Traditional)](https://zh.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E5%85%AC%E5%AF%93%E7%9A%84%E5%84%AA%E9%9B%85%E6%97%A5%E5%B8%B8)\n- [English](https://en.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Indonesian](https://id.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Italian](https://it.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Japanese](https://ja.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E3%82%A2%E3%83%91%E3%83%BC%E3%83%88%E3%81%AE%E5%B9%BD%E9%9B%85%E3%81%AA%E6%97%A5%E5%B8%B8)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "61497",
+                            "ap": "elegant-youkai-apartment-life",
+                            "bw": "series/4519/list",
+                            "kt": "2805",
+                            "mu": "64842",
+                            "amz": "https://www.amazon.co.jp/dp/B07RWF8SZ3",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-1028336",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/130134/",
+                            "mal": "31497",
+                            "raw": "https://shonen-sirius.com/series/sirius/youapa/",
+                            "engtl": "https://kodansha.us/series/elegant-yokai-apartment-life/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "24",
+                        "lastChapter": "120",
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": 2011,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Adaptation"
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-04-05T10:29:56+00:00",
+                        "updatedAt": "2022-09-02T19:09:53+00:00",
+                        "version": 19,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "pl"
+                        ]
+                    }
+                },
+                {
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
+                    "type": "user",
+                    "attributes": {
+                        "username": "astromath",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 94
+                    }
+                }
+            ]
+        },
+        {
+            "id": "09f186e1-1ce4-440f-b8f4-def04a778d5f",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "335411fd-970f-46a0-976c-9bb2522d9534.jpg",
+                "locale": "en",
+                "createdAt": "2022-09-02T19:09:42+00:00",
+                "updatedAt": "2022-09-02T19:09:42+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "64edd7ef-c1e6-429f-a5ce-a4ae198b8417",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "World of Raek"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Raek 2019"
+                            },
+                            {
+                                "en": "Raek Story 2019"
+                            },
+                            {
+                                "en": "Story of Raek"
+                            },
+                            {
+                                "en": "World of Riyek"
+                            },
+                            {
+                                "en": "Tales of Yigdir"
+                            },
+                            {
+                                "en": "Story of Riyek"
+                            },
+                            {
+                                "ja": "Raek \u306e\u4e16\u754c"
+                            },
+                            {
+                                "ja-ro": "Raeku no Sekai"
+                            }
+                        ],
+                        "description": {
+                            "en": "In the world of Yigdir \u2014 all living things soar under wing of the Elden Kii. What once stood united as \"Man\" has been destroyed, shattered into the cosmos, with Earth crumbling into floating shards in their wake. Nations divided, and strewn about the Seven Skies. As of one year ago, the people of this generation have only known war."
+                        },
+                        "isLocked": false,
+                        "links": [],
+                        "originalLanguage": "en",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": "shounen",
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Martial Arts"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Adventure"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "891cf039-b895-47f0-9229-bef4c96eccd4",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "User Created"
                                     },
                                     "description": [],
                                     "group": "format",
@@ -732,14 +390,53 @@
                                 "relationships": []
                             },
                             {
-                                "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
+                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Tragedy"
+                                        "en": "Magic"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Fantasy"
                                     },
                                     "description": [],
                                     "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -747,25 +444,307 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-10-12T21:09:35+00:00",
-                        "updatedAt": "2022-06-15T07:29:10+00:00",
-                        "version": 8,
+                        "createdAt": "2020-04-06T17:30:14+00:00",
+                        "updatedAt": "2022-09-02T19:09:42+00:00",
+                        "version": 3,
                         "availableTranslatedLanguages": [
-                            "pt-br",
                             "en"
                         ]
                     }
                 },
                 {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "id": "81304b72-005d-4e62-bea6-4cb65869f7da",
                     "type": "user",
                     "attributes": {
-                        "username": "Dreik",
+                        "username": "BraveDude8",
                         "roles": [
+                            "ROLE_GLOBAL_MODERATOR",
+                            "ROLE_MD_AT_HOME",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_POWER_UPLOADER",
                             "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
+                            "ROLE_CONTRIBUTOR",
+                            "ROLE_STAFF",
+                            "ROLE_FORUM_MODERATOR",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 429
+                        "version": 81
+                    }
+                }
+            ]
+        },
+        {
+            "id": "f18c6011-c8db-4c66-9956-62cbdbbcdbbd",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "6",
+                "fileName": "0e0e334c-b622-4144-944e-2e3a6e7bcfe1.jpg",
+                "locale": "th",
+                "createdAt": "2022-09-02T19:04:13+00:00",
+                "updatedAt": "2022-09-02T19:04:13+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fd0638a8-2bf3-4e9c-85c2-2e5d72bf34fd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Youkai Apaato no Yuuga na Nichijou"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Elegant Yokai Apartment Life"
+                            },
+                            {
+                                "vi": "X\u00f3m Tr\u1ecd Y\u00eau Qu\u00e1i"
+                            },
+                            {
+                                "ja": "\u5996\u602a\u30a2\u30d1\u30fc\u30c8\u306e\u5e7d\u96c5\u306a\u65e5\u5e38"
+                            },
+                            {
+                                "zh-hk": "\u5996\u602a\u516c\u5bd3\u7684\u512a\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ja-ro": "Y\u014dkai Ap\u0101to no Y\u016bgana Nichij\u014d"
+                            },
+                            {
+                                "zh": "\u5996\u602a\u516c\u5bd3\u7684\u4f18\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ar": "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0631\u0627\u0626\u0639\u0629 \u0641\u064a \u0634\u0642\u0629 \u0627\u0644\u064a\u0648\u0643\u0627\u064a"
+                            },
+                            {
+                                "it": "La raffinata vita quotidiana dell'appartamento degli y\u014dkai"
+                            },
+                            {
+                                "ko": "\uc694\uad34 \uc544\ud30c\ud2b8\uc758 \uc6b0\uc544\ud55c \uc77c\uc0c1"
+                            }
+                        ],
+                        "description": {
+                            "en": "Inaba Yuushi's parents died in his first year of middle school, and he moved in with his relatives. Though they did care for him, he could tell he was a burden. After he graduated, he happily prepared to move to a high school with a dormitory. Unfortunately, the dormitory burned to the ground before he could move in! Yuushi doesn't want to live with his grudging relatives, but it's rough finding lodging as an orphaned student with little money. He finally finds a room in a nice old building which seems too good to be true.  \n  \nThe catch is that it is a Monster House, a place where humans and supernatural creatures\u2013ghosts, mononoke, etc.\u2013 live together. Another high schooler lives there, a cute girl named Akine, and she's completely unfazed by the monsters. In fact, she can even exorcise evil spirits! Yuushi's high school life just got much stranger than he ever bargained for!  \n  \n[See AnimeNewsNetwork for anime.](https://www.animenewsnetwork.com/encyclopedia/anime.php?id=19391)\n\n**Wikipedia**\n- [Arabic](https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D8%B1%D8%A7%D8%A6%D8%B9%D8%A9_%D9%81%D9%8A_%D8%B4%D9%82%D8%A9_%D8%A7%D9%84%D9%8A%D9%88%D9%83%D8%A7%D9%8A)\n- [Chinese (Traditional)](https://zh.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E5%85%AC%E5%AF%93%E7%9A%84%E5%84%AA%E9%9B%85%E6%97%A5%E5%B8%B8)\n- [English](https://en.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Indonesian](https://id.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Italian](https://it.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Japanese](https://ja.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E3%82%A2%E3%83%91%E3%83%BC%E3%83%88%E3%81%AE%E5%B9%BD%E9%9B%85%E3%81%AA%E6%97%A5%E5%B8%B8)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "61497",
+                            "ap": "elegant-youkai-apartment-life",
+                            "bw": "series/4519/list",
+                            "kt": "2805",
+                            "mu": "64842",
+                            "amz": "https://www.amazon.co.jp/dp/B07RWF8SZ3",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-1028336",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/130134/",
+                            "mal": "31497",
+                            "raw": "https://shonen-sirius.com/series/sirius/youapa/",
+                            "engtl": "https://kodansha.us/series/elegant-yokai-apartment-life/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "24",
+                        "lastChapter": "120",
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": 2011,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-04-05T10:29:56+00:00",
+                        "updatedAt": "2022-09-02T19:09:53+00:00",
+                        "version": 19,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "pl"
+                        ]
+                    }
+                },
+                {
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
+                    "type": "user",
+                    "attributes": {
+                        "username": "astromath",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 94
+                    }
+                }
+            ]
+        },
+        {
+            "id": "0d7337a0-719f-4244-b4f6-02cfeddaf640",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "4",
+                "fileName": "b9fe67d4-4a5f-4852-a3f3-df6400aa2377.jpg",
+                "locale": "th",
+                "createdAt": "2022-09-02T19:04:11+00:00",
+                "updatedAt": "2022-09-02T19:04:11+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "fd0638a8-2bf3-4e9c-85c2-2e5d72bf34fd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Youkai Apaato no Yuuga na Nichijou"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Elegant Yokai Apartment Life"
+                            },
+                            {
+                                "vi": "X\u00f3m Tr\u1ecd Y\u00eau Qu\u00e1i"
+                            },
+                            {
+                                "ja": "\u5996\u602a\u30a2\u30d1\u30fc\u30c8\u306e\u5e7d\u96c5\u306a\u65e5\u5e38"
+                            },
+                            {
+                                "zh-hk": "\u5996\u602a\u516c\u5bd3\u7684\u512a\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ja-ro": "Y\u014dkai Ap\u0101to no Y\u016bgana Nichij\u014d"
+                            },
+                            {
+                                "zh": "\u5996\u602a\u516c\u5bd3\u7684\u4f18\u96c5\u65e5\u5e38"
+                            },
+                            {
+                                "ar": "\u0627\u0644\u062d\u064a\u0627\u0629 \u0627\u0644\u0631\u0627\u0626\u0639\u0629 \u0641\u064a \u0634\u0642\u0629 \u0627\u0644\u064a\u0648\u0643\u0627\u064a"
+                            },
+                            {
+                                "it": "La raffinata vita quotidiana dell'appartamento degli y\u014dkai"
+                            },
+                            {
+                                "ko": "\uc694\uad34 \uc544\ud30c\ud2b8\uc758 \uc6b0\uc544\ud55c \uc77c\uc0c1"
+                            }
+                        ],
+                        "description": {
+                            "en": "Inaba Yuushi's parents died in his first year of middle school, and he moved in with his relatives. Though they did care for him, he could tell he was a burden. After he graduated, he happily prepared to move to a high school with a dormitory. Unfortunately, the dormitory burned to the ground before he could move in! Yuushi doesn't want to live with his grudging relatives, but it's rough finding lodging as an orphaned student with little money. He finally finds a room in a nice old building which seems too good to be true.  \n  \nThe catch is that it is a Monster House, a place where humans and supernatural creatures\u2013ghosts, mononoke, etc.\u2013 live together. Another high schooler lives there, a cute girl named Akine, and she's completely unfazed by the monsters. In fact, she can even exorcise evil spirits! Yuushi's high school life just got much stranger than he ever bargained for!  \n  \n[See AnimeNewsNetwork for anime.](https://www.animenewsnetwork.com/encyclopedia/anime.php?id=19391)\n\n**Wikipedia**\n- [Arabic](https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9_%D8%A7%D9%84%D8%B1%D8%A7%D8%A6%D8%B9%D8%A9_%D9%81%D9%8A_%D8%B4%D9%82%D8%A9_%D8%A7%D9%84%D9%8A%D9%88%D9%83%D8%A7%D9%8A)\n- [Chinese (Traditional)](https://zh.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E5%85%AC%E5%AF%93%E7%9A%84%E5%84%AA%E9%9B%85%E6%97%A5%E5%B8%B8)\n- [English](https://en.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Indonesian](https://id.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Italian](https://it.wikipedia.org/wiki/Elegant_Yokai_Apartment_Life)\n- [Japanese](https://ja.wikipedia.org/wiki/%E5%A6%96%E6%80%AA%E3%82%A2%E3%83%91%E3%83%BC%E3%83%88%E3%81%AE%E5%B9%BD%E9%9B%85%E3%81%AA%E6%97%A5%E5%B8%B8)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "61497",
+                            "ap": "elegant-youkai-apartment-life",
+                            "bw": "series/4519/list",
+                            "kt": "2805",
+                            "mu": "64842",
+                            "amz": "https://www.amazon.co.jp/dp/B07RWF8SZ3",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-1028336",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/130134/",
+                            "mal": "31497",
+                            "raw": "https://shonen-sirius.com/series/sirius/youapa/",
+                            "engtl": "https://kodansha.us/series/elegant-yokai-apartment-life/"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "24",
+                        "lastChapter": "120",
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": 2011,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-04-05T10:29:56+00:00",
+                        "updatedAt": "2022-09-02T19:09:53+00:00",
+                        "version": 19,
+                        "availableTranslatedLanguages": [
+                            "en",
+                            "pl"
+                        ]
+                    }
+                },
+                {
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
+                    "type": "user",
+                    "attributes": {
+                        "username": "astromath",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 94
                     }
                 }
             ]
@@ -773,5 +752,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 141098
+    "total": 150211
 }

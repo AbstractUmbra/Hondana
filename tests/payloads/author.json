@@ -193,8 +193,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-08-08T06:33:13+00:00",
-                    "updatedAt": "2022-04-18T01:43:00+00:00",
-                    "version": 6,
+                    "updatedAt": "2022-08-07T03:12:15+00:00",
+                    "version": 7,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -212,7 +212,10 @@
                             "ja": "\u65b0\u4e16\u7d00\u30a8\u30f4\u30a1\u30f3\u30b2\u30ea\u30aa\u30f3 - \u30a8\u30f4\u30a1\u306e\u30a2\u30b9\u30ab\u3068\u5c11\u3057\u5927\u4eba\u306a\u30b7\u30f3\u30b8\u541b\u306e\u30e9\u30d6\u30e9\u30d6\u5984\u60f3\u8a71"
                         }
                     ],
-                    "description": [],
+                    "description": {
+                        "en": "An asushin short made by the manga by nagatoro.",
+                        "pt-br": "Um curta asushin feito pelo mang\u00e1 de nagatoro."
+                    },
                     "isLocked": false,
                     "links": {
                         "raw": "https://www.pixiv.net/artworks/78757632"
@@ -294,8 +297,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-07-25T20:40:02+00:00",
-                    "updatedAt": "2022-03-24T13:31:27+00:00",
-                    "version": 3,
+                    "updatedAt": "2022-06-25T22:55:03+00:00",
+                    "version": 4,
                     "availableTranslatedLanguages": [
                         "id",
                         "pt-br",
@@ -957,8 +960,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-01-19T22:02:03+00:00",
-                    "updatedAt": "2022-03-24T13:25:03+00:00",
-                    "version": 3,
+                    "updatedAt": "2022-07-06T15:58:39+00:00",
+                    "version": 4,
                     "availableTranslatedLanguages": [
                         "en"
                     ]

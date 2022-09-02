@@ -20,6 +20,9 @@
                     "altTitles": [
                         {
                             "ja": "\u898b\u305b\u305f\u304c\u308a\u306e\u9732\u4e43\u3061\u3083\u3093"
+                        },
+                        {
+                            "zh-hk": "\u60f3\u8981\u7d66\u5225\u4eba\u770b\u7684\u9732\u4e43\u91ac"
                         }
                     ],
                     "description": {
@@ -29,7 +32,7 @@
                     "links": {
                         "al": "115993",
                         "ap": "misetagari-no-tsuyuno-chan",
-                        "bw": "series/263960/list/",
+                        "bw": "series/263960/list",
                         "kt": "56773",
                         "mu": "163108",
                         "amz": "https://www.amazon.co.jp/dp/B091DVVBZT",
@@ -88,8 +91,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-06-03T08:01:58+00:00",
-                    "updatedAt": "2022-05-18T15:21:40+00:00",
-                    "version": 18,
+                    "updatedAt": "2022-08-23T17:15:52+00:00",
+                    "version": 19,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -168,7 +171,7 @@
                     "links": {
                         "al": "100664",
                         "ap": "dont-toy-with-me-miss-nagatoro",
-                        "bw": "series/155089/",
+                        "bw": "series/155089",
                         "kt": "40324",
                         "mu": "145530",
                         "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
@@ -255,8 +258,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2022-04-13T10:59:12+00:00",
-                    "version": 317,
+                    "updatedAt": "2022-07-29T22:40:12+00:00",
+                    "version": 319,
                     "availableTranslatedLanguages": [
                         "id",
                         "ru",
@@ -268,9 +271,9 @@
                         "cs",
                         "en",
                         "zh",
+                        "uk",
                         "hu",
                         "tr",
-                        "uk",
                         "es",
                         "pt"
                     ]
@@ -284,7 +287,7 @@
                     "roles": [
                         "ROLE_MEMBER"
                     ],
-                    "version": 110
+                    "version": 122
                 }
             }
         ]

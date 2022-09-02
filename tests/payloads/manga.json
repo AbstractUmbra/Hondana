@@ -74,7 +74,7 @@
             "links": {
                 "al": "100664",
                 "ap": "dont-toy-with-me-miss-nagatoro",
-                "bw": "series/155089/",
+                "bw": "series/155089",
                 "kt": "40324",
                 "mu": "145530",
                 "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
@@ -161,8 +161,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-03-04T12:21:59+00:00",
-            "updatedAt": "2022-04-13T10:59:12+00:00",
-            "version": 317,
+            "updatedAt": "2022-07-29T22:40:12+00:00",
+            "version": 319,
             "availableTranslatedLanguages": [
                 "id",
                 "ru",
@@ -174,9 +174,9 @@
                 "cs",
                 "en",
                 "zh",
+                "uk",
                 "hu",
                 "tr",
-                "uk",
                 "es",
                 "pt"
             ]
@@ -233,15 +233,15 @@
                 }
             },
             {
-                "id": "4789cf28-bb92-4e6a-9791-60d211e0b3cd",
+                "id": "8400095a-abd4-433e-8323-f0b2026204e8",
                 "type": "cover_art",
                 "attributes": {
                     "description": "",
-                    "volume": "13",
-                    "fileName": "65e2ae0f-0333-4e2d-986b-fa4af7e8d790.png",
+                    "volume": "14",
+                    "fileName": "c466287c-af81-4892-b1fb-0256cc8d67e7.jpg",
                     "locale": "ja",
-                    "createdAt": "2022-04-08T18:56:49+00:00",
-                    "updatedAt": "2022-04-08T18:57:15+00:00",
+                    "createdAt": "2022-07-25T04:46:58+00:00",
+                    "updatedAt": "2022-07-29T22:40:12+00:00",
                     "version": 2
                 }
             },
@@ -359,7 +359,7 @@
                     "isLocked": false,
                     "links": {
                         "al": "104616",
-                        "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe/",
+                        "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
                         "kt": "56972",
                         "mu": "151069",
                         "amz": "https://www.amazon.co.jp/dp/4758022445/",
@@ -429,8 +429,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-08-16T01:01:02+00:00",
-                    "updatedAt": "2022-04-22T22:38:19+00:00",
-                    "version": 12,
+                    "updatedAt": "2022-08-29T23:03:27+00:00",
+                    "version": 14,
                     "availableTranslatedLanguages": [
                         "th",
                         "zh",

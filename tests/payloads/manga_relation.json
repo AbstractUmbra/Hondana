@@ -132,7 +132,7 @@
                         "isLocked": false,
                         "links": {
                             "al": "104616",
-                            "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe/",
+                            "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
                             "kt": "56972",
                             "mu": "151069",
                             "amz": "https://www.amazon.co.jp/dp/4758022445/",
@@ -202,8 +202,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2019-08-16T01:01:02+00:00",
-                        "updatedAt": "2022-04-22T22:38:19+00:00",
-                        "version": 12,
+                        "updatedAt": "2022-08-29T23:03:27+00:00",
+                        "version": 14,
                         "availableTranslatedLanguages": [
                             "th",
                             "zh",

@@ -159,7 +159,7 @@
                         "roles": [
                             "ROLE_MEMBER"
                         ],
-                        "version": 7
+                        "version": 10
                     }
                 },
                 {
@@ -338,5 +338,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 21977
+    "total": 22922
 }

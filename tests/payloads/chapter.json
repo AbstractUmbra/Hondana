@@ -118,7 +118,7 @@
                     "links": {
                         "al": "100664",
                         "ap": "dont-toy-with-me-miss-nagatoro",
-                        "bw": "series/155089/",
+                        "bw": "series/155089",
                         "kt": "40324",
                         "mu": "145530",
                         "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
@@ -205,8 +205,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2022-04-13T10:59:12+00:00",
-                    "version": 317,
+                    "updatedAt": "2022-07-29T22:40:12+00:00",
+                    "version": 319,
                     "availableTranslatedLanguages": [
                         "id",
                         "ru",
@@ -218,9 +218,9 @@
                         "cs",
                         "en",
                         "zh",
+                        "uk",
                         "hu",
                         "tr",
-                        "uk",
                         "es",
                         "pt"
                     ]
