@@ -3,65 +3,10 @@
     "response": "collection",
     "data": [
         {
-            "id": "31691a80-e812-41c7-bdc5-bcb2e777c7c7",
+            "id": "b4eaf307-8682-4911-81e1-bc32ce969914",
             "type": "scanlation_group",
             "attributes": {
-                "name": "RoyalTrad",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "taEeB2mB",
-                "contactEmail": "maelflory2006@gmail.com",
-                "description": "Hii",
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "fr"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "928c47db-cb86-4df7-8849-ffd7a643407a",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "maelflr",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "928c47db-cb86-4df7-8849-ffd7a643407a",
-                    "type": "member",
-                    "attributes": {
-                        "username": "maelflr",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
-            "id": "31734f88-ddf6-4be3-a510-32dd45bff039",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "/a/TSUMARE!",
+                "name": "Lily_Anne",
                 "altNames": [],
                 "locked": false,
                 "website": null,
@@ -80,52 +25,81 @@
                 "inactive": false,
                 "publishDelay": null,
                 "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2022-01-22T12:10:57+00:00",
-                "version": 2
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
             },
-            "relationships": [
-                {
-                    "id": "08c88747-612f-46bb-beb4-de67b7fe6935",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "odacova",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "08c88747-612f-46bb-beb4-de67b7fe6935",
-                    "type": "member",
-                    "attributes": {
-                        "username": "odacova",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 2
-                    }
-                }
-            ]
+            "relationships": []
         },
         {
-            "id": "3179025b-4840-4369-953e-32c58328c513",
+            "id": "b4ec223a-1691-43fc-91db-cd7d3ca248ed",
             "type": "scanlation_group",
             "attributes": {
-                "name": "Happiness Of Darkness",
+                "name": "LapisScans",
                 "altNames": [],
                 "locked": false,
                 "website": null,
                 "ircServer": null,
                 "ircChannel": null,
-                "discord": "gJ478y9zRg",
-                "contactEmail": null,
-                "description": "Bienvenue sur ma page de Team. [Recueille de personne qui trad en solo]  \n   \nC'est des pojets solo pour la plus part alors excusez nous si \u00e7a prend du temps.  \nEn outre nous sommes aussi la team de trad la plus lente d'europe alors pr\u00e9parez vous mentalement a attendre les nouveaux chapitres   \n~(^-^)~",
+                "discord": null,
+                "contactEmail": "lapisscans@protonmail.com",
+                "description": "",
                 "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2022-04-08T06:18:23+00:00",
+                "updatedAt": "2022-04-08T06:18:23+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "b4eca069-ad15-4032-b462-2972c161637d",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Vgjh",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": "",
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "eo"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2022-08-02T02:36:38+00:00",
+                "updatedAt": "2022-08-02T02:36:38+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "b4eca5d2-34a6-4446-b62c-159015a90229",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "PandaScan",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": "xSc9PYW",
+                "contactEmail": "pandascantrad@gmail.com",
+                "description": "PandaScan c'est des bon projets traduit en fran\u00e7ais, ni plus ni moins.\n",
+                "twitter": "https://twitter.com/panda_scan",
                 "mangaUpdates": null,
                 "focusedLanguages": [
                     "fr"
@@ -135,53 +109,44 @@
                 "inactive": false,
                 "publishDelay": null,
                 "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
+                "updatedAt": "2021-12-08T14:47:45+00:00",
+                "version": 2
             },
             "relationships": [
                 {
-                    "id": "fb347172-16f6-454c-a321-f94cfe87e808",
+                    "id": "b2e78fb2-9c20-4516-9a50-813350d84f15",
                     "type": "leader",
                     "attributes": {
-                        "username": "HappinesS1",
+                        "username": "PandaScan",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
                         "version": 2
                     }
                 },
                 {
-                    "id": "0120c518-120c-42c8-8a2a-2ebadb8ceea9",
+                    "id": "5018cb21-2b9b-4f14-819a-e2efb76bd060",
                     "type": "member",
                     "attributes": {
-                        "username": "KarmaTempest",
-                        "roles": [
-                            "ROLE_MEMBER"
-                        ],
-                        "version": 10
-                    }
-                },
-                {
-                    "id": "b4c39300-4fba-4d25-a9ce-309296de1136",
-                    "type": "member",
-                    "attributes": {
-                        "username": "BlackSnoow",
+                        "username": "Vegash",
                         "roles": [
                             "ROLE_MEMBER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 3
+                        "version": 1
                     }
                 },
                 {
-                    "id": "fb347172-16f6-454c-a321-f94cfe87e808",
+                    "id": "b2e78fb2-9c20-4516-9a50-813350d84f15",
                     "type": "member",
                     "attributes": {
-                        "username": "HappinesS1",
+                        "username": "PandaScan",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
                         "version": 2
                     }
@@ -189,73 +154,18 @@
             ]
         },
         {
-            "id": "3179c2f2-1eef-4c87-b5d4-35eadcb029f4",
+            "id": "b4ee5f90-0155-47a2-8e05-ead50c93a9cc",
             "type": "scanlation_group",
             "attributes": {
-                "name": "DDM Scan",
+                "name": "Killer Kranberry",
                 "altNames": [],
                 "locked": false,
-                "website": null,
+                "website": "http://killerkranberry.tumblr.com/",
                 "ircServer": null,
                 "ircChannel": null,
-                "discord": "QHBmZp6",
+                "discord": null,
                 "contactEmail": null,
                 "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "pt-br"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "09675f36-2082-46d1-8206-15e71e93b13c",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "ddmvictor",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 3
-                    }
-                },
-                {
-                    "id": "09675f36-2082-46d1-8206-15e71e93b13c",
-                    "type": "member",
-                    "attributes": {
-                        "username": "ddmvictor",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 3
-                    }
-                }
-            ]
-        },
-        {
-            "id": "317c798f-295c-4dfb-9e67-ab5cb4b6d8e2",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Revelion Scan",
-                "altNames": [],
-                "locked": true,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "huDfDRk",
-                "contactEmail": "rossther666@gmail.com",
-                "description": "\u300eA scanlation group dedicated to Translate mangas in english\u300f  \n  \nWe are looking people to help us:  \n\u2937Japanese - Eng Translators (important)  \n\u2937Redrawers  \n  \nif you want to help us, you can contact us on our [Discord](https://discord.gg/huDfDRk) or DM [thermi.exe](https://mangadex.org/user/827780/thermiexe) for applying  \n  \nIf you appreciate our translations, please give us a like and follow",
                 "twitter": null,
                 "mangaUpdates": null,
                 "focusedLanguages": [
@@ -271,10 +181,10 @@
             },
             "relationships": [
                 {
-                    "id": "373a594f-ca3e-4bd2-8e4d-e58814cc7272",
+                    "id": "a30ee526-1b15-4a6a-a3e7-20aba857374e",
                     "type": "leader",
                     "attributes": {
-                        "username": "thermiexe",
+                        "username": "Krankran",
                         "roles": [
                             "ROLE_MEMBER",
                             "ROLE_GROUP_MEMBER",
@@ -284,53 +194,16 @@
                     }
                 },
                 {
-                    "id": "00b1a3ec-fdab-4c0d-92da-7e45a36b3c20",
+                    "id": "a30ee526-1b15-4a6a-a3e7-20aba857374e",
                     "type": "member",
                     "attributes": {
-                        "username": "chitsukiscarlet",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "373a594f-ca3e-4bd2-8e4d-e58814cc7272",
-                    "type": "member",
-                    "attributes": {
-                        "username": "thermiexe",
+                        "username": "Krankran",
                         "roles": [
                             "ROLE_MEMBER",
                             "ROLE_GROUP_MEMBER",
                             "ROLE_GROUP_LEADER"
                         ],
                         "version": 1
-                    }
-                },
-                {
-                    "id": "cd86638f-7828-49fa-99d7-3e1f17943352",
-                    "type": "member",
-                    "attributes": {
-                        "username": "Quintero18",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "d3d557ec-da17-4f3a-a57a-250b6debc943",
-                    "type": "member",
-                    "attributes": {
-                        "username": "KidLinch",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 2
                     }
                 }
             ]
@@ -338,5 +211,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 22922
+    "total": 22730
 }

@@ -236,13 +236,13 @@
                 "id": "8400095a-abd4-433e-8323-f0b2026204e8",
                 "type": "cover_art",
                 "attributes": {
+                    "fileName": "c466287c-af81-4892-b1fb-0256cc8d67e7.jpg",
                     "description": "",
                     "volume": "14",
-                    "fileName": "c466287c-af81-4892-b1fb-0256cc8d67e7.jpg",
                     "locale": "ja",
+                    "version": 2,
                     "createdAt": "2022-07-25T04:46:58+00:00",
-                    "updatedAt": "2022-07-29T22:40:12+00:00",
-                    "version": 2
+                    "updatedAt": "2022-07-29T22:40:12+00:00"
                 }
             },
             {
@@ -445,6 +445,14 @@
                 "type": "manga",
                 "related": "doujinshi",
                 "attributes": {
+                    "isLocked": false,
+                    "links": null,
+                    "originalLanguage": "ja",
+                    "lastVolume": "1",
+                    "lastChapter": "3",
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "contentRating": "pornographic",
                     "title": {
                         "en": "Lightning Speed + MAGIC WAYS."
                     },
@@ -468,15 +476,7 @@
                     "description": {
                         "en": "Uzaki is in the first 2 chapters (Full color)  \nOthers are in chapter 3 (No color)"
                     },
-                    "isLocked": false,
-                    "links": null,
-                    "originalLanguage": "ja",
-                    "lastVolume": "1",
-                    "lastChapter": "3",
-                    "publicationDemographic": null,
-                    "status": "completed",
                     "year": null,
-                    "contentRating": "pornographic",
                     "tags": [
                         {
                             "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
@@ -494,9 +494,9 @@
                     ],
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
+                    "version": 1,
                     "createdAt": "2019-12-08T23:44:35+00:00",
                     "updatedAt": "2019-12-08T23:44:35+00:00",
-                    "version": 1,
                     "availableTranslatedLanguages": [
                         "en"
                     ]
@@ -595,13 +595,6 @@
                 "type": "manga",
                 "related": "colored",
                 "attributes": {
-                    "title": {
-                        "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
-                    },
-                    "altTitles": [],
-                    "description": {
-                        "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(\u2026?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
-                    },
                     "isLocked": false,
                     "links": null,
                     "originalLanguage": "ja",
@@ -609,8 +602,15 @@
                     "lastChapter": null,
                     "publicationDemographic": "shounen",
                     "status": "completed",
-                    "year": null,
                     "contentRating": "suggestive",
+                    "title": {
+                        "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
+                    },
+                    "altTitles": [],
+                    "description": {
+                        "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(\u2026?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
+                    },
+                    "year": null,
                     "tags": [
                         {
                             "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
@@ -693,9 +693,9 @@
                     ],
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
+                    "version": 2,
                     "createdAt": "2019-07-31T06:40:07+00:00",
                     "updatedAt": "2021-05-25T15:48:42+00:00",
-                    "version": 2,
                     "availableTranslatedLanguages": [
                         "en"
                     ]

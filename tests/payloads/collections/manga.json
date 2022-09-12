@@ -3,225 +3,34 @@
     "response": "collection",
     "data": [
         {
-            "id": "811e3492-298c-4222-a450-15abefe32c81",
+            "id": "94f52d8c-4b09-4f47-9d01-de329326b2d2",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Green Plum Island"
+                    "en": "Cultivate with a Fairy"
                 },
                 "altTitles": [
                     {
-                        "zh-hk": "Gingmei Island"
-                    },
-                    {
-                        "zh-hk": "\u9752\u6885\u5dbc"
-                    },
-                    {
-                        "zh": "\u9752\u6885\u5c7f"
+                        "zh": "\u98de\u5347\u4ece\u517b\u4e2a\u4ed9\u5b50\u5f00\u59cb"
                     }
                 ],
                 "description": {
-                    "en": "When I was ten, I fell from a tree and hit my head. When I woke up, the world around me had changed. I could see people\u2019s emotions in the form of numbers and colours\u2014pink for love, red for anger, green for awkwardness, blue for sorrow, yellow for desire\u2026\nI met Yan Kongshan the summer after college entrance exams on Green Plum Island. Mysterious and handsome, with a tinge of melancholy, he was the ideal man of every woman on the island. And mine.\nI wanted him to turn pink for me, but one day, he suddenly turned yellow. Despite that, he seemed ever so nonchalant when facing me.\nLove is like lemon soda water. Sour and sweet, filled with energy.\nYou never know how a person\u2019s heart beats for you, hidden in its cage beneath their flesh."
+                    "en": "Lu Wuyan had been cultivating for a thousand years and become matchless, but why couldn\u2019t he ascend even though people worse than he had ascended to immortality! He couldn\u2019t take that! He wanted to talk about it with a fairy. How on earth could he achieve immortality!?"
                 },
                 "isLocked": false,
                 "links": {
-                    "mu": "189900",
-                    "raw": "https://manga.bilibili.com/detail/mc30642"
+                    "ap": "cultivate-with-a-fairy",
+                    "mu": "180287",
+                    "engtl": "https://www.bilibilicomics.com/detail/mc23?utm_source=mgd"
                 },
                 "originalLanguage": "zh",
                 "lastVolume": "",
                 "lastChapter": "",
                 "publicationDemographic": null,
                 "status": "ongoing",
-                "year": 2022,
+                "year": 2021,
                 "contentRating": "safe",
                 "tags": [
-                    {
-                        "id": "320831a8-4026-470b-94f6-8353740e6f04",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Official Colored"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Long Strip"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Boys' Love"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Web Comic"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-04-17T16:08:41+00:00",
-                "updatedAt": "2022-07-13T04:55:05+00:00",
-                "version": 7,
-                "availableTranslatedLanguages": [
-                    "en"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "ebb7a2dd-75c3-4e58-8635-b5b4d40564b8",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Hui Nan Que",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-04-17T16:05:51+00:00",
-                        "updatedAt": "2022-04-17T16:05:51+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "4cc02e0c-cd0a-4fa8-ad48-2eb48ff7d1a1",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Changpei Literature",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-07-15T11:20:26+00:00",
-                        "updatedAt": "2021-07-15T11:20:26+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "6b708eac-58f5-476b-b7ae-6b29f9d714d8",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "4",
-                        "fileName": "f5cdcdb1-36b0-42dc-b092-a9ef14c6069c.jpg",
-                        "locale": "zh",
-                        "createdAt": "2022-07-13T04:55:04+00:00",
-                        "updatedAt": "2022-07-13T04:55:04+00:00",
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
-            "id": "c00cc3d9-f7c7-46da-95d5-8f5ae1e6fe57",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "It Starts With A Mountain"
-                },
-                "altTitles": [
-                    {
-                        "en": "Starting with a mountain"
-                    },
-                    {
-                        "zh": "\u5f00\u5c40\u4e00\u5ea7\u5c71"
-                    }
-                ],
-                "description": {
-                    "en": "It starts with a mountain. A strategic leader gets isekai-ed into a war dynasty. He only has a group of members who were planning to ditch him. Facing this war era, he thinks of stealing food and girls to live a king\u2019s life. He is hot-blooded, picks fights with war heroes. How will he bring chaos to the war? Will he be able to rise up high?"
-                },
-                "isLocked": false,
-                "links": {
-                    "ap": "it-starts-with-a-mountain",
-                    "mu": "177147",
-                    "raw": "https://ac.qq.com/Comic/ComicInfo/id/647701"
-                },
-                "originalLanguage": "zh",
-                "lastVolume": "",
-                "lastChapter": "",
-                "publicationDemographic": "shounen",
-                "status": "ongoing",
-                "year": 2020,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Reincarnation"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
                     {
                         "id": "33771934-028e-4cb3-8744-691e866a923e",
                         "type": "tag",
@@ -262,14 +71,14 @@
                         "relationships": []
                     },
                     {
-                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Martial Arts"
+                                "en": "Comedy"
                             },
                             "description": [],
-                            "group": "theme",
+                            "group": "genre",
                             "version": 1
                         },
                         "relationships": []
@@ -288,50 +97,24 @@
                         "relationships": []
                     },
                     {
-                        "id": "acc803a4-c95a-4c22-86fc-eb6b582d82a2",
+                        "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Wuxia"
+                                "en": "Harem"
                             },
                             "description": [],
-                            "group": "genre",
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
                     },
                     {
-                        "id": "ace04997-f6bd-436e-b261-779182193d3d",
+                        "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Isekai"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Full Color"
+                                "en": "Adaptation"
                             },
                             "description": [],
                             "group": "format",
@@ -342,20 +125,19 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2021-02-07T17:00:42+00:00",
-                "updatedAt": "2022-04-19T21:14:37+00:00",
-                "version": 6,
+                "createdAt": "2021-07-15T11:28:23+00:00",
+                "updatedAt": "2022-07-15T20:29:25+00:00",
+                "version": 4,
                 "availableTranslatedLanguages": [
-                    "en",
-                    "fr"
+                    "en"
                 ]
             },
             "relationships": [
                 {
-                    "id": "07b782d0-5c77-40f2-85b4-c13ac52bac0c",
+                    "id": "fae2664b-44e9-4f84-ba23-bc35cc35c11d",
                     "type": "author",
                     "attributes": {
-                        "name": "VV",
+                        "name": "Meng Yue Wen Hua",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -371,88 +153,74 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "createdAt": "2021-07-15T11:28:23+00:00",
+                        "updatedAt": "2021-07-15T11:28:23+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "07b782d0-5c77-40f2-85b4-c13ac52bac0c",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "VV",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "30bfb43d-5202-4f15-9b8c-e691c8195987",
+                    "id": "739adec7-a24e-4f29-8e78-f2ea2bd098ef",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
                         "volume": null,
-                        "fileName": "112b1634-884d-4c34-af67-63dd8380d562.jpg",
+                        "fileName": "03b73bc9-702d-4f3f-8da3-db66b4c1a04e.png",
                         "locale": "zh",
-                        "createdAt": "2021-05-24T18:30:13+00:00",
-                        "updatedAt": "2021-05-24T18:30:13+00:00",
+                        "createdAt": "2021-07-15T11:28:26+00:00",
+                        "updatedAt": "2021-07-15T11:28:26+00:00",
                         "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "1c048601-6c06-4739-afdb-c27a72df61fd",
+            "id": "a483e424-1643-4f1c-b5f2-bf730cb63f02",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Guilty Pleasure"
+                    "en": "Demon King's Rules x Witch's Covenant"
                 },
                 "altTitles": [
                     {
-                        "ko": "\uae38\ud2f0 \ud50c\ub808\uc800"
-                    },
-                    {
-                        "ko-ro": "gilti peullejeo"
+                        "zh": "\u9b54\u738b\u6cd5\u5219\u5973\u5deb\u4e4b\u7eca"
                     }
                 ],
                 "description": {
-                    "en": "Bora takes Haneul home on a rainy night, and as he awakes, finds out that he has lost his memory. Bora tucks him in and keeps him from leaving his dangerous home. And the murder case which occurred on the day Haneul fell has yet to find its culprit..."
+                    "en": "Warning! An association of valiant individuals formed by the villainous demon lord and the rebellious witches has surfaced! Through casual methods of operation, they will turn the definition of justice upside down! By committing crimes across dimensions, they will ultimately snatch the halo of the main characters away from the hands of pesky humans!"
                 },
                 "isLocked": false,
                 "links": {
-                    "mu": "otkx7l7",
-                    "raw": "https://www.bomtoon.com/comic/ep_list/guilty_pls/?p_id=t"
+                    "ap": "demon-kings-rules-x-witchs-covenant",
+                    "mu": "188013",
+                    "engtl": "https://www.bilibilicomics.com/detail/mc143?utm_source=mgd"
                 },
-                "originalLanguage": "ko",
+                "originalLanguage": "zh",
                 "lastVolume": "",
-                "lastChapter": "30",
+                "lastChapter": "",
                 "publicationDemographic": null,
-                "status": "completed",
+                "status": "ongoing",
                 "year": 2021,
-                "contentRating": "erotica",
+                "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "07251805-a27e-4d59-b488-f0bfbec15168",
+                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Thriller"
+                                "en": "Long Strip"
+                            },
+                            "description": [],
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Comedy"
                             },
                             "description": [],
                             "group": "genre",
@@ -461,14 +229,136 @@
                         "relationships": []
                     },
                     {
-                        "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                        "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Psychological"
+                                "en": "Harem"
+                            },
+                            "description": [],
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Fantasy"
                             },
                             "description": [],
                             "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2021-07-15T11:19:34+00:00",
+                "updatedAt": "2022-07-19T22:02:17+00:00",
+                "version": 3,
+                "availableTranslatedLanguages": [
+                    "en"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "74b4fe81-838d-447a-9e8a-90af90c20688",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Perfect World Comics",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "5fe9bc6c-9106-4f13-8bf9-8183bdc544d9",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": null,
+                        "fileName": "601f1e5b-47f6-47de-aa74-0b4086dbad49.png",
+                        "locale": "zh",
+                        "createdAt": "2021-07-15T11:19:37+00:00",
+                        "updatedAt": "2021-07-15T11:19:37+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "bad2a52f-c5de-4099-aa19-f5e661187c35",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Marriage in a Heartbeat"
+                },
+                "altTitles": [
+                    {
+                        "en": "Shanhun Jingai"
+                    },
+                    {
+                        "en": "Shanhunjingai"
+                    },
+                    {
+                        "ru": "\u0421\u0442\u0440\u0430\u0445 \u043b\u044e\u0431\u0432\u0438 \u2014 \u0441\u0432\u0430\u0434\u044c\u0431\u0430 \u0431\u0435\u0437 \u0441\u0432\u0438\u0434\u0430\u043d\u0438\u0439"
+                    },
+                    {
+                        "ar": "\u0632\u0648\u0627\u062c \u0633\u0631\u064a\u0639"
+                    },
+                    {
+                        "zh": "\u95ea\u5a5a\u60ca\u7231"
+                    },
+                    {
+                        "en": "Flash Marriage"
+                    }
+                ],
+                "description": {
+                    "en": "Due to an accident, he was raped by a woman he had gone on a blind date with!\r\n\r\nWho was he? The crown prince of the capital! Rumor has it that he attracted countless socialites and ladies to bow down to him, but he was pure and did not get close to women.\r\nWho was she? The eldest daughter of a wealthy family who was not loved.\r\n\r\nHe said, \u201cMarry me and our marriage will be your best protection.\u201d\r\nShe said, \"I don't want to use you as a tool. Plus I don\u2019t have feelings for you.\u201d\r\nHe smiled at that and said, \"I\u2019m rather fond of you. \"",
+                    "zh": "\"\u4e00\u573a\u610f\u5916\uff0c\u4ed6\u88ab\u8ddf\u81ea\u5df1\u76f8\u4eb2\u7684\u5973\u4eba\u5f3a\u884c\u7834\u4e86\u7ae5\u5b50\u8eab\uff01\u4ed6\u662f\u8c01\uff1f\u6743\u503e\u4eac\u57ce\u7684\u592a\u5b50\u7237\uff01\u4f20\u95fb\uff0c\u4ed6\u5f15\u65e0\u6570\u540d\u5a9b\u6dd1\u5973\u7ade\u6298\u8170\uff0c\u5374\u6d01\u8eab\u81ea\u597d\u3001\u4e0d\u8fd1\u5973\u8272\u3002\u5979\u662f\u8c01\uff1f\u4e0d\u53d7\u5ba0\u7231\u7684\u8c6a\u95e8\u957f\u5973\u3002 \u4ed6\u8bf4\uff1a\u201c\u5ac1\u7ed9\u6211\uff0c\u6211\u4eec\u7684\u5a5a\u59fb\u4f1a\u662f\u4f60\u6700\u597d\u7684\u4fdd\u62a4\u4f1e\u3002\u201d\u5979\u8bf4\uff1a\u201c\u6211\u4e0d\u60f3\u62ff\u4f60\u5f53\u67aa\u4f7f\uff0c\u6211\uff0c\u4e5f\u4e0d\u7231\u4f60\u3002\u201d\u4ed6\u95fb\u8a00\u7b11\u4e86\u7b11\uff1a\u201c\u6211\u633a\u559c\u6b22\u4f60\u7684\u3002\u201d"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "107435",
+                    "raw": "https://manga.bilibili.com/detail/mc25151",
+                    "engtl": "https://www.bilibilicomics.com/detail/mc195?utm_source=mgd"
+                },
+                "originalLanguage": "zh",
+                "lastVolume": null,
+                "lastChapter": "140",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": null,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Long Strip"
+                            },
+                            "description": [],
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -487,27 +377,156 @@
                         "relationships": []
                     },
                     {
-                        "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Boys' Love"
+                                "en": "Drama"
                             },
                             "description": [],
                             "group": "genre",
                             "version": 1
                         },
                         "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2019-09-29T07:14:34+00:00",
+                "updatedAt": "2021-09-08T08:14:36+00:00",
+                "version": 5,
+                "availableTranslatedLanguages": [
+                    "en"
+                ]
+            },
+            "relationships": [
+                {
+                    "id": "ff889505-2283-49c2-8293-bac546f0ca00",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Kaiyuan Comic",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "ff889505-2283-49c2-8293-bac546f0ca00",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Kaiyuan Comic",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "822cb553-b55b-4fd8-8632-a4ed62df6782",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": null,
+                        "fileName": "99beb2c2-f3e7-4cf9-8c98-3bfebd323c20.jpg",
+                        "locale": "zh",
+                        "createdAt": "2021-05-24T17:28:21+00:00",
+                        "updatedAt": "2021-05-24T17:28:21+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "3395f559-5f90-4049-9dae-75b8918cadb9",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "This Croc Will Die In 100 Days"
+                },
+                "altTitles": [
+                    {
+                        "ja-ro": "100nichigo ni Shinu Wani"
                     },
                     {
-                        "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
+                        "ja": "100\u65e5\u5f8c\u306b\u6b7b\u306c\u30ef\u30cb"
+                    },
+                    {
+                        "ja-ro": "Hyakunichigo ni Shinu Wani"
+                    },
+                    {
+                        "en": "The Crocodile Who Dies in 100 Days"
+                    }
+                ],
+                "description": {
+                    "pt": "/ \u0420ortugu\u00eas: ||Um mang\u00e1 do Twitter por Yuuki Kikuchi sobre um crocodilo vivendo seus \u00faltimos 100 dias.||"
+                },
+                "isLocked": true,
+                "links": {
+                    "al": "116744",
+                    "kt": "56102",
+                    "mu": "164315",
+                    "amz": "https://amazon.co.jp/dp/B086G7CXXC",
+                    "raw": "https://twitter.com/yuukikikuchi"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "1",
+                "lastChapter": "100",
+                "publicationDemographic": "seinen",
+                "status": "completed",
+                "year": null,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Crime"
+                                "en": "Animals"
                             },
                             "description": [],
-                            "group": "genre",
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b11fda93-8f1d-4bef-b2ed-8803d3733170",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "4-Koma"
+                            },
+                            "description": [],
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -521,6 +540,32 @@
                             },
                             "description": [],
                             "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Slice of Life"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Full Color"
+                            },
+                            "description": [],
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -541,19 +586,27 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-07-08T11:34:08+00:00",
-                "updatedAt": "2022-07-08T11:34:21+00:00",
-                "version": 2,
+                "createdAt": "2020-04-30T08:14:06+00:00",
+                "updatedAt": "2022-08-25T14:56:58+00:00",
+                "version": 7,
                 "availableTranslatedLanguages": [
-                    "en"
+                    "it",
+                    "es-la",
+                    "fr",
+                    "pt-br",
+                    "pl",
+                    "en",
+                    "ru",
+                    "de",
+                    "hi"
                 ]
             },
             "relationships": [
                 {
-                    "id": "38ab0189-737b-4f4a-9a83-961b5e2c6f92",
+                    "id": "611c7986-6c92-4524-b620-a220fa89fcbc",
                     "type": "author",
                     "attributes": {
-                        "name": "Sinbi",
+                        "name": "Yuuki Kikuchi",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -569,16 +622,16 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-10-11T01:04:10+00:00",
-                        "updatedAt": "2021-10-11T01:04:10+00:00",
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "38ab0189-737b-4f4a-9a83-961b5e2c6f92",
+                    "id": "611c7986-6c92-4524-b620-a220fa89fcbc",
                     "type": "artist",
                     "attributes": {
-                        "name": "Sinbi",
+                        "name": "Yuuki Kikuchi",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -594,79 +647,88 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-10-11T01:04:10+00:00",
-                        "updatedAt": "2021-10-11T01:04:10+00:00",
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "f21d3e46-1e7e-4d2a-8cdd-01b0e6de6923",
+                    "id": "bc5aecb6-8ea9-4f34-8ddc-2fd18460b8d1",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": "1",
-                        "fileName": "77be2a7e-e35f-459f-8332-3a65af0d9eed.jpg",
-                        "locale": "ko",
-                        "createdAt": "2022-07-08T11:34:09+00:00",
-                        "updatedAt": "2022-07-08T11:34:09+00:00",
+                        "volume": null,
+                        "fileName": "7fa8d6c2-a8b6-46e4-a46b-299783306336.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-24T17:54:16+00:00",
+                        "updatedAt": "2021-05-24T17:54:16+00:00",
                         "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "220282a9-a2ff-4a6b-9bed-f4a9da24c661",
+            "id": "99af94f5-04c2-424b-8438-0c8386b0ec5f",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Maybe Meant to Be"
+                    "en": "Kimi wa Houkago Insomnia"
                 },
                 "altTitles": [
                     {
-                        "en": "Accidentally Heavenly Match"
+                        "es": "insomnes Despu\u00e9s de la Escuela"
                     },
                     {
-                        "ko": "\uc5b4\uca4c\ub2e4\ubcf4\ub2c8 \ucc9c\uc0dd\uc5f0\ubd84"
+                        "en": "Insomniacs After School"
                     },
                     {
-                        "en": "Match Made in Heaven by Chance"
+                        "fr": "Insomniaques"
                     },
                     {
-                        "zh-hk": "\u5076\u7136\u6210\u4e86\u5929\u751f\u4e00\u5c0d"
+                        "id": "Insomniamu Sepulang Sekolah"
+                    },
+                    {
+                        "ja": "\u541b\u306f\u653e\u8ab2\u5f8c\u30a4\u30f3\u30bd\u30e0\u30cb\u30a2"
+                    },
+                    {
+                        "ru": "\u0411\u0435\u0441\u0441\u043e\u043d\u043d\u0438\u0446\u0430 \u043f\u043e\u0441\u043b\u0435 \u0448\u043a\u043e\u043b\u044b"
                     }
                 ],
                 "description": {
-                    "en": "\u2018How long have i been laying down at home\u2026?\u2019 Han Jia, who is turning 32 this year (she\u2019s a freelancer who\u2019s still doesn\u2019t have a full-time job/jobless), suffers because of the pressure given by people around her that keep telling her to get married. Around the same time, Jin Mincheol, her childhood friend who came to Jia\u2019s hometown for holiday, is having the same problem. Then, the two people got married just like that. Now that they have married\u2026.. \u2018Huh? We match each other more than i thought?\u2019",
-                    "fr": "Jia, 32 ans, sans-emploi, vit toujours avec ses parents. En ayant marre de la pression de sa famille, par un coup de t\u00eate, elle fait une demande en mariage \u00e0 son ami d'enfance, Mincheol, qu'elle vient tout juste de recroiser apr\u00e8s des ann\u00e9es. \u00c0 sa grande surprise, celui-ci accepte directement sa proposition et d'un jour \u00e0 l'autre elle se trouve mari\u00e9e \u00e0 Mincheol. Cette union improvis\u00e9e perturbe Jia, mais, petit \u00e0 petit elle d\u00e9couvre qu'ils sont en fait... parfaits l'un pour l'autre ?!",
-                    "id": "Sudah berapa tahun kamu tinggal di rumah orang tua? Han Jiah (pengangguran) yang tahun ini berusia 32 tahun, hari ini juga menderita karena masih belum menikah dan bekerja. Tiba-tiba Jim Minchul, sahabat kecil Jiah muncul dan mereka memutuskan untuk menikah!?? Ternyata mereka berdua malah lebih cocok dari yang diperkirakan?!",
-                    "ko": "\uc9d1\uc5d0 \uc5b9\ud600\uc0b0 \uc9c0 \uba87 \ub144 \ucc28\ub354\ub77c..? \n\uc62c\ud574 32\uc0b4\uc744 \ub9de\uc774\ud55c \ud55c\uc9c0\uc544(\uc77c\ud558\uc9c0 \uc54a\ub294 \ud504\ub9ac\ub79c\uc11c/\ubb34\uc9c1)\ub294 \uc8fc\ubcc0\uc758 \uacb0\ud63c\ud558\ub77c\ub294 \ub208\uce6b\ubc25\uc5d0 \uc624\ub298\ub3c4 \uace0\ud1b5\ubc1b\ub294\ub370.. \n\ub54c\ub9c8\uce68 \uba85\uc808\uc744 \ub9de\uc774\ud558\uc5ec \uace0\ud5a5\uc5d0 \ub0b4\ub824\uc628 \uc18c\uafc9\uce5c\uad6c \ubbfc\ucca0 \ub610\ud55c \uac19\uc740 \uace0\ubbfc\uc774 \uc788\uc5c8\uc73c\ub2c8.\n\uadf8\ub7ec\uba74 \uc26c\uc6b4 \ud574\uacb0 \ubc29\ubc95\uc774 \uc788\uc796\uc544?!? \uadf8\ub807\uac8c \ud667\uae40\uc5d0 \uacb0\ud63c\ud55c \ub450 \uc0ac\ub78c.\n\uadf8\ub7f0\ub370 \ub9c9\uc0c1 \uacb0\ud63c\ud574 \ubcf4\ub2c8... \uc5b4\ub77c?? \uc0dd\uac01\ubcf4\ub2e4 \ub108\ubb34 \uc798 \ub9de\ub294\ub2e4?!",
-                    "zh-hk": "\u56e0\u70ba\u6c92\u5de5\u4f5c\u800c\u4e00\u76f4\u4f4f\u5728\u8001\u5bb6\u7684\u97d3\u667a\u96c5\u7e3d\u662f\u6703\u88ab\u5bb6\u4eba\u50ac\u4fc3\u7d50\u5a5a\uff0c\u5c31\u5728\u5979\u7015\u81e8\u5d29\u6f70\u7684\u6642\u5019\uff0c\u9047\u5230\u4e86\u6709\u76f8\u540c\u7169\u60f1\u7684\u5152\u6642\u73a9\u4f34\u2026\u2026"
+                    "en": "Nakami is a studious but cranky and antisocial high schooler who gets on his classmates' nerves. However, his bad attitude comes from the fact that he has a sleeping disorder, and frequently spends nights on end without a single minute of sleep. During the preparations for the school festival, he is begrudgingly sent to the school's astronomy observatory to gather cardboard boxes, a place which is said to be haunted by the dire happenings of the now defunct Astronomy Club. He finds the isolated place a haven ripe for him to sleep, but while rummaging around, he stumbles upon his classmate Magari Isaki sleeping inside a toppled-over locker.   \n  \nIsaki, unlike him, is a personable and popular girl at class, but who also hides her own problems with insomnia. Looking for a middle ground, they find that there's comfort and ease in sleeping together, so they resort to make the observatory their own private cubby to sleep\u2026 Have they found the comfort they're looking for?",
+                    "es": "Nakami es un muchacho de secundaria estudioso pero irritable y antisocial que irrita a sus compa\u00f1eros de clase. Sin embargo, su mala actitud se debe al hecho de que tiene un desorden del sue\u00f1o, y pasa noches enteras sin dormir un minuto. En el momento de las preparaciones del festival escolar, sus compa\u00f1eros lo mandan a rega\u00f1adientes al observatorio de astronom\u00eda para traer cajas de cart\u00f3n, y dicho lugar se rumora est\u00e1 maldecido por los hechos macabros del otrora Club de Astronom\u00eda. Una vez all\u00ed, encuentra que el sitio es un lugar ideal para dormir, pero mientras esculca, se tropieza con su compa\u00f1era Magari Isaki, que duerme en un casillero tumbado.  \n  \nIsaki, al contrario de \u00e9l, es una muchacha popular y amistosa, pero que tambi\u00e9n oculta sus propios problemas con la insomnia. Negociando sobre qu\u00e9 hacer, se dan cuenta que hay comodidad y facilidad en dormir juntos, as\u00ed que resuelven hacer del observatorio su propio rinc\u00f3n privado para dormir\u2026 \u00bfHan as\u00ed encontrado la comodidad que tanto buscan?",
+                    "pt-br": "Nakami \u00e9 um estudante dedicado, por\u00e9m, sempre parece estar irritado, o que faz seus colegas de classe n\u00e3o gostarem dele. Por\u00e9m essa atitude \u00e9 devido ao fato dele ter ins\u00f4nia, passando a maior parte da noite em claro, sem conseguir dormir nem um minuto sequer. Durante a prepara\u00e7\u00e3o do festival escolar, ele foi enviado contra a sua vontade para pegar cartolina na sala do observat\u00f3rio de astronomia da escola, um lugar que tem fama de ser mal-assombrado. L\u00e1 ele encontra um lugar calma e isolado para dormir, mas enquanto ele verificava o local ele encontra sua colega de classe Magari Isaki, que estava dormindo l\u00e1. Ap\u00f3s ambos descobrirem sobre o problema de ins\u00f4nia um do outro, eles decidem dividir aquele local como ref\u00fagio para poderem dormir. Por quanto tempo ser\u00e1 que eles poder\u00e3o se aproveitar desse conforto? E ser\u00e1 que a sala do observat\u00f3rio realmente \u00e9 mal-assombrada?"
                 },
                 "isLocked": false,
                 "links": {
-                    "al": "146139",
-                    "mu": "196135",
-                    "mal": "147712",
-                    "raw": "https://comic.naver.com/webtoon/list?titleId=790245",
-                    "engtl": "https://www.webtoons.com/en/romance/maybe-meant-to-be/list?title_no=4208"
+                    "al": "110473",
+                    "ap": "kimi-wa-houkago-insomnia",
+                    "bw": "series/218411",
+                    "kt": "55867",
+                    "mu": "154740",
+                    "amz": "https://www.amazon.co.jp/gp/product/B084Z324Z2",
+                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2687531",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/558515/",
+                    "mal": "121213",
+                    "raw": "https://bigcomicbros.net/work/6437/"
                 },
-                "originalLanguage": "ko",
+                "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "josei",
+                "publicationDemographic": "seinen",
                 "status": "ongoing",
-                "year": 2022,
+                "year": 2019,
                 "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Long Strip"
+                                "en": "Animals"
                             },
                             "description": [],
-                            "group": "format",
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
@@ -698,27 +760,27 @@
                         "relationships": []
                     },
                     {
-                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Web Comic"
+                                "en": "School Life"
                             },
                             "description": [],
-                            "group": "format",
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
                     },
                     {
-                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Full Color"
+                                "en": "Slice of Life"
                             },
                             "description": [],
-                            "group": "format",
+                            "group": "genre",
                             "version": 1
                         },
                         "relationships": []
@@ -726,166 +788,28 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-02-19T04:53:42+00:00",
-                "updatedAt": "2022-07-06T18:58:27+00:00",
-                "version": 9,
+                "createdAt": "2019-12-19T12:30:11+00:00",
+                "updatedAt": "2022-09-07T20:41:04+00:00",
+                "version": 51,
                 "availableTranslatedLanguages": [
                     "en",
-                    "it"
+                    "pt-br",
+                    "fr",
+                    "id",
+                    "es-la",
+                    "ar",
+                    "zh"
                 ]
             },
             "relationships": [
                 {
-                    "id": "4ff8735f-08f9-4440-bd7f-802a212b9d52",
+                    "id": "3c7ef294-2664-4d1e-bd59-28b80233c7ad",
                     "type": "author",
                     "attributes": {
-                        "name": "Honey Skein (\uafc0\ud0c0\ub798)",
+                        "name": "Ojiro Makoto",
                         "imageUrl": null,
                         "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-02-19T04:53:26+00:00",
-                        "updatedAt": "2022-03-09T18:25:55+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "34d88cc9-2db2-4e37-a1f8-fad98d0e5be1",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Damcho (\ub2f4\ucd08)",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-02-19T04:53:34+00:00",
-                        "updatedAt": "2022-03-09T18:25:26+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "d1eec7d0-2acc-4a49-a0e3-b7cb0d4fbd3b",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "1",
-                        "fileName": "f1200311-3b79-436e-8edf-4f3a9465e2e5.jpg",
-                        "locale": "ko",
-                        "createdAt": "2022-02-23T22:02:05+00:00",
-                        "updatedAt": "2022-02-23T22:02:05+00:00",
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
-            "id": "fabf4151-4b52-4e6b-ac85-f4979b5d2120",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Opium"
-                },
-                "altTitles": [
-                    {
-                        "ko": "\u110b\u1169\u1111\u1175\u110b\u116e\u11b7"
-                    }
-                ],
-                "description": {
-                    "en": "1946 Choseon (Korea). Beautiful and brilliant Dr. Maria Arden returns to the country of her birth as the medical advisor to the U.S. Army\u2014a stranger in an unfamiliar land ravaged by wars and corruption. There, she meets Dr. Kyeongju Lee, an alluring, mysterious woman shunned by society. Their innocent flirtations turn into a heated, forbidden love affair, as an illegal trade in opium threatens Choseon\u2019s fragile stability. Two outsiders drawn helplessly to each other, but\u2026 everything was a lie."
-                },
-                "isLocked": false,
-                "links": {
-                    "raw": "https://ridibooks.com/books/1434009432",
-                    "engtl": "https://tapas.io/series/opium-comic/info"
-                },
-                "originalLanguage": "ko",
-                "lastVolume": "",
-                "lastChapter": "47",
-                "publicationDemographic": null,
-                "status": "completed",
-                "year": 2020,
-                "contentRating": "erotica",
-                "tags": [
-                    {
-                        "id": "33771934-028e-4cb3-8744-691e866a923e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Historical"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Crime"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Girls' Love"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2021-01-16T18:54:43+00:00",
-                "updatedAt": "2022-08-31T01:55:29+00:00",
-                "version": 8,
-                "availableTranslatedLanguages": [
-                    "uk"
-                ]
-            },
-            "relationships": [
-                {
-                    "id": "5cc56759-ddf8-4c7c-88ee-f68c01dc600a",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Aji",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
+                        "twitter": "https://twitter.com/nekoteraphoto",
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -899,18 +823,18 @@
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
+                        "updatedAt": "2022-02-15T18:56:00+00:00",
+                        "version": 2
                     }
                 },
                 {
-                    "id": "42e38818-7ba3-4d8d-9889-bbbda8e4bc76",
+                    "id": "3c7ef294-2664-4d1e-bd59-28b80233c7ad",
                     "type": "artist",
                     "attributes": {
-                        "name": "Junghyun",
+                        "name": "Ojiro Makoto",
                         "imageUrl": null,
                         "biography": [],
-                        "twitter": null,
+                        "twitter": "https://twitter.com/nekoteraphoto",
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -924,20 +848,20 @@
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
+                        "updatedAt": "2022-02-15T18:56:00+00:00",
+                        "version": 2
                     }
                 },
                 {
-                    "id": "4244fe6f-dc18-4f41-8350-abb0dcf2b993",
+                    "id": "c831bd8b-c52f-4606-921e-204cc08bc270",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": null,
-                        "fileName": "6943ba87-cfd5-4bb9-ad32-ce60041a7954.jpg",
-                        "locale": "ko",
-                        "createdAt": "2021-05-24T18:27:30+00:00",
-                        "updatedAt": "2021-05-24T18:27:30+00:00",
+                        "volume": "10",
+                        "fileName": "7e5c0843-e3b3-46f9-9024-705193a83d27.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-09-07T20:41:06+00:00",
+                        "updatedAt": "2022-09-07T20:41:06+00:00",
                         "version": 1
                     }
                 }
@@ -946,5 +870,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 51658
+    "total": 51839
 }

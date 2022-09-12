@@ -201,13 +201,13 @@
                 "attributes": {
                     "username": "tristan9",
                     "roles": [
-                        "ROLE_DEVELOPER",
                         "ROLE_MD_AT_HOME",
                         "ROLE_GROUP_LEADER",
                         "ROLE_STAFF",
-                        "ROLE_GROUP_MEMBER"
+                        "ROLE_GROUP_MEMBER",
+                        "ROLE_DEVELOPER"
                     ],
-                    "version": 656
+                    "version": 683
                 }
             }
         ]
