@@ -43,7 +43,7 @@ class TagAttributesResponse(TypedDict):
     """
     name: :class:`~hondana.types.common.LocalizedString`
 
-    description: List[:class:`~hondana.types.common.LocalizedString`]
+    description: :class:`~hondana.types.common.LocalizedString`
 
     group: :class:`str`
 
@@ -51,7 +51,7 @@ class TagAttributesResponse(TypedDict):
     """
 
     name: LocalizedString
-    description: list[LocalizedString]
+    description: LocalizedString
     group: str
     version: int
 

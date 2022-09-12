@@ -51,8 +51,6 @@ class Tag:
     -----------
     id: :class:`str`
         The UUID associated with this tag.
-    description: List[:class:`~hondana.types.common.LocalizedString`]
-        The description(s) of the tag.
     group: :class:`str`
         The group (or kind) of tag.
         e.g. if it is a genre specification, or theme.
@@ -73,8 +71,8 @@ class Tag:
         "_attributes",
         "_relationships",
         "_name",
+        "_description",
         "id",
-        "description",
         "group",
         "version",
         "_cs_relationships",
@@ -88,7 +86,9 @@ class Tag:
         )  # TODO: remove this when they have relationships to be in line.
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
-        self.description: LocalizedString = {k: v for item in self._attributes["description"] for k, v in item.items()}  # type: ignore # this breaks pylance but pyright is happy. TODO: check a later version.
+        self._description: LocalizedString = (
+            self._attributes["description"] or {}
+        )  # the `or` here is because PHP json sends an empty array when the object is empty
         self.group: str = self._attributes["group"]
         self.version: int = self._attributes["version"]
 
@@ -117,6 +117,23 @@ class Tag:
             key = next(iter(self._name))
             return self._name[key]
         return name
+
+    @property
+    def description(self) -> str | None:
+        """The description of the tag, if any.
+
+        Returns
+        --------
+        Optional[:class:`str`]
+        """
+        if not self._description:
+            return None
+
+        description = self._description.get("en")
+        if description is None:
+            key = next(iter(self._description))
+            return self._description[key]
+        return description
 
     @property
     def url(self) -> str:
