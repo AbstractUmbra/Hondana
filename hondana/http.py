@@ -1136,20 +1136,6 @@ class HTTPClient:
         route = Route("DELETE", "/chapter/{chapter_id}", chapter_id=chapter_id)
         return self.request(route)
 
-    def _mark_chapter_as_read(
-        self, chapter_id: str, /, *, update_history: bool
-    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("POST", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
-
-        query: dict[str, Any] = {}
-        query["updateHistory"] = update_history
-
-        return self.request(route, params=query)
-
-    def _mark_chapter_as_unread(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("DELETE", "/chapter/{chapter_id}/read", chapter_id=chapter_id)
-        return self.request(route)
-
     def _user_read_history(self) -> Response[chapter.ChapterReadHistoryResponse]:
         route = Route("GET", "/user/history")
         return self.request(route)

@@ -86,7 +86,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, require_authentication
+from .utils import MISSING, require_authentication, deprecated
 
 
 if TYPE_CHECKING:
@@ -1753,6 +1753,7 @@ class Client:
         await self._http._delete_chapter(chapter_id)
 
     @require_authentication
+    @deprecated("batch_update_manga_read_markers")
     async def mark_chapter_as_read(self, chapter_id: str, /, *, update_history: bool = True) -> None:
         """|coro|
 
@@ -1766,9 +1767,10 @@ class Client:
             Whether or not to update the user's read history.
             Defaults to ``True``.
         """
-        await self._http._mark_chapter_as_read(chapter_id, update_history=update_history)
+        raise NotImplementedError("Deprecated.")
 
     @require_authentication
+    @deprecated("batch_update_manga_read_markers")
     async def mark_chapter_as_unread(self, chapter_id: str, /) -> None:
         """|coro|
 
@@ -1779,7 +1781,7 @@ class Client:
         chapter_id: :class:`str`
             The UUID of the chapter you wish to mark as unread.
         """
-        await self._http._mark_chapter_as_unread(chapter_id)
+        raise NotImplementedError("Deprecated.")
 
     @require_authentication
     async def my_chapter_read_history(self) -> ChapterReadHistoryCollection:
