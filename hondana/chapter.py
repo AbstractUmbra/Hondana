@@ -508,7 +508,7 @@ class Chapter:
             await self._http._manga_read_markers_batch(self.manga_id, read_chapters=[self.id], unread_chapters=None)
 
     @require_authentication
-    async def mark_chapter_as_unread(self) -> None:
+    async def mark_as_unread(self) -> None:
         """|coro|
 
         This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
