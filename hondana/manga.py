@@ -127,6 +127,7 @@ class Manga:
         "_tags",
         "_created_at",
         "_updated_at",
+        "_latest_uploaded_chapter",
         "_artist_relationships",
         "_author_relationships",
         "_related_manga_relationships",
@@ -172,6 +173,7 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
+        self._latest_uploaded_chapter: str = self._attributes["latestUploadedChapter"]
         self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)
         self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)
         self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
@@ -286,6 +288,17 @@ class Manga:
             The UTC datetime of when this manga was last updated.
         """
         return datetime.datetime.fromisoformat(self._updated_at)
+
+    @property
+    def latest_uploaded_chapter(self) -> datetime.datetime:
+        """The latest upload date of a chapter attributed to this manga.
+
+        Returns
+        --------
+        :class:`datetime.datetime`
+            The UTC datetime of when the chapter was uploaded.
+        """
+        return datetime.datetime.fromisoformat(self._latest_uploaded_chapter)
 
     @cached_slot_property("_cs_tags")
     def tags(self) -> list[Tag]:

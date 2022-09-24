@@ -145,6 +145,8 @@ class MangaAttributesResponse(TypedDict):
 
     chapterNumbersResetOnNewVolume: :class:`bool`
 
+    latestUploadedChapter: :class:`str`
+
     availableTranslatedLanguages: List[:class:`~hondana.types.common.LanguageCode`]
 
     tags: List[:class:`~hondana.types.tags.TagResponse`]
@@ -174,6 +176,7 @@ class MangaAttributesResponse(TypedDict):
     year: Optional[int]
     contentRating: Optional[_ContentRating]
     chapterNumbersResetOnNewVolume: bool
+    latestUploadedChapter: str
     availableTranslatedLanguages: list[LanguageCode]
     tags: list[TagResponse]
     state: _MangaState
