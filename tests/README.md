@@ -2,7 +2,7 @@
 
 ## Primer
 
-I want to note firstly, that no tests here will be run asynchronously, meaning that they will not contact the MangaDex API at any stage.
+I want to note firstly, that no tests here will contact the MangaDex API at any stage.
 
 The reasoning behind this stems from a few things, in no particular order:
 
