@@ -89,6 +89,8 @@ class Manga:
         The content rating attributed to the manga, if any.
     chapter_numbers_reset_on_new_volume: :class:`bool`
         Whether the chapter numbers will reset on a new volume or not.
+    latest_uploaded_chapter: :class:`str`
+        The ID of the latest uploaded chapter of this manga.
     state: Optional[:class:`~hondana.MangaState`]
         The publication state of the Manga.
     stats: Optional[:class:`~hondana.MangaStatistics`]
@@ -121,13 +123,13 @@ class Manga:
         "content_rating",
         "chapter_numbers_reset_on_new_volume",
         "available_translated_languages",
+        "latest_uploaded_chapter",
         "state",
         "stats",
         "version",
         "_tags",
         "_created_at",
         "_updated_at",
-        "_latest_uploaded_chapter",
         "_artist_relationships",
         "_author_relationships",
         "_related_manga_relationships",
@@ -167,13 +169,13 @@ class Manga:
         )
         self.chapter_numbers_reset_on_new_volume: bool = self._attributes["chapterNumbersResetOnNewVolume"]
         self.available_translated_languages: list[LanguageCode] = self._attributes["availableTranslatedLanguages"]
+        self.latest_uploaded_chapter: str = self._attributes["latestUploadedChapter"]
         self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
         self.stats: Optional[MangaStatistics] = None
         self.version: int = self._attributes["version"]
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._latest_uploaded_chapter: str = self._attributes["latestUploadedChapter"]
         self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)
         self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)
         self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
@@ -288,17 +290,6 @@ class Manga:
             The UTC datetime of when this manga was last updated.
         """
         return datetime.datetime.fromisoformat(self._updated_at)
-
-    @property
-    def latest_uploaded_chapter(self) -> datetime.datetime:
-        """The latest upload date of a chapter attributed to this manga.
-
-        Returns
-        --------
-        :class:`datetime.datetime`
-            The UTC datetime of when the chapter was uploaded.
-        """
-        return datetime.datetime.fromisoformat(self._latest_uploaded_chapter)
 
     @cached_slot_property("_cs_tags")
     def tags(self) -> list[Tag]:
