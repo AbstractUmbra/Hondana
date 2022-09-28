@@ -86,7 +86,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, require_authentication, deprecated
+from .utils import MISSING, deprecated, require_authentication
 
 
 if TYPE_CHECKING:
