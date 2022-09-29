@@ -179,7 +179,8 @@
                 "tr",
                 "es",
                 "pt"
-            ]
+            ],
+            "latestUploadedChapter": "beaf735c-4d3f-4ec9-a931-b5d508d31bc3"
         },
         "relationships": [
             {
@@ -315,7 +316,8 @@
                     "availableTranslatedLanguages": [
                         "en",
                         "fr"
-                    ]
+                    ],
+                    "latestUploadedChapter": "7e6cc2b9-c9a9-46ca-9a3b-60b7b8baf4e7"
                 }
             },
             {
@@ -370,7 +372,7 @@
                     "lastChapter": "",
                     "publicationDemographic": null,
                     "status": "ongoing",
-                    "year": 2021,
+                    "year": 2018,
                     "contentRating": "suggestive",
                     "tags": [
                         {
@@ -429,15 +431,16 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-08-16T01:01:02+00:00",
-                    "updatedAt": "2022-08-29T23:03:27+00:00",
-                    "version": 14,
+                    "updatedAt": "2022-09-12T16:26:37+00:00",
+                    "version": 15,
                     "availableTranslatedLanguages": [
                         "th",
                         "zh",
                         "en",
                         "ru",
                         "pt-br"
-                    ]
+                    ],
+                    "latestUploadedChapter": "df43f39e-3d58-4c39-86fe-0bb851304f0b"
                 }
             },
             {
@@ -499,7 +502,8 @@
                     "updatedAt": "2019-12-08T23:44:35+00:00",
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "136ccdd0-fafa-4902-95bb-6de62d57163d"
                 }
             },
             {
@@ -587,7 +591,8 @@
                     "availableTranslatedLanguages": [
                         "en",
                         "de"
-                    ]
+                    ],
+                    "latestUploadedChapter": "5681916c-29e3-4f30-a3e2-0c4ecf3d0944"
                 }
             },
             {
@@ -698,7 +703,8 @@
                     "updatedAt": "2021-05-25T15:48:42+00:00",
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "d0d51697-39ce-4b25-9b34-cd27219f6534"
                 }
             },
             {
@@ -763,7 +769,8 @@
                     "version": 2,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "5a843e34-8845-4c94-ac34-ba570fcc42cb"
                 }
             }
         ]

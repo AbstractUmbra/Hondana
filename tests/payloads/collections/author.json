@@ -3,10 +3,10 @@
     "response": "collection",
     "data": [
         {
-            "id": "742e3997-6a39-4b9d-8ec7-8282a3483da7",
+            "id": "0000d0d9-06db-4250-9951-d38fa6c8525a",
             "type": "author",
             "attributes": {
-                "name": "Tsuhara Yasumi",
+                "name": "Onimaru Suguru",
                 "imageUrl": null,
                 "biography": [],
                 "twitter": null,
@@ -28,55 +28,44 @@
             },
             "relationships": [
                 {
-                    "id": "55208c42-665d-4bc6-aa14-c3115a2f3f3d",
+                    "id": "b6c08916-c6c8-4953-ac5c-f8af241dc130",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Goshiki no Fune"
+                            "en": "b-Boy Love Kiken na Ecchi (Anthology)"
                         },
                         "altTitles": [
                             {
-                                "tr": "Be\u015f Renkli Tekne"
+                                "ja-ro": "b-BOY Love Kiken na Ecchi Tokushuu"
                             },
                             {
-                                "ja-ro": "Goshoku no Fune"
+                                "en": "b-Boy's Risky Sex Special (Anthology)"
                             },
                             {
-                                "fr": "Le Bateau aux Cinq Couleurs"
-                            },
-                            {
-                                "ja": "\u4e94\u8272\u306e\u821f"
-                            },
-                            {
-                                "en": "Five-color Boat"
+                                "ja": "b-BOY\u3089\u3076\u2665\u3000\u5371\u967a\u306a\u30a8\u30c3\u30c1\u7279\u96c6"
                             }
                         ],
                         "description": {
-                            "en": "Circumstances have intertwined the fates of five strangers. As a team of five, they make their living running a freak show. As a family of five, they live on a small covered boat together. In the midst of a terrible war, they embark to add to their number the kudan, a monster rumored to tell the future.   \n  \nNominated for the 19th Tezuka Osamu Cultural Prize.  \n  \nWinner of the Grand Prize for manga at the 2014 Japan Media Arts Festival."
+                            "en": "\"My body can't be satisfied with vanilla sex!\"  \n  \nFirst person sex video, threesome, outdoor sex\u2026 Be loved in a frightening way! Loaded with glorious smut!"
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "93363",
-                            "ap": "goshoku-no-fune",
-                            "kt": "27644",
-                            "mu": "100086",
-                            "amz": "https://www.amazon.co.jp/dp/B00J4KDCJ8/",
-                            "mal": "83143"
+                            "mu": "158595"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "1",
-                        "lastChapter": "8",
-                        "publicationDemographic": "seinen",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
                         "status": "completed",
-                        "year": 2013,
-                        "contentRating": "safe",
+                        "year": null,
+                        "contentRating": "erotica",
                         "tags": [
                             {
-                                "id": "0a39b5a1-b235-4886-a747-1d05d216532d",
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Award Winning"
+                                        "en": "Oneshot"
                                     },
                                     "description": [],
                                     "group": "format",
@@ -85,11 +74,177 @@
                                 "relationships": []
                             },
                             {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Historical"
+                                        "en": "Anthology"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Boys' Love"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-11-23T07:30:18+00:00",
+                        "updatedAt": "2022-03-07T21:46:00+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "f55b6639-dc57-42a8-b27b-15881bbabeaa"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "00014ebc-7024-405f-be1f-d0a7b8e5e47e",
+            "type": "author",
+            "attributes": {
+                "name": "Monaco Meister (Circle)",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "a810c6f3-f340-4917-bf1c-252a40712f6a",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Eureka seveN - Strawberry Jam (Doujinshi)"
+                        },
+                        "altTitles": [],
+                        "description": {
+                            "en": ""
+                        },
+                        "isLocked": false,
+                        "links": null,
+                        "originalLanguage": "ja",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-03-20T00:11:29+00:00",
+                        "updatedAt": "2021-05-25T15:46:09+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "3e3e59a8-99e1-4d57-a3e0-dfb859a94d8a"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "0001b3e4-3863-4318-a528-b0ece241aa13",
+            "type": "author",
+            "attributes": {
+                "name": "Pibi",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "123f1c26-42f9-410d-acf6-60e782d52141",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "He and His Dating Style"
+                        },
+                        "altTitles": [
+                            {
+                                "ko": "\uadf8\uc640 \uadf8\uc758 \uc5f0\uc560\ubc29\uc2dd"
+                            }
+                        ],
+                        "description": {
+                            "en": "Musical actor Mitch, who repeatedly fails auditions because he is Asian, lives with his childhood friend Rick. One day, a sponsorship offer comes to him. The person who promised the sponsorship on excessively good terms was Ed, the young chairman of a large corporation...?"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "mu": "136442",
+                            "raw": "https://ridibooks.com/books/297004682"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": "",
+                        "lastChapter": "24",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2013,
+                        "contentRating": "erotica",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -98,11 +253,72 @@
                                 "relationships": []
                             },
                             {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Psychological"
+                                        "en": "Boys' Love"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2022-03-09T00:11:34+00:00",
+                        "updatedAt": "2022-06-08T05:55:13+00:00",
+                        "version": 3,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "a3615ff4-68e3-4c12-bc53-e9b630ffa2d8"
+                    }
+                },
+                {
+                    "id": "9c8a0c9b-910f-4700-b3cf-b93a2868a303",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Unintentional Love Story"
+                        },
+                        "altTitles": [
+                            {
+                                "ko-ro": "Biuidojeok Yeonaedam"
+                            },
+                            {
+                                "ko": "\ube44\uc758\ub3c4\uc801 \uc5f0\uc560\ub2f4"
+                            }
+                        ],
+                        "description": {
+                            "en": "Wonyoung is getting fired from his salaryman job, even though he's done nothing wrong, when he randomly meets the favourite potter of the chairman's, Yoon Tae Joon, who's obviously hiding from the public eye. He's told that if he spies on him and gets to know him that he'll get his job back. Wonyoung struggles to get the VERY closed off Tae Joon to open up, but his bright, happy personality is slowly chipping away at Tae Joon reservations.  \n  \n[Original Webtoon (Ridibooks)](https://ridibooks.com/v2/Detail?id=297020117)  \n[Original Webtoon (Mr.Blue)](https://www.mrblue.com/comic/dw_1128)  \n[Original Webtoon (Lezhin)](https://www.lezhin.com/ko/comic/luvdam)  \n  \n[Official English Translation](https://www.lezhin.com/en/comic/unintentional)  \n[Official Japanese Translation](https://piccoma.com/web/product/22829)  \n[Official Chinese Translation](https://manga.bilibili.com/detail/mc28573)"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "103822",
+                            "ap": "unintentional-love-story",
+                            "kt": "55825",
+                            "mu": "149906",
+                            "mal": "145605",
+                            "raw": "https://www.mrblue.com/section_premium/detail.asp?pid=dw_1128",
+                            "engtl": "https://www.lezhin.com/en/comic/unintentional"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": "",
+                        "lastChapter": "58",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2018,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -111,11 +327,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Comedy"
+                                        "en": "Boys' Love"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -137,14 +353,157 @@
                                 "relationships": []
                             },
                             {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Slice of Life"
+                                        "en": "Web Comic"
+                                    },
+                                    "description": [],
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-07-20T22:07:48+00:00",
+                        "updatedAt": "2022-07-27T02:03:29+00:00",
+                        "version": 5,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "12f2f618-8f63-4610-b586-cde23786d564"
+                    }
+                },
+                {
+                    "id": "dd40bbb6-61aa-4439-8d3c-73cf5d3796dd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "I Have A Boyfriend"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "Eu tenho um Namorado"
+                            }
+                        ],
+                        "description": {
+                            "en": "A campus love story that is more lovely because it's clumsy.  \n  \nKang Hyeon Ho, who belongs in the university soccer team goes into a breadth class and encounters the person he went to middle school together with and was his first love, Han Gyeol. To avoid the regret of not properly conveying his feelings again, Kang Hyeon Ho approaches Han Gyeol, but after losing his parents and left in a relative's house with a younger brother, he works hard in part time job and doesn't give his heart easily.  \n  \nBut due to Hyeon Ho's persistent advances, Han Gyeo slowly opens his heart too\u2026"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "ap": "i-have-a-boyfriend",
+                            "mu": "133760"
+                        },
+                        "originalLanguage": "ko",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": null,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Boys' Love"
                                     },
                                     "description": [],
                                     "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-01-04T03:05:42+00:00",
+                        "updatedAt": "2019-01-04T03:05:42+00:00",
+                        "version": 1,
+                        "availableTranslatedLanguages": [],
+                        "latestUploadedChapter": null
+                    }
+                }
+            ]
+        },
+        {
+            "id": "00050e0b-8f02-4381-a197-b47fb6f9f2b6",
+            "type": "author",
+            "attributes": {
+                "name": "Ginko Yuu",
+                "imageUrl": null,
+                "biography": [],
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d411705c-c84d-42cc-95c8-6468123b9358",
+                    "type": "manga",
+                    "attributes": {
+                        "isLocked": false,
+                        "links": {
+                            "mu": "137164"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "4",
+                        "lastChapter": "16",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "contentRating": "safe",
+                        "title": {
+                            "en": "Persona 3 Anthology Comic"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u30da\u30eb\u30bd\u30ca3 \u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u30b3\u30df\u30c3\u30af"
+                            }
+                        ],
+                        "description": {
+                            "en": "Collection of short stories made by various artists, based on the Persona 3 game.  \n  \nPublisher : BROTH COMICS EX (under Enterbrain)"
+                        },
+                        "year": 2006,
+                        "tags": [
+                            {
+                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Anthology"
+                                    },
+                                    "description": [],
+                                    "group": "format",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -161,40 +520,26 @@
                                     "version": 1
                                 },
                                 "relationships": []
-                            },
-                            {
-                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Mystery"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
                             }
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-11-13T20:32:19+00:00",
-                        "updatedAt": "2022-08-27T05:05:47+00:00",
-                        "version": 3,
+                        "version": 4,
+                        "createdAt": "2019-02-06T12:38:43+00:00",
+                        "updatedAt": "2022-03-27T16:21:20+00:00",
                         "availableTranslatedLanguages": [
-                            "en",
-                            "tr",
-                            "fr"
-                        ]
+                            "en"
+                        ],
+                        "latestUploadedChapter": "83be339e-9610-45f7-a335-977a387188aa"
                     }
                 }
             ]
         },
         {
-            "id": "742f7f83-2721-488d-b8b0-352f295fc18c",
+            "id": "00054510-9e74-4641-aa83-6c67c0883325",
             "type": "author",
             "attributes": {
-                "name": "Lv.X+ (Circle)",
+                "name": "Two-dimensional comics",
                 "imageUrl": null,
                 "biography": [],
                 "twitter": null,
@@ -216,567 +561,48 @@
             },
             "relationships": [
                 {
-                    "id": "cb1861e5-9c54-4b13-80df-8be5aa86f735",
+                    "id": "9613cc98-45ff-4dc8-97fc-98b73ae83637",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Hatsu Koi no Onee-san ni Amaetai Dake no Jinsei Datta"
+                            "en": "Dragon Dance"
                         },
                         "altTitles": [
                             {
-                                "en": "All My Life I Just Wanted To Be Spoiled By Onee-San"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "1",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2019,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
+                                "zh-ro": "L\u00f3ng W\u01d4q\u01d4"
                             },
                             {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
+                                "zh-ro": "Long Wuqu"
                             },
                             {
-                                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Shota"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-04T07:20:09+00:00",
-                        "updatedAt": "2022-04-04T07:21:16+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "c161c182-3e31-472b-ab9c-a0c9e478236d",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Akogare no Onee-san ga Aniyome ni Natta"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-18T14:58:49+00:00",
-                        "updatedAt": "2021-05-25T15:47:22+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "fr"
-                        ]
-                    }
-                },
-                {
-                    "id": "3c6de3c7-0f43-4699-aac3-f56b4861212d",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Suki Kirai Daisuki. Bangaihen (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Love \u2022 Hate \u2022 Really Love (Side Story)"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T19:42:37+00:00",
-                        "updatedAt": "2022-02-24T23:30:25+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "632dcbb2-a166-4991-868a-cab0fb6cdf3d",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Super Danganronpa 2 - STAND BY ME (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T19:10:57+00:00",
-                        "updatedAt": "2021-05-25T15:43:03+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "756933af-3015-462e-b284-1f4371d16c08",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Amagami - Soen Rihoko (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T18:39:17+00:00",
-                        "updatedAt": "2021-05-25T15:43:51+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "15279407-9db4-45d6-85a2-0ffc1c9eb2e5",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Valkyria Chronicles - Senjou no Tsundere Buntaichou (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "The Tsundere Squad Commander of the Battlefield"
-                            }
-                        ],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T18:07:38+00:00",
-                        "updatedAt": "2021-05-25T15:39:47+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "3bb0474d-be75-4835-a3b9-13db9c02b55f",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Valkyria Chronicles 3 - Omake no Carisa-san hon (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "A Bonus Carisa-san Book"
-                            }
-                        ],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T17:35:58+00:00",
-                        "updatedAt": "2021-05-25T15:41:23+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "222570a2-83e0-4005-8b6c-d210389141e4",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Valkyria Chronicles - Omake no Alicia-san Bon (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T17:04:18+00:00",
-                        "updatedAt": "2021-05-25T15:40:20+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "419c6302-f310-417a-89f6-e67f5af4fee1",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "TIGER & BUNNY - MY LOVED HERO (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T16:32:39+00:00",
-                        "updatedAt": "2021-05-25T15:41:38+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "0a90c3e0-d61e-44a2-9d33-b4024b5d8064",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Fate/Zero - Kyrie (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": 2012,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
+                                "zh-hk": "\u9f8d\u821e\u66f2"
                             },
                             {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-04-16T16:00:59+00:00",
-                        "updatedAt": "2022-03-14T00:28:18+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "7431ddb6-cad4-4a75-ba3e-670a925209b6",
-            "type": "author",
-            "attributes": {
-                "name": "Lee syu-en (\uc774\uc288\uc564)",
-                "imageUrl": null,
-                "biography": [],
-                "twitter": null,
-                "pixiv": null,
-                "melonBook": null,
-                "fanBox": null,
-                "booth": null,
-                "nicoVideo": null,
-                "skeb": null,
-                "fantia": null,
-                "tumblr": null,
-                "youtube": null,
-                "weibo": null,
-                "naver": null,
-                "website": null,
-                "createdAt": "2022-01-28T02:24:28+00:00",
-                "updatedAt": "2022-02-12T12:29:57+00:00",
-                "version": 2
-            },
-            "relationships": [
-                {
-                    "id": "0fe5bc78-098b-4973-b9de-f81e7bdb749e",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Duke Ashleyan's Contractual Marriage"
-                        },
-                        "altTitles": [
-                            {
-                                "ko": "\uc544\uc274\ub808\uc559 \uacf5\uc791\uc758 \uacc4\uc57d \uacb0\ud63c"
-                            },
-                            {
-                                "en": "Duchess Aishling's Contract Marriage"
-                            },
-                            {
-                                "en": "The Contractual Marriage of the Duke Ashillean"
-                            },
-                            {
-                                "en": "The Conclusion of the Contract of the Duke of Ashileans"
-                            },
-                            {
-                                "en": "The Duchess's Contract Marriage"
+                                "zh": "\u9f99\u821e\u66f2"
                             }
                         ],
                         "description": {
-                            "en": "After the 'Tyrant King' killed our parents, we managed to defeat him in a *coup d'\u00e9tat*. My younger sister became Empress and I became the Duchess who ruled the beast-infested Northern territory. We took our revenge and my younger sister has become the Empress, so there's only one task left - the oath I made to God right before helping my younger sister. In order to fufill that oath, I'll have to get married. But for someone like me who has never had a relationship before, 'love' is more difficult than war or fighting a dragon. However, the illegitimate son of the tyrant, the Prince, has just proposed a contractual marriage\u2026?\n\n\"Three years. Please just stay married to me for three years. I will divorce you right after that.\"\n\nWhat is he saying? And yet, why does he keep catching my eyes?",
-                            "ko": "\ubd80\ubaa8\ub97c \uc8fd\uc778 \uc6d0\uc218\uc778 '\ud3ed\uad70 \uc655'\uc744 \ubb34\ucc0c\ub974\uae30 \uc704\ud574\n\ucfe0\ud14c\ud0c0\ub97c \uc77c\uc73c\ud0a8 \uc6b0\ub9ac \uc790\ub9e4\ub294 \uc131\uacf5\uc801\uc73c\ub85c \ubcf5\uc218\uc5d0 \uc131\uacf5\ud55c\ub2e4.\n\n\ub3d9\uc0dd\uc740 \ud669\uc81c\uac00 \ub410\uace0, \uc5b8\ub2c8\uc778 \ub098\ub294 \ub9c8\uc218\uac00 \ub4dd\uc2e4\uac70\ub9ac\ub294 \ubd81\ubd80\ub97c \ub2e4\uc2a4\ub9ac\ub294 \uacf5\uc791\uc774 \ub418\uc5c8\ub2e4.\n\n\ubcf5\uc218\ub3c4 \ud588\uace0, \ub3d9\uc0dd\uae4c\uc9c0 \ud669\uc81c\ub85c \ub9cc\ub4e4\uc5c8\uc73c\ub2c8\n\ub0a8\uc740 \uacfc\uc5c5\uc740 \ub2e8 \ud558\ub098!\n\n\uadf8\uac74 \ubc14\ub85c \ub3d9\uc0dd\uc73c\ub85c \ub3d5\uae30 \uc9c1\uc804,\n\uc2e0\uaed8 \ud588\ub358 \ub9f9\uc138\ub97c \uc9c0\ud0a4\ub294 \uac83.\n\n\uadf8\ub7ec\uae30 \uc704\ud574\uc120 \uc77c\ub2e8 \uacb0\ud63c\uc744 \ud574\uc57c\ud558\ub294\ub370,\n\uc5f0\uc560\uace0\uc790\uc778 \ub098\uc5d0\uac90 \uc804\uc7c1\ubcf4\ub2e4\ub3c4 \uc6a9 \uc7a1\ub294 \uac83\ubcf4\ub2e4\ub3c4 '\uc5f0\uc560'\uac00 \ub354 \uc5b4\ub835\ub2e4.\n\n\uadf8\ub7f0\ub370...\ud3ed\uad70\uc758 \uc0ac\uc0dd\uc544 \uc655\uc790\uac00 \ub9c8\uce68 \uacc4\uc57d \uacb0\ud63c\uc744 \uc81c\uc548\ud574\uc624\ub124..?\n\n\"\uc0bc \ub144, \ub531 \uc0bc\ub144\ub9cc \uc800\uc640 \uacb0\ud63c \uad00\uacc4\ub97c \uc720\uc9c0\ud574 \uc8fc\uc2ed\uc2dc\uc624. \uadf8 \ub4a4\uc5d0 \ubc14\ub85c \uc774\ud63c\ud574 \ub4dc\ub9ac\uaca0\uc2b5\ub2c8\ub2e4\"\n\n\n'\uc598 \ubb50\ub798\ub2c8? \uadfc\ub370 \uc65c \uacc4\uc18d \ub208\uc5d0 \ubc1f\ud788\uc9c0..?'"
+                            "en": "A dark world of swords and magic, a destiny entwining a young human and a dragon-born, and a mutual love and deathly hatred between friends and family\u2026"
                         },
                         "isLocked": false,
                         "links": {
-                            "ap": "the-duchesss-contract-marriage",
-                            "mu": "195194",
-                            "nu": "duke-ashilleans-contractual-marriage",
-                            "raw": "https://page.kakao.com/home?seriesId=58701452"
+                            "mu": "149004",
+                            "raw": "http://www.manhuatai.com/lwq/"
                         },
-                        "originalLanguage": "ko",
+                        "originalLanguage": "zh",
                         "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": 2022,
+                        "lastChapter": "42",
+                        "publicationDemographic": null,
+                        "status": "cancelled",
+                        "year": 2018,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Historical"
+                                        "en": "Action"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -785,37 +611,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
+                                        "en": "Adventure"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -850,19 +650,6 @@
                                 "relationships": []
                             },
                             {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
                                 "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
                                 "type": "tag",
                                 "attributes": {
@@ -878,579 +665,16 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-01-28T02:29:14+00:00",
-                        "updatedAt": "2022-06-26T09:54:21+00:00",
-                        "version": 7,
+                        "createdAt": "2019-05-07T06:07:08+00:00",
+                        "updatedAt": "2022-05-11T13:26:33+00:00",
+                        "version": 4,
                         "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "7433635a-20a8-422e-bf5f-50df5b5c0525",
-            "type": "author",
-            "attributes": {
-                "name": "tonori",
-                "imageUrl": null,
-                "biography": [],
-                "twitter": null,
-                "pixiv": null,
-                "melonBook": null,
-                "fanBox": null,
-                "booth": null,
-                "nicoVideo": null,
-                "skeb": null,
-                "fantia": null,
-                "tumblr": null,
-                "youtube": null,
-                "weibo": null,
-                "naver": null,
-                "website": null,
-                "createdAt": "2022-07-23T15:11:19+00:00",
-                "updatedAt": "2022-07-23T15:11:19+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "8972d265-7f46-4c9a-8386-e08526b6e74c",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Downer-kei Gamer Otouto ga Nii-san Sukisuki Imouto Succubus ni Naru made"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30c0\u30a6\u30ca\u30fc\u7cfb\u30b2\u30fc\u30de\u30fc\u5f1f\u304c\u5144\u3055\u3093\u597d\u304d\u597d\u304d\u59b9\u30b5\u30ad\u30e5\u30d0\u30b9\u306b\u306a\u308b\u307e\u3067"
-                            },
-                            {
-                                "ja-ro": "Downer-kei Gamer Otouto ga Nii-san Sukisuki Imouto Succubus ni Naru made"
-                            },
-                            {
-                                "en": "From a Downer Gamer Little Brother\u2642 to a Little Sister\u2640 Succubus Who Loves Nii-san"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Genderswap"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Loli"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Incest"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-07-23T15:12:43+00:00",
-                        "updatedAt": "2022-07-23T16:14:44+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "id": "74336f0a-0c47-4cec-8847-e01d0feaaa87",
-            "type": "author",
-            "attributes": {
-                "name": "Mizutani Ai",
-                "imageUrl": null,
-                "biography": [],
-                "twitter": null,
-                "pixiv": null,
-                "melonBook": null,
-                "fanBox": null,
-                "booth": null,
-                "nicoVideo": null,
-                "skeb": null,
-                "fantia": null,
-                "tumblr": null,
-                "youtube": null,
-                "weibo": null,
-                "naver": null,
-                "website": null,
-                "createdAt": "2021-04-19T21:59:45+00:00",
-                "updatedAt": "2021-04-19T21:59:45+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "2825798c-5c32-458b-959b-ac8f5c4ab434",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Forest of Sheep and Steel"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Hitsuji to Hagane no mori"
-                            },
-                            {
-                                "en": "\u7f8a\u3068\u92fc\u306e\u68ee"
-                            }
-                        ],
-                        "description": {
-                            "en": "The protagonist meets a piano tuner and high school and seeks to become one himself.  \nAdaptation of the novel."
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f42fbf9e-188a-447b-9fdc-f19dc1e4d685",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Music"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-01-09T07:09:48+00:00",
-                        "updatedAt": "2020-01-09T07:09:48+00:00",
-                        "version": 1,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "297da49d-124e-4267-b730-c5c390d2e5a3",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Ten Kara no Okurimono"
-                        },
-                        "altTitles": [
-                            {
-                                "ja-ro": "Manten no Kiss"
-                            },
-                            {
-                                "ja-ro": "Sora Kara no Okurimono"
-                            },
-                            {
-                                "en": "The Gift from Heaven"
-                            },
-                            {
-                                "ja": "\u5929\u304b\u3089\u306e\u8d08\u308a\u7269"
-                            }
-                        ],
-                        "description": {
-                            "en": "Gift From Heaven  \nHikari befriends a gentle boy named Seiji who suffers from a weak heart while she was hospitalized. She begins to fall for Tsukina, Seiji's twin brother, who has always sacrificed for his sick brother. Tsukina believes that Seiji is in love with Hikari and steps back from the two, much to Hikari's dismay. What will happen to the three?  \n  \nReflect Me in Your Eyes  \nKaro is in love with her childhood friend Tetsuro, but he seems to be in love with her older sister, Touko. One day, Tetsuro injures his eyes and Karo pretends to be her sister to make him happy. Will she be able to tell him the truth, or are things not as what they seem?  \n  \nFull-Point Kiss  \nMeru (14) has a big crush on her tutor, Yuuri (19). She repeatedly fails her tests, and makes a deal with him - if she manages to get 100 on her test, he'll kiss her. Will she succeed?  \n  \nI'm Head-Over Heels In Love With You  \nOn his first day of being in Osaka for university, Yuusuke is mistaken for a pervert after saving Suzuran from one on the train. To make up for it, Suzuran invites him over for a meal and they end up having a one-night stand. Yuusuke finds himself falling for Suzuran's bubbly and straightforward personality, but what are her real intentions? Is she just playing around with him?  \n  \nGift From Heaven Extra  \nSeiji's real intentions are revealed in this 16-page extra"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "46478",
-                            "ap": "ten-kara-no-okurimono",
-                            "kt": "2952",
-                            "mu": "19537",
-                            "mal": "16478"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "5",
-                        "publicationDemographic": "shoujo",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Anthology"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Tragedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-03-31T00:41:20+00:00",
-                        "updatedAt": "2022-04-05T13:39:48+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "476d3294-31e0-4f1c-b071-bdc5d818dd32",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Oikaketemo Chikazuitemo"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "1000% Aisuru Kimochi"
-                            },
-                            {
-                                "en": "Aishi Kimi wo Dakishimete"
-                            },
-                            {
-                                "en": "Oikakete mo Chikazuduite mo"
-                            },
-                            {
-                                "en": "Oikakete mo Chikazukuite mo"
-                            },
-                            {
-                                "en": "Santa Clause wo Dakishimete"
-                            },
-                            {
-                                "en": "Suki Sugi Chatte Gomen ne"
-                            },
-                            {
-                                "en": "\u8ffd\u3044\u304b\u3051\u3066\u3082\u8fd1\u3065\u3044\u3066\u3082"
-                            }
-                        ],
-                        "description": {
-                            "en": "Collection of oneshots   \n  \n1) Oikaketemo Chikazuitemo  \nWhen she was small, Uiko exchanged a promise with childish Mako that when they are high school students, if they become a couple, they will kiss. All this time, she hasn't been able to forget that promise. But now that they've become high school students, Mako is a popular guy in her class, and Uiko is a plain girl without any redeeming points. No matter what she does, she can't be honest to Mako, who already belonged to a different world before anyone knows, but\u2026?  \n  \n2) Santa Clause wo Dakishimete  \n  \n3) 1000% Aisuru Kimochi  \n  \n4) Suki Sugi Chatte Gomen ne  \nChikage has been dating Manato for 3 months, they've held hands, and kissed too and now finally Manato has asked Chikage over. Even though Chikage has mentally perpared herself, can she really take that important next step?  \n  \n5) Aishi Kimi wo Dakishimete"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "43956",
-                            "ap": "oikakete-mo-chikazukuite-mo",
-                            "kt": "24599",
-                            "mu": "32434",
-                            "mal": "13956"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "5",
-                        "publicationDemographic": "shoujo",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-03-30T09:54:50+00:00",
-                        "updatedAt": "2021-05-25T15:41:53+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
+                            "es-la",
                             "en",
-                            "pl"
-                        ]
-                    }
-                },
-                {
-                    "id": "82664c5f-c3d7-4904-9077-389cd4112641",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Shite, Okeba Yokatta Koukai"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Tell Me You Love Me"
-                            },
-                            {
-                                "en": "After School Kiss"
-                            },
-                            {
-                                "en": "I Should Have\u2026"
-                            },
-                            {
-                                "en": "My Friend's Boyfriend"
-                            },
-                            {
-                                "ja-ro": "Shite, Okeba yo Katta Koukai"
-                            },
-                            {
-                                "ja-ro": "Shite, Okebayo Katta Koukai"
-                            },
-                            {
-                                "en": "The Realization Of Happiness"
-                            },
-                            {
-                                "ja": "\u3057\u3066\u3001\u304a\u3051\u3070\u3088\u304b\u3063\u305f\u5f8c\u6094"
-                            }
+                            "tr",
+                            "id"
                         ],
-                        "description": {
-                            "en": "1) I should have\u2026  \nEn Asakura often has the same dream lately. She dreams of a boy asking her to kiss him. Her dream is connected to a painful memory from her high-school life, when she felt in love with a boy named Maru. When he asked her to kiss him, she refused, and now she's regretting it. Not to mention that the boy started to date another girl after that incident.   \n  \nEn is now in university and is trying to find her life partner through goukon: blind group dates. What will she do when a boy with the same name as her past crush asks for her number? Will she refuse and regret it again?  \n  \n2) The Realization Of Happiness  \nContinuation of the preview chapter.  \n  \n3) After School Kiss  \n  \n4) Tell Me You Love Me  \n  \n5-6) My Friend's Boyfriend"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "61471",
-                            "ap": "shite-okeba-yokatta-koukai",
-                            "kt": "2752",
-                            "mu": "60618",
-                            "mal": "31471"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "6",
-                        "publicationDemographic": "shoujo",
-                        "status": "completed",
-                        "year": 2010,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-03-02T13:20:23+00:00",
-                        "updatedAt": "2022-02-27T21:30:08+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "fr"
-                        ]
+                        "latestUploadedChapter": "f8dbae50-dc74-4d6b-b0cb-eca0aa48cc33"
                     }
                 }
             ]
@@ -1458,5 +682,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 43587
+    "total": 43898
 }

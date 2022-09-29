@@ -197,7 +197,8 @@
                             "en",
                             "es-la",
                             "pt-br"
-                        ]
+                        ],
+                        "latestUploadedChapter": "81dbc11f-c33f-43ac-aa26-70253c9495c8"
                     }
                 },
                 {
@@ -411,7 +412,8 @@
                             "en",
                             "es-la",
                             "pt-br"
-                        ]
+                        ],
+                        "latestUploadedChapter": "81dbc11f-c33f-43ac-aa26-70253c9495c8"
                     }
                 },
                 {
@@ -625,7 +627,8 @@
                             "en",
                             "es-la",
                             "pt-br"
-                        ]
+                        ],
+                        "latestUploadedChapter": "81dbc11f-c33f-43ac-aa26-70253c9495c8"
                     }
                 },
                 {
@@ -839,7 +842,8 @@
                             "en",
                             "es-la",
                             "pt-br"
-                        ]
+                        ],
+                        "latestUploadedChapter": "81dbc11f-c33f-43ac-aa26-70253c9495c8"
                     }
                 },
                 {
@@ -1053,7 +1057,8 @@
                             "en",
                             "es-la",
                             "pt-br"
-                        ]
+                        ],
+                        "latestUploadedChapter": "81dbc11f-c33f-43ac-aa26-70253c9495c8"
                     }
                 },
                 {
@@ -1075,5 +1080,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 1424489
+    "total": 1437230
 }

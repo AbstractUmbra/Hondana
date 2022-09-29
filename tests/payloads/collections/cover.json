@@ -3,664 +3,153 @@
     "response": "collection",
     "data": [
         {
-            "id": "5bd6d29d-6dfb-4178-b5b8-02c30d2f7eaa",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "5",
-                "fileName": "7b728ef5-204a-424c-b2bd-14f187bdd7e3.jpg",
-                "locale": "ja",
-                "createdAt": "2022-09-12T05:58:19+00:00",
-                "updatedAt": "2022-09-12T05:58:19+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "7161a29c-1ba4-4002-be30-57fe23b6f3a7",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Neko to Spica"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Cat And Spica"
-                            },
-                            {
-                                "ja": "\u732b\u3068\u30b9\u30d4\u30ab"
-                            }
-                        ],
-                        "description": {
-                            "en": "Salaryman Kawamura Kouta hates troublesome things. The only exception is the black stray cat that likes to sit in front of his apartment. One day, he stumbles upon a black-haired boy who seems to have replaced his favourite cat. When the boy collapses in front of Kouta, he decides to take him in on a whim. What will happen to Kouta's trouble-free everyday life?"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "ap": "neko-to-spica",
-                            "mu": "145664",
-                            "amz": "https://www.amazon.co.jp/\u732b\u3068\u30b9\u30d4\u30ab-drap-COMICS-DX-\u9ce9\u5c4b\u30bf\u30de/dp/4866531169",
-                            "cdj": "https://www.cdjapan.co.jp/searches?term.media_format=&q=\u732b\u3068\u30b9\u30d4\u30ab",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/432564/",
-                            "mal": "115647"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": 2017,
-                        "contentRating": "erotica",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Boys' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-12-27T07:18:10+00:00",
-                        "updatedAt": "2022-09-12T05:58:20+00:00",
-                        "version": 7,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ]
-                    }
-                },
-                {
-                    "id": "6a755577-e79e-4309-98d1-da53af854b2e",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Amaro",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 339
-                    }
-                }
-            ]
-        },
-        {
-            "id": "848f2992-9fa3-4995-9cbe-8de74b0f4acb",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "d8851298-ace5-4bd7-b216-3326d377c768.jpg",
-                "locale": "ja",
-                "createdAt": "2022-09-12T05:53:15+00:00",
-                "updatedAt": "2022-09-12T05:53:15+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "840766ba-c5b5-472c-8995-29913e1f1f88",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Therapy Game Restart"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30bb\u30e9\u30d4\u30fc\u30b2\u30fc\u30e0 \u30ea\u30b9\u30bf\u30fc\u30c8"
-                            }
-                        ],
-                        "description": {
-                            "en": "The continuation of Minato and Shizuma's story, this time as an established couple."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "161702",
-                            "amz": "https://www.amazon.co.jp/dp/440366752X",
-                            "cdj": "https://www.cdjapan.co.jp/searchuni?term.media_format=&q=%E3%82%BB%E3%83%A9%E3%83%94%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%A0+%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/519003/",
-                            "raw": "https://www.shinshokan.co.jp/book/b568189.html",
-                            "engtl": "https://www.sublimemanga.com/therapy-game-restart"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": 2019,
-                        "contentRating": "erotica",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Boys' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-03-04T09:04:18+00:00",
-                        "updatedAt": "2022-09-12T05:53:16+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "6a755577-e79e-4309-98d1-da53af854b2e",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Amaro",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 339
-                    }
-                }
-            ]
-        },
-        {
-            "id": "eb80aa39-28d0-46c6-b8c4-4321a9e83eb0",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "c83d8efc-e1cd-433b-8f27-d3f6f8f0bb66.jpg",
-                "locale": "ja",
-                "createdAt": "2022-09-12T05:53:15+00:00",
-                "updatedAt": "2022-09-12T05:53:15+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "840766ba-c5b5-472c-8995-29913e1f1f88",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Therapy Game Restart"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30bb\u30e9\u30d4\u30fc\u30b2\u30fc\u30e0 \u30ea\u30b9\u30bf\u30fc\u30c8"
-                            }
-                        ],
-                        "description": {
-                            "en": "The continuation of Minato and Shizuma's story, this time as an established couple."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "161702",
-                            "amz": "https://www.amazon.co.jp/dp/440366752X",
-                            "cdj": "https://www.cdjapan.co.jp/searchuni?term.media_format=&q=%E3%82%BB%E3%83%A9%E3%83%94%E3%83%BC%E3%82%B2%E3%83%BC%E3%83%A0+%E3%83%AA%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%88",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/519003/",
-                            "raw": "https://www.shinshokan.co.jp/book/b568189.html",
-                            "engtl": "https://www.sublimemanga.com/therapy-game-restart"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": 2019,
-                        "contentRating": "erotica",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Boys' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-03-04T09:04:18+00:00",
-                        "updatedAt": "2022-09-12T05:53:16+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": []
-                    }
-                },
-                {
-                    "id": "6a755577-e79e-4309-98d1-da53af854b2e",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Amaro",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 339
-                    }
-                }
-            ]
-        },
-        {
-            "id": "3e20ba03-85f7-496c-8e3c-4e4582162a76",
+            "id": "c06af207-d382-43c2-bb9c-2958d3c58ec7",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "3",
-                "fileName": "efea294a-db7e-4629-b7da-3065ae6913d9.png",
-                "locale": "ja",
-                "createdAt": "2022-09-12T03:07:09+00:00",
-                "updatedAt": "2022-09-12T03:07:09+00:00",
+                "fileName": "fa12b80b-dcd5-468b-9717-92501836b916.jpg",
+                "locale": "id",
+                "createdAt": "2022-09-29T09:17:24+00:00",
+                "updatedAt": "2022-09-29T09:17:24+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "9bcb0eec-865d-41ee-9b68-33893b02c294",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Enoku Dai Ni Butai no Ensei Gohan"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30a8\u30ce\u30af\u7b2c\u4e8c\u90e8\u968a\u306e\u9060\u5f81\u3054\u306f\u3093"
-                            },
-                            {
-                                "ja-ro": "Enoku Dai Ni Butai no Ensei Gohan"
-                            }
-                        ],
-                        "description": {
-                            "en": "[Web Novel Raw](https://ncode.syosetu.com/n2542dr/)"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "133144",
-                            "ap": "enoku-dai-ni-butai-no-ensei-gohan",
-                            "mu": "149804",
-                            "amz": "https://www.amazon.co.jp/gp/product/4040726677/",
-                            "mal": "149631"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "4",
-                        "lastChapter": "21",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": 2017,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monsters"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ea2bc92d-1c26-4930-9b7c-d5c0dc1b6869",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Cooking"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-02-22T16:01:38+00:00",
-                        "updatedAt": "2022-09-12T03:07:11+00:00",
-                        "version": 6,
-                        "availableTranslatedLanguages": []
-                    }
+                    "id": "f6c3ac6a-f004-4ace-846a-2cb483c7c473",
+                    "type": "manga"
                 },
                 {
-                    "id": "b6afcd7d-d124-45fb-9813-8fe441df65bb",
+                    "id": "be0f688a-4152-42b2-9ab1-199b33a7f375",
                     "type": "user",
                     "attributes": {
-                        "username": "Lalatiozao",
+                        "username": "RazorHatecraft",
                         "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
+                            "ROLE_UNVERIFIED"
                         ],
-                        "version": 186
+                        "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "c7114ff5-d36f-499a-846c-7c00747e512a",
+            "id": "1f3a8fc8-3889-4509-b9de-1c33d48b9302",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "4",
-                "fileName": "f628dfbf-0b90-4822-b8d2-251d168afd90.png",
-                "locale": "ja",
-                "createdAt": "2022-09-12T03:07:09+00:00",
-                "updatedAt": "2022-09-12T03:07:09+00:00",
+                "volume": "2",
+                "fileName": "7dd10930-5ccc-45ce-8d30-f617c9502fa8.png",
+                "locale": "id",
+                "createdAt": "2022-09-29T09:13:13+00:00",
+                "updatedAt": "2022-09-29T09:13:13+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "9bcb0eec-865d-41ee-9b68-33893b02c294",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Enoku Dai Ni Butai no Ensei Gohan"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30a8\u30ce\u30af\u7b2c\u4e8c\u90e8\u968a\u306e\u9060\u5f81\u3054\u306f\u3093"
-                            },
-                            {
-                                "ja-ro": "Enoku Dai Ni Butai no Ensei Gohan"
-                            }
-                        ],
-                        "description": {
-                            "en": "[Web Novel Raw](https://ncode.syosetu.com/n2542dr/)"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "133144",
-                            "ap": "enoku-dai-ni-butai-no-ensei-gohan",
-                            "mu": "149804",
-                            "amz": "https://www.amazon.co.jp/gp/product/4040726677/",
-                            "mal": "149631"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "4",
-                        "lastChapter": "21",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": 2017,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monsters"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ea2bc92d-1c26-4930-9b7c-d5c0dc1b6869",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Cooking"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-02-22T16:01:38+00:00",
-                        "updatedAt": "2022-09-12T03:07:11+00:00",
-                        "version": 6,
-                        "availableTranslatedLanguages": []
-                    }
+                    "id": "f6c3ac6a-f004-4ace-846a-2cb483c7c473",
+                    "type": "manga"
                 },
                 {
-                    "id": "b6afcd7d-d124-45fb-9813-8fe441df65bb",
+                    "id": "be0f688a-4152-42b2-9ab1-199b33a7f375",
                     "type": "user",
                     "attributes": {
-                        "username": "Lalatiozao",
+                        "username": "RazorHatecraft",
                         "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
+                            "ROLE_UNVERIFIED"
+                        ],
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "bf295c50-3588-427e-9ea9-f4f75d5b1881",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "87fbf9dd-c671-48b8-8813-7b4f3e4f5546.jpg",
+                "locale": "id",
+                "createdAt": "2022-09-29T09:05:45+00:00",
+                "updatedAt": "2022-09-29T09:05:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "f6c3ac6a-f004-4ace-846a-2cb483c7c473",
+                    "type": "manga"
+                },
+                {
+                    "id": "be0f688a-4152-42b2-9ab1-199b33a7f375",
+                    "type": "user",
+                    "attributes": {
+                        "username": "RazorHatecraft",
+                        "roles": [
+                            "ROLE_UNVERIFIED"
+                        ],
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "edd9a7e6-4e9a-42d2-955c-02ecd41ca5ff",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "25025ed7-2eb0-4f62-b1d6-38c4d825f979.jpg",
+                "locale": "ja",
+                "createdAt": "2022-09-29T08:55:02+00:00",
+                "updatedAt": "2022-09-29T08:55:02+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "b27f1f87-e51e-4d41-ad54-4273951b0bfe",
+                    "type": "manga"
+                },
+                {
+                    "id": "b32cf0d9-3ee7-493e-9a40-39c1d1063886",
+                    "type": "user",
+                    "attributes": {
+                        "username": "Byleco",
+                        "roles": [
+                            "ROLE_MEMBER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 186
+                        "version": 6
+                    }
+                }
+            ]
+        },
+        {
+            "id": "c3505034-f4fe-4139-b3af-148f4e3b2ea9",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "10096100-d46f-4ae8-84a2-8caf435b7bcf.jpg",
+                "locale": "ja",
+                "createdAt": "2022-09-29T08:33:08+00:00",
+                "updatedAt": "2022-09-29T08:33:08+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "f2fd53af-d868-439e-a064-40f7cc6e8f11",
+                    "type": "manga"
+                },
+                {
+                    "id": "b32cf0d9-3ee7-493e-9a40-39c1d1063886",
+                    "type": "user",
+                    "attributes": {
+                        "username": "Byleco",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 6
                     }
                 }
             ]
@@ -668,5 +157,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 151985
+    "total": 154360
 }

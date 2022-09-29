@@ -192,7 +192,8 @@
                         "tr",
                         "es",
                         "pt"
-                    ]
+                    ],
+                    "latestUploadedChapter": "beaf735c-4d3f-4ec9-a931-b5d508d31bc3"
                 }
             },
             {
@@ -207,7 +208,7 @@
                         "ROLE_GROUP_MEMBER",
                         "ROLE_DEVELOPER"
                     ],
-                    "version": 683
+                    "version": 684
                 }
             }
         ]

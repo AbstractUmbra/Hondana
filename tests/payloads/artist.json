@@ -27,6 +27,10 @@
         },
         "relationships": [
             {
+                "id": "42f7fb9d-9e88-40e3-8eae-dc1ad7eb1023",
+                "type": "manga"
+            },
+            {
                 "id": "4441d294-c935-431d-8873-c98207ab23f2",
                 "type": "manga",
                 "attributes": {
@@ -107,7 +111,8 @@
                     "version": 6,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "8c28138b-1de4-4345-a338-f03becbce15e"
                 }
             },
             {
@@ -197,7 +202,8 @@
                     "version": 7,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "5ce6b30f-88a4-43db-a820-dcf923d62078"
                 }
             },
             {
@@ -303,7 +309,8 @@
                         "id",
                         "pt-br",
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "2c48b900-4aeb-4bc7-a0d5-0660450f39a9"
                 }
             },
             {
@@ -418,7 +425,8 @@
                     "availableTranslatedLanguages": [
                         "pt-br",
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "20a7e273-d31d-4f83-8449-645f2f00c8a0"
                 }
             },
             {
@@ -504,7 +512,8 @@
                     "version": 4,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "71c6c973-d261-4142-a6d0-cf687171d9f5"
                 }
             },
             {
@@ -744,7 +753,8 @@
                     "availableTranslatedLanguages": [
                         "en",
                         "hu"
-                    ]
+                    ],
+                    "latestUploadedChapter": "fa9a765e-cdeb-403d-8c88-c43946b3e3ca"
                 }
             },
             {
@@ -878,7 +888,8 @@
                     "version": 12,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "00a69cf8-fa9c-4f3b-8ca8-6b7d212991eb"
                 }
             },
             {
@@ -964,7 +975,8 @@
                     "version": 4,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
+                    ],
+                    "latestUploadedChapter": "133cbbeb-3955-4715-94cb-1e135ab9f0d9"
                 }
             },
             {
@@ -1009,128 +1021,8 @@
                     "version": 3,
                     "availableTranslatedLanguages": [
                         "en"
-                    ]
-                }
-            },
-            {
-                "id": "b2c9127f-763d-4da6-994d-cd6e5f19323d",
-                "type": "manga",
-                "attributes": {
-                    "title": {
-                        "en": "Suzuka-sama no Geboku"
-                    },
-                    "altTitles": [
-                        {
-                            "en": "Suzuka-sama's Servant"
-                        },
-                        {
-                            "en": "\u9234\u9999\u69d8\u306e\u4e0b\u50d5"
-                        }
                     ],
-                    "description": {
-                        "en": "Warning: Contains urethral sounding."
-                    },
-                    "isLocked": false,
-                    "links": {
-                        "al": "91392",
-                        "mu": "110698"
-                    },
-                    "originalLanguage": "ja",
-                    "lastVolume": "",
-                    "lastChapter": "",
-                    "publicationDemographic": null,
-                    "status": "completed",
-                    "year": null,
-                    "contentRating": "pornographic",
-                    "tags": [
-                        {
-                            "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Oneshot"
-                                },
-                                "description": [],
-                                "group": "format",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "2d1f5d56-a1e5-4d0d-a961-2193588b08ec",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Loli"
-                                },
-                                "description": [],
-                                "group": "theme",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Sexual Violence"
-                                },
-                                "description": [],
-                                "group": "content",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Doujinshi"
-                                },
-                                "description": [],
-                                "group": "format",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Fantasy"
-                                },
-                                "description": [],
-                                "group": "genre",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "d7d1730f-6eb0-4ba6-9437-602cac38664c",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Vampires"
-                                },
-                                "description": [],
-                                "group": "theme",
-                                "version": 1
-                            },
-                            "relationships": []
-                        }
-                    ],
-                    "state": "published",
-                    "chapterNumbersResetOnNewVolume": false,
-                    "createdAt": "2019-11-14T01:52:42+00:00",
-                    "updatedAt": "2021-12-03T15:49:25+00:00",
-                    "version": 3,
-                    "availableTranslatedLanguages": [
-                        "hu",
-                        "en"
-                    ]
+                    "latestUploadedChapter": "1bde7f32-2f9a-4c77-b964-e2d5426cec97"
                 }
             }
         ]
