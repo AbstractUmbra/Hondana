@@ -47,6 +47,7 @@ from .enums import (
     ReportStatus,
 )
 from .errors import APIException, AuthenticationRequired, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
+from .report import ReportDetails
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -2030,21 +2031,14 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _create_report(
-        self,
-        *,
-        report_category: ReportCategory,
-        reason: str,
-        object_id: str,
-        details: str,
-    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+    def _create_report(self, *, details: ReportDetails) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/report")
 
         query: dict[str, Any] = {
-            "category": report_category.value,
-            "reason": reason,
-            "objectId": object_id,
-            "details": details,
+            "category": details.category.value,
+            "reason": details.reason.value,
+            "objectId": details.target_id,
+            "details": details.details,
         }
 
         return self.request(route, json=query)

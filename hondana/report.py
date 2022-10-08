@@ -24,21 +24,74 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
-from .enums import ReportCategory, ReportStatus
-from .http import HTTPClient
+from .enums import (
+    AuthorReportReason,
+    ChapterReportReason,
+    MangaReportReason,
+    ReportCategory,
+    ReportStatus,
+    ScanlationGroupReportReason,
+    UserReportReason,
+)
 
 
 if TYPE_CHECKING:
+    from .http import HTTPClient
     from .types.common import LocalizedString
     from .types.report import ReportReasonResponse, UserReportReasonResponse
 
 
 __all__ = (
+    "ReportDetails",
     "Report",
     "UserReport",
 )
+
+ReportReasonAlias = Union[
+    AuthorReportReason, ChapterReportReason, ScanlationGroupReportReason, MangaReportReason, UserReportReason
+]
+
+
+class ReportDetails:
+    """A helper object for creating reports to send to MangaDex.
+
+    Parameters
+    -----------
+    category: :class:`~hondana.ReportCategory`
+        The type of object we are reporting on.
+    reason: Union[:class:`~hondana.AuthorReportReason`, :class:`~hondana.ChapterReportReason`, :class:`~hondana.ScanlationGroupReportReason`, :class:`~hondana.MangaReportReason`, :class:`~hondana.UserReportReason`]
+        The reason for the report.
+    details: :class:`str`
+        The details of this report.
+    target_id: :class:`str`
+        The ID of the object we are reporting.
+        E.g. the chapter's ID, or the scanlator group's ID.
+    """
+
+    __slots__ = (
+        "category",
+        "reason",
+        "details",
+        "target_id",
+    )
+
+    def __init__(
+        self,
+        *,
+        category: ReportCategory,
+        reason: ReportReasonAlias,
+        details: str,
+        target_id: str,
+    ) -> None:
+        self.category: ReportCategory = category
+        self.reason: ReportReasonAlias = reason
+        self.details: str = details
+        self.target_id: str = target_id
+
+    def __repr__(self) -> str:
+        return f"<ReportReason target_id={self.target_id!r} type={self.category.value!r} reason={self.reason.value!r} details={self.details!r}>"
 
 
 class Report:

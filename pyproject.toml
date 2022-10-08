@@ -25,6 +25,7 @@ packages = [
     { include = "hondana/**/*.py" },
     { include = "hondana/py.typed" },
     { include = "hondana/extras/tags.json" },
+    { include = "hondana/extras/report_reasons.json" },
 ]
 
 [tool.poetry.urls]
@@ -101,8 +102,9 @@ types = ["pyright", "types_"]
 tests = "pytest"
 docs = "sphinx-build -a -E -W -T --keep-going docs/ docs/build" # TODO: add -n when sphinx is fixed
 tags = { script = "hondana.utils:__build_tags()" }
+report_reasons = { script = "hondana.utils:__build_report_reasons()" }
 uninstall = "pip uninstall hondana -y"
-pre = ["install", "format", "types", "tests", "docs", "tags", "uninstall"]
+pre = ["install", "format", "types", "tests", "docs", "tags", "report_reasons", "uninstall"]
 
 [build-system]
 requires = ["poetry-core>=1.1.0"]

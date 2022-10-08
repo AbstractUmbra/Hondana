@@ -81,7 +81,7 @@ from .query import (
     ScanlatorGroupListOrderQuery,
     UserListOrderQuery,
 )
-from .report import Report, UserReport
+from .report import Report, ReportDetails, UserReport
 from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
@@ -406,6 +406,51 @@ class Client:
             json.dump(fmt, fp, indent=4)
 
         return fmt
+
+    async def update_report_reasons(self) -> dict[str, dict[str, str]]:
+        """|coro|
+
+        Convenience method for updating the local cache of report reasons.
+
+        This should ideally not need to be called by the end user but nevertheless it exists in the event MangaDex
+        add a new report reasons or similar.
+
+        Returns
+        --------
+        Dict[:class:`str`, Dict[:class:`str`, :class:`str`]]
+            The new report reasons from the API.
+
+
+        .. warning::
+            This method makes 5 API requests, which if called unnecessarily could result in a ratelimit.
+        """
+        ret: dict[str, dict[str, str]] = {}
+
+        categories_ = [
+            ReportCategory.author,
+            ReportCategory.chapter,
+            ReportCategory.scanlation_group,
+            ReportCategory.manga,
+            ReportCategory.user,
+        ]
+
+        for category in categories_:
+            data = await self._http._get_report_reason_list(category)
+            ret[category.value] = {}
+            for inner in data["data"]:
+                key_name = (
+                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # type: ignore # always in en apparently
+                )
+                ret[category.value][key_name] = inner["id"]
+
+        for clean_data, values in ret.items():
+            ret[clean_data] = dict(sorted(values.items()))
+
+        path = _PROJECT_DIR.parent / "extras" / "report_reasons.json"
+        with path.open("w") as fp:
+            json.dump(ret, fp, indent=4)
+
+        return ret
 
     async def get_tags(self) -> list[Tag]:
         """|coro|
@@ -3579,10 +3624,10 @@ class Client:
         await self._http._delete_author(author_id)
 
     @require_authentication
-    async def get_report_list(self, report_category: ReportCategory, /) -> ReportCollection:
+    async def get_report_reason_list(self, report_category: ReportCategory, /) -> ReportCollection:
         """|coro|
 
-        This method will retrieve a list of reports from the MangaDex API.
+        This method will retrieve a list of report reason definitions from the MangaDex API.
 
         Parameters
         -----------
@@ -3629,10 +3674,7 @@ class Client:
     async def create_report(
         self,
         *,
-        report_category: ReportCategory,
-        reason: str,
-        object_id: str,
-        details: str,
+        details: ReportDetails,
     ) -> None:
         """|coro|
 
@@ -3640,13 +3682,7 @@ class Client:
 
         Parameters
         -----------
-        report_category: :class:`~hondana.ReportCategory`
-            The category for which the report is for.
-        reason: :class:`str`
-            The UUID representing the reason for this report.
-        object_id: :class:`str`
-            The UUID of the object to which this report is referencing.
-        details: :class:`str`
+        details: :class:`~hondana.ReportDetails`
             The details of the report.
 
         Raises
@@ -3658,7 +3694,7 @@ class Client:
         :exc:`NotFound`
             The specified report UUID or object UUID does not exist.
         """
-        await self._http._create_report(report_category=report_category, reason=reason, object_id=object_id, details=details)
+        await self._http._create_report(details=details)
 
     @require_authentication
     async def get_my_manga_ratings(self, manga_ids: list[str], /) -> list[MangaRating]:

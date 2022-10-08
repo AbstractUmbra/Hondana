@@ -43,8 +43,8 @@ Please take a look at the [examples](./examples/) directory for working examples
 ### Current caveats to note
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
   - I have separated them logically, but under the hood all Artists are Authors and their `__eq__` reports as such.
-- The tags are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags`
-  - I have added [an example](./examples/updating_local_tags.py) on how to do the above.
+- The tags and report reasons are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags` and `Client.update_report_reasons` respectively.
+  - I have added [an example](./examples/updating_local_tags.py) on how to do the above for tags.
   - To use these tags, you can see an example [here](./examples/search_manga.py#L17-L22).
 - [Settings related endpoints](https://api.mangadex.org/docs.html#operation/get-settings-template) are not currently exposed. I have implemented their documented use, but I do not expect them to currently function.
   - Once this is exposed fully I will implement a richer interface.

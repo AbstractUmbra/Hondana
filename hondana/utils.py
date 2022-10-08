@@ -43,6 +43,7 @@ from typing import (
     Mapping,
     Optional,
     Type,
+    TypedDict,
     TypeVar,
     Union,
     overload,
@@ -701,9 +702,9 @@ def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
     raise ValueError("Invalid filename format given.")
 
 
-_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
-with open(_path, "r") as _fp:
-    MANGA_TAGS: dict[str, str] = json.load(_fp)
+_tags_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
+with _tags_path.open("r") as _tags_fp:
+    MANGA_TAGS: dict[str, str] = json.load(_tags_fp)
 
 
 def __build_tags():  # type: ignore  # This is for pre-flight release usage only.
@@ -720,6 +721,68 @@ def __build_tags():  # type: ignore  # This is for pre-flight release usage only
             print(f"Tags have changed: {', '.join(diff)}")
         else:
             print("No tag changes.")
+
+        await client.close()
+
+    asyncio.run(build())
+
+
+class _ReportReasons(TypedDict):
+    manga: dict[str, str]
+    chapter: dict[str, str]
+    scanlation_group: dict[str, str]
+    author: dict[str, str]
+    user: dict[str, str]
+
+
+_report_reason_path = _PROJECT_DIR.parent / "extras" / "report_reasons.json"
+with _report_reason_path.open("r") as _reports_fp:
+    _REPORT_REASONS: _ReportReasons = json.load(_reports_fp)
+
+
+def __build_report_reasons():  # type: ignore  # This is for pre-flight release usage only.
+    from .report import ReportCategory
+
+    _reports = _REPORT_REASONS.copy()
+
+    reports_: list[ReportCategory] = [
+        ReportCategory.author,
+        ReportCategory.chapter,
+        ReportCategory.scanlation_group,
+        ReportCategory.manga,
+        ReportCategory.user,
+    ]
+    keys = _REPORT_REASONS.keys()
+
+    def set_check(source: set[str], new: set[str]) -> bool:
+        if source ^ new:
+            return True
+        return False
+
+    async def build():
+        from . import Client
+
+        client = Client()
+        to_dump: dict[str, dict[str, str]] = {}
+
+        for category in reports_:
+            data = await client._http._get_report_reason_list(category)
+            to_dump[category.value] = {}
+            for inner in data["data"]:
+                key_name = (
+                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # type: ignore # always in en apparently
+                )
+                to_dump[category.value][key_name] = inner["id"]
+
+        if any([set_check(set(to_dump[key].keys()), set(_reports[key].keys())) for key in keys]):
+            print("Report reasons have changed, dumping.")
+            for clean_data, values in to_dump.items():
+                to_dump[clean_data] = dict(sorted(values.items()))
+
+            with _report_reason_path.open("w") as fp:
+                json.dump(to_dump, fp, indent=4)
+        else:
+            print("No report reason changes.")
 
         await client.close()
 

@@ -1,0 +1,48 @@
+{
+    "author": {
+        "duplicate_entry": "c4c8b0b6-5149-11ec-9728-0242ac110003",
+        "information_to_correct": "c4c8b110-5149-11ec-9728-0242ac110003",
+        "other": "c4c8b156-5149-11ec-9728-0242ac110003",
+        "troll_entry": "c4c8afa8-5149-11ec-9728-0242ac110003"
+    },
+    "chapter": {
+        "credit_page_in_the_middle_of_the_chapter": "8a44e2fa-d2b1-11eb-a84d-0242ac110002",
+        "duplicate_upload_from_same_user_or_group": "8a44e37c-d2b1-11eb-a84d-0242ac110002",
+        "extraneous_political_or_racebaiting_or_offensive_content": "8a44e200-d2b1-11eb-a84d-0242ac110002",
+        "fake_or_spam_chapter": "8a44e49e-d2b1-11eb-a84d-0242ac110002",
+        "group_lock_evasion": "8a44e3c2-d2b1-11eb-a84d-0242ac110002",
+        "images_not_loading": "8a44e462-d2b1-11eb-a84d-0242ac110002",
+        "incorrect_chapter_number": "893e1c2c-88bf-11ec-a27d-0242ac110002",
+        "incorrect_group": "8a44e106-d2b1-11eb-a84d-0242ac110002",
+        "incorrect_or_duplicate_pages": "893e1af6-88bf-11ec-a27d-0242ac110002",
+        "incorrect_or_missing_chapter_title": "893e1be6-88bf-11ec-a27d-0242ac110002",
+        "incorrect_or_missing_volume_number": "893e1b8c-88bf-11ec-a27d-0242ac110002",
+        "missing_pages": "893e1aa6-88bf-11ec-a27d-0242ac110002",
+        "naming_rules_broken": "8a44e412-d2b1-11eb-a84d-0242ac110002",
+        "official_release_or_raw": "8a44e340-d2b1-11eb-a84d-0242ac110002",
+        "other": "8a44e4ee-d2b1-11eb-a84d-0242ac110002",
+        "pages_out_of_order": "893e1a42-88bf-11ec-a27d-0242ac110002",
+        "released_before_raws_released": "8a44e2a0-d2b1-11eb-a84d-0242ac110002",
+        "uploaded_on_wrong_manga": "893e1b3c-88bf-11ec-a27d-0242ac110002",
+        "watermarked_images": "8a44e250-d2b1-11eb-a84d-0242ac110002"
+    },
+    "scanlation_group": {
+        "duplicate_entry": "8a44e70a-d2b1-11eb-a84d-0242ac110002",
+        "group_claim_request": "893e133a-88bf-11ec-a27d-0242ac110002",
+        "inactivity_request": "4b9e984e-7b1b-11ec-a3e9-0242ac110002",
+        "information_to_correct": "8a44e6ba-d2b1-11eb-a84d-0242ac110002",
+        "other": "8a44e75a-d2b1-11eb-a84d-0242ac110002",
+        "troll_entry": "8a44e674-d2b1-11eb-a84d-0242ac110002"
+    },
+    "manga": {
+        "duplicate_entry": "8a44e584-d2b1-11eb-a84d-0242ac110002",
+        "information_to_correct": "8a44e5ca-d2b1-11eb-a84d-0242ac110002",
+        "other": "8a44e624-d2b1-11eb-a84d-0242ac110002",
+        "troll_entry": "8a44e534-d2b1-11eb-a84d-0242ac110002"
+    },
+    "user": {
+        "offensive_username_or_biography_or_avatar": "8a44e7aa-d2b1-11eb-a84d-0242ac110002",
+        "other": "8a44e840-d2b1-11eb-a84d-0242ac110002",
+        "spambot": "8a44e7f0-d2b1-11eb-a84d-0242ac110002"
+    }
+}

@@ -145,6 +145,12 @@ Relationship
 
 Report
 ~~~~~~
+.. autoclass:: ReportDetails
+    :members:
+
+.. autoclass:: UserReport()
+    :members:
+
 .. autoclass:: Report()
     :members:
 
