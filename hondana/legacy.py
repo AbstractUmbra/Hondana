@@ -25,10 +25,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from .http import HTTPClient
-
 
 if TYPE_CHECKING:
+    from .http import HTTPClient
     from .types.legacy import LegacyMappingResponse, LegacyMappingType
 
 
