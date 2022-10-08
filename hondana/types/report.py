@@ -115,7 +115,7 @@ class GetReportReasonResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.report.GetReportReasonResponse`]
+    data: List[:class:`~hondana.types.report.ReportReasonResponse`]
 
     limit: :class:`int`
 
