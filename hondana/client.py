@@ -43,7 +43,6 @@ from .collections import (
     LegacyMappingCollection,
     MangaCollection,
     MangaRelationCollection,
-    ReportCollection,
     ScanlatorGroupCollection,
     UserCollection,
     UserReportCollection,
@@ -81,7 +80,7 @@ from .query import (
     ScanlatorGroupListOrderQuery,
     UserListOrderQuery,
 )
-from .report import Report, ReportDetails, UserReport
+from .report import ReportDetails, UserReport
 from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
@@ -3622,35 +3621,6 @@ class Client:
             The UUID given for the author was not found.
         """
         await self._http._delete_author(author_id)
-
-    @require_authentication
-    async def get_report_reason_list(self, report_category: ReportCategory, /) -> ReportCollection:
-        """|coro|
-
-        This method will retrieve a list of report reason definitions from the MangaDex API.
-
-        Parameters
-        -----------
-        report_category: :class:`~hondana.ReportCategory`
-            The category of which to retrieve a list of reports.
-
-        Raises
-        -------
-        :exc:`BadRequest`
-            The category was an incorrect value.
-        :exc:`Forbidden`
-            The request returned an error due to an authentication failure.
-        :exc:`NotFound`
-            The specified category has no reports.
-
-        Returns
-        --------
-        :class:`~hondana.ReportCollection`
-            A returned collection of reports.
-        """
-        data = await self._http._get_report_reason_list(report_category)
-        fmt = [Report(self._http, item) for item in data["data"]]
-        return ReportCollection(self._http, data, fmt)
 
     @require_authentication
     async def get_my_reports(
