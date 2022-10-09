@@ -3641,11 +3641,7 @@ class Client:
         return UserReportCollection(self._http, data, reports)
 
     @require_authentication
-    async def create_report(
-        self,
-        *,
-        details: ReportDetails,
-    ) -> None:
+    async def create_report(self, details: ReportDetails, /) -> None:
         """|coro|
 
         This method will create a report for moderator review in the MangaDex API.

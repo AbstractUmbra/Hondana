@@ -754,11 +754,6 @@ def __build_report_reasons():  # type: ignore  # This is for pre-flight release 
     ]
     keys = _REPORT_REASONS.keys()
 
-    def set_check(source: set[str], new: set[str]) -> bool:
-        if source ^ new:
-            return True
-        return False
-
     async def build():
         from . import Client
 
@@ -774,7 +769,7 @@ def __build_report_reasons():  # type: ignore  # This is for pre-flight release 
                 )
                 to_dump[category.value][key_name] = inner["id"]
 
-        if any([set_check(set(to_dump[key].keys()), set(_reports[key].keys())) for key in keys]):
+        if any([set(to_dump[key].keys()) != set(_reports[key].keys()) for key in keys]):
             print("Report reasons have changed, dumping.")
             for clean_data, values in to_dump.items():
                 to_dump[clean_data] = dict(sorted(values.items()))

@@ -2031,7 +2031,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _create_report(self, *, details: ReportDetails) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+    def _create_report(self, *, details: ReportDetails) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/report")
 
         query: dict[str, Any] = {

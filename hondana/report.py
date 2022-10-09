@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Literal, Union, overload
 
 from .enums import (
     AuthorReportReason,
@@ -76,6 +76,41 @@ class ReportDetails:
         "details",
         "target_id",
     )
+
+    @overload
+    def __init__(
+        self, *, category: Literal[ReportCategory.author], reason: AuthorReportReason, details: ..., target_id: ...
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self, *, category: Literal[ReportCategory.chapter], reason: ChapterReportReason, details: ..., target_id: ...
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self,
+        *,
+        category: Literal[ReportCategory.scanlation_group],
+        reason: ScanlationGroupReportReason,
+        details: ...,
+        target_id: ...,
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self, *, category: Literal[ReportCategory.manga], reason: MangaReportReason, details: ..., target_id: ...
+    ) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self, *, category: Literal[ReportCategory.user], reason: UserReportReason, details: ..., target_id: ...
+    ) -> None:
+        ...
 
     def __init__(
         self,
