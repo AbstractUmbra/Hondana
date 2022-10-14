@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .author import Author
     from .http import HTTPClient
     from .manga import Manga
-    from .types.artist import ArtistResponse
+    from .types.artist import ArtistAttributesResponse, ArtistResponse
     from .types.common import LanguageCode, LocalizedString
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
@@ -114,9 +114,9 @@ class Artist:
     )
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
-        self._http = http
-        self._data = payload
-        self._attributes = self._data["attributes"]
+        self._http: HTTPClient = http
+        self._data: ArtistResponse = payload
+        self._attributes: ArtistAttributesResponse = self._data["attributes"]
         relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
@@ -163,8 +163,12 @@ class Artist:
         if not self._biography:
             return
 
-        key = self._biography.get("en", next(iter(self._biography)))
-        return self._biography[key]
+        biography = self._biography.get("en")
+        if biography is None:
+            key = next(iter(self._biography))
+            return self._biography[key]
+
+        return biography
 
     def localised_biography(self, language: LanguageCode) -> Optional[str]:
         """The artist's biography in the specified language, if present.

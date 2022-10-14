@@ -29,7 +29,7 @@ def clone_artist() -> Artist:
 class TestArtist:
     def test_id(self):
         artist = clone_artist()
-        assert artist.id == "7e552c08-f7cf-4e0e-9723-409d749dd77c"
+        assert artist.id == PAYLOAD["data"]["id"]
 
     def test_attributes(self):
         artist = clone_artist()

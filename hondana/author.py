@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .artist import Artist
     from .http import HTTPClient
     from .manga import Manga
-    from .types.author import AuthorResponse
+    from .types.author import AuthorAttributesResponse, AuthorResponse
     from .types.common import LanguageCode, LocalizedString
     from .types.manga import MangaResponse
     from .types.relationship import RelationshipResponse
@@ -112,9 +112,9 @@ class Author:
     )
 
     def __init__(self, http: HTTPClient, payload: AuthorResponse) -> None:
-        self._http = http
-        self._data = payload
-        self._attributes = self._data["attributes"]
+        self._http: HTTPClient = http
+        self._data: AuthorResponse = payload
+        self._attributes: AuthorAttributesResponse = self._data["attributes"]
         relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
@@ -134,8 +134,8 @@ class Author:
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
         self._biography: Optional[LocalizedString] = self._attributes["biography"] or {}
-        self._created_at = self._attributes["createdAt"]
-        self._updated_at = self._attributes["updatedAt"]
+        self._created_at: str = self._attributes["createdAt"]
+        self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")
         self.__manga: Optional[list[Manga]] = None
 
@@ -161,8 +161,12 @@ class Author:
         if not self._biography:
             return
 
-        key = self._biography.get("en", next(iter(self._biography)))
-        return self._biography[key]
+        biography = self._biography.get("en")
+        if biography is None:
+            key = next(iter(self._biography))
+            return self._biography[key]
+
+        return biography
 
     def localised_biography(self, language: LanguageCode) -> Optional[str]:
         """The author's biography in the specified language, if present.

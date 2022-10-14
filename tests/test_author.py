@@ -30,7 +30,7 @@ def clone_author() -> Author:
 class TestAuthor:
     def test_id(self):
         author = clone_author()
-        assert author.id == "7e552c08-f7cf-4e0e-9723-409d749dd77c"
+        assert author.id == PAYLOAD["data"]["id"]
 
     def test_attributes(self):
         author = clone_author()
