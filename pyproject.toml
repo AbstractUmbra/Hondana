@@ -101,8 +101,8 @@ types_ = "pyright --ignoreexternal --lib --verifytypes hondana"
 types = ["pyright", "types_"]
 tests = "pytest"
 docs = "sphinx-build -a -E -W -T --keep-going docs/ docs/build" # TODO: add -n when sphinx is fixed
-tags = { script = "hondana.utils:__build_tags()" }
-report_reasons = { script = "hondana.utils:__build_report_reasons()" }
+tags = { script = "_preflight:__build_tags()" }
+report_reasons = { script = "_preflight:__build_report_reasons()" }
 uninstall = "pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "report_reasons", "uninstall"]
 
