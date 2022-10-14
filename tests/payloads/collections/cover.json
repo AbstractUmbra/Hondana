@@ -3,388 +3,48 @@
     "response": "collection",
     "data": [
         {
-            "id": "8d034324-a8bd-4284-8717-791de71affe0",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "086f0caa-8cda-4d5c-b2e9-d8f7a4cfa973.jpg",
-                "locale": "ko",
-                "createdAt": "2022-10-08T22:54:24+00:00",
-                "updatedAt": "2022-10-08T22:54:24+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "0d63b6f1-03b2-4f04-827c-8b2995026cf8",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "I Became the Male Lead's Adopted Daughter"
-                        },
-                        "altTitles": [
-                            {
-                                "ko": "\ub0a8\uc8fc\uc758 \uc785\uc591\ub538\uc774 \ub418\uc5c8\uc2b5\ub2c8\ub2e4"
-                            },
-                            {
-                                "ko-ro": "Namjueui Ib-yangddal-i Doeeosseubnida"
-                            },
-                            {
-                                "en": "The Male Lead's Little Lion Daughter"
-                            },
-                            {
-                                "ar": "\u0627\u0635\u0628\u062d\u062a \u0627\u0628\u0646\u0629 \u0627\u0644\u0628\u0637\u0644 \u0627\u0644\u0645\u062a\u0628\u0646\u0627\u0629"
-                            },
-                            {
-                                "id": "Duke Mengadopsi Putri Singa"
-                            },
-                            {
-                                "ja": "\u4e3b\u4eba\u516c\u306e\u990a\u5973\u306b\u306a\u308a\u307e\u3057\u305f"
-                            },
-                            {
-                                "zh": "\u6210\u4e3a\u7537\u4e3b\u7684\u517b\u5973"
-                            },
-                            {
-                                "zh-hk": "\u6210\u70ba\u7537\u4e3b\u7684\u990a\u5973"
-                            }
-                        ],
-                        "description": {
-                            "ar": "\u0642\u0631\u0631 \u0627\u0644\u062f\u0648\u0642 \u0641\u064a\u0631\u064a\u0648 \u0641\u0648\u0644\u0648\u062a\u064a \u0641\u062c\u0623\u0629 \u062a\u0628\u0646\u064a \u0627\u0628\u0646\u0629 \u0648\u0648\u062c\u062f \u0641\u062a\u0627\u0629 \u0623\u064a\u0636\u064b\u0627 \u0644\u0645\u0646 \u064a\u062d\u0628\u0647\u0627. \u062a\u062f\u0648\u0631 \u0647\u0630\u0647 \u0627\u0644\u0642\u0635\u0629 \u062d\u0648\u0644 \u0639\u0627\u0626\u0644\u0629 \u201c\u0645\u062d\u0628\u0629\u201d \u0645\u0646 \u0623\u0628 \u0627\u0644\u0623\u063a\u0646\u0649 \u0648\u0627\u0644\u0623\u0642\u0648\u0649 \u0648\u0627\u0644\u0623\u0643\u062b\u0631 \u062a\u063a\u0637\u0631\u0633\u064b\u0627 \u0641\u064a \u0627\u0644\u0639\u0627\u0644\u0645\u060c \u0648\u0627\u0628\u0646\u062a\u0647 \u0628\u0627\u0644\u062a\u0628\u0646\u064a \u0627\u0644\u0644\u0637\u064a\u0641\u0629 \u0627\u0644\u0635\u0631\u064a\u062d\u0629 \u0648\u0627\u0644\u0645\u062d\u0628\u0629 \u0644\u0644\u0639\u0636\u0644\u0627\u062a\u060c \u0648\u0632\u0648\u062c\u0629 \u0623\u0628 \u0645\u0639 \u0633\u0631 \u063a\u0631\u064a\u0628.",
-                            "en": "\"I'm going to adopt a child.\"\n\nDuke Phileo Boleoti's impulsive decision shocked everyone in the mansion. Not only did he make her his daughter, but he also gave her the name of a 'beast' that only direct members of the bloodline could receive.\n\n\"Even as you breathe right now, I'm earning money.\"\n\"It's confidence, not arrogance.\"\n\"My face really does have its advantages.\"\nThe most arrogant father in the whole world, and-\n\n\"I love muscles the most. Let's get muscular.\"\n\"Show me your thigh muscles! Your butt would be even better!\"\n\"You're nothing but a flower if you have a calm personality\u2026\" his corrupted(?) daughter. \n\nAnd\u2026 \"I will give his excellency the information he wants most.\"\n\n\"Information I want most, you say\u2026\"\n\n\"You won\u2019t regret it.\"\n\n\u2026A stepmother(?) with a strange secret as well.",
-                            "id": "Duke Voreoti yang tampan adalah pria paling menakutkan di kekaisaran. Tapi suatu hari, dia ingin mengadopsi seorang anak?!",
-                            "ko": "\u201c\uc544\uc774\ub97c \uc785\uc591\ud55c\ub2e4\u201d\n\n\uc5b4\ub290 \ub0a0 \uac11\uc790\uae30 \ub5a8\uc5b4\uc9c4 \ubd81\ubd80\uc758 \uc8fc\uc778 \ubcf4\ub808\uc624\ud2f0\uc758 \ud3ed\ud0c4 \ubc1c\uc5b8.\n\uadf8\ub9ac\uace0 \uae30\uc801\ucc98\ub7fc \ub9cc\ub09c \u201c\uac80\uc740\uc0c9\u201d\uc744 \uc9c0\ub2cc \uc544\uc774.\n\n\uadf8\ub7f0\ub370\u2026\n\n\u201c\uadfc\u2606\uc721\uc774 \uc81c\uc77c \uc88b\uc544~ \u2606\ubd88\ub048\ubd88\ub048\u2606 \ubaa8\uc5ec\ub77c~ \u0669(\u0e51\u02c3\u0301\ua1f4\u02c2\u0300\u0e51)\u06f6\u201d\n\u201c\uc774\ub450\uadfc (\u0e07\u02d9\u2207\u02d9)\u0e27, \uc0bc\ub450\uadfc (\u0e07\u02d9\u2207\u02d9) \u0e07\u201d\n\u201c\ud749\uadfc \ubcf5\uadfc \uc9dc\ub9bf\ud574 \u0d26\u0d4d\u0d26\u0d3f \u02c9\u0348\u0300\ua4b3\u02c9\u0348\u0301 )\u2727.\u201d\n\n\u201c\u2026\uc8fc\uad70, \uc800\ud76c \uc560\ub4e4\uc740 \uc800 \uc815\ub3c4\uae4c\uc9c0\ub294 \uc544\ub2c8\uc5c8\uc2b5\ub2c8\ub2e4\ub9cc.\u201d\n\n\uc544\ub2c8\ub2e4. \uc6b0\ub9ac \uc560\uac00 \uc5bc\ub9c8\ub098 \ub611\ub611\ud55c\ub370. \uc77c\uacf1 \uc0b4\uc778\ub370 \uc5b4\ub824\uc6b4 \ub9d0\ub3c4 \ub9ce\uc774 \uc54c\uace0, \ucc45\ub3c4 \ube68\ub9ac \uc77d\uace0, \ubc30\uc9f1\ub3c4 \uc788\uace0\u2026 \ub108\ub124 \uc6b0\ub9ac \ub538\uc774 \uad6c\uc6b4 \ucfe0\ud0a4 \uba39\uc5b4\ubd24\ub098? \uc544\ubb34\ud2bc \uc7ac\ub2a5\uc774 \ub118\uccd0\ub09c\ub2e8 \ub9d0\uc774\ub2e4. \uc6b0\ub9ac \ub538\uc740 \ucc9c\uc7ac\uc57c. \uc5bc\uad74\ub3c4 \ub0a0 \ub2ee\uc544\uc11c \uc694\uc998 \ubd80\uca4d \ubbf8\ubaa8\uac00 \uaf43\uc744 \ud53c\uc6b0\uace0 \uc788\uc9c0. \ubc8c\uc368\ubd80\ud130 \ub450\ub824\uc6b8 \uc815\ub3c4\ub2e4. \uc774 \ub0b4\uac00 \ub9d0\uc774\uc9c0.\n\n\u2026\u2026\uadf8\ub798, \uc778\uc815\ud55c\ub2e4. \ub0b4 \ub538\uc740 \ubcc0\ud0dc\ub2e4."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "138363",
-                            "ap": "i-became-the-male-leads-adopted-daughter",
-                            "mu": "186861",
-                            "nu": "i-became-the-male-leads-adopted-daughter",
-                            "mal": "148238",
-                            "raw": "https://page.kakao.com/home?seriesId=57616627",
-                            "engtl": "https://tapas.io/series/the-male-leads-little-lion-daughter/info"
-                        },
-                        "originalLanguage": "ko",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Reincarnation"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Historical"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monsters"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Psychological"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Survival"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Magic"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Isekai"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-10-10T14:48:18+00:00",
-                        "updatedAt": "2022-10-08T22:54:25+00:00",
-                        "version": 18,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "4d2286c8-ea17-4a26-8c37-65176a690439"
-                    }
-                },
-                {
-                    "id": "01642be8-72b8-48ae-9199-d8c747946ca5",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Tristan__",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_MD_AT_HOME",
-                            "ROLE_CONTRIBUTOR",
-                            "ROLE_POWER_UPLOADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 1071
-                    }
-                }
-            ]
-        },
-        {
-            "id": "1f8fb603-9e00-4545-8fc6-266d0fb398bd",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "5861cdf2-c00a-4961-93ba-52846f25a1a6.png",
-                "locale": "ko",
-                "createdAt": "2022-10-08T22:08:38+00:00",
-                "updatedAt": "2022-10-08T22:08:38+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "5eae76a4-71bd-4ea1-9f7f-59397e026b33",
-                    "type": "manga"
-                },
-                {
-                    "id": "0c7f094d-a83a-48f3-89a3-fe6d18420bee",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Otaku12",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 3
-                    }
-                }
-            ]
-        },
-        {
-            "id": "de4d4215-65cc-4926-8d64-fd1682f797e9",
+            "id": "7271b83a-05eb-4eab-86d3-0b5ad5805bb9",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "3",
-                "fileName": "2a96eb72-5c41-4fe5-a456-3442d7dcd4ee.jpg",
+                "fileName": "f504a00b-97bd-4042-8207-25bd0dbda163.png",
                 "locale": "ja",
-                "createdAt": "2022-10-08T22:01:29+00:00",
-                "updatedAt": "2022-10-08T22:01:29+00:00",
+                "createdAt": "2022-10-14T10:15:25+00:00",
+                "updatedAt": "2022-10-14T10:15:25+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "bc8f71a4-49d8-498b-a231-10faa0d53ab6",
+                    "id": "52f4ea39-99bd-407f-b86f-46b24a712ce8",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Hoshikuzu Telepath"
+                            "en": "Me no Doku Sugiru Shokuba no Futari"
                         },
                         "altTitles": [
                             {
-                                "en": "Stardust Telepath"
+                                "en": "Two Office Workers Who Are Too Poisonous For One's Eyes"
                             },
                             {
-                                "ja": "\u661f\u5c51\u30c6\u30ec\u30d1\u30b9"
-                            },
-                            {
-                                "zh": "\u661f\u7075\u611f\u5e94"
+                                "en": "\u76ee\u306e\u6bd2\u3059\u304e\u308b\u8077\u5834\u306e\u3075\u305f\u308a"
                             }
                         ],
                         "description": {
-                            "en": "Umika is very shy girl who has always been very bad at communicating with others. Over time she gave up on making any friends, until one day she meets the transfer student Yuu. Yuu claims to be an alien with the power of \"Foreheadelepathy\" - being able to read people's emotions by pressing her forehead to theirs.  \r\n  \r\nFrom the up-and-coming author Okuma Rasuko, a dazzling story about yuri, space and youth."
+                            "en": "The manga follows the adventures of a young office lady who is also a fujoshi. With the arrival of two new colleagues: Hongou (32), a mature man whose face doesn't show any emotion, and Daichi (25), a bright young man full of life; it's hard for her not to imagine these two in torrid situations\u2026"
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "121501",
-                            "ap": "hoshikuzu-telepath",
-                            "mu": "157389",
-                            "mal": "127231"
+                            "al": "130103",
+                            "ap": "me-no-doku-sugiru-shokuba-no-futari",
+                            "mu": "156526",
+                            "amz": "https://www.amazon.co.jp/\u76ee\u306e\u6bd2\u3059\u304e\u308b\u8077\u5834\u306e\u3075\u305f\u308a-1-\u30af\u30ea\u30a8\u30b3\u30df\u30c3\u30af\u30b9-ma2/dp/4865546359",
+                            "raw": "https://comic.pixiv.net/works/5714"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "seinen",
+                        "publicationDemographic": "josei",
                         "status": "ongoing",
                         "year": 2019,
                         "contentRating": "safe",
@@ -403,37 +63,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
+                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b11fda93-8f1d-4bef-b2ed-8803d3733170",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "4-Koma"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
+                                        "en": "Office Workers"
                                     },
                                     "description": [],
                                     "group": "theme",
@@ -453,110 +87,103 @@
                                     "version": 1
                                 },
                                 "relationships": []
-                            },
-                            {
-                                "id": "e64f6742-c834-471d-8d72-dd51fc02b835",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Aliens"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
                             }
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-02-17T15:11:17+00:00",
-                        "updatedAt": "2022-10-08T22:01:30+00:00",
-                        "version": 9,
+                        "createdAt": "2021-02-15T14:26:59+00:00",
+                        "updatedAt": "2022-10-14T10:14:56+00:00",
+                        "version": 4,
                         "availableTranslatedLanguages": [
-                            "en",
-                            "vi",
-                            "id",
-                            "zh-hk",
-                            "es-la"
+                            "en"
                         ],
-                        "latestUploadedChapter": "b63f6e5c-8e65-4bcc-b532-ea0ad9632f6b"
+                        "latestUploadedChapter": "7c95a512-82f2-411e-86dc-74e8efabf1de"
                     }
                 },
                 {
-                    "id": "6805c882-96c6-4b08-bab5-15da1efe184d",
+                    "id": "b6afcd7d-d124-45fb-9813-8fe441df65bb",
                     "type": "user",
                     "attributes": {
-                        "username": "Tiara_Lapis",
+                        "username": "Lalatiozao",
                         "roles": [
-                            "ROLE_MEMBER",
+                            "ROLE_USER",
                             "ROLE_GROUP_LEADER",
-                            "ROLE_POWER_UPLOADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 5
+                        "version": 186
                     }
                 }
             ]
         },
         {
-            "id": "fa08a26c-af8f-4bcc-9b59-d93cab512e49",
+            "id": "ec899fdc-6620-4707-884f-9bd1f2cfeb37",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "2",
-                "fileName": "b379a159-46f7-4af4-be2f-e4758af77bfb.jpg",
+                "volume": "4",
+                "fileName": "29f3f5ad-7c55-4db4-8a34-79d539bd2541.png",
                 "locale": "ja",
-                "createdAt": "2022-10-08T22:00:24+00:00",
-                "updatedAt": "2022-10-08T22:00:24+00:00",
+                "createdAt": "2022-10-14T10:14:55+00:00",
+                "updatedAt": "2022-10-14T10:14:55+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "35146386-6af1-474a-ac87-04cc5c999fa5",
+                    "id": "52f4ea39-99bd-407f-b86f-46b24a712ce8",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Jigoku ni Ochite yo, Onii-chan"
+                            "en": "Me no Doku Sugiru Shokuba no Futari"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u5730\u7344\u306b\u5815\u3061\u3066\u3088\u3001\u304a\u5144\u3061\u3083\u3093"
+                                "en": "Two Office Workers Who Are Too Poisonous For One's Eyes"
                             },
                             {
-                                "en": "Go to Hell, Onii-chan"
-                            },
-                            {
-                                "en": "Go to Hell, Big Brother"
+                                "en": "\u76ee\u306e\u6bd2\u3059\u304e\u308b\u8077\u5834\u306e\u3075\u305f\u308a"
                             }
                         ],
                         "description": {
-                            "en": "College student Yuudai spends his days heartbroken after an untimely breakup with his first girlfriend. He is filled with a sense of emptiness, but when he meets his new younger sister Yuna, who has moved in with him after their parents remarried, he feels more than love at first sight. However, Yuna has a big secret....",
-                            "es-la": "El estudiante universitario Yuudai pasa sus d\u00edas con el coraz\u00f3n roto tras una ruptura prematura con su primera novia. Est\u00e1 lleno de una sensaci\u00f3n de vac\u00edo, pero cuando conoce a su nueva hermana menor Yuna, que se ha mudado con \u00e9l despu\u00e9s de que sus padres se hayan vuelto a casar, siente algo m\u00e1s que amor a primera vista. Sin embargo, Yuna tiene un gran secreto..."
+                            "en": "The manga follows the adventures of a young office lady who is also a fujoshi. With the arrival of two new colleagues: Hongou (32), a mature man whose face doesn't show any emotion, and Daichi (25), a bright young man full of life; it's hard for her not to imagine these two in torrid situations\u2026"
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "149817",
-                            "mu": "habotew",
-                            "mal": "149585"
+                            "al": "130103",
+                            "ap": "me-no-doku-sugiru-shokuba-no-futari",
+                            "mu": "156526",
+                            "amz": "https://www.amazon.co.jp/\u76ee\u306e\u6bd2\u3059\u304e\u308b\u8077\u5834\u306e\u3075\u305f\u308a-1-\u30af\u30ea\u30a8\u30b3\u30df\u30c3\u30af\u30b9-ma2/dp/4865546359",
+                            "raw": "https://comic.pixiv.net/works/5714"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "seinen",
+                        "publicationDemographic": "josei",
                         "status": "ongoing",
-                        "year": 2022,
-                        "contentRating": "erotica",
+                        "year": 2019,
+                        "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Romance"
+                                        "en": "Comedy"
                                     },
                                     "description": [],
                                     "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Office Workers"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -577,84 +204,77 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-09-27T14:51:27+00:00",
-                        "updatedAt": "2022-10-08T22:00:25+00:00",
-                        "version": 8,
+                        "createdAt": "2021-02-15T14:26:59+00:00",
+                        "updatedAt": "2022-10-14T10:14:56+00:00",
+                        "version": 4,
                         "availableTranslatedLanguages": [
-                            "es-la"
+                            "en"
                         ],
-                        "latestUploadedChapter": "928b055a-3a93-4f6b-8e37-d1cc008b0ac2"
+                        "latestUploadedChapter": "7c95a512-82f2-411e-86dc-74e8efabf1de"
                     }
                 },
                 {
-                    "id": "8716cd0a-ef10-42bf-b25c-d21131be4b74",
+                    "id": "b6afcd7d-d124-45fb-9813-8fe441df65bb",
                     "type": "user",
                     "attributes": {
-                        "username": "Rony0001",
+                        "username": "Lalatiozao",
                         "roles": [
-                            "ROLE_MEMBER",
+                            "ROLE_USER",
                             "ROLE_GROUP_LEADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 42
+                        "version": 186
                     }
                 }
             ]
         },
         {
-            "id": "653c7cf4-662d-4a8f-87b0-35606719977e",
+            "id": "d833e1df-8a52-4dc9-905c-a7be3f1146e6",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "1",
-                "fileName": "1eb36879-825d-4b49-b66e-b455d6186294.jpg",
-                "locale": "ko",
-                "createdAt": "2022-10-08T21:54:16+00:00",
-                "updatedAt": "2022-10-08T21:54:16+00:00",
+                "volume": "3",
+                "fileName": "254cb38d-00d4-4f5d-a9cc-359beba43a8d.png",
+                "locale": "ja",
+                "createdAt": "2022-10-14T09:57:48+00:00",
+                "updatedAt": "2022-10-14T09:57:48+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "6b9ba2cd-b867-4b3a-b905-ceffbd845c85",
+                    "id": "5ea979e7-58d0-4cf6-b774-b9a254269f4b",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Meet in Autumn"
+                            "en": "Watashi-tachi ga Koisuru Riyuu"
                         },
                         "altTitles": [
                             {
-                                "ko": "\uac00\uc744, \ub9cc\ub098\ub2e4"
+                                "ja": "\u79c1\u305f\u3061\u304c\u604b\u3059\u308b\u7406\u7531"
+                            },
+                            {
+                                "ja-ro": "Watashi-tachi ga Koisuru Riyuu"
                             }
                         ],
                         "description": {
-                            "en": "\u201cI don\u2019t like that professor.\u201d Instructor Yoon Hee-min does everything he says with an honest look in her eyes. \"...That\u2019s a good thing.\u201d Seo Ji-hyeok, is a chemistry professor who is good at being alone. Ji-hyeok was comfortable alone, but he had no excuse to ignore Assistant Yoon, who quietly prepared everything before he had even ordered her to do anything. And that's how their academic life together began. \"Even with the two people, there is a deafening silence, which is why I am more concerned about it. My heart is drawn and my eyes are drawn to that person.\""
+                            "en": "Salary man romance series."
                         },
                         "isLocked": false,
                         "links": {
-                            "mu": "22wajwl",
-                            "raw": "https://page.kakao.com/content/60301992"
+                            "al": "130833",
+                            "mu": "165263",
+                            "amz": "https://www.amazon.co.jp/dp/B09TTMY2QY?binding=kindle_edition&qid=1665741420&sr=8-2&ref=dbs_dp_awt_sb_pc_tukn",
+                            "mal": "143556",
+                            "raw": "https://feelweb.jp/episode/3269754496334652404"
                         },
-                        "originalLanguage": "ko",
+                        "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
                         "publicationDemographic": "josei",
                         "status": "ongoing",
-                        "year": 2022,
+                        "year": 2020,
                         "contentRating": "safe",
                         "tags": [
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
                             {
                                 "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                                 "type": "tag",
@@ -669,40 +289,27 @@
                                 "relationships": []
                             },
                             {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "id": "92d6d951-ca5e-429c-ac78-451071cbf064",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Drama"
+                                        "en": "Office Workers"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
                                     },
                                     "description": [],
                                     "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -710,23 +317,224 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-10-08T21:54:15+00:00",
-                        "updatedAt": "2022-10-08T21:56:10+00:00",
-                        "version": 3,
+                        "createdAt": "2021-03-06T21:13:39+00:00",
+                        "updatedAt": "2022-10-14T09:59:23+00:00",
+                        "version": 6,
                         "availableTranslatedLanguages": [],
                         "latestUploadedChapter": null
                     }
                 },
                 {
-                    "id": "66fa5e4a-4024-440a-b748-4f784053e865",
+                    "id": "b6afcd7d-d124-45fb-9813-8fe441df65bb",
                     "type": "user",
                     "attributes": {
-                        "username": "shoujo-dump",
+                        "username": "Lalatiozao",
                         "roles": [
                             "ROLE_USER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 186
+                    }
+                }
+            ]
+        },
+        {
+            "id": "e2de5006-a42e-45c6-99b2-2d9365a7a3ff",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "4",
+                "fileName": "9def495e-30a2-411c-94dc-6f2590fbc35c.jpg",
+                "locale": "ja",
+                "createdAt": "2022-10-14T09:12:46+00:00",
+                "updatedAt": "2022-10-14T09:12:46+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "acbf103c-280e-405a-a770-294f104c7abc",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Hakui no Kanojo (Serialization)"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u767d\u8863\u306e\u30ab\u30ce\u30b7\u3099\u30e7"
+                            },
+                            {
+                                "en": "A Girl in White"
+                            },
+                            {
+                                "en": "The Girl in White Robes"
+                            },
+                            {
+                                "zh-hk": "\u4fdd\u5065\u5ba4\u5973\u53cb"
+                            }
+                        ],
+                        "description": {
+                            "en": "A male science teacher and a female school nurse at a local school live in the same apartment building. Sometimes she visits his room and they drink together. A situation arises that causes some awkwardness in their relationship. Will they be able to resolve things?"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "117060",
+                            "mu": "51020",
+                            "mal": "19143"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "6",
+                        "lastChapter": "51",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 2009,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-06-06T09:54:30+00:00",
+                        "updatedAt": "2022-10-14T09:12:47+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [],
+                        "latestUploadedChapter": null
+                    }
+                },
+                {
+                    "id": "28c8e7fa-a890-4d22-9071-e86af33afd8a",
+                    "type": "user",
+                    "attributes": {
+                        "username": "bastek66",
+                        "roles": [
                             "ROLE_CONTRIBUTOR"
                         ],
-                        "version": 1156
+                        "version": 275
+                    }
+                }
+            ]
+        },
+        {
+            "id": "554528ee-c4de-4493-ab33-7d1d3fdd211c",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "3",
+                "fileName": "c985987a-31e6-4ac8-92cf-6f3e2ef03c6b.jpg",
+                "locale": "ja",
+                "createdAt": "2022-10-14T09:12:46+00:00",
+                "updatedAt": "2022-10-14T09:12:46+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "acbf103c-280e-405a-a770-294f104c7abc",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Hakui no Kanojo (Serialization)"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u767d\u8863\u306e\u30ab\u30ce\u30b7\u3099\u30e7"
+                            },
+                            {
+                                "en": "A Girl in White"
+                            },
+                            {
+                                "en": "The Girl in White Robes"
+                            },
+                            {
+                                "zh-hk": "\u4fdd\u5065\u5ba4\u5973\u53cb"
+                            }
+                        ],
+                        "description": {
+                            "en": "A male science teacher and a female school nurse at a local school live in the same apartment building. Sometimes she visits his room and they drink together. A situation arises that causes some awkwardness in their relationship. Will they be able to resolve things?"
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "117060",
+                            "mu": "51020",
+                            "mal": "19143"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "6",
+                        "lastChapter": "51",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 2009,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Slice of Life"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-06-06T09:54:30+00:00",
+                        "updatedAt": "2022-10-14T09:12:47+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [],
+                        "latestUploadedChapter": null
+                    }
+                },
+                {
+                    "id": "28c8e7fa-a890-4d22-9071-e86af33afd8a",
+                    "type": "user",
+                    "attributes": {
+                        "username": "bastek66",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 275
                     }
                 }
             ]
@@ -734,5 +542,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 155294
+    "total": 155774
 }

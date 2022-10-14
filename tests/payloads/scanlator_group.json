@@ -2,18 +2,18 @@
     "result": "ok",
     "response": "entity",
     "data": {
-        "id": "9e43542e-e666-48d0-a23c-c98a016d551c",
+        "id": "2b7e9733-64a0-4e50-9739-1b260ce5605d",
         "type": "scanlation_group",
         "attributes": {
-            "name": "Team Anjou",
+            "name": "Hachimitsu Scans",
             "altNames": [],
-            "locked": true,
-            "website": null,
-            "ircServer": null,
-            "ircChannel": null,
-            "discord": null,
+            "locked": false,
+            "website": "https://hachimitsu-scans.blogspot.com/",
+            "ircServer": "irc.rizon.net",
+            "ircChannel": "#hachimitsu-scans",
+            "discord": "f4kzX8k",
             "contactEmail": null,
-            "description": "A crew of some impatient randos who just want to read the chapter already, so we make it happen. Infrequent random series and chapters inevitable, but 69% better than waiting. Nice.",
+            "description": "Hachimitsu Scans is a group mostly dedicated to scanlating gender bender-related manga, but we occasionally also work on non-gender bender series.",
             "twitter": null,
             "mangaUpdates": null,
             "focusedLanguages": [
@@ -21,61 +21,39 @@
             ],
             "official": false,
             "verified": false,
-            "inactive": false,
+            "inactive": true,
             "publishDelay": null,
             "createdAt": "2021-04-19T21:45:59+00:00",
-            "updatedAt": "2021-04-19T21:45:59+00:00",
-            "version": 1
+            "updatedAt": "2022-02-12T00:05:46+00:00",
+            "version": 4
         },
         "relationships": [
             {
-                "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
+                "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
                 "type": "leader",
                 "attributes": {
-                    "username": "DaddyCathy",
+                    "username": "Tooko",
                     "roles": [
                         "ROLE_MEMBER",
                         "ROLE_GROUP_LEADER",
+                        "ROLE_POWER_UPLOADER",
                         "ROLE_GROUP_MEMBER"
                     ],
-                    "version": 5
+                    "version": 2
                 }
             },
             {
-                "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
+                "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
                 "type": "member",
                 "attributes": {
-                    "username": "DaddyCathy",
+                    "username": "Tooko",
                     "roles": [
                         "ROLE_MEMBER",
                         "ROLE_GROUP_LEADER",
+                        "ROLE_POWER_UPLOADER",
                         "ROLE_GROUP_MEMBER"
                     ],
-                    "version": 5
-                }
-            },
-            {
-                "id": "d7969a79-0faa-419d-abe2-3589b26d17c2",
-                "type": "member",
-                "attributes": {
-                    "username": "roci",
-                    "roles": [
-                        "ROLE_MEMBER",
-                        "ROLE_GROUP_MEMBER"
-                    ],
-                    "version": 1
-                }
-            },
-            {
-                "id": "ec01bea7-6a83-484f-be31-273ed30cb48b",
-                "type": "member",
-                "attributes": {
-                    "username": "Migoo",
-                    "roles": [
-                        "ROLE_MEMBER",
-                        "ROLE_GROUP_MEMBER"
-                    ],
-                    "version": 3
+                    "version": 2
                 }
             }
         ]

@@ -2,24 +2,21 @@
     "result": "ok",
     "response": "entity",
     "data": {
-        "id": "62d0ea7c-7350-4759-ab6c-58e421dbde79",
+        "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
         "type": "user",
         "attributes": {
-            "username": "DaddyCathy",
+            "username": "Tooko",
             "roles": [
                 "ROLE_MEMBER",
                 "ROLE_GROUP_LEADER",
+                "ROLE_POWER_UPLOADER",
                 "ROLE_GROUP_MEMBER"
             ],
-            "version": 5
+            "version": 2
         },
         "relationships": [
             {
-                "id": "1de55410-9b56-404b-8908-cfbf10836467",
-                "type": "scanlation_group"
-            },
-            {
-                "id": "9e43542e-e666-48d0-a23c-c98a016d551c",
+                "id": "2b7e9733-64a0-4e50-9739-1b260ce5605d",
                 "type": "scanlation_group"
             }
         ]
