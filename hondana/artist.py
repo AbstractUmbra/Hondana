@@ -165,6 +165,9 @@ class Artist:
 
         biography = self._biography.get("en")
         if biography is None:
+            if not self._biography:
+                return None
+
             key = next(iter(self._biography))
             return self._biography[key]
 
