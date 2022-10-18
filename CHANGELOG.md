@@ -1,26 +1,20 @@
-3.3.0
+3.4.0
 
-API Version 5.7.1
+API Version 5.7.2
 
 # Hondana Changelog
-Fix release and new features.
+API Release!
 
 ## Added
-Added a new user friendly way to submit reports to MangaDex. (9885597e6c8ac63e860c80ec2091109c82ff78e8 and 4ba859911a2137ccfe52dbe676493a9bb772e780)
-- Included a new [local cache](./hondana/extras/report_reasons.json) of the report reasons which are loaded as an enum.
-- Included a new [example](./examples/submitting_a_report.py) for using the report method.
-Removed `Client.get_report_reason_list()` public method as this was not user friendly or utilised. (820a8d65fe16b7bf61803014e1f7655efe0eac89)
+- Add new filter methods on chapter feed endpoints. (e7eb70579e82034623980254deb8e317083c975a)
+- Add new parameter to update read markers endpoint for controlling the user's read history. (74ef0e0e35cf989130ec62d5f2b75478c76a1497 and 5ea3ef76032984fd52a3bb842d5b563ef9ea95ba)
 
 ## Changes
-Removed preflight items from within the exposed source code to a private part of local CI. (80f2229d3901a285b00f1e0d9a12a8baeccb8dd3)
-New batch of test payloads as the previous iterations had broken data with no resolution in sight. (1e732e3ba17345bb2adbe8a1211004253e3bd31b)
-
+- Added a guard on potential null values. (7782654e6fc8c451ea5de1c47217a9c6e2fe5864)
 
 ## Fixes
-Fixed `Artist` and `Author`'s `.biography` property from being incorrectly accessed if the `"en"` key did not exist and relevant tests for such. (1e732e3ba17345bb2adbe8a1211004253e3bd31b)
-Fix the internal HTTPClient type being accessed at runtime unnecessarily. (3e62a2964a208549c7b4cd4c9458ffcca7079c3f)
 
 ### Notes
-Deprecation of `Client.mark_chapter_as_read()` and `Client.mark_chapter_as_unread()` in favour of `Client.batch_update_manga_read_markers()`. (5b6070b55c51aae4cbe70dfe501f1ff1ab7fd06e)
+- **Removed** now deprecated and deleted endpoints for singluar read marker endpoints. (5daa506f6e1dd4a398c2b14645d4bff2f4bce0b2)
 
 ### Noted Contributors
