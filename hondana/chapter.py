@@ -499,22 +499,36 @@ class Chapter:
         await self._http._delete_chapter(self.id)
 
     @require_authentication
-    async def mark_as_read(self) -> None:
+    async def mark_as_read(self, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark the current chapter as read for the current authenticated user in the MangaDex API.
+
+        Parameters
+        -----------
+        update_history: :class:`bool`
+            Whether to include this chapter in the authenticated user's read history.
         """
         if self.manga_id:
-            await self._http._manga_read_markers_batch(self.manga_id, read_chapters=[self.id], unread_chapters=None)
+            await self._http._manga_read_markers_batch(
+                self.manga_id, update_history=update_history, read_chapters=[self.id], unread_chapters=None
+            )
 
     @require_authentication
-    async def mark_as_unread(self) -> None:
+    async def mark_as_unread(self, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
+
+        Parameters
+        -----------
+        update_history: :class:`bool`
+            Whether to include this chapter in the authenticated user's read history.
         """
         if self.manga_id:
-            await self._http._manga_read_markers_batch(self.manga_id, read_chapters=None, unread_chapters=[self.id])
+            await self._http._manga_read_markers_batch(
+                self.manga_id, update_history=update_history, read_chapters=None, unread_chapters=[self.id]
+            )
 
     async def _pages(
         self, *, start: int, end: Optional[int], data_saver: bool, ssl: bool, report: bool
