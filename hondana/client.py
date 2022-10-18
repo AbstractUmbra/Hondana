@@ -483,6 +483,9 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        include_empty_pages: Optional[bool] = None,
+        include_future_publish_at: Optional[bool] = None,
+        include_external_url: Optional[bool] = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -520,6 +523,12 @@ class Client:
             A query parameter to choose the 'order by' response from the API.
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The optional data to include in the response.
+        include_empty_pages: Optional[:class:`bool`]
+            Whether to show chapters with no pages available.
+        include_future_publish_at: Optional[:class:`bool`]
+            Whether to show chapters with a publishAt value set in the future.
+        includeExternalUrl: Optional[:class:`bool`]
+            Whether to show chapters that have an external URL attached to them.
 
 
         .. note::
@@ -556,6 +565,9 @@ class Client:
                 published_at_since=published_at_since,
                 order=order,
                 includes=includes,
+                include_empty_pages=include_empty_pages,
+                include_future_publish_at=include_future_publish_at,
+                include_external_url=include_external_url,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
@@ -1056,6 +1068,9 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        include_empty_pages: Optional[bool] = None,
+        include_future_publish_at: Optional[bool] = None,
+        include_external_url: Optional[bool] = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -1094,6 +1109,12 @@ class Client:
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The options to include increased payloads for per chapter.
             Defaults to all values.
+        include_empty_pages: Optional[:class:`bool`]
+            Whether to show chapters with no pages available.
+        include_future_publish_at: Optional[:class:`bool`]
+            Whether to show chapters with a publishAt value set in the future.
+        includeExternalUrl: Optional[:class:`bool`]
+            Whether to show chapters that have an external URL attached to them.
 
 
         .. note::
@@ -1129,6 +1150,9 @@ class Client:
                 published_at_since=published_at_since,
                 order=order,
                 includes=includes,
+                include_empty_pages=include_empty_pages,
+                include_future_publish_at=include_future_publish_at,
+                include_external_url=include_external_url,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
@@ -2942,6 +2966,9 @@ class Client:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        include_empty_pages: Optional[bool] = None,
+        include_future_publish_at: Optional[bool] = None,
+        include_external_url: Optional[bool] = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -2981,6 +3008,12 @@ class Client:
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of optional includes we request the data for.
             Defaults to all possible expansions.
+        include_empty_pages: Optional[:class:`bool`]
+            Whether to show chapters with no pages available.
+        include_future_publish_at: Optional[:class:`bool`]
+            Whether to show chapters with a publishAt value set in the future.
+        includeExternalUrl: Optional[:class:`bool`]
+            Whether to show chapters that have an external URL attached to them.
 
         Raises
         -------
@@ -3019,6 +3052,9 @@ class Client:
                 published_at_since=published_at_since,
                 order=order,
                 includes=includes,
+                include_empty_pages=include_empty_pages,
+                include_future_publish_at=include_future_publish_at,
+                include_external_url=include_external_url,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])

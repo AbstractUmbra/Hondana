@@ -807,6 +807,9 @@ class Manga:
         published_at_since: Optional[datetime.datetime] = None,
         order: Optional[FeedOrderQuery] = None,
         includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        include_empty_pages: Optional[bool] = None,
+        include_future_publish_at: Optional[bool] = None,
+        include_external_url: Optional[bool] = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -844,6 +847,12 @@ class Manga:
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
             The list of options to include increased payloads for per chapter.
             Defaults to these values.
+        include_empty_pages: Optional[:class:`bool`]
+            Whether to show chapters with no pages available.
+        include_future_publish_at: Optional[:class:`bool`]
+            Whether to show chapters with a publishAt value set in the future.
+        includeExternalUrl: Optional[:class:`bool`]
+            Whether to show chapters that have an external URL attached to them.
 
 
         .. note::
@@ -880,6 +889,9 @@ class Manga:
                 published_at_since=published_at_since,
                 order=order,
                 includes=includes,
+                include_empty_pages=include_empty_pages,
+                include_future_publish_at=include_future_publish_at,
+                include_external_url=include_external_url,
             )
 
             from .chapter import Chapter

@@ -807,6 +807,9 @@ class HTTPClient:
         published_at_since: Optional[datetime.datetime],
         order: Optional[FeedOrderQuery],
         includes: Optional[ChapterIncludes],
+        include_empty_pages: Optional[bool],
+        include_future_publish_at: Optional[bool],
+        include_external_url: Optional[bool],
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed")
@@ -853,6 +856,15 @@ class HTTPClient:
 
         if includes:
             query["includes"] = includes.to_query()
+
+        if include_empty_pages:
+            query["includeEmptyPages"] = include_empty_pages
+
+        if include_future_publish_at:
+            query["includeFuturePublishAt"] = include_future_publish_at
+
+        if include_external_url:
+            query["includeExternalUrl"] = include_external_url
 
         return self.request(route, params=query)
 
@@ -1538,6 +1550,9 @@ class HTTPClient:
         published_at_since: Optional[datetime.datetime],
         order: Optional[FeedOrderQuery],
         includes: Optional[ChapterIncludes],
+        include_empty_pages: Optional[bool],
+        include_future_publish_at: Optional[bool],
+        include_external_url: Optional[bool],
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
@@ -1581,6 +1596,15 @@ class HTTPClient:
 
         if includes:
             query["includes"] = includes.to_query()
+
+        if include_empty_pages:
+            query["includeEmptyPages"] = include_empty_pages
+
+        if include_future_publish_at:
+            query["includeFuturePublishAt"] = include_future_publish_at
+
+        if include_external_url:
+            query["includeExternalUrl"] = include_external_url
 
         return self.request(route, params=query)
 
