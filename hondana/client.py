@@ -85,7 +85,7 @@ from .scanlator_group import ScanlatorGroup
 from .tags import Tag
 from .token import Permissions
 from .user import User
-from .utils import MISSING, deprecated, require_authentication
+from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
@@ -1830,37 +1830,6 @@ class Client:
             The UUID passed for this chapter does not relate to a chapter in the API.
         """
         await self._http._delete_chapter(chapter_id)
-
-    @require_authentication
-    @deprecated("batch_update_manga_read_markers")
-    async def mark_chapter_as_read(self, chapter_id: str, /, *, update_history: bool = True) -> None:
-        """|coro|
-
-        This method will mark a chapter as read for the current authenticated user in the MangaDex API.
-
-        Parameters
-        -----------
-        chapter_id: :class:`str`
-            The UUID of the chapter you wish to mark as read.
-        update_history: :class:`bool`
-            Whether or not to update the user's read history.
-            Defaults to ``True``.
-        """
-        raise NotImplementedError("Deprecated.")
-
-    @require_authentication
-    @deprecated("batch_update_manga_read_markers")
-    async def mark_chapter_as_unread(self, chapter_id: str, /) -> None:
-        """|coro|
-
-        This method will mark a chapter as unread for the current authenticated user in the MangaDex API.
-
-        Parameters
-        -----------
-        chapter_id: :class:`str`
-            The UUID of the chapter you wish to mark as unread.
-        """
-        raise NotImplementedError("Deprecated.")
 
     @require_authentication
     async def my_chapter_read_history(self) -> ChapterReadHistoryCollection:
