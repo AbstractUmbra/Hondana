@@ -921,11 +921,18 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def _manga_read_markers_batch(
-        self, manga_id: str, /, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+        self,
+        manga_id: str,
+        /,
+        *,
+        update_history: bool,
+        read_chapters: Optional[list[str]],
+        unread_chapters: Optional[list[str]],
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
 
         body = {}
+        params = {"updateHistory": update_history} if update_history else None
 
         if read_chapters:
             body["chapterIdsRead"] = read_chapters
@@ -933,6 +940,8 @@ class HTTPClient:
         if unread_chapters:
             body["chapterIdsUnread"] = unread_chapters
 
+        if params:
+            return self.request(route, json=body, params=params)
         return self.request(route, json=body)
 
     def _get_all_manga_reading_status(

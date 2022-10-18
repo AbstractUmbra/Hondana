@@ -920,7 +920,7 @@ class Manga:
 
     @require_authentication
     async def bulk_update_read_markers(
-        self, *, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+        self, *, update_history: bool = True, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
     ) -> None:
         """|coro|
 
@@ -928,6 +928,9 @@ class Manga:
 
         Parameters
         -----------
+        update_history: :class:`bool`
+            Whether to show this chapter in the authenticated user's read history.
+            Defaults to ``True``.
         read_chapters: Optional[List[:class:`str`]]
             The read chapters for this Manga.
         unread_chapters: Optional[List[:class:`str`]]
@@ -941,7 +944,9 @@ class Manga:
         if not read_chapters and not unread_chapters:
             raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
 
-        await self._http._manga_read_markers_batch(self.id, read_chapters=read_chapters, unread_chapters=unread_chapters)
+        await self._http._manga_read_markers_batch(
+            self.id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
+        )
 
     @require_authentication
     async def get_reading_status(self) -> manga.MangaSingleReadingStatusResponse:
