@@ -26,7 +26,7 @@ __title__ = "Hondana"
 __author__ = "AbstractUmbra"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "3.4.0"
+__version__ = "3.4.1"
 
 import logging
 from typing import Literal, NamedTuple
