@@ -7,6 +7,7 @@ import zoneinfo
 from typing import Iterable, Mapping, Optional, TypeVar, Union
 
 import pytest
+from multidict import MultiDict
 
 from hondana.utils import (
     MISSING,
@@ -28,6 +29,32 @@ from hondana.utils import (
 T = TypeVar("T")
 
 
+multidict_one = MultiDict()
+multidict_one["order[publishAt]"] = "desc"
+multidict_one["translatedLanguages[]"] = "en"
+multidict_one["translatedLanguages[]"] = "jp"
+
+multidict_two = MultiDict()
+multidict_two["param[]"] = "a"
+multidict_two["param[]"] = "b"
+multidict_two["param[]"] = "c"
+multidict_two["includes[]"] = "test"
+multidict_two["includes[]"] = "mark"
+
+multidict_three = MultiDict()
+multidict_three["sorted"] = "true"
+multidict_three["value"] = 1
+
+multidict_four = MultiDict()
+multidict_four["sorted[]"] = 1
+multidict_four["sorted[]"] = 2
+multidict_four["includes[]"] = 1
+multidict_four["includes[]"] = 2
+multidict_four["includes[]"] = 3
+multidict_four["createdAt"] = "null"
+multidict_four["value[query]"] = 7
+
+
 class TestUtils:
     def test_missing(self):
         assert MISSING is not None
@@ -39,14 +66,14 @@ class TestUtils:
         assert route.base == "https://uploads.mangadex.org"
         assert route.verb == "GET"
         assert route.path == "/chapter/{chapter_id}"
-        assert route.url == "https://uploads.mangadex.org/chapter/abcd"
+        assert str(route.url) == "https://uploads.mangadex.org/chapter/abcd"
 
     def test_route(self):
         route = Route("GET", "/chapter/{chapter_id}", chapter_id="efgh")
 
         assert route.verb == "GET"
         assert route.path == "/chapter/{chapter_id}"
-        assert route.url == "https://api.mangadex.org/chapter/efgh"
+        assert str(route.url) == "https://api.mangadex.org/chapter/efgh"
 
     @pytest.mark.parametrize(
         ("source", "chunk_size", "chunked"),
@@ -99,21 +126,21 @@ class TestUtils:
         [
             (
                 {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]},
-                "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp",
+                multidict_one,
             ),
             (
                 {"param": ["a", "b", "c"], "includes": ["test", "mark"]},
-                "param[]=a&param[]=b&param[]=c&includes[]=test&includes[]=mark",
+                multidict_two,
             ),
-            ({"sorted": True, "value": 1}, "sorted=true&value=1"),
+            ({"sorted": True, "value": 1}, multidict_three),
             (
                 {"sorted": [1, 2], "includes": [1, 2, 3], "createdAt": None, "value": {"query": 7}},
-                "sorted[]=1&sorted[]=2&includes[]=1&includes[]=2&includes[]=3&createdAt=null&value[query]=7",
+                multidict_four,
             ),
         ],
     )
     def test_query_builder(
-        self, input: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], output: str
+        self, input: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], output: MultiDict
     ):
         assert php_query_builder(input) == output
 
