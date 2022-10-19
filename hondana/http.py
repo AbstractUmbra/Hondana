@@ -33,6 +33,7 @@ from base64 import b64decode
 from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
 
 import aiohttp
+from yarl import URL
 
 from . import __version__
 from .enums import (
@@ -2057,10 +2058,16 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _at_home_report(self, *, url: str, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
+    def _at_home_report(self, *, url: URL, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
         route = CustomRoute("POST", "https://api.mangadex.network", "/report")
 
-        query: dict[str, Any] = {"url": url, "success": success, "cached": cached, "bytes": size, "duration": duration}
+        query: dict[str, Any] = {
+            "url": str(url),
+            "success": success,
+            "cached": cached,
+            "bytes": size,
+            "duration": duration,
+        }
 
         return self.request(route, json=query)
 

@@ -50,6 +50,8 @@ from typing import (
 from urllib.parse import quote as _uriquote
 
 import aiohttp
+import multidict
+from yarl import URL
 
 
 try:
@@ -155,7 +157,7 @@ class Route:
         url = self.BASE + self.path
         if parameters:
             url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: str = url
+        self.url: URL = URL(url, encoded=True)
 
 
 class CustomRoute(Route):
@@ -183,7 +185,7 @@ class CustomRoute(Route):
         url = self.base + self.path
         if parameters:
             url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: str = url
+        self.url: URL = URL(url, encoded=True)
 
 
 class MissingSentinel:
@@ -356,7 +358,9 @@ async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, A
     return text
 
 
-def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], /) -> str:
+def php_query_builder(
+    obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], /
+) -> multidict.MultiDict[Union[str, int]]:
     """
     A helper function that builds a MangaDex (PHP) query string from a mapping.
 
@@ -364,29 +368,25 @@ def php_query_builder(obj: Mapping[str, Optional[Union[str, int, bool, list[str]
     -----------
     obj: Mapping[:class:`str`, Optional[Union[:class:`str`, :class:`int`, :class:`bool`, List[:class:`str`], Dict[:class:`str`, :class:`str`]]]]
         The mapping to build the query string from.
-
-
-    .. code-block:: python
-        :caption: The input and output of this function.
-
-        >>> {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]}
-        "order[publishAt]=desc&translatedLanguages[]=en&translatedLanguages[]=jp"
-
     """
-    fmt = []
+    fmt = multidict.MultiDict[Union[str, int]]()
     for key, value in obj.items():
         if value is None:
-            fmt.append(f"{key}=null")
+            fmt[key] = "null"
+        elif isinstance(value, str):
+            fmt[key] = value
         elif isinstance(value, bool):
-            fmt.append(f"{key}={str(value).lower()}")
-        elif isinstance(value, (str, int)):
-            fmt.append(f"{key}={value}")
+            fmt[key] = str(value).lower()
         elif isinstance(value, list):
-            fmt.extend(f"{key}[]={item}" for item in value)
+            for item in value:
+                fmt[f"{key}[]"] = item
         elif isinstance(value, dict):
-            fmt.extend(f"{key}[{subkey}]={subvalue}" for subkey, subvalue in value.items())
+            for subkey, subvalue in value.items():
+                fmt[f"{key}[{subkey}]"] = subvalue
+        else:
+            fmt[key] = value
 
-    return "&".join(fmt)
+    return fmt
 
 
 def get_image_mime_type(data: bytes, /) -> str:
