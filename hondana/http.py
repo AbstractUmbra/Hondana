@@ -908,7 +908,13 @@ class HTTPClient:
     ) -> Response[manga.MangaGroupedReadMarkersResponse]:
         ...
 
-    def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: bool = False):
+    @overload
+    def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: ...) -> Response[manga.MangaReadMarkersResponse]:
+        ...
+
+    def _manga_read_markers(
+        self, manga_ids: list[str], /, *, grouped: bool = False
+    ) -> Response[Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]]:
         if not grouped:
             if len(manga_ids) != 1:
                 raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
