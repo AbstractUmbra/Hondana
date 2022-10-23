@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 from typing_extensions import NotRequired
 
@@ -196,7 +196,6 @@ class MangaRelationAttributesResponse(TypedDict):
     version: int
 
 
-@final
 class MangaResponse(TypedDict):
     """
     id: :class:`str`

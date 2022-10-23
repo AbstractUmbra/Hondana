@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict
 
 from typing_extensions import NotRequired
 
@@ -68,7 +68,6 @@ class CoverAttributesResponse(TypedDict):
     updatedAt: str
 
 
-@final
 class CoverResponse(TypedDict):
     """
     id: :class:`str`
