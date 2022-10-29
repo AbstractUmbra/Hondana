@@ -21,12 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Union
 
 from .utils import _REPORT_REASONS, _StrEnum
 
 
+if TYPE_CHECKING:
+    from typing_extensions import TypeAlias
+
 __all__ = (
-    "ReportReason",
     "ContentRating",
     "PublicationDemographic",
     "CustomListVisibility",
@@ -41,6 +46,7 @@ __all__ = (
     "ScanlationGroupReportReason",
     "MangaReportReason",
     "UserReportReason",
+    "ReportReason",
 )
 
 
@@ -125,18 +131,14 @@ class MangaRelationType(_StrEnum):
     alternate_version = "alternate_version"
 
 
-class ReportReason(_StrEnum):
-    ...
-
-
-class AuthorReportReason(ReportReason):
+class AuthorReportReason(_StrEnum):
     duplicate_entry = _REPORT_REASONS["author"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["author"]["information_to_correct"]
     other = _REPORT_REASONS["author"]["other"]
     troll_entry = _REPORT_REASONS["author"]["troll_entry"]
 
 
-class ChapterReportReason(ReportReason):
+class ChapterReportReason(_StrEnum):
     credit_page_in_the_middle_of_the_chapter = _REPORT_REASONS["chapter"]["credit_page_in_the_middle_of_the_chapter"]
     duplicate_upload_from_same_user_or_group = _REPORT_REASONS["chapter"]["duplicate_upload_from_same_user_or_group"]
     extraneous_political_or_racebaiting_or_offensive_content = _REPORT_REASONS["chapter"][
@@ -160,7 +162,7 @@ class ChapterReportReason(ReportReason):
     watermarked_images = _REPORT_REASONS["chapter"]["watermarked_images"]
 
 
-class ScanlationGroupReportReason(ReportReason):
+class ScanlationGroupReportReason(_StrEnum):
     duplicate_entry = _REPORT_REASONS["scanlation_group"]["duplicate_entry"]
     group_claim_request = _REPORT_REASONS["scanlation_group"]["group_claim_request"]
     inactivity_request = _REPORT_REASONS["scanlation_group"]["inactivity_request"]
@@ -169,14 +171,19 @@ class ScanlationGroupReportReason(ReportReason):
     troll_entry = _REPORT_REASONS["scanlation_group"]["troll_entry"]
 
 
-class MangaReportReason(ReportReason):
+class MangaReportReason(_StrEnum):
     duplicate_entry = _REPORT_REASONS["manga"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["manga"]["information_to_correct"]
     other = _REPORT_REASONS["manga"]["other"]
     troll_entry = _REPORT_REASONS["manga"]["troll_entry"]
 
 
-class UserReportReason(ReportReason):
+class UserReportReason(_StrEnum):
     offensive_username_or_biography_or_avatar = _REPORT_REASONS["user"]["offensive_username_or_biography_or_avatar"]
     other = _REPORT_REASONS["user"]["other"]
     spambot = _REPORT_REASONS["user"]["spambot"]
+
+
+ReportReason: TypeAlias = Union[
+    AuthorReportReason, ChapterReportReason, ScanlationGroupReportReason, MangaReportReason, UserReportReason
+]

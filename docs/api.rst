@@ -439,10 +439,6 @@ in case the strings change in future.
 
         An alternate version to the current manga.
 
-.. class:: ReportReason
-    :canonical: hondana.enums.ReportReason
-
-    A superclass for all Report Reason subclasses.
 
 .. class:: AuthorReportReason
     :canonical: hondana.enums.AuthorReportReason
