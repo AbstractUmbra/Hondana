@@ -45,6 +45,7 @@ from .enums import (
     PublicationDemographic,
     ReadingStatus,
     ReportCategory,
+    ReportReason,
     ReportStatus,
 )
 from .errors import APIException, AuthenticationRequired, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
@@ -2044,8 +2045,11 @@ class HTTPClient:
         *,
         limit: int = 10,
         offset: int = 0,
+        object_id: Optional[str],
+        reason: Optional[ReportReason],
         category: Optional[ReportCategory],
         status: Optional[ReportStatus],
+        order: Optional[ReportListOrderQuery],
         includes: Optional[UserReportIncludes],
     ) -> Response[report.GetUserReportReasonResponse]:
         limit, offset = calculate_limits(limit, offset, max_limit=100)
@@ -2053,6 +2057,12 @@ class HTTPClient:
         route = Route("GET", "/report")
 
         query: dict[str, Any] = {"limit": limit, "offset": offset}
+
+        if object_id:
+            query["objectId"] = object_id
+
+        if reason:
+            query["reasonId"] = reason.value
 
         if category:
             query["category"] = category.value

@@ -58,6 +58,7 @@ from .enums import (
     PublicationDemographic,
     ReadingStatus,
     ReportCategory,
+    ReportReason,
     ReportStatus,
 )
 from .http import HTTPClient
@@ -3645,6 +3646,8 @@ class Client:
         *,
         limit: int = 10,
         offset: int = 0,
+        object_id: Optional[str] = None,
+        reason: Optional[ReportReason] = None,
         category: Optional[ReportCategory] = None,
         status: Optional[ReportStatus] = None,
         order: Optional[ReportListOrderQuery] = None,
@@ -3653,6 +3656,8 @@ class Client:
         data = await self._http._get_reports_current_user(
             limit=limit,
             offset=offset,
+            object_id=object_id,
+            reason=reason,
             category=category,
             status=status,
             order=order,

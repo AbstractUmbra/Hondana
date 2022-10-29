@@ -26,6 +26,7 @@ from .utils import _REPORT_REASONS, _StrEnum
 
 
 __all__ = (
+    "ReportReason",
     "ContentRating",
     "PublicationDemographic",
     "CustomListVisibility",
@@ -124,14 +125,18 @@ class MangaRelationType(_StrEnum):
     alternate_version = "alternate_version"
 
 
-class AuthorReportReason(_StrEnum):
+class ReportReason(_StrEnum):
+    ...
+
+
+class AuthorReportReason(ReportReason):
     duplicate_entry = _REPORT_REASONS["author"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["author"]["information_to_correct"]
     other = _REPORT_REASONS["author"]["other"]
     troll_entry = _REPORT_REASONS["author"]["troll_entry"]
 
 
-class ChapterReportReason(_StrEnum):
+class ChapterReportReason(ReportReason):
     credit_page_in_the_middle_of_the_chapter = _REPORT_REASONS["chapter"]["credit_page_in_the_middle_of_the_chapter"]
     duplicate_upload_from_same_user_or_group = _REPORT_REASONS["chapter"]["duplicate_upload_from_same_user_or_group"]
     extraneous_political_or_racebaiting_or_offensive_content = _REPORT_REASONS["chapter"][
@@ -155,7 +160,7 @@ class ChapterReportReason(_StrEnum):
     watermarked_images = _REPORT_REASONS["chapter"]["watermarked_images"]
 
 
-class ScanlationGroupReportReason(_StrEnum):
+class ScanlationGroupReportReason(ReportReason):
     duplicate_entry = _REPORT_REASONS["scanlation_group"]["duplicate_entry"]
     group_claim_request = _REPORT_REASONS["scanlation_group"]["group_claim_request"]
     inactivity_request = _REPORT_REASONS["scanlation_group"]["inactivity_request"]
@@ -164,14 +169,14 @@ class ScanlationGroupReportReason(_StrEnum):
     troll_entry = _REPORT_REASONS["scanlation_group"]["troll_entry"]
 
 
-class MangaReportReason(_StrEnum):
+class MangaReportReason(ReportReason):
     duplicate_entry = _REPORT_REASONS["manga"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["manga"]["information_to_correct"]
     other = _REPORT_REASONS["manga"]["other"]
     troll_entry = _REPORT_REASONS["manga"]["troll_entry"]
 
 
-class UserReportReason(_StrEnum):
+class UserReportReason(ReportReason):
     offensive_username_or_biography_or_avatar = _REPORT_REASONS["user"]["offensive_username_or_biography_or_avatar"]
     other = _REPORT_REASONS["user"]["other"]
     spambot = _REPORT_REASONS["user"]["spambot"]
