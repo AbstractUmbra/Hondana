@@ -79,6 +79,7 @@ from .query import (
     ScanlatorGroupIncludes,
     ScanlatorGroupListOrderQuery,
     UserListOrderQuery,
+    UserReportIncludes,
 )
 from .report import ReportDetails, UserReport
 from .scanlator_group import ScanlatorGroup
@@ -3647,9 +3648,15 @@ class Client:
         category: Optional[ReportCategory] = None,
         status: Optional[ReportStatus] = None,
         order: Optional[ReportListOrderQuery] = None,
+        includes: Optional[UserReportIncludes] = None,
     ) -> UserReportCollection:
         data = await self._http._get_reports_current_user(
-            limit=limit, offset=offset, category=category, status=status, order=order
+            limit=limit,
+            offset=offset,
+            category=category,
+            status=status,
+            order=order,
+            includes=includes,
         )
 
         reports = [UserReport(self._http, item) for item in data["data"]]

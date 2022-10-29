@@ -136,6 +136,8 @@ Query
 
 .. autoclass:: ScanlatorGroupIncludes
 
+.. autoclass:: UserReportIncludes
+
 .. currentmodule:: hondana
 
 Relationship

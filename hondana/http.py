@@ -84,6 +84,7 @@ if TYPE_CHECKING:
         ScanlatorGroupIncludes,
         ScanlatorGroupListOrderQuery,
         UserListOrderQuery,
+        UserReportIncludes,
     )
     from .tags import QueryTags
     from .types import (
@@ -2045,7 +2046,7 @@ class HTTPClient:
         offset: int = 0,
         category: Optional[ReportCategory],
         status: Optional[ReportStatus],
-        order: Optional[ReportListOrderQuery] = None,
+        includes: Optional[UserReportIncludes],
     ) -> Response[report.GetUserReportReasonResponse]:
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -2061,6 +2062,9 @@ class HTTPClient:
 
         if order:
             query["order"] = order.to_dict()
+
+        if includes:
+            query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
 

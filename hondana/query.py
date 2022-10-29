@@ -573,3 +573,35 @@ class ScanlatorGroupIncludes(_Includes):
             The list of query parameters (pre-PHP formatting).
         """
         return super().to_query()
+
+
+class UserReportIncludes(_Includes):
+    """
+    A helper for generating the ``includes[]`` parameter for queries.
+
+    Parameters
+    -----------
+    user: :class:`bool`
+        Defaults to ``True``. Whether to include user in the relationships.
+    reason: :class:`bool`
+        Defaults to ``True``. Whether to include report in the relationships.
+    """
+
+    __slots__ = (
+        "user",
+        "reason",
+    )
+
+    def __init__(self, *, user: bool = True, reason: bool = True) -> None:
+        self.user: bool = user
+        self.reason: bool = reason
+
+    def to_query(self) -> list[str]:
+        """Returns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
+        return super().to_query()
