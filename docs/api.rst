@@ -436,3 +436,180 @@ in case the strings change in future.
     .. attribute:: alternate_version
 
         An alternate version to the current manga.
+
+.. class:: ReportReason
+    :canonical: hondana.enums.ReportReason
+
+    A superclass for all Report Reason subclasses.
+
+.. class:: AuthorReportReason
+    :canonical: hondana.enums.AuthorReportReason
+
+    Specifies the report reason for author objects.
+
+    .. attribute:: duplicate_entry
+
+        The author is a duplicate entry.
+
+    .. attribute:: information_to_correct
+
+        There is incorrect information in the stored data of this author.
+
+    .. attribute:: other
+
+        Encapsulates misc reporting reasons.
+
+    .. attribute:: troll_entry
+
+        A misleading or intentionally erroneous entry.
+
+.. class:: ChapterReportReason
+    :canonical: hondana.enums.ChapterReportReason
+
+    Specifies the report reason for Chapter objects.
+
+    .. attribute:: credit_page_in_the_middle_of_the_chapter
+
+        The credit page for scan/tl/typeset group is in the middle of the chapter.
+
+    .. attribute:: dupplicate_upload_from_same_user_or_group
+
+        This scanlator group or user has a duplicate upload for this chapter.
+
+    .. attribute:: extraneous_political_or_racebaiting_or_offensive_content
+
+        This chapter contains unnecessary content.
+
+    .. attribute:: fake_or_spam_chapter
+
+        This chapter was created to be fake or spam.
+
+    .. attribute:: group_lock_evasion
+
+        This chapter was uploaded by a group evading a lock on their uploading capabilities.
+
+    .. attribute:: images_not_loading
+
+        This chapter has images that will not load.
+
+    .. attribute:: incorrect_chapter_number
+
+        This chapter's number is incorrect.
+
+    .. attribute:: incorrect_group
+
+        This chapter has an incorrect scanlator group assigned.
+
+    .. attribute:: incorrect_or_duplicate_pages
+
+        This chapter has incorrect or duplicate pages.
+
+    .. attribute:: incorrect_or_missing_chapter_title
+
+        This chapter has an incorrect or missing title.
+
+    .. attribute:: incorrect_or_missing_volume_number
+
+        This chapter has an incorrect or missing volume number.
+
+    .. attribute:: missing_pages
+
+        This chapter has missing pages.
+
+    .. attribute:: naming_rules_broken
+
+        This chapter breaks the naming rules/conventions.
+
+    .. attribute:: official_release_or_raw
+
+        This chapter is from an official release or is a direct raw.
+
+    .. attribute:: other
+
+        Encapsulates miscellaneous report reasons.
+
+    .. attribute:: pages_out_of_order
+
+        This chapter has pages that are out of order.
+
+    .. attribute:: released_before_raws_released
+
+        This chapter was released before the source raw.
+
+    .. attribute:: uploaded_on_wrong_manga
+
+        This chapter has been uploaded on the wrong manga.
+
+    .. attribute:: watermarked_images
+
+        This chapter has watermarked images.
+
+
+.. class:: ScanlationGroupReportReason
+    :canonical: hondana.enums.ScanlationGroupReportReason
+
+    Specifies the report reason for Scanlator Group objects.
+
+    .. attribute:: duplicate_entry
+
+        This scanlator group is a duplicate entry.
+
+    .. attribute:: group_claim_request
+
+        This report is a request to claim this group.
+
+    .. attribute:: inactivity_request
+
+        This report is to notify of group inactivity.
+
+    .. attribute:: information_to_correct
+
+        There is information to correct on this group.
+
+    .. attribute:: other
+
+        Encapsulates miscellaneous report reasons.
+
+    .. attribute:: troll_entry
+
+        This group is a troll creation.
+
+
+.. class:: MangaReportReason
+    :canonical: hondana.enums.MangaReportReason
+
+    Specifies the report reason for Manga objects.
+
+    .. attribute:: duplicate_entry
+
+        This manga is a duplicate entry.
+
+    .. attribute:: information_to_correct
+
+        This manga has information to be corrected.
+
+    .. attribute:: other
+
+        Encapsulates miscellaneous report reasons.
+
+    .. attribute:: troll_entry
+
+        This manga is a troll creation.
+
+
+.. class:: UserReportReason
+    :canonical: hondana.enums.UserReportReason
+
+    Specifies the report reason for User objects.
+
+    .. attribute:: offensive_username_or_biography_or_avatar
+
+        This user has an offensive entry on their public profile.
+
+    .. attribute:: other
+
+        Encapsulates miscellaneous report reasons.
+
+    .. attribute:: spambot
+
+        This user is a spambot.
