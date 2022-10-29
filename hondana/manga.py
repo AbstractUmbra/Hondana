@@ -148,7 +148,7 @@ class Manga:
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title = self._attributes["title"]
-        self._description: LocalizedString = self._attributes["description"] or {}
+        self._description: LocalizedString = self._attributes["description"]
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
         self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version

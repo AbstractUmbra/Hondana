@@ -133,7 +133,7 @@ class Author:
         self.naver: Optional[str] = self._attributes.get("naver")
         self.website: Optional[str] = self._attributes["website"]
         self.version: int = self._attributes["version"]
-        self._biography: Optional[LocalizedString] = self._attributes["biography"] or {}
+        self._biography: Optional[LocalizedString] = self._attributes["biography"]
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")

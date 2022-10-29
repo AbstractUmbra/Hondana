@@ -86,9 +86,7 @@ class Tag:
         )  # TODO: remove this when they have relationships to be in line.
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
-        self._description: LocalizedString = (
-            self._attributes["description"] or {}
-        )  # the `or` here is because PHP json sends an empty array when the object is empty
+        self._description: LocalizedString = self._attributes["description"]
         self.group: str = self._attributes["group"]
         self.version: int = self._attributes["version"]
 
