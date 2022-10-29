@@ -884,7 +884,12 @@ class HTTPClient:
         return self.request(route)
 
     def _get_random_manga(
-        self, *, includes: Optional[MangaIncludes], content_rating: Optional[list[ContentRating]]
+        self,
+        *,
+        includes: Optional[MangaIncludes],
+        content_rating: Optional[list[ContentRating]],
+        included_tags: Optional[QueryTags],
+        excluded_tags: Optional[QueryTags],
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/random")
 
@@ -895,6 +900,14 @@ class HTTPClient:
 
         if content_rating:
             query["contentRating"] = content_rating
+
+        if included_tags:
+            query["includedTags"] = included_tags.tags
+            query["includedTagsMode"] = included_tags.mode
+
+        if excluded_tags:
+            query["excludedTags"] = excluded_tags.tags
+            query["excludedTagsMode"] = excluded_tags.mode
 
         return self.request(route, params=query)
 

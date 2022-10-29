@@ -1225,7 +1225,12 @@ class Client:
         )
 
     async def get_random_manga(
-        self, *, includes: Optional[MangaIncludes] = MangaIncludes(), content_rating: Optional[list[ContentRating]] = None
+        self,
+        *,
+        includes: Optional[MangaIncludes] = MangaIncludes(),
+        content_rating: Optional[list[ContentRating]] = None,
+        included_tags: Optional[QueryTags] = None,
+        excluded_tags: Optional[QueryTags] = None,
     ) -> Manga:
         """|coro|
 
@@ -1238,13 +1243,19 @@ class Client:
             Defaults to all possible reference expansions.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content ratings to filter the random manga by
+        included_tags: Optional[:class:`~hondana.QueryTags`]
+            The tags and search mode to use for inclusion.
+        excluded_tags: Optional[:class:`~hondana.QueryTags`]
+            The tags and search mode to use for exclusion.
 
         Returns
         --------
         :class:`~hondana.Manga`
             The random Manga that was returned.
         """
-        data = await self._http._get_random_manga(includes=includes, content_rating=content_rating)
+        data = await self._http._get_random_manga(
+            includes=includes, content_rating=content_rating, included_tags=included_tags, excluded_tags=excluded_tags
+        )
 
         return Manga(self._http, data["data"])
 
