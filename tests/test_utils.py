@@ -30,29 +30,29 @@ T = TypeVar("T")
 
 
 multidict_one = MultiDict()
-multidict_one["order[publishAt]"] = "desc"
-multidict_one["translatedLanguages[]"] = "en"
-multidict_one["translatedLanguages[]"] = "jp"
+multidict_one.add("order[publishAt]", "desc")
+multidict_one.add("translatedLanguages[]", "en")
+multidict_one.add("translatedLanguages[]", "jp")
 
 multidict_two = MultiDict()
-multidict_two["param[]"] = "a"
-multidict_two["param[]"] = "b"
-multidict_two["param[]"] = "c"
-multidict_two["includes[]"] = "test"
-multidict_two["includes[]"] = "mark"
+multidict_two.add("param[]", "a")
+multidict_two.add("param[]", "b")
+multidict_two.add("param[]", "c")
+multidict_two.add("includes[]", "test")
+multidict_two.add("includes[]", "mark")
 
 multidict_three = MultiDict()
-multidict_three["sorted"] = "true"
-multidict_three["value"] = 1
+multidict_three.add("sorted", "true")
+multidict_three.add("value", 1)
 
 multidict_four = MultiDict()
-multidict_four["sorted[]"] = 1
-multidict_four["sorted[]"] = 2
-multidict_four["includes[]"] = 1
-multidict_four["includes[]"] = 2
-multidict_four["includes[]"] = 3
-multidict_four["createdAt"] = "null"
-multidict_four["value[query]"] = 7
+multidict_four.add("sorted[]", 1)
+multidict_four.add("sorted[]", 2)
+multidict_four.add("includes[]", 1)
+multidict_four.add("includes[]", 2)
+multidict_four.add("includes[]", 3)
+multidict_four.add("createdAt", "null")
+multidict_four.add("value[query]", 7)
 
 
 class TestUtils:

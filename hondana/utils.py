@@ -372,19 +372,19 @@ def php_query_builder(
     fmt = multidict.MultiDict[Union[str, int]]()
     for key, value in obj.items():
         if value is None:
-            fmt[key] = "null"
+            fmt.add(key, "null")
         elif isinstance(value, str):
-            fmt[key] = value
+            fmt.add(key, value)
         elif isinstance(value, bool):
-            fmt[key] = str(value).lower()
+            fmt.add(key, str(value).lower())
         elif isinstance(value, list):
             for item in value:
-                fmt[f"{key}[]"] = item
+                fmt.add(f"{key}[]", item)
         elif isinstance(value, dict):
             for subkey, subvalue in value.items():
-                fmt[f"{key}[{subkey}]"] = subvalue
+                fmt.add(f"{key}[{subkey}]", subvalue)
         else:
-            fmt[key] = value
+            fmt.add(key, value)
 
     return fmt
 
