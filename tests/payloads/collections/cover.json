@@ -3,411 +3,61 @@
     "response": "collection",
     "data": [
         {
-            "id": "fc6362c1-1556-40dd-8c19-abf5b2b823e7",
+            "id": "e797266c-7d8b-486a-af7d-06d60ed9e330",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "2",
-                "fileName": "7c3a2764-92e2-4831-befb-f040e6b03eee.jpg",
+                "volume": "6",
+                "fileName": "44812b3e-bd2c-44c7-a040-fcfdfad78a85.jpg",
                 "locale": "ja",
-                "createdAt": "2022-10-29T14:18:44+00:00",
-                "updatedAt": "2022-10-29T14:18:44+00:00",
+                "createdAt": "2022-10-29T21:00:22+00:00",
+                "updatedAt": "2022-10-29T21:00:22+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "e313280b-68c4-451f-9340-2ae0a764d06d",
+                    "id": "d3f961f6-8ed7-4801-a4cb-79f42890b305",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Mimumu & Shirara - Let's go observe the dragon's penis"
+                            "en": "Tokyo Tribe 2"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u30c9\u30e9\u30b4\u30f3\u306e\u3061\u3093\u3061\u3093\u3092\u898b\u306b\u884c\u3053\u3046"
+                                "ja": "\u30c8\u30a6\u30ad\u30e7\u30a6 \u30c8\u30e9\u30a4\u30d6 \u30c8\u30a5\u30fc"
                             },
                             {
-                                "ja-ro": "Dragon no Chinchin wo Mi ni Ikou"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "mu": "vs6l6wl",
-                            "amz": "https://www.amazon.co.jp/%E3%83%9F%E3%83%A0%E3%83%A0%E3%81%A8%E3%82%B7%E3%83%A9%E3%83%A9%EF%BD%9E%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%81%AE%E3%81%A1%E3%82%93%E3%81%A1%E3%82%93%E3%82%92%E8%A6%8B%E3%81%AB%E8%A1%8C%E3%81%93%E3%81%86%EF%BD%9E-1%E5%B7%BB%E3%80%90%E9%9B%BB%E5%AD%90%E7%89%B9%E5%85%B8%E4%BB%98%E3%81%8D%E3%80%91-%E3%83%90%E3%83%B3%E3%83%81%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E7%AB%AF-ebook/dp/B09GKLFJBH",
-                            "raw": "https://www.shinchosha.co.jp/book/772431/"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "suggestive",
-                        "tags": [
-                            {
-                                "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Animals"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Magic"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-12-08T14:03:12+00:00",
-                        "updatedAt": "2022-10-29T14:28:41+00:00",
-                        "version": 8,
-                        "availableTranslatedLanguages": [
-                            "pt-br"
-                        ],
-                        "latestUploadedChapter": "c365e678-e291-47ef-bee9-32baaa120e45"
-                    }
-                },
-                {
-                    "id": "f73d34f6-f678-4f8b-9dff-5c759d5fc767",
-                    "type": "user",
-                    "attributes": {
-                        "username": "wodniobojca188",
-                        "roles": [
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 11
-                    }
-                }
-            ]
-        },
-        {
-            "id": "8962b41c-c5de-44e3-a575-e4b6f7c7bd8d",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "237d3e9d-577a-4464-9ef0-9db9e07103be.jpg",
-                "locale": "zh",
-                "createdAt": "2022-10-29T14:16:53+00:00",
-                "updatedAt": "2022-10-29T14:16:53+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "bc8eef24-f89f-4ea5-b94a-0d7f03d1cfbf",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Great Level Up"
-                        },
-                        "altTitles": [
-                            {
-                                "zh": "\u6700\u5f3a\u5347\u7ea7"
-                            },
-                            {
-                                "zh-hk": "\u6700\u5f37\u5347\u7d1a"
-                            },
-                            {
-                                "ja-ro": "Zu\u00ec Qi\u00e1ng Sh\u0113ng J\u00ed"
-                            },
-                            {
-                                "vi": "Th\u0103ng C\u1ea5p M\u1ea1nh Nh\u1ea5t"
-                            },
-                            {
-                                "ja": "\u30b2\u30fc\u30e0\u4e16\u754c\u3067\u6700\u5f37\u30ec\u30d9\u30eb\u30a2\u30c3\u30d7"
-                            },
-                            {
-                                "ko": "\uc774\uc138\uacc4\uc758 \ucd5c\uac15\ub808\ubca8\uc5c5 \uba54\uc778\ud398\uc774\uc9c0"
+                                "en": "Tokyo Tribes"
                             }
                         ],
                         "description": {
-                            "en": "With the system in hand, the world is my oyster! I want the loveliest women, the strongest powers, the noblest titles! I shall be the greatest existence in the universe!"
+                            "en": "Rival gangs from various Tokyo barrios battle over turf, leaving many a foot soldier bloodied in the violent clashes. But when the heat between two of the clans waxes personal, a bitter rivalry explodes into all-out warfare.   \n  \nManga-ka Santa Inoue's hard-hitting, fantastical tale of Tokyo street thugs battling it out in the concrete sprawl of Japan's capital raises the bar for manga storytelling, transcending genres and conventions."
                         },
                         "isLocked": false,
                         "links": {
-                            "mu": "t9l4sq9",
-                            "raw": "https://ac.qq.com/Comic/comicInfo/id/640946",
-                            "engtl": "https://www.bilibilicomics.com/detail/mc650?utm_source=mgd&utm_medium=uploader"
+                            "al": "31140",
+                            "ap": "tokyo-tribes",
+                            "kt": "2451",
+                            "mu": "11375",
+                            "mal": "1140"
                         },
-                        "originalLanguage": "zh",
-                        "lastVolume": "",
+                        "originalLanguage": "ja",
+                        "lastVolume": "12",
                         "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": null,
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 1998,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
+                                        "en": "Thriller"
                                     },
                                     "description": [],
                                     "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-04-22T03:13:48+00:00",
-                        "updatedAt": "2022-10-29T14:16:54+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "99743dff-0acd-437d-a672-47f6fbdf9d14"
-                    }
-                },
-                {
-                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
-                    "type": "user",
-                    "attributes": {
-                        "username": "astromath",
-                        "roles": [
-                            "ROLE_CONTRIBUTOR"
-                        ],
-                        "version": 378
-                    }
-                }
-            ]
-        },
-        {
-            "id": "8009ca9d-edad-4b9d-ae63-cfd41ac1b35a",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "5",
-                "fileName": "2c263926-bb2b-4f73-9727-4322be517d77.jpg",
-                "locale": "ja",
-                "createdAt": "2022-10-29T13:55:47+00:00",
-                "updatedAt": "2022-10-29T13:55:47+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "ab30c57c-ce2e-4c3b-b2a4-fea7b2f02ca1",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "The Fable - The Second Contact"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u30b6\u30fb\u30d5\u30a1\u30d6\u30eb The second contact"
-                            }
-                        ],
-                        "description": [],
-                        "isLocked": false,
-                        "links": {
-                            "al": "135356",
-                            "ap": "the-fable-the-second-contact",
-                            "bw": "series/326496",
-                            "kt": "the-fable-the-second-contact",
-                            "mu": "185856",
-                            "amz": "https://www.amazon.co.jp/gp/product/B09R92Q847",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/663850/",
-                            "mal": "142997",
-                            "raw": "https://magazine.yanmaga.jp/c/the_fable_2nd/"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-01-05T16:14:46+00:00",
-                        "updatedAt": "2022-10-29T13:55:47+00:00",
-                        "version": 12,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "6d7d7d1e-f0a0-4520-8c52-1f4b1259befe"
-                    }
-                },
-                {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Dreik",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 475
-                    }
-                }
-            ]
-        },
-        {
-            "id": "1d777334-0c1c-46b2-a7e4-d468c7259ee6",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "93659d68-7e32-4504-92c9-035ab4a68633.jpg",
-                "locale": "ja",
-                "createdAt": "2022-10-29T13:53:56+00:00",
-                "updatedAt": "2022-10-29T13:53:56+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "ebfbf002-13f1-4f0f-b06f-2894e4f58fe1",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "ja": "Majo to Kishi wa Iki nokoru"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "The Witch and Knight Will Probably Survive"
-                            },
-                            {
-                                "ja": "\u9b54\u5973\u3068\u9a0e\u58eb\u306f\u751f\u304d\u306e\u3053\u308b"
-                            },
-                            {
-                                "ru": "\u0412\u0435\u0434\u044c\u043c\u0430 \u0438 \u0440\u044b\u0446\u0430\u0440\u044c \u0432\u044b\u0436\u0438\u0432\u0430\u044e\u0442"
-                            },
-                            {
-                                "id": "Penyihir dan Ksatria Mungkin Akan Bertahan"
-                            }
-                        ],
-                        "description": {
-                            "en": "A fantasy about a knight who lost everything and his story of survival strategy and territory restoration!\r\n\r\nOne day, when the lord's son, Agredios, came back to the village after a long hunt, the sounds of villagers bustling and their laughter were all gone. After learning that the \"witch\" that lives in the \"Forbidden Forest\" was the cause of their demise, his despair turned to rage and he stormed into the forest for revenge alone.",
-                            "id": "Sebuah fantasi tentang seorang ksatria yang kehilangan segalanya dan kisahnya tentang strategi bertahan hidup dan pemulihan wilayah!\n\nSuatu hari, ketika putra tuan, Agredios, kembali ke desa setelah berburu panjang, suara penduduk desa yang ramai dan tawa mereka hilang. Setelah mengetahui bahwa \"penyihir\" yang tinggal di \"Hutan Terlarang\" adalah penyebab kematian mereka, keputusasaannya berubah menjadi kemarahan dan dia menyerbu ke hutan untuk membalas dendam sendirian.",
-                            "ru": "\u0424\u044d\u043d\u0442\u0435\u0437\u0438 \u043e \u0440\u044b\u0446\u0430\u0440\u0435, \u043f\u043e\u0442\u0435\u0440\u044f\u0432\u0448\u0435\u043c \u0432\u0441\u0451, \u0438 \u0435\u0433\u043e \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u043e \u0441\u0442\u0440\u0430\u0442\u0435\u0433\u0438\u0438 \u0432\u044b\u0436\u0438\u0432\u0430\u043d\u0438\u044f \u0438 \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0438 \u0442\u0435\u0440\u0440\u0438\u0442\u043e\u0440\u0438\u0438!\n\n\u041e\u0434\u043d\u0430\u0436\u0434\u044b, \u043a\u043e\u0433\u0434\u0430 \u0441\u044b\u043d \u043b\u043e\u0440\u0434\u0430, \u0410\u0433\u0440\u0435\u0434\u0438\u043e\u0441, \u0432\u0435\u0440\u043d\u0443\u043b\u0441\u044f \u0432 \u0434\u0435\u0440\u0435\u0432\u043d\u044e \u043f\u043e\u0441\u043b\u0435 \u0434\u043e\u043b\u0433\u043e\u0439 \u043e\u0445\u043e\u0442\u044b, \u0437\u0432\u0443\u043a\u0438 \u0441\u0443\u0435\u0442\u044b \u0438 \u0441\u043c\u0435\u0445 \u0436\u0438\u0442\u0435\u043b\u0435\u0439 \u0434\u0435\u0440\u0435\u0432\u043d\u0438 \u0438\u0441\u0447\u0435\u0437\u043b\u0438. \u0423\u0437\u043d\u0430\u0432, \u0447\u0442\u043e \u043f\u0440\u0438\u0447\u0438\u043d\u043e\u0439 \u0438\u0445 \u0433\u0438\u0431\u0435\u043b\u0438 \u0441\u0442\u0430\u043b\u0430 \u201c\u0432\u0435\u0434\u044c\u043c\u0430\u201d, \u0436\u0438\u0432\u0443\u0449\u0430\u044f \u0432 \u201c\u0417\u0430\u043f\u0440\u0435\u0442\u043d\u043e\u043c \u043b\u0435\u0441\u0443\u201d, \u0435\u0433\u043e \u043e\u0442\u0447\u0430\u044f\u043d\u0438\u0435 \u043f\u0435\u0440\u0435\u0440\u043e\u0441\u043b\u043e \u0432 \u044f\u0440\u043e\u0441\u0442\u044c, \u0438 \u043e\u043d \u0432 \u043e\u0434\u0438\u043d\u043e\u0447\u043a\u0443 \u0432\u043e\u0440\u0432\u0430\u043b\u0441\u044f \u0432 \u043b\u0435\u0441, \u0447\u0442\u043e\u0431\u044b \u043e\u0442\u043e\u043c\u0441\u0442\u0438\u0442\u044c."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "144619",
-                            "bw": "series/339441/list",
-                            "mu": "185772",
-                            "amz": "https://www.amazon.co.jp/gp/product/B09QW3F8WN",
-                            "mal": "143892",
-                            "raw": "https://web-ace.jp/youngaceup/contents/1000178"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "suggestive",
-                        "tags": [
-                            {
-                                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Monsters"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -426,11 +76,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                                "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Psychological"
+                                        "en": "Crime"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -439,11 +89,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
+                                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Survival"
+                                        "en": "Mafia"
                                     },
                                     "description": [],
                                     "group": "theme",
@@ -452,14 +102,14 @@
                                 "relationships": []
                             },
                             {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Adventure"
+                                        "en": "Sexual Violence"
                                     },
                                     "description": [],
-                                    "group": "genre",
+                                    "group": "content",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -478,11 +128,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Fantasy"
+                                        "en": "Drama"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -491,27 +141,14 @@
                                 "relationships": []
                             },
                             {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Supernatural"
+                                        "en": "Delinquents"
                                     },
                                     "description": [],
                                     "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Tragedy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -519,77 +156,83 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-10-19T11:36:15+00:00",
-                        "updatedAt": "2022-10-29T13:53:56+00:00",
-                        "version": 12,
+                        "createdAt": "2018-09-01T08:29:42+00:00",
+                        "updatedAt": "2022-10-29T21:00:23+00:00",
+                        "version": 8,
                         "availableTranslatedLanguages": [
-                            "ru",
                             "en"
                         ],
-                        "latestUploadedChapter": "666659c8-4fa5-4b4a-bc6a-85d0370a7713"
+                        "latestUploadedChapter": "09e41052-a5f6-4b4a-b8bd-feeeedfd5a5e"
                     }
                 },
                 {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "id": "ee405e2c-a246-409b-ab03-ce3a5c9a78e8",
                     "type": "user",
                     "attributes": {
-                        "username": "Dreik",
+                        "username": "MrGrem",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 475
+                        "version": 11
                     }
                 }
             ]
         },
         {
-            "id": "cb49cd3b-8ecd-46de-8461-f6cdc82a6900",
+            "id": "96a689d6-1420-4e54-8263-eb3fa2683bc7",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "4",
-                "fileName": "35485ca5-4a26-4611-9bd5-5dfab51628d9.jpg",
+                "fileName": "bc04271e-1f4a-46b7-819f-c446a976f031.jpg",
                 "locale": "ja",
-                "createdAt": "2022-10-29T13:53:37+00:00",
-                "updatedAt": "2022-10-29T13:53:37+00:00",
+                "createdAt": "2022-10-29T20:53:30+00:00",
+                "updatedAt": "2022-10-29T20:53:30+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "7640f402-47ab-4d04-bdcd-7e9ea0d040f4",
+                    "id": "d3f961f6-8ed7-4801-a4cb-79f42890b305",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Tsuwamonogatari"
+                            "en": "Tokyo Tribe 2"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u30c4\u30ef\u30e2\u30ce\u30ac\u30bf\u30ea"
+                                "ja": "\u30c8\u30a6\u30ad\u30e7\u30a6 \u30c8\u30e9\u30a4\u30d6 \u30c8\u30a5\u30fc"
+                            },
+                            {
+                                "en": "Tokyo Tribes"
                             }
                         ],
-                        "description": [],
+                        "description": {
+                            "en": "Rival gangs from various Tokyo barrios battle over turf, leaving many a foot soldier bloodied in the violent clashes. But when the heat between two of the clans waxes personal, a bitter rivalry explodes into all-out warfare.   \n  \nManga-ka Santa Inoue's hard-hitting, fantastical tale of Tokyo street thugs battling it out in the concrete sprawl of Japan's capital raises the bar for manga storytelling, transcending genres and conventions."
+                        },
                         "isLocked": false,
                         "links": {
-                            "bw": "series/354267/list",
-                            "kt": "tsuwamonogatari",
-                            "mal": "142201",
-                            "raw": "https://yanmaga.jp/comics/%E3%83%84%E3%83%AF%E3%83%A2%E3%83%8E%E3%82%AC%E3%82%BF%E3%83%AA"
+                            "al": "31140",
+                            "ap": "tokyo-tribes",
+                            "kt": "2451",
+                            "mu": "11375",
+                            "mal": "1140"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": "",
+                        "lastVolume": "12",
                         "lastChapter": "",
                         "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2021,
+                        "status": "completed",
+                        "year": 1998,
                         "contentRating": "safe",
                         "tags": [
                             {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Historical"
+                                        "en": "Thriller"
                                     },
                                     "description": [],
                                     "group": "genre",
@@ -611,11 +254,76 @@
                                 "relationships": []
                             },
                             {
-                                "id": "81183756-1453-4c81-aa9e-f6e1b63be016",
+                                "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Samurai"
+                                        "en": "Crime"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Mafia"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gore"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
                                     },
                                     "description": [],
                                     "group": "theme",
@@ -626,23 +334,560 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2021-12-05T08:27:10+00:00",
-                        "updatedAt": "2022-10-29T13:53:38+00:00",
-                        "version": 9,
-                        "availableTranslatedLanguages": [],
-                        "latestUploadedChapter": null
+                        "createdAt": "2018-09-01T08:29:42+00:00",
+                        "updatedAt": "2022-10-29T21:00:23+00:00",
+                        "version": 8,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "09e41052-a5f6-4b4a-b8bd-feeeedfd5a5e"
                     }
                 },
                 {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
+                    "id": "ee405e2c-a246-409b-ab03-ce3a5c9a78e8",
                     "type": "user",
                     "attributes": {
-                        "username": "Dreik",
+                        "username": "MrGrem",
                         "roles": [
                             "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 475
+                        "version": 11
+                    }
+                }
+            ]
+        },
+        {
+            "id": "466f4913-a7d5-4c8a-9f40-80422bd5f5e0",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "8",
+                "fileName": "2ffebb4a-8b84-433e-b1af-81db2e826a91.jpg",
+                "locale": "ja",
+                "createdAt": "2022-10-29T20:53:30+00:00",
+                "updatedAt": "2022-10-29T20:53:30+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d3f961f6-8ed7-4801-a4cb-79f42890b305",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Tokyo Tribe 2"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u30c8\u30a6\u30ad\u30e7\u30a6 \u30c8\u30e9\u30a4\u30d6 \u30c8\u30a5\u30fc"
+                            },
+                            {
+                                "en": "Tokyo Tribes"
+                            }
+                        ],
+                        "description": {
+                            "en": "Rival gangs from various Tokyo barrios battle over turf, leaving many a foot soldier bloodied in the violent clashes. But when the heat between two of the clans waxes personal, a bitter rivalry explodes into all-out warfare.   \n  \nManga-ka Santa Inoue's hard-hitting, fantastical tale of Tokyo street thugs battling it out in the concrete sprawl of Japan's capital raises the bar for manga storytelling, transcending genres and conventions."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "31140",
+                            "ap": "tokyo-tribes",
+                            "kt": "2451",
+                            "mu": "11375",
+                            "mal": "1140"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "12",
+                        "lastChapter": "",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 1998,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Thriller"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crime"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Mafia"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gore"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-09-01T08:29:42+00:00",
+                        "updatedAt": "2022-10-29T21:00:23+00:00",
+                        "version": 8,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "09e41052-a5f6-4b4a-b8bd-feeeedfd5a5e"
+                    }
+                },
+                {
+                    "id": "ee405e2c-a246-409b-ab03-ce3a5c9a78e8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "MrGrem",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 11
+                    }
+                }
+            ]
+        },
+        {
+            "id": "d1e1e5bc-d273-4512-97dd-8bcd8778c98a",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "2",
+                "fileName": "ab51e0c3-8251-46e5-b676-1027feb7c4fc.jpg",
+                "locale": "ja",
+                "createdAt": "2022-10-29T20:53:30+00:00",
+                "updatedAt": "2022-10-29T20:53:30+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d3f961f6-8ed7-4801-a4cb-79f42890b305",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Tokyo Tribe 2"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u30c8\u30a6\u30ad\u30e7\u30a6 \u30c8\u30e9\u30a4\u30d6 \u30c8\u30a5\u30fc"
+                            },
+                            {
+                                "en": "Tokyo Tribes"
+                            }
+                        ],
+                        "description": {
+                            "en": "Rival gangs from various Tokyo barrios battle over turf, leaving many a foot soldier bloodied in the violent clashes. But when the heat between two of the clans waxes personal, a bitter rivalry explodes into all-out warfare.   \n  \nManga-ka Santa Inoue's hard-hitting, fantastical tale of Tokyo street thugs battling it out in the concrete sprawl of Japan's capital raises the bar for manga storytelling, transcending genres and conventions."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "31140",
+                            "ap": "tokyo-tribes",
+                            "kt": "2451",
+                            "mu": "11375",
+                            "mal": "1140"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "12",
+                        "lastChapter": "",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 1998,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Thriller"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crime"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Mafia"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gore"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-09-01T08:29:42+00:00",
+                        "updatedAt": "2022-10-29T21:00:23+00:00",
+                        "version": 8,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "09e41052-a5f6-4b4a-b8bd-feeeedfd5a5e"
+                    }
+                },
+                {
+                    "id": "ee405e2c-a246-409b-ab03-ce3a5c9a78e8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "MrGrem",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 11
+                    }
+                }
+            ]
+        },
+        {
+            "id": "37c6d219-7c23-4c85-b5ae-1c639b1915b8",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "12",
+                "fileName": "4055411a-688a-4035-8494-267c85f42dc9.jpg",
+                "locale": "ja",
+                "createdAt": "2022-10-29T20:53:29+00:00",
+                "updatedAt": "2022-10-29T20:53:29+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "d3f961f6-8ed7-4801-a4cb-79f42890b305",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Tokyo Tribe 2"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u30c8\u30a6\u30ad\u30e7\u30a6 \u30c8\u30e9\u30a4\u30d6 \u30c8\u30a5\u30fc"
+                            },
+                            {
+                                "en": "Tokyo Tribes"
+                            }
+                        ],
+                        "description": {
+                            "en": "Rival gangs from various Tokyo barrios battle over turf, leaving many a foot soldier bloodied in the violent clashes. But when the heat between two of the clans waxes personal, a bitter rivalry explodes into all-out warfare.   \n  \nManga-ka Santa Inoue's hard-hitting, fantastical tale of Tokyo street thugs battling it out in the concrete sprawl of Japan's capital raises the bar for manga storytelling, transcending genres and conventions."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "al": "31140",
+                            "ap": "tokyo-tribes",
+                            "kt": "2451",
+                            "mu": "11375",
+                            "mal": "1140"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "12",
+                        "lastChapter": "",
+                        "publicationDemographic": "seinen",
+                        "status": "completed",
+                        "year": 1998,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "07251805-a27e-4d59-b488-f0bfbec15168",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Thriller"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Action"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Crime"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Mafia"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gore"
+                                    },
+                                    "description": [],
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": [],
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
+                                    },
+                                    "description": [],
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2018-09-01T08:29:42+00:00",
+                        "updatedAt": "2022-10-29T21:00:23+00:00",
+                        "version": 8,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "09e41052-a5f6-4b4a-b8bd-feeeedfd5a5e"
+                    }
+                },
+                {
+                    "id": "ee405e2c-a246-409b-ab03-ce3a5c9a78e8",
+                    "type": "user",
+                    "attributes": {
+                        "username": "MrGrem",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 11
                     }
                 }
             ]
@@ -650,5 +895,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 157673
+    "total": 157694
 }
