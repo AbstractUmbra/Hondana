@@ -70,8 +70,8 @@
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
                 "createdAt": "2018-01-18T23:44:45+00:00",
-                "updatedAt": "2022-09-26T10:51:02+00:00",
-                "version": 91,
+                "updatedAt": "2022-10-23T10:46:38+00:00",
+                "version": 95,
                 "availableTranslatedLanguages": [
                     "en",
                     "id",
@@ -90,7 +90,7 @@
                     "pl",
                     "ru"
                 ],
-                "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
             },
             "relationships": [
                 {
@@ -256,8 +256,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-09-26T10:51:02+00:00",
-                        "version": 91,
+                        "updatedAt": "2022-10-23T10:46:38+00:00",
+                        "version": 95,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -276,7 +276,7 @@
                             "pl",
                             "ru"
                         ],
-                        "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                        "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
                     }
                 },
                 {
@@ -348,8 +348,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-09-26T10:51:02+00:00",
-                        "version": 91,
+                        "updatedAt": "2022-10-23T10:46:38+00:00",
+                        "version": 95,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -368,7 +368,7 @@
                             "pl",
                             "ru"
                         ],
-                        "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                        "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
                     }
                 },
                 {
@@ -440,8 +440,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-09-26T10:51:02+00:00",
-                        "version": 91,
+                        "updatedAt": "2022-10-23T10:46:38+00:00",
+                        "version": 95,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -460,7 +460,7 @@
                             "pl",
                             "ru"
                         ],
-                        "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                        "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
                     }
                 },
                 {
@@ -532,8 +532,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-09-26T10:51:02+00:00",
-                        "version": 91,
+                        "updatedAt": "2022-10-23T10:46:38+00:00",
+                        "version": 95,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -552,7 +552,7 @@
                             "pl",
                             "ru"
                         ],
-                        "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                        "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
                     }
                 },
                 {
@@ -624,8 +624,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-09-26T10:51:02+00:00",
-                        "version": 91,
+                        "updatedAt": "2022-10-23T10:46:38+00:00",
+                        "version": 95,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -644,77 +644,77 @@
                             "pl",
                             "ru"
                         ],
-                        "latestUploadedChapter": "8f32fa09-593b-49d4-ae23-229cee63f005"
+                        "latestUploadedChapter": "20030422-5843-44c8-ae53-c6ede559b065"
                     }
                 }
             ]
         },
         {
-            "id": "12983982-9242-4acd-b02f-1e4772f1a358",
+            "id": "792e28fb-27be-425d-b92a-64e2d5474657",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Cooking Wizard"
+                    "en": "Akane Banashi"
                 },
                 "altTitles": [
                     {
-                        "ko": "\uc694\ub9ac\ud558\ub294 \ub9c8\ubc95\uc0ac"
+                        "ja-ro": "Akane-banashi"
                     },
                     {
-                        "en": "The Cooking Wizard"
+                        "ja-ro": "Akanebanashi"
+                    },
+                    {
+                        "en": "Akane Story"
+                    },
+                    {
+                        "ja": "\u3042\u304b\u306d\u567a"
+                    },
+                    {
+                        "ru": "\u0421\u043a\u0430\u0437\u0430\u043d\u0438\u0435 \u043e\u0431 \u0410\u043a\u0430\u043d\u044d"
+                    },
+                    {
+                        "es-la": "El relato de Akane"
+                    },
+                    {
+                        "fr": "Le rakugo d'Akane"
                     }
                 ],
                 "description": {
-                    "en": "A food-loving tattooist, YooJung. After losing consciousness due to a sudden accident she opens her eyes to find herself possessing \u2018Sylvia\u2019, a character from the novel she read. In addition, she happens to meet \u2018Felix\u2019, the hero of the novel, who, due to the abuse of his stepmother, suffers from anorexia and will soon turn the continent into blood. In order to eat more delicious food, to cook more easily, Sylvia inscribes magic circles on to her body. The new magic circles that are born through her fingertips bring a new breeze to the continent where magic-beasts are rampant."
+                    "en": "Rakugo--the ultimate form of storytelling, where everything in a story is expressed with just your body and words. Shinta and his daughter Akane have been seduced by this wonderful form of classical entertainment. Having observed her father strive to pass the shin'uchi rakugo test, Akane will take her own steps into this unique world!",
+                    "fr": "Shinta s'est perfectionn\u00e9 13 ans durant afin d'atteindre le statut de Shin'uchi, le plus haut rang des rakugo-ka. Mais malgr\u00e9 sa tr\u00e8s bonne performance lors de l'examen de passage, le juge de l'\u00e9preuve, l'\u00e9m\u00e9rite Ma\u00eetre Arakawa Issho, a d\u00e9cid\u00e9 de renvoyer de l'\u00e9cole Arakawa l'ensemble des participants sans donner davantage d'explication ! Ainsi s'arr\u00eata nette la carri\u00e8re de Shinta, qui avait tant sacrifi\u00e9 pour accomplir son r\u00eave\u2026\nMais Akane, la fille de Shinta qui admirait son p\u00e8re et son rakugo plus que tout, ne compte pas en rester l\u00e0 !",
+                    "pt-br": "Rakugo - a forma perfeita de contar hist\u00f3rias, na qual tudo na hist\u00f3ria \u00e9 expresso apenas com seu corpo e palavras. Shinta e sua filha, Akane, foram seduzidos por essa maravilhosa forma cl\u00e1ssica de entretenimento. Observando seu pai treinar para passar no teste de Shin\u2019uchi, Akane avan\u00e7a neste mundo \u00fanico."
                 },
                 "isLocked": false,
                 "links": {
-                    "mu": "d3vapk7",
-                    "raw": "https://page.kakao.com/content/60304859"
+                    "al": "144866",
+                    "ap": "akane-banashi",
+                    "bw": "series/355453",
+                    "kt": "Akanebanashi",
+                    "mu": "196519",
+                    "amz": "https://www.amazon.co.jp/-/en/\u672b\u6c38\u88d5\u6a39-ebook/dp/B09YTXVKY2/",
+                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2737022",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/702834/",
+                    "mal": "144034",
+                    "raw": "https://shonenjumpplus.com/episode/3269754496765608426",
+                    "engtl": "https://mangaplus.shueisha.co.jp/titles/100185"
                 },
-                "originalLanguage": "ko",
+                "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "shoujo",
+                "publicationDemographic": "shounen",
                 "status": "ongoing",
                 "year": 2022,
                 "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Long Strip"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
+                                "en": "Comedy"
                             },
                             "description": [],
                             "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Magic"
-                            },
-                            "description": [],
-                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
@@ -731,79 +731,30 @@
                             "version": 1
                         },
                         "relationships": []
-                    },
-                    {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Fantasy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "ea2bc92d-1c26-4930-9b7c-d5c0dc1b6869",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Cooking"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adaptation"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Full Color"
-                            },
-                            "description": [],
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
                     }
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-10-07T12:09:07+00:00",
-                "updatedAt": "2022-10-07T12:09:27+00:00",
-                "version": 2,
+                "createdAt": "2022-02-10T22:38:47+00:00",
+                "updatedAt": "2022-09-30T19:33:45+00:00",
+                "version": 23,
                 "availableTranslatedLanguages": [
-                    "en"
+                    "fr",
+                    "es-la",
+                    "pt-br",
+                    "it"
                 ],
-                "latestUploadedChapter": "3f7ac5b2-6639-4355-8afd-3f5b65aa0482"
+                "latestUploadedChapter": "6a45be2f-9535-4de7-8224-41f50d564d9b"
             },
             "relationships": [
                 {
-                    "id": "13e0aa06-16a8-41ba-b16d-61104adfa28a",
+                    "id": "2424c3d6-3966-406f-ada9-dd58e89f43bf",
                     "type": "author",
                     "attributes": {
-                        "name": "Ppili Ppala",
+                        "name": "Yuki Suenaga",
                         "imageUrl": null,
                         "biography": [],
-                        "twitter": null,
+                        "twitter": "https://twitter.com/scenesevent",
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -816,16 +767,16 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2022-10-07T12:07:14+00:00",
-                        "updatedAt": "2022-10-07T12:07:14+00:00",
-                        "version": 1
+                        "createdAt": "2022-02-10T22:35:08+00:00",
+                        "updatedAt": "2022-07-08T16:44:52+00:00",
+                        "version": 2
                     }
                 },
                 {
-                    "id": "99d2c1e7-e964-4b70-8a69-d58c5ccf6d06",
-                    "type": "author",
+                    "id": "9dabf495-16d0-452a-8bb1-f3052a97f1f0",
+                    "type": "artist",
                     "attributes": {
-                        "name": "Purple Lemon",
+                        "name": "Moue Takamasa",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -847,111 +798,57 @@
                     }
                 },
                 {
-                    "id": "3b8ac6e9-0d40-47c9-ac41-7d1f1c193457",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Dahan",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-10-07T12:07:30+00:00",
-                        "updatedAt": "2022-10-07T12:07:30+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "72496645-66d2-4d30-8f4c-6949952d48db",
+                    "id": "85e4ddbb-9dce-4c74-aebf-d79100055cf1",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": "1",
-                        "fileName": "860ce686-373d-47c4-acb8-32b842a2ce79.png",
-                        "locale": "ko",
-                        "createdAt": "2022-10-07T12:09:12+00:00",
-                        "updatedAt": "2022-10-07T12:09:12+00:00",
+                        "volume": "3",
+                        "fileName": "a5240cd2-f879-4270-8724-c81137cf63bc.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-09-30T19:33:44+00:00",
+                        "updatedAt": "2022-09-30T19:33:44+00:00",
                         "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "de471fb4-80d0-406f-a5e3-1bfa88a15136",
+            "id": "16a9b131-70af-479e-a0bb-02e1518bc9c3",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Meng Shi Zai Shang"
+                    "en": "Childhood Friends Who Notice How Much They've Changed"
                 },
                 "altTitles": [
                     {
-                        "en": "The Distinguished Cute Master"
+                        "ja": "\u304a\u4e92\u3044\u3081\u3063\u3061\u3083\u5909\u308f\u3063\u3061\u3083\u3063\u3066\u610f\u8b58\u3057\u3061\u3083\u3046\u5e7c\u99b4\u67d3"
                     },
                     {
-                        "zh": "\u840c\u5e08\u5728\u4e0a"
+                        "ja-ro": "Otagai Meccha Kawacchatte Ishiki shichau Osananajimi"
+                    },
+                    {
+                        "en": "Childhood Friends Who Are Too Conscious Of Each Other's Changes"
                     }
                 ],
-                "description": {
-                    "en": "Yuan Chu transmigrated as the opposing boss in the novel, but she was wiped out by the male lead Ye Chen Yuan. Fortunately, she reincarnates once more, but back to the past, when Yuan was still young! Looking at the pitifully weak Little Yuan, she is troubled by a dilemma. Should she: 1. kill him, or 2. raise him up and openly ask for treasures from him. However, since she wants to get all sorts of treasures from him, she chooses the second option. Things don't always work out though, as she accidentally raises a sheep up to be a big bad wolf.   \n  \nMaster? Want treasure? Let's cultivate together, but alone, just us two, then."
-                },
+                "description": [],
                 "isLocked": false,
                 "links": {
-                    "al": "108498",
-                    "ap": "the-distinguished-cute-master",
-                    "mu": "152894",
-                    "nu": "the-distinguished-cute-master",
-                    "raw": "https://ac.qq.com/Comic/comicInfo/id/638010"
+                    "raw": "https://twitter.com/yakitomahawk/status/1506831277781315586"
                 },
-                "originalLanguage": "zh",
+                "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "shoujo",
-                "status": "ongoing",
-                "year": null,
+                "publicationDemographic": null,
+                "status": "completed",
+                "year": 2022,
                 "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
+                        "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Reincarnation"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Action"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Long Strip"
+                                "en": "Oneshot"
                             },
                             "description": [],
                             "group": "format",
@@ -965,58 +862,6 @@
                         "attributes": {
                             "name": {
                                 "en": "Romance"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Martial Arts"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Isekai"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Fantasy"
                             },
                             "description": [],
                             "group": "genre",
@@ -1038,14 +883,14 @@
                         "relationships": []
                     },
                     {
-                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Full Color"
+                                "en": "Slice of Life"
                             },
                             "description": [],
-                            "group": "format",
+                            "group": "genre",
                             "version": 1
                         },
                         "relationships": []
@@ -1053,302 +898,270 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2019-10-24T22:31:15+00:00",
-                "updatedAt": "2022-01-25T09:54:43+00:00",
-                "version": 4,
+                "createdAt": "2022-03-24T05:06:33+00:00",
+                "updatedAt": "2022-03-24T17:42:34+00:00",
+                "version": 5,
                 "availableTranslatedLanguages": [
+                    "id",
                     "en",
-                    "pt-br",
-                    "fr",
-                    "id"
+                    "fr"
                 ],
-                "latestUploadedChapter": "abb77cac-3aa2-4eda-bcee-3a2c4516fa5b"
+                "latestUploadedChapter": "af165b81-8c3b-4468-a820-4912ac5e1006"
             },
             "relationships": [
                 {
-                    "id": "e6d0e089-9b09-4aaf-8d65-4d0dcb6482c2",
+                    "id": "16f4a4f1-0613-4ee8-91d0-e58b90622d29",
                     "type": "author",
                     "attributes": {
-                        "name": "Big Demon King Man Hua",
+                        "name": "Yaki Tomato",
                         "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
+                        "biography": {
+                            "ja": "\u306a\u3093\u304b\u3044\u3061\u3083\u3044\u3061\u3083\u3057\u3066\u308b\u6f2b\u753b\u3092\u63cf\u304d\u307e\u3059\u3002"
+                        },
+                        "twitter": "https://twitter.com/yakitomahawk",
+                        "pixiv": "https://www.pixiv.net/en/users/13651304",
                         "melonBook": null,
-                        "fanBox": null,
+                        "fanBox": "https://yakitoma.fanbox.cc/",
                         "booth": null,
                         "nicoVideo": null,
                         "skeb": null,
-                        "fantia": null,
+                        "fantia": "https://fantia.jp/fanclubs/105571",
                         "tumblr": null,
-                        "youtube": null,
+                        "youtube": "https://www.youtube.com/channel/UCDrMMxxPcKbNIs03MVVYlMQ",
                         "weibo": null,
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
+                        "updatedAt": "2022-10-01T19:20:28+00:00",
+                        "version": 8
                     }
                 },
                 {
-                    "id": "1152dce2-47d2-4221-8fc4-a8b0a97ad543",
+                    "id": "16f4a4f1-0613-4ee8-91d0-e58b90622d29",
                     "type": "artist",
                     "attributes": {
-                        "name": "Company",
+                        "name": "Yaki Tomato",
                         "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
+                        "biography": {
+                            "ja": "\u306a\u3093\u304b\u3044\u3061\u3083\u3044\u3061\u3083\u3057\u3066\u308b\u6f2b\u753b\u3092\u63cf\u304d\u307e\u3059\u3002"
+                        },
+                        "twitter": "https://twitter.com/yakitomahawk",
+                        "pixiv": "https://www.pixiv.net/en/users/13651304",
                         "melonBook": null,
-                        "fanBox": null,
+                        "fanBox": "https://yakitoma.fanbox.cc/",
                         "booth": null,
                         "nicoVideo": null,
                         "skeb": null,
-                        "fantia": null,
+                        "fantia": "https://fantia.jp/fanclubs/105571",
                         "tumblr": null,
-                        "youtube": null,
+                        "youtube": "https://www.youtube.com/channel/UCDrMMxxPcKbNIs03MVVYlMQ",
                         "weibo": null,
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
+                        "updatedAt": "2022-10-01T19:20:28+00:00",
+                        "version": 8
                     }
                 },
                 {
-                    "id": "33b22bff-9b48-4c9f-be49-3ea29a630ad7",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Big Tails",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "ec17fcba-1e5b-4f15-82d0-274d36babcb7",
+                    "id": "3244d22e-3882-4889-9de8-aa1547dddead",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
                         "volume": null,
-                        "fileName": "3df93d38-aedc-42c1-9e34-5da1e2d872fa.jpg",
-                        "locale": "zh",
-                        "createdAt": "2021-05-24T17:31:20+00:00",
-                        "updatedAt": "2021-05-24T17:31:20+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "d2354c25-fa6e-4f0f-adf3-125038e58c5f",
-                    "type": "manga",
-                    "related": "side_story",
-                    "attributes": {
-                        "title": {
-                            "en": "Guide to a Male God Chasing His Wife"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Nan Shen Zhui Qi Zhi Nan"
-                            },
-                            {
-                                "en": "Nanshen Zhui Qi Zhinan"
-                            },
-                            {
-                                "en": "\u7537\u795e\u8ffd\u59bb\u6307\u5357"
-                            }
-                        ],
-                        "description": {
-                            "en": "The Modern-day Chapter of \"The Distinguished Cute Master (Meng Shi Zai Shang)\"! The miserable little white lotus was rescued by the male god. The male god cares for the little white lotus and raises her into a black hearted lotus who'll beat down any enemies!   \nLotus: \"You're planning on doing something to me, aren't you? Are you looking at my body?!\" (Huggingblankettightly.jpg)  \nMale God: \"Fool, I have been searching for you for a long time. Now, I just want to spoil you.\""
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "127117",
-                            "ap": "guide-to-a-male-god-chasing-his-wife",
-                            "mu": "172103",
-                            "raw": "https://ac.qq.com/Comic/comicInfo/id/645335"
-                        },
-                        "originalLanguage": "zh",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": "shoujo",
-                        "status": "ongoing",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Reincarnation"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "292e862b-2d17-4062-90a2-0356caa4ae27",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Time Travel"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-10-23T14:08:27+00:00",
-                        "updatedAt": "2021-05-25T15:48:03+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "27a3f93b-e47d-4df7-8295-5712dbd5ea7a"
+                        "fileName": "5016e494-1c4f-4219-aa58-b512e2d610eb.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-03-24T05:06:37+00:00",
+                        "updatedAt": "2022-03-24T17:28:13+00:00",
+                        "version": 2
                     }
                 }
             ]
         },
         {
-            "id": "385fe3df-0ed1-4da1-be11-a7206d3f66e8",
+            "id": "65805281-1ebd-4a7b-9db2-f96769717afe",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Engage Kiss"
+                    "en": "Inkya na Boku ga Futago ni Aisareru Wake"
                 },
                 "altTitles": [
                     {
-                        "ja": "\u30a8\u30f3\u30b2\u30fc\u30b8\u30fb\u30ad\u30b9"
+                        "ja": "\u9670\u30ad\u30e3\u306a\u50d5\u304c\u53cc\u5b50\u306b\u611b\u3055\u308c\u308b\u7406\u7531"
                     },
                     {
-                        "en": "Project Engage"
+                        "ja-ro": "Inkya na ga Futago Boku ni Aisareru Iyau"
                     }
                 ],
                 "description": {
-                    "en": "Veyron City\u2014a mega-floating metropolis created from the discovery of new energy sources.\n\nShuu, a young man who owns and operates a small business in the area, leads a meager life due to his reckless spending. Kisara, a girl who visits Shuu's office and home because she is constantly concerned about him. She works while attending high school in Veyron City, doing everything from clerical work to housework. Ayano, Shuu's ex-girlfriend and a senior colleague at the corporation he had previously worked for, is also worried about him.\n\nThus begins the slapstick romantic comedy of three people in a slightly unusual relationship that takes place on an artificial island in the Pacific Ocean.",
-                    "ja": "\u300c\u60aa\u9b54\u300d\u304c\u5f15\u304d\u8d77\u3053\u3059\u7279\u6b8a\u306a\u4e8b\u4ef6\u300c\uff24\u707d\u5bb3\u300d\u304c\u591a\u767a\u3057\u3066\u3044\u308b\u30e1\u30ac\u30d5\u30ed\u30fc\u30c8\u90fd\u5e02\u2026\u30d9\u30a4\u30ed\u30f3\u30b7\u30c6\u30a3\u3002\n\u3053\u306e\u5834\u6240\u3067\u3001\u60aa\u9b54\u9000\u6cbb\u306e\u4ed5\u4e8b\u3092\u3059\u308b\u9752\u5e74\u30fb\u7dd2\u65b9\u30b7\u30e5\u30a6\u306f\u3001\u65e5\u9803\u306e\u91d1\u9063\u3044\u306e\u8352\u3055\u304b\u3089\u3072\u3082\u3058\u3044\u751f\u6d3b\u3092\u9001\u3063\u3066\u3044\u305f\u3002\n\u305d\u3093\u306a\u5f7c\u3092\u5fc3\u914d\u3057\u3001\u4e16\u8a71\u3092\u713c\u304f\u306e\u306f\u7f8e\u5c11\u5973\u9ad8\u6821\u751f\u30fb\u30ad\u30b5\u30e9\u3002\n\u3057\u304b\u3057\u3001\u5f7c\u5973\u306e\u6b63\u4f53\u306f\u3001\u3058\u3064\u306f\u30ad\u30b9\u3092\u4ee3\u511f\u3068\u3057\u3066\u5f7c\u3068\u5951\u7d04\u3057\u305f\u300c\u60aa\u9b54\u300d\u3067\u2026!?\n\u30b7\u30e5\u30a6\u306e\u5143\u30ab\u30ce\u3068\u3001\u4e8c\u4eba\u306e\u5371\u3046\u3044\u7d46\u304c\u7e54\u308a\u306a\u3059\u4e88\u6e2c\u4e0d\u80fd\u306e\u30e9\u30d6\u30b3\u30e1\u30c7\u30a3\u30fc\uff01"
+                    "en": "Hikaru is a BL otaku who has a complex about the color of his eyes. He was childhood friends with popular twins Nagi and Arashi, up until middle school when they started ignoring him! Hikaru is hurt because he doesn\u2019t understand why, but one day he gets pushed down by the twins?!"
                 },
                 "isLocked": false,
                 "links": {
-                    "mu": "q3fpkkh",
-                    "raw": "https://magazine.jp.square-enix.com/mangaup/original/engagekiss/"
+                    "mu": "13441847336",
+                    "amz": "https://www.amazon.co.jp/\u9670\u30ad\u30e3\u306a\u50d5\u304c\u53cc\u5b50\u306b\u611b\u3055\u308c\u308b\u7406\u7531-1-\u82b1\u4e38\u30b3\u30df\u30c3\u30af\u30b9\u30fb\u30d7\u30ec\u30df\u30a2\u30e0-\u4e09\u30c4\u77e2-\u51e1\u4eba/dp/4592721101",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/718257/",
+                    "raw": "https://comic.pixiv.net/store/products/881280"
                 },
                 "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "shounen",
+                "publicationDemographic": null,
                 "status": "ongoing",
-                "year": 2022,
-                "contentRating": "suggestive",
+                "year": 2021,
+                "contentRating": "erotica",
                 "tags": [
                     {
-                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Sci-Fi"
+                                "en": "Romance"
                             },
                             "description": [],
                             "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Boys' Love"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2022-05-27T01:40:29+00:00",
+                "updatedAt": "2022-09-14T02:06:10+00:00",
+                "version": 7,
+                "availableTranslatedLanguages": [
+                    "en"
+                ],
+                "latestUploadedChapter": "ed4b3278-2165-4a75-9367-867fdc1f843e"
+            },
+            "relationships": [
+                {
+                    "id": "7f58d323-132b-404c-a7b4-47f7bf3a6051",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Mitsuya Bond",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "7f58d323-132b-404c-a7b4-47f7bf3a6051",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Mitsuya Bond",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "3e30b492-2712-4af7-bca5-d8ec986d2cf7",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "1",
+                        "fileName": "cd240211-0b8b-4049-b5ff-a50c0cc8bc61.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-09-14T02:05:35+00:00",
+                        "updatedAt": "2022-09-14T02:05:35+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "b45db587-db53-43d7-9eef-c0a5fa48c38b",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "ja": "Shiboritoranaide, Onna Shounin-san"
+                },
+                "altTitles": [
+                    {
+                        "ja": "\u643e\u308a\u53d6\u3089\u306a\u3044\u3067\u3001\u5973\u5546\u4eba\u3055\u3093"
+                    },
+                    {
+                        "en": "Please Don\u2019t Milk Me, Merchant-san!!"
+                    }
+                ],
+                "description": {
+                    "en": "Tartaros: A mysterious and massive underground dungeon. There, adventurers are engaged in a night and day struggle to find the treasure they seek. Lavi the New Adventurer is taking on the challenge of Tartaros, but has a problem. A renowned dark merchant, Philo the Beastkin, is pestering him to buy her strange items! She pushes items (often erotic) onto Lavi for him to use in every situation they come across. \n\nWhat will become of Lavi\u2019s adventures?! Is he willing to buy anything from this adorably annoying merchant girl?!   \n\nThis is a fantasy comic with a teasing merchant!!",
+                    "es": "el Misterioso laberinto subterr\u00e1neo gigante \"Tartaros\".   \r\n  \r\nAll\u00ed, los aventureros de d\u00eda y de noche se aventuran en  \r\nbuscan tesoros y otras riquezas. El aventurero novato Lavi (shota) que desafi\u00f3 el calabozo \"tartaros\" y que para su mala suerte se mete en algunos problemas, Es en ese instante cuando conoci\u00f3 a la mitad bestia Philo (ponkotsu), con quien hace un trato para ser su cliente habitual.  \r\n\u00bfQu\u00e9 pasar\u00e1 con la aventura de Lavi? \u00a1seguir\u00e1 Compr\u00e1ndole \u00edtem   \r\na esta belleza y hermosa!  \r\n  \r\n\u00a1\u00a1\u00a1la comedia de fantas\u00eda sobre el aventurero novato Lavi (shota)   \r\ny la comerciante mitad bestia Philo (ponkotsu)!!"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "118911",
+                    "ap": "shiboritoranaide-onna-shounin-san",
+                    "bw": "series/255596/list",
+                    "kt": "56785",
+                    "mu": "158552",
+                    "amz": "https://www.amazon.co.jp/gp/product/B08XXZ4T18",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/596503/",
+                    "mal": "128507",
+                    "raw": "https://gammaplus.takeshobo.co.jp/manga/onna_shouninsan/"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "seinen",
+                "status": "ongoing",
+                "year": 2019,
+                "contentRating": "suggestive",
+                "tags": [
+                    {
+                        "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Genderswap"
+                            },
+                            "description": [],
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
@@ -1380,19 +1193,6 @@
                         "relationships": []
                     },
                     {
-                        "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Demons"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
                         "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                         "type": "tag",
                         "attributes": {
@@ -1419,11 +1219,37 @@
                         "relationships": []
                     },
                     {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Supernatural"
+                                "en": "Adventure"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Fantasy"
+                            },
+                            "description": [],
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Monster Girls"
                             },
                             "description": [],
                             "group": "theme",
@@ -1432,14 +1258,14 @@
                         "relationships": []
                     },
                     {
-                        "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                        "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Adaptation"
+                                "en": "Shota"
                             },
                             "description": [],
-                            "group": "format",
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
@@ -1447,52 +1273,29 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-07-10T07:41:35+00:00",
-                "updatedAt": "2022-09-29T10:47:01+00:00",
-                "version": 8,
+                "createdAt": "2020-04-06T16:26:54+00:00",
+                "updatedAt": "2022-10-14T06:17:49+00:00",
+                "version": 26,
                 "availableTranslatedLanguages": [
                     "en",
-                    "pt-br"
+                    "pt-br",
+                    "es-la",
+                    "fr"
                 ],
-                "latestUploadedChapter": "d268b278-efb6-4c59-81be-177c9c4e1561"
+                "latestUploadedChapter": "8655f75f-8761-4439-85f6-b93b0d97e5cf"
             },
             "relationships": [
                 {
-                    "id": "568c2d25-bf99-44e6-b5ad-7bf360b73c35",
+                    "id": "22beaaee-975d-4d05-99b6-87f480501f51",
                     "type": "author",
                     "attributes": {
-                        "name": "Bayron City Express",
+                        "name": "Kutsugaeru",
                         "imageUrl": null,
                         "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
+                        "twitter": "https://twitter.com/reverse_frog",
+                        "pixiv": "https://www.pixiv.net/en/users/761418",
                         "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-08-05T05:49:04+00:00",
-                        "updatedAt": "2022-08-05T05:49:04+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "3204d81c-5ee1-4a95-b85c-d80fc8b82e74",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Itachi",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
+                        "fanBox": "https://revfrog.fanbox.cc/",
                         "booth": null,
                         "nicoVideo": null,
                         "skeb": null,
@@ -1503,297 +1306,46 @@
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "ac2e0d48-324f-4021-85c8-d3d2bc6d64e1",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "0",
-                        "fileName": "6b77a31e-d184-4e86-bb99-487b1b44f967.jpg",
-                        "locale": "ja",
-                        "createdAt": "2022-09-29T10:46:21+00:00",
-                        "updatedAt": "2022-09-29T10:46:21+00:00",
-                        "version": 1
-                    }
-                }
-            ]
-        },
-        {
-            "id": "7e7cd05f-3971-46a0-a98a-587f33fd2154",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Army of Hell"
-                },
-                "altTitles": [
-                    {
-                        "ja": "\u5730\u7344\u306e\u8ecd\u56e3"
-                    },
-                    {
-                        "ja-ro": "Jigoku no Gundan"
-                    }
-                ],
-                "description": {
-                    "en": "A boy abandoned at birth and raised by rats, with the mysterious power to control rats, grows up seeing the dark side of the humans that rejected him, and vows to become humanity's greatest enemy."
-                },
-                "isLocked": false,
-                "links": {
-                    "mu": "9szkykc"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "6",
-                "lastChapter": "",
-                "publicationDemographic": "seinen",
-                "status": "completed",
-                "year": 1981,
-                "contentRating": "suggestive",
-                "tags": [
-                    {
-                        "id": "07251805-a27e-4d59-b488-f0bfbec15168",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Thriller"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Psychological"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Animals"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Crime"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Survival"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Sexual Violence"
-                            },
-                            "description": [],
-                            "group": "content",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Gore"
-                            },
-                            "description": [],
-                            "group": "content",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Horror"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Delinquents"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "df33b754-73a3-4c54-80e6-1a74a8058539",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Police"
-                            },
-                            "description": [],
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Slice of Life"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Tragedy"
-                            },
-                            "description": [],
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-09-25T09:22:18+00:00",
-                "updatedAt": "2022-10-11T12:52:51+00:00",
-                "version": 6,
-                "availableTranslatedLanguages": [
-                    "en"
-                ],
-                "latestUploadedChapter": "b6bbff1b-39eb-4f67-b4b4-47686c63ab0a"
-            },
-            "relationships": [
-                {
-                    "id": "d167a66f-8426-4dfb-a7cc-99b330dc918a",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Tatsumi Yoshihiro",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "d167a66f-8426-4dfb-a7cc-99b330dc918a",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Tatsumi Yoshihiro",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "f3e8c39a-b650-4c12-a159-17c3e8d70bd0",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "7",
-                        "fileName": "7ef65a13-3b75-4ad6-8b3f-970c140e1ab7.jpg",
-                        "locale": "ja",
-                        "createdAt": "2022-09-25T09:22:20+00:00",
-                        "updatedAt": "2022-09-26T04:00:24+00:00",
+                        "updatedAt": "2022-09-18T09:22:57+00:00",
                         "version": 2
+                    }
+                },
+                {
+                    "id": "22beaaee-975d-4d05-99b6-87f480501f51",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Kutsugaeru",
+                        "imageUrl": null,
+                        "biography": [],
+                        "twitter": "https://twitter.com/reverse_frog",
+                        "pixiv": "https://www.pixiv.net/en/users/761418",
+                        "melonBook": null,
+                        "fanBox": "https://revfrog.fanbox.cc/",
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2022-09-18T09:22:57+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "70fd3018-3ee6-493b-aaaa-83139f998c1a",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "5",
+                        "fileName": "88c1fafa-53b9-49d8-bca2-6ca899efce61.jpg",
+                        "locale": "ja",
+                        "createdAt": "2022-04-17T13:58:11+00:00",
+                        "updatedAt": "2022-04-17T13:58:11+00:00",
+                        "version": 1
                     }
                 }
             ]
@@ -1801,5 +1353,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 52461
+    "total": 52693
 }
