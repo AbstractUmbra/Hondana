@@ -24,13 +24,14 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Union, overload
+from typing import TYPE_CHECKING, Literal, overload
 
 from .enums import (
     AuthorReportReason,
     ChapterReportReason,
     MangaReportReason,
     ReportCategory,
+    ReportReason,
     ReportStatus,
     ScanlationGroupReportReason,
     UserReportReason,
@@ -48,10 +49,6 @@ __all__ = (
     "Report",
     "UserReport",
 )
-
-ReportReasonAlias = Union[
-    AuthorReportReason, ChapterReportReason, ScanlationGroupReportReason, MangaReportReason, UserReportReason
-]
 
 
 class ReportDetails:
@@ -116,12 +113,12 @@ class ReportDetails:
         self,
         *,
         category: ReportCategory,
-        reason: ReportReasonAlias,
+        reason: ReportReason,
         details: str,
         target_id: str,
     ) -> None:
         self.category: ReportCategory = category
-        self.reason: ReportReasonAlias = reason
+        self.reason: ReportReason = reason
         self.details: str = details
         self.target_id: str = target_id
 
@@ -191,7 +188,7 @@ class UserReport:
         The report's details
     object_id: :class:`str`
         The target object's ID.
-    status: :class:`~hondana.ReportStatus`
+    status: :class:`~hondana.enums.ReportStatus`
         The current status of the report.
     """
 
