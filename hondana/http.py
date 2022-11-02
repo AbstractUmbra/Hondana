@@ -1066,6 +1066,9 @@ class HTTPClient:
         excluded_groups: Optional[list[str]],
         excluded_uploaders: Optional[list[str]],
         include_future_updates: Optional[bool],
+        include_empty_pages: Optional[bool],
+        include_future_publish_at: Optional[bool],
+        include_external_url: Optional[bool],
         created_at_since: Optional[datetime.datetime],
         updated_at_since: Optional[datetime.datetime],
         published_at_since: Optional[datetime.datetime],
@@ -1120,6 +1123,18 @@ class HTTPClient:
         if include_future_updates:
             resolved = str(int(include_future_updates))
             query["includeFutureUpdates"] = resolved
+
+        if include_empty_pages:
+            resolved = str(int(include_empty_pages))
+            query["includeEmptyPages"] = resolved
+
+        if include_future_publish_at:
+            resolved = str(int(include_future_publish_at))
+            query["includeFuturePublishAt"] = resolved
+
+        if include_external_url:
+            resolved = str(int(include_external_url))
+            query["includeExternalUrl"] = resolved
 
         if created_at_since:
             query["createdAtSince"] = clean_isoformat(created_at_since)

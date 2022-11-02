@@ -1090,6 +1090,9 @@ class Manga:
         excluded_groups: Optional[list[str]] = None,
         excluded_uploaders: Optional[list[str]] = None,
         include_future_updates: Optional[bool] = None,
+        include_empty_pages: Optional[bool] = None,
+        include_future_publish_at: Optional[bool] = None,
+        include_external_url: Optional[bool] = None,
         created_at_since: Optional[datetime.datetime] = None,
         updated_at_since: Optional[datetime.datetime] = None,
         published_at_since: Optional[datetime.datetime] = None,
@@ -1132,6 +1135,12 @@ class Manga:
             The list of uploaders to exclude from the response.
         include_future_updates: Optional[:class:`bool`]
             Whether to include future chapters in this feed. Defaults to ``True`` API side.
+        include_empty_pages: Optional[:class:`bool`]
+            Whether to include chapters that have no recorded pages.
+        include_future_publish_at: Optional[:class:`bool`]
+            Whether to include chapters that have a :attr:`publish_at` set to a time in the future.
+        include_external_url: Optional[:class:`bool`]
+            Whether to include chapters that have an external url set.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -1185,6 +1194,9 @@ class Manga:
                 excluded_groups=excluded_groups,
                 excluded_uploaders=excluded_uploaders,
                 include_future_updates=include_future_updates,
+                include_empty_pages=include_empty_pages,
+                include_future_publish_at=include_future_publish_at,
+                include_external_url=include_external_url,
                 created_at_since=created_at_since,
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
