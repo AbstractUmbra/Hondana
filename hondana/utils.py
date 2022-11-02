@@ -368,6 +368,11 @@ def php_query_builder(
     -----------
     obj: Mapping[:class:`str`, Optional[Union[:class:`str`, :class:`int`, :class:`bool`, List[:class:`str`], Dict[:class:`str`, :class:`str`]]]]
         The mapping to build the query string from.
+
+    Returns
+    --------
+    :class:`multidict.MultiDict`
+        A dictionary/mapping type that allows for duplicate keys.
     """
     fmt = multidict.MultiDict[Union[str, int]]()
     for key, value in obj.items():
