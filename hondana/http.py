@@ -531,6 +531,7 @@ class HTTPClient:
         limit: int,
         offset: int,
         title: Optional[str],
+        author_or_artist: Optional[str],
         authors: Optional[list[str]],
         artists: Optional[list[str]],
         year: Optional[int],
@@ -558,6 +559,9 @@ class HTTPClient:
 
         if title:
             query["title"] = title
+
+        if author_or_artist:
+            query["authorOrArtist"] = author_or_artist
 
         if authors:
             query["authors"] = authors

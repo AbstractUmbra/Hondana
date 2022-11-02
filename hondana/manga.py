@@ -558,6 +558,7 @@ class Manga:
             limit=100,
             offset=0,
             title=None,
+            author_or_artist=None,
             authors=None,
             artists=None,
             year=None,

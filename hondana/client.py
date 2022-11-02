@@ -586,6 +586,7 @@ class Client:
         limit: Optional[int] = 100,
         offset: int = 0,
         title: Optional[str] = None,
+        author_or_artist: Optional[str] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
         year: Optional[int] = None,
@@ -619,6 +620,8 @@ class Client:
             If set lower than 0 then it is set to 0.
         title: Optional[:class:`str`]
             The manga title or partial title to include in the search.
+        author_or_artist: Optional[:class:`str`]
+            A uuid to filter the manga list that represents an author or artist.
         authors: Optional[List[:class:`str`]]
             The author(s) UUIDs to include in the search.
         artists: Optional[List[:class:`str`]]
@@ -685,6 +688,7 @@ class Client:
                 limit=inner_limit,
                 offset=offset,
                 title=title,
+                author_or_artist=author_or_artist,
                 authors=authors,
                 artists=artists,
                 year=year,
