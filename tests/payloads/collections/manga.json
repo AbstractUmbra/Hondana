@@ -70,8 +70,8 @@
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
                 "createdAt": "2018-01-18T23:44:45+00:00",
-                "updatedAt": "2022-10-23T10:46:38+00:00",
-                "version": 95,
+                "updatedAt": "2022-10-30T08:39:37+00:00",
+                "version": 97,
                 "availableTranslatedLanguages": [
                     "en",
                     "id",
@@ -256,8 +256,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-10-23T10:46:38+00:00",
-                        "version": 95,
+                        "updatedAt": "2022-10-30T08:39:37+00:00",
+                        "version": 97,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -348,8 +348,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-10-23T10:46:38+00:00",
-                        "version": 95,
+                        "updatedAt": "2022-10-30T08:39:37+00:00",
+                        "version": 97,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -440,8 +440,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-10-23T10:46:38+00:00",
-                        "version": 95,
+                        "updatedAt": "2022-10-30T08:39:37+00:00",
+                        "version": 97,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -532,8 +532,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-10-23T10:46:38+00:00",
-                        "version": 95,
+                        "updatedAt": "2022-10-30T08:39:37+00:00",
+                        "version": 97,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -624,8 +624,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2018-01-18T23:44:45+00:00",
-                        "updatedAt": "2022-10-23T10:46:38+00:00",
-                        "version": 95,
+                        "updatedAt": "2022-10-30T08:39:37+00:00",
+                        "version": 97,
                         "availableTranslatedLanguages": [
                             "en",
                             "id",
@@ -650,66 +650,78 @@
             ]
         },
         {
-            "id": "f519c4eb-8ece-44e6-a317-93b8f0682aaf",
+            "id": "b9bcdd04-542e-4a85-b85c-a8970dc6dfde",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Kurokami"
+                    "en": "One Step for the Dark Lord"
                 },
                 "altTitles": [
                     {
-                        "en": "Black God"
+                        "en": "One Step to the Devil"
                     },
                     {
-                        "vi": "H\u1eafc Th\u1ea7n"
+                        "ko": "\ub9c8\uc655\uae4c\uc9c0 \ud55c \uac78\uc74c"
                     },
                     {
-                        "ko-ro": "Heuk Shin"
+                        "ko-ro": "Mawangkkaji Han Geol-eum"
                     },
                     {
-                        "ja-ro": "Kuro Kami"
+                        "ru": "\u0412 \u0428\u0430\u0433\u0435 \u041e\u0442 \u041a\u043e\u0440\u043e\u043b\u044f \u0414\u0435\u043c\u043e\u043d\u043e\u0432"
                     },
                     {
-                        "ja-ro": "Kurogami"
+                        "zh": "\u8ddd\u9b54\u738b\u4e00\u6b65\u4e4b\u9065"
                     },
                     {
-                        "ru": "\u0427\u0435\u0440\u043d\u044b\u0439 \u0411\u043e\u0433"
+                        "ja": "\u9b54\u738b\u307e\u3067\u3042\u3068\u4e00\u6b69"
                     },
                     {
-                        "ja": "\u9ed2\u795e"
+                        "id": "Aku Raja Lautan tapi jadi Gembel"
                     },
                     {
-                        "ko": "\ud751\uc2e0"
+                        "en": "Even the Demon King, One Step at a Time"
                     },
                     {
-                        "zh-ro": "\u9ed1\u795e"
+                        "en": "One Step to Being Dark Lord"
+                    },
+                    {
+                        "en": "One Step to the Demon King"
                     }
                 ],
                 "description": {
-                    "en": "Wending his way home after a bender one evening, master moocher and game programmer Keita Ibuki decides to satisfy a craving for ramen at a noodle stand. Instead of slurping soup, though, he surrenders his meal to a manic girl who, unbeknownst to Keita, is a Mototsumitama, a guardian of the coexistence equilibrium. When his new acquaintance is attacked, Keita gets caught in the crossfire and loses an arm. Awakening from the shock of his injury, Keita finds himself back in his apartment\u2026 arm intact! But just whose arm is it?! Asking the strange girl raiding his refrigerator reveals only that Keita's life has become a great deal more complicated.\r\n",
-                    "ru": "\u041a\u0435\u0439\u0442\u0430 \u043f\u043e\u0442\u0435\u0440\u044f\u043b \u0441\u0432\u043e\u044e \u043c\u0430\u0442\u044c, \u043a\u043e\u0433\u0434\u0430 \u0435\u043c\u0443 \u0431\u044b\u043b\u043e \u043b\u0435\u0442 10. \u041e\u043d\u0430 \u043f\u043e\u0433\u0438\u0431\u043b\u0430 \u0432\u043e \u0432\u0440\u0435\u043c\u044f \u0430\u0432\u0430\u0440\u0438\u0438. \u0410 \u0437\u0430 \u0434\u0435\u043d\u044c \u0434\u043e \u0441\u0432\u043e\u0435\u0439 \u0441\u043c\u0435\u0440\u0442\u0438 \u043e\u043d\u0430 \u0432\u0438\u0434\u0435\u043b\u0430 \u0436\u0435\u043d\u0449\u0438\u043d\u0443, \u043f\u043e\u0445\u043e\u0436\u0443\u044e \u043d\u0430 \u043d\u0435\u0451 \u043a\u0430\u043a \u0434\u0432\u0435 \u043a\u0430\u043f\u043b\u0438 \u0432\u043e\u0434\u044b. \u0415\u0435 \u0434\u0432\u043e\u0439\u043d\u0438\u043a\u0430. \u0410 \u043d\u0435\u0441\u043a\u043e\u043b\u044c\u043a\u043e \u043b\u0435\u0442 \u0441\u043f\u0443\u0441\u0442\u044f \u041a\u0435\u0439\u0442\u0430 \u0432\u0441\u0442\u0440\u0435\u0447\u0430\u0435\u0442 \u043d\u0435\u043e\u0431\u044b\u0447\u043d\u0443\u044e \u0434\u0435\u0432\u0443\u0448\u043a\u0443, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043e\u0447\u0435\u043d\u044c \u043b\u044e\u0431\u0438\u0442 \u0440\u0430\u043c\u0435\u043d \u0438 \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u043a\u043e\u0435-\u0447\u0442\u043e \u0437\u043d\u0430\u0435\u0442 \u043f\u0440\u043e \u0434\u0432\u043e\u0439\u043d\u0438\u043a\u043e\u0432. \u041d\u043e, \u043a\u0430\u043a \u0442\u043e\u043b\u044c\u043a\u043e \u043e\u043d\u0430 \u043d\u0430\u0447\u0430\u043b\u0430 \u0441\u0432\u043e\u0439 \u0440\u0430\u0441\u0441\u043a\u0430\u0437, \u043a\u0430\u043a \u043d\u0430 \u043d\u0435\u0451 \u043d\u0430\u043f\u0430\u043b \u0441\u0442\u0440\u0430\u043d\u043d\u044b\u0439 \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u0432 \u043f\u043b\u0430\u0449\u0435. \u0418 \u043d\u0430\u0447\u0430\u043b\u0430\u0441\u044c \u0434\u0440\u0430\u043a\u0430, \u0432 \u0445\u043e\u0434\u0435 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u041a\u0435\u0439\u0442\u0430 \u043f\u043e\u0442\u0435\u0440\u044f\u043b \u0441\u0432\u043e\u044e \u043b\u0435\u0432\u0443\u044e \u0440\u0443\u043a\u0443. \u0418 \u043e\u043d \u0431\u044b \u0442\u0430\u043a \u0438 \u0443\u043c\u0435\u0440, \u0435\u0441\u043b\u0438 \u0431\u044b \u0434\u0435\u0432\u0443\u0448\u043a\u0430 \u043d\u0435 \u0437\u0430\u043a\u043b\u044e\u0447\u0438\u043b\u0430 \u0441 \u043d\u0438\u043c \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442, \u0441\u0443\u0442\u044c\u044e \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043e\u0431\u043c\u0435\u043d \u0440\u0443\u043a. \u041a\u0435\u0439\u0442\u0430 \u0432\u044b\u0436\u0438\u043b, \u0443\u0437\u043d\u0430\u043b, \u0447\u0442\u043e \u0434\u0435\u0432\u0443\u0448\u043a\u0443 \u0437\u043e\u0432\u0443\u0442 \u041a\u0443\u0440\u043e, \u0447\u0442\u043e \u0442\u0435\u043f\u0435\u0440\u044c \u0438\u0445 \u0441\u0432\u044f\u0437\u044b\u0432\u0430\u0435\u0442 \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 \u0438 \u0447\u0442\u043e \u0442\u0435\u043f\u0435\u0440\u044c \u0435\u0433\u043e \u0436\u0438\u0437\u043d\u044c \u0443\u0436\u0435 \u043d\u0438\u043a\u043e\u0433\u0434\u0430 \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u0435\u0436\u043d\u0435\u0439."
+                    "en": "This is no different from ordinary villager life...\n\"There can be no one stronger than me in this world!\"\nTo become the strongest, Yuria, the Sea Queen, went ashore in search of the Demon King. But when she looked at her reflection, she saw the face of a child. In exchange for her legs, she lost all her strength... Even so, still striving to become the strongest, Yuria begins a painful journey!\n\n---\n\n- [Official Simplified Chinese Translation](https://www.dongmanmanhua.cn/FANTASY/jumowangyibuzhiyao/list?title_no=1875)\n\n- [Official Japanese Translation](https://manga.line.me/product/periodic?id=Z0001522)",
+                    "id": "[ \"Hanya saja... aku jadi tidak ada bedanya dengan penduduk desa...\" ] \"Tidak boleh ada makhluk yang lebih kuat dariku di dunia ini!\" Untuk menjadi yang terkuat, Yuria, Raja Lautan, datang ke daratan untuk mencari Raja Iblis terkuat. Namun, saat melihat ke cermin, dia melihat wajah anak kecil...? Sebagai ganti kaki, dia telah kehilangan seluruh kekuatannya. Meskipun begitu, ia masih mengincar posisi teratas di dunia! Perjalanannya yang penuh air mata dimulai!\n\n---\n\n- [Official Simplified Chinese Translation](https://www.dongmanmanhua.cn/FANTASY/jumowangyibuzhiyao/list?title_no=1875)\n\n- [Official Japanese Translation](https://manga.line.me/product/periodic?id=Z0001522)",
+                    "ko": "[\"\uc774\uac74 \uadf8\ub0e5\u2026 \ub9c8\uc744 \uc0ac\ub78c A\ub791 \ub2e4\ub97c\uac8c \uc5c6\uc796\uc544\u2026\"]\n\n\"\ub098\ubcf4\ub2e4 \uac15\ud55c \uc874\uc7ac\ub294 \uc774 \uc138\uacc4\uc5d0 \uc788\uc744 \uc218 \uc5c6\uc5b4!\"\n\uc138\uacc4\uad00 \ucd5c\uac15\uc790 \uc790\ub9ac\ub97c \uc704\ud574 \uc9c0\uc0c1\ucd5c\uac15 \"\ub9c8\uc655\"\uc744 \ucc3e\uc544\n\ubb4d\uc73c\ub85c \ub098\uc628 \ubc14\ub2e4\uc758 \uc655 \"\uc720\ub9ac\uc544\" \n\n\uadf8\ub7f0\ub370\u2026 \uac70\uc6b8\uc744 \ubcf4\ub2c8 \uc6ec \uc5b4\ub9b0\uc544\uc774\uac00\u2026?\n\ub2e4\ub9ac\ub97c \uc5bb\uc74c\uacfc \ub3d9\uc2dc\uc5d0 \n\uadf8\ub140\uc758 \ubaa8\ub4e0 \ud798\uc774 \uc0ac\ub77c\uc838 \ubc84\ub838\ub2e4...\n\n\uadf8\ub7fc\uc5d0\ub3c4 \uc5ec\uc804\ud788 \uc138\uacc4\ucd5c\uac15 \uc790\ub9ac\ub97c \ub178\ub9ac\uace0 \uc788\ub294\n \uadf8\ub140\uc758 \ub208\ubb3c\uaca8\uc6b4 \uc5ec\uc815\uc774 \uc2dc\uc791\ub41c\ub2e4!!\n\n---\n\n- [Official Simplified Chinese Translation](https://www.dongmanmanhua.cn/FANTASY/jumowangyibuzhiyao/list?title_no=1875)\n\n- [Official Japanese Translation](https://manga.line.me/product/periodic?id=Z0001522)",
+                    "ru": "\u042d\u0442\u043e\u2026 \u041d\u0438\u0447\u0435\u043c \u043d\u0435 \u043e\u0442\u043b\u0438\u0447\u0430\u0435\u0442\u0441\u044f \u043e\u0442 \u0434\u0435\u0440\u0435\u0432\u0435\u043d\u0441\u043a\u043e\u0439 \u0436\u0438\u0437\u043d\u0438... \u0412 \u044d\u0442\u043e\u043c \u043c\u0438\u0440\u0435 \u043d\u0435 \u043c\u043e\u0436\u0435\u0442 \u0431\u044b\u0442\u044c \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u0441\u0438\u043b\u044c\u043d\u0435\u0435 \u043c\u0435\u043d\u044f!\u201d \u0427\u0442\u043e\u0431\u044b \u0441\u0442\u0430\u0442\u044c \u0441\u0438\u043b\u044c\u043d\u0435\u0439\u0448\u0435\u0439, \u042e\u0440\u0438\u044f, \u041c\u043e\u0440\u0441\u043a\u0430\u044f \u041a\u043e\u0440\u043e\u043b\u0435\u0432\u0430, \u0432\u044b\u0448\u043b\u0430 \u043d\u0430 \u0441\u0443\u0448\u0443 \u0432 \u043f\u043e\u0438\u0441\u043a\u0430\u0445 \u041a\u043e\u0440\u043e\u043b\u044f \u0414\u0435\u043c\u043e\u043d\u043e\u0432. \u041d\u043e\u2026 \u041f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0432 \u043d\u0430 \u0441\u0432\u043e\u0435 \u043e\u0442\u0440\u0430\u0436\u0435\u043d\u0438\u0435, \u043e\u043d\u0430 \u0443\u0432\u0438\u0434\u0435\u043b\u0430 \u043b\u0438\u0446\u043e \u0440\u0435\u0431\u0435\u043d\u043a\u0430... \u0412 \u043e\u0431\u043c\u0435\u043d \u043d\u0430 \u043d\u043e\u0433\u0438 \u043e\u043d\u0430 \u043f\u043e\u0442\u0435\u0440\u044f\u043b\u0430 \u0432\u0441\u0435 \u0441\u0432\u043e\u0438 \u0441\u0438\u043b\u044b... \u0414\u0430\u0436\u0435 \u0442\u0430\u043a, \u0432\u0441\u0435 \u0435\u0449\u0435 \u0441\u0442\u0440\u0435\u043c\u044f\u0441\u044c \u0441\u0442\u0430\u0442\u044c \u0441\u0438\u043b\u044c\u043d\u0435\u0439\u0448\u0435\u0439, \u043d\u0430\u0447\u0438\u043d\u0430\u0435\u0442\u0441\u044f \u043c\u0443\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u043f\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u042e\u0440\u0438\u0438!\n\n---\n\n- [Official Simplified Chinese Translation](https://www.dongmanmanhua.cn/FANTASY/jumowangyibuzhiyao/list?title_no=1875)\n\n- [Official Japanese Translation](https://manga.line.me/product/periodic?id=Z0001522)",
+                    "zh": "\u6df1\u6d77\u5973\u738b\u65e0\u5948\u53d8\u6210\u5c0f\u5b69\uff1f\n\u843d\u9b44\u6d77\u738b\u7684\u9646\u5730\u79f0\u9738\u4e4b\u65c5\uff01\n\u5927\u6d77\u4e4b\u738b\u53cb\u4e3d\u4e9a\u4e3a\u4e86\u79f0\u9738\u5929\u4e0b\uff0c\u7279\u5730\u4e0a\u5cb8\u6765\u5230\u9646\u5730\u4e0a\u5bfb\u627e\u9b54\u738b\u4e00\u51b3\u80dc\u8d1f\u3002\u53ef\u4e0a\u5cb8\u540e\u624d\u53d1\u73b0\uff0c\u81ea\u5df1\u5931\u53bb\u4e86\u6240\u6709\u7684\u529b\u91cf\uff0c\u800c\u4e14\u8fd8\u53d8\u6210\u4e86\u5c0f\u5b69\u5b50\uff1f\u4e3a\u4e86\u79f0\u9738\u5929\u4e0b\uff0c\u53cb\u4e3d\u4e9a\u8f9b\u9178\u7684\u5d2d\u65b0\u65c5\u7a0b\u5c31\u6b64\u62c9\u5f00\u5e37\u5e55\uff01\n\n---\n\n- [Official Simplified Chinese Translation](https://www.dongmanmanhua.cn/FANTASY/jumowangyibuzhiyao/list?title_no=1875)\n\n- [Official Japanese Translation](https://manga.line.me/product/periodic?id=Z0001522)"
                 },
                 "isLocked": false,
                 "links": {
-                    "al": "30982",
-                    "ap": "black-god",
-                    "bw": "series/2176/list",
-                    "kt": "2142",
-                    "mu": "1438",
-                    "amz": "https://www.amazon.co.jp/%E6%9E%97-%E9%81%94%E6%B0%B8/dp/4757514433/",
-                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-60410",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/154738/",
-                    "mal": "982",
-                    "engtl": "http://b2c.hachettebookgroup.com/series/black-god/?yen"
+                    "ap": "even-the-demon-king-one-step-at-a-time",
+                    "mu": "181436",
+                    "raw": "https://comic.naver.com/webtoon/list?titleId=776668"
                 },
-                "originalLanguage": "ja",
-                "lastVolume": "19",
-                "lastChapter": "146",
-                "publicationDemographic": "seinen",
-                "status": "completed",
-                "year": 2005,
+                "originalLanguage": "ko",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": 2021,
                 "contentRating": "safe",
                 "tags": [
+                    {
+                        "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Monsters"
+                            },
+                            "description": {},
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
                     {
                         "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
                         "type": "tag",
@@ -724,14 +736,27 @@
                         "relationships": []
                     },
                     {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Romance"
+                                "en": "Demons"
                             },
                             "description": {},
-                            "group": "genre",
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Long Strip"
+                            },
+                            "description": {},
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -750,6 +775,243 @@
                         "relationships": []
                     },
                     {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Magic"
+                            },
+                            "description": {},
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Drama"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Fantasy"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Web Comic"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Mystery"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Full Color"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2022-03-23T09:19:30+00:00",
+                "updatedAt": "2022-10-13T02:52:42+00:00",
+                "version": 17,
+                "availableTranslatedLanguages": [
+                    "en"
+                ],
+                "latestUploadedChapter": "365e9f67-0393-40f8-9284-02c3bd0d171b"
+            },
+            "relationships": [
+                {
+                    "id": "61adbcd4-5c81-4f00-8269-7b17a937b8c1",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Yun Hong (\uc724\ud64d)",
+                        "imageUrl": null,
+                        "biography": {
+                            "en": "Team \uc724\ud64d"
+                        },
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2022-03-21T08:50:41+00:00",
+                        "updatedAt": "2022-04-05T09:13:19+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "61adbcd4-5c81-4f00-8269-7b17a937b8c1",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Yun Hong (\uc724\ud64d)",
+                        "imageUrl": null,
+                        "biography": {
+                            "en": "Team \uc724\ud64d"
+                        },
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2022-03-21T08:50:41+00:00",
+                        "updatedAt": "2022-04-05T09:13:19+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "16c98d95-4c17-4b66-b840-856b6018cc05",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "2",
+                        "fileName": "40400449-f141-4322-8bff-d20475566c47.jpg",
+                        "locale": "ko",
+                        "createdAt": "2022-03-23T09:19:33+00:00",
+                        "updatedAt": "2022-03-23T09:19:33+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "857d68c0-15f4-4b5b-9676-040bd02b9cac",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Plundering The Heavens"
+                },
+                "altTitles": [
+                    {
+                        "en": "Plunder the Sky"
+                    },
+                    {
+                        "zh": "\u63a0\u5929\u8bb0"
+                    },
+                    {
+                        "en": "Pillaging The Heavens"
+                    },
+                    {
+                        "zh-ro": "Lue Tian Ji"
+                    }
+                ],
+                "description": {
+                    "en": "Some people say that he is a black sheep in the cultivation world, one with no sense of righteousness and honor, and one who disrupts the order of Taoism! Some people say that he is the biggest scum in Nanzhan Prefecture, colluding with demonic cultivators, swindling and committing all kinds of crimes! To all the slanders, Fang Xing said, \u201cthat\u2019s right, I\u2019m that legendary black sheep. Is there a problem?",
+                    "id": "\u201cBeberapa orang mengatakan bahwa dia adalah kambing hitam di dunia kultivasi, orang yang tidak memiliki rasa kebenaran dan kehormatan, dan orang yang mengganggu tatanan Taoisme! Beberapa orang mengatakan bahwa dia adalah sampah terbesar di Prefektur Nanzhan, berkolusi dengan pembudidaya iblis, menipu dan melakukan semua jenis kejahatan! Untuk semua fitnah, Fang Xing berkata, \"Itu benar, aku adalah kambing hitam legendaris itu. Apakah ada masalah?\""
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "152692",
+                    "mu": "lf928k9",
+                    "raw": "https://ac.qq.com/Comic/comicInfo/id/652438"
+                },
+                "originalLanguage": "zh",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": "shounen",
+                "status": "ongoing",
+                "year": 2022,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Long Strip"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
                         "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
                         "type": "tag",
                         "attributes": {
@@ -763,11 +1025,11 @@
                         "relationships": []
                     },
                     {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Drama"
+                                "en": "Adventure"
                             },
                             "description": {},
                             "group": "genre",
@@ -776,249 +1038,11 @@
                         "relationships": []
                     },
                     {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                        "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2018-02-10T21:03:49+00:00",
-                "updatedAt": "2022-10-15T22:47:49+00:00",
-                "version": 11,
-                "availableTranslatedLanguages": [
-                    "en",
-                    "es",
-                    "ru",
-                    "pl"
-                ],
-                "latestUploadedChapter": "d14dac98-de57-4609-a04b-2369dc0c4cd9"
-            },
-            "relationships": [
-                {
-                    "id": "d21a9418-817a-43e5-a4d2-bf1e7391d7ec",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Im Dal-Young",
-                        "imageUrl": null,
-                        "biography": {
-                            "en": "Im Dal-Young (Lim Dall-young, \uc784\ub2ec\uc601) is a South Korean author. He is best known for creating works such as Freezing and Unbalance Unbalance, as well as the founder of Artlim Media. \n\nRather infamously, he is also well-known for putting his series on indefinite hiatuses while deciding to start new works. Be wary of attachment to his series, since you\u2019ll never know when they\u2019ll end.  "
-                        },
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": "http://blog.naver.com/cdggam",
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-02-14T22:49:06+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "2488c533-704a-442a-9a09-48ad4539b23e",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Park Sung-Woo (\ubc15\uc131\uc6b0)",
-                        "imageUrl": null,
-                        "biography": [],
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-06-06T00:37:53+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "6f567216-2796-4f39-a54a-9c1a55520f65",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "19",
-                        "fileName": "39d341b4-e967-4bf2-86c7-96df5c5ad420.jpg",
-                        "locale": "ja",
-                        "createdAt": "2021-05-24T16:43:44+00:00",
-                        "updatedAt": "2022-08-24T00:13:35+00:00",
-                        "version": 2
-                    }
-                }
-            ]
-        },
-        {
-            "id": "69060a67-1d4e-4110-9d29-838bfd99917f",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Yagate Kimi ni Naru"
-                },
-                "altTitles": [
-                    {
-                        "ja": "\u3084\u304c\u3066\u541b\u306b\u306a\u308b"
-                    },
-                    {
-                        "ja-ro": "YagaKimi"
-                    },
-                    {
-                        "ja-ro": "Yaga Kimi"
-                    },
-                    {
-                        "en": "Bloom Into You"
-                    },
-                    {
-                        "en": "Eventually, I Will Become Yours"
-                    },
-                    {
-                        "sv": "Till slut, blir dig"
-                    },
-                    {
-                        "it": "Infine diventer\u00f2 te"
-                    },
-                    {
-                        "es": "Al final me convertir\u00e9 en ti"
-                    },
-                    {
-                        "pl": "Gdy zakwitnie w nas mi\u0142o\u015b\u0107"
-                    },
-                    {
-                        "uk": "\u041a\u043e\u043b\u0438 \u043f\u0440\u0438\u0439\u0434\u0435 \u0447\u0430\u0441, \u044f \u0441\u0442\u0430\u043d\u0443 \u0422\u043e\u0431\u043e\u044e"
-                    },
-                    {
-                        "ru": "\u0412 \u043a\u043e\u043d\u0435\u0447\u043d\u043e\u043c \u0441\u0447\u0451\u0442\u0435 \u044f \u0441\u0442\u0430\u043d\u0443 \u0442\u0432\u043e\u0435\u0439"
-                    },
-                    {
-                        "tr": "Sonunda, Senin Olaca\u011f\u0131m"
-                    },
-                    {
-                        "ar": "\u0623\u064f\u0632\u0647\u0631 \u0641\u064a\u0643"
-                    },
-                    {
-                        "ar": "\u0641\u064a \u0627\u0644\u0646\u0647\u0627\u064a\u0629\u060c \u0633\u0623\u0635\u0628\u062d \u0645\u064f\u0644\u0643\u0643"
-                    },
-                    {
-                        "id": "Pada Akhirnya, Aku Akan Menjadi Milikmu"
-                    },
-                    {
-                        "zh": "\u7ec8\u5c06\u6210\u4e3a\u4f60"
-                    },
-                    {
-                        "zh-hk": "\u7d42\u5c07\u6210\u70ba\u59b3"
-                    },
-                    {
-                        "zh-hk": "\u6700\u7d42\u6211\u6210\u70ba\u4e86\u59b3"
-                    },
-                    {
-                        "th": "\u0e2a\u0e38\u0e14\u0e17\u0e49\u0e32\u0e22\u0e01\u0e47\u0e04\u0e37\u0e2d\u0e40\u0e18\u0e2d"
-                    },
-                    {
-                        "ko": "\uc774\uc73d\uace0 \ub124\uac00 \ub41c\ub2e4"
-                    }
-                ],
-                "description": {
-                    "de": "Yu Koito liest total gerne M\u00e4dchenmanga und wei\u00df deshalb genau, wie sich die erste Liebe anf\u00fchlen soll \u2212 Schmetterlinge im Bauch, die Knie werden weich und das Herz pocht wie wild, wenn jemand einem die Liebe gesteht! Als sie ihr erstes Liebesgest\u00e4ndnis von einem Mitsch\u00fcler bekommt, ist sie entt\u00e4uscht. Der Junge bedeutet ihr nichts und irgendwie ist ihr das alles peinlich, so dass sie ihm weder eine Zu- noch Absage zur gro\u00dfen P\u00e4rchenfrage gibt. Aber was macht sie jetzt? Jede will doch einen Freund, oder nicht? Schlie\u00dflich bittet sie die coole Sch\u00fclersprecherin Toko Nanami um Rat, von der sie glaubt, dass diese ihre Gef\u00fchlswelt versteht und ihr dabei helfen kann, aus dieser peinlichen Lage herauszukommen! Aber M\u00e4dchenmanga haben nichts mit der Realtit\u00e4t zu tun und ganz unerwartet bekommt sie noch ein zweites Liebesgest\u00e4ndnis, welches sie erschreckt, aber ein leises Flattern in ihrer Magengrube ausl\u00f6st... Und das stammt ausgerechnet von einem M\u00e4dchen, n\u00e4mlich der coolen Toko Nanami!",
-                    "en": "A charming love story about two young women who together discover that their dreams of a heart-pounding romance can indeed come true!\n\nYuu has always loved *shoujo* manga and fantasizes about the day that she too will get a love confession that will send her heart a-flutter. Yet when a male classmate confesses his feelings for her... she feels nothing. Disappointed and confused, Yuu enters high school still unsure how to respond. That\u2019s when Yuu sees the beautiful student council president Nanami turn down a suitor with such maturity and finesse that Yuu is inspired to ask her for advice. But when the next person to confess to Yuu is the alluring Nanami herself, has Yuu's *shoujo* romance finally begun?\n\n---\n* The author worked on one of the chapters in the anthology (Vol.2 Ch.13); check it out after finishing this manga for some extra content",
-                    "fr": "Y\u00fb entre au lyc\u00e9e en esp\u00e9rant d\u00e9couvrir enfin l'amour. Mais rien ne se passe, m\u00eame quand un gar\u00e7on lui fait une d\u00e9claration... Elle rencontre alors T\u00f4ko, la fille parfaite du lyc\u00e9e, responsable au Bureau des El\u00e8ves et qui semble \u00eatre comme elle car elle \u00e9conduit tous ses pr\u00e9tendants. Jusqu'au jour ou T\u00f4ko avoue \u00e0 Y\u00fb \u00abje sens que je pourrais tomber amoureuse de toi\u00bb...",
-                    "id": "Yuu selalu menyukai manga shoujo dan menunggu hari dimana dia mendapatkan pengakuan cinta yang membuat hatinya berdebar-debar dan memerah, namun ketika seorang teman sekelas SMP menyatakan perasaannya padanya\u2026 dia tidak merasakan apa-apa. Kecewa dan bingung, Yuu memasuki sekolah menengah masih tidak yakin bagaimana harus menanggapi. Saat itulah Yuu melihat ketua OSIS yang cantik Nanami menolak Orang yg menembaknya dengan kedewasaannya sehingga dia terinspirasi untuk meminta bantuannya. Tetapi ketika orang berikutnya yang mengaku pada Yuu adalah Nanami sendiri, apakah romansa shoujo-nya akhirnya dimulai? \n\n---- Penulis mengerjakan salah satu bab dalam antologi (Vol.2 Bab 13); Bacalah Setelah menyelesaikan manga ini untuk beberapa konten tambahan",
-                    "it": "Toko Nanami, senpai del consiglio studentesco, \u00e8 nota per aver rifiutato tutti coloro che le si sono dichiarati. Grande \u00e8 quindi la sorpresa del a matricola Yu Koito, quando si sente rivolgere proprio da Toko le parole: \"*Potrei innamorarmi di te.*\"",
-                    "ja": "\u604b\u3059\u308b\u6c17\u6301\u3061\u306e\u308f\u304b\u3089\u306a\u3044\u5c0f\u7cf8\u4f91\u306f\u3001\u4e2d\u5b66\u5352\u696d\u306e\u6642\u306b\u4ef2\u306e\u826f\u3044\u7537\u5b50\u306b\u544a\u767d\u3055\u308c\u305f\u8fd4\u4e8b\u3092\u3067\u304d\u305a\u306b\u3044\u305f\u3002\u305d\u3093\u306a\u6298\u306b\u51fa\u4f1a\u3063\u305f\u751f\u5f92\u4f1a\u5f79\u54e1\u306e\u4e03\u6d77\u71c8\u5b50\u306f\u3001\u8ab0\u306b\u544a\u767d\u3055\u308c\u3066\u3082\u76f8\u624b\u306e\u3053\u3068\u3092\u597d\u304d\u306b\u306a\u308c\u306a\u3044\u3068\u3044\u3046\u3002\u71c8\u5b50\u306b\u5171\u611f\u3092\u899a\u3048\u305f\u4f91\u306f\u81ea\u5206\u306e\u60a9\u307f\u3092\u6253\u3061\u660e\u3051\u308b\u304c\u2026\u2026\u3002",
-                    "pl": "Yuu by\u0142a gotowa na swoj\u0105 pierwsz\u0105 mi\u0142o\u015b\u0107. Romantyczne piosenki oraz mangi nauczy\u0142y j\u0105, czego ma si\u0119 spodziewa\u0107. Jednak kiedy ch\u0142opak, kt\u00f3rego lubi\u0142a, poprosi\u0142 j\u0105 o chodzenie, dziewczyna poczu\u0142a... zupe\u0142nie nic! \u017badnych motyli w brzuchu, unoszenia si\u0119 nad ziemi\u0105... Nic. Zmieszana odesz\u0142a, m\u00f3wi\u0105c, \u017ce musi si\u0119 zastanowi\u0107. Mija\u0142y tygodnie, a ona wci\u0105\u017c nie wiedzia\u0142a, jak taktownie odm\u00f3wi\u0107. Pewnego dnia przypadkowo by\u0142a \u015bwiadkiem tego, jak cz\u0142onkini zarz\u0105du, Nanami Toko, z wielk\u0105 klas\u0105 odrzuci\u0142a mi\u0142osne wyznanie jednego z uczni\u00f3w. Zachwycona jej zachowaniem, Yuu zaprzyja\u017ani\u0142a si\u0119 z dziewczyn\u0105 i poradzi\u0142a w kwestii swojego problemu. Nanami za\u015b nie tylko pomog\u0142a jej odrzuci\u0107 zaloty ch\u0142opaka, ale... sama wyzna\u0142a jej mi\u0142o\u015b\u0107!",
-                    "pt": "A caloura Yuu Koito est\u00e1 preocupada por n\u00e3o entender o que \u00e9 se apaixonar por algu\u00e9m e acaba presenciando uma declara\u00e7\u00e3o de amor de um aluno \u00e0 Touko Nanami, membro do Conselho Estudantil. A garota confessa que nunca chegou a ficar empolgada com nenhuma das declara\u00e7\u00f5es recebidas at\u00e9 hoje e Yuu simpatiza com ela, mas logo Touko lhe diz algo inesperado. \"Eu sinto que vou gostar de voc\u00ea.\"",
-                    "uk": "\u0421\u044e\u0436\u0435\u0442 \u0440\u043e\u0437\u0433\u043e\u0440\u0442\u0430\u0454\u0442\u044c\u0441\u044f \u043d\u0430\u0432\u043a\u043e\u043b\u043e \u0448\u043a\u043e\u043b\u044f\u0440\u043a\u0438 \u042e \u041a\u043e\u0456\u0442\u043e, \u044f\u043a\u0430 \u043f\u0440\u0438\u0441\u0442\u0440\u0430\u0441\u043d\u043e \u0437\u0430\u0445\u043e\u043f\u043b\u0435\u043d\u0430 \u043c\u0430\u043d\u0491\u043e\u044e \u0434\u043b\u044f \u0434\u0456\u0432\u0447\u0430\u0442\u043e\u043a. \u041d\u0430\u0447\u0438\u0442\u0430\u0432\u0448\u0438\u0441\u044c \u0443\u043b\u044e\u0431\u043b\u0435\u043d\u0438\u0445 \u043a\u043d\u0438\u0433, \u042e \u0456 \u0441\u0430\u043c\u0430 \u0441\u043f\u043e\u0434\u0456\u0432\u0430\u0454\u0442\u044c\u0441\u044f \u043a\u043e\u043b\u0438-\u043d\u0435\u0431\u0443\u0434\u044c \u0437\u0443\u0441\u0442\u0440\u0456\u0442\u0438 \u0442\u043e\u0433\u043e \u0441\u0430\u043c\u043e\u0433\u043e \u00ab\u043f\u0440\u0438\u043d\u0446\u0430 \u043d\u0430 \u0431\u0456\u043b\u043e\u043c\u0443 \u043a\u043e\u043d\u0456\u00bb, \u044f\u043a\u0438\u0439 \u043f\u043e\u043b\u044e\u0431\u0438\u0442\u044c \u0457\u0457 \u0437 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u043f\u043e\u0433\u043b\u044f\u0434\u0443. \u041e\u0434\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0443 \u043d\u0430 \u0432\u0438\u043f\u0443\u0441\u043a\u043d\u0456\u0439 \u0446\u0435\u0440\u0435\u043c\u043e\u043d\u0456\u0457 \u0437 \u043d\u0430\u0433\u043e\u0434\u0438 \u0437\u0430\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u044f \u0441\u0435\u0440\u0435\u0434\u043d\u044c\u043e\u0457 \u0448\u043a\u043e\u043b\u0438 \u043e\u0434\u0438\u043d \u0437 \u0445\u043b\u043e\u043f\u0446\u0456\u0432 \u043d\u0430\u0440\u0435\u0448\u0442\u0456 \u0437\u0456\u0437\u043d\u0430\u0454\u0442\u044c\u0441\u044f \u042e \u0432 \u0441\u0432\u043e\u0457\u0445 \u043f\u043e\u0447\u0443\u0442\u0442\u044f\u0445, \u0430\u043b\u0435 \u0446\u0456 \u043f\u043e\u0447\u0443\u0442\u0442\u044f \u043d\u0435 \u0432\u0437\u0430\u0454\u043c\u043d\u0456...\n\u0413\u0435\u0440\u043e\u0457\u043d\u044f \u0432\u0436\u0435 \u0434\u0430\u0432\u043d\u043e \u043f\u0435\u0440\u0435\u0439\u0448\u043b\u0430 \u0432 \u0441\u0442\u0430\u0440\u0448\u0443 \u0448\u043a\u043e\u043b\u0443, \u0430\u043b\u0435 \u0434\u043e \u0441\u0438\u0445 \u043f\u0456\u0440 \u043d\u0435 \u0432\u0456\u0434\u043f\u043e\u0432\u0456\u043b\u0430 \u043d\u0430 \u043b\u044e\u0431\u043e\u0432\u043d\u0435 \u0437\u0456\u0437\u043d\u0430\u043d\u043d\u044f \u0445\u043b\u043e\u043f\u0446\u044f. \u041e\u0434\u043d\u043e\u0433\u043e \u0440\u0430\u0437\u0443, \u0439\u0434\u0443\u0447\u0438 \u043f\u043e \u0448\u043a\u0456\u043b\u044c\u043d\u043e\u043c\u0443 \u043a\u043e\u0440\u0438\u0434\u043e\u0440\u0443 \u0442\u0430 \u0440\u043e\u0437\u043c\u0456\u0440\u043a\u043e\u0432\u0443\u044e\u0447\u0438, \u0432\u043e\u043d\u0430 \u0441\u0442\u0430\u0454 \u0441\u0432\u0456\u0434\u043a\u043e\u043c \u0442\u043e\u0433\u043e, \u044f\u043a \u0422\u043e\u043a\u043e \u041d\u0430\u043d\u0430\u043c\u0456, \u043f\u0440\u0435\u0437\u0438\u0434\u0435\u043d\u0442 \u0448\u043a\u0456\u043b\u044c\u043d\u043e\u0457 \u0440\u0430\u0434\u0438, \u0437 \u0443\u043f\u0435\u0432\u043d\u0435\u043d\u0456\u0441\u0442\u044e \u0432\u0456\u0434\u043c\u043e\u0432\u043b\u044f\u0454 \u0432 \u043e\u0441\u0432\u0456\u0434\u0447\u0435\u043d\u043d\u0456 \u0437\u0430\u043b\u0438\u0446\u044f\u043b\u044c\u043d\u0438\u043a\u0443. \u042e \u0432\u0438\u0440\u0456\u0448\u0443\u0454, \u0449\u043e \u0422\u043e\u043a\u043e \u043c\u0430\u0454 \u0434\u043e\u0441\u0442\u0430\u0442\u043d\u044c\u043e \u0434\u043e\u0441\u0432\u0456\u0434\u0443 \u0432 \u0430\u043c\u0443\u0440\u043d\u0438\u0445 \u0441\u043f\u0440\u0430\u0432\u0430\u0445, \u0442\u043e\u043c\u0443 \u043f\u0440\u043e\u0441\u0438\u0442\u044c \u0443 \u043d\u0435\u0457 \u0434\u043e\u043f\u043e\u043c\u043e\u0433\u0438. \u0410\u043b\u0435 \u0437\u043d\u0430\u043b\u0430 \u0431 \u0434\u0456\u0432\u0447\u0438\u043d\u0430, \u0447\u0438\u043c \u0446\u0435 \u0434\u043b\u044f \u043d\u0435\u0457 \u043e\u0431\u0435\u0440\u043d\u0435\u0442\u044c\u0441\u044f...",
-                    "es-la": "Yu Koito, una estudiante de nuevo ingreso afligida porque no se ha enamorado, se encuentra por casualidad con una escena donde se le declaran a su senpai, Toko Nanami. Yu empatiza con Toko, quien sin importar qui\u00e9n se le declare, no siente estremecimiento alguno. No obstante, al poco tiempo Toko le expresar\u00e1 unas palabras inesperadas.",
-                    "pt-br": "Yuu come\u00e7ou seu primeiro ano no colegial, mas ainda n\u00e3o respondeu a uma confiss\u00e3o que recebeu no ensino fundamental de um garoto que ela sempre gostou, mas que no momento da confiss\u00e3o ela n\u00e3o sentiu nenhuma emo\u00e7\u00e3o. Yuu adora mang\u00e1s shoujos e sabe como uma declara\u00e7\u00e3o deveria faz\u00ea-la se sentir, mas ela n\u00e3o sentiu aquele sentimento, e acabou rescusando a declara\u00e7\u00e3o. Yuu descobre que Nanami, a Presidente do Conselho Estudantil, sempre recusou suas confiss\u00f5es por n\u00e3o sentir o mesmo que ela acha que deve se sentir quando algu\u00e9m se declara. Inspirada pela honestidade de Nanami, Yuu consulta Nanami sobre como \u00e9 n\u00e3o sentir nada depois de receber uma declara\u00e7\u00e3o... Mas acaba que Nanami se declara para Yuu... E agora? O que Nanami far\u00e1?",
-                    "zh-hk": "\u4e00\u5e74\u7d1a\u65b0\u751f\u5c0f\u7cf8\u4f91\u7684\u7169\u60f1\u662f\u4e0d\u660e\u767d\u4f55\u8b02\u559c\u6b61\u4e00\u500b\u4eba\u7684\u5fc3\u60c5\u3002 \n\u6b63\u597d\u53c8\u649e\u898b\u5b78\u751f\u6703\u5b78\u59ca\u4e03\u6d77\u71c8\u5b50\u88ab\u4eba\u544a\u767d\u7684\u4e00\u5e55\u3002 \n\u71c8\u5b50\u5766\u8a00\u4e0d\u7ba1\u662f\u8ab0\u4f86\u544a\u767d\u90fd\u7121\u6cd5\u8b93\u5979\u5fc3\u8df3\u52a0\u5feb\u3002 \n\u5c0d\u6b64\u6df1\u6709\u540c\u611f\u7684\u4f91\u537b\u5728\u4e4b\u5f8c\u5f9e\u71c8\u5b50\u53e3\u4e2d\u807d\u5230\u610f\u60f3\u4e0d\u5230\u7684\u8a71\u3002 \n\u300c\u6211\u597d\u50cf\u6703\u559c\u6b61\u4e0a\u59b3\u3002\u300d"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "86218",
-                    "ap": "bloom-into-you",
-                    "bw": "series/54921",
-                    "kt": "36107",
-                    "mu": "121008",
-                    "amz": "https://www.amazon.co.jp/gp/product/B074C45RQS/",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/334464/",
-                    "mal": "88660",
-                    "raw": "https://dengekidaioh.jp/product/yagate/",
-                    "engtl": "https://www.sevenseasentertainment.com/series/bloom-into-you/"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "8",
-                "lastChapter": "45.5",
-                "publicationDemographic": "shounen",
-                "status": "completed",
-                "year": 2015,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Girls' Love"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "School Life"
+                                "en": "Harem"
                             },
                             "description": {},
                             "group": "theme",
@@ -1027,14 +1051,53 @@
                         "relationships": []
                     },
                     {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "id": "acc803a4-c95a-4c22-86fc-eb6b582d82a2",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Slice of Life"
+                                "en": "Wuxia"
                             },
                             "description": {},
                             "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Fantasy"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Web Comic"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Full Color"
+                            },
+                            "description": {},
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -1042,29 +1105,21 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2018-11-01T22:00:25+00:00",
-                "updatedAt": "2022-08-08T19:29:21+00:00",
-                "version": 40,
+                "createdAt": "2022-06-14T22:55:59+00:00",
+                "updatedAt": "2022-09-25T08:05:09+00:00",
+                "version": 9,
                 "availableTranslatedLanguages": [
                     "en",
-                    "es-la",
-                    "pt-br",
-                    "hu",
-                    "id",
-                    "tr",
-                    "de",
-                    "uk",
-                    "he",
-                    "it"
+                    "id"
                 ],
-                "latestUploadedChapter": "8223f6b7-d54a-494d-84b1-06b46d818832"
+                "latestUploadedChapter": "5ef6accd-043e-4f4c-9d6f-7cf3c7905b97"
             },
             "relationships": [
                 {
-                    "id": "1ecb5e14-f569-4a7e-be30-0a41f7a8dbf0",
+                    "id": "63200b97-bbf8-4dab-8522-a158fec3afad",
                     "type": "author",
                     "attributes": {
-                        "name": "Nakatani Nio",
+                        "name": "Yuewen Manhua (\u9605\u6587\u6f2b\u753b)",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -1077,19 +1132,19 @@
                         "fantia": null,
                         "tumblr": null,
                         "youtube": null,
-                        "weibo": null,
+                        "weibo": "https://weibo.com/u/6285190000",
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
+                        "updatedAt": "2022-04-06T20:26:54+00:00",
+                        "version": 3
                     }
                 },
                 {
-                    "id": "1ecb5e14-f569-4a7e-be30-0a41f7a8dbf0",
+                    "id": "c0557628-55d5-4009-ba03-d3479871184c",
                     "type": "artist",
                     "attributes": {
-                        "name": "Nakatani Nio",
+                        "name": "\u661f\u71c3\u52a8\u6f2b",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -1105,685 +1160,68 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "createdAt": "2022-06-15T10:47:48+00:00",
+                        "updatedAt": "2022-06-15T10:47:48+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "5d5b0920-2523-4f4c-9662-0c8ff94e6731",
+                    "id": "2a4b52df-00f6-4292-8472-ed1e673ef062",
                     "type": "cover_art",
                     "attributes": {
-                        "fileName": "7b53c1c8-c826-40e8-95cc-502c0b0becce.jpg",
                         "description": "",
-                        "volume": "8",
-                        "locale": "ja",
-                        "version": 2,
-                        "createdAt": "2021-05-23T05:52:28+00:00",
-                        "updatedAt": "2021-05-23T05:52:28+00:00"
-                    }
-                },
-                {
-                    "id": "27cec489-fea0-43ff-9b52-2b0cdc70a462",
-                    "type": "manga",
-                    "related": "spin_off",
-                    "attributes": {
-                        "title": {
-                            "en": "Yagate Kimi ni Naru Official Comic Anthology"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Bloom Into You Anthology"
-                            },
-                            {
-                                "en": "Bloom Into You Official Comic Anthology"
-                            },
-                            {
-                                "ja-ro": "Yagate Kimi ni Naru Koushiki Comic Anthology"
-                            },
-                            {
-                                "ja": "\u3084\u304c\u3066\u541b\u306b\u306a\u308b \u516c\u5f0f\u30b3\u30df\u30c3\u30af\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc"
-                            }
-                        ],
-                        "description": {
-                            "en": "Anthology of short stories featuring Bloom into You's characters, drawn by various yuri authors.  \n\n\n---\n\n**Vol 1**\n\n1: Can I Bloom Into You Someday?, by Hiiragi Yutaka.  \n Touko wants to swap uniforms with Yuu, but\u2026  \n2: Perhaps A Constellation Like That, by Canno.  \n Touko and Sayaka read their horoscopes\u2026 and Yuu's.  \n3: Floating Maiden, by Chomoran.  \n When romance can make you float. Literally.  \n4: Onigiri, Croquette, Tamagoyaki, by Miyama Okara.  \n Koyomi has started a new novel. And she's hungry.  \n5: Tiny Sempai, by tMnR.  \n Yuu becomes Touko's babysitter.  \n6: In The Box, by Yuikawa Kazuno.  \n What's in Touko's box? And for whom is it? Sayaka wonders\u2026  \n7: Festival Night, by Mekimeki.   \n Touko always gives her all. Especially when there's a reward.  \n8: Let's Write A Script!, by Fumio Aya.  \n The early rejected draft of the Student Council play.  \n9: What Will You Wear Tomorrow?, by Yuzuhara Moke.  \n Touko wants Yuu's opinion on her new clothes.  \n10: Bitter Coffee Time, by Hiroichi.  \n Miyako wants to test her new special coffee on her girlfriend.  \n11: Let's Play With Sempai!, by Itou Hachi.  \n A mysterious maid outfit. A card game to decide who will wear it.  \n12: Secret Student Council, by Tachi.  \n Touko wants to \"recharge her batteries\".  \n13: Ephemeral, by Hara Yuriko.  \n Poems under the cherry blossoms.\n  \n\n\n---\n\n**Vol 2**  \n\n1: What Comes with the Wind (Hiiragi Yutaka)  \n2: The Two, a Game, and From Here On (Kumo Suzume)  \n3: The Gap Between Us (Yuuki Suzu)  \n4: Her Choice (Yuzuhara Moke)  \n5: Solve the Riddle! Koyomi-chan (Arima)  \n6: Musical Chairs (Sunohara Fuuka)  \n7: Still by Your Side 6 Years Later (Yodokawa)  \n8: An Ode to a Fallen Leaf (Canno)  \n9: Lies and Truth (sheepD)  \n10: Unfair (sometime)  \n11: Play Impression! (Musshu)  \n12: Shining in Your Presence (Ueshita)  \n13: Because We're a Couple 45 Days Apart (Nakatani Nio)"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "106794",
-                            "ap": "bloom-into-you-official-comic-anthology",
-                            "bw": "series/186141",
-                            "mu": "152045",
-                            "amz": "https://www.amazon.co.jp/gp/product/B085Y2B8Z4",
-                            "mal": "117697",
-                            "engtl": "https://sevenseasentertainment.com/2020/12/04/seven-seas-blossoms-with-license-of-bloom-into-you-anthology-manga-series/"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "2",
-                        "lastChapter": "13",
-                        "publicationDemographic": "shounen",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Anthology"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Supernatural"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-09-23T17:44:20+00:00",
-                        "updatedAt": "2022-02-15T21:56:50+00:00",
-                        "version": 5,
-                        "availableTranslatedLanguages": [
-                            "de",
-                            "pt-br",
-                            "en",
-                            "es-la"
-                        ],
-                        "latestUploadedChapter": "f30db975-6047-448b-93bb-bf6725928cc4"
-                    }
-                },
-                {
-                    "id": "3c9e93bf-9108-4030-ae61-72bd5397fb00",
-                    "type": "manga",
-                    "related": "alternate_version",
-                    "attributes": {
-                        "title": {
-                            "en": "Yagate Kimi ni Naru (Webtoon)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "Bloom into you"
-                            },
-                            {
-                                "ar": "\u0623\u064f\u0632\u0647\u0631 \u0641\u064a\u0643"
-                            },
-                            {
-                                "ar": "\u0641\u064a \u0627\u0644\u0646\u0647\u0627\u064a\u0629\u060c \u0633\u0623\u0635\u0628\u062d \u0645\u064f\u0644\u0643\u0643"
-                            },
-                            {
-                                "id": "Pada Akhirnya, Aku Akan Menjadi Milikmu"
-                            },
-                            {
-                                "ja": "\u3084\u304c\u3066\u541b\u306b\u306a\u308b"
-                            },
-                            {
-                                "zh": "\u7ec8\u5c06\u6210\u4e3a\u4f60"
-                            },
-                            {
-                                "zh-hk": "\u6700\u7d42\u6211\u6210\u70ba\u4e86\u59b3"
-                            },
-                            {
-                                "uk": "\u6700\u7d42\u6211\u6210\u70ba\u4e86\u59b3"
-                            },
-                            {
-                                "ru": "\u0412 \u043a\u043e\u043d\u0435\u0447\u043d\u043e\u043c \u0441\u0447\u0451\u0442\u0435 \u044f \u0441\u0442\u0430\u043d\u0443 \u0442\u0432\u043e\u0435\u0439"
-                            }
-                        ],
-                        "description": {
-                            "en": "Yuu has always loved shoujo manga and awaits the day she gets a love confession that sends her heart aflutter with bubbles and blushes, and yet when a junior high classmate confesses his feelings to her\u2026 she feels nothing. Disappointed and confused, Yuu enters high school still unsure how to respond. That's when Yuu sees the beautiful student council president Nanami turn down a suitor with such maturity that she's inspired to ask her for help. But when the next person to confess to Yuu is Nanami herself, has her shoujo romance finally begun?\n\nThis is a webtoon release of Bookwalker."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "bw": "series/312229"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": 2021,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "320831a8-4026-470b-94f6-8353740e6f04",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Official Colored"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-07-08T02:04:07+00:00",
-                        "updatedAt": "2022-07-09T10:01:01+00:00",
-                        "version": 6,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "99114b94-eab2-447e-bbb7-2134d611c9cf"
-                    }
-                },
-                {
-                    "id": "477292ce-df1b-453f-a545-8a3742637192",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Yagate Kimi ni Naru - About YuuSaya (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "About YuuSaya (Bloom Into You)"
-                            },
-                            {
-                                "en": "\u4f91\u6c99\u306b\u3064\u3044\u3066"
-                            }
-                        ],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Anthology"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-07-01T14:06:19+00:00",
-                        "updatedAt": "2021-05-25T15:41:53+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "c111b03d-b621-4b50-84c7-cdc896382b29"
-                    }
-                },
-                {
-                    "id": "8c9947e3-f4b6-4c89-82e6-94a8544e00d5",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Yagate Kimi ni Naru - Yuuhi Sashikomu (Doujinshi)"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "\u5915\u967d\u5dee\u3057\u8fbc\u3080"
-                            }
-                        ],
-                        "description": {
-                            "en": ""
-                        },
-                        "isLocked": false,
-                        "links": null,
-                        "originalLanguage": "ja",
-                        "lastVolume": null,
-                        "lastChapter": null,
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": [],
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2020-01-08T02:08:27+00:00",
-                        "updatedAt": "2021-05-25T15:44:57+00:00",
-                        "version": 2,
-                        "availableTranslatedLanguages": [
-                            "id",
-                            "hu"
-                        ],
-                        "latestUploadedChapter": "1b947e9b-7990-4ccd-a818-8c1e673368e2"
-                    }
-                },
-                {
-                    "id": "c7a9ef37-afd7-49da-bb83-af75dce08bfe",
-                    "type": "manga",
-                    "related": "doujinshi",
-                    "attributes": {
-                        "title": {
-                            "en": "Bloom Into You - Rough Maker (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-02-03T03:00:11+00:00",
-                        "updatedAt": "2022-02-04T08:03:40+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "b886d6f9-02da-44e8-bb4b-c68830d77ab7"
-                    }
-                },
-                {
-                    "id": "c7a9ef37-afd7-49da-bb83-af75dce08bfe",
-                    "type": "manga",
-                    "related": "side_story",
-                    "attributes": {
-                        "title": {
-                            "en": "Bloom Into You - Rough Maker (Doujinshi)"
-                        },
-                        "altTitles": [],
-                        "description": [],
-                        "isLocked": false,
-                        "links": [],
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Girls' Love"
-                                    },
-                                    "description": [],
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Doujinshi"
-                                    },
-                                    "description": [],
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-02-03T03:00:11+00:00",
-                        "updatedAt": "2022-02-04T08:03:40+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "b886d6f9-02da-44e8-bb4b-c68830d77ab7"
+                        "volume": "1",
+                        "fileName": "f6b2cf6c-fd18-4ded-9eb7-c3d7f43859af.jpg",
+                        "locale": "zh",
+                        "createdAt": "2022-06-20T16:32:44+00:00",
+                        "updatedAt": "2022-06-20T16:32:44+00:00",
+                        "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "0d097de9-d5dc-42aa-9d4f-bd847546e356",
+            "id": "45d0f9b3-5cf8-4cc9-9b74-7db6a44cdd37",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Marshal, Your Wife Ran Away Again"
+                    "en": "Love Me, Su Dongpo"
                 },
                 "altTitles": [
                     {
-                        "en": "Epic Revenge"
-                    },
-                    {
-                        "en": "Marshal Your Wife Ran Again"
-                    },
-                    {
-                        "en": "Sh\u01ceo shu\u00e0i n\u01d0 l\u01ceop\u00f3 y\u00f2u p\u01ceole"
-                    },
-                    {
-                        "en": "Shao shuai ni laopo you paole"
-                    },
-                    {
-                        "en": "\u5c11\u5e05\u4f60\u8001\u5a46\u53c8\u8dd1\u4e86"
+                        "zh": "\u7231\u6211\u5427\uff0c\u82cf\u4e1c\u5761"
                     }
                 ],
                 "description": {
-                    "en": "Gu Qiang Zhou returns to the town where her father lives only to avenge her mother. On the course of the story she meets a marshal with whom she has a complicated relationship."
+                    "en": "After completing an Escape Room mission, Tao Zijin discovered that his soul had accidentally entered the body of Wang Runzhi, the sister-in-law of poet Su Dongpo. Guided by a Fox Fairy, he was told that the only way for him to go home was by marrying Su Dongpo and fulfilling his duty as a wife. Now, Tao Zijin has to give his all to complete the mission of marrying Su Dongpo so he could go back to the real world.In this story, the body of a beautiful woman (Wang Runzhi) was combined with the heart of a modern geek (Tao Zijin); He was now a she. She, along with some famous people from history, Wang Anshi, Sima Guang, and Foyin, were now caught up in some intriguing emotional entanglements..."
                 },
                 "isLocked": false,
                 "links": {
-                    "ap": "the-epic-revenge",
-                    "mu": "148141",
-                    "raw": "http://ac.qq.com/Comic/ComicInfo/id/628418",
-                    "engtl": "https://www.bilibilicomics.com/detail/mc472?utm_source=mgd&utm_medium=uploader"
+                    "ap": "love-me-su-dongpo",
+                    "raw": "https://manga.bilibili.com/m/detail/mc25908",
+                    "engtl": "https://m.bilibilicomics.com/detail/mc1900"
                 },
                 "originalLanguage": "zh",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "josei",
+                "publicationDemographic": "shoujo",
                 "status": "ongoing",
-                "year": 2017,
-                "contentRating": "erotica",
+                "year": 2018,
+                "contentRating": "safe",
                 "tags": [
+                    {
+                        "id": "2bd2e8d0-f146-434a-9b51-fc9ff2c5fe6a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Genderswap"
+                            },
+                            "description": {},
+                            "group": "theme",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
                     {
                         "id": "33771934-028e-4cb3-8744-691e866a923e",
                         "type": "tag",
@@ -1798,19 +1236,6 @@
                         "relationships": []
                     },
                     {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
                         "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
                         "type": "tag",
                         "attributes": {
@@ -1822,25 +1247,48 @@
                             "version": 1
                         },
                         "relationships": []
+                    },
+                    {
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Web Comic"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Full Color"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
                     }
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2019-06-05T16:09:31+00:00",
-                "updatedAt": "2022-07-15T15:00:57+00:00",
-                "version": 5,
-                "availableTranslatedLanguages": [
-                    "es",
-                    "en"
-                ],
-                "latestUploadedChapter": "3021007c-7331-493b-ac77-bd4bcce65975"
+                "createdAt": "2022-07-06T18:50:47+00:00",
+                "updatedAt": "2022-07-06T18:52:23+00:00",
+                "version": 2,
+                "availableTranslatedLanguages": [],
+                "latestUploadedChapter": "bc6eb973-847b-480e-83ac-11cddd0ad345"
             },
             "relationships": [
                 {
-                    "id": "8d26f563-a9fa-4367-a7c0-85072c7f1f6a",
+                    "id": "2cc92564-24b4-4cda-b1bd-e811dcc670ad",
                     "type": "author",
                     "attributes": {
-                        "name": "Iciyuan",
+                        "name": "Shi Shi",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -1862,10 +1310,10 @@
                     }
                 },
                 {
-                    "id": "79187d01-9fde-42f2-b544-e719e04b4939",
+                    "id": "419a5ede-4dba-4fbb-b3fe-31e78d74a6a5",
                     "type": "artist",
                     "attributes": {
-                        "name": "lu mao jiaru shijian",
+                        "name": "Man Yue You Pin",
                         "imageUrl": null,
                         "biography": [],
                         "twitter": null,
@@ -1881,218 +1329,66 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "createdAt": "2021-07-15T11:27:28+00:00",
+                        "updatedAt": "2021-07-15T11:27:28+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "d7fbf281-9280-4dde-8874-0ba6c9d73657",
+                    "id": "88a7782f-c4d0-4050-a953-f617f2d12e56",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": "2",
-                        "fileName": "fcffa366-e0e3-448e-aef4-6cbc1fa1c75e.jpg",
+                        "volume": "1",
+                        "fileName": "775c185d-0c91-4091-9c20-c1852b443379.jpg",
                         "locale": "zh",
-                        "createdAt": "2022-04-12T12:01:10+00:00",
-                        "updatedAt": "2022-04-12T12:01:10+00:00",
+                        "createdAt": "2022-07-06T18:50:49+00:00",
+                        "updatedAt": "2022-07-06T18:50:49+00:00",
                         "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "9ecc98fc-07a0-4dc8-9216-9146948fb904",
+            "id": "13ab94bd-d49d-45ab-9356-78ef91eecac0",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Darkness of the Sea, Shadow of the Moon"
+                    "en": "Boku no Kanojo wa AI Sakuga"
                 },
                 "altTitles": [
                     {
-                        "en": "Moon's Shadow on a Dark Sea"
+                        "ja": "\u50d5\u306e\u5f7c\u5973\u306fAI\u4f5c\u753b"
                     },
                     {
-                        "ja-ro": "Umi no Yami, Tsuki no Kage"
+                        "en": "My Girlfriend Is AI-Drawn"
                     },
                     {
-                        "ja": "\u6d77\u306e\u95c7\u3001\u6708\u306e\u5f71"
-                    },
-                    {
-                        "zh": "\u6d77\u4e4b\u95c7\u6708\u4e4b\u5f71"
-                    },
-                    {
-                        "ko": "\ubc14\ub2e4\uc758 \uc5b4\ub460 \ub2ec\uc758 \uadf8\ub9bc\uc790"
-                    },
-                    {
-                        "th": "\u0e04\u0e33\u0e2a\u0e32\u0e1b\u0e40\u0e07\u0e32\u0e1e\u0e23\u0e30\u0e08\u0e31\u0e19\u0e17\u0e23\u0e4c"
-                    },
-                    {
-                        "vi": "\u00c1nh tr\u0103ng b\u00ed \u1ea9n"
+                        "en": "My Girlfriend is an AI Drawing"
                     }
                 ],
-                "description": {
-                    "en": "Twin sisters contracted a mysterious bacteria from a trip and suddenly gained enormous power. One psycho sister began trying to kill the other because they both loved the same man, while the other sister and her boyfriend began to flee as everyone else became innocent victims\u2026"
-                },
+                "description": [],
                 "isLocked": false,
                 "links": {
-                    "al": "30636",
-                    "ap": "umi-no-yami-tsuki-no-kage",
-                    "bw": "series/127442/list",
-                    "kt": "1444",
-                    "mu": "2773",
-                    "amz": "https://www.amazon.co.jp/-/en/gp/product/B075VD7GFV",
-                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-111954",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/107194/A000014105/",
-                    "mal": "636"
+                    "raw": "https://twitter.com/h071019/status/1585963841858551808"
                 },
                 "originalLanguage": "ja",
-                "lastVolume": "18",
-                "lastChapter": "186",
-                "publicationDemographic": "shoujo",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": null,
                 "status": "completed",
-                "year": 1987,
+                "year": 2022,
                 "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "07251805-a27e-4d59-b488-f0bfbec15168",
+                        "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Thriller"
+                                "en": "Oneshot"
                             },
                             "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Psychological"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Survival"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Gore"
-                            },
-                            "description": {},
-                            "group": "content",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "School Life"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Horror"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Slice of Life"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Supernatural"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Tragedy"
-                            },
-                            "description": {},
-                            "group": "genre",
+                            "group": "format",
                             "version": 1
                         },
                         "relationships": []
@@ -2100,25 +1396,23 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2018-06-11T08:14:16+00:00",
-                "updatedAt": "2022-09-22T14:28:06+00:00",
-                "version": 6,
+                "createdAt": "2022-11-02T01:39:30+00:00",
+                "updatedAt": "2022-11-02T01:44:56+00:00",
+                "version": 4,
                 "availableTranslatedLanguages": [
                     "en"
                 ],
-                "latestUploadedChapter": "800762ef-b240-4015-aa2e-b94b6c0a5aaf"
+                "latestUploadedChapter": "82bdc54e-1746-4a7b-81e6-6042521c040c"
             },
             "relationships": [
                 {
-                    "id": "45223da4-9dd6-4912-bd9a-f248a776da5f",
+                    "id": "955c89a1-d994-4ca5-bbf3-5e2b7f3d5a48",
                     "type": "author",
                     "attributes": {
-                        "name": "Shinohara Chie",
+                        "name": "Eichi Zerona",
                         "imageUrl": null,
-                        "biography": {
-                            "en": "Chie Shinohara was born on February 15. She debuted in 1981. She's best known as a horror and mystery author, although she also wrote some successful historical series. She has twice received the Shogakukan Manga Award for sh\u014djo, in 1987 for Yami no Purple Eye and in 2001 for Red River.\nShe's a big fan of Keiko Takemiya."
-                        },
-                        "twitter": "https://twitter.com/Marashantia",
+                        "biography": [],
+                        "twitter": "https://twitter.com/h071019",
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -2131,21 +1425,19 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-01-04T16:11:04+00:00",
+                        "createdAt": "2022-11-02T01:38:37+00:00",
+                        "updatedAt": "2022-11-02T01:40:48+00:00",
                         "version": 2
                     }
                 },
                 {
-                    "id": "45223da4-9dd6-4912-bd9a-f248a776da5f",
+                    "id": "955c89a1-d994-4ca5-bbf3-5e2b7f3d5a48",
                     "type": "artist",
                     "attributes": {
-                        "name": "Shinohara Chie",
+                        "name": "Eichi Zerona",
                         "imageUrl": null,
-                        "biography": {
-                            "en": "Chie Shinohara was born on February 15. She debuted in 1981. She's best known as a horror and mystery author, although she also wrote some successful historical series. She has twice received the Shogakukan Manga Award for sh\u014djo, in 1987 for Yami no Purple Eye and in 2001 for Red River.\nShe's a big fan of Keiko Takemiya."
-                        },
-                        "twitter": "https://twitter.com/Marashantia",
+                        "biography": [],
+                        "twitter": "https://twitter.com/h071019",
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -2158,22 +1450,22 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-01-04T16:11:04+00:00",
+                        "createdAt": "2022-11-02T01:38:37+00:00",
+                        "updatedAt": "2022-11-02T01:40:48+00:00",
                         "version": 2
                     }
                 },
                 {
-                    "id": "9b72e3cd-2d23-4f7a-9954-f77602405972",
+                    "id": "f0426b2f-dff1-4ffb-aaac-d53454d5bea7",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": "18",
-                        "fileName": "c2b1ddf9-0a7d-46c3-b29e-0f9174a5bbaf.jpg",
+                        "volume": "1",
+                        "fileName": "1a9722b7-d598-4687-b06b-d77c52985afc.jpg",
                         "locale": "ja",
-                        "createdAt": "2021-05-23T08:02:40+00:00",
-                        "updatedAt": "2022-03-23T23:10:41+00:00",
-                        "version": 3
+                        "createdAt": "2022-11-02T01:39:31+00:00",
+                        "updatedAt": "2022-11-02T01:39:31+00:00",
+                        "version": 1
                     }
                 }
             ]
@@ -2181,5 +1473,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 52694
+    "total": 52776
 }
