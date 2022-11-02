@@ -531,10 +531,17 @@ class Manga:
 
         return self.cover.url(size, parent_id=self.id)
 
-    async def get_related_manga(self) -> Optional[list[Manga]]:
+    async def get_related_manga(self, *, limit: int = 100, offset: int = 0) -> Optional[list[Manga]]:
         """|coro|
 
         This method will return all the related manga and cache their response.
+
+        Parameters
+        -----------
+        limit: :class:`int`
+            The amount of manga to fetch. Defaults to ``100``.
+        offset: :class:`int`
+            The pagination offset. Defaults to ``0``.
 
 
         .. note::
@@ -555,8 +562,8 @@ class Manga:
         ids = [r["id"] for r in self._related_manga_relationships]
 
         data = await self._http._manga_list(
-            limit=100,
-            offset=0,
+            limit=limit,
+            offset=offset,
             title=None,
             author_or_artist=None,
             authors=None,

@@ -180,8 +180,22 @@ class CustomList:
         self.__owner = User(self._http, data["data"])
         return self.__owner
 
-    async def get_manga(self) -> Optional[list[Manga]]:
-        """|coro|"""
+    async def get_manga(self, *, limit: Optional[int] = 100, offset: int = 0) -> Optional[list[Manga]]:
+        """|coro|
+
+        This method will attempt to fetch the manga that are members of this custom list.
+
+        Parameters
+        -----------
+        limit: Optional[:class:`int`]
+            The amount of manga to fetch per request, defaults to ``100``.
+        offset: :class:`int`
+            The pagination offset to begin at. Defaults to ``0``.
+
+        Returns
+        --------
+        Optional[List[:class:`~hondana.Manga`]]
+        """
         if self.manga is not None:
             return self.manga
 
@@ -191,8 +205,8 @@ class CustomList:
         ids = [r["id"] for r in self._manga_relationships]
 
         data = await self._http._manga_list(
-            limit=100,
-            offset=0,
+            limit=limit or 100,
+            offset=offset,
             title=None,
             author_or_artist=None,
             authors=None,
@@ -215,7 +229,7 @@ class CustomList:
             group=None,
         )
 
-        ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
+        ret = [Manga(self._http, item) for item in data["data"]]
         if not ret:
             return
 
