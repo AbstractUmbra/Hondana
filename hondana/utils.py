@@ -39,7 +39,6 @@ from typing import (
     Generic,
     Iterable,
     Literal,
-    Mapping,
     Optional,
     Type,
     TypedDict,
@@ -66,7 +65,7 @@ from .errors import AuthenticationRequired
 
 if TYPE_CHECKING:
     from _typeshed import SupportsRichComparison
-    from typing_extensions import Concatenate, ParamSpec
+    from typing_extensions import Concatenate, ParamSpec, TypeAlias
 
     from .types.artist import ArtistResponse
     from .types.author import AuthorResponse
@@ -77,6 +76,7 @@ if TYPE_CHECKING:
     from .types.scanlator_group import ScanlationGroupResponse
     from .types.user import UserResponse
 
+MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]
 C = TypeVar("C", bound="Any")
 T = TypeVar("T")
 T_co = TypeVar("T_co", covariant=True)
@@ -358,9 +358,7 @@ async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, A
     return text
 
 
-def php_query_builder(
-    obj: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], /
-) -> multidict.MultiDict[Union[str, int]]:
+def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[Union[str, int]]:
     """
     A helper function that builds a MangaDex (PHP) query string from a mapping.
 
@@ -384,7 +382,7 @@ def php_query_builder(
             fmt.add(key, str(value).lower())
         elif isinstance(value, list):
             for item in value:
-                fmt.add(f"{key}[]", str(item))
+                fmt.add(f"{key}[]", item)
         elif isinstance(value, dict):
             for subkey, subvalue in value.items():
                 fmt.add(f"{key}[{subkey}]", subvalue)

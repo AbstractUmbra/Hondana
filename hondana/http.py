@@ -108,6 +108,7 @@ if TYPE_CHECKING:
     from .types.settings import Settings, SettingsPayload
     from .types.tags import GetTagListResponse
     from .types.token import TokenPayload
+    from .utils import MANGADEX_QUERY_PARAM_TYPE
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -375,7 +376,14 @@ class HTTPClient:
 
         self._authenticated = False
 
-    async def request(self, route: Union[Route, CustomRoute], **kwargs: Any) -> Any:
+    async def request(
+        self,
+        route: Union[Route, CustomRoute],
+        *,
+        params: Optional[MANGADEX_QUERY_PARAM_TYPE] = None,
+        json: Optional[Any] = None,
+        **kwargs: Any,
+    ) -> Any:
         """|coro|
 
         This performs the HTTP request, handling authentication tokens when doing it.
@@ -421,13 +429,12 @@ class HTTPClient:
             headers["Authorization"] = f"Bearer {token}"
         headers["User-Agent"] = self.user_agent
 
-        if "json" in kwargs:
+        if json:
             headers["Content-Type"] = "application/json"
-            kwargs["data"] = to_json(kwargs.pop("json"))
+            kwargs["data"] = to_json(json)
             LOGGER.debug("Current json body is: %s", str(kwargs["data"]))
 
-        if "params" in kwargs:
-            params = kwargs["params"]
+        if params:
             resolved_params = php_query_builder(params)
             kwargs["params"] = resolved_params
             LOGGER.debug("Current request parameters: %s", resolved_params)
@@ -555,7 +562,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if title:
             query["title"] = title
@@ -583,7 +590,7 @@ class HTTPClient:
             query["excludedTagsMode"] = excluded_tags.mode
 
         if status:
-            query["status"] = status
+            query["status"] = [s.value for s in status]
 
         if original_language:
             query["originalLanguage"] = original_language
@@ -595,13 +602,13 @@ class HTTPClient:
             query["availableTranslatedLanguage"] = available_translated_language
 
         if publication_demographic:
-            query["publicationDemographic"] = publication_demographic
+            query["publicationDemographic"] = [demo.value for demo in publication_demographic]
 
         if ids:
             query["ids"] = ids
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = [cr.value for cr in content_rating]
 
         if created_at_since:
             query["createdAtSince"] = clean_isoformat(created_at_since)
@@ -699,7 +706,7 @@ class HTTPClient:
     ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
-        query: dict[str, Any] = {}
+        query: MANGADEX_QUERY_PARAM_TYPE = {}
 
         if translated_language:
             query["translatedLanguage"] = translated_language
@@ -715,7 +722,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -825,7 +832,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=500)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if translated_language:
             query["translatedLanguage"] = translated_language
@@ -837,7 +844,7 @@ class HTTPClient:
             query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = [cr.value for cr in content_rating]
 
         if excluded_groups:
             query["excludedGroups"] = excluded_groups
@@ -897,13 +904,13 @@ class HTTPClient:
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/random")
 
-        query: dict[str, Any] = {}
+        query: MANGADEX_QUERY_PARAM_TYPE = {}
 
         if includes:
             query["includes"] = includes.to_query()
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = [cr.value for cr in content_rating]
 
         if included_tags:
             query["includedTags"] = included_tags.tags
@@ -943,7 +950,7 @@ class HTTPClient:
             return self.request(route)
 
         route = Route("GET", "/manga/read")
-        query: dict[str, Any] = {"ids": manga_ids, "grouped": True}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"ids": manga_ids, "grouped": True}
         return self.request(route, params=query)
 
     def _manga_read_markers_batch(
@@ -958,7 +965,7 @@ class HTTPClient:
         route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
 
         body = {}
-        params = {"updateHistory": update_history} if update_history else None
+        query: Optional[MANGADEX_QUERY_PARAM_TYPE] = {"updateHistory": update_history} if update_history else None
 
         if read_chapters:
             body["chapterIdsRead"] = read_chapters
@@ -966,8 +973,8 @@ class HTTPClient:
         if unread_chapters:
             body["chapterIdsUnread"] = unread_chapters
 
-        if params:
-            return self.request(route, json=body, params=params)
+        if query:
+            return self.request(route, json=body, params=query)
         return self.request(route, json=body)
 
     def _get_all_manga_reading_status(
@@ -975,7 +982,7 @@ class HTTPClient:
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
         if status:
-            query: dict[str, Any] = {"status": status.value}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"status": status.value}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1012,7 +1019,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if state:
             query["state"] = state.value
@@ -1031,7 +1038,7 @@ class HTTPClient:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
 
         if includes:
-            query: dict[str, Any] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
 
         return self.request(route)
@@ -1079,7 +1086,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1112,7 +1119,7 @@ class HTTPClient:
             query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = [cr.value for cr in content_rating]
 
         if excluded_groups:
             query["excludedGroups"] = excluded_groups
@@ -1219,7 +1226,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if manga:
             query["manga"] = manga
@@ -1267,7 +1274,7 @@ class HTTPClient:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1317,7 +1324,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1349,7 +1356,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1397,7 +1404,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
 
     def _check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
@@ -1409,7 +1416,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1425,7 +1432,7 @@ class HTTPClient:
         route = Route("GET", "/user/follows/list")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1438,7 +1445,7 @@ class HTTPClient:
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/user/follows/manga")
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if includes:
             query["includes"] = includes.to_query()
@@ -1484,7 +1491,7 @@ class HTTPClient:
 
     def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[chapter.GetAtHomeResponse]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
-        query: dict[str, Any] = {"forcePort443": str(ssl).lower()}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"forcePort443": ssl}
         return self.request(route, params=query)
 
     def _create_custom_list(
@@ -1512,7 +1519,7 @@ class HTTPClient:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1568,7 +1575,7 @@ class HTTPClient:
     def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1577,7 +1584,7 @@ class HTTPClient:
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1608,7 +1615,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=500)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if translated_language:
             query["translatedLanguage"] = translated_language
@@ -1620,7 +1627,7 @@ class HTTPClient:
             query["excludedOriginalLanguage"] = excluded_original_language
 
         if content_rating:
-            query["contentRating"] = content_rating
+            query["contentRating"] = [cr.value for cr in content_rating]
 
         if excluded_groups:
             query["excludedGroups"] = excluded_groups
@@ -1721,7 +1728,7 @@ class HTTPClient:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -1830,7 +1837,7 @@ class HTTPClient:
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if ids:
             query["ids"] = ids
@@ -1911,7 +1918,7 @@ class HTTPClient:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
 
         return self.request(route)
@@ -1993,7 +2000,7 @@ class HTTPClient:
         route = Route("GET", "/author/{artist_id}", artist_id=artist_id)
 
         if includes:
-            query: dict[str, list[str]] = {"includes": includes.to_query()}
+            query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
         return self.request(route)
 
@@ -2088,7 +2095,7 @@ class HTTPClient:
 
         route = Route("GET", "/report")
 
-        query: dict[str, Any] = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         if object_id:
             query["objectId"] = object_id
@@ -2138,7 +2145,7 @@ class HTTPClient:
     def _get_my_ratings(self, manga_ids: list[str], /) -> Response[statistics.GetPersonalMangaRatingsResponse]:
         route = Route("GET", "/rating")
 
-        query: dict[str, Any] = {"manga": manga_ids}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
 
         return self.request(route, params=query)
 
@@ -2162,7 +2169,7 @@ class HTTPClient:
     def _find_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.BatchGetStatisticsResponse]:
         route = Route("GET", "/statistics/manga")
 
-        query: dict[str, Any] = {"manga": manga_ids}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
 
         return self.request(route, params=query)
 

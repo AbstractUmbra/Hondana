@@ -4,7 +4,7 @@ import datetime
 import pathlib
 import random
 import zoneinfo
-from typing import Iterable, Mapping, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Iterable, Optional, TypeVar, Union
 
 import pytest
 from multidict import MultiDict
@@ -24,6 +24,10 @@ from hondana.utils import (
     to_snake_case,
     upload_file_sort,
 )
+
+
+if TYPE_CHECKING:
+    from hondana.utils import MANGADEX_QUERY_PARAM_TYPE
 
 
 T = TypeVar("T")
@@ -140,7 +144,9 @@ class TestUtils:
         ],
     )
     def test_query_builder(
-        self, input: Mapping[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]], output: MultiDict
+        self,
+        input: MANGADEX_QUERY_PARAM_TYPE,
+        output: MultiDict,
     ):
         assert php_query_builder(input) == output
 
