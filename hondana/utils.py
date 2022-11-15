@@ -384,7 +384,7 @@ def php_query_builder(
             fmt.add(key, str(value).lower())
         elif isinstance(value, list):
             for item in value:
-                fmt.add(f"{key}[]", item)
+                fmt.add(f"{key}[]", str(item))
         elif isinstance(value, dict):
             for subkey, subvalue in value.items():
                 fmt.add(f"{key}[{subkey}]", subvalue)
