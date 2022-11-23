@@ -10,7 +10,7 @@ from hondana.legacy import LegacyItem
 
 
 if TYPE_CHECKING:
-    from hondana.types.legacy import GetLegacyMappingResponse
+    from hondana.types_.legacy import GetLegacyMappingResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "legacy_mapping.json"

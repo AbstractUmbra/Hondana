@@ -40,8 +40,8 @@ from .enums import (
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.common import LocalizedString
-    from .types.report import ReportReasonResponse, UserReportReasonResponse
+    from .types_.common import LocalizedString
+    from .types_.report import ReportReasonResponse, UserReportReasonResponse
 
 
 __all__ = (

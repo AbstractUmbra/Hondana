@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Any
 
 
 if TYPE_CHECKING:
-    from .types.relationship import RelationshipResponse
+    from .types_.relationship import RelationshipResponse
 
 
 __all__ = ("Relationship",)

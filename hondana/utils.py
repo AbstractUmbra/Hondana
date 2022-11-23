@@ -67,14 +67,14 @@ if TYPE_CHECKING:
     from _typeshed import SupportsRichComparison
     from typing_extensions import Concatenate, ParamSpec, TypeAlias
 
-    from .types.artist import ArtistResponse
-    from .types.author import AuthorResponse
-    from .types.chapter import ChapterResponse
-    from .types.cover import CoverResponse
-    from .types.manga import MangaResponse
-    from .types.relationship import RelationshipResponse
-    from .types.scanlator_group import ScanlationGroupResponse
-    from .types.user import UserResponse
+    from .types_.artist import ArtistResponse
+    from .types_.author import AuthorResponse
+    from .types_.chapter import ChapterResponse
+    from .types_.cover import CoverResponse
+    from .types_.manga import MangaResponse
+    from .types_.relationship import RelationshipResponse
+    from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.user import UserResponse
 
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]
 C = TypeVar("C", bound="Any")

@@ -12,7 +12,7 @@ from hondana.tags import QueryTags, Tag
 
 
 if TYPE_CHECKING:
-    from hondana.types.manga import GetMangaResponse
+    from hondana.types_.manga import GetMangaResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"

@@ -7,7 +7,7 @@ import hondana
 
 
 if TYPE_CHECKING:
-    from hondana.types.common import LocalizedString
+    from hondana.types_.common import LocalizedString
 
 # Create your client, auth is needed for this.
 client = hondana.Client(username="my username", password="my password")

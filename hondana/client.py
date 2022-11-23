@@ -85,8 +85,7 @@ from .query import (
 from .report import ReportDetails, UserReport
 from .scanlator_group import ScanlatorGroup
 from .tags import Tag
-from .token import Permissions
-from .user import User
+from .user import User, UserInfo
 from .utils import MISSING, require_authentication
 
 
@@ -94,9 +93,9 @@ if TYPE_CHECKING:
     from aiohttp import ClientSession
 
     from .tags import QueryTags
-    from .types import common, legacy, manga
-    from .types.settings import Settings, SettingsPayload
-    from .types.token import TokenPayload
+    from .types_ import common, legacy, manga
+    from .types_.settings import Settings, SettingsPayload
+    from .types_.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
@@ -282,7 +281,7 @@ class Client:
         await self._http._try_token()
 
     @property
-    def permissions(self) -> Optional[Permissions]:
+    def user_info(self) -> Optional[UserInfo]:
         """
         This attribute will return a permissions instance for the current logged-in user.
 
@@ -292,7 +291,7 @@ class Client:
 
         Returns
         --------
-        :class:`~hondana.Permissions`
+        :class:`~hondana.user.UserInfo`
         """
         if not self._http._authenticated:
             return None
@@ -307,7 +306,7 @@ class Client:
         payload += "=" * padding
         parsed_payload: TokenPayload = json.loads(b64decode(payload))
 
-        return Permissions(parsed_payload)
+        return UserInfo(parsed_payload)
 
     @require_authentication
     def dump_refresh_token(
@@ -440,7 +439,7 @@ class Client:
             ret[category.value] = {}
             for inner in data["data"]:
                 key_name = (
-                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # type: ignore # always in en apparently
+                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # type: ignore # these will always be in the `en` key.
                 )
                 ret[category.value][key_name] = inner["id"]
 

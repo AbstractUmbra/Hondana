@@ -34,10 +34,10 @@ from .utils import relationship_finder, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.custom_list import CustomListResponse
-    from .types.manga import MangaResponse
-    from .types.relationship import RelationshipResponse
-    from .types.user import UserResponse
+    from .types_.custom_list import CustomListResponse
+    from .types_.manga import MangaResponse
+    from .types_.relationship import RelationshipResponse
+    from .types_.user import UserResponse
 
 
 __all__ = ("CustomList",)

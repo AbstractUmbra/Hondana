@@ -12,7 +12,7 @@ from hondana.utils import iso_to_delta, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.scanlator_group import GetSingleScanlationGroupResponse
+    from hondana.types_.scanlator_group import GetSingleScanlationGroupResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "scanlator_group.json"
 

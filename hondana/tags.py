@@ -31,9 +31,9 @@ from .utils import MANGA_TAGS, cached_slot_property
 
 
 if TYPE_CHECKING:
-    from .types.common import LocalizedString
-    from .types.relationship import RelationshipResponse
-    from .types.tags import TagResponse
+    from .types_.common import LocalizedString
+    from .types_.relationship import RelationshipResponse
+    from .types_.tags import TagResponse
 
 
 __all__ = (

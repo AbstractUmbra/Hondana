@@ -31,10 +31,10 @@ from .utils import MISSING, iso_to_delta, relationship_finder, require_authentic
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.common import LanguageCode
-    from .types.relationship import RelationshipResponse
-    from .types.scanlator_group import ScanlationGroupResponse
-    from .types.user import UserResponse
+    from .types_.common import LanguageCode
+    from .types_.relationship import RelationshipResponse
+    from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.user import UserResponse
     from .user import User
 
 __all__ = ("ScanlatorGroup",)

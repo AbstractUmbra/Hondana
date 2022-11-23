@@ -32,10 +32,10 @@ from .utils import MISSING, relationship_finder, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.common import LanguageCode
-    from .types.cover import CoverResponse
-    from .types.manga import MangaResponse
-    from .types.user import UserResponse
+    from .types_.common import LanguageCode
+    from .types_.cover import CoverResponse
+    from .types_.manga import MangaResponse
+    from .types_.user import UserResponse
 
 
 __all__ = ("Cover",)

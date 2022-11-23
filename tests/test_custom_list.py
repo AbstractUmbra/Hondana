@@ -11,7 +11,7 @@ from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.custom_list import GetSingleCustomListResponse
+    from hondana.types_.custom_list import GetSingleCustomListResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "custom_list.json"
 

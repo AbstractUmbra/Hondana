@@ -30,14 +30,14 @@ from hondana.user import User
 
 
 if TYPE_CHECKING:
-    from hondana.types.author import GetMultiAuthorResponse
-    from hondana.types.chapter import GetMultiChapterResponse
-    from hondana.types.cover import GetMultiCoverResponse
-    from hondana.types.custom_list import GetMultiCustomListResponse
-    from hondana.types.legacy import GetLegacyMappingResponse
-    from hondana.types.manga import MangaRelationResponse, MangaSearchResponse
-    from hondana.types.scanlator_group import GetMultiScanlationGroupResponse
-    from hondana.types.user import GetMultiUserResponse
+    from hondana.types_.author import GetMultiAuthorResponse
+    from hondana.types_.chapter import GetMultiChapterResponse
+    from hondana.types_.cover import GetMultiCoverResponse
+    from hondana.types_.custom_list import GetMultiCustomListResponse
+    from hondana.types_.legacy import GetLegacyMappingResponse
+    from hondana.types_.manga import MangaRelationResponse, MangaSearchResponse
+    from hondana.types_.scanlator_group import GetMultiScanlationGroupResponse
+    from hondana.types_.user import GetMultiUserResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections"
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.

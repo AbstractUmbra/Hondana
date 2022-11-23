@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.legacy import LegacyMappingResponse, LegacyMappingType
+    from .types_.legacy import LegacyMappingResponse, LegacyMappingType
 
 
 __all__ = ("LegacyItem",)

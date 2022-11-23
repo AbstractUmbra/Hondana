@@ -88,7 +88,7 @@ if TYPE_CHECKING:
         UserReportIncludes,
     )
     from .tags import QueryTags
-    from .types import (
+    from .types_ import (
         artist,
         author,
         chapter,
@@ -103,11 +103,11 @@ if TYPE_CHECKING:
         upload,
         user,
     )
-    from .types.account import GetAccountAvailable
-    from .types.auth import CheckPayload
-    from .types.settings import Settings, SettingsPayload
-    from .types.tags import GetTagListResponse
-    from .types.token import TokenPayload
+    from .types_.account import GetAccountAvailable
+    from .types_.auth import CheckPayload
+    from .types_.settings import Settings, SettingsPayload
+    from .types_.tags import GetTagListResponse
+    from .types_.token import TokenPayload
     from .utils import MANGADEX_QUERY_PARAM_TYPE
 
     T = TypeVar("T")

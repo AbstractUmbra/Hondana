@@ -58,14 +58,14 @@ if TYPE_CHECKING:
     from aiohttp import ClientResponse
 
     from .http import HTTPClient
-    from .types.chapter import ChapterResponse, GetAtHomeChapterResponse, GetAtHomeResponse, GetSingleChapterResponse
-    from .types.common import LanguageCode
-    from .types.errors import ErrorType
-    from .types.manga import MangaResponse
-    from .types.relationship import RelationshipResponse
-    from .types.scanlator_group import ScanlationGroupResponse
-    from .types.upload import BeginChapterUploadResponse, GetUploadSessionResponse, UploadedChapterResponse
-    from .types.user import UserResponse
+    from .types_.chapter import ChapterResponse, GetAtHomeChapterResponse, GetAtHomeResponse, GetSingleChapterResponse
+    from .types_.common import LanguageCode
+    from .types_.errors import ErrorType
+    from .types_.manga import MangaResponse
+    from .types_.relationship import RelationshipResponse
+    from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.upload import BeginChapterUploadResponse, GetUploadSessionResponse, UploadedChapterResponse
+    from .types_.user import UserResponse
 
 ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 

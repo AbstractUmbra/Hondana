@@ -171,14 +171,12 @@ QueryTags
 .. autoclass:: QueryTags
     :members:
 
-Token
-~~~~~
-.. autoclass:: Permissions()
-    :members:
-
 User
 ~~~~
 .. autoclass:: User()
+    :members:
+
+.. autoclass:: hondana.user.UserInfo()
     :members:
 
 

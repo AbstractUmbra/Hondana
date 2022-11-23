@@ -29,7 +29,7 @@ import aiohttp
 
 
 if TYPE_CHECKING:
-    from .types.errors import ErrorType
+    from .types_.errors import ErrorType
 
 __all__ = (
     "AuthenticationRequired",

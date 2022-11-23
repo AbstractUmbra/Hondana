@@ -37,15 +37,15 @@ if TYPE_CHECKING:
     from .manga import Manga, MangaRelation
     from .report import Report, UserReport
     from .scanlator_group import ScanlatorGroup
-    from .types.author import GetMultiAuthorResponse
-    from .types.chapter import ChapterReadHistoryResponse, GetMultiChapterResponse
-    from .types.cover import GetMultiCoverResponse
-    from .types.custom_list import GetMultiCustomListResponse
-    from .types.legacy import GetLegacyMappingResponse
-    from .types.manga import MangaRelationResponse, MangaSearchResponse
-    from .types.report import GetReportReasonResponse, GetUserReportReasonResponse
-    from .types.scanlator_group import GetMultiScanlationGroupResponse
-    from .types.user import GetMultiUserResponse
+    from .types_.author import GetMultiAuthorResponse
+    from .types_.chapter import ChapterReadHistoryResponse, GetMultiChapterResponse
+    from .types_.cover import GetMultiCoverResponse
+    from .types_.custom_list import GetMultiCustomListResponse
+    from .types_.legacy import GetLegacyMappingResponse
+    from .types_.manga import MangaRelationResponse, MangaSearchResponse
+    from .types_.report import GetReportReasonResponse, GetUserReportReasonResponse
+    from .types_.scanlator_group import GetMultiScanlationGroupResponse
+    from .types_.user import GetMultiUserResponse
     from .user import User
 
 __all__ = (

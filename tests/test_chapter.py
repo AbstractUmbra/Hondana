@@ -12,7 +12,7 @@ from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.chapter import GetSingleChapterResponse
+    from hondana.types_.chapter import GetSingleChapterResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "chapter.json"

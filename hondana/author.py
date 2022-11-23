@@ -34,10 +34,10 @@ if TYPE_CHECKING:
     from .artist import Artist
     from .http import HTTPClient
     from .manga import Manga
-    from .types.author import AuthorAttributesResponse, AuthorResponse
-    from .types.common import LanguageCode, LocalizedString
-    from .types.manga import MangaResponse
-    from .types.relationship import RelationshipResponse
+    from .types_.author import AuthorAttributesResponse, AuthorResponse
+    from .types_.common import LanguageCode, LocalizedString
+    from .types_.manga import MangaResponse
+    from .types_.relationship import RelationshipResponse
 
 __all__ = ("Author",)
 

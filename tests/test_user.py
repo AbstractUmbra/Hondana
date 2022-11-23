@@ -11,7 +11,7 @@ from hondana.utils import to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.user import GetSingleUserResponse
+    from hondana.types_.user import GetSingleUserResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "user.json"

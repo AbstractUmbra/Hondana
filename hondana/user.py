@@ -23,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import datetime
 from typing import TYPE_CHECKING, Optional
 
 from .query import ScanlatorGroupIncludes
@@ -32,11 +33,69 @@ from .utils import relationship_finder, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .types.relationship import RelationshipResponse
-    from .types.scanlator_group import ScanlationGroupResponse
-    from .types.user import UserResponse
+    from .types_.relationship import RelationshipResponse
+    from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.token import TokenPayload
+    from .types_.user import UserResponse
 
 __all__ = ("User",)
+
+
+class UserInfo:
+    """
+    A helper class for the permission attributes of the logged-in user's token details.
+
+    Attributes
+    -----------
+    type: Literal[``session``]
+        The type of token we have received.
+    issuer: Literal[``mangadex.org``]
+        The issuer of the token.
+    audience: Literal[``mangadex.org``]
+        The target audience for the token.
+    issued_at: :class:`datetime.datetime`
+        When the token was issued.
+    not_before: :class:`datetime.datetime`
+        The datetime that the token is valid from.
+    expires: :class:`datetime.datetime`
+        When the token expires.
+    user_id: :class:`str`
+        The logged-in user's UUID.
+    roles: List[:class:`str`]
+        The list of roles the logged-in user has.
+    permissions: List[:class:`str`]
+        The list of permissions this user has.
+    sid: :class:`str`
+        At the moment I'm not too sure what this is...
+    """
+
+    __slots__ = (
+        "type",
+        "issuer",
+        "audience",
+        "issued_at",
+        "not_before",
+        "expires",
+        "user_id",
+        "roles",
+        "permissions",
+        "sid",
+    )
+
+    def __init__(self, payload: TokenPayload) -> None:
+        self.type: str = payload["typ"]
+        self.issuer: str = payload["iss"]
+        self.audience: str = payload["aud"]
+        self.issued_at: datetime.datetime = datetime.datetime.fromtimestamp(payload["iat"], datetime.timezone.utc)
+        self.not_before: datetime.datetime = datetime.datetime.fromtimestamp(payload["nbf"], datetime.timezone.utc)
+        self.expires: datetime.datetime = datetime.datetime.fromtimestamp(payload["exp"], datetime.timezone.utc)
+        self.user_id: str = payload["uid"]
+        self.roles: list[str] = payload["rol"]
+        self.permissions: list[str] = payload["prm"]
+        self.sid: str = payload["sid"]
+
+    def __repr__(self) -> str:
+        return f"<Permissions type={self.type!r} issuer={self.issuer!r} audience={self.audience!r} issued_at={self.issued_at} not_before={self.not_before} expires={self.expires} user_id={self.user_id!r} sid={self.sid!r}>"
 
 
 class User:

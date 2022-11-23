@@ -12,7 +12,7 @@ from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.cover import GetSingleCoverResponse
+    from hondana.types_.cover import GetSingleCoverResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "cover.json"

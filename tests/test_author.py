@@ -12,7 +12,7 @@ from hondana.utils import relationship_finder, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types.author import GetSingleAuthorResponse
+    from hondana.types_.author import GetSingleAuthorResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "author.json"

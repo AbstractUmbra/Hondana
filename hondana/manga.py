@@ -33,20 +33,20 @@ from .cover import Cover
 from .enums import ContentRating, MangaRelationType, MangaState, MangaStatus, PublicationDemographic, ReadingStatus
 from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
-from .types.cover import CoverResponse
 from .utils import MISSING, cached_slot_property, relationship_finder, require_authentication
 
 
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .tags import QueryTags
-    from .types import manga
-    from .types.artist import ArtistResponse
-    from .types.author import AuthorResponse
-    from .types.common import LanguageCode, LocalizedString
-    from .types.manga import MangaResponse
-    from .types.relationship import RelationshipResponse
-    from .types.statistics import BatchStatisticsResponse, PersonalMangaRatingsResponse, StatisticsResponse
+    from .types_ import manga
+    from .types_.artist import ArtistResponse
+    from .types_.author import AuthorResponse
+    from .types_.common import LanguageCode, LocalizedString
+    from .types_.cover import CoverResponse
+    from .types_.manga import MangaResponse
+    from .types_.relationship import RelationshipResponse
+    from .types_.statistics import BatchStatisticsResponse, PersonalMangaRatingsResponse, StatisticsResponse
 
 
 __all__ = (
