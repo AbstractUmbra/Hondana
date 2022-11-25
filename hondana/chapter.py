@@ -30,7 +30,7 @@ import pathlib
 import time
 from collections.abc import Callable
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, TypeVar, Union
 
 import aiohttp
 
@@ -1058,7 +1058,7 @@ class ChapterUpload:
         return self
 
     async def __aexit__(
-        self, exc_type: Optional[Type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]
+        self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]
     ) -> None:
         if self.__committed is False:
             await self.commit()
