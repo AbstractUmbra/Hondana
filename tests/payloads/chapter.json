@@ -99,7 +99,7 @@
                                 "name": {
                                     "en": "Romance"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -112,7 +112,7 @@
                                 "name": {
                                     "en": "Comedy"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -125,7 +125,7 @@
                                 "name": {
                                     "en": "Boys' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -138,7 +138,7 @@
                                 "name": {
                                     "en": "Crossdressing"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -151,7 +151,7 @@
                                 "name": {
                                     "en": "Drama"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },

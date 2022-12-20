@@ -96,7 +96,7 @@
                     "availableTranslatedLanguages": [
                         "en"
                     ],
-                    "latestUploadedChapter": "7d100b37-d991-429b-adeb-85d4da1be5ff"
+                    "latestUploadedChapter": "8e5715e7-4287-409b-a9bb-3d03004162bb"
                 }
             },
             {
@@ -104,7 +104,7 @@
                 "type": "manga",
                 "attributes": {
                     "title": {
-                        "ja-ro": "Don't Toy with Me, Nagatoro-san!"
+                        "ja-ro": "Ijiranaide, Nagatoro-san"
                     },
                     "altTitles": [
                         {
@@ -259,8 +259,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2022-10-04T01:49:45+00:00",
-                    "version": 320,
+                    "updatedAt": "2022-12-06T06:13:57+00:00",
+                    "version": 322,
                     "availableTranslatedLanguages": [
                         "id",
                         "ru",
@@ -278,7 +278,7 @@
                         "es",
                         "pt"
                     ],
-                    "latestUploadedChapter": "e0f318b3-d572-45c7-bf91-9c8a5e8e17fa"
+                    "latestUploadedChapter": "f7198816-a8f8-437c-80e8-9fdb4841cfec"
                 }
             },
             {

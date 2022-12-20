@@ -34,7 +34,7 @@
                                 "ja-ro": "Kimi Dake no Ponytail 2"
                             }
                         ],
-                        "description": [],
+                        "description": {},
                         "isLocked": false,
                         "links": {
                             "al": "105933",
@@ -56,7 +56,7 @@
                                     "name": {
                                         "en": "Boys' Love"
                                     },
-                                    "description": [],
+                                    "description": {},
                                     "group": "genre",
                                     "version": 1
                                 },
@@ -69,7 +69,7 @@
                                     "name": {
                                         "en": "Crossdressing"
                                     },
-                                    "description": [],
+                                    "description": {},
                                     "group": "theme",
                                     "version": 1
                                 },

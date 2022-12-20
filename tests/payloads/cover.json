@@ -148,11 +148,11 @@
                 "attributes": {
                     "username": "ROBSU",
                     "roles": [
+                        "ROLE_GROUP_MEMBER",
                         "ROLE_MEMBER",
-                        "ROLE_GROUP_LEADER",
-                        "ROLE_GROUP_MEMBER"
+                        "ROLE_GROUP_LEADER"
                     ],
-                    "version": 186
+                    "version": 189
                 }
             }
         ]

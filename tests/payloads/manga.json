@@ -138,7 +138,7 @@
                     "biography": {
                         "en": "**Alt names**:\nkona\nPappa\nTosaki Ei\nTozaki Ei\n\u30b3\u30ca\n\u30d1\u30c3\u30d1 \n\u6238\u5d0e \u6620\n\u7c89\u5c71\u30ab\u30bf\n\n**Circles**:\ncanaria\ncanaria mint\nFunmatsu (\u3075\u3093\u307e\u3064)\nKiiro Bird/Ki'iro bird (\u304d\u3044\u308d\u30d0\u30fc\u30c9)\nKokoko (\u30b3\u30b3\u30b3)\n"
                     },
-                    "twitter": "https://twitter.com/kt_konym",
+                    "twitter": "https://twitter.com/tozcwn",
                     "pixiv": "https://www.pixiv.net/users/98608",
                     "melonBook": null,
                     "fanBox": "https://toz.fanbox.cc/",
@@ -152,8 +152,8 @@
                     "naver": null,
                     "website": null,
                     "createdAt": "2021-04-19T21:59:45+00:00",
-                    "updatedAt": "2022-04-06T18:27:15+00:00",
-                    "version": 3
+                    "updatedAt": "2022-11-02T09:03:09+00:00",
+                    "version": 4
                 }
             },
             {
@@ -165,7 +165,7 @@
                     "biography": {
                         "en": "**Alt names**:\nkona\nPappa\nTosaki Ei\nTozaki Ei\n\u30b3\u30ca\n\u30d1\u30c3\u30d1 \n\u6238\u5d0e \u6620\n\u7c89\u5c71\u30ab\u30bf\n\n**Circles**:\ncanaria\ncanaria mint\nFunmatsu (\u3075\u3093\u307e\u3064)\nKiiro Bird/Ki'iro bird (\u304d\u3044\u308d\u30d0\u30fc\u30c9)\nKokoko (\u30b3\u30b3\u30b3)\n"
                     },
-                    "twitter": "https://twitter.com/kt_konym",
+                    "twitter": "https://twitter.com/tozcwn",
                     "pixiv": "https://www.pixiv.net/users/98608",
                     "melonBook": null,
                     "fanBox": "https://toz.fanbox.cc/",
@@ -179,8 +179,8 @@
                     "naver": null,
                     "website": null,
                     "createdAt": "2021-04-19T21:59:45+00:00",
-                    "updatedAt": "2022-04-06T18:27:15+00:00",
-                    "version": 3
+                    "updatedAt": "2022-11-02T09:03:09+00:00",
+                    "version": 4
                 }
             },
             {
@@ -221,7 +221,7 @@
                             "ja-ro": "Kimi Dake no Ponytail 2"
                         }
                     ],
-                    "description": [],
+                    "description": {},
                     "isLocked": false,
                     "links": {
                         "al": "105933",
@@ -243,7 +243,7 @@
                                 "name": {
                                     "en": "Boys' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -256,7 +256,7 @@
                                 "name": {
                                     "en": "Crossdressing"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },

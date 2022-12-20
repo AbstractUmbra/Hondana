@@ -3,10 +3,10 @@
     "response": "collection",
     "data": [
         {
-            "id": "b4eaf307-8682-4911-81e1-bc32ce969914",
+            "id": "1ad670b0-e678-434b-8160-fd50cb753ce0",
             "type": "scanlation_group",
             "attributes": {
-                "name": "Lily_Anne",
+                "name": "TT",
                 "altNames": [],
                 "locked": false,
                 "website": null,
@@ -31,18 +31,18 @@
             "relationships": []
         },
         {
-            "id": "b4ec223a-1691-43fc-91db-cd7d3ca248ed",
+            "id": "1adab62e-939c-49a0-8ad7-57d9097f9f75",
             "type": "scanlation_group",
             "attributes": {
-                "name": "LapisScans",
+                "name": "Musunde Scans",
                 "altNames": [],
-                "locked": false,
-                "website": null,
+                "locked": true,
+                "website": "http://musundescans.blogspot.com/",
                 "ircServer": null,
                 "ircChannel": null,
-                "discord": null,
-                "contactEmail": "lapisscans@protonmail.com",
-                "description": "",
+                "discord": "DcQsXZn",
+                "contactEmail": null,
+                "description": "Originally formed with the purpose to scanlate Musunde Hiraite by Minase Mayu. We like romance manga. Preferably with qt\u03c0's.",
                 "twitter": null,
                 "mangaUpdates": null,
                 "focusedLanguages": [
@@ -52,17 +52,44 @@
                 "verified": false,
                 "inactive": false,
                 "publishDelay": null,
-                "createdAt": "2022-04-08T06:18:23+00:00",
-                "updatedAt": "2022-04-08T06:18:23+00:00",
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
                 "version": 1
             },
-            "relationships": []
+            "relationships": [
+                {
+                    "id": "4b93d517-951f-4241-8a63-596b1f028b54",
+                    "type": "leader",
+                    "attributes": {
+                        "username": "cranon",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "4b93d517-951f-4241-8a63-596b1f028b54",
+                    "type": "member",
+                    "attributes": {
+                        "username": "cranon",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 2
+                    }
+                }
+            ]
         },
         {
-            "id": "b4eca069-ad15-4032-b462-2972c161637d",
+            "id": "1adb76cd-dead-4f15-831b-dd7a793c42f5",
             "type": "scanlation_group",
             "attributes": {
-                "name": "Vgjh",
+                "name": "Tengoku Team",
                 "altNames": [],
                 "locked": false,
                 "website": null,
@@ -70,36 +97,8 @@
                 "ircChannel": null,
                 "discord": null,
                 "contactEmail": null,
-                "description": "",
+                "description": "Team ferm\u00e9e",
                 "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "eo"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2022-08-02T02:36:38+00:00",
-                "updatedAt": "2022-08-02T02:36:38+00:00",
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "b4eca5d2-34a6-4446-b62c-159015a90229",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "PandaScan",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "xSc9PYW",
-                "contactEmail": "pandascantrad@gmail.com",
-                "description": "PandaScan c'est des bon projets traduit en fran\u00e7ais, ni plus ni moins.\n",
-                "twitter": "https://twitter.com/panda_scan",
                 "mangaUpdates": null,
                 "focusedLanguages": [
                     "fr"
@@ -109,58 +108,72 @@
                 "inactive": false,
                 "publishDelay": null,
                 "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-12-08T14:47:45+00:00",
+                "updatedAt": "2021-04-19T21:45:59+00:00",
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "1ae0ae04-dcea-4dfa-9a1e-e24b4696b81b",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "NeoN's Translate Crew",
+                "altNames": [],
+                "locked": false,
+                "website": "https://vk.com/61neon61",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": "GEA4PDCm5M",
+                "contactEmail": "neon61pro@gmail.com",
+                "description": null,
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2022-01-16T16:52:09+00:00",
+                "updatedAt": "2022-01-16T19:22:07+00:00",
                 "version": 2
             },
             "relationships": [
                 {
-                    "id": "b2e78fb2-9c20-4516-9a50-813350d84f15",
+                    "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
                     "type": "leader",
                     "attributes": {
-                        "username": "PandaScan",
+                        "username": "Greatestneon",
                         "roles": [
-                            "ROLE_MEMBER",
+                            "ROLE_USER",
                             "ROLE_GROUP_LEADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 2
+                        "version": 9
                     }
                 },
                 {
-                    "id": "5018cb21-2b9b-4f14-819a-e2efb76bd060",
+                    "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
                     "type": "member",
                     "attributes": {
-                        "username": "Vegash",
+                        "username": "Greatestneon",
                         "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "b2e78fb2-9c20-4516-9a50-813350d84f15",
-                    "type": "member",
-                    "attributes": {
-                        "username": "PandaScan",
-                        "roles": [
-                            "ROLE_MEMBER",
+                            "ROLE_USER",
                             "ROLE_GROUP_LEADER",
                             "ROLE_GROUP_MEMBER"
                         ],
-                        "version": 2
+                        "version": 9
                     }
                 }
             ]
         },
         {
-            "id": "b4ee5f90-0155-47a2-8e05-ead50c93a9cc",
+            "id": "1ae2684e-31ce-4417-8749-f754d527d6b9",
             "type": "scanlation_group",
             "attributes": {
-                "name": "Killer Kranberry",
+                "name": "Skull Gang",
                 "altNames": [],
                 "locked": false,
-                "website": "http://killerkranberry.tumblr.com/",
+                "website": null,
                 "ircServer": null,
                 "ircChannel": null,
                 "discord": null,
@@ -179,37 +192,10 @@
                 "updatedAt": "2021-04-19T21:45:59+00:00",
                 "version": 1
             },
-            "relationships": [
-                {
-                    "id": "a30ee526-1b15-4a6a-a3e7-20aba857374e",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "Krankran",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "a30ee526-1b15-4a6a-a3e7-20aba857374e",
-                    "type": "member",
-                    "attributes": {
-                        "username": "Krankran",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 1
-                    }
-                }
-            ]
+            "relationships": []
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 23188
+    "total": 23626
 }

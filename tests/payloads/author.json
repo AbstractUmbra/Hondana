@@ -10,7 +10,7 @@
             "biography": {
                 "en": "**Alt names**:\nkona\nPappa\nTosaki Ei\nTozaki Ei\n\u30b3\u30ca\n\u30d1\u30c3\u30d1 \n\u6238\u5d0e \u6620\n\u7c89\u5c71\u30ab\u30bf\n\n**Circles**:\ncanaria\ncanaria mint\nFunmatsu (\u3075\u3093\u307e\u3064)\nKiiro Bird/Ki'iro bird (\u304d\u3044\u308d\u30d0\u30fc\u30c9)\nKokoko (\u30b3\u30b3\u30b3)\n"
             },
-            "twitter": "https://twitter.com/kt_konym",
+            "twitter": "https://twitter.com/tozcwn",
             "pixiv": "https://www.pixiv.net/users/98608",
             "melonBook": null,
             "fanBox": "https://toz.fanbox.cc/",
@@ -24,8 +24,8 @@
             "naver": null,
             "website": null,
             "createdAt": "2021-04-19T21:59:45+00:00",
-            "updatedAt": "2022-04-06T18:27:15+00:00",
-            "version": 3
+            "updatedAt": "2022-11-02T09:03:09+00:00",
+            "version": 4
         },
         "relationships": [
             {
@@ -60,7 +60,7 @@
                                 "name": {
                                     "en": "Oneshot"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "format",
                                 "version": 1
                             },
@@ -73,7 +73,7 @@
                                 "name": {
                                     "en": "Girls' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -86,7 +86,7 @@
                                 "name": {
                                     "en": "School Life"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -128,7 +128,7 @@
                             "ja-ro": "Kimi Dake no Ponytail 2"
                         }
                     ],
-                    "description": [],
+                    "description": {},
                     "isLocked": false,
                     "links": {
                         "al": "105933",
@@ -150,7 +150,7 @@
                                 "name": {
                                     "en": "Boys' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -163,7 +163,7 @@
                                 "name": {
                                     "en": "Crossdressing"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -236,7 +236,7 @@
                                 "name": {
                                     "en": "Romance"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -249,7 +249,7 @@
                                 "name": {
                                     "en": "Comedy"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -262,7 +262,7 @@
                                 "name": {
                                     "en": "Boys' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -275,7 +275,7 @@
                                 "name": {
                                     "en": "Crossdressing"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -288,7 +288,7 @@
                                 "name": {
                                     "en": "Drama"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -322,9 +322,9 @@
                             "ja": "(SUPER22) \u304a\u3084\u3058\u3069\u3082\u306b\u306f\u30ca\u30a4\u30b7\u30e7\u3060\u305e\u3063 (\u30de\u30ae)"
                         }
                     ],
-                    "description": [],
+                    "description": {},
                     "isLocked": false,
-                    "links": [],
+                    "links": {},
                     "originalLanguage": "ja",
                     "lastVolume": "",
                     "lastChapter": "",
@@ -340,7 +340,7 @@
                                 "name": {
                                     "en": "Oneshot"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "format",
                                 "version": 1
                             },
@@ -353,7 +353,7 @@
                                 "name": {
                                     "en": "Boys' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -366,7 +366,7 @@
                                 "name": {
                                     "en": "Doujinshi"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "format",
                                 "version": 1
                             },
@@ -388,17 +388,6 @@
                 "id": "2ece858b-2cf6-4c35-ac71-30e9f60ff824",
                 "type": "manga",
                 "attributes": {
-                    "isLocked": false,
-                    "links": {
-                        "kt": "56819",
-                        "mu": "147464"
-                    },
-                    "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
-                    "publicationDemographic": null,
-                    "status": "ongoing",
-                    "contentRating": "safe",
                     "title": {
                         "en": "Slow Start Anthology Comic"
                     },
@@ -410,8 +399,32 @@
                     "description": {
                         "en": "Anthology Comic of Slow Start"
                     },
+                    "isLocked": false,
+                    "links": {
+                        "kt": "56819",
+                        "mu": "147464"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": null,
+                    "lastChapter": null,
+                    "publicationDemographic": null,
+                    "status": "ongoing",
                     "year": null,
+                    "contentRating": "safe",
                     "tags": [
+                        {
+                            "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Anthology"
+                                },
+                                "description": {},
+                                "group": "format",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
                         {
                             "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
                             "type": "tag",
@@ -419,7 +432,7 @@
                                 "name": {
                                     "en": "School Life"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -432,7 +445,7 @@
                                 "name": {
                                     "en": "Slice of Life"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -441,9 +454,9 @@
                     ],
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
-                    "version": 2,
                     "createdAt": "2019-03-29T22:22:04+00:00",
-                    "updatedAt": "2021-05-25T15:40:51+00:00",
+                    "updatedAt": "2022-11-02T09:34:09+00:00",
+                    "version": 3,
                     "availableTranslatedLanguages": [
                         "en"
                     ],
@@ -469,7 +482,7 @@
                         "en": "Mokou gets a hair treatment from Kaguya, and an extra service including her feelings.  \n  \nNote: Contains a few NSFW images."
                     },
                     "isLocked": false,
-                    "links": [],
+                    "links": {},
                     "originalLanguage": "ja",
                     "lastVolume": "",
                     "lastChapter": "",
@@ -485,7 +498,7 @@
                                 "name": {
                                     "en": "Girls' Love"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -498,7 +511,7 @@
                                 "name": {
                                     "en": "Doujinshi"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "format",
                                 "version": 1
                             },
@@ -511,7 +524,7 @@
                                 "name": {
                                     "en": "Fantasy"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -560,7 +573,7 @@
                     "links": {
                         "al": "74281",
                         "ap": "boku-wa-tomodachi-ga-sukunai-anthology",
-                        "bw": "series/153652/list/",
+                        "bw": "series/153652/list",
                         "kt": "24111",
                         "mu": "106042",
                         "amz": "https://www.amazon.co.jp/dp/B074CJWJZD",
@@ -582,7 +595,7 @@
                                 "name": {
                                     "en": "Romance"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
                                 "version": 1
                             },
@@ -595,8 +608,21 @@
                                 "name": {
                                     "en": "Comedy"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "genre",
+                                "version": 1
+                            },
+                            "relationships": []
+                        },
+                        {
+                            "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                            "type": "tag",
+                            "attributes": {
+                                "name": {
+                                    "en": "Anthology"
+                                },
+                                "description": {},
+                                "group": "format",
                                 "version": 1
                             },
                             "relationships": []
@@ -608,7 +634,7 @@
                                 "name": {
                                     "en": "Harem"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -621,7 +647,7 @@
                                 "name": {
                                     "en": "School Life"
                                 },
-                                "description": [],
+                                "description": {},
                                 "group": "theme",
                                 "version": 1
                             },
@@ -631,8 +657,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2018-03-04T16:31:30+00:00",
-                    "updatedAt": "2022-05-06T13:42:55+00:00",
-                    "version": 11,
+                    "updatedAt": "2022-11-02T17:05:37+00:00",
+                    "version": 12,
                     "availableTranslatedLanguages": [
                         "it",
                         "en"
