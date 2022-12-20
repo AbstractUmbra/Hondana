@@ -55,6 +55,7 @@ pytest-asyncio = "*"
 pytest-asyncio = "*"
 poethepoet = "*"
 black = "*"
+scalene = "*"
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
@@ -71,24 +72,11 @@ lines_after_imports = 2
 line_length = 125
 
 [tool.pyright]
-include = ["hondana", "tests", "docs", "examples"]
+exclude = ["**/__pycache__", "docs/**/*.py", "tests/_update_payloads.py"]
+include = ["hondana", "tests", "examples"]
 useLibraryCodeForTypes = true
-typeCheckingMode = "basic"
-pythonVersion = "3.9"
-strictListInference = true
-strictDictionaryInference = true
-strictSetInference = true
-strictParameterNoneValue = true
-reportMissingImports = "error"
-reportUnusedImport = "error"
-reportUnusedClass = "error"
-reportUnusedFunction = "error"
-reportUnusedVariable = "error"
-reportGeneralTypeIssues = "error"
-reportFunctionMemberAccess = "error"
-reportDuplicateImport = "error"
-reportUntypedFunctionDecorator = "error"
-reportUnnecessaryTypeIgnoreComment = "warning"
+typeCheckingMode = "strict"
+reportImportCycles = false # normally I'd have this but it's a skill issue
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"

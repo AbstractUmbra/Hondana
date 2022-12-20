@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import pathlib
-from typing import TYPE_CHECKING, Literal, overload
+from typing import TYPE_CHECKING, Any, Literal, overload
 
 from hondana.author import Author
 from hondana.chapter import Chapter
@@ -112,7 +112,7 @@ def clone_collection(type_: Literal["user_report"], /) -> UserReportCollection:
     ...
 
 
-def clone_collection(type_: CollectionType, /) -> BaseCollection:
+def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
     path = PATH / f"{type_}.json"
     if type_ == "author":
         author_payload: GetMultiAuthorResponse = json.load(open(path, "r"))

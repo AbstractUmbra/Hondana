@@ -71,8 +71,8 @@ class LegacyItem:
     def __repr__(self) -> str:
         return f"<LegacyItem id={self.id!r} obj_type={self.obj_type!r} obj_new_id={self.obj_new_id!r} obj_legacy_id={self.obj_legacy_id!r}>"
 
-    def __eq__(self, other: LegacyItem) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, LegacyItem) and self.id == other.id
 
-    def __ne__(self, other: LegacyItem) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)

@@ -8,11 +8,12 @@ from typing import TYPE_CHECKING
 
 from hondana.artist import Artist
 from hondana.http import HTTPClient
-from hondana.utils import relationship_finder, to_snake_case
+from hondana.utils import RelationshipResolver, to_snake_case
 
 
 if TYPE_CHECKING:
     from hondana.types_.artist import GetSingleArtistResponse
+    from hondana.types_.manga import MangaResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "artist.json"
 
@@ -38,14 +39,14 @@ class TestArtist:
 
     def test_relationship_length(self):
         artist = clone_artist()
-        obj_len = len(artist._manga_relationships)
+        obj_len = len(artist._manga_relationships)  # type: ignore # sorry, need this for test purposes
         assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
     def test_manga_relationships(self):
         artist = clone_artist()
         assert "relationships" in PAYLOAD["data"]
-        rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
+        rels = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
 
         assert artist.manga is not None
         assert len(rels) == len(artist.manga)

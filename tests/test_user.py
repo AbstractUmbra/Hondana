@@ -39,8 +39,8 @@ class TestUser:
     def test_relationships_length(self):
         user = clone_user()
 
-        assert user._group_relationships is not None
-        obj_len = len(user._group_relationships)
+        assert user._group_relationships is not None  # type: ignore # sorry, need this for test purposes
+        obj_len = len(user._group_relationships)  # type: ignore # sorry, need this for test purposes
 
         assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])

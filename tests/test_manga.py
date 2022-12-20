@@ -9,11 +9,15 @@ from typing import TYPE_CHECKING, Literal, Union, overload
 from hondana.enums import MangaRelationType
 from hondana.http import HTTPClient
 from hondana.manga import Manga, MangaRating, MangaRelation, MangaStatistics
-from hondana.utils import relationship_finder, to_snake_case
+from hondana.utils import RelationshipResolver, to_snake_case
 
 
 if TYPE_CHECKING:
-    from hondana.types_.manga import GetMangaResponse, MangaRelationResponse
+    from hondana.types_.artist import ArtistResponse
+    from hondana.types_.author import AuthorResponse
+    from hondana.types_.common import LocalizedString
+    from hondana.types_.cover import CoverResponse
+    from hondana.types_.manga import GetMangaResponse, MangaRelationResponse, MangaResponse
     from hondana.types_.statistics import GetPersonalMangaRatingsResponse, GetStatisticsResponse
 
 
@@ -110,7 +114,7 @@ class TestManga:
 
         assert manga.artists is not None
         assert "relationships" in PAYLOAD["data"]
-        artist_rels = relationship_finder(PAYLOAD["data"]["relationships"], "artist", limit=None)
+        artist_rels = RelationshipResolver[ArtistResponse](PAYLOAD["data"]["relationships"], "artist").resolve()
 
         assert len(manga.artists) == len(artist_rels)
 
@@ -119,7 +123,7 @@ class TestManga:
 
         assert manga.authors is not None
         assert "relationships" in PAYLOAD["data"]
-        author_rels = relationship_finder(PAYLOAD["data"]["relationships"], "author", limit=None)
+        author_rels = RelationshipResolver[AuthorResponse](PAYLOAD["data"]["relationships"], "author").resolve()
 
         assert len(manga.authors) == len(author_rels)
 
@@ -129,7 +133,7 @@ class TestManga:
         assert manga.cover is not None
 
         assert "relationships" in PAYLOAD["data"]
-        cover_rel = relationship_finder(PAYLOAD["data"]["relationships"], "cover_art", limit=1)
+        cover_rel = RelationshipResolver[CoverResponse](PAYLOAD["data"]["relationships"], "cover_art").resolve()[0]
         assert cover_rel is not None
 
         assert manga.cover.id == cover_rel["id"]
@@ -149,7 +153,7 @@ class TestManga:
         assert manga.related_manga is not None
 
         assert "relationships" in PAYLOAD["data"]
-        related_keys = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
+        related_keys = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
         assert bool(related_keys)
 
         assert len(manga.related_manga) == len(related_keys)
@@ -172,7 +176,7 @@ class TestManga:
     def test_localized_description(self):
         manga = clone_manga("manga")
 
-        for key, value in manga._description.items():
+        for key, value in manga._description.items():  # type: ignore # sorry, need this for test purposes
             assert manga.localized_description(key) == value  # type: ignore # can't narrow strings
 
     def test_date_attributes(self):

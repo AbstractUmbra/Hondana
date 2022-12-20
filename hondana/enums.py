@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Union
 
-from .utils import _REPORT_REASONS, _StrEnum
+from .utils import _REPORT_REASONS, _StrEnum  # type: ignore # these will stay private due to potential breakages or changes
 
 
 if TYPE_CHECKING:

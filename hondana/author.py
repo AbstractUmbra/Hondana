@@ -24,10 +24,10 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, Optional
 
 from .query import MangaIncludes
-from .utils import MISSING, relationship_finder, require_authentication
+from .utils import MISSING, RelationshipResolver, require_authentication
 
 
 if TYPE_CHECKING:
@@ -136,7 +136,9 @@ class Author:
         self._biography: Optional[LocalizedString] = self._attributes["biography"]
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga")
+        self._manga_relationships: list[MangaResponse] = RelationshipResolver(relationships, "manga").resolve(
+            with_fallback=False
+        )
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:
@@ -145,8 +147,8 @@ class Author:
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: Union[Author, Artist]) -> bool:
-        return self.id == other.id
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, (Author, Artist)) and self.id == other.id
 
     @property
     def biography(self) -> Optional[str]:
@@ -167,7 +169,7 @@ class Author:
                 return
 
             key = next(iter(self._biography))
-            return self._biography[key]
+            return self._biography[key]  # type: ignore # this is safe since the key is from the dict
 
         return biography
 
@@ -253,7 +255,7 @@ class Author:
 
     @manga.setter
     def manga(self, value: list[Manga]) -> None:
-        self.__manga = [item for item in value if isinstance(item, Manga)]
+        self.__manga = value
 
     async def get_manga(self) -> Optional[list[Manga]]:
         """|coro|
@@ -281,7 +283,7 @@ class Author:
         from .manga import Manga
 
         for manga_id in ids:
-            data = await self._http._get_manga(manga_id, includes=MangaIncludes())
+            data = await self._http.get_manga(manga_id, includes=MangaIncludes())
             formatted.append(Manga(self._http, data["data"]))
 
         if not formatted:
@@ -359,7 +361,7 @@ class Author:
         :class:`~hondana.Author`
             The updated author from the API.
         """
-        data = await self._http._update_author(
+        data = await self._http.update_author(
             self.id,
             name=name,
             biography=biography,
@@ -391,4 +393,4 @@ class Author:
         :exc:`NotFound`
             The UUID given for the author was not found.
         """
-        await self._http._delete_author(author_id)
+        await self._http.delete_author(author_id)

@@ -42,11 +42,11 @@ from .user import User
 from .utils import (
     MISSING,
     CustomRoute,
+    RelationshipResolver,
     Route,
     as_chunks,
     cached_slot_property,
     clean_isoformat,
-    relationship_finder,
     require_authentication,
     upload_file_sort,
 )
@@ -56,6 +56,7 @@ if TYPE_CHECKING:
     from os import PathLike
 
     from aiohttp import ClientResponse
+    from typing_extensions import Self
 
     from .http import HTTPClient
     from .types_.chapter import ChapterResponse, GetAtHomeChapterResponse, GetAtHomeResponse, GetSingleChapterResponse
@@ -152,11 +153,13 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)
-        self._scanlator_group_relationships: list[ScanlationGroupResponse] = relationship_finder(
-            relationships, "scanlation_group", limit=None
-        )
-        self._uploader_relationship: UserResponse = relationship_finder(relationships, "user", limit=1)
+        self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(with_fallback=False)[
+            0
+        ]
+        self._scanlator_group_relationships: list[ScanlationGroupResponse] = RelationshipResolver(
+            relationships, "scanlation_group"
+        ).resolve(with_fallback=False)
+        self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve()[0]
         self._at_home_url: Optional[str] = None
         self.__uploader: Optional[User] = None
         self.__parent: Optional[Manga] = None
@@ -168,10 +171,10 @@ class Chapter:
     def __str__(self) -> str:
         return self.title or f"No title for this chapter, with ID: {self.id!r}"
 
-    def __eq__(self, other: Chapter) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Chapter) and self.id == other.id
 
-    def __ne__(self, other: Chapter) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     def to_dict(self) -> dict[str, Any]:
@@ -186,7 +189,7 @@ class Chapter:
         --------
         Dict[:class:`str`, Any]
         """
-        fmt = {}
+        fmt: dict[str, Any] = {}
         names = self.__slots__ if hasattr(self, "__slots__") else self.__dict__
         for name in dir(self):
             if name.startswith("_"):
@@ -212,7 +215,7 @@ class Chapter:
         :class:`~hondana.ChapterAtHome`
             The returned details to reach a MD@H node for this chapter.
         """
-        data = await self._http._get_at_home_url(self.id, ssl=ssl)
+        data = await self._http.get_at_home_url(self.id, ssl=ssl)
         return ChapterAtHome(self._http, data)
 
     @property
@@ -378,7 +381,7 @@ class Chapter:
         if self.manga_id is None:
             return
 
-        manga = await self._http._get_manga(self.manga_id, includes=MangaIncludes())
+        manga = await self._http.get_manga(self.manga_id, includes=MangaIncludes())
 
         resolved = Manga(self._http, manga["data"])
         self.__parent = resolved
@@ -406,7 +409,7 @@ class Chapter:
 
         ids = [item["id"] for item in self._scanlator_group_relationships]
 
-        groups = await self._http._scanlation_group_list(
+        groups = await self._http.scanlation_group_list(
             limit=100,
             offset=0,
             ids=ids,
@@ -469,7 +472,7 @@ class Chapter:
         :class:`~hondana.Chapter`
             The chapter after being updated.
         """
-        data = await self._http._update_chapter(
+        data = await self._http.update_chapter(
             self.id,
             title=title,
             volume=volume,
@@ -496,7 +499,7 @@ class Chapter:
         :exc:`NotFound`
             The UUID passed for this chapter does not relate to a chapter in the API.
         """
-        await self._http._delete_chapter(self.id)
+        await self._http.delete_chapter(self.id)
 
     @require_authentication
     async def mark_as_read(self, update_history: bool = True) -> None:
@@ -510,7 +513,7 @@ class Chapter:
             Whether to include this chapter in the authenticated user's read history.
         """
         if self.manga_id:
-            await self._http._manga_read_markers_batch(
+            await self._http.manga_read_markers_batch(
                 self.manga_id, update_history=update_history, read_chapters=[self.id], unread_chapters=None
             )
 
@@ -526,7 +529,7 @@ class Chapter:
             Whether to include this chapter in the authenticated user's read history.
         """
         if self.manga_id:
-            await self._http._manga_read_markers_batch(
+            await self._http.manga_read_markers_batch(
                 self.manga_id, update_history=update_history, read_chapters=None, unread_chapters=[self.id]
             )
 
@@ -553,7 +556,7 @@ class Chapter:
             LOGGER.debug("Downloaded: %s", route.url)
 
             if report and self._at_home_url != "https://uploads.mangadex.org":
-                await self._http._at_home_report(
+                await self._http.at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
                     cached=("X-Cache" in page_resp.headers and page_resp.headers["X-Cache"].upper().startswith("HIT")),
@@ -703,7 +706,7 @@ class ChapterAtHome:
     def __repr__(self) -> str:
         return f"<ChapterAtHome hash={self.hash!r}>"
 
-    def __eq__(self, other: ChapterAtHome) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, ChapterAtHome) and self.hash == other.hash
 
 
@@ -887,10 +890,10 @@ class ChapterUpload:
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
         if self.chapter_to_edit is not None:
             chapter_id = self.chapter_to_edit.id if isinstance(self.chapter_to_edit, Chapter) else self.chapter_to_edit
-            return await self._http._open_upload_session(
+            return await self._http.open_upload_session(
                 manga_id, scanlator_groups=self.scanlator_groups, chapter_id=chapter_id, version=self.version
             )
-        return await self._http._open_upload_session(
+        return await self._http.open_upload_session(
             manga_id, scanlator_groups=self.scanlator_groups, chapter_id=None, version=None
         )
 
@@ -1016,7 +1019,7 @@ class ChapterUpload:
         if session == self.upload_session_id:
             self.__committed = True
 
-        await self._http._abandon_upload_session(session)
+        await self._http.abandon_upload_session(session)
 
     @require_authentication
     async def commit(self) -> Chapter:
@@ -1048,7 +1051,7 @@ class ChapterUpload:
         return Chapter(self._http, data["data"])
 
     @require_authentication
-    async def __aenter__(self: ChapterUploadT) -> ChapterUploadT:
+    async def __aenter__(self: Self) -> Self:
         if self.upload_session_id is None:
             await self._check_for_session()
 
@@ -1092,5 +1095,5 @@ class PreviouslyReadChapter:
         ---------
         :class:`~hondana.Chapter`
         """
-        data = await self._http._get_chapter(self.chapter_id, includes=includes)
+        data = await self._http.get_chapter(self.chapter_id, includes=includes)
         return Chapter(self._http, data["data"])

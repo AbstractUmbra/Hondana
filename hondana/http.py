@@ -125,7 +125,7 @@ __all__ = ("HTTPClient",)
 
 
 class MaybeUnlock:
-    def __init__(self, lock: asyncio.Lock) -> None:
+    def __init__(self, lock: asyncio.Lock, /) -> None:
         self.lock: asyncio.Lock = lock
         self._unlock: bool = True
 
@@ -150,12 +150,12 @@ class HTTPClient:
         "username",
         "email",
         "password",
+        "token",
+        "refresh_token",
         "_authenticated",
         "_session",
         "_locks",
-        "_token",
         "_token_lock",
-        "_refresh_token",
         "__refresh_after",
         "user_agent",
         "_connection",
@@ -175,16 +175,25 @@ class HTTPClient:
         self.email: Optional[str] = email
         self.password: Optional[str] = password
         self._session: Optional[aiohttp.ClientSession] = session
-        self._locks: weakref.WeakValueDictionary = weakref.WeakValueDictionary()
-        self._token: Optional[str] = None
+        self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
+        self.token: Optional[str] = None
         self._token_lock: asyncio.Lock = asyncio.Lock()
-        self._refresh_token: Optional[str] = refresh_token
+        self.refresh_token: Optional[str] = refresh_token
         self.__refresh_after: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
 
-    @staticmethod
-    async def _generate_session() -> aiohttp.ClientSession:
+    @property
+    def authenticated(self) -> bool:
+        """If the client is authenticated and will use this authentication in requests.
+
+        Returns
+        --------
+        :class:`bool`
+        """
+        return self._authenticated
+
+    async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
 
         Creates an :class:`aiohttp.ClientSession` for use in the http client.
@@ -199,7 +208,7 @@ class HTTPClient:
         """
         return aiohttp.ClientSession()
 
-    async def _close(self) -> None:
+    async def close(self) -> None:
         """|coro|
 
         This method will close the internal client session to ensure a clean exit.
@@ -207,7 +216,7 @@ class HTTPClient:
 
         if self._session is not None:
             if self._authenticated:
-                await self._logout()
+                await self.logout()
             await self._session.close()
 
     async def _get_token(self) -> str:
@@ -253,11 +262,10 @@ class HTTPClient:
         token = data["token"]["session"]
         refresh_token = data["token"]["refresh"]
         self.__refresh_after = self._get_expiry(token)
-        self._refresh_token = refresh_token
+        self.refresh_token = refresh_token
         return token
 
-    @staticmethod
-    def _get_expiry(token: str) -> datetime.datetime:
+    def _get_expiry(self, token: str) -> datetime.datetime:
         payload = token.split(".")[1]
         padding = len(payload) % 4
         payload = b64decode(payload + "=" * padding)
@@ -283,7 +291,7 @@ class HTTPClient:
             self._session = await self._generate_session()
 
         route = Route("POST", "/auth/refresh")
-        async with self._session.post(route.url, json={"token": self._refresh_token}) as response:
+        async with self._session.post(route.url, json={"token": self.refresh_token}) as response:
             data = await response.json()
 
         # data is actually `.types.auth.RefreshPayload` but type-checking it here is a nightmare
@@ -299,10 +307,10 @@ class HTTPClient:
             else:
                 raise APIException(response, status_code=response.status, errors=data["errors"])
 
-        self._token = data["token"]["session"]
-        self.__refresh_after = self._get_expiry(self._token)
+        self.token = data["token"]["session"]
+        self.__refresh_after = self._get_expiry(self.token)
 
-    async def _try_token(self) -> str:
+    async def try_token(self) -> str:
         """|coro|
 
         This private method will try and use the existing :attr:`_auth` to authenticate to the API.
@@ -321,45 +329,45 @@ class HTTPClient:
         .. note::
             This does not use :meth:`Client.request` due to circular usage of request > generate token.
         """
-        if self._token is None and self._refresh_token is not None:
+        if self.token is None and self.refresh_token is not None:
             LOGGER.debug("User passed a refresh token on creation, will skip login stage.")
             await self._perform_token_refresh()
-            assert isinstance(self._token, str)  # the refresh stage above sets this.
-            return self._token
+            assert isinstance(self.token, str)  # the refresh stage above sets this.
+            return self.token
 
-        elif self._token is None:
+        elif self.token is None:
             LOGGER.debug("No jwt set yet, will attempt to generate one.")
-            self._token = await self._get_token()
-            return self._token
+            self.token = await self._get_token()
+            return self.token
 
         if self.__refresh_after is not None:
             now = datetime.datetime.now(datetime.timezone.utc)
             if now > self.__refresh_after:
                 LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
                 await self._perform_token_refresh()
-                return self._token
+                return self.token
             else:
                 LOGGER.debug("Within the same 15m span of token generation, reusing it.")
-                return self._token
+                return self.token
 
-        LOGGER.debug("Attempting to validate token: %s", self._token[:20])
+        LOGGER.debug("Attempting to validate token: %s", self.token[:20])
         route = Route("GET", "/auth/check")
 
         if self._session is None:
             self._session = await self._generate_session()
 
-        async with self._session.get(route.url, headers={"Authorization": f"Bearer {self._token}"}) as response:
+        async with self._session.get(route.url, headers={"Authorization": f"Bearer {self.token}"}) as response:
             data: CheckPayload = await response.json()
 
         if data["isAuthenticated"] is True:
-            LOGGER.debug("Token is still valid: %s", self._token[:20])
-            return self._token
+            LOGGER.debug("Token is still valid: %s", self.token[:20])
+            return self.token
 
-        self._token = await self._get_token()
-        LOGGER.debug("Token fetched: %s", self._token[:20])
-        return self._token
+        self.token = await self._get_token()
+        LOGGER.debug("Token fetched: %s", self.token[:20])
+        return self.token
 
-    async def _logout(self) -> None:
+    async def logout(self) -> None:
         """|coro|
 
         This performs the logout request, also done in :meth:`Client.close` for convenience.
@@ -423,7 +431,7 @@ class HTTPClient:
 
         headers = kwargs.pop("headers", {})
         async with self._token_lock:
-            token = await self._try_token() if self._authenticated else None
+            token = await self.try_token() if self._authenticated else None
 
         if token is not None:
             headers["Authorization"] = f"Bearer {token}"
@@ -524,15 +532,15 @@ class HTTPClient:
 
             raise RuntimeError("Unreachable code in HTTP handling.")
 
-    def _account_available(self, username: str) -> Response[GetAccountAvailable]:
+    def account_available(self, username: str) -> Response[GetAccountAvailable]:
         route = Route("GET", "/account/available/{username}", username=username)
         return self.request(route)
 
-    def _update_tags(self) -> Response[GetTagListResponse]:
+    def update_tags(self) -> Response[GetTagListResponse]:
         route = Route("GET", "/manga/tag")
         return self.request(route)
 
-    def _manga_list(
+    def manga_list(
         self,
         *,
         limit: int,
@@ -630,7 +638,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _create_manga(
+    def create_manga(
         self,
         *,
         title: common.LocalizedString,
@@ -697,7 +705,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_manga_volumes_and_chapters(
+    def get_manga_volumes_and_chapters(
         self,
         *,
         manga_id: str,
@@ -718,7 +726,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
+    def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         if includes:
@@ -726,7 +734,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _update_manga(
+    def update_manga(
         self,
         manga_id: str,
         /,
@@ -802,7 +810,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _manga_feed(
+    def manga_feed(
         self,
         manga_id: Optional[str],
         /,
@@ -882,19 +890,19 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+    def delete_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+    def unfollow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
 
-    def _follow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
+    def follow_manga(self, manga_id: str, /) -> Response[dict[str, Literal["ok", "error"]]]:
         route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
         return self.request(route)
 
-    def _get_random_manga(
+    def get_random_manga(
         self,
         *,
         includes: Optional[MangaIncludes],
@@ -923,22 +931,18 @@ class HTTPClient:
         return self.request(route, params=query)
 
     @overload
-    def _manga_read_markers(
+    def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: Literal[False]
     ) -> Response[manga.MangaReadMarkersResponse]:
         ...
 
     @overload
-    def _manga_read_markers(
+    def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: Literal[True]
     ) -> Response[manga.MangaGroupedReadMarkersResponse]:
         ...
 
-    @overload
-    def _manga_read_markers(self, manga_ids: list[str], /, *, grouped: ...) -> Response[manga.MangaReadMarkersResponse]:
-        ...
-
-    def _manga_read_markers(
+    def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: bool = False
     ) -> Response[Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]]:
         if not grouped:
@@ -953,7 +957,7 @@ class HTTPClient:
         query: MANGADEX_QUERY_PARAM_TYPE = {"ids": manga_ids, "grouped": True}
         return self.request(route, params=query)
 
-    def _manga_read_markers_batch(
+    def manga_read_markers_batch(
         self,
         manga_id: str,
         /,
@@ -977,7 +981,7 @@ class HTTPClient:
             return self.request(route, json=body, params=query)
         return self.request(route, json=body)
 
-    def _get_all_manga_reading_status(
+    def get_all_manga_reading_status(
         self, *, status: Optional[ReadingStatus] = None
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
@@ -986,27 +990,27 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaSingleReadingStatusResponse]:
+    def get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaSingleReadingStatusResponse]:
         route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
         return self.request(route)
 
-    def _update_manga_reading_status(
+    def update_manga_reading_status(
         self, manga_id: str, /, status: ReadingStatus
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
         query: dict[str, Any] = {"status": status.value}
         return self.request(route, json=query)
 
-    def _get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
+    def get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _submit_manga_draft(self, manga_id: str, /, *, version: int) -> Response[manga.GetMangaResponse]:
+    def submit_manga_draft(self, manga_id: str, /, *, version: int) -> Response[manga.GetMangaResponse]:
         route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
         query: dict[str, Any] = {"version": version}
         return self.request(route, json=query)
 
-    def _get_manga_draft_list(
+    def get_manga_draft_list(
         self,
         *,
         limit: int,
@@ -1032,7 +1036,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _get_manga_relation_list(
+    def get_manga_relation_list(
         self, manga_id: str, /, *, includes: Optional[MangaIncludes]
     ) -> Response[manga.MangaRelationResponse]:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
@@ -1043,18 +1047,18 @@ class HTTPClient:
 
         return self.request(route)
 
-    def _create_manga_relation(
+    def create_manga_relation(
         self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
     ) -> Response[manga.MangaRelationCreateResponse]:
         route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id)
         query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type.value}
         return self.request(route, json=query)
 
-    def _delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/manga/{manga_id}/relation/{relation_id}", manga_id=manga_id, relation_id=relation_id)
         return self.request(route)
 
-    def _chapter_list(
+    def chapter_list(
         self,
         *,
         limit: int,
@@ -1160,7 +1164,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _get_chapter(
+    def get_chapter(
         self, chapter_id: str, /, *, includes: Optional[ChapterIncludes]
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
@@ -1169,7 +1173,7 @@ class HTTPClient:
             return self.request(route, params={"includes": includes.to_query()})
         return self.request(route)
 
-    def _update_chapter(
+    def update_chapter(
         self,
         chapter_id: str,
         /,
@@ -1202,15 +1206,15 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_chapter(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_chapter(self, chapter_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/chapter/{chapter_id}", chapter_id=chapter_id)
         return self.request(route)
 
-    def _user_read_history(self) -> Response[chapter.ChapterReadHistoryResponse]:
+    def user_read_history(self) -> Response[chapter.ChapterReadHistoryResponse]:
         route = Route("GET", "/user/history")
         return self.request(route)
 
-    def _cover_art_list(
+    def cover_art_list(
         self,
         *,
         limit: int = 10,
@@ -1248,7 +1252,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _upload_cover(
+    def upload_cover(
         self,
         manga_id: str,
         /,
@@ -1270,7 +1274,7 @@ class HTTPClient:
 
         return self.request(route, data=form_data)
 
-    def _get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes]) -> Response[cover.GetSingleCoverResponse]:
+    def get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes]) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         if includes:
@@ -1278,7 +1282,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _edit_cover(
+    def edit_cover(
         self,
         cover_id: str,
         /,
@@ -1305,11 +1309,11 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_cover(self, cover_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_cover(self, cover_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/cover/{cover_id}", cover_id=cover_id)
         return self.request(route)
 
-    def _scanlation_group_list(
+    def scanlation_group_list(
         self,
         *,
         limit: int,
@@ -1343,7 +1347,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _user_list(
+    def user_list(
         self,
         *,
         limit: int,
@@ -1369,35 +1373,35 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _get_user(self, user_id: str, /) -> Response[user.GetSingleUserResponse]:
+    def get_user(self, user_id: str, /) -> Response[user.GetSingleUserResponse]:
         route = Route("GET", "/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def _delete_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def _approve_user_deletion(self, approval_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def approve_user_deletion(self, approval_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/user/delete/{approval_code}", approval_code=approval_code)
         return self.request(route)
 
-    def _update_user_password(
+    def update_user_password(
         self, *, old_password: str, new_password: str
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/user/password")
         query: dict[str, Any] = {"oldPassword": old_password, "newPassword": new_password}
         return self.request(route, json=query)
 
-    def _update_user_email(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def update_user_email(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/user/email")
         query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
-    def _get_my_details(self) -> Response[user.GetSingleUserResponse]:
+    def get_my_details(self) -> Response[user.GetSingleUserResponse]:
         route = Route("GET", "/user/me")
         return self.request(route)
 
-    def _get_my_followed_groups(
+    def get_my_followed_groups(
         self, *, limit: int, offset: int
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/user/follows/group")
@@ -1407,11 +1411,11 @@ class HTTPClient:
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
 
-    def _check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id)
         return self.request(route)
 
-    def _get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
+    def get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user/follows/user")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
@@ -1420,15 +1424,15 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _check_if_following_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def check_if_following_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def _check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def _get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+    def get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/follows/list")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
@@ -1436,11 +1440,11 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _check_if_following_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def check_if_following_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _get_user_followed_manga(
+    def get_user_followed_manga(
         self, limit: int, offset: int, includes: Optional[MangaIncludes]
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/user/follows/manga")
@@ -1452,49 +1456,49 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
+    def create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
         route = Route("POST", "/account/create")
         query: dict[str, Any] = {"username": username, "password": password, "email": email}
         return self.request(route, json=query)
 
-    def _activate_account(self, activation_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def activate_account(self, activation_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/activate/{activation_code}", activation_code=activation_code)
         return self.request(route)
 
-    def _resend_activation_code(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def resend_activation_code(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/activate/resend")
         query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
-    def _recover_account(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def recover_account(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/recover")
         query: dict[str, Any] = {"email": email}
         return self.request(route, json=query)
 
-    def _complete_account_recovery(
+    def complete_account_recovery(
         self, recovery_code: str, /, *, new_password: str
     ) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/account/recover/{recovery_code}", recovery_code=recovery_code)
         query: dict[str, Any] = {"newPassword": new_password}
         return self.request(route, json=query)
 
-    def _ping_the_server(self) -> Response[str]:
+    def ping_the_server(self) -> Response[str]:
         route = Route("GET", "/ping")
         return self.request(route)
 
-    def _legacy_id_mapping(
+    def legacy_id_mapping(
         self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]
     ) -> Response[legacy.GetLegacyMappingResponse]:
         route = Route("POST", "/legacy/mapping")
         query: dict[str, Any] = {"type": type, "ids": item_ids}
         return self.request(route, json=query)
 
-    def _get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[chapter.GetAtHomeResponse]:
+    def get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[chapter.GetAtHomeResponse]:
         route = Route("GET", "/at-home/server/{chapter_id}", chapter_id=chapter_id)
         query: MANGADEX_QUERY_PARAM_TYPE = {"forcePort443": ssl}
         return self.request(route, params=query)
 
-    def _create_custom_list(
+    def create_custom_list(
         self,
         *,
         name: str,
@@ -1513,7 +1517,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_custom_list(
+    def get_custom_list(
         self, custom_list_id: str, /, *, includes: Optional[CustomListIncludes]
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
@@ -1523,9 +1527,9 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _update_custom_list(
+    def update_custom_list(
         self,
-        custom_list_id,
+        custom_list_id: str,
         /,
         *,
         name: Optional[str],
@@ -1548,38 +1552,38 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+    def delete_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _follow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+    def follow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _unfollow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+    def unfollow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _add_manga_to_custom_list(
+    def add_manga_to_custom_list(
         self, *, custom_list_id: str, manga_id: str
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _remove_manga_from_custom_list(
+    def remove_manga_from_custom_list(
         self, *, manga_id: str, custom_list_id: str
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def _get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+    def get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
-    def _get_users_custom_lists(
+    def get_users_custom_lists(
         self, user_id: str, /, *, limit: int, offset: int
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
@@ -1588,7 +1592,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _custom_list_manga_feed(
+    def custom_list_manga_feed(
         self,
         custom_list_id: str,
         /,
@@ -1665,7 +1669,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _create_scanlation_group(
+    def create_scanlation_group(
         self,
         *,
         name: str,
@@ -1722,7 +1726,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _view_scanlation_group(
+    def view_scanlation_group(
         self, scanlation_group_id: str, /, *, includes: Optional[ScanlatorGroupIncludes]
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
@@ -1732,7 +1736,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _update_scanlation_group(
+    def update_scanlation_group(
         self,
         scanlation_group_id: str,
         /,
@@ -1811,19 +1815,19 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def _follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def _unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def _author_list(
+    def author_list(
         self,
         *,
         limit: int,
@@ -1853,7 +1857,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _create_author(
+    def create_author(
         self,
         *,
         name: str,
@@ -1912,7 +1916,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_author(
+    def get_author(
         self, author_id: str, /, *, includes: Optional[AuthorIncludes]
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
@@ -1923,7 +1927,7 @@ class HTTPClient:
 
         return self.request(route)
 
-    def _update_author(
+    def update_author(
         self,
         author_id: str,
         *,
@@ -1990,11 +1994,11 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_author(self, author_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_author(self, author_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
-    def _get_artist(
+    def get_artist(
         self, artist_id: str, /, *, includes: Optional[ArtistIncludes]
     ) -> Response[artist.GetSingleArtistResponse]:
         route = Route("GET", "/author/{artist_id}", artist_id=artist_id)
@@ -2004,7 +2008,7 @@ class HTTPClient:
             return self.request(route, params=query)
         return self.request(route)
 
-    def _update_artist(
+    def update_artist(
         self,
         author_id: str,
         *,
@@ -2071,15 +2075,15 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _delete_artist(self, artist_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def delete_artist(self, artist_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("DELETE", "/author/{artist_id}", artist_id=artist_id)
         return self.request(route)
 
-    def _get_report_reason_list(self, report_category: ReportCategory, /) -> Response[report.GetReportReasonResponse]:
+    def get_report_reason_list(self, report_category: ReportCategory, /) -> Response[report.GetReportReasonResponse]:
         route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value)
         return self.request(route)
 
-    def _get_reports_current_user(
+    def get_reports_current_user(
         self,
         *,
         limit: int = 10,
@@ -2117,7 +2121,7 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def _at_home_report(self, *, url: URL, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
+    def at_home_report(self, *, url: URL, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
         route = CustomRoute("POST", "https://api.mangadex.network", "/report")
 
         query: dict[str, Any] = {
@@ -2130,7 +2134,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _create_report(self, *, details: ReportDetails) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def create_report(self, *, details: ReportDetails) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("POST", "/report")
 
         query: dict[str, Any] = {
@@ -2142,38 +2146,38 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _get_my_ratings(self, manga_ids: list[str], /) -> Response[statistics.GetPersonalMangaRatingsResponse]:
+    def get_my_ratings(self, manga_ids: list[str], /) -> Response[statistics.GetPersonalMangaRatingsResponse]:
         route = Route("GET", "/rating")
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
 
         return self.request(route, params=query)
 
-    def _set_manga_rating(self, manga_id: str, /, *, rating: int) -> Response[Literal["ok", "error"]]:
+    def set_manga_rating(self, manga_id: str, /, *, rating: int) -> Response[Literal["ok", "error"]]:
         route = Route("POST", "/rating/{manga_id}", manga_id=manga_id)
 
         query: dict[str, Any] = {"rating": rating}
 
         return self.request(route, json=query)
 
-    def _delete_manga_rating(self, manga_id: str, /) -> Response[Literal["ok", "error"]]:
+    def delete_manga_rating(self, manga_id: str, /) -> Response[Literal["ok", "error"]]:
         route = Route("DELETE", "/rating/{manga_id}", manga_id=manga_id)
 
         return self.request(route)
 
-    def _get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetStatisticsResponse]:
+    def get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetStatisticsResponse]:
         route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
 
         return self.request(route)
 
-    def _find_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.BatchGetStatisticsResponse]:
+    def find_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.BatchGetStatisticsResponse]:
         route = Route("GET", "/statistics/manga")
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
 
         return self.request(route, params=query)
 
-    def _open_upload_session(
+    def open_upload_session(
         self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: Optional[str], version: Optional[int]
     ) -> Response[upload.BeginChapterUploadResponse]:
         query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
@@ -2185,27 +2189,27 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def _abandon_upload_session(self, session_id: str, /) -> Response[None]:
+    def abandon_upload_session(self, session_id: str, /) -> Response[None]:
         route = Route("DELETE", "/upload/{session_id}", session_id=session_id)
 
         return self.request(route)
 
-    def _get_latest_settings_template(self) -> Response[dict[str, Any]]:
+    def get_latest_settings_template(self) -> Response[dict[str, Any]]:
         route = Route("GET", "/settings/template")
 
         return self.request(route)
 
-    def _get_specific_template_version(self, version: str) -> Response[dict[str, Any]]:
+    def get_specific_template_version(self, version: str) -> Response[dict[str, Any]]:
         route = Route("GET", "/settings/template/{version}", version=version)
 
         return self.request(route)
 
-    def _get_user_settings(self) -> Response[SettingsPayload]:
+    def get_user_settings(self) -> Response[SettingsPayload]:
         route = Route("GET", "/settings")
 
         return self.request(route)
 
-    def _upsert_user_settings(self, settings: Settings, updated_at: datetime.datetime) -> Response[SettingsPayload]:
+    def upsert_user_settings(self, settings: Settings, updated_at: datetime.datetime) -> Response[SettingsPayload]:
         route = Route("POST", "/settings")
 
         query: dict[str, Any] = {

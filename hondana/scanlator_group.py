@@ -26,7 +26,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
-from .utils import MISSING, iso_to_delta, relationship_finder, require_authentication
+from .utils import MISSING, RelationshipResolver, iso_to_delta, require_authentication
 
 
 if TYPE_CHECKING:
@@ -137,8 +137,12 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
-        self._leader_relationship: Optional[UserResponse] = relationship_finder(relationships, "leader", limit=1)
-        self._member_relationships: list[UserResponse] = relationship_finder(relationships, "member", limit=None)
+        self._leader_relationship: Optional[UserResponse] = RelationshipResolver[UserResponse](
+            relationships, "leader"
+        ).resolve(with_fallback=True)[0]
+        self._member_relationships: list[UserResponse] = RelationshipResolver[UserResponse](
+            relationships, "member"
+        ).resolve()
         self.__leader: Optional[User] = None
         self.__members: Optional[list[User]] = None
 
@@ -148,10 +152,10 @@ class ScanlatorGroup:
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: ScanlatorGroup) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, ScanlatorGroup) and self.id == other.id
 
-    def __ne__(self, other: ScanlatorGroup) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -223,8 +227,7 @@ class ScanlatorGroup:
 
     @leader.setter
     def leader(self, other: User) -> None:
-        if isinstance(other, User):
-            self.__leader = other
+        self.__leader = other
 
     @property
     def members(self) -> Optional[list[User]]:
@@ -281,7 +284,7 @@ class ScanlatorGroup:
             return
 
         leader_id = self._leader_relationship["id"]
-        data = await self._http._get_user(leader_id)
+        data = await self._http.get_user(leader_id)
 
         from .user import User
 
@@ -315,7 +318,7 @@ class ScanlatorGroup:
 
         ids = [r["id"] for r in self._member_relationships]
 
-        data = await self._http._user_list(limit=100, offset=0, ids=ids, username=None, order=None)
+        data = await self._http.user_list(limit=100, offset=0, ids=ids, username=None, order=None)
 
         self.__members = [User(self._http, payload) for payload in data["data"]]
         return self.__members
@@ -333,7 +336,7 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._delete_scanlation_group(self.id)
+        await self._http.delete_scanlation_group(self.id)
 
     @require_authentication
     async def follow(self) -> None:
@@ -346,7 +349,7 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._follow_scanlation_group(self.id)
+        await self._http.follow_scanlation_group(self.id)
 
     @require_authentication
     async def unfollow(self) -> None:
@@ -359,7 +362,7 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._unfollow_scanlation_group(self.id)
+        await self._http.unfollow_scanlation_group(self.id)
 
     @require_authentication
     async def update(
@@ -444,7 +447,7 @@ class ScanlatorGroup:
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
         """
-        data = await self._http._update_scanlation_group(
+        data = await self._http.update_scanlation_group(
             self.id,
             name=name,
             leader=leader,

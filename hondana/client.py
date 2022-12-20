@@ -221,7 +221,7 @@ class Client:
         )
 
     def __repr__(self) -> str:
-        return f"<Client authenticated={self._http._authenticated}>"
+        return f"<Client authenticated={self._http.authenticated}>"
 
     @overload
     def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: None = ...) -> None:
@@ -270,15 +270,15 @@ class Client:
         self._http.username = username
         self._http.email = email
         self._http.password = password
-        self._http._refresh_token = refresh_token
-        self._http._authenticated = True
+        self._http.refresh_token = refresh_token
+        self._http._authenticated = True  # type: ignore # sorry but I'm keeping this one private
 
     async def static_login(self) -> None:
         """|coro|
 
         This method simply logs into the API and assigns a token to the client.
         """
-        await self._http._try_token()
+        await self._http.try_token()
 
     @property
     def user_info(self) -> Optional[UserInfo]:
@@ -293,10 +293,10 @@ class Client:
         --------
         :class:`~hondana.user.UserInfo`
         """
-        if not self._http._authenticated:
+        if not self._http.authenticated:
             return None
 
-        token = self._http._token
+        token = self._http.token
         if token is None:
             return None
 
@@ -333,15 +333,15 @@ class Client:
         :class:`str`
             The current refresh token.
         """
-        if self._http._refresh_token is None:
+        if self._http.refresh_token is None:
             raise TypeError(
                 "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
             )
         if file:
             with open(path, mode) as fp:
-                fp.write(self._http._refresh_token)
+                fp.write(self._http.refresh_token)
 
-        return self._http._refresh_token
+        return self._http.refresh_token
 
     @require_authentication
     async def logout(self) -> None:
@@ -350,7 +350,7 @@ class Client:
         Logs the client out. This process will invalidate the current authorization token in the process.
         """
 
-        return await self._http._logout()
+        return await self._http.logout()
 
     async def close(self) -> None:
         """|coro|
@@ -358,7 +358,7 @@ class Client:
         Logs the client out of the API and closes the internal http session.
         """
 
-        return await self._http._close()
+        return await self._http.close()
 
     async def check_username_available(self, username: str) -> bool:
         """|coro|
@@ -380,7 +380,7 @@ class Client:
         :class:`bool`
             If the username is available or not.
         """
-        data = await self._http._account_available(username)
+        data = await self._http.account_available(username)
         return data["available"]
 
     async def update_tags(self) -> dict[str, str]:
@@ -435,7 +435,7 @@ class Client:
         ]
 
         for category in categories_:
-            data = await self._http._get_report_reason_list(category)
+            data = await self._http.get_report_reason_list(category)
             ret[category.value] = {}
             for inner in data["data"]:
                 key_name = (
@@ -462,7 +462,7 @@ class Client:
         List[:class:`~hondana.Tag`]
             The list of tags.
         """
-        data = await self._http._update_tags()
+        data = await self._http.update_tags()
 
         return [Tag(item) for item in data["data"]]
 
@@ -548,9 +548,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        chapters = []
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._manga_feed(
+            data = await self._http.manga_feed(
                 None,
                 limit=inner_limit,
                 offset=offset,
@@ -571,7 +571,8 @@ class Client:
                 include_external_url=include_external_url,
             )
 
-            chapters.extend([Chapter(self._http, item) for item in data["data"]])
+            _extend: list[Chapter] = [Chapter(self._http, item) for item in data["data"]]
+            chapters.extend(_extend)
 
             offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:
@@ -681,9 +682,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        manga = []
+        manga: list[Manga] = []
         while True:
-            data = await self._http._manga_list(
+            data = await self._http.manga_list(
                 limit=inner_limit,
                 offset=offset,
                 title=title,
@@ -795,7 +796,7 @@ class Client:
             The manga that was returned after creation.
         """
 
-        data = await self._http._create_manga(
+        data = await self._http.create_manga(
             title=title,
             alt_titles=alt_titles,
             description=description,
@@ -841,7 +842,7 @@ class Client:
         :class:`~hondana.types.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
-        data = await self._http._get_manga_volumes_and_chapters(
+        data = await self._http.get_manga_volumes_and_chapters(
             manga_id=manga_id, translated_language=translated_language, groups=groups
         )
 
@@ -874,7 +875,7 @@ class Client:
 
         .. versionadded:: 2.0.11
         """
-        data = await self._http._get_manga(manga_id, includes=includes)
+        data = await self._http.get_manga(manga_id, includes=includes)
 
         return Manga(self._http, data["data"])
 
@@ -961,7 +962,7 @@ class Client:
         :class:`~hondana.Manga`
             The manga that was returned after creation.
         """
-        data = await self._http._update_manga(
+        data = await self._http.update_manga(
             manga_id,
             title=title,
             alt_titles=alt_titles,
@@ -1001,7 +1002,7 @@ class Client:
         :exc:`NotFound`
             The specified manga doesn't exist.
         """
-        await self._http._delete_manga(manga_id)
+        await self._http.delete_manga(manga_id)
 
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
@@ -1021,7 +1022,7 @@ class Client:
         :exc:`NotFound`
             The specified manga does not exist.
         """
-        await self._http._unfollow_manga(manga_id)
+        await self._http.unfollow_manga(manga_id)
 
     @require_authentication
     async def follow_manga(
@@ -1050,9 +1051,9 @@ class Client:
         :exc:`NotFound`
             The specified manga does not exist.
         """
-        await self._http._follow_manga(manga_id)
+        await self._http.follow_manga(manga_id)
         if set_status:
-            await self._http._update_manga_reading_status(manga_id, status=status)
+            await self._http.update_manga_reading_status(manga_id, status=status)
 
     async def manga_feed(
         self,
@@ -1137,9 +1138,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        chapters = []
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._manga_feed(
+            data = await self._http.manga_feed(
                 manga_id,
                 limit=inner_limit,
                 offset=offset,
@@ -1186,8 +1187,8 @@ class Client:
         Union[:class:`~hondana.types.manga.MangaReadMarkersResponse`, :class:`~hondana.types.manga.MangaGroupedReadMarkersResponse`]
         """
         if len(manga_ids) == 1:
-            return await self._http._manga_read_markers(manga_ids, grouped=False)
-        return await self._http._manga_read_markers(manga_ids, grouped=True)
+            return await self._http.manga_read_markers(manga_ids, grouped=False)
+        return await self._http.manga_read_markers(manga_ids, grouped=True)
 
     @require_authentication
     async def batch_update_manga_read_markers(
@@ -1223,7 +1224,7 @@ class Client:
         if not read_chapters and not unread_chapters:
             raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
 
-        await self._http._manga_read_markers_batch(
+        await self._http.manga_read_markers_batch(
             manga_id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
         )
 
@@ -1256,7 +1257,7 @@ class Client:
         :class:`~hondana.Manga`
             The random Manga that was returned.
         """
-        data = await self._http._get_random_manga(
+        data = await self._http.get_random_manga(
             includes=includes, content_rating=content_rating, included_tags=included_tags, excluded_tags=excluded_tags
         )
 
@@ -1294,9 +1295,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        manga = []
+        manga: list[Manga] = []
         while True:
-            data = await self._http._get_user_followed_manga(limit=inner_limit, offset=offset, includes=includes)
+            data = await self._http.get_user_followed_manga(limit=inner_limit, offset=offset, includes=includes)
             manga.extend([Manga(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -1323,7 +1324,7 @@ class Client:
         :class:`~hondana.types.manga.MangaMultipleReadingStatusResponse`
             The payload returned from MangaDex.
         """
-        return await self._http._get_all_manga_reading_status(status=status)
+        return await self._http.get_all_manga_reading_status(status=status)
 
     @require_authentication
     async def get_manga_reading_status(self, manga_id: str, /) -> manga.MangaSingleReadingStatusResponse:
@@ -1348,7 +1349,7 @@ class Client:
         :class:`~hondana.types.manga.MangaSingleReadingStatusResponse`
             The raw response from the API on the request.
         """
-        return await self._http._get_manga_reading_status(manga_id)
+        return await self._http.get_manga_reading_status(manga_id)
 
     @require_authentication
     async def update_manga_reading_status(self, manga_id: str, /, *, status: ReadingStatus) -> None:
@@ -1376,7 +1377,7 @@ class Client:
             The specified manga cannot be found, likely due to incorrect ID.
         """
 
-        await self._http._update_manga_reading_status(manga_id, status=status)
+        await self._http.update_manga_reading_status(manga_id, status=status)
 
     async def get_manga_draft(self, manga_id: str, /) -> Manga:
         """|coro|
@@ -1393,7 +1394,7 @@ class Client:
         :class:`~hondana.Manga`
             The Manga returned from the API.
         """
-        data = await self._http._get_manga_draft(manga_id)
+        data = await self._http.get_manga_draft(manga_id)
         return Manga(self._http, data["data"])
 
     @require_authentication
@@ -1422,7 +1423,7 @@ class Client:
         :exc:`NotFound`
             The manga was not found.
         """
-        data = await self._http._submit_manga_draft(manga_id, version=version)
+        data = await self._http.submit_manga_draft(manga_id, version=version)
         return Manga(self._http, data["data"])
 
     @require_authentication
@@ -1458,9 +1459,7 @@ class Client:
         --------
         :class:`~hondana.Manga`
         """
-        data = await self._http._get_manga_draft_list(
-            limit=limit, offset=offset, state=state, order=order, includes=includes
-        )
+        data = await self._http.get_manga_draft_list(limit=limit, offset=offset, state=state, order=order, includes=includes)
         return Manga(self._http, data["data"])
 
     async def get_manga_relation_list(
@@ -1487,7 +1486,7 @@ class Client:
         :exc:`BadRequest`
             The manga ID passed is malformed
         """
-        data = await self._http._get_manga_relation_list(manga_id, includes=includes)
+        data = await self._http.get_manga_relation_list(manga_id, includes=includes)
         fmt = [MangaRelation(self._http, manga_id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
 
@@ -1519,7 +1518,7 @@ class Client:
         :exc:`Forbidden`
             You are not authorised for this action.
         """
-        data = await self._http._create_manga_relation(manga_id, target_manga=target_manga, relation_type=relation_type)
+        data = await self._http.create_manga_relation(manga_id, target_manga=target_manga, relation_type=relation_type)
         return MangaRelation(self._http, manga_id, data["data"])
 
     @require_authentication
@@ -1535,7 +1534,7 @@ class Client:
         relation_id: :class:`str`
             The ID of the related manga.
         """
-        await self._http._delete_manga_relation(manga_id, relation_id)
+        await self._http.delete_manga_relation(manga_id, relation_id)
 
     @require_authentication
     async def add_manga_to_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
@@ -1558,7 +1557,7 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._add_manga_to_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
+        await self._http.add_manga_to_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
 
     @require_authentication
     async def remove_manga_from_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
@@ -1581,7 +1580,7 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._remove_manga_from_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
+        await self._http.remove_manga_from_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
 
     async def chapter_list(
         self,
@@ -1689,9 +1688,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        chapters = []
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._chapter_list(
+            data = await self._http.chapter_list(
                 limit=inner_limit,
                 offset=offset,
                 ids=ids,
@@ -1758,7 +1757,7 @@ class Client:
         :class:`~hondana.Chapter`
             The Chapter we fetched from the API.
         """
-        data = await self._http._get_chapter(chapter_id, includes=includes)
+        data = await self._http.get_chapter(chapter_id, includes=includes)
 
         chapter = Chapter(self._http, data["data"])
 
@@ -1825,7 +1824,7 @@ class Client:
         :class:`~hondana.Chapter`
             The chapter after being updated.
         """
-        data = await self._http._update_chapter(
+        data = await self._http.update_chapter(
             chapter_id,
             title=title,
             volume=volume,
@@ -1857,7 +1856,7 @@ class Client:
         :exc:`NotFound`
             The UUID passed for this chapter does not relate to a chapter in the API.
         """
-        await self._http._delete_chapter(chapter_id)
+        await self._http.delete_chapter(chapter_id)
 
     @require_authentication
     async def my_chapter_read_history(self) -> ChapterReadHistoryCollection:
@@ -1877,7 +1876,7 @@ class Client:
         :class:`~hondana.ChapterReadHistoryCollection`
             A rich type around the returned data.
         """
-        data = await self._http._user_read_history()
+        data = await self._http.user_read_history()
 
         history: list[PreviouslyReadChapter] = []
         for payload in data["data"]:
@@ -1934,10 +1933,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        covers = []
-
+        covers: list[Cover] = []
         while True:
-            data = await self._http._cover_art_list(
+            data = await self._http.cover_art_list(
                 limit=inner_limit,
                 offset=offset,
                 manga=manga,
@@ -1995,7 +1993,7 @@ class Client:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(manga_id, cover=cover, volume=volume, description=description, locale=locale)
+        data = await self._http.upload_cover(manga_id, cover=cover, volume=volume, description=description, locale=locale)
 
         return Cover(self._http, data["data"])
 
@@ -2025,7 +2023,7 @@ class Client:
         :class:`~hondana.Cover`
             The Cover returned from the API.
         """
-        data = await self._http._get_cover(cover_id, includes=includes)
+        data = await self._http.get_cover(cover_id, includes=includes)
 
         return Cover(self._http, data["data"])
 
@@ -2066,7 +2064,7 @@ class Client:
         :class:`~hondana.Cover`
             The returned cover after the edit.
         """
-        data = await self._http._edit_cover(cover_id, volume=volume, description=description, version=version)
+        data = await self._http.edit_cover(cover_id, volume=volume, description=description, version=version)
 
         return Cover(self._http, data["data"])
 
@@ -2088,7 +2086,7 @@ class Client:
         :exc:`Forbidden`
             The request returned an error due to authentication.
         """
-        await self._http._delete_cover(cover_id)
+        await self._http.delete_cover(cover_id)
 
     async def scanlation_group_list(
         self,
@@ -2140,10 +2138,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        groups = []
-
+        groups: list[ScanlatorGroup] = []
         while True:
-            data = await self._http._scanlation_group_list(
+            data = await self._http.scanlation_group_list(
                 limit=inner_limit,
                 offset=offset,
                 ids=ids,
@@ -2206,10 +2203,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        users = []
-
+        users: list[User] = []
         while True:
-            data = await self._http._user_list(limit=inner_limit, offset=offset, ids=ids, username=username, order=order)
+            data = await self._http.user_list(limit=inner_limit, offset=offset, ids=ids, username=username, order=order)
             users.extend([User(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2233,7 +2229,7 @@ class Client:
         :class:`User`
             The user returned from the API.
         """
-        data = await self._http._get_user(user_id)
+        data = await self._http.get_user(user_id)
 
         return User(self._http, data["data"])
 
@@ -2256,7 +2252,7 @@ class Client:
             The user specified cannot be found.
         """
 
-        await self._http._delete_user(user_id)
+        await self._http.delete_user(user_id)
 
     async def approve_user_deletion(self, approval_code: str, /) -> None:
         """|coro|
@@ -2269,7 +2265,7 @@ class Client:
             The UUID representing the approval code to delete the user.
         """
 
-        await self._http._approve_user_deletion(approval_code)
+        await self._http.approve_user_deletion(approval_code)
 
     @require_authentication
     async def update_user_password(self, *, old_password: str, new_password: str) -> None:
@@ -2290,7 +2286,7 @@ class Client:
             The request returned an error due to an authentication issue.
         """
 
-        await self._http._update_user_password(old_password=old_password, new_password=new_password)
+        await self._http.update_user_password(old_password=old_password, new_password=new_password)
 
     @require_authentication
     async def update_user_email(self, email: str, /) -> None:
@@ -2309,7 +2305,7 @@ class Client:
             The API returned an error due to authentication failure.
         """
 
-        await self._http._update_user_email(email)
+        await self._http.update_user_email(email)
 
     @require_authentication
     async def get_my_details(self) -> User:
@@ -2327,7 +2323,7 @@ class Client:
         :class:`~hondana.User`
             Your current user details returned from the API.
         """
-        data = await self._http._get_my_details()
+        data = await self._http.get_my_details()
 
         return User(self._http, data["data"])
 
@@ -2354,7 +2350,7 @@ class Client:
         List[:class:`ScanlatorGroup`]
             The list of groups that are being followed.
         """
-        data = await self._http._get_my_followed_groups(limit=limit, offset=offset)
+        data = await self._http.get_my_followed_groups(limit=limit, offset=offset)
 
         return [ScanlatorGroup(self._http, item) for item in data["data"]]
 
@@ -2376,7 +2372,7 @@ class Client:
         """
 
         try:
-            await self._http._check_if_following_group(group_id)
+            await self._http.check_if_following_group(group_id)
         except errors.NotFound:
             return False
         else:
@@ -2411,10 +2407,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        users = []
-
+        users: list[User] = []
         while True:
-            data = await self._http._get_my_followed_users(limit=inner_limit, offset=offset)
+            data = await self._http.get_my_followed_users(limit=inner_limit, offset=offset)
             users.extend([User(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2446,7 +2441,7 @@ class Client:
         """
 
         try:
-            await self._http._check_if_following_user(user_id)
+            await self._http.check_if_following_user(user_id)
         except errors.NotFound:
             return False
         else:
@@ -2475,7 +2470,7 @@ class Client:
         """
 
         try:
-            await self._http._check_if_following_manga(manga_id)
+            await self._http.check_if_following_manga(manga_id)
         except errors.NotFound:
             return False
         else:
@@ -2492,7 +2487,7 @@ class Client:
         list[:class:`CustomList`]
             The list of custom lists you follow.
         """
-        data = await self._http._get_user_custom_list_follows(limit=limit, offset=offset)
+        data = await self._http.get_user_custom_list_follows(limit=limit, offset=offset)
 
         return [CustomList(self._http, item) for item in data["data"]]
 
@@ -2508,7 +2503,7 @@ class Client:
             Whether you follow this custom list or not.
         """
         try:
-            await self._http._check_if_following_list(custom_list_id)
+            await self._http.check_if_following_list(custom_list_id)
         except errors.NotFound:
             return False
         else:
@@ -2542,7 +2537,7 @@ class Client:
         :class:`User`
             The created user.
         """
-        data = await self._http._create_account(username=username, password=password, email=email)
+        data = await self._http.create_account(username=username, password=password, email=email)
         return User(self._http, data["data"])
 
     async def activate_account(self, activation_code: str, /) -> None:
@@ -2562,7 +2557,7 @@ class Client:
         :exc:`NotFound`
             The activation code passed was not a valid one.
         """
-        await self._http._activate_account(activation_code)
+        await self._http.activate_account(activation_code)
 
     async def resend_activation_code(self, email: str, /) -> None:
         """|coro|
@@ -2579,7 +2574,7 @@ class Client:
         :exc:`BadRequest`
             The email passed is not pending activation.
         """
-        await self._http._resend_activation_code(email)
+        await self._http.resend_activation_code(email)
 
     async def recover_account(self, email: str, /) -> None:
         """|coro|
@@ -2597,7 +2592,7 @@ class Client:
         :exc:`BadRequest`
             The email does not belong to a matching account.
         """
-        await self._http._recover_account(email)
+        await self._http.recover_account(email)
 
     async def complete_account_recovery(self, recovery_code: str, /, *, new_password: str) -> None:
         """|coro|
@@ -2616,7 +2611,7 @@ class Client:
         :exc:`BadRequest`
             The recovery code given was not found or the password was greater than 1024 characters.
         """
-        await self._http._complete_account_recovery(recovery_code, new_password=new_password)
+        await self._http.complete_account_recovery(recovery_code, new_password=new_password)
 
     async def ping_the_server(self) -> bool:
         """|coro|
@@ -2629,7 +2624,7 @@ class Client:
         :class:`bool`
             Whether and 'pong' response was received.
         """
-        data = await self._http._ping_the_server()
+        data = await self._http.ping_the_server()
         return data == "pong"
 
     async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> LegacyMappingCollection:
@@ -2654,7 +2649,7 @@ class Client:
         :class:`LegacyMappingCollection`
             The list of returned items from this query.
         """
-        data = await self._http._legacy_id_mapping(type, item_ids=item_ids)
+        data = await self._http.legacy_id_mapping(type, item_ids=item_ids)
         items = [LegacyItem(self._http, item) for item in data["data"]]
         return LegacyMappingCollection(self._http, data, items)
 
@@ -2681,7 +2676,7 @@ class Client:
         :class:`str`
             Returns the URL we requested.
         """
-        data = await self._http._get_at_home_url(chapter_id, ssl=ssl)
+        data = await self._http.get_at_home_url(chapter_id, ssl=ssl)
         return data["baseUrl"]
 
     @require_authentication
@@ -2717,7 +2712,7 @@ class Client:
         :class:`~hondana.CustomList`
             The custom list that was created.
         """
-        data = await self._http._create_custom_list(name=name, visibility=visibility, manga=manga)
+        data = await self._http.create_custom_list(name=name, visibility=visibility, manga=manga)
 
         return CustomList(self._http, data["data"])
 
@@ -2749,7 +2744,7 @@ class Client:
         :class:`~hondana.CustomList`
             The retrieved custom list.
         """
-        data = await self._http._get_custom_list(custom_list_id, includes=includes)
+        data = await self._http.get_custom_list(custom_list_id, includes=includes)
 
         return CustomList(self._http, data["data"])
 
@@ -2800,7 +2795,7 @@ class Client:
         :class:`~hondana.CustomList`
             The returned custom list after it was updated.
         """
-        data = await self._http._update_custom_list(
+        data = await self._http.update_custom_list(
             custom_list_id, name=name, visibility=visibility, manga=manga, version=version
         )
 
@@ -2824,7 +2819,7 @@ class Client:
         :exc:`NotFound`
             The custom list with this UUID was not found.
         """
-        await self._http._delete_custom_list(custom_list_id)
+        await self._http.delete_custom_list(custom_list_id)
 
     @require_authentication
     async def follow_custom_list(self, custom_list_id: str, /) -> None:
@@ -2846,7 +2841,7 @@ class Client:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http._follow_custom_list(custom_list_id)
+        await self._http.follow_custom_list(custom_list_id)
 
     @require_authentication
     async def unfollow_custom_list(self, custom_list_id: str, /) -> None:
@@ -2866,7 +2861,7 @@ class Client:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http._unfollow_custom_list(custom_list_id)
+        await self._http.unfollow_custom_list(custom_list_id)
 
     @require_authentication
     async def get_my_custom_lists(self, *, limit: Optional[int] = 10, offset: int = 0) -> CustomListCollection:
@@ -2897,10 +2892,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        lists = []
-
+        lists: list[CustomList] = []
         while True:
-            data = await self._http._get_my_custom_lists(limit=inner_limit, offset=offset)
+            data = await self._http.get_my_custom_lists(limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2942,10 +2936,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        lists = []
-
+        lists: list[CustomList] = []
         while True:
-            data = await self._http._get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
+            data = await self._http.get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -3041,10 +3034,9 @@ class Client:
         """
         inner_limit = limit or 100
 
-        chapters = []
-
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._custom_list_manga_feed(
+            data = await self._http.custom_list_manga_feed(
                 custom_list_id,
                 limit=inner_limit,
                 offset=offset,
@@ -3136,7 +3128,7 @@ class Client:
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API on creation.
         """
-        data = await self._http._create_scanlation_group(
+        data = await self._http.create_scanlation_group(
             name=name,
             website=website,
             irc_server=irc_server,
@@ -3182,7 +3174,7 @@ class Client:
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API.
         """
-        data = await self._http._view_scanlation_group(scanlation_group_id, includes=includes)
+        data = await self._http.view_scanlation_group(scanlation_group_id, includes=includes)
         return ScanlatorGroup(self._http, data["data"])
 
     @require_authentication
@@ -3272,7 +3264,7 @@ class Client:
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
         """
-        data = await self._http._update_scanlation_group(
+        data = await self._http.update_scanlation_group(
             scanlation_group_id,
             name=name,
             leader=leader,
@@ -3312,7 +3304,7 @@ class Client:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._delete_scanlation_group(scanlation_group_id)
+        await self._http.delete_scanlation_group(scanlation_group_id)
 
     @require_authentication
     async def follow_scanlation_group(self, scanlation_group_id: str, /) -> None:
@@ -3330,7 +3322,7 @@ class Client:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._follow_scanlation_group(scanlation_group_id)
+        await self._http.follow_scanlation_group(scanlation_group_id)
 
     @require_authentication
     async def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> None:
@@ -3348,7 +3340,7 @@ class Client:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http._unfollow_scanlation_group(scanlation_group_id)
+        await self._http.unfollow_scanlation_group(scanlation_group_id)
 
     async def author_list(
         self,
@@ -3398,10 +3390,9 @@ class Client:
         """
         inner_limit = limit or 10
 
-        authors = []
-
+        authors: list[Author] = []
         while True:
-            data = await self._http._author_list(
+            data = await self._http.author_list(
                 limit=inner_limit, offset=offset, ids=ids, name=name, order=order, includes=includes
             )
 
@@ -3476,7 +3467,7 @@ class Client:
         :class:`~hondana.Author`
             The author created within the API.
         """
-        data = await self._http._create_author(
+        data = await self._http.create_author(
             name=name,
             biography=biography,
             twitter=twitter,
@@ -3520,7 +3511,7 @@ class Client:
         :class:`~hondana.Author`
             The Author returned from the API.
         """
-        data = await self._http._get_author(author_id, includes=includes)
+        data = await self._http.get_author(author_id, includes=includes)
 
         return Author(self._http, data["data"])
 
@@ -3551,7 +3542,7 @@ class Client:
         :class:`~hondana.Artist`
             The Author returned from the API.
         """
-        data = await self._http._get_artist(artist_id, includes=includes)
+        data = await self._http.get_artist(artist_id, includes=includes)
 
         return Artist(self._http, data["data"])
 
@@ -3627,7 +3618,7 @@ class Client:
         :class:`~hondana.Author`
             The updated author from the API.
         """
-        data = await self._http._update_author(
+        data = await self._http.update_author(
             author_id,
             name=name,
             biography=biography,
@@ -3664,7 +3655,7 @@ class Client:
         :exc:`NotFound`
             The UUID given for the author was not found.
         """
-        await self._http._delete_author(author_id)
+        await self._http.delete_author(author_id)
 
     @require_authentication
     async def get_my_reports(
@@ -3679,7 +3670,7 @@ class Client:
         order: Optional[ReportListOrderQuery] = None,
         includes: Optional[UserReportIncludes] = None,
     ) -> UserReportCollection:
-        data = await self._http._get_reports_current_user(
+        data = await self._http.get_reports_current_user(
             limit=limit,
             offset=offset,
             object_id=object_id,
@@ -3714,7 +3705,7 @@ class Client:
         :exc:`NotFound`
             The specified report UUID or object UUID does not exist.
         """
-        await self._http._create_report(details=details)
+        await self._http.create_report(details=details)
 
     @require_authentication
     async def get_my_manga_ratings(self, manga_ids: list[str], /) -> list[MangaRating]:
@@ -3738,7 +3729,7 @@ class Client:
         --------
         List[:class:`~hondana.MangaRating`]
         """
-        data = await self._http._get_my_ratings(manga_ids)
+        data = await self._http.get_my_ratings(manga_ids)
 
         ratings = data["ratings"]
 
@@ -3765,7 +3756,7 @@ class Client:
         :exc:`NotFound`
             The specified manga UUID was not found or does not exist.
         """
-        await self._http._set_manga_rating(manga_id, rating=rating)
+        await self._http.set_manga_rating(manga_id, rating=rating)
 
     @require_authentication
     async def delete_manga_rating(self, manga_id: str, /) -> None:
@@ -3785,7 +3776,7 @@ class Client:
         :exc:`NotFound`
             The specified manga UUID was not found or does not exist.
         """
-        await self._http._delete_manga_rating(manga_id)
+        await self._http.delete_manga_rating(manga_id)
 
     async def get_manga_statistics(self, manga_id: str, /) -> MangaStatistics:
         """|coro|
@@ -3801,7 +3792,7 @@ class Client:
         ---------
         :class:`~hondana.MangaStatistics`
         """
-        data = await self._http._get_manga_statistics(manga_id)
+        data = await self._http.get_manga_statistics(manga_id)
 
         key = next(iter(data["statistics"]))
         return MangaStatistics(self._http, key, data["statistics"][key])
@@ -3820,7 +3811,7 @@ class Client:
         ---------
         List[:class:`~hondana.MangaStatistics`]
         """
-        data = await self._http._find_manga_statistics(manga_ids)
+        data = await self._http.find_manga_statistics(manga_ids)
 
         return [MangaStatistics(self._http, id_, stats) for id_, stats in data["statistics"].items()]
 
@@ -3835,7 +3826,7 @@ class Client:
         session_id: :class:`str`
             The upload
         """
-        await self._http._abandon_upload_session(session_id)
+        await self._http.abandon_upload_session(session_id)
 
     @require_authentication
     def upload_session(
@@ -4041,7 +4032,7 @@ class Client:
             The settings template.
         """
 
-        return await self._http._get_latest_settings_template()
+        return await self._http.get_latest_settings_template()
 
     @require_authentication
     async def get_specific_template_version(self, version: str) -> dict[str, Any]:
@@ -4067,7 +4058,7 @@ class Client:
             The returned settings template.
         """
 
-        data = await self._http._get_specific_template_version(version)
+        data = await self._http.get_specific_template_version(version)
 
         return data
 
@@ -4089,7 +4080,7 @@ class Client:
         :class:`hondana.types.settings.SettingsPayload`
             The user's settings.
         """
-        data = await self._http._get_user_settings()
+        data = await self._http.get_user_settings()
 
         return data
 
@@ -4123,6 +4114,6 @@ class Client:
         """
 
         time = updated_at or datetime.datetime.now(datetime.timezone.utc)
-        data = await self._http._upsert_user_settings(payload, updated_at=time)
+        data = await self._http.upsert_user_settings(payload, updated_at=time)
 
         return data

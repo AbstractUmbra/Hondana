@@ -8,11 +8,12 @@ from typing import TYPE_CHECKING
 
 from hondana.cover import Cover
 from hondana.http import HTTPClient
-from hondana.utils import relationship_finder, to_snake_case
+from hondana.utils import RelationshipResolver, to_snake_case
 
 
 if TYPE_CHECKING:
     from hondana.types_.cover import GetSingleCoverResponse
+    from hondana.types_.user import UserResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "cover.json"
@@ -41,7 +42,7 @@ class TestCover:
 
         assert cover.uploader is not None
         assert "relationships" in PAYLOAD["data"]
-        rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert rel is not None
         assert cover.uploader.id == rel["id"]
 

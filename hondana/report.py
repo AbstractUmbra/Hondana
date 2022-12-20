@@ -169,10 +169,10 @@ class Report:
     def __str__(self) -> str:
         return f"Report for {str(self.category).title()} and reason: {self.reason}"
 
-    def __eq__(self, other: Report) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Report) and self.id == other.id
 
-    def __ne__(self, other: Report) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
 
@@ -216,8 +216,8 @@ class UserReport:
     def __repr__(self) -> str:
         return f"<UserReport id={self.id!r} status={self.status.value!r}>"
 
-    def __eq__(self, other: UserReport) -> bool:
-        return isinstance(other, self.__class__) and self.id == other.id
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, UserReport) and self.id == other.id
 
     @property
     def created_at(self) -> datetime.datetime:

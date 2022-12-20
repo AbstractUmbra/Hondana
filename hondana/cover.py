@@ -27,7 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Literal, Optional
 
 from .user import User
-from .utils import MISSING, relationship_finder, require_authentication
+from .utils import MISSING, RelationshipResolver, Route, require_authentication
 
 
 if TYPE_CHECKING:
@@ -87,8 +87,8 @@ class Cover:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._manga_relationship: Optional[MangaResponse] = relationship_finder(relationships, "manga", limit=1)
-        self._uploader_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)
+        self._manga_relationship: Optional[MangaResponse] = RelationshipResolver(relationships, "manga").resolve()[0]
+        self._uploader_relationship: Optional[UserResponse] = RelationshipResolver(relationships, "user").resolve()[0]
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id!r} filename={self.file_name!r}>"
@@ -96,10 +96,10 @@ class Cover:
     def __str__(self) -> str:
         return self.file_name
 
-    def __eq__(self, other: Cover) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Cover) and self.id == other.id
 
-    def __ne__(self, other: Cover) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -194,9 +194,8 @@ class Cover:
         if url is None:
             return
 
-        assert self._http._session is not None  # if you got this far, this cannot be None
-        async with self._http._session.get(url) as resp:
-            data = await resp.read()
+        route = Route("GET", url)
+        data = await self._http.request(route)
 
         return data
 
@@ -235,7 +234,7 @@ class Cover:
         :class:`~hondana.Cover`
             The returned cover after the edit.
         """
-        data = await self._http._edit_cover(self.id, volume=volume, description=description, version=version)
+        data = await self._http.edit_cover(self.id, volume=volume, description=description, version=version)
 
         return self.__class__(self._http, data["data"])
 
@@ -252,4 +251,4 @@ class Cover:
         :exc:`Forbidden`
             The request returned an error due to authentication.
         """
-        await self._http._delete_cover(self.id)
+        await self._http.delete_cover(self.id)

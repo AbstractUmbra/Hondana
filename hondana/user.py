@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Optional
 
 from .query import ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
-from .utils import relationship_finder, require_authentication
+from .utils import RelationshipResolver, require_authentication
 
 
 if TYPE_CHECKING:
@@ -142,9 +142,9 @@ class User:
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]
         self.roles: list[str] = self._attributes["roles"]
-        self._group_relationships: list[ScanlationGroupResponse] = relationship_finder(
-            relationships, "scanlation_group", limit=None
-        )
+        self._group_relationships: list[ScanlationGroupResponse] = RelationshipResolver[ScanlationGroupResponse](
+            relationships, "scanlation_group"
+        ).resolve()
         self.__groups: Optional[list[ScanlatorGroup]] = None
 
     def __repr__(self) -> str:
@@ -153,10 +153,10 @@ class User:
     def __str__(self) -> str:
         return self.username
 
-    def __eq__(self, other: User) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, User) and self.id == other.id
 
-    def __ne__(self, other: User) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -185,7 +185,7 @@ class User:
 
         ids = [r["id"] for r in self._group_relationships]
 
-        data = await self._http._scanlation_group_list(
+        data = await self._http.scanlation_group_list(
             limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
         )
 
@@ -210,4 +210,4 @@ class User:
             The user specified cannot be found.
         """
 
-        await self._http._delete_user(self.id)
+        await self._http.delete_user(self.id)

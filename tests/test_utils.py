@@ -12,6 +12,7 @@ from multidict import MultiDict
 from hondana.utils import (
     MISSING,
     CustomRoute,
+    RelationshipResolver,
     Route,
     as_chunks,
     calculate_limits,
@@ -19,7 +20,6 @@ from hondana.utils import (
     delta_to_iso,
     iso_to_delta,
     php_query_builder,
-    relationship_finder,
     to_camel_case,
     to_snake_case,
     upload_file_sort,
@@ -33,23 +33,23 @@ if TYPE_CHECKING:
 T = TypeVar("T")
 
 
-multidict_one = MultiDict()
+multidict_one = MultiDict[str]()
 multidict_one.add("order[publishAt]", "desc")
 multidict_one.add("translatedLanguages[]", "en")
 multidict_one.add("translatedLanguages[]", "jp")
 
-multidict_two = MultiDict()
+multidict_two = MultiDict[str]()
 multidict_two.add("param[]", "a")
 multidict_two.add("param[]", "b")
 multidict_two.add("param[]", "c")
 multidict_two.add("includes[]", "test")
 multidict_two.add("includes[]", "mark")
 
-multidict_three = MultiDict()
+multidict_three = MultiDict[Union[str, int]]()
 multidict_three.add("sorted", "true")
 multidict_three.add("value", 1)
 
-multidict_four = MultiDict()
+multidict_four = MultiDict[Union[str, int]]()
 multidict_four.add("sorted[]", 1)
 multidict_four.add("sorted[]", 2)
 multidict_four.add("includes[]", 1)
@@ -146,7 +146,7 @@ class TestUtils:
     def test_query_builder(
         self,
         input: MANGADEX_QUERY_PARAM_TYPE,
-        output: MultiDict,
+        output: MultiDict[Union[str, int]],
     ):
         assert php_query_builder(input) == output
 
@@ -188,7 +188,7 @@ class TestUtils:
     def test_relationship_finder(
         self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]], limit: Optional[int]
     ):
-        ret = relationship_finder(input, "test", limit=limit)  # type: ignore # the types here all fail but this is only a test.
+        ret = RelationshipResolver(input, "test").resolve()  # type: ignore # yeah
 
         assert ret is not None
 

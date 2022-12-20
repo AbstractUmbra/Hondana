@@ -33,7 +33,7 @@ from .cover import Cover
 from .enums import ContentRating, MangaRelationType, MangaState, MangaStatus, PublicationDemographic, ReadingStatus
 from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
-from .utils import MISSING, cached_slot_property, relationship_finder, require_authentication
+from .utils import MISSING, RelationshipResolver, cached_slot_property, require_authentication
 
 
 if TYPE_CHECKING:
@@ -176,10 +176,18 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._author_relationships: list[AuthorResponse] = relationship_finder(relationships, "author", limit=None)
-        self._artist_relationships: list[ArtistResponse] = relationship_finder(relationships, "artist", limit=None)
-        self._related_manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
-        self._cover_relationship: Optional[CoverResponse] = relationship_finder(relationships, "cover_art", limit=1)
+        self._author_relationships: list[AuthorResponse] = RelationshipResolver[AuthorResponse](
+            relationships, "author"
+        ).resolve()
+        self._artist_relationships: list[ArtistResponse] = RelationshipResolver[ArtistResponse](
+            relationships, "artist"
+        ).resolve()
+        self._related_manga_relationships: list[MangaResponse] = RelationshipResolver[MangaResponse](
+            relationships, "manga"
+        ).resolve()
+        self._cover_relationship: Optional[CoverResponse] = RelationshipResolver[CoverResponse](
+            relationships, "cover_art"
+        ).resolve(with_fallback=True)[0]
         self.__authors: Optional[list[Author]] = None
         self.__artists: Optional[list[Artist]] = None
         self.__cover: Optional[Cover] = None
@@ -191,10 +199,10 @@ class Manga:
     def __str__(self) -> str:
         return self.title
 
-    def __eq__(self, other: Union[Manga, MangaRelation]) -> bool:
-        return self.id == other.id
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, (Manga, MangaRelation)) and self.id == other.id
 
-    def __ne__(self, other: Union[Manga, MangaRelation]) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -222,7 +230,7 @@ class Manga:
         title = self._title.get("en")
         if title is None:
             key = next(iter(self._title))
-            title = self._title.get(self.original_language, self._title[key])
+            title = self._title.get(self.original_language, self._title[key])  # type: ignore # this is safe since the key is from the dict
 
         return title
 
@@ -242,7 +250,7 @@ class Manga:
             if not self._description:
                 return None
             key = next(iter(self._description))
-            return self._description[key]
+            return self._description[key]  # type: ignore # this is safe since the key is from the dict
         return desc
 
     @property
@@ -334,7 +342,7 @@ class Manga:
 
     @artists.setter
     def artists(self, value: list[Artist]) -> None:
-        self.__artists = [item for item in value if isinstance(item, Artist)]
+        self.__artists = value
 
     @property
     def authors(self) -> Optional[list[Author]]:
@@ -369,7 +377,7 @@ class Manga:
 
     @authors.setter
     def authors(self, value: list[Author]) -> None:
-        self.__authors = [item for item in value if isinstance(item, Author)]
+        self.__authors = value
 
     @property
     def cover(self) -> Optional[Cover]:
@@ -397,8 +405,7 @@ class Manga:
 
     @cover.setter
     def cover(self, value: Cover) -> None:
-        if isinstance(value, Cover):
-            self.__cover = value
+        self.__cover = value
 
     @property
     def related_manga(self) -> Optional[list[Manga]]:
@@ -427,7 +434,7 @@ class Manga:
 
     @related_manga.setter
     def related_manga(self, value: list[Manga]) -> None:
-        self.__related_manga = [item for item in value if isinstance(item, self.__class__)]
+        self.__related_manga = value
 
     async def get_artists(self) -> Optional[list[Artist]]:
         """|coro|
@@ -454,7 +461,7 @@ class Manga:
 
         formatted: list[Artist] = []
         for item in ids:
-            data = await self._http._get_artist(item, includes=ArtistIncludes())
+            data = await self._http.get_artist(item, includes=ArtistIncludes())
             formatted.append(Artist(self._http, data["data"]))
 
         if not formatted:
@@ -488,7 +495,7 @@ class Manga:
 
         formatted: list[Author] = []
         for item in ids:
-            data = await self._http._get_author(item, includes=AuthorIncludes())
+            data = await self._http.get_author(item, includes=AuthorIncludes())
             formatted.append(Author(self._http, data["data"]))
 
         if not formatted:
@@ -513,7 +520,7 @@ class Manga:
         if not self._cover_relationship:
             return
 
-        data = await self._http._get_cover(self._cover_relationship["id"], includes=CoverIncludes())
+        data = await self._http.get_cover(self._cover_relationship["id"], includes=CoverIncludes())
         self.cover = Cover(self._http, data["data"])
         return self.cover
 
@@ -561,7 +568,7 @@ class Manga:
 
         ids = [r["id"] for r in self._related_manga_relationships]
 
-        data = await self._http._manga_list(
+        data = await self._http.manga_list(
             limit=limit,
             offset=offset,
             title=None,
@@ -676,7 +683,7 @@ class Manga:
         :class:`~hondana.Manga`
             The manga that was returned after creation.
         """
-        data = await self._http._update_manga(
+        data = await self._http.update_manga(
             self.id,
             title=title,
             alt_titles=alt_titles,
@@ -712,7 +719,7 @@ class Manga:
             The specified manga does not exist.
         """
 
-        await self._http._delete_manga(self.id)
+        await self._http.delete_manga(self.id)
 
     @require_authentication
     async def unfollow(self) -> None:
@@ -727,7 +734,7 @@ class Manga:
         :exc:`NotFound`
             The specified manga does not exist.
         """
-        await self._http._unfollow_manga(self.id)
+        await self._http.unfollow_manga(self.id)
 
     @require_authentication
     async def follow(self, *, set_status: bool = True, status: ReadingStatus = ReadingStatus.reading) -> None:
@@ -752,7 +759,7 @@ class Manga:
         :exc:`NotFound`
             The specified manga does not exist.
         """
-        await self._http._follow_manga(self.id)
+        await self._http.follow_manga(self.id)
         if set_status:
             await self.update_reading_status(status=status)
 
@@ -879,9 +886,9 @@ class Manga:
 
         inner_limit = limit or 100
 
-        chapters = []
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._manga_feed(
+            data = await self._http.manga_feed(
                 self.id,
                 limit=inner_limit,
                 offset=offset,
@@ -924,7 +931,7 @@ class Manga:
             The raw payload of the API.
             Contains a list of read chapter UUIDs.
         """
-        return await self._http._manga_read_markers([self.id], grouped=False)
+        return await self._http.manga_read_markers([self.id], grouped=False)
 
     @require_authentication
     async def bulk_update_read_markers(
@@ -952,7 +959,7 @@ class Manga:
         if not read_chapters and not unread_chapters:
             raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
 
-        await self._http._manga_read_markers_batch(
+        await self._http.manga_read_markers_batch(
             self.id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
         )
 
@@ -974,7 +981,7 @@ class Manga:
         :class:`~hondana.types.manga.MangaSingleReadingStatusResponse`
             The raw payload from the API response.
         """
-        return await self._http._get_manga_reading_status(self.id)
+        return await self._http.get_manga_reading_status(self.id)
 
     @require_authentication
     async def update_reading_status(self, *, status: ReadingStatus) -> None:
@@ -1000,7 +1007,7 @@ class Manga:
             The specified manga cannot be found, likely due to incorrect ID.
         """
 
-        await self._http._update_manga_reading_status(self.id, status=status)
+        await self._http.update_manga_reading_status(self.id, status=status)
 
     async def get_volumes_and_chapters(
         self,
@@ -1024,7 +1031,7 @@ class Manga:
         :class:`~hondana.types.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
-        data = await self._http._get_manga_volumes_and_chapters(
+        data = await self._http.get_manga_volumes_and_chapters(
             manga_id=self.id, translated_language=translated_language, groups=groups
         )
 
@@ -1049,7 +1056,7 @@ class Manga:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._add_manga_to_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
+        await self._http.add_manga_to_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
 
     @require_authentication
     async def remove_from_custom_list(self, *, custom_list_id: str) -> None:
@@ -1070,7 +1077,7 @@ class Manga:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http._remove_manga_from_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
+        await self._http.remove_manga_from_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
 
     async def get_chapters(
         self,
@@ -1175,9 +1182,9 @@ class Manga:
 
         inner_limit = limit or 10
 
-        chapters = []
+        chapters: list[Chapter] = []
         while True:
-            data = await self._http._chapter_list(
+            data = await self._http.chapter_list(
                 limit=inner_limit,
                 offset=offset,
                 manga=self.id,
@@ -1223,7 +1230,7 @@ class Manga:
         :class:`~hondana.Manga`
             The Manga returned from the API.
         """
-        data = await self._http._get_manga_draft(self.id)
+        data = await self._http.get_manga_draft(self.id)
         return self.__class__(self._http, data["data"])
 
     async def submit_draft(self, *, version: int) -> Manga:
@@ -1249,7 +1256,7 @@ class Manga:
         --------
         :class:`~hondana.Manga`
         """
-        data = await self._http._submit_manga_draft(self.id, version=version)
+        data = await self._http.submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
     async def get_relations(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> MangaRelationCollection:
@@ -1272,7 +1279,7 @@ class Manga:
         --------
         :class:`~hondana.MangaRelationCollection`
         """
-        data = await self._http._get_manga_relation_list(self.id, includes=includes)
+        data = await self._http.get_manga_relation_list(self.id, includes=includes)
         fmt = [MangaRelation(self._http, self.id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
 
@@ -1306,7 +1313,7 @@ class Manga:
         --------
         :class:`~hondana.Cover`
         """
-        data = await self._http._upload_cover(self.id, cover=cover, volume=volume, description=description, locale=locale)
+        data = await self._http.upload_cover(self.id, cover=cover, volume=volume, description=description, locale=locale)
         return Cover(self._http, data["data"])
 
     @require_authentication
@@ -1332,7 +1339,7 @@ class Manga:
         --------
         :class:`~hondana.MangaRelation`
         """
-        data = await self._http._create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
+        data = await self._http.create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
         return MangaRelation(self._http, self.id, data["data"])
 
     @require_authentication
@@ -1346,7 +1353,7 @@ class Manga:
         relation_id: :class:`str`
             The ID of the related manga.
         """
-        await self._http._delete_manga_relation(self.id, relation_id)
+        await self._http.delete_manga_relation(self.id, relation_id)
 
     @require_authentication
     async def set_rating(self, *, rating: int) -> None:
@@ -1367,7 +1374,7 @@ class Manga:
         :exc:`NotFound`
             The specified manga UUID was not found or does not exist.
         """
-        await self._http._set_manga_rating(self.id, rating=rating)
+        await self._http.set_manga_rating(self.id, rating=rating)
 
     @require_authentication
     async def delete_rating(self) -> None:
@@ -1382,7 +1389,7 @@ class Manga:
         :exc:`NotFound`
             The specified manga UUID was not found or does not exist.
         """
-        await self._http._delete_manga_rating(self.id)
+        await self._http.delete_manga_rating(self.id)
 
     async def get_statistics(self) -> MangaStatistics:
         """|coro|
@@ -1393,7 +1400,7 @@ class Manga:
         --------
         :class:`~hondana.MangaStatistics`
         """
-        data = await self._http._get_manga_statistics(self.id)
+        data = await self._http.get_manga_statistics(self.id)
 
         key = next(iter(data["statistics"]))
         stats = MangaStatistics(self._http, self.id, data["statistics"][key])
@@ -1441,10 +1448,10 @@ class MangaRelation:
     def __repr__(self) -> str:
         return f"<MangaRelation id={self.id!r} source_manga_id={self.source_manga_id!r}>"
 
-    def __eq__(self, other: Union[MangaRelation, Manga]) -> bool:
-        return self.id == other.id or self.source_manga_id == other.id
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, (Manga, MangaRelation)) and (self.id == other.id or self.source_manga_id == other.id)
 
-    def __ne__(self, other: Union[MangaRelation, Manga]) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
 

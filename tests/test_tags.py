@@ -64,7 +64,7 @@ class TestTags:
         raw_tags = PAYLOAD["data"]["attributes"]["tags"]
 
         for tag, raw_tag in zip(sorted(tags, key=lambda t: t.id), sorted(raw_tags, key=lambda t: t["id"])):
-            _description = tag._description
+            _description = tag._description  # type: ignore # sorry, need this for test purposes
             _raw_descriptions = raw_tag["attributes"]["description"]
             _raw_descriptions = _raw_descriptions or {}
             _raw_description = {k: v for k, v in _raw_descriptions}

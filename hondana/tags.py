@@ -96,10 +96,10 @@ class Tag:
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: Tag) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Tag) and self.id == other.id
 
-    def __ne__(self, other: Tag) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -113,7 +113,7 @@ class Tag:
         name = self._name.get("en")
         if name is None:
             key = next(iter(self._name))
-            return self._name[key]
+            return self._name[key]  # type: ignore # this is safe since the key is from the dict
         return name
 
     @property
@@ -130,7 +130,7 @@ class Tag:
         description = self._description.get("en")
         if description is None:
             key = next(iter(self._description))
-            return self._description[key]
+            return self._description[key]  # type: ignore # this is safe since the key is from the dict
         return description
 
     @property
@@ -192,7 +192,7 @@ class QueryTags:
         return f"<Tags mode={self.mode} number_of_tags={len(self._tags)}>"
 
     def _set_tags(self) -> list[str]:
-        tags = []
+        tags: list[str] = []
         for tag in self._tags:
             if tag_ := MANGA_TAGS.get(tag.title()):
                 tags.append(tag_)

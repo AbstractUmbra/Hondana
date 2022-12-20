@@ -29,7 +29,7 @@ from .enums import CustomListVisibility
 from .manga import Manga
 from .query import MangaIncludes
 from .user import User
-from .utils import relationship_finder, require_authentication
+from .utils import RelationshipResolver, require_authentication
 
 
 if TYPE_CHECKING:
@@ -81,8 +81,12 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = relationship_finder(relationships, "user", limit=1)
-        self._manga_relationships: list[MangaResponse] = relationship_finder(relationships, "manga", limit=None)
+        self._owner_relationship: Optional[UserResponse] = RelationshipResolver[UserResponse](relationships, "user").resolve(
+            with_fallback=True
+        )[0]
+        self._manga_relationships: list[MangaResponse] = RelationshipResolver[MangaResponse](
+            relationships, "manga"
+        ).resolve()
         self.__owner: Optional[User] = None
         self.__manga: Optional[list[Manga]] = None
 
@@ -92,10 +96,10 @@ class CustomList:
     def __str__(self) -> str:
         return self.name
 
-    def __eq__(self, other: CustomList) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, CustomList) and self.id == other.id
 
-    def __ne__(self, other: CustomList) -> bool:
+    def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
 
     @property
@@ -130,8 +134,7 @@ class CustomList:
 
     @owner.setter
     def owner(self, other: User) -> None:
-        if isinstance(other, User):
-            self.__owner = other
+        self.__owner = other
 
     @property
     def manga(self) -> Optional[list[Manga]]:
@@ -157,8 +160,7 @@ class CustomList:
 
     @manga.setter
     def manga(self, other: list[Manga]) -> None:
-        fmt = [item for item in other if isinstance(item, Manga)]
-        self.__manga = fmt
+        self.__manga = other
 
     async def get_owner(self) -> Optional[User]:
         """|coro|
@@ -176,7 +178,7 @@ class CustomList:
         if not self._owner_relationship:
             return
 
-        data = await self._http._get_user(self._owner_relationship["id"])
+        data = await self._http.get_user(self._owner_relationship["id"])
         self.__owner = User(self._http, data["data"])
         return self.__owner
 
@@ -204,7 +206,7 @@ class CustomList:
 
         ids = [r["id"] for r in self._manga_relationships]
 
-        data = await self._http._manga_list(
+        data = await self._http.manga_list(
             limit=limit or 100,
             offset=offset,
             title=None,
@@ -278,7 +280,7 @@ class CustomList:
         :class:`CustomList`
             The returned custom list after it was updated.
         """
-        data = await self._http._update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
+        data = await self._http.update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
 
         return self.__class__(self._http, data["data"])
 
@@ -295,7 +297,7 @@ class CustomList:
         :exc:`NotFound`
             The custom list with this UUID was not found.
         """
-        await self._http._delete_custom_list(self.id)
+        await self._http.delete_custom_list(self.id)
 
     @require_authentication
     async def follow(self) -> None:
@@ -310,7 +312,7 @@ class CustomList:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http._follow_custom_list(self.id)
+        await self._http.follow_custom_list(self.id)
 
     @require_authentication
     async def unfollow(self) -> None:
@@ -325,4 +327,4 @@ class CustomList:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http._unfollow_custom_list(self.id)
+        await self._http.unfollow_custom_list(self.id)

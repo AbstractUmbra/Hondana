@@ -7,11 +7,13 @@ from typing import TYPE_CHECKING
 
 from hondana.custom_list import CustomList
 from hondana.http import HTTPClient
-from hondana.utils import relationship_finder, to_snake_case
+from hondana.utils import RelationshipResolver, to_snake_case
 
 
 if TYPE_CHECKING:
     from hondana.types_.custom_list import GetSingleCustomListResponse
+    from hondana.types_.manga import MangaResponse
+    from hondana.types_.user import UserResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "custom_list.json"
 
@@ -40,7 +42,7 @@ class TestCustomList:
 
         assert custom_list.owner is not None
 
-        owner_rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        owner_rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert owner_rel is not None
 
         assert custom_list.owner.id == owner_rel["id"]
@@ -50,7 +52,7 @@ class TestCustomList:
 
         assert custom_list.manga is not None
 
-        manga_rels = relationship_finder(PAYLOAD["data"]["relationships"], "manga", limit=None)
+        manga_rels = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
         assert manga_rels is not None
 
         assert len(custom_list.manga) == len(manga_rels)

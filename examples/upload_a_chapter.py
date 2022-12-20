@@ -81,7 +81,7 @@ async def alternative_main():
     )
 
     # I recommend the context manager method, since the session checking and committing are done for you.
-    await upload_session._check_for_session()
+    await upload_session._check_for_session()  # type: ignore # and it will also fail strict type checking
 
     # let's open up some files and use their paths...
     files = [*pathlib.Path("./to_upload").iterdir()]

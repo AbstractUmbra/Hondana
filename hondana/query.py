@@ -54,13 +54,13 @@ __all__ = (
 
 
 class _OrderQuery:
-    __slots__ = ()
+    __slots__: tuple[str, ...] = ()
 
     def __init__(self, **kwargs: Optional[Order]) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
 
-        _fmt = []
+        _fmt: list[str] = []
         for (name, value) in kwargs.items():
             if name in self.__slots__:
                 setattr(self, name, value)
@@ -71,7 +71,7 @@ class _OrderQuery:
             raise TypeError(f"You have passed invalid kwargs: {', '.join(_fmt)}")
 
     def __repr__(self) -> str:
-        opt = []
+        opt: list[str] = []
         for key in self.__slots__:
             if val := getattr(self, key, None):
                 opt.append(f"{key}={val.name}")
@@ -87,7 +87,7 @@ class _OrderQuery:
 
 
 class _Includes:
-    __slots__ = ()
+    __slots__: tuple[str, ...] = ()
 
     def to_query(self) -> list[str]:
         """Generates a list of strings based on the kwargs.

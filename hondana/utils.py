@@ -56,9 +56,9 @@ from yarl import URL
 try:
     import orjson
 except ModuleNotFoundError:
-    HAS_ORJSON = False
+    _has_orjson = False
 else:
-    HAS_ORJSON = True
+    _has_orjson = True
 
 from .errors import AuthenticationRequired
 
@@ -67,14 +67,7 @@ if TYPE_CHECKING:
     from _typeshed import SupportsRichComparison
     from typing_extensions import Concatenate, ParamSpec, TypeAlias
 
-    from .types_.artist import ArtistResponse
-    from .types_.author import AuthorResponse
-    from .types_.chapter import ChapterResponse
-    from .types_.cover import CoverResponse
-    from .types_.manga import MangaResponse
     from .types_.relationship import RelationshipResponse
-    from .types_.scanlator_group import ScanlationGroupResponse
-    from .types_.user import UserResponse
 
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]
 C = TypeVar("C", bound="Any")
@@ -103,7 +96,7 @@ __all__ = (
     "as_chunks",
     "delta_to_iso",
     "iso_to_delta",
-    "relationship_finder",
+    "RelationshipResolver",
     "clean_isoformat",
     "MANGA_TAGS",
 )
@@ -202,8 +195,8 @@ class MissingSentinel:
 MISSING: Any = MissingSentinel()
 
 
-class _StrEnum(Enum):  # type: ignore # we import this as needed.
-    value: str
+class _StrEnum(Enum):  # type: ignore # we import this as needed
+    value: str  # type: ignore # we need to override the type here
 
     def __str__(self) -> str:
         return self.value
@@ -326,7 +319,7 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
     return new_limit, new_offset
 
 
-if HAS_ORJSON is True:
+if _has_orjson is True:
 
     def to_json(obj: Any, /) -> str:
         """A quick method that dumps a Python type to JSON object."""
@@ -426,7 +419,7 @@ def to_camel_case(string: str, /) -> str:
 
 
 def as_chunks(iterator: Iterable[T], /, max_size: int) -> Iterable[list[T]]:
-    ret = []
+    ret: list[T] = []
     n = 0
     for item in iterator:
         ret.append(item)
@@ -516,154 +509,40 @@ RelType = Literal[
 ]
 
 
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["artist"], *, limit: Literal[1]
-) -> ArtistResponse:
-    ...
+class RelationshipResolver(Generic[T]):
+    __slots__ = (
+        "relationships",
+        "limit",
+        "_type",
+    )
 
+    def __init__(self, relationships: list[RelationshipResponse], relationship_type: RelType, /) -> None:
+        self.relationships: list[RelationshipResponse] = relationships
+        self._type: RelType = relationship_type
 
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["artist"], *, limit: Optional[int] = ...
-) -> list[ArtistResponse]:
-    ...
+    @overload
+    def resolve(self, *, with_fallback: Literal[False]) -> list[T]:
+        ...
 
+    @overload
+    def resolve(self, *, with_fallback: Literal[True]) -> list[Union[T, None]]:
+        ...
 
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["author"], *, limit: Literal[1]
-) -> AuthorResponse:
-    ...
+    @overload
+    def resolve(self) -> list[T]:
+        ...
 
+    def resolve(self, *, with_fallback: bool = False) -> Union[list[T], list[Union[T, None]]]:
+        relationships = self.relationships.copy()
 
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["author"], *, limit: Optional[int] = ...
-) -> list[AuthorResponse]:
-    ...
+        ret: list[Union[T, None]] = []
+        for relationship in relationships:
+            if relationship["type"] == self._type:
+                ret.append(relationship)  # type: ignore
 
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["chapter"], *, limit: Literal[1]
-) -> ChapterResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["chapter"], *, limit: Optional[int] = ...
-) -> list[ChapterResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["cover_art"], *, limit: Literal[1]
-) -> CoverResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["cover_art"], *, limit: Optional[int] = ...
-) -> list[CoverResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["leader"], *, limit: Literal[1]
-) -> UserResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["leader"], *, limit: Optional[int] = ...
-) -> list[UserResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["manga"], *, limit: Literal[1]
-) -> MangaResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["manga"], *, limit: Optional[int] = ...
-) -> list[MangaResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["member"], *, limit: Literal[1]
-) -> UserResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["member"], *, limit: Optional[int] = ...
-) -> list[UserResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["scanlation_group"], *, limit: Literal[1]
-) -> ScanlationGroupResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["scanlation_group"], *, limit: Optional[int] = ...
-) -> list[ScanlationGroupResponse]:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["user"], *, limit: Literal[1]
-) -> UserResponse:
-    ...
-
-
-@overload
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: Literal["user"], *, limit: Optional[int] = ...
-) -> list[UserResponse]:
-    ...
-
-
-def relationship_finder(
-    relationships: list[RelationshipResponse], relationship_type: RelType, *, limit: Optional[int] = None
-) -> Optional[Union[list[Any], Any]]:
-    if not relationships:
-        return
-
-    ret: list[RelationshipResponse] = []
-    relationships_copy = relationships.copy()
-
-    for relationship in relationships_copy:
-        if relationship["type"] == relationship_type:
-            if limit == 1:
-                relationships.remove(relationship)
-                return relationship
-            else:
-                ret.append(relationship)
-            relationships.remove(relationship)
-
-    if limit is not None:
-        return ret[:limit]
-
-    return ret
+        if not ret and with_fallback:
+            ret.append(None)
+        return ret
 
 
 def clean_isoformat(dt: datetime.datetime, /) -> str:

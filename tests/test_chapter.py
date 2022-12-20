@@ -8,11 +8,14 @@ from typing import TYPE_CHECKING, Any
 
 from hondana.chapter import Chapter
 from hondana.http import HTTPClient
-from hondana.utils import relationship_finder, to_snake_case
+from hondana.utils import RelationshipResolver, to_snake_case
 
 
 if TYPE_CHECKING:
     from hondana.types_.chapter import GetSingleChapterResponse
+    from hondana.types_.manga import MangaResponse
+    from hondana.types_.scanlator_group import ScanlationGroupResponse
+    from hondana.types_.user import UserResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "chapter.json"
@@ -60,7 +63,7 @@ class TestChapter:
 
         cloned = deepcopy(PAYLOAD)
         assert "relationships" in cloned["data"]
-        manga_rel = relationship_finder(cloned["data"]["relationships"], "manga", limit=1)
+        manga_rel = RelationshipResolver[MangaResponse](cloned["data"]["relationships"], "manga").resolve()[0]
 
         assert chapter.manga is not None
         assert manga_rel is not None
@@ -77,7 +80,7 @@ class TestChapter:
 
         cloned = deepcopy(PAYLOAD)
         assert "relationships" in cloned["data"]
-        ret = relationship_finder(cloned["data"]["relationships"], "scanlation_group", limit=None)
+        ret = RelationshipResolver[ScanlationGroupResponse](cloned["data"]["relationships"], "scanlation_group").resolve()
 
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)
@@ -88,7 +91,7 @@ class TestChapter:
         assert chapter.uploader is not None
 
         assert "relationships" in PAYLOAD["data"]
-        uploader_rel = relationship_finder(PAYLOAD["data"]["relationships"], "user", limit=1)
+        uploader_rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert uploader_rel is not None
 
         assert chapter.uploader.id == uploader_rel["id"]
