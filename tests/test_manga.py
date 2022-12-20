@@ -114,7 +114,7 @@ class TestManga:
 
         assert manga.artists is not None
         assert "relationships" in PAYLOAD["data"]
-        artist_rels = RelationshipResolver[ArtistResponse](PAYLOAD["data"]["relationships"], "artist").resolve()
+        artist_rels = RelationshipResolver["ArtistResponse"](PAYLOAD["data"]["relationships"], "artist").resolve()
 
         assert len(manga.artists) == len(artist_rels)
 
@@ -123,7 +123,7 @@ class TestManga:
 
         assert manga.authors is not None
         assert "relationships" in PAYLOAD["data"]
-        author_rels = RelationshipResolver[AuthorResponse](PAYLOAD["data"]["relationships"], "author").resolve()
+        author_rels = RelationshipResolver["AuthorResponse"](PAYLOAD["data"]["relationships"], "author").resolve()
 
         assert len(manga.authors) == len(author_rels)
 
@@ -133,7 +133,7 @@ class TestManga:
         assert manga.cover is not None
 
         assert "relationships" in PAYLOAD["data"]
-        cover_rel = RelationshipResolver[CoverResponse](PAYLOAD["data"]["relationships"], "cover_art").resolve()[0]
+        cover_rel = RelationshipResolver["CoverResponse"](PAYLOAD["data"]["relationships"], "cover_art").resolve()[0]
         assert cover_rel is not None
 
         assert manga.cover.id == cover_rel["id"]
@@ -153,7 +153,7 @@ class TestManga:
         assert manga.related_manga is not None
 
         assert "relationships" in PAYLOAD["data"]
-        related_keys = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
+        related_keys = RelationshipResolver["MangaResponse"](PAYLOAD["data"]["relationships"], "manga").resolve()
         assert bool(related_keys)
 
         assert len(manga.related_manga) == len(related_keys)

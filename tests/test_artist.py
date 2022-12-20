@@ -46,7 +46,7 @@ class TestArtist:
     def test_manga_relationships(self):
         artist = clone_artist()
         assert "relationships" in PAYLOAD["data"]
-        rels = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
+        rels = RelationshipResolver["MangaResponse"](PAYLOAD["data"]["relationships"], "manga").resolve()
 
         assert artist.manga is not None
         assert len(rels) == len(artist.manga)

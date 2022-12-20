@@ -4,7 +4,7 @@ import datetime
 import pathlib
 import random
 import zoneinfo
-from typing import TYPE_CHECKING, Iterable, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Iterable, TypeVar, Union
 
 import pytest
 from multidict import MultiDict
@@ -165,30 +165,28 @@ class TestUtils:
         assert to_snake_case(input) == output
 
     @pytest.mark.parametrize(
-        ("input", "output", "limit"),
+        ("input", "output"),
         [
-            ([{"type": "test", "hello": "goodbye"}], [{"type": "test", "hello": "goodbye"}], None),
+            (
+                [{"type": "test", "hello": "goodbye"}],
+                [{"type": "test", "hello": "goodbye"}],
+            ),
             (
                 [{"type": "bleh", "hello": "goodbye"}, {"type": "test", "hello": "hello"}],
                 [{"type": "test", "hello": "hello"}],
-                None,
             ),
             (
                 [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
                 [{"type": "test", "pass": "mark", "something": "anything"}],
-                None,
             ),
             (
                 [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
-                {"type": "test", "pass": "mark", "something": "anything"},
-                1,
+                [{"type": "test", "pass": "mark", "something": "anything"}],
             ),
         ],
     )
-    def test_relationship_finder(
-        self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]], limit: Optional[int]
-    ):
-        ret = RelationshipResolver(input, "test").resolve()  # type: ignore # yeah
+    def test_relationship_finder(self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]]):
+        ret = RelationshipResolver[dict[str, str]](input, "test").resolve()  # type: ignore # yeah
 
         assert ret is not None
 

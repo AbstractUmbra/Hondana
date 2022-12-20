@@ -142,7 +142,7 @@ class User:
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]
         self.roles: list[str] = self._attributes["roles"]
-        self._group_relationships: list[ScanlationGroupResponse] = RelationshipResolver[ScanlationGroupResponse](
+        self._group_relationships: list[ScanlationGroupResponse] = RelationshipResolver["ScanlationGroupResponse"](
             relationships, "scanlation_group"
         ).resolve()
         self.__groups: Optional[list[ScanlatorGroup]] = None

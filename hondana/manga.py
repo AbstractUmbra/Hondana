@@ -176,16 +176,16 @@ class Manga:
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._author_relationships: list[AuthorResponse] = RelationshipResolver[AuthorResponse](
+        self._author_relationships: list[AuthorResponse] = RelationshipResolver["AuthorResponse"](
             relationships, "author"
         ).resolve()
-        self._artist_relationships: list[ArtistResponse] = RelationshipResolver[ArtistResponse](
+        self._artist_relationships: list[ArtistResponse] = RelationshipResolver["ArtistResponse"](
             relationships, "artist"
         ).resolve()
-        self._related_manga_relationships: list[MangaResponse] = RelationshipResolver[MangaResponse](
+        self._related_manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
         ).resolve()
-        self._cover_relationship: Optional[CoverResponse] = RelationshipResolver[CoverResponse](
+        self._cover_relationship: Optional[CoverResponse] = RelationshipResolver["CoverResponse"](
             relationships, "cover_art"
         ).resolve(with_fallback=True)[0]
         self.__authors: Optional[list[Author]] = None

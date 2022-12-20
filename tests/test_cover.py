@@ -42,7 +42,7 @@ class TestCover:
 
         assert cover.uploader is not None
         assert "relationships" in PAYLOAD["data"]
-        rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
+        rel = RelationshipResolver["UserResponse"](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert rel is not None
         assert cover.uploader.id == rel["id"]
 

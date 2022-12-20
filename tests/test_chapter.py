@@ -63,7 +63,7 @@ class TestChapter:
 
         cloned = deepcopy(PAYLOAD)
         assert "relationships" in cloned["data"]
-        manga_rel = RelationshipResolver[MangaResponse](cloned["data"]["relationships"], "manga").resolve()[0]
+        manga_rel = RelationshipResolver["MangaResponse"](cloned["data"]["relationships"], "manga").resolve()[0]
 
         assert chapter.manga is not None
         assert manga_rel is not None
@@ -80,7 +80,7 @@ class TestChapter:
 
         cloned = deepcopy(PAYLOAD)
         assert "relationships" in cloned["data"]
-        ret = RelationshipResolver[ScanlationGroupResponse](cloned["data"]["relationships"], "scanlation_group").resolve()
+        ret = RelationshipResolver["ScanlationGroupResponse"](cloned["data"]["relationships"], "scanlation_group").resolve()
 
         assert chapter.scanlator_groups is not None
         assert len(ret) == len(chapter.scanlator_groups)
@@ -91,7 +91,7 @@ class TestChapter:
         assert chapter.uploader is not None
 
         assert "relationships" in PAYLOAD["data"]
-        uploader_rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
+        uploader_rel = RelationshipResolver["UserResponse"](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert uploader_rel is not None
 
         assert chapter.uploader.id == uploader_rel["id"]

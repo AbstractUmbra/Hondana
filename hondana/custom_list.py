@@ -81,10 +81,10 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = RelationshipResolver[UserResponse](relationships, "user").resolve(
-            with_fallback=True
-        )[0]
-        self._manga_relationships: list[MangaResponse] = RelationshipResolver[MangaResponse](
+        self._owner_relationship: Optional[UserResponse] = RelationshipResolver["UserResponse"](
+            relationships, "user"
+        ).resolve(with_fallback=True)[0]
+        self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
         ).resolve()
         self.__owner: Optional[User] = None

@@ -138,9 +138,9 @@ class Artist:
         self._biography: Optional[LocalizedString] = self._attributes["biography"]
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
-        self._manga_relationships: list[MangaResponse] = RelationshipResolver[MangaResponse](relationships, "manga").resolve(
-            with_fallback=False
-        )
+        self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
+            relationships, "manga"
+        ).resolve(with_fallback=False)
         self.__manga: Optional[list[Manga]] = None
 
     def __repr__(self) -> str:

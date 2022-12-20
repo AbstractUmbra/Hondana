@@ -137,10 +137,10 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
-        self._leader_relationship: Optional[UserResponse] = RelationshipResolver[UserResponse](
+        self._leader_relationship: Optional[UserResponse] = RelationshipResolver["UserResponse"](
             relationships, "leader"
         ).resolve(with_fallback=True)[0]
-        self._member_relationships: list[UserResponse] = RelationshipResolver[UserResponse](
+        self._member_relationships: list[UserResponse] = RelationshipResolver["UserResponse"](
             relationships, "member"
         ).resolve()
         self.__leader: Optional[User] = None

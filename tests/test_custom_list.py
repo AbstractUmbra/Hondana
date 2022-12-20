@@ -42,7 +42,7 @@ class TestCustomList:
 
         assert custom_list.owner is not None
 
-        owner_rel = RelationshipResolver[UserResponse](PAYLOAD["data"]["relationships"], "user").resolve()[0]
+        owner_rel = RelationshipResolver["UserResponse"](PAYLOAD["data"]["relationships"], "user").resolve()[0]
         assert owner_rel is not None
 
         assert custom_list.owner.id == owner_rel["id"]
@@ -52,7 +52,7 @@ class TestCustomList:
 
         assert custom_list.manga is not None
 
-        manga_rels = RelationshipResolver[MangaResponse](PAYLOAD["data"]["relationships"], "manga").resolve()
+        manga_rels = RelationshipResolver["MangaResponse"](PAYLOAD["data"]["relationships"], "manga").resolve()
         assert manga_rels is not None
 
         assert len(custom_list.manga) == len(manga_rels)
