@@ -14,6 +14,9 @@
     <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'>
         <img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' />
     </a>
+    <a href="https://discord.gg/aYGYJxwqe5">
+        <img src='https://img.shields.io/discord/705500489248145459?color=blue&label=Discord&logo=Discord%20Server&logoColor=green' alt='Discord Server'>
+    </a>
 </div>
 <h1></h1>
 <br>
