@@ -39,6 +39,7 @@ from typing import (
     Generic,
     Iterable,
     Literal,
+    NoReturn,
     Optional,
     Type,
     TypedDict,
@@ -241,14 +242,11 @@ def cached_slot_property(name: str, /) -> Callable[[Callable[[T], T_co]], Cached
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
-    """A decorator to assure the `self` parameter of decorated methods has authentication set."""
+    """A decorator to raise on authentication methods."""
 
     @wraps(func)
-    def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
-        if not item._http._authenticated:
-            raise AuthenticationRequired("This method requires you to be authenticated to the API.")
-
-        return func(item, *args, **kwargs)
+    def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> NoReturn:
+        raise AuthenticationRequired("This method is currently unavailable due to needing authorisation.")
 
     return wrapper
 

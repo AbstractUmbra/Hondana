@@ -6,9 +6,7 @@ import datetime
 import hondana
 
 
-# We need to log in with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to log in and fetch an expiring auth token
-client = hondana.Client(username="my login username", password="my login password")
+client = hondana.Client()
 
 
 async def search_for_tags() -> hondana.MangaCollection:

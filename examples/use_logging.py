@@ -13,10 +13,7 @@ from hondana.query import FeedOrderQuery, Order
 
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
 
-
-# We need to log in with user and password (for now?) since MangaDex does not let you create user based API tokens.
-# We instead use our credentials to log in and fetch an expiring auth token
-client = hondana.Client(username="my-username", password="...")
+client = hondana.Client()
 logging.basicConfig(level=logging.DEBUG)  # <---- This is the important line. It will enable logging to the CLI.
 
 # Alternatively you can use this to log to a file, or have more control over it.

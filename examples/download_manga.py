@@ -6,7 +6,7 @@ import asyncio
 import hondana
 
 
-client = hondana.Client(username="my-username", password="my-password")
+client = hondana.Client()
 
 
 async def main():
