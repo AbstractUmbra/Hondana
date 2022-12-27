@@ -27,7 +27,6 @@ import asyncio
 import datetime
 import logging
 import sys
-import warnings
 import weakref
 from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
 
@@ -108,6 +107,7 @@ if TYPE_CHECKING:
         user,
     )
     from .types_.account import GetAccountAvailable
+    from .types_.forums import ForumPayloadResponse
     from .types_.settings import Settings, SettingsPayload
     from .types_.tags import GetTagListResponse
     from .utils import MANGADEX_QUERY_PARAM_TYPE

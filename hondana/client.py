@@ -146,7 +146,7 @@ class Client:
             client_secret=client_secret,
             oauth_scopes=oauth_scopes,
             webapp=webapp,
-            loop=loop
+            loop=loop,
         )
 
     async def close(self) -> None:
