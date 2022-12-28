@@ -23,6 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import json
 import pathlib
@@ -91,6 +92,7 @@ from .utils import MISSING, require_authentication
 
 if TYPE_CHECKING:
     from aiohttp import ClientSession
+    from aiohttp import web as aiohttp_web
 
     from .tags import QueryTags
     from .types_ import common, legacy, manga
@@ -106,16 +108,8 @@ class Client:
 
     Attributes
     -----------
-    username: Optional[:class:`str`]
-        Your login username for the API / site. Used in conjunction with your password to generate an authentication token.
-    email: Optional[:class:`str`]
-        Your login email for the API / site. Used in conjunction with your password to generate an authentication token.
-    password: Optional[:class:`str`]
-        Your login password for the API / site. Used in conjunction with your username to generate an authentication token.
-    session: Optional[:class:`aiohttp.ClientSession`]
-        A aiohttp ClientSession to use instead of creating one.
-    refresh_token: Optional[:class:`str`]
-        Your last refresh token to use if you want to skip the login stage.
+    oauth2: :class:`hondana.OAuth2Client`
+        The underlying client for handling OAuth2 requests.
 
 
     .. note::
@@ -132,10 +126,28 @@ class Client:
         You failed to pass appropriate login information (login/email and password).
     """
 
-    __slots__ = ("_http",)
+    __slots__ = "_http"
 
-    def __init__(self, *, session: Optional[ClientSession] = None) -> None:
-        self._http = HTTPClient(session=session)
+    def __init__(
+        self,
+        *,
+        session: Optional[ClientSession] = None,
+        redirect_uri: str = "http://localhost:3000",
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        oauth_scopes: Optional[list[str]] = None,
+        webapp: Optional[aiohttp_web.Application] = None,
+        loop: Optional[asyncio.AbstractEventLoop] = None,
+    ) -> None:
+        self._http = HTTPClient(
+            session=session,
+            redirect_uri=redirect_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            oauth_scopes=oauth_scopes,
+            webapp=webapp,
+            loop=loop
+        )
 
     async def close(self) -> None:
         """|coro|

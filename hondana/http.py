@@ -49,11 +49,13 @@ from .enums import (
     ReportStatus,
 )
 from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
+from .oauth2 import OAuth2Client
 from .report import ReportDetails
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
     MISSING,
+    AuthRoute,
     CustomRoute,
     Route,
     calculate_limits,
@@ -68,6 +70,8 @@ from .utils import (
 
 if TYPE_CHECKING:
     from types import TracebackType
+
+    from aiohttp import web as aiohttp_web
 
     from .query import (
         ArtistIncludes,
@@ -145,28 +149,51 @@ class MaybeUnlock:
 
 class HTTPClient:
     __slots__ = (
-        "username",
-        "email",
-        "password",
-        "token",
-        "refresh_token",
         "_authenticated",
         "_session",
         "_locks",
         "_token_lock",
-        "__refresh_after",
+        "_oauth_scopes",
         "user_agent",
-        "_connection",
+        "oauth2",
     )
 
-    def __init__(self, *, session: Optional[aiohttp.ClientSession] = None) -> None:
+    oauth2: Optional[OAuth2Client]
+
+    def __init__(
+        self,
+        *,
+        session: Optional[aiohttp.ClientSession] = None,
+        redirect_uri: str,
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        oauth_scopes: Optional[list[str]] = None,
+        webapp: Optional[aiohttp_web.Application] = None,
+        loop: Optional[asyncio.AbstractEventLoop] = None,
+    ) -> None:
         self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
-        self.token: Optional[str] = None
         self._token_lock: asyncio.Lock = asyncio.Lock()
-        self.__refresh_after: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
+        self._oauth_scopes: Optional[list[str]] = oauth_scopes
+        if client_id:
+            self.oauth2 = OAuth2Client(
+                self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp, loop=loop
+            )
+            self._authenticated = True
+        else:
+            self.oauth2 = None
+            self._authenticated = False
+
+    @property
+    def oauth_scopes(self) -> Optional[list[str]]:
+        if self._oauth_scopes:
+            return self._oauth_scopes
+
+    @oauth_scopes.setter
+    def oauth_scopes(self, other: list[str]) -> None:
+        self._oauth_scopes = other
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
@@ -191,10 +218,36 @@ class HTTPClient:
 
         if self._session is not None:
             await self._session.close()
+        if self.oauth2 is not None:
+            await self.oauth2.close()
+
+    async def get_token(self) -> str:
+        assert self.oauth2 is not None  # we won't be in here otherwise.
+        assert self.oauth_scopes is not None  # we won't be in here otherwise.
+
+        if not self.oauth2.app_is_running():
+            await self.oauth2.run_app()
+
+        if self.oauth2.access_token and not self.oauth2.access_token_has_expired():
+            return self.oauth2.access_token
+
+        if self.oauth2.refresh_token and not self.oauth2.refresh_token_has_expired():
+            await self.oauth2.perform_token_refresh(oauth_scopes=self.oauth_scopes or self.oauth2.auth_handler.scope)
+            return self.oauth2.access_token
+
+        self.oauth2.generate_auth_url(
+            oauth_scopes=self.oauth_scopes,
+            open=True,
+        )
+
+        await self.oauth2.wait_for_auth_response()
+        token = self.oauth2.access_token
+
+        return token
 
     async def request(
         self,
-        route: Union[Route, CustomRoute],
+        route: Union[Route, CustomRoute, AuthRoute],
         *,
         params: Optional[MANGADEX_QUERY_PARAM_TYPE] = None,
         json: Optional[Any] = None,
@@ -239,6 +292,11 @@ class HTTPClient:
 
         headers = kwargs.pop("headers", {})
         headers["User-Agent"] = self.user_agent
+
+        if self.oauth2:
+            token = await self.get_token()
+            headers["Authorization"] = f"Bearer {token}"
+            LOGGER.debug("Current auth token is: '%s'", headers["Authorization"])
 
         if json:
             headers["Content-Type"] = "application/json"

@@ -31,6 +31,7 @@ __version__ = "3.4.7"
 import logging
 from typing import Literal, NamedTuple
 
+from . import oauth2 as oauth2
 from . import query as query
 from . import types_ as types_
 from . import utils as utils

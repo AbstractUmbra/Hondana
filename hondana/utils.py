@@ -39,7 +39,6 @@ from typing import (
     Generic,
     Iterable,
     Literal,
-    NoReturn,
     Optional,
     Type,
     TypedDict,
@@ -66,12 +65,17 @@ from .errors import AuthenticationRequired
 
 if TYPE_CHECKING:
     from _typeshed import SupportsRichComparison
-    from typing_extensions import Concatenate, ParamSpec, TypeAlias
+    from typing_extensions import Concatenate, ParamSpec, Protocol, TypeAlias
 
+    from .http import HTTPClient
     from .types_.relationship import RelationshipResponse
 
+    class SupportsHTTP(Protocol):
+        _http: HTTPClient
+
+
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]
-C = TypeVar("C", bound="Any")
+C = TypeVar("C", bound="SupportsHTTP")
 T = TypeVar("T")
 T_co = TypeVar("T_co", covariant=True)
 if TYPE_CHECKING:
@@ -182,6 +186,35 @@ class CustomRoute(Route):
         self.url: URL = URL(url, encoded=True)
 
 
+class AuthRoute(Route):
+    """A helper class for instantiating a HTTP method to authenticate with MangaDex.
+
+    Parameters
+    -----------
+    verb: :class:`str`
+        The HTTP verb you wish to perform. E.g. ``"POST"``
+    base: :class:`str`
+        The base URL for the download path.
+    path: :class:`str`
+        The prepended path to the API endpoint you with to target.
+        e.g. ``"/manga/{manga_id}"``
+    parameters: Any
+        This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
+        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
+        making ``"manga/..."``
+    """
+
+    BASE: ClassVar[str] = "https://auth.mangadex.dev/realms/mangadex/protocol/openid-connect"
+
+    def __init__(self, verb: str, path: str, **parameters: Any) -> None:
+        self.verb: str = verb
+        self.path: str = path
+        url = self.BASE + self.path
+        if parameters:
+            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
+        self.url: URL = URL(url, encoded=True)
+
+
 class MissingSentinel:
     def __eq__(self, _: Any) -> bool:
         return False
@@ -245,8 +278,11 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
     """A decorator to raise on authentication methods."""
 
     @wraps(func)
-    def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> NoReturn:
-        raise AuthenticationRequired("This method is currently unavailable due to needing authorisation.")
+    def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
+        if not item._http._authenticated:  # type: ignore # we're gonna keep this private
+            raise AuthenticationRequired("This method requires authentication.")
+
+        return func(item, *args, **kwargs)
 
     return wrapper
 
