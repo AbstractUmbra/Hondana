@@ -38,6 +38,7 @@ __all__ = (
     "ArtistResponse",
     "ArtistAttributesResponse",
     "GetSingleArtistResponse",
+    "GetMultiArtistResponse",
 )
 
 
@@ -136,3 +137,26 @@ class GetSingleArtistResponse(TypedDict):
     result: Literal["ok", "error"]
     response: Literal["entity"]
     data: ArtistResponse
+
+
+class GetMultiArtistResponse(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    response: Literal[``"collection"``]
+
+    data: List[:class:`~hondana.types.artist.ArtistResponse`]
+
+    limit: :class:`int`
+
+    offset: :class:`int`
+
+    total: :class:`int`
+    """
+
+    result: Literal["ok", "error"]
+    response: Literal["collection"]
+    data: list[ArtistResponse]
+    limit: int
+    offset: int
+    total: int

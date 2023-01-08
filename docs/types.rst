@@ -21,11 +21,18 @@ Artist
 
 .. autoclass:: hondana.types_.artist.GetSingleArtistResponse
 
+.. autoclass:: hondana.types_.artist.GetMultiArtistResponse
+
 Auth
 ----
 .. autoclass:: hondana.types_.auth.TokenResponse
 
 .. autoclass:: hondana.types_.auth.CheckPayload
+
+.. autoclass:: hondana.types_.auth.RefreshPayload
+
+.. autoclass:: hondana.types_.auth.LoginPayload
+
 
 Author
 ------

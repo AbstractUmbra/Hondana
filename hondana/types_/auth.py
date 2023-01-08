@@ -29,6 +29,8 @@ from typing import Literal, TypedDict
 
 __all__ = (
     "TokenResponse",
+    "LoginPayload",
+    "RefreshPayload",
     "CheckPayload",
 )
 
@@ -42,6 +44,31 @@ class TokenResponse(TypedDict):
 
     session: str
     refresh: str
+
+
+class LoginPayload(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    token: :class:`~hondana.types.auth.TokenResponse`
+    """
+
+    result: Literal["ok", "error"]
+    token: TokenResponse
+
+
+class RefreshPayload(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    token: :class:`~hondana.types.auth.TokenResponse`
+
+    message: :class:`str`
+    """
+
+    result: Literal["ok", "error"]
+    token: TokenResponse
+    message: str
 
 
 class CheckPayload(TypedDict):
