@@ -35,6 +35,9 @@ Chapter
 .. autoclass:: PreviouslyReadChapter()
     :members:
 
+.. autoclass:: ChapterStatistics()
+    :members:
+
 Chapter Upload
 ~~~~~~~~~~~~~~
 .. autoclass:: ChapterUpload()
@@ -94,7 +97,7 @@ Forums
 .. autoclass:: ChapterComments()
     :members:
 
-.. autoclass:: ScanlationGroupComments()
+.. autoclass:: ScanlatorGroupComments()
     :members:
 
 .. autoclass:: ForumThread()
@@ -174,6 +177,9 @@ Report
 Scanlation Group
 ~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroup()
+    :members:
+
+.. autoclass:: ScanlatorGroupStatistics()
     :members:
 
 Tag

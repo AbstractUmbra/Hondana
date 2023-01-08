@@ -78,6 +78,7 @@ __all__ = (
     "UploadData",
     "ChapterUpload",
     "PreviouslyReadChapter",
+    "ChapterStatistics",
 )
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
@@ -187,7 +188,7 @@ class Chapter:
 
         Returns
         --------
-        Optional[:class:`hondana.ChapterStatistics]
+        Optional[:class:`hondana.ChapterStatistics`]
         """
         return self._stats
 

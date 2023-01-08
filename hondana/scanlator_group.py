@@ -39,7 +39,10 @@ if TYPE_CHECKING:
     from .types_.user import UserResponse
     from .user import User
 
-__all__ = ("ScanlatorGroup",)
+__all__ = (
+    "ScanlatorGroup",
+    "ScanlatorGroupStatistics",
+)
 
 
 class ScanlatorGroup:
@@ -62,7 +65,7 @@ class ScanlatorGroup:
         The IRC channel for this scanlator group.
     discord: :class:`str`
         The Discord server for this scanlator group.
-    focused_languages: Optional[List[str]]
+    focused_languages: Optional[List[:class:`str`]]
         The scanlator group's focused languages, if any.
     contact_email: :class:`str`
         The contact email for this scanlator group.
@@ -168,7 +171,7 @@ class ScanlatorGroup:
 
         Returns
         --------
-        Optional[:class:`hondana.ScanlatorGroupStatistics]
+        Optional[:class:`hondana.ScanlatorGroupStatistics`]
         """
         return self._stats
 
