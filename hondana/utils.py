@@ -375,11 +375,8 @@ async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, A
     text = await response.text(encoding="utf-8")
     try:
         if response.headers["content-type"] == "application/json":
-            try:
-                return _from_json(text)
-            except json.JSONDecodeError:
-                pass
-    except KeyError:
+            return _from_json(text)
+    except (KeyError, json.JSONDecodeError):
         pass
 
     return text
