@@ -52,6 +52,7 @@ from .custom_list import CustomList
 from .enums import (
     ContentRating,
     CustomListVisibility,
+    ForumThreadType,
     MangaRelationType,
     MangaState,
     MangaStatus,
@@ -61,6 +62,7 @@ from .enums import (
     ReportReason,
     ReportStatus,
 )
+from .forums import ForumThread
 from .http import HTTPClient
 from .legacy import LegacyItem
 from .manga import Manga, MangaRating, MangaRelation, MangaStatistics
@@ -4117,3 +4119,9 @@ class Client:
         data = await self._http.upsert_user_settings(payload, updated_at=time)
 
         return data
+
+    @require_authentication
+    async def create_forum_thread(self, type: ForumThreadType, resource_id: str) -> ForumThread:
+        data = await self._http.create_forum_thread(type=type, resource_id=resource_id)
+
+        return ForumThread(self._http, data["data"])

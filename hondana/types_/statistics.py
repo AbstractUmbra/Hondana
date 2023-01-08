@@ -30,12 +30,14 @@ from typing import Literal, Optional, TypedDict
 __all__ = (
     "StatisticsRatingResponse",
     "BatchStatisticsRatingResponse",
-    "StatisticsResponse",
+    "MangaStatisticsResponse",
     "BatchStatisticsResponse",
-    "GetStatisticsResponse",
+    "GetMangaStatisticsResponse",
     "BatchGetStatisticsResponse",
     "PersonalMangaRatingsResponse",
     "GetPersonalMangaRatingsResponse",
+    "GetCommentsStatisticsResponse",
+    "CommentMetaData",
 )
 
 
@@ -64,13 +66,14 @@ class BatchStatisticsRatingResponse(TypedDict):
     bayesian: float
 
 
-class StatisticsResponse(TypedDict):
+class MangaStatisticsResponse(TypedDict):
     """
     rating: :class:`~hondana.types.statistics.StatisticsRatingResponse`
 
     follows: :class:`int`
     """
 
+    comments: Optional[CommentMetaData]
     rating: StatisticsRatingResponse
     follows: int
 
@@ -86,7 +89,7 @@ class BatchStatisticsResponse(TypedDict):
     follows: int
 
 
-class GetStatisticsResponse(TypedDict):
+class GetMangaStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
@@ -94,7 +97,7 @@ class GetStatisticsResponse(TypedDict):
     """
 
     result: Literal["ok"]
-    statistics: dict[str, StatisticsResponse]
+    statistics: dict[str, MangaStatisticsResponse]
 
 
 class BatchGetStatisticsResponse(TypedDict):
@@ -128,3 +131,33 @@ class GetPersonalMangaRatingsResponse(TypedDict):
 
     result: Literal["ok"]
     ratings: dict[str, PersonalMangaRatingsResponse]
+
+
+class CommentMetaData(TypedDict):
+    """
+    threadId: :class:`int`
+
+    repliesCount: :class:`int`
+    """
+
+    threadId: int
+    repliesCount: int
+
+
+class StatisticsCommentsResponse(TypedDict):
+    """
+    comments: Optional[:class:`~hondana.types_.CommentMetaData`]
+    """
+
+    comments: Optional[CommentMetaData]
+
+
+class GetCommentsStatisticsResponse(TypedDict):
+    """
+    result: Literal[``"ok"``]
+
+    statistics: Dict[:class:`str`, :class:`~hondana.types_.StatisticsCommentsResponse`]
+    """
+
+    result: Literal["ok"]
+    statistics: dict[str, StatisticsCommentsResponse]

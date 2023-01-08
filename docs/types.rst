@@ -84,11 +84,21 @@ CustomList
 
 .. autoclass:: hondana.types_.custom_list.GetMultiCustomListResponse
 
+
 Errors
 ------
 .. autoclass:: hondana.types_.errors.ErrorType
 
 .. autoclass:: hondana.types_.errors.APIError
+
+
+Forums
+------
+.. autoclass:: hondana.types_.forums.ForumAttributesResponse
+
+.. autoclass:: hondana.types_.forums.ForumDataResponse
+
+.. autoclass:: hondana.types_.forums.ForumPayloadResponse
 
 
 Legacy
@@ -175,17 +185,23 @@ Statistics
 
 .. autoclass:: hondana.types_.statistics.BatchStatisticsRatingResponse
 
-.. autoclass:: hondana.types_.statistics.StatisticsResponse
+.. autoclass:: hondana.types_.statistics.MangaStatisticsResponse
 
 .. autoclass:: hondana.types_.statistics.BatchStatisticsResponse
 
-.. autoclass:: hondana.types_.statistics.GetStatisticsResponse
+.. autoclass:: hondana.types_.statistics.GetMangaStatisticsResponse
 
 .. autoclass:: hondana.types_.statistics.BatchGetStatisticsResponse
 
 .. autoclass:: hondana.types_.statistics.PersonalMangaRatingsResponse
 
 .. autoclass:: hondana.types_.statistics.GetPersonalMangaRatingsResponse
+
+.. autoclass:: hondana.types_.statistics.CommentMetaData
+
+.. autoclass:: hondana.types_.statistics.StatisticsCommentsResponse
+
+.. autoclass:: hondana.types_.statistics.GetCommentsStatisticsResponse
 
 
 Tags

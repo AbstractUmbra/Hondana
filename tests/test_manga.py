@@ -18,7 +18,7 @@ if TYPE_CHECKING:
     from hondana.types_.common import LocalizedString
     from hondana.types_.cover import CoverResponse
     from hondana.types_.manga import GetMangaResponse, MangaRelationResponse, MangaResponse
-    from hondana.types_.statistics import GetPersonalMangaRatingsResponse, GetStatisticsResponse
+    from hondana.types_.statistics import GetMangaStatisticsResponse, GetPersonalMangaRatingsResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
@@ -28,7 +28,7 @@ RATING_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_
 
 PAYLOAD: GetMangaResponse = json.load(open(PATH, "r"))
 RELATION_PAYLOAD: MangaRelationResponse = json.load(open(RELATION_PATH, "r"))
-STATISTICS_PAYLOAD: GetStatisticsResponse = json.load(open(STATISTICS_PATH, "r"))
+STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(open(STATISTICS_PATH, "r"))
 RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(open(RATING_PATH, "r"))
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 

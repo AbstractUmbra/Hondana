@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -31,6 +32,7 @@ from .author import Author
 from .collections import ChapterFeed, MangaRelationCollection
 from .cover import Cover
 from .enums import ContentRating, MangaRelationType, MangaState, MangaStatus, PublicationDemographic, ReadingStatus
+from .forums import MangaComments
 from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
 from .utils import MISSING, RelationshipResolver, cached_slot_property, require_authentication
@@ -46,7 +48,12 @@ if TYPE_CHECKING:
     from .types_.cover import CoverResponse
     from .types_.manga import MangaResponse
     from .types_.relationship import RelationshipResponse
-    from .types_.statistics import BatchStatisticsResponse, PersonalMangaRatingsResponse, StatisticsResponse
+    from .types_.statistics import (
+        BatchStatisticsResponse,
+        CommentMetaData,
+        MangaStatisticsResponse,
+        PersonalMangaRatingsResponse,
+    )
 
 
 __all__ = (
@@ -1475,13 +1482,15 @@ class MangaStatistics:
 
 
     .. note::
-        The :attr:`distribution` attribute will be None unless this object was created with :meth:`~hondana.Client.get_manga_statistics` or :meth:`~hondana.Manga.get_statistics`
+        The :attr:`distribution` attribute will be None unless this object was created with :meth:`hondana.Client.get_manga_statistics` or :meth:`hondana.Manga.get_statistics`
     """
 
     __slots__ = (
         "_http",
         "_data",
         "_rating",
+        "_comments",
+        "_cs_comments",
         "follows",
         "parent_id",
         "average",
@@ -1490,11 +1499,12 @@ class MangaStatistics:
     )
 
     def __init__(
-        self, http: HTTPClient, parent_id: str, payload: Union[StatisticsResponse, BatchStatisticsResponse]
+        self, http: HTTPClient, parent_id: str, payload: Union[MangaStatisticsResponse, BatchStatisticsResponse]
     ) -> None:
-        self._http = http
+        self._http: HTTPClient = http
         self._data = payload
         self._rating = payload["rating"]
+        self._comments: Optional[CommentMetaData] = payload.get("comments")
         self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
         self.average: Optional[float] = self._rating["average"]
@@ -1503,6 +1513,11 @@ class MangaStatistics:
 
     def __repr__(self) -> str:
         return f"<MangaStatistics for={self.parent_id!r}>"
+
+    @cached_slot_property("_cs_comments")
+    def comments(self) -> Optional[MangaComments]:
+        if self._comments:
+            return MangaComments(self._http, self._comments, self.parent_id)
 
 
 class MangaRating:

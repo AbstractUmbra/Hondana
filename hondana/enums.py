@@ -47,6 +47,7 @@ __all__ = (
     "MangaReportReason",
     "UserReportReason",
     "ReportReason",
+    "ForumThreadType",
 )
 
 
@@ -182,6 +183,12 @@ class UserReportReason(_StrEnum):
     offensive_username_or_biography_or_avatar = _REPORT_REASONS["user"]["offensive_username_or_biography_or_avatar"]
     other = _REPORT_REASONS["user"]["other"]
     spambot = _REPORT_REASONS["user"]["spambot"]
+
+
+class ForumThreadType(_StrEnum):
+    manga = "manga"
+    scanlation_group = "group"
+    chapter = "chapter"
 
 
 ReportReason: TypeAlias = Union[

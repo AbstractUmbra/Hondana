@@ -39,6 +39,7 @@ from . import __version__
 from .enums import (
     ContentRating,
     CustomListVisibility,
+    ForumThreadType,
     MangaRelationType,
     MangaState,
     MangaStatus,
@@ -105,6 +106,7 @@ if TYPE_CHECKING:
     )
     from .types_.account import GetAccountAvailable
     from .types_.auth import CheckPayload
+    from .types_.forums import ForumPayloadResponse
     from .types_.settings import Settings, SettingsPayload
     from .types_.tags import GetTagListResponse
     from .types_.token import TokenPayload
@@ -2165,7 +2167,29 @@ class HTTPClient:
 
         return self.request(route)
 
-    def get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetStatisticsResponse]:
+    def get_chapter_statistics(
+        self, chapter_id: Optional[str], chapter_ids: Optional[str]
+    ) -> Response[statistics.GetCommentsStatisticsResponse]:
+        if chapter_id:
+            route = Route("GET", "/statistics/chapter/{chapter_id}", chapter_id=chapter_id)
+            return self.request(route)
+        elif chapter_ids:
+            route = Route("GET", "/statistics/chapter")
+            return self.request(route, params={"chapter": chapter_ids})
+        raise ValueError("Either chapter_id or chapter_ids is required.")
+
+    def get_scanlation_group_statistics(
+        self, scanlation_group_id: Optional[str], scanlation_group_ids: Optional[str]
+    ) -> Response[statistics.GetCommentsStatisticsResponse]:
+        if scanlation_group_id:
+            route = Route("GET", "/statistics/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_ids)
+            return self.request(route)
+        elif scanlation_group_ids:
+            route = Route("GET", "/statistics/group")
+            return self.request(route, params={"group": scanlation_group_ids})
+        raise ValueError("Either chapter_id or chapter_ids is required.")
+
+    def get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetMangaStatisticsResponse]:
         route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
 
         return self.request(route)
@@ -2216,5 +2240,12 @@ class HTTPClient:
             "settings": settings,
             "updatedAt": clean_isoformat(updated_at),
         }
+
+        return self.request(route, json=query)
+
+    def create_forum_thread(self, type: ForumThreadType, resource_id: str) -> Response[ForumPayloadResponse]:
+        route = Route("POST", "/forums/thread")
+
+        query: dict[str, str] = {"type": type.value, "id": resource_id}
 
         return self.request(route, json=query)

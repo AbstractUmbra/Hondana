@@ -43,6 +43,7 @@ from .cover import *
 from .custom_list import *
 from .enums import *
 from .errors import *
+from .forums import *
 from .legacy import *
 from .manga import *
 from .relationship import *

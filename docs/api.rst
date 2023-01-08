@@ -85,6 +85,21 @@ CustomList
 .. autoclass:: CustomList()
     :members:
 
+Forums
+~~~~~~
+
+.. autoclass:: MangaComments()
+    :members:
+
+.. autoclass:: ChapterComments()
+    :members:
+
+.. autoclass:: ScanlationGroupComments()
+    :members:
+
+.. autoclass:: ForumThread()
+    :members:
+
 Legacy
 ~~~~~~
 .. autoclass:: LegacyItem()
