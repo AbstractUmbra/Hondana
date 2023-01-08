@@ -1,21 +1,24 @@
-3.4.6
+3.4.7
 
-API Version 5.7.5
+API Version 5.9.0
 
 # Hondana Changelog
-Fix Release.
+API Release - more below!
 
 ## Added
+- Forum/Thread/Comment api capability
+    - Added various objects and methods, namely `hondana.ForumThread`, `hondana.MangaComments` (also `Chapter` and `ScanlatorGroup`), `Client.create_forum_thread` and `get_statistics` on `Chapter` and `ScanlatorGroup` objects. (2ab4ab4f529fd17e2083a804f9b58e000832447e and e45fb24082d0df599f8be12ee8f55ed44fef08aa primarily)
 
 ## Changes
-- Rename `Client.permissions` to `Client.user_info`. (6c5fbacf296ed510090714362bc9bb0710c00b5d)
+- Remove `Client.find_manga_statistics` in favour of combining it with `Client.get_manga_statistics` and using two optional params for singular and plural. (e45fb24082d0df599f8be12ee8f55ed44fef08aa)
+- Update library dependencies. (a1e8c92f545173b8abe6666b863bfcd8e0a782f9)
 
 ## Fixes
-- Fix import paths potentially shadowing builtin paths, namely `token` and `types`. (6c5fbacf296ed510090714362bc9bb0710c00b5d)
+- GH Actions now have the `--pythonversion` flag for pyright workflows as per their matrix. Probably optional but wanted to cover it. (7850d34546f37b917ff94cbfd173e079a4182925)
 
 ### Notes
-The above fix should have been a breaking change, but as it was not to the "user facing" part of the codebase, mainly the
-types submodule and renaming of `token.Permissions` to `user.UserInfo`.
-I expect this will be a breaking change in a very minute number of usercode, and can only offer an apology for this.
+Added a warning and also a section on the README about the upcoming basic authentication deprecation on MangaDex's side.
+The gist of which is that user/email and pass authentication will no longer be supported at an approaching but unspecified future date.
+I am actively enquiring about getting the Client Credentials oauth2 flow enabled. See the library README for more info.
 
 ### Noted Contributors
