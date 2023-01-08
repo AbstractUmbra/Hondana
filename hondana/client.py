@@ -2268,6 +2268,46 @@ class Client:
         await self._http.approve_user_deletion(approval_code)
 
     @require_authentication
+    async def update_user_password(self, *, old_password: str, new_password: str) -> None:
+        """|coro|
+
+        This method will change the current authenticated user's password.
+
+        Parameters
+        -----------
+        old_password: :class:`str`
+            The current (old) password we will be changing from.
+        new_password: :class:`str`
+            The new password we will be changing to.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The request returned an error due to an authentication issue.
+        """
+
+        await self._http.update_user_password(old_password=old_password, new_password=new_password)
+
+    @require_authentication
+    async def update_user_email(self, email: str, /) -> None:
+        """|coro|
+
+        This method will update the current authenticated user's email.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The new email address to change to.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            The API returned an error due to authentication failure.
+        """
+
+        await self._http.update_user_email(email)
+
+    @require_authentication
     async def get_my_details(self) -> User:
         """|coro|
 
@@ -2499,6 +2539,79 @@ class Client:
         """
         data = await self._http.create_account(username=username, password=password, email=email)
         return User(self._http, data["data"])
+
+    async def activate_account(self, activation_code: str, /) -> None:
+        """|coro|
+
+        This method will activate an account on the MangaDex API.
+
+        Parameters
+        -----------
+        activation_code: :class:`str`
+            The activation code for the account.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The query was malformed.
+        :exc:`NotFound`
+            The activation code passed was not a valid one.
+        """
+        await self._http.activate_account(activation_code)
+
+    async def resend_activation_code(self, email: str, /) -> None:
+        """|coro|
+
+        This method will resend an activation code to the specified email.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The email to resend the activation code to.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The email passed is not pending activation.
+        """
+        await self._http.resend_activation_code(email)
+
+    async def recover_account(self, email: str, /) -> None:
+        """|coro|
+
+        This method will start an account recovery process on the given account.
+        Effectively triggering the "forgotten password" email to be sent.
+
+        Parameters
+        -----------
+        email: :class:`str`
+            The email address belonging to the account you wish to recover.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The email does not belong to a matching account.
+        """
+        await self._http.recover_account(email)
+
+    async def complete_account_recovery(self, recovery_code: str, /, *, new_password: str) -> None:
+        """|coro|
+
+        This method will complete an account recovery process.
+
+        Parameters
+        -----------
+        recovery_code: :class:`str`
+            The recovery code given during the recovery process.
+        new_password: :class:`str`
+            The new password to use for the recovered account.
+
+        Raises
+        -------
+        :exc:`BadRequest`
+            The recovery code given was not found or the password was greater than 1024 characters.
+        """
+        await self._http.complete_account_recovery(recovery_code, new_password=new_password)
 
     async def ping_the_server(self) -> bool:
         """|coro|

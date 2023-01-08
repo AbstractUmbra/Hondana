@@ -1385,6 +1385,18 @@ class HTTPClient:
         route = Route("POST", "/user/delete/{approval_code}", approval_code=approval_code)
         return self.request(route)
 
+    def update_user_password(
+        self, *, old_password: str, new_password: str
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/user/password")
+        query: dict[str, Any] = {"oldPassword": old_password, "newPassword": new_password}
+        return self.request(route, json=query)
+
+    def update_user_email(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/user/email")
+        query: dict[str, Any] = {"email": email}
+        return self.request(route, json=query)
+
     def get_my_details(self) -> Response[user.GetSingleUserResponse]:
         route = Route("GET", "/user/me")
         return self.request(route)
@@ -1447,6 +1459,27 @@ class HTTPClient:
     def create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
         route = Route("POST", "/account/create")
         query: dict[str, Any] = {"username": username, "password": password, "email": email}
+        return self.request(route, json=query)
+
+    def activate_account(self, activation_code: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/activate/{activation_code}", activation_code=activation_code)
+        return self.request(route)
+
+    def resend_activation_code(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/activate/resend")
+        query: dict[str, Any] = {"email": email}
+        return self.request(route, json=query)
+
+    def recover_account(self, email: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/recover")
+        query: dict[str, Any] = {"email": email}
+        return self.request(route, json=query)
+
+    def complete_account_recovery(
+        self, recovery_code: str, /, *, new_password: str
+    ) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/account/recover/{recovery_code}", recovery_code=recovery_code)
+        query: dict[str, Any] = {"newPassword": new_password}
         return self.request(route, json=query)
 
     def ping_the_server(self) -> Response[str]:
