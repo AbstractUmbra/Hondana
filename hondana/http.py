@@ -28,6 +28,7 @@ import datetime
 import json
 import logging
 import sys
+import warnings
 import weakref
 from base64 import b64decode
 from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
@@ -173,6 +174,8 @@ class HTTPClient:
         refresh_token: Optional[str] = None,
     ) -> None:
         self._authenticated = bool(((username or email) and password) or refresh_token)
+        if self._authenticated:
+            self._deprecation_warning()
         self.username: Optional[str] = username
         self.email: Optional[str] = email
         self.password: Optional[str] = password
@@ -194,6 +197,14 @@ class HTTPClient:
         :class:`bool`
         """
         return self._authenticated
+
+    def _deprecation_warning(self) -> None:
+        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
+        warnings.warn(
+            "User/Email/Pass authentication is marked for deprecation and soon to be removal. Please see the repo for more information.",
+            category=DeprecationWarning,
+        )
+        warnings.simplefilter("default", DeprecationWarning)
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
