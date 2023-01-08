@@ -26,7 +26,8 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
-from .utils import MISSING, RelationshipResolver, iso_to_delta, require_authentication
+from .forums import ScanlatorGroupComments
+from .utils import MISSING, RelationshipResolver, cached_slot_property, iso_to_delta, require_authentication
 
 
 if TYPE_CHECKING:
@@ -34,6 +35,7 @@ if TYPE_CHECKING:
     from .types_.common import LanguageCode
     from .types_.relationship import RelationshipResponse
     from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.statistics import CommentMetaData, StatisticsCommentsResponse
     from .types_.user import UserResponse
     from .user import User
 
@@ -106,6 +108,7 @@ class ScanlatorGroup:
         "_created_at",
         "_updated_at",
         "_publish_delay",
+        "_stats",
         "_leader_relationship",
         "_member_relationships",
         "__leader",
@@ -137,6 +140,7 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
+        self._stats: Optional[ScanlatorGroupStatistics] = None
         self._leader_relationship: Optional[UserResponse] = RelationshipResolver["UserResponse"](
             relationships, "leader"
         ).resolve(with_fallback=True)[0]
@@ -157,6 +161,16 @@ class ScanlatorGroup:
 
     def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
+
+    @property
+    def stats(self) -> Optional[ScanlatorGroupStatistics]:
+        """Returns the statistics object of the scanlator group if it was fetched and cached.
+
+        Returns
+        --------
+        Optional[:class:`hondana.ScanlatorGroupStatistics]
+        """
+        return self._stats
 
     @property
     def created_at(self) -> datetime.datetime:
@@ -468,3 +482,59 @@ class ScanlatorGroup:
         )
 
         return self.__class__(self._http, data["data"])
+
+    @require_authentication
+    async def get_statistics(self) -> Optional[ScanlatorGroupStatistics]:
+        """|coro|
+
+        This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
+
+        Returns
+        --------
+        :class:`~hondana.MangaStatistics`
+        """
+        data = await self._http.get_chapter_statistics(self.id, None)
+
+        key = next(iter(data["statistics"]))
+        stats = ScanlatorGroupStatistics(self._http, self.id, data["statistics"][key])
+
+        self._stats = stats
+        return self.stats
+
+
+class ScanlatorGroupStatistics:
+    """
+    A small object to house scanlator group statistics.
+
+    parent_id: :class:`str`
+        The manga these statistics belong to.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "_comments",
+        "_cs_comments",
+        "parent_id",
+    )
+
+    def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsCommentsResponse) -> None:
+        self._http: HTTPClient = http
+        self._data: StatisticsCommentsResponse = payload
+        self._comments: Optional[CommentMetaData] = payload.get("comments")
+        self.parent_id: str = parent_id
+
+    def __repr__(self) -> str:
+        return f"<ChapterStatistics for={self.parent_id!r}>"
+
+    @cached_slot_property("_cs_comments")
+    def comments(self) -> Optional[ScanlatorGroupComments]:
+        """
+        Returns the comments helper object if the target object has the relevant data (has comments, basically).
+
+        Returns
+        --------
+        Optional[:class:`hondana.ChapterComments`]
+        """
+        if self._comments:
+            return ScanlatorGroupComments(self._http, self._comments, self.parent_id)

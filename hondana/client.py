@@ -3780,42 +3780,28 @@ class Client:
         """
         await self._http.delete_manga_rating(manga_id)
 
-    async def get_manga_statistics(self, manga_id: str, /) -> MangaStatistics:
+    async def get_manga_statistics(
+        self, manga_id: Optional[str] = None, manga_ids: Optional[list[str]] = None, /
+    ) -> MangaStatistics:
         """|coro|
 
-        This method will return the statistics for the passed manga.
+        This method will return the statistics for the passed manga, singular or plural.
 
         Parameters
         -----------
-        manga_id: :class:`str`
+        manga_id: Optional[:class:`str`]
             The manga id to fetch the statistics for.
+        manga_ids: Optional[List[:class:`str`]]
+            The list of manga IDs to fetch the statistics for.
 
         Returns
         ---------
         :class:`~hondana.MangaStatistics`
         """
-        data = await self._http.get_manga_statistics(manga_id)
-
+        data = await self._http.get_manga_statistics(manga_id, manga_ids)
         key = next(iter(data["statistics"]))
+
         return MangaStatistics(self._http, key, data["statistics"][key])
-
-    async def find_manga_statistics(self, manga_ids: list[str], /) -> list[MangaStatistics]:
-        """|coro|
-
-        This method will return the statistics for the passed manga.
-
-        Parameters
-        -----------
-        manga_ids: List[:class:`str`]
-            The list of manga IDs to fetch the statistics for.
-
-        Returns
-        ---------
-        List[:class:`~hondana.MangaStatistics`]
-        """
-        data = await self._http.find_manga_statistics(manga_ids)
-
-        return [MangaStatistics(self._http, id_, stats) for id_, stats in data["statistics"].items()]
 
     @require_authentication
     async def abandon_upload_session(self, session_id: str, /) -> None:

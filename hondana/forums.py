@@ -37,7 +37,7 @@ if TYPE_CHECKING:
 __all__ = (
     "MangaComments",
     "ChapterComments",
-    "ScanlationGroupComments",
+    "ScanlatorGroupComments",
     "ForumThread",
 )
 
@@ -124,7 +124,7 @@ class ChapterComments(_Comments):
     __inner_type__ = ForumThreadType.chapter
 
 
-class ScanlationGroupComments(_Comments):
+class ScanlatorGroupComments(_Comments):
     __inner_type__ = ForumThreadType.scanlation_group
 
 

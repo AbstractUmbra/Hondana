@@ -2200,17 +2200,18 @@ class HTTPClient:
             return self.request(route, params={"group": scanlation_group_ids})
         raise ValueError("Either chapter_id or chapter_ids is required.")
 
-    def get_manga_statistics(self, manga_id: str, /) -> Response[statistics.GetMangaStatisticsResponse]:
-        route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
-
-        return self.request(route)
-
-    def find_manga_statistics(self, manga_ids: list[str], /) -> Response[statistics.BatchGetStatisticsResponse]:
-        route = Route("GET", "/statistics/manga")
-
-        query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
-
-        return self.request(route, params=query)
+    def get_manga_statistics(
+        self, manga_id: Optional[str], manga_ids: Optional[list[str]], /
+    ) -> Response[statistics.GetMangaStatisticsResponse]:
+        if manga_id:
+            route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
+            return self.request(route)
+        elif manga_ids:
+            route = Route("GET", "/statistics/manga")
+            query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
+            return self.request(route, params=query)
+        else:
+            raise ValueError("Either `manga_id` or `manga_ids` must be passed.")
 
     def open_upload_session(
         self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: Optional[str], version: Optional[int]

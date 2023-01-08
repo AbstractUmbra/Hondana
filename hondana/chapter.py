@@ -35,6 +35,7 @@ from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, TypeVar, Union
 import aiohttp
 
 from .errors import NotFound, UploadInProgress
+from .forums import ChapterComments
 from .manga import Manga
 from .query import ChapterIncludes, MangaIncludes, ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
@@ -65,6 +66,7 @@ if TYPE_CHECKING:
     from .types_.manga import MangaResponse
     from .types_.relationship import RelationshipResponse
     from .types_.scanlator_group import ScanlationGroupResponse
+    from .types_.statistics import CommentMetaData, StatisticsCommentsResponse
     from .types_.upload import BeginChapterUploadResponse, GetUploadSessionResponse, UploadedChapterResponse
     from .types_.user import UserResponse
 
@@ -130,6 +132,7 @@ class Chapter:
         "_scanlator_group_relationships",
         "_uploader_relationship",
         "_at_home_url",
+        "_stats",
         "__uploader",
         "__parent",
         "__scanlator_groups",
@@ -153,6 +156,7 @@ class Chapter:
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
+        self._stats: Optional[ChapterStatistics] = None
         self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(with_fallback=False)[
             0
         ]
@@ -176,6 +180,16 @@ class Chapter:
 
     def __ne__(self, other: object) -> bool:
         return not self.__eq__(other)
+
+    @property
+    def stats(self) -> Optional[ChapterStatistics]:
+        """Returns the statistics object of the chapter if it was fetched and cached.
+
+        Returns
+        --------
+        Optional[:class:`hondana.ChapterStatistics]
+        """
+        return self._stats
 
     def to_dict(self) -> dict[str, Any]:
         """
@@ -532,6 +546,24 @@ class Chapter:
             await self._http.manga_read_markers_batch(
                 self.manga_id, update_history=update_history, read_chapters=None, unread_chapters=[self.id]
             )
+
+    @require_authentication
+    async def get_statistics(self) -> Optional[ChapterStatistics]:
+        """|coro|
+
+        This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
+
+        Returns
+        --------
+        :class:`~hondana.MangaStatistics`
+        """
+        data = await self._http.get_chapter_statistics(self.id, None)
+
+        key = next(iter(data["statistics"]))
+        stats = ChapterStatistics(self._http, self.id, data["statistics"][key])
+
+        self._stats = stats
+        return self.stats
 
     async def _pages(
         self, *, start: int, end: Optional[int], data_saver: bool, ssl: bool, report: bool
@@ -1097,3 +1129,43 @@ class PreviouslyReadChapter:
         """
         data = await self._http.get_chapter(self.chapter_id, includes=includes)
         return Chapter(self._http, data["data"])
+
+
+class ChapterStatistics:
+    """
+    A small object to house chapter statistics.
+
+    Attributes
+    -----------
+    parent_id: :class:`str`
+        The manga these statistics belong to.
+    """
+
+    __slots__ = (
+        "_http",
+        "_data",
+        "_comments",
+        "_cs_comments",
+        "parent_id",
+    )
+
+    def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsCommentsResponse) -> None:
+        self._http: HTTPClient = http
+        self._data: StatisticsCommentsResponse = payload
+        self._comments: Optional[CommentMetaData] = payload.get("comments")
+        self.parent_id: str = parent_id
+
+    def __repr__(self) -> str:
+        return f"<ChapterStatistics for={self.parent_id!r}>"
+
+    @cached_slot_property("_cs_comments")
+    def comments(self) -> Optional[ChapterComments]:
+        """
+        Returns the comments helper object if the target object has the relevant data (has comments, basically).
+
+        Returns
+        --------
+        Optional[:class:`hondana.ChapterComments`]
+        """
+        if self._comments:
+            return ChapterComments(self._http, self._comments, self.parent_id)

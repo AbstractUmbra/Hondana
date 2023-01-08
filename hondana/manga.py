@@ -1407,7 +1407,7 @@ class Manga:
         --------
         :class:`~hondana.MangaStatistics`
         """
-        data = await self._http.get_manga_statistics(self.id)
+        data = await self._http.get_manga_statistics(self.id, None)
 
         key = next(iter(data["statistics"]))
         stats = MangaStatistics(self._http, self.id, data["statistics"][key])
@@ -1516,6 +1516,13 @@ class MangaStatistics:
 
     @cached_slot_property("_cs_comments")
     def comments(self) -> Optional[MangaComments]:
+        """
+        Returns the comments helper object if the target object has the relevant data (has comments, basically).
+
+        Returns
+        --------
+        Optional[:class:`hondana.MangaComments`]
+        """
         if self._comments:
             return MangaComments(self._http, self._comments, self.parent_id)
 
