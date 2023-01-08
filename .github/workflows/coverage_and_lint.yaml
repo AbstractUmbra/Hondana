@@ -52,8 +52,8 @@ jobs:
 
       - name: "Type Coverage @ ${{ matrix.python-version }}"
         run: |
-          poetry run pyright
-          poetry run pyright --ignoreexternal --lib --verifytypes hondana
+          poetry run pyright --pythonversion ${{ matrix.python-version }}
+          poetry run pyright --ignoreexternal --lib --verifytypes hondana --pythonversion ${{ matrix.python-version }}
 
       - name: Lint
         if: ${{ github.event_name != 'pull_request' }}
