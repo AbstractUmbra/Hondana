@@ -24,11 +24,25 @@
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 You can see our stable docs [here](https://hondana.readthedocs.io/en/stable/)!
 
+---------
+## Important Notice
+
+The MangaDex team have made great strides in implementing their OAuth2 authentication system, and as such have deprecated standard login flows (email/user and pass -> token).
+This means that any accounts created AFTER December 7th 2022 cannot use Hondana currently to authenticate.
+This also means for accounts created BEFORE the above date, you will also be unable to authenticate once the methods are fully removed, to which there is no set date at the time of writing this.
+
+I have asked the staff about adding the [Client Credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/) OAuth2 workflow as this fits this library wrapper's auth needs, as currently it only supports [Authorization Code](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/) flows which doesn't really work here, as it is more designed for static apps, not per-user apps.
+I have a WIP branch (`feature/oauth2`) that currently attempts to spawn a webserver to handle the Auth Code flow but it is less than ideal and rather fragile.
+I will keep this README updated and a project will be added on the GitHub page to mark progress.
+
+--------
+
 ## Features
 We are currently at 100% feature compliance with the API.
 
 ## Notes
 ### Authenticated endpoints
+
 Sadly (thankfully?) I am not an author on MangaDex, meaning I cannot test the creation endpoints for things like scanlators, artists, authors, manga or chapters.
 I have followed the API guidelines to the letter for these, but they may not work.
 
@@ -42,6 +56,7 @@ These are currently implemented and tested to the best of my ability.
 Please take a look at the [examples](./examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
+
 
 ### Current caveats to note
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
