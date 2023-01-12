@@ -393,8 +393,8 @@ def get_image_mime_type(data: bytes, /) -> str:
         return "image/jpeg"
     elif data.startswith((b"\x47\x49\x46\x38\x37\x61", b"\x47\x49\x46\x38\x39\x61")):
         return "image/gif"
-    elif data.startswith(b"RIFF") and data[8:12] == b"WEBP":
-        return "image/webp"
+    # elif data.startswith(b"RIFF") and data[8:12] == b"WEBP":
+    #     return "image/webp"
     else:
         raise ValueError("Unsupported image type given")
 
@@ -572,7 +572,7 @@ def clean_isoformat(dt: datetime.datetime, /) -> str:
     return dt.isoformat(timespec="seconds")
 
 
-_PATH_WITH_EXTRA = re.compile(r"(?P<num>\d+)(\-?(?P<extra>\w*))?\.(?P<ext>png|jpg|gif|webm)")
+_PATH_WITH_EXTRA = re.compile(r"(?P<num>\d+)(\-?(?P<extra>\w*))?\.(?P<ext>png|jpg|gif)")
 
 
 def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
