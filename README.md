@@ -1,5 +1,11 @@
 <div align="center">
-    <h1><a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</a></h1>
+    <h1 align="center">
+        <a href="https://jisho.org/word/%E6%9C%AC%E6%A3%9A">Hondana 『本棚』</a>
+        <br>
+        <sub>
+            <img src=".github/assets/md.svg" height="60">
+        </sub>
+    </h1>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'>
         <img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml/badge.svg' alt='Build status' />
     </a>
