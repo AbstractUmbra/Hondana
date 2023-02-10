@@ -55,5 +55,5 @@ class TestScanlatorGroup:
         assert group.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
         assert group.updated_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["updatedAt"])
 
-        if group.publish_delay is not None or PAYLOAD["data"]["attributes"]["publishDelay"] is not None:
+        if group.publish_delay or PAYLOAD["data"]["attributes"]["publishDelay"]:
             assert group.publish_delay == iso_to_delta(PAYLOAD["data"]["attributes"]["publishDelay"])

@@ -3,183 +3,114 @@
     "response": "collection",
     "data": [
         {
-            "id": "3a7e194e-f4d2-4f4f-a55b-a5932421c8ee",
+            "id": "67b3d40b-be5f-4331-b762-4612658e0ec9",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "1",
-                "fileName": "64f215eb-1f8f-4f4a-9b95-abb7777dbcfe.jpg",
-                "locale": "zh",
-                "createdAt": "2022-12-20T19:13:25+00:00",
-                "updatedAt": "2022-12-20T19:13:25+00:00",
+                "volume": "2",
+                "fileName": "b12d974c-bb68-452e-b861-7db4171da153.jpg",
+                "locale": "ja",
+                "createdAt": "2023-02-10T10:12:17+00:00",
+                "updatedAt": "2023-02-10T10:12:17+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "316efa76-b1cc-4801-8755-7495bf75ba0c",
+                    "id": "5dc5917b-01f7-4f24-baee-17b515c888f9",
                     "type": "manga"
                 },
                 {
-                    "id": "5fbdf751-d5ff-4af6-acf7-9b32ce1308fd",
+                    "id": "92f1689d-35c0-4fa3-ad0a-ef01bd16032e",
                     "type": "user",
                     "attributes": {
-                        "username": "SgtDominus",
+                        "username": "loresx",
                         "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_CONTRIBUTOR"
+                            "ROLE_USER"
                         ],
-                        "version": 8322
+                        "version": 1440
                     }
                 }
             ]
         },
         {
-            "id": "69f61f36-598c-4ba7-a164-8e790b594ec9",
+            "id": "7c66ff70-dd01-4628-90bc-65e377b9021e",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "7d87ae7e-f79f-4a95-8c87-167fb983d112.jpg",
+                "fileName": "9cc273aa-33af-441a-a55b-47332aee765f.jpg",
                 "locale": "ja",
-                "createdAt": "2022-12-20T18:48:47+00:00",
-                "updatedAt": "2022-12-20T18:48:47+00:00",
+                "createdAt": "2023-02-10T10:12:16+00:00",
+                "updatedAt": "2023-02-10T10:12:16+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "5aa2b935-997a-4f70-b6da-91252a633665",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Tokei Jikake no Ane"
-                        },
-                        "altTitles": [
-                            {
-                                "ja": "\u6642\u8a08\u3058\u304b\u3051\u306e\u59c9"
-                            }
-                        ],
-                        "description": {
-                            "en": "This is a story about Akira and her brother, Minato. They live in a watch shop, and they share a secret."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "110282",
-                            "mu": "c1qhp2s"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "3",
-                        "lastChapter": "19",
-                        "publicationDemographic": "seinen",
-                        "status": "completed",
-                        "year": 2016,
-                        "contentRating": "erotica",
-                        "tags": [
-                            {
-                                "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Sci-Fi"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-12-20T18:48:46+00:00",
-                        "updatedAt": "2022-12-20T19:02:44+00:00",
-                        "version": 4,
-                        "availableTranslatedLanguages": [],
-                        "latestUploadedChapter": null
-                    }
+                    "id": "5dc5917b-01f7-4f24-baee-17b515c888f9",
+                    "type": "manga"
                 },
                 {
-                    "id": "1b4f62ed-f7d3-4a8b-aa74-0f7ef34bc072",
+                    "id": "92f1689d-35c0-4fa3-ad0a-ef01bd16032e",
                     "type": "user",
                     "attributes": {
-                        "username": "Rapha",
+                        "username": "loresx",
                         "roles": [
-                            "ROLE_CONTRIBUTOR"
+                            "ROLE_USER"
                         ],
-                        "version": 146
+                        "version": 1440
                     }
                 }
             ]
         },
         {
-            "id": "82c9782a-79ec-4d75-9b56-f757b4df7807",
+            "id": "2806ca07-797e-45f3-8b4b-43cef5dc1f9f",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "16515936-0b83-40b3-9cec-9c1d17df441c.jpg",
+                "fileName": "764dff41-90c3-4c8f-84da-e227badb7e0f.jpg",
                 "locale": "ja",
-                "createdAt": "2022-12-20T18:28:24+00:00",
-                "updatedAt": "2022-12-20T18:28:24+00:00",
+                "createdAt": "2023-02-10T09:29:38+00:00",
+                "updatedAt": "2023-02-10T09:29:38+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "d5d7a98d-82b3-4561-bd67-45110f2d22cb",
+                    "id": "0aa2520a-a18f-406d-8908-32cec22b88ac",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Kiyoubinbou, Jou wo Tateru - Kaitaku Gakuen no Rettousei na no ni, Joukyuu-shoku no Skill to Mahou ga Subete Tsukaemasu @COMIC"
+                            "en": "Kono Sekai ga Izure Horobu Koto wo, Ore dake ga Shitte Iru"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u5668\u7528\u8ca7\u4e4f\u3001\u57ce\u3092\u5efa\u3066\u308b \uff5e\u958b\u62d3\u5b66\u5712\u306e\u52a3\u7b49\u751f\u306a\u306e\u306b\u3001\u4e0a\u7d1a\u8077\u306e\u30b9\u30ad\u30eb\u3068\u9b54\u6cd5\u304c\u3059\u3079\u3066\u4f7f\u3048\u307e\u3059\uff5e@COMIC"
+                                "en": "Only I Know That the World Will End"
                             },
                             {
-                                "en": "Exiled in a Class Trial for Poor Dexterity"
+                                "ja": "\u3053\u306e\u4e16\u754c\u304c\u3044\u305a\u308c\u6ec5\u3076\u3053\u3068\u3092\u3001\u4ffa\u3060\u3051\u304c\u77e5\u3063\u3066\u3044\u308b\uff5e\u30e2\u30f3\u30b9\u30bf\u30fc\u304c\u73fe\u308c\u305f\u4e16\u754c\u3067\u3001\u6b7b\u306b\u623b\u308a\u30ec\u30d9\u30eb\u30a2\u30c3\u30d7\uff5e"
                             },
                             {
-                                "en": "Exiled in a Class Trial for \u201cPoor Dexterity\u201d. Because He Was Dexterous, He Lived on His Own. Because of His Dexterity, He Was Able to Use All the Skills and Magic of the Higher Ranks, Making Him Invincible. I Decided to Live on My Own, but the People Around Me Wouldn\u2019t Leave Me Alone."
+                                "ja-ro": "Kono Sekai ga Izure Horobu Koto o, Ore dake ga Shitteiru: Monster ga Arawareta Sekai de, Shi ni Modori Level Up"
                             }
                         ],
                         "description": {
-                            "en": "The boy Leopin was born with unnaturally high dexterity. From an early age, he used his dexterity to contribute to his peers in a variety of crafts. Leopin and his friends entered the Royal Pioneer Academy. However, during the \u201cRitual of Ability Development\u201d at the entrance ceremony, the status given to Leopin was disastrous.\n\n\u201cOccupation: Unemployed.\u201d\n\n\u201cAll statuses except dexterity remain at their initial values and do not grow.\u201d\n\n\u201cSkill is dextrous master of none\u201d\n\nLeopin\u2019s classmates exiled him because he had nothing to offer other than his dexterity. Leopin is placed in the \u201cSpecial Training Class\u201d, a class for failures. Leopin is left all alone. However, he realizes that the skill he has been given, \u201cPoor Dexterity,\u201d has an unexpected performance. That is\u2026\n\nYou can convert your dexterity status to any other status.\nYou can change your occupation to any one you want.\n\nThe first thing Leopin did was to become a lumberjack. First, Leopin changed his job to \u201cLumberjack\u201d to get wood from the forest. He then became a carpenter and built the most magnificent house of all. He became an Appraiser to identify rare items, and a Battle Axe User to fight off students from other classes who tried to attack him. Become a Ranger to explore dungeons and a Ninja to get through traps with ease.\n\nLeopin, alone (solo), had gained enough power to do everything.\n\nAs Leopin continues to be a warrior, he is adored by his childhood friend, a saint, and admired by a beautiful alchemist, and his activities become even more well known. On the other hand, the classmates who expelled Leopin regret their decision to do so when they witness Leopin\u2019s abilities.\n\nTheir home remains a shack, they are unable to explore, and they gradually lose their place in the school and are ruined.\n\n*Explanation: the skill is not \u201cpoor dexterity\u201d, but \u201cdexterous poor\u201d, which is the Japanese equivalent to a Jack of all trades, master of none; since they can do a bit of everything, they are \u201cdexterous\u201d, but since they have mastered none, they supposedly cannot make a living from it, hence they are \u201cpoor\u201d.  Another manner of saying you have high dexterity is to be \"handy\", back-translated from DEX as in *manual* dexterity from early RPGs.  \"An unemployed handyman who does a bit of everything\" just doesn't quite roll off the tongue."
+                            "en": "An ordinary office worker, Akira Ichijo, was attacked by a Minotaur on his way home from work. In the next moment, he woke up in his office desk, Akira was resurrected from death, inherited his level and status, and possessed a unique skill called \"Return from the Underworld\" that allowed him to restart his life at a certain time. Now Akira makes full use of his skill and everything he had to search and survive with his childhood friend Nao Nanase to face this cruel world!!"
                         },
                         "isLocked": false,
                         "links": {
-                            "mu": "8hhn94s",
-                            "nu": "exiled-in-a-class-trial-for-poor-dexterity-because-he-was-dexterous-he-lived-on-his-own-because-of-his-dexterity-he-was-able-to-use-all-the-skills-and-magic-of-the-higher-ranks-making-him-inv",
-                            "raw": "https://magcomi.com/episode/3270296674407516595"
+                            "al": "161047",
+                            "bw": "series/387782",
+                            "kt": "kono-sekai-ga-izure-horobu-koto-wo-ore-dake-ga-shitte-iru",
+                            "mu": "8rszvsg",
+                            "nu": "only-i-know-that-this-world-will-eventually-perish",
+                            "amz": "https://www.amazon.co.jp/dp/B0BPSPMTFS",
+                            "mal": "151896",
+                            "raw": "https://pocket.shonenmagazine.com/episode/316112896826245581"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "shounen",
+                        "publicationDemographic": "seinen",
                         "status": "ongoing",
                         "year": 2022,
                         "contentRating": "safe",
@@ -198,37 +129,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Martial Arts"
+                                        "en": "Survival"
                                     },
                                     "description": {},
                                     "group": "theme",
@@ -237,421 +142,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                                "id": "9467335a-1b83-4497-9231-765337a00b96",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Magic"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Harem"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Supernatural"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": {},
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-07-12T05:18:04+00:00",
-                        "updatedAt": "2022-12-20T18:28:22+00:00",
-                        "version": 5,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "11f0be4d-e367-482e-be2a-927921ddc255"
-                    }
-                },
-                {
-                    "id": "416fcfbb-0f5c-40e2-9a4f-5dca25a33514",
-                    "type": "user",
-                    "attributes": {
-                        "username": "Dreik",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_POWER_UPLOADER"
-                        ],
-                        "version": 738
-                    }
-                }
-            ]
-        },
-        {
-            "id": "45de4f25-d539-4495-b9ef-7e2673dd107c",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "274b540c-1258-425b-b850-3e0c3fbab760.jpg",
-                "locale": "ko",
-                "createdAt": "2022-12-20T18:10:23+00:00",
-                "updatedAt": "2022-12-20T18:10:23+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "806f34f1-6151-4beb-a2a8-7f53b2e49216",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "I Got Lucky and Pulled a 10th Rank Summon"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "10-Star Player Strengthened by Drawing Card"
-                            },
-                            {
-                                "ko": "\ubf51\uae30\ub85c \uac15\ud574\uc9c4 10\uc131\uae09 \ud50c\ub808\uc774\uc5b4"
-                            }
-                        ],
-                        "description": {
-                            "en": "In the most realistic VR game \u201cLast Savior\u201d. Every player will get a chance to summon a Follower Spirit. The Follower Spirits are ranked from 1 \u2013 9. And obviously, everyone wants a rank-9 spirit. However, the one that I pulled has an unheard-of rank\u2026\n\n[What on earth is going on?]\n\u201cYeah\u2026\u201d\nI don\u2019t get it either."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "mu": "75difrw",
-                            "raw": "https://page.kakao.com/content/60441950"
-                        },
-                        "originalLanguage": "ko",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "shounen",
-                        "status": "ongoing",
-                        "year": 2022,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Action"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Long Strip"
-                                    },
-                                    "description": {},
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adventure"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "8c86611e-fab7-4986-9dec-d1a2f44acdd5",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Virtual Reality"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Full Color"
-                                    },
-                                    "description": {},
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-12-20T18:10:10+00:00",
-                        "updatedAt": "2022-12-20T18:10:26+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [],
-                        "latestUploadedChapter": null
-                    }
-                },
-                {
-                    "id": "5fbdf751-d5ff-4af6-acf7-9b32ce1308fd",
-                    "type": "user",
-                    "attributes": {
-                        "username": "SgtDominus",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_CONTRIBUTOR"
-                        ],
-                        "version": 8322
-                    }
-                }
-            ]
-        },
-        {
-            "id": "1405f4af-16e5-4dc5-b4a3-657c55a4fd41",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "16",
-                "fileName": "f912ecb1-b18a-4947-bc9f-671eafd6fc52.jpg",
-                "locale": "ja",
-                "createdAt": "2022-12-20T17:26:48+00:00",
-                "updatedAt": "2022-12-20T17:26:48+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "fac7bdc7-c1f3-4595-82f5-b5bfb002b933",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Risou no Himo Seikatsu"
-                        },
-                        "altTitles": [
-                            {
-                                "en": "The Ideal Sponger Life"
-                            },
-                            {
-                                "en": "An Ideal Lazy Life"
-                            },
-                            {
-                                "en": "A Fantasy Lazy Life"
-                            },
-                            {
-                                "ru": "\u041c\u043e\u044f \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u0430\u044f \u0436\u0438\u0437\u043d\u044c"
-                            },
-                            {
-                                "ja": "\u7406\u60f3\u306e\u30d2\u30e2\u751f\u6d3b"
-                            },
-                            {
-                                "zh": "\u7406\u60f3\u7684\u5c0f\u767d\u8138\u751f\u6d3b"
-                            },
-                            {
-                                "ko": "\uc774\uc0c1\uc801\uc778 \uae30\ub465\uc11c\ubc29 \uc0dd\ud65c"
-                            }
-                        ],
-                        "description": {
-                            "en": "One day, average salaryman Yamai Zenjirou has an out-of-this-world experience\u2014literally! He's pulled from Earth and dragged to another world where magic thrives and a gorgeous, powerful queen needs a consort. Now he's being pressured to marry that very monarch and help her bear a child. Will Zenjirou accept this life of lazy, luxurious love at the cost of leaving his home behind?"
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "98347",
-                            "ap": "the-ideal-sponger-life",
-                            "bw": "series/119694",
-                            "kt": "39005",
-                            "mu": "139230",
-                            "nu": "risou-no-himo-seikatsu",
-                            "amz": "https://www.amazon.co.jp/dp/B078MM7BQM",
-                            "cdj": "http://www.cdjapan.co.jp/product/NEOBK-2103514",
-                            "ebj": "https://ebookjapan.yahoo.co.jp/books/416286",
-                            "mal": "104322",
-                            "raw": "https://comic-walker.com/contents/detail/KDCW_KS02000048010000_68",
-                            "engtl": "http://www.sevenseasentertainment.com/series/the-ideal-sponger-life"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": "seinen",
-                        "status": "ongoing",
-                        "year": 2017,
-                        "contentRating": "suggestive",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Magic"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "aafb99c1-7f60-43fa-b75f-fc9502ce29c7",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Harem"
+                                        "en": "Post-Apocalyptic"
                                     },
                                     "description": {},
                                     "group": "theme",
@@ -673,11 +168,24 @@
                                 "relationships": []
                             },
                             {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Drama"
+                                        "en": "Gore"
+                                    },
+                                    "description": {},
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Horror"
                                     },
                                     "description": {},
                                     "group": "genre",
@@ -699,11 +207,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Slice of Life"
+                                        "en": "Mystery"
                                     },
                                     "description": {},
                                     "group": "genre",
@@ -727,37 +235,277 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2019-01-31T23:08:29+00:00",
-                        "updatedAt": "2022-12-20T17:26:48+00:00",
-                        "version": 25,
+                        "createdAt": "2022-09-18T13:52:00+00:00",
+                        "updatedAt": "2023-02-10T09:29:39+00:00",
+                        "version": 13,
                         "availableTranslatedLanguages": [
-                            "id",
-                            "es-la",
-                            "en",
-                            "es",
-                            "fr",
-                            "ru"
+                            "en"
                         ],
-                        "latestUploadedChapter": "8c6390da-f045-416d-9dec-39ee616b1d9e"
+                        "latestUploadedChapter": "42fba679-8fb0-44ff-93a8-69c9933f3e03"
                     }
                 },
                 {
-                    "id": "81304b72-005d-4e62-bea6-4cb65869f7da",
+                    "id": "fb03ae91-2304-4a1f-b9e2-6b5ba3313138",
                     "type": "user",
                     "attributes": {
-                        "username": "BraveDude8",
+                        "username": "Mopopolis",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 5718
+                    }
+                }
+            ]
+        },
+        {
+            "id": "62ecd7c2-36da-4234-8f03-575c9b601896",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "7295847d-7673-4f94-bf3e-c109cfadf70a.jpg",
+                "locale": "ja",
+                "createdAt": "2023-02-10T08:15:44+00:00",
+                "updatedAt": "2023-02-10T08:15:44+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "e9718516-ee30-4f50-b8e4-017236f85848",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "I Can't Give You the Valentine's Day Chocolate I Made!"
+                        },
+                        "altTitles": [
+                            {
+                                "ja-ro": "Watasenai!? Valentine Choco"
+                            },
+                            {
+                                "ja": "\u6e21\u305b\u306a\u3044\uff01\uff1f\u30d0\u30ec\u30f3\u30bf\u30a4\u30f3\u30c1\u30e7\u30b3"
+                            }
+                        ],
+                        "description": {},
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https://twitter.com/raon_wawaji/status/1623954925817409536/photo/1"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "ongoing",
+                        "year": 2023,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Romance"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Comedy"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": {},
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Web Comic"
+                                    },
+                                    "description": {},
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2023-02-10T08:15:38+00:00",
+                        "updatedAt": "2023-02-10T08:34:50+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "823bbf9b-2959-41ed-b214-eec23a3d6533"
+                    }
+                },
+                {
+                    "id": "960b5038-8043-4861-8d0e-4ef256880806",
+                    "type": "user",
+                    "attributes": {
+                        "username": "AcridBrimistic",
                         "roles": [
                             "ROLE_GROUP_MEMBER",
-                            "ROLE_MD_AT_HOME",
-                            "ROLE_MEMBER",
-                            "ROLE_FORUM_MODERATOR",
-                            "ROLE_STAFF",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_CONTRIBUTOR",
-                            "ROLE_GLOBAL_MODERATOR",
-                            "ROLE_POWER_UPLOADER"
+                            "ROLE_USER",
+                            "ROLE_GROUP_LEADER"
                         ],
-                        "version": 1010
+                        "version": 1558
+                    }
+                }
+            ]
+        },
+        {
+            "id": "5b6a9d70-59dc-48b7-94d3-dbe632b6903a",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "1",
+                "fileName": "9d3b7e68-2df0-4c7e-ae80-91a565548e3c.jpg",
+                "locale": "ja",
+                "createdAt": "2023-02-10T06:01:17+00:00",
+                "updatedAt": "2023-02-10T06:01:17+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "84b40aca-0d2f-42f3-9576-b51472ed2b4e",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "The defeat of Ichijou from the disciplinary committee"
+                        },
+                        "altTitles": [
+                            {
+                                "ja": "\u98a8\u7d00\u59d4\u54e1 \u4e00\u6761\u306e\u6557\u5317"
+                            },
+                            {
+                                "ja-ro": "Fuuki Iin Ichijou no Haiboku"
+                            }
+                        ],
+                        "description": {},
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https://book.dmm.co.jp/product/4267017/k568agotp01906"
+                        },
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": null,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": {},
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Sexual Violence"
+                                    },
+                                    "description": {},
+                                    "group": "content",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "School Life"
+                                    },
+                                    "description": {},
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Delinquents"
+                                    },
+                                    "description": {},
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Gyaru"
+                                    },
+                                    "description": {},
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2023-02-10T06:01:15+00:00",
+                        "updatedAt": "2023-02-10T06:02:03+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "87c8b6dc-3a0f-422c-ade1-d0f12386663b"
+                    }
+                },
+                {
+                    "id": "af4d7cb1-57b0-4f0c-81f8-0f98831ee278",
+                    "type": "user",
+                    "attributes": {
+                        "username": "InnisDeceit",
+                        "roles": [
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_USER",
+                            "ROLE_GROUP_LEADER"
+                        ],
+                        "version": 6745
                     }
                 }
             ]
@@ -765,5 +513,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 162264
+    "total": 168237
 }

@@ -52,8 +52,6 @@ def show_version() -> None:
             entries.append(f"    - Hondana pkg_resources: v{pkg.version}")
 
     entries.append(f" - aiohttp {aiohttp.__version__}")
-    aiofiles_ = pkg_resources.get_distribution("aiofiles")
-    entries.append(f" - aiofiles {aiofiles_.version}")
     uname = platform.uname()
     entries.append(f"- system info: {uname.system} {uname.release} {uname.version}")
 
