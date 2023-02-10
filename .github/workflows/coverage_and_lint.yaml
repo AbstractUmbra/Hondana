@@ -46,6 +46,7 @@ jobs:
           virtualenvs-in-project: false
 
       - name: "Install Python deps @ ${{ matrix.python-version }}"
+        id: install-deps
         env:
           PY_VER: "${{ matrix.python-version }}"
         run: |
@@ -55,7 +56,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
             node-version: "17"
-      - run: npm install --location=global pyright@latest
+
+      - name: "Run Pyright @ ${{ matrix.python-version }}"
+        uses: jakebailey/pyright-action@v1
+        with:
+          version: 'latest'
+          warnings: false
+          no-comments: ${{ matrix.python-version != '3.x' }}
 
       - name: "Type Coverage @ ${{ matrix.python-version }}"
         run: |
@@ -63,7 +70,7 @@ jobs:
           poetry run pyright --ignoreexternal --lib --verifytypes hondana --pythonversion ${{ matrix.python-version }}
 
       - name: Lint
-        if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ always() && steps.install-deps.outcome == 'success' }}
         uses: github/super-linter/slim@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
