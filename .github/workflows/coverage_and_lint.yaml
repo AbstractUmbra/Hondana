@@ -24,24 +24,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: "Load cached poetry installation @ ${{ matrix.python-version }}"
-      #   id: cached-poetry
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: ~/.local
-      #     key: poetry-0
-
-      # - name: "Setup Poetry @ ${{ matrix.python-version }}"
-        # if: steps.cached-poetry.outputs.cache-hit != 'true'
-      #   uses: snok/install-poetry@v1
-      #   with:
-      #     version: latest
-      #     virtualenvs-create: true
-      #     virtualenvs-in-project: true
-      #     virtualenvs-path: .venv
+      - name: "Load cached poetry installation @ ${{ matrix.python-version }}"
+        id: cached-poetry
+        uses: actions/cache@v3
+        with:
+          path: ~/.local
+          key: poetry-0
 
       - name: "Setup Poetry @ ${{ matrix.python-version }}"
-        run: pipx install poetry
+        if: steps.cached-poetry.outputs.cache-hit != 'true'
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          virtualenvs-path: .venv
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
         id: setup-python
@@ -50,26 +47,23 @@ jobs:
           python-version: "${{ matrix.python-version }}"
           cache: 'poetry'
 
-
-      - run: poetry install
-
       - name: Activate venv @ ${{ matrix.python-version }}
         run: |
           source $(poetry env info --path)/bin/activate
           echo PATH=$PATH >> $GITHUB_ENV
 
-      # - name: "Load cached venv @ ${{ matrix.python-version }}"
-      #   id: cached-pip-wheels
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: .venv/
-      #     key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: "Load cached venv @ ${{ matrix.python-version }}"
+        id: cached-pip-wheels
+        uses: actions/cache@v3
+        with:
+          path: .venv/
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
 
-      # - name: "Install Python deps @ ${{ matrix.python-version }}"
-      #   if: ${{ steps.cached-pip-wheels.outputs.cache-hit != 'true' }}
-      #   id: install-deps
-      #   run: |
-      #     poetry install --without=dev --no-interaction
+      - name: "Install Python deps @ ${{ matrix.python-version }}"
+        if: ${{ steps.cached-pip-wheels.outputs.cache-hit != 'true' }}
+        id: install-deps
+        run: |
+          poetry install --without=dev --no-interaction
 
       # - name: "Run Pyright @ ${{ matrix.python-version }}"
       #   uses: jakebailey/pyright-action@v1
@@ -77,22 +71,33 @@ jobs:
       #     warnings: false
       #     no-comments: ${{ matrix.python-version != '3.x' }}
 
-      - name: "Run Pyright Type-Compliance @ ${{ matrix.python-version }}"
-        uses: jakebailey/pyright-action@v1.4.2
-        with:
-          warnings: false
-          verify-types: "hondana"
-          extra-args: "--ignoreexternal"
+      # - name: "Run Pyright Type-Compliance @ ${{ matrix.python-version }}"
+      #   uses: jakebailey/pyright-action@v1.4.2
+      #   with:
+      #     warnings: false
+      #     verify-types: "hondana"
+      #     extra-args: "--ignoreexternal"
 
-      # - name: Lint
-      #   if: ${{ always() && steps.install-deps.outcome == 'success' }}
-      #   uses: github/super-linter/slim@v4
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     DEFAULT_BRANCH: main
-      #     VALIDATE_ALL_CODEBASE: false
-      #     VALIDATE_PYTHON_BLACK: true
-      #     VALIDATE_PYTHON_ISORT: true
-      #     LINTER_RULES_PATH: /
-      #     PYTHON_ISORT_CONFIG_FILE: pyproject.toml
-      #     PYTHON_BLACK_CONFIG_FILE: pyproject.toml
+      - name: "Install Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      - name: "Run Pyright CLI @ ${{ matrix.python-version }}"
+        run: |
+          npm install pyright@latest --global
+          poetry run pyright
+          poetry run pyright --ignoreexternal --lib --verifytypes hondana
+
+      - name: Lint
+        if: ${{ always() && steps.install-deps.outcome == 'success' }}
+        uses: github/super-linter/slim@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_ISORT: true
+          LINTER_RULES_PATH: /
+          PYTHON_ISORT_CONFIG_FILE: pyproject.toml
+          PYTHON_BLACK_CONFIG_FILE: pyproject.toml
