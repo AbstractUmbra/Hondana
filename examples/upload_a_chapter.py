@@ -41,7 +41,6 @@ async def main():
         translated_language=translated_language,
         scanlator_groups=scanlator_groups,
     ) as upload_session:
-
         # let's open up some files and use their paths...
         files = [*pathlib.Path("./to_upload").iterdir()]
         # the above is a quick and easy method to create a list of pathlib.Path objects based on the `./to_upload` directory.

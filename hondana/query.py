@@ -61,7 +61,7 @@ class _OrderQuery:
             raise TypeError("You must pass valid kwargs.")
 
         _fmt: list[str] = []
-        for (name, value) in kwargs.items():
+        for name, value in kwargs.items():
             if name in self.__slots__:
                 setattr(self, name, value)
             else:
