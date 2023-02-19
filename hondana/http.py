@@ -1167,7 +1167,7 @@ class HTTPClient:
             query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if published_at_since:
-            query["publishedAtSince"] = clean_isoformat(published_at_since)
+            query["publishAtSince"] = clean_isoformat(published_at_since)
 
         if order:
             query["order"] = order.to_dict()
