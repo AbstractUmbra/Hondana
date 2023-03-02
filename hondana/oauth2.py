@@ -77,9 +77,9 @@ class SecretManager:
         "code",
         "sent_state",
         "access_token",
-        "expires_in",
+        "access_expires",
         "refresh_token",
-        "refresh_expires_in",
+        "refresh_expires",
         "token_type",
         "id_token",
         "_scope",
@@ -90,9 +90,9 @@ class SecretManager:
         self.code = MISSING
         self.sent_state = MISSING
         self.access_token = MISSING
-        self.expires_in = MISSING
+        self.access_expires = MISSING
         self.refresh_token = MISSING
-        self.refresh_expires_in = MISSING
+        self.refresh_expires = MISSING
         self.token_type = MISSING
         self.id_token = MISSING
         self._scope = MISSING
@@ -103,9 +103,9 @@ class SecretManager:
 
     def update_with_token_payload(self, data: OAuthTokenPayload) -> None:
         self.access_token = data["access_token"]
-        self.expires_in = datetime.datetime.now() + datetime.timedelta(seconds=data["expires_in"])
+        self.access_expires = datetime.datetime.now() + datetime.timedelta(seconds=data["expires_in"])
         self.refresh_token = data["refresh_token"]
-        self.refresh_expires_in = datetime.datetime.now() + datetime.timedelta(seconds=data["refresh_expires_in"])
+        self.refresh_expires = datetime.datetime.now() + datetime.timedelta(seconds=data["refresh_expires_in"])
         self.token_type = data["token_type"]
         self.id_token = data["id_token"]
         self._scope = data["scope"]
@@ -250,7 +250,7 @@ class OAuth2Client:
         }
 
         data: OAuthTokenPayload = await self._client.request(
-            route, data=params, headers={"Content-Type": "application/x-www-form-urlencoded"}
+            route, data=params, headers={"Content-Type": "application/x-www-form-urlencoded"}, bypass=True
         )
 
         self.auth_handler.update_with_token_payload(data)

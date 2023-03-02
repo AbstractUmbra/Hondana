@@ -251,6 +251,7 @@ class HTTPClient:
         *,
         params: Optional[MANGADEX_QUERY_PARAM_TYPE] = None,
         json: Optional[Any] = None,
+        bypass: bool = False,
         **kwargs: Any,
     ) -> Any:
         """|coro|
@@ -293,7 +294,7 @@ class HTTPClient:
         headers = kwargs.pop("headers", {})
         headers["User-Agent"] = self.user_agent
 
-        if self.oauth2:
+        if self.oauth2 and not bypass:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
             LOGGER.debug("Current auth token is: '%s'", headers["Authorization"])
@@ -1130,7 +1131,7 @@ class HTTPClient:
         form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
         form_data.add_field(name="volume", value=volume)
         form_data.add_field(name="locale", value=locale)
-        if description is not None:
+        if not description:
             form_data.add_field(name="description", value=description)
 
         return self.request(route, data=form_data)
