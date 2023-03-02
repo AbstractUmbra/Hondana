@@ -4,23 +4,23 @@ name: Build
 
 on:
   push:
-    branches:
-      - main
     tags:
       - '*.*.*'
-  pull_request:
-    branches:
-      - main
+  workflow_run:
+    workflows: [ "Type Coverage and Linting" ]
+    types: [ completed ]
+    branches: [ main ]
 
 jobs:
   build:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.9', '3.10' , '3.11']
+        python-version: [ '3.9', '3.x' ]
 
-    name: "Build @ ${{ matrix.python-version }}"
+    name: "Build"
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
@@ -35,15 +35,12 @@ jobs:
           virtualenvs-in-project: false
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python-version }}"
 
       - name: "Install deps @ ${{ matrix.python-version }}"
-        env:
-          PY_VER: "${{ matrix.python-version }}"
         run: |
-          poetry env use "$PY_VER"
           poetry install --with docs,tests --no-interaction
 
       - name: Check it imports

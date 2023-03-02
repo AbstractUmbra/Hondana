@@ -1016,7 +1016,7 @@ class HTTPClient:
             query["updatedAtSince"] = clean_isoformat(updated_at_since)
 
         if published_at_since:
-            query["publishedAtSince"] = clean_isoformat(published_at_since)
+            query["publishAtSince"] = clean_isoformat(published_at_since)
 
         if order:
             query["order"] = order.to_dict()
@@ -1131,7 +1131,7 @@ class HTTPClient:
         form_data.add_field(name="file", filename=f"cover.{ext}", value=cover, content_type=content_type)
         form_data.add_field(name="volume", value=volume)
         form_data.add_field(name="locale", value=locale)
-        if not description:
+        if description:
             form_data.add_field(name="description", value=description)
 
         return self.request(route, data=form_data)

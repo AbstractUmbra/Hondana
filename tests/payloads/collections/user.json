@@ -3,30 +3,6 @@
     "response": "collection",
     "data": [
         {
-            "id": "4abcd349-aa84-43a0-a69f-2fca19c564b8",
-            "type": "user",
-            "attributes": {
-                "username": "173024367",
-                "roles": [
-                    "ROLE_MEMBER"
-                ],
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "e3f372f3-47f3-40ea-9447-712e1e6362c8",
-            "type": "user",
-            "attributes": {
-                "username": "30phutchobetruocgiodingu",
-                "roles": [
-                    "ROLE_MEMBER"
-                ],
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
             "id": "1567f289-7772-4115-9570-8f8cf944c4b2",
             "type": "user",
             "attributes": {
@@ -61,9 +37,33 @@
                 "version": 1
             },
             "relationships": []
+        },
+        {
+            "id": "813238bb-6517-4195-8533-5009244ec075",
+            "type": "user",
+            "attributes": {
+                "username": "176",
+                "roles": [
+                    "ROLE_MEMBER"
+                ],
+                "version": 1
+            },
+            "relationships": []
+        },
+        {
+            "id": "063bd435-14ce-4c11-84fa-21a7f3fbdd97",
+            "type": "user",
+            "attributes": {
+                "username": "1763",
+                "roles": [
+                    "ROLE_UNVERIFIED"
+                ],
+                "version": 1
+            },
+            "relationships": []
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 3399889
+    "total": 3466189
 }
