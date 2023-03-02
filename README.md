@@ -38,25 +38,14 @@ This means that any accounts created AFTER December 7th 2022 cannot use Hondana 
 This also means for accounts created BEFORE the above date, you will also be unable to authenticate once the methods are fully removed, to which there is no set date at the time of writing this.
 
 I have asked the staff about adding the [Client Credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/) OAuth2 workflow as this fits this library wrapper's auth needs, as currently it only supports [Authorization Code](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/) flows which doesn't really work here, as it is more designed for static apps, not per-user apps.
-I have a WIP branch (`feature/oauth2`) that currently attempts to spawn a webserver to handle the Auth Code flow but it is less than ideal and rather fragile.
-I will keep this README updated and a project will be added on the GitHub page to mark progress.
+I have merged my current OAuth2 implementation into the `main` branch. My testing on this seems okay and will need feedback when it is fully released.
+
+If you wish to remain on the old authentication system, please pin your dependency to commit `e47dfbca444edd45b1f04b7eb169a8e801e7548b`. This was the last commit before the OAuth2 merge.
 
 --------
 
 ## Features
 We are currently at 100% feature compliance with the API.
-
-## Notes
-### Authenticated endpoints
-
-Sadly (thankfully?) I am not an author on MangaDex, meaning I cannot test the creation endpoints for things like scanlators, artists, authors, manga or chapters.
-I have followed the API guidelines to the letter for these, but they may not work.
-
-Any help in testing them is greatly appreciated.
-
-### Upload & Creation
-Following the above, I can only use the public test manga for upload testing.
-These are currently implemented and tested to the best of my ability.
 
 ## Examples
 Please take a look at the [examples](./examples/) directory for working examples.
