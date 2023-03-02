@@ -35,15 +35,23 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-aiohttp = "^3.8.1"
+aiohttp = [
+    { version = "^3.8" },
+    { version = "^3.8", markers = "extra == 'speed'", extras = ["speedups"] }
+]
 typing-extensions = "*"
 
+orjson = { version = "*", optional = true }
+
+[tool.poetry.extras]
+speed = ["aiohttp", "orjson"]
+
 [tool.poetry.group.speedups.dependencies]
-aiohttp = { version = "^3.8.1", extras = ["speedups"] }
+aiohttp = { version = "^3.8", extras = ["speedups"] }
 orjson = "*"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "^5.0.0"
+sphinx = "*"
 sphinxcontrib-trio = "*"
 furo = "*"
 
@@ -67,7 +75,6 @@ target-version = ["py39"]
 [tool.isort]
 profile = "black"
 src_paths = ["hondana"]
-# known_first_party = ["hondana"]
 lines_after_imports = 2
 line_length = 125
 
@@ -97,5 +104,5 @@ uninstall = "pip uninstall hondana -y"
 pre = ["install", "format", "types", "tests", "docs", "tags", "report_reasons", "uninstall"]
 
 [build-system]
-requires = ["poetry-core>=1.1.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
