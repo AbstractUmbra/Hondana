@@ -149,6 +149,12 @@ class Client:
             loop=loop,
         )
 
+    async def login(self) -> None:
+        if not self._http.oauth2:
+            raise RuntimeError("Cannot login as no OAuth2 credentials are set.")
+
+        await self._http.get_token()
+
     async def close(self) -> None:
         """|coro|
 
