@@ -64,9 +64,9 @@ class SecretManager:
     code: str
     sent_state: str
     access_token: str
-    expires_in: datetime.datetime
+    access_expires: datetime.datetime
     refresh_token: str
-    refresh_expires_in: datetime.datetime
+    refresh_expires: datetime.datetime
     token_type: Literal["Bearer"]
     id_token: str
     _scope: str
@@ -138,10 +138,10 @@ class OAuth2Client:
     ) -> None:
         self._client: HTTPClient = client
         self._redirect_uri: str = redirect_uri
-        self.auth_handler = SecretManager()
+        self.auth_handler: SecretManager = SecretManager()
         self.client_id: str = client_id
         self.client_secret: Optional[str] = client_secret
-        self.loop = loop or asyncio.get_event_loop()
+        self.loop: asyncio.AbstractEventLoop = loop or asyncio.get_event_loop()
         if webapp:
             self.app: aiohttp_web.Application = webapp
         else:
@@ -166,12 +166,12 @@ class OAuth2Client:
 
     @property
     def access_token_expires(self) -> datetime.datetime:
-        return self.auth_handler.expires_in
+        return self.auth_handler.access_expires
 
     def access_token_has_expired(self) -> bool:
         now = datetime.datetime.now()
 
-        return now > self.auth_handler.expires_in
+        return now > self.auth_handler.access_expires
 
     @property
     def refresh_token(self) -> str:
@@ -179,7 +179,7 @@ class OAuth2Client:
 
     @property
     def refresh_token_expires(self) -> datetime.datetime:
-        return self.auth_handler.refresh_expires_in
+        return self.auth_handler.refresh_expires
 
     def app_is_running(self) -> bool:
         if self._site:
