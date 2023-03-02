@@ -25,12 +25,9 @@ from __future__ import annotations
 
 import asyncio
 import datetime
-import json
 import logging
 import sys
-import warnings
 import weakref
-from base64 import b64decode
 from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
 
 import aiohttp
@@ -50,12 +47,14 @@ from .enums import (
     ReportReason,
     ReportStatus,
 )
-from .errors import APIException, AuthenticationRequired, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
+from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
+from .oauth2 import OAuth2Client
 from .report import ReportDetails
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
     MISSING,
+    AuthRoute,
     CustomRoute,
     Route,
     calculate_limits,
@@ -70,6 +69,8 @@ from .utils import (
 
 if TYPE_CHECKING:
     from types import TracebackType
+
+    from aiohttp import web as aiohttp_web
 
     from .query import (
         ArtistIncludes,
@@ -106,11 +107,9 @@ if TYPE_CHECKING:
         user,
     )
     from .types_.account import GetAccountAvailable
-    from .types_.auth import CheckPayload
     from .types_.forums import ForumPayloadResponse
     from .types_.settings import Settings, SettingsPayload
     from .types_.tags import GetTagListResponse
-    from .types_.token import TokenPayload
     from .utils import MANGADEX_QUERY_PARAM_TYPE
 
     T = TypeVar("T")
@@ -150,61 +149,51 @@ class MaybeUnlock:
 
 class HTTPClient:
     __slots__ = (
-        "username",
-        "email",
-        "password",
-        "token",
-        "refresh_token",
         "_authenticated",
         "_session",
         "_locks",
         "_token_lock",
-        "__refresh_after",
+        "_oauth_scopes",
         "user_agent",
-        "_connection",
+        "oauth2",
     )
+
+    oauth2: Optional[OAuth2Client]
 
     def __init__(
         self,
         *,
-        username: Optional[str],
-        email: Optional[str],
-        password: Optional[str],
         session: Optional[aiohttp.ClientSession] = None,
-        refresh_token: Optional[str] = None,
+        redirect_uri: str,
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        oauth_scopes: Optional[list[str]] = None,
+        webapp: Optional[aiohttp_web.Application] = None,
+        loop: Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
-        self._authenticated = bool(((username or email) and password) or refresh_token)
-        if self._authenticated:
-            self._deprecation_warning()
-        self.username: Optional[str] = username
-        self.email: Optional[str] = email
-        self.password: Optional[str] = password
         self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
-        self.token: Optional[str] = None
         self._token_lock: asyncio.Lock = asyncio.Lock()
-        self.refresh_token: Optional[str] = refresh_token
-        self.__refresh_after: Optional[datetime.datetime] = None
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
+        self._oauth_scopes: Optional[list[str]] = oauth_scopes
+        if client_id:
+            self.oauth2 = OAuth2Client(
+                self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp, loop=loop
+            )
+            self._authenticated = True
+        else:
+            self.oauth2 = None
+            self._authenticated = False
 
     @property
-    def authenticated(self) -> bool:
-        """If the client is authenticated and will use this authentication in requests.
+    def oauth_scopes(self) -> Optional[list[str]]:
+        if self._oauth_scopes:
+            return self._oauth_scopes
 
-        Returns
-        --------
-        :class:`bool`
-        """
-        return self._authenticated
-
-    def _deprecation_warning(self) -> None:
-        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
-        warnings.warn(
-            "User/Email/Pass authentication is marked for deprecation and soon to be removal. Please see the repo for more information.",
-            category=DeprecationWarning,
-        )
-        warnings.simplefilter("default", DeprecationWarning)
+    @oauth_scopes.setter
+    def oauth_scopes(self, other: list[str]) -> None:
+        self._oauth_scopes = other
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
@@ -228,181 +217,41 @@ class HTTPClient:
         """
 
         if self._session is not None:
-            if self._authenticated:
-                await self.logout()
             await self._session.close()
+        if self.oauth2 is not None:
+            await self.oauth2.close()
 
-    async def _get_token(self) -> str:
-        """|coro|
+    async def get_token(self) -> str:
+        assert self.oauth2 is not None  # we won't be in here otherwise.
+        assert self.oauth_scopes is not None  # we won't be in here otherwise.
 
-        This private method will log in to MangaDex with the login username and password to retrieve a JWT auth token.
+        if not self.oauth2.app_is_running():
+            await self.oauth2.run_app()
 
-        Raises
-        -------
-        LoginError
-            The passed username and password are incorrect.
+        if self.oauth2.access_token and not self.oauth2.access_token_has_expired():
+            return self.oauth2.access_token
 
-        Returns
-        --------
-        :class:`str`
-            The authentication token we will use.
+        if self.oauth2.refresh_token and not self.oauth2.refresh_token_has_expired():
+            await self.oauth2.perform_token_refresh(oauth_scopes=self.oauth_scopes or self.oauth2.auth_handler.scope)
+            return self.oauth2.access_token
 
-        .. note::
-            This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
-        """
+        self.oauth2.generate_auth_url(
+            oauth_scopes=self.oauth_scopes,
+            open=True,
+        )
 
-        if self._session is None:
-            self._session = await self._generate_session()
+        await self.oauth2.wait_for_auth_response()
+        token = self.oauth2.access_token
 
-        if self.username:
-            auth = {"username": self.username, "password": self.password}
-        elif self.email:
-            auth = {"email": self.email, "password": self.password}
-        else:
-            raise AuthenticationRequired("No authentication methods set before attempting an API request.")
-
-        route = Route("POST", "/auth/login")
-        async with self._session.post(route.url, json=auth) as response:
-            data = await response.json()
-
-        if response.status == 400:
-            raise BadRequest(response, errors=data["errors"])
-        elif response.status == 401:
-            raise Unauthorized(response, errors=data["errors"])
-        elif response.status == 429:
-            raise APIException(response, status_code=429, errors=[])
-
-        token = data["token"]["session"]
-        refresh_token = data["token"]["refresh"]
-        self.__refresh_after = self._get_expiry(token)
-        self.refresh_token = refresh_token
         return token
-
-    def _get_expiry(self, token: str) -> datetime.datetime:
-        payload = token.split(".")[1]
-        padding = len(payload) % 4
-        payload = b64decode(payload + "=" * padding)
-        data: TokenPayload = json.loads(payload)
-        timestamp = data["exp"]
-
-        return datetime.datetime.fromtimestamp(timestamp, datetime.timezone.utc)
-
-    async def _perform_token_refresh(self) -> None:
-        """|coro|
-
-        This private method will refresh the current set token (:attr:`._auth`)
-
-        Raises
-        -------
-        RefreshError
-            We were unable to refresh the token.
-
-        .. note::
-            This does not use :meth:`HTTPClient.request` due to circular usage of request > generate token.
-        """
-        if self._session is None:
-            self._session = await self._generate_session()
-
-        route = Route("POST", "/auth/refresh")
-        async with self._session.post(route.url, json={"token": self.refresh_token}) as response:
-            data = await response.json()
-
-        # data is actually `.types.auth.RefreshPayload` but type-checking it here is a nightmare
-        # unless the request errors, which we handle here:
-
-        if 400 <= response.status <= 510:
-            if response.status == 400:
-                raise BadRequest(response, errors=data["errors"])
-            elif response.status == 401:
-                raise Unauthorized(response, errors=data["errors"])
-            elif response.status == 403:
-                raise Forbidden(response, errors=data["errors"])
-            else:
-                raise APIException(response, status_code=response.status, errors=data["errors"])
-
-        self.token = data["token"]["session"]
-        self.__refresh_after = self._get_expiry(self.token)
-
-    async def try_token(self) -> str:
-        """|coro|
-
-        This private method will try and use the existing :attr:`_auth` to authenticate to the API.
-        If this is unset, or returns a non-2xx response code, we will refresh the JWT / request another one.
-
-        Raises
-        -------
-        APIError
-            Something went wrong with testing our authentication against the API.
-
-        Returns
-        --------
-        :class:`str`
-            The authentication token we generated, refreshed or already had that is still valid.
-
-        .. note::
-            This does not use :meth:`Client.request` due to circular usage of request > generate token.
-        """
-        if self.token is None and self.refresh_token is not None:
-            LOGGER.debug("User passed a refresh token on creation, will skip login stage.")
-            await self._perform_token_refresh()
-            assert isinstance(self.token, str)  # the refresh stage above sets this.
-            return self.token
-
-        elif self.token is None:
-            LOGGER.debug("No jwt set yet, will attempt to generate one.")
-            self.token = await self._get_token()
-            return self.token
-
-        if self.__refresh_after is not None:
-            now = datetime.datetime.now(datetime.timezone.utc)
-            if now > self.__refresh_after:
-                LOGGER.debug("Token is older than 15 minutes, attempting a refresh.")
-                await self._perform_token_refresh()
-                return self.token
-            else:
-                LOGGER.debug("Within the same 15m span of token generation, reusing it.")
-                return self.token
-
-        LOGGER.debug("Attempting to validate token: %s", self.token[:20])
-        route = Route("GET", "/auth/check")
-
-        if self._session is None:
-            self._session = await self._generate_session()
-
-        async with self._session.get(route.url, headers={"Authorization": f"Bearer {self.token}"}) as response:
-            data: CheckPayload = await response.json()
-
-        if data["isAuthenticated"] is True:
-            LOGGER.debug("Token is still valid: %s", self.token[:20])
-            return self.token
-
-        self.token = await self._get_token()
-        LOGGER.debug("Token fetched: %s", self.token[:20])
-        return self.token
-
-    async def logout(self) -> None:
-        """|coro|
-
-        This performs the logout request, also done in :meth:`Client.close` for convenience.
-        """
-        if self._session is None:
-            self._session = await self._generate_session()
-
-        route = Route("POST", "/auth/logout")
-        async with self._session.request(route.verb, route.url) as response:
-            data = await response.json()
-
-        if not (300 > response.status >= 200) or data["result"] != "ok":
-            raise APIException(response, status_code=503, errors=data["errors"])
-
-        self._authenticated = False
 
     async def request(
         self,
-        route: Union[Route, CustomRoute],
+        route: Union[Route, CustomRoute, AuthRoute],
         *,
         params: Optional[MANGADEX_QUERY_PARAM_TYPE] = None,
         json: Optional[Any] = None,
+        bypass: bool = False,
         **kwargs: Any,
     ) -> Any:
         """|coro|
@@ -443,12 +292,12 @@ class HTTPClient:
             self._locks[bucket] = lock
 
         headers = kwargs.pop("headers", {})
-        async with self._token_lock:
-            token = await self.try_token() if self._authenticated else None
-
-        if token is not None:
-            headers["Authorization"] = f"Bearer {token}"
         headers["User-Agent"] = self.user_agent
+
+        if self.oauth2 and not bypass:
+            token = await self.get_token()
+            headers["Authorization"] = f"Bearer {token}"
+            LOGGER.debug("Current auth token is: '%s'", headers["Authorization"])
 
         if json:
             headers["Content-Type"] = "application/json"

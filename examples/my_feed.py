@@ -9,11 +9,13 @@ from hondana.query import FeedOrderQuery, Order
 
 # We need to log in with username/email and password since MangaDex does not let you create user based API tokens.
 # We instead use our credentials to log in and fetch an expiring auth token.
-# NOTE: You can also use the client with no credentials.
-client = hondana.Client(username="my-username", password="my-password")
+client = hondana.Client(client_id="...", client_secret="...")
 
 
 async def main() -> hondana.ChapterFeed:
+    # Let's login first.
+    await client.login()
+
     # Let's get the last 15 minutes of released manga
     fifteen_minutes_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=15)
 
@@ -28,6 +30,8 @@ async def main() -> hondana.ChapterFeed:
 
     # Let's view the responses.
     print(feed)
+
+    await client.close()
 
     return feed
 

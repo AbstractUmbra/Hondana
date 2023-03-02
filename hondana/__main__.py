@@ -53,7 +53,7 @@ def show_version() -> None:
 
     entries.append(f" - aiohttp {aiohttp.__version__}")
     uname = platform.uname()
-    entries.append(f"- system info: {uname.system} {uname.release} {uname.version}")
+    entries.append(f"- System Info: {uname.system} {uname.release} {uname.version}")
 
     print("\n".join(entries))
 

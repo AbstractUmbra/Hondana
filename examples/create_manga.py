@@ -10,15 +10,16 @@ if TYPE_CHECKING:
     from hondana.types_.common import LocalizedString
 
 # Create your client, auth is needed for this.
-client = hondana.Client(username="my username", password="my password")
+client = hondana.Client(client_id="...", client_secret="...")
 
 
 async def main():
     """
     Here we will create a Manga in MangaDex.
-
     The process is multi-stage, so I will attempt to outline them here.
     """
+    # Let's login and request OAuth2 details. Currently this will open a webbrowser for the callback.
+    await client.login()
 
     # Outline the needed attributes for this manga here
     manga_title: LocalizedString = {"en": "Some neat manga!", "ja": "本棚"}
@@ -46,6 +47,8 @@ async def main():
     print(submitted_manga)
 
     # NOTE: Something to note is that the version of draft MUST match the version of submitted manga during the approval stage.
+
+    await client.close()
 
 
 asyncio.run(main())

@@ -1,10 +1,7 @@
 """
-
 This example shows three different ways to perform this task.
 Please examine all three to find a method you like.
-
 If you ask me: I prefer the first.
-
 """
 
 import asyncio
@@ -14,7 +11,7 @@ import hondana
 
 
 # Create your client, you must be authorised to upload a chapter.
-client = hondana.Client(username="my username", password="my password")
+client = hondana.Client(client_id="...", client_secret="...")
 
 
 async def main():
@@ -58,6 +55,7 @@ async def main():
         chapter = await upload_session.commit()
 
     ## You can also choose not to commit manually, exiting this context manager will commit for you, and discard the returned chapter data.
+    await client.close()
 
 
 async def alternative_main():

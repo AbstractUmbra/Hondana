@@ -6,10 +6,13 @@ import hondana
 
 
 # We need to log in as reports cannot be submitted anonymously.
-client = hondana.Client(username="my login username", password="my login password")
+client = hondana.Client(client_id="...", client_secret="...")
 
 
 async def main():
+    # Let's login first, it's not necessary but makes things a bit smoother.
+    await client.login()
+
     # let's get a manga
     manga = await client.get_manga("...")
 
@@ -24,6 +27,8 @@ async def main():
 
     # and we send it off:
     await client.create_report(report)
+
+    await client.close()
 
 
 asyncio.run(main())

@@ -23,12 +23,11 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
+import asyncio
 import datetime
 import json
 import pathlib
-from base64 import b64decode
-from os import PathLike
-from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from . import errors
 from .artist import Artist
@@ -87,17 +86,17 @@ from .query import (
 from .report import ReportDetails, UserReport
 from .scanlator_group import ScanlatorGroup
 from .tags import Tag
-from .user import User, UserInfo
+from .user import User
 from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
     from aiohttp import ClientSession
+    from aiohttp import web as aiohttp_web
 
     from .tags import QueryTags
     from .types_ import common, legacy, manga
     from .types_.settings import Settings, SettingsPayload
-    from .types_.token import TokenPayload
 
 _PROJECT_DIR = pathlib.Path(__file__)
 
@@ -109,16 +108,8 @@ class Client:
 
     Attributes
     -----------
-    username: Optional[:class:`str`]
-        Your login username for the API / site. Used in conjunction with your password to generate an authentication token.
-    email: Optional[:class:`str`]
-        Your login email for the API / site. Used in conjunction with your password to generate an authentication token.
-    password: Optional[:class:`str`]
-        Your login password for the API / site. Used in conjunction with your username to generate an authentication token.
-    session: Optional[:class:`aiohttp.ClientSession`]
-        A aiohttp ClientSession to use instead of creating one.
-    refresh_token: Optional[:class:`str`]
-        Your last refresh token to use if you want to skip the login stage.
+    oauth2: :class:`hondana.OAuth2Client`
+        The underlying client for handling OAuth2 requests.
 
 
     .. note::
@@ -135,224 +126,34 @@ class Client:
         You failed to pass appropriate login information (login/email and password).
     """
 
-    __slots__ = ("_http",)
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: None = ...,
-        email: None = ...,
-        password: None = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: None = ...,
-    ) -> None:
-        ...
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: None = ...,
-        email: str = ...,
-        password: str = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: None = ...,
-    ) -> None:
-        ...
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: None = ...,
-        email: str = ...,
-        password: str = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: str = ...,
-    ) -> None:
-        ...
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: str = ...,
-        email: None = ...,
-        password: str = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: None = ...,
-    ) -> None:
-        ...
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: str = ...,
-        email: None = ...,
-        password: str = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: str = ...,
-    ) -> None:
-        ...
-
-    @overload
-    def __init__(
-        self,
-        *,
-        username: None = ...,
-        email: None = ...,
-        password: None = ...,
-        session: Optional[ClientSession] = ...,
-        refresh_token: str = ...,
-    ) -> None:
-        ...
+    __slots__ = "_http"
 
     def __init__(
         self,
         *,
-        username: Optional[str] = None,
-        email: Optional[str] = None,
-        password: Optional[str] = None,
         session: Optional[ClientSession] = None,
-        refresh_token: Optional[str] = None,
+        redirect_uri: str = "http://localhost:3000",
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        oauth_scopes: Optional[list[str]] = None,
+        webapp: Optional[aiohttp_web.Application] = None,
+        loop: Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
         self._http = HTTPClient(
-            username=username, email=email, password=password, session=session, refresh_token=refresh_token
+            session=session,
+            redirect_uri=redirect_uri,
+            client_id=client_id,
+            client_secret=client_secret,
+            oauth_scopes=oauth_scopes,
+            webapp=webapp,
+            loop=loop,
         )
 
-    def __repr__(self) -> str:
-        return f"<Client authenticated={self._http.authenticated}>"
+    async def login(self) -> None:
+        if not self._http.oauth2:
+            raise RuntimeError("Cannot login as no OAuth2 credentials are set.")
 
-    @overload
-    def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: None = ...) -> None:
-        ...
-
-    @overload
-    def login(self, *, username: None = ..., email: str = ..., password: str, refresh_token: None = ...) -> None:
-        ...
-
-    @overload
-    def login(self, *, username: str = ..., email: None = ..., password: str, refresh_token: str = ...) -> None:
-        ...
-
-    @overload
-    def login(self, *, username: None = ..., email: str = ..., password: str, refresh_token: str = ...) -> None:
-        ...
-
-    @overload
-    def login(self, *, username: None = ..., email: None = ..., password: None = ..., refresh_token: str = ...) -> None:
-        ...
-
-    def login(
-        self,
-        *,
-        username: Optional[str] = None,
-        email: Optional[str] = None,
-        password: Optional[str] = None,
-        refresh_token: Optional[str] = None,
-    ) -> None:
-        """A method to add authentication details to the client post-creation.
-
-        Parameters
-        -----------
-        username: Optional[:class:`str`]
-            The login username to authenticate to the API.
-        email: Optional[:class:`str`]
-            The login email to authenticate to the API.
-        password: Optional[:class:`str`]
-            The password to authenticate to the API.
-        refresh_token: Optional[:class:`str`]
-            The refresh token to use in place of auth.
-        """
-        if (username is None and email is None) and refresh_token is None:
-            raise ValueError("An email or username must be passed or a refresh token must be provided.")
-
-        self._http.username = username
-        self._http.email = email
-        self._http.password = password
-        self._http.refresh_token = refresh_token
-        self._http._authenticated = True  # type: ignore # sorry but I'm keeping this one private
-
-    async def static_login(self) -> None:
-        """|coro|
-
-        This method simply logs into the API and assigns a token to the client.
-        """
-        await self._http.try_token()
-
-    @property
-    def user_info(self) -> Optional[UserInfo]:
-        """
-        This attribute will return a permissions instance for the current logged-in user.
-
-        You must be authenticated to access this, and logged in.
-
-        If you wish to just check permissions without making an api request, consider :meth:`~hondana.Client.static_login`
-
-        Returns
-        --------
-        :class:`~hondana.user.UserInfo`
-        """
-        if not self._http.authenticated:
-            return None
-
-        token = self._http.token
-        if token is None:
-            return None
-
-        # The JWT stores payload in the second block
-        payload = token.split(".")[1]
-        padding = len(payload) % 4
-        payload += "=" * padding
-        parsed_payload: TokenPayload = json.loads(b64decode(payload))
-
-        return UserInfo(parsed_payload)
-
-    @require_authentication
-    def dump_refresh_token(
-        self,
-        *,
-        file: bool = True,
-        path: Union[PathLike[str], str] = ".hondana-refresh-token",
-        mode: Literal["a", "a+", "w", "w+"] = "w",
-    ) -> str:
-        """
-        This method will dump your current refresh token to a file for later re-use in the login process in future client initialisations.
-
-        Parameters
-        -----------
-        file: :class:`bool`
-            Whether to dump to a file, or not.
-        path: Union[:class:`os.PathLike`, :class:`str`]
-            The path to dump the file. Defaults to ``".hondana-refresh-token"``.
-        mode: Literal[``"a"``, ``"a+"``, ``"w"``, ``"w+"``]
-            The mode in which to open the file. Defaults to ``"w"``.
-
-        Returns
-        --------
-        :class:`str`
-            The current refresh token.
-        """
-        if self._http.refresh_token is None:
-            raise TypeError(
-                "Authentication is set but there is no refresh token available, perhaps you haven't logged in yet?"
-            )
-        if file:
-            with open(path, mode) as fp:
-                fp.write(self._http.refresh_token)
-
-        return self._http.refresh_token
-
-    @require_authentication
-    async def logout(self) -> None:
-        """|coro|
-
-        Logs the client out. This process will invalidate the current authorization token in the process.
-        """
-
-        return await self._http.logout()
+        await self._http.get_token()
 
     async def close(self) -> None:
         """|coro|
