@@ -148,8 +148,8 @@ class OAuth2Client:
             self.app = self.create_webapp(self.loop)
         self.add_routes()
         self._site: Optional[aiohttp_web.AppRunner] = None
-        self._has_auth_data: asyncio.Event = asyncio.Event(loop=self.loop)
-        self._has_token_data: asyncio.Event = asyncio.Event(loop=self.loop)
+        self._has_auth_data: asyncio.Event = asyncio.Event()
+        self._has_token_data: asyncio.Event = asyncio.Event()
 
     @property
     def redirect_uri(self) -> str:
@@ -201,11 +201,11 @@ class OAuth2Client:
             self._has_token_data.clear()
 
     async def wait_for_auth_response(self, timeout: Optional[float] = None) -> None:
-        await asyncio.wait_for(self._has_auth_data.wait(), loop=self.loop, timeout=timeout)
+        await asyncio.wait_for(self._has_auth_data.wait(), timeout=timeout)
         self._has_auth_data.clear()
 
     async def wait_for_token_response(self, timeout: Optional[float] = None) -> None:
-        await asyncio.wait_for(self._has_token_data.wait(), loop=self.loop, timeout=timeout)
+        await asyncio.wait_for(self._has_token_data.wait(), timeout=timeout)
         self._has_token_data.clear()
 
     @staticmethod

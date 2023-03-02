@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "3.4.7"
+version = "4.0.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
 
@@ -14,7 +14,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Topic :: Internet",
@@ -70,7 +69,7 @@ version = "hondana.__main__:show_version"
 
 [tool.black]
 line-length = 125
-target-version = ["py39"]
+target-version = ["py310"]
 
 [tool.isort]
 profile = "black"
