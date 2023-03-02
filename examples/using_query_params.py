@@ -7,7 +7,6 @@ client = hondana.Client()
 
 
 async def main() -> None:
-
     # We can use the `.none()` classmethod to specify no includes, since the library defaults to using all of them.
     manga_list_includes = hondana.query.MangaIncludes.none()
 
