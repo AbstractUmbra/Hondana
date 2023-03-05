@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-    types: [ opened, reopened, synchronize ]
+    types: [opened, reopened, synchronize]
 
 jobs:
   check:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.10', '3.x' ]
+        python-version: ["3.10", "3.x"]
 
     name: "Type Coverage and Linting @ ${{ matrix.python-version }}"
     steps:
@@ -45,12 +45,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python-version }}"
-          cache: 'poetry'
-
-      - name: Activate venv @ ${{ matrix.python-version }}
-        run: |
-          source $(poetry env info --path)/bin/activate
-          echo PATH=$PATH >> $GITHUB_ENV
+          cache: "poetry"
 
       - name: "Load cached venv @ ${{ matrix.python-version }}"
         id: cached-pip-wheels
@@ -65,29 +60,18 @@ jobs:
         run: |
           poetry install --without=dev --no-interaction
 
-      # - name: "Run Pyright @ ${{ matrix.python-version }}"
-      #   uses: jakebailey/pyright-action@v1
-      #   with:
-      #     warnings: false
-      #     no-comments: ${{ matrix.python-version != '3.x' }}
-
-      # - name: "Run Pyright Type-Compliance @ ${{ matrix.python-version }}"
-      #   uses: jakebailey/pyright-action@v1.4.2
-      #   with:
-      #     warnings: false
-      #     verify-types: "hondana"
-      #     extra-args: "--ignoreexternal"
-
-      - name: "Install Node"
-        uses: actions/setup-node@v3
-        with:
-          node-version: 19
-
-      - name: "Run Pyright CLI @ ${{ matrix.python-version }}"
+      - name: Activate venv @ ${{ matrix.python-version }}
         run: |
-          npm install pyright@latest --global
-          poetry run pyright
-          poetry run pyright --ignoreexternal --lib --verifytypes hondana
+          echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+
+      - name: "Run Pyright @ ${{ matrix.python-version }}"
+        uses: jakebailey/pyright-action@v1
+        with:
+          warnings: false
+          lib: true
+          verify-types: "hondana"
+          ignore-external: true
+          no-comments: ${{ matrix.python-version != '3.x' }}
 
       - name: Lint
         if: ${{ always() && steps.install-deps.outcome == 'success' }}

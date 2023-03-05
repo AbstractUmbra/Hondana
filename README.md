@@ -30,7 +30,8 @@
 A lightweight and asynchronous wrapper around the [MangaDex v5 API](https://api.mangadex.org/docs.html).
 You can see our stable docs [here](https://hondana.readthedocs.io/en/stable/)!
 
----------
+---
+
 ## Important Notice
 
 The MangaDex team have made great strides in implementing their OAuth2 authentication system, and as such have deprecated standard login flows (email/user and pass -> token).
@@ -42,18 +43,20 @@ I have merged my current OAuth2 implementation into the `main` branch. My testin
 
 If you wish to remain on the old authentication system, please pin your dependency to commit `e47dfbca444edd45b1f04b7eb169a8e801e7548b`. This was the last commit before the OAuth2 merge.
 
---------
+---
 
 ## Features
+
 We are currently at 100% feature compliance with the API.
 
 ## Examples
+
 Please take a look at the [examples](./examples/) directory for working examples.
 
 **NOTE**: More examples will follow as the library is developed.
 
-
 ### Current caveats to note
+
 - There are no API endpoints for Artist. It seems they are not differentiated from Author types except in name only.
   - I have separated them logically, but under the hood all Artists are Authors and their `__eq__` reports as such.
 - The tags and report reasons are locally cached since you **must** pass UUIDs to the api (and I do not think you're going to memorize those), there's a convenience method for updating the local cache as `Client.update_tags` and `Client.update_report_reasons` respectively.
@@ -66,14 +69,16 @@ Please take a look at the [examples](./examples/) directory for working examples
 - Currently, the `Client.my_chapter_read_history` method will not work. It is disabled on MD's side due to an issue they had previously. If/when it is re-introduced the method will remain the same.
 
 ### Further information/tidbits
+
 - For a bit more clarity on a Chapter's `readableAt` vs `publishAt`, see [this page](https://api.mangadex.org/docs/dates/#readableat) on the MangaDex docs.
 - A query with the `include_future_updates` bool set to `True` will include chapters that are pending release by scanlation groups on MangaDex, but which may be available on their sites.
 
 ### Contributing
+
 If you would like to contribute to Hondana, please take a look at [the contributing guidelines](./.github/CONTRIBUTING.md) and follow the procedure there.
 
-
 If you have any question please feel free to join my Discord server:
+
 <div align="left">
     <a href="https://discord.gg/aYGYJxwqe5">
         <img src="https://discordapp.com/api/guilds/705500489248145459/widget.png?style=banner2" alt="Discord Server"/>

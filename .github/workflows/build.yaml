@@ -5,11 +5,11 @@ name: Build
 on:
   push:
     tags:
-      - '*.*.*'
+      - "*.*.*"
   workflow_run:
-    workflows: [ "Type Coverage and Linting" ]
-    types: [ completed ]
-    branches: [ main ]
+    workflows: ["Type Coverage and Linting"]
+    types: [completed]
+    branches: [main]
 
 jobs:
   build:
@@ -18,50 +18,73 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.10', '3.x' ]
+        python-version: ["3.10", "3.x"]
 
-    name: "Build"
+    name: "Build @ ${{ matrix.python-version }}"
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
+      - name: "Load cached poetry installation @ ${{ matrix.python-version }}"
+        id: cached-poetry
+        uses: actions/cache@v3
+        with:
+          path: ~/.local
+          key: poetry-0
+
       - name: "Setup Poetry @ ${{ matrix.python-version }}"
+        if: steps.cached-poetry.outputs.cache-hit != 'true'
         uses: snok/install-poetry@v1
         with:
           version: latest
           virtualenvs-create: true
-          virtualenvs-in-project: false
+          virtualenvs-in-project: true
+          virtualenvs-path: .venv
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
+        id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: "${{ matrix.python-version }}"
+          cache: "poetry"
 
-      - name: "Install deps @ ${{ matrix.python-version }}"
+      - name: "Load cached venv @ ${{ matrix.python-version }}"
+        id: cached-pip-wheels
+        uses: actions/cache@v3
+        with:
+          path: .venv/
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: "Install Python deps @ ${{ matrix.python-version }}"
+        if: ${{ steps.cached-pip-wheels.outputs.cache-hit != 'true' }}
+        id: install-deps
         run: |
-          poetry install --with docs,tests --no-interaction
+          poetry install --no-interaction
 
-      - name: Check it imports
+      - name: Activate venv @ ${{ matrix.python-version }}
+        run: |
+          echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+
+      - name: "Check it imports @ ${{ matrix.python-version }}"
         run: |
           poetry run python -c 'import hondana'
 
-      - name: Test Suite
+      - name: "Test Suite @ ${{ matrix.python-version }}"
         run: |
           poetry run pytest
 
-      - name: Build wheels
+      - name: "Build wheels @ ${{ matrix.python-version}}"
         run: |
           poetry build
 
-      # TODO: add -n back to args after sphinx 5.0
-      - name: Build docs
+      - name: "Build docs @ ${{ matrix.python-version}}"
         run: |
           cd docs/
-          poetry run sphinx-build -a -E -T -W --keep-going . build
+          poetry run sphinx-build -aETW --keep-going . build
 
-      - name: Upload artifacts
+      - name: "Upload artifacts @ ${{ matrix.python-version}}"
         uses: actions/upload-artifact@v2
         with:
           name: distributions
@@ -71,7 +94,7 @@ jobs:
   # as I found them in their Jishaku builds (https://github.com/Gorialis/jishaku/blob/d3f50749b5a977b544e5fd14894585f656247486/.github/workflows/deploy.yml#L82-L119)
   create_release:
     name: Create Release
-    needs: [ build ]
+    needs: [build]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
 
