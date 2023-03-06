@@ -619,7 +619,7 @@ def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
 
 _tags_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
 with _tags_path.open("r") as _tags_fp:
-    MANGA_TAGS: dict[str, str] = json.load(_tags_fp)
+    MANGA_TAGS: dict[str, str] = _from_json(_tags_fp.read())
 
 
 class _ReportReasons(TypedDict):
@@ -632,4 +632,4 @@ class _ReportReasons(TypedDict):
 
 _report_reason_path = _PROJECT_DIR.parent / "extras" / "report_reasons.json"
 with _report_reason_path.open("r") as _reports_fp:
-    _REPORT_REASONS: _ReportReasons = json.load(_reports_fp)
+    _REPORT_REASONS: _ReportReasons = _from_json(_reports_fp.read())
