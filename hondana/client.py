@@ -23,7 +23,6 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-import asyncio
 import datetime
 import json
 import pathlib
@@ -106,6 +105,22 @@ __all__ = ("Client",)
 class Client:
     """User Client for interfacing with the MangaDex API.
 
+    Parameters
+    -----------
+    session: :class:`aiohttp.ClientSession` | None
+        An optional ClientSession to pass to the client for internal use.
+        NOTE: This will make requests with authentication headers if supplied, do not supply one if this is an issue.
+    redirect_uri: :class:`str`
+        The OAuth2 redirect URI for user access.
+    client_id: :class:`str`
+        The OAuth2 Client ID to use.
+    client_secret: :class:`str`
+        The OAuth2 Client Secret to use.
+    oauth_scopes: list[:class:`str`]
+        The OAuth2 scopes to request access to when authenticating.
+    webapp: :class:`aiohttp.web.Application` | None
+        An aiohttp web application to use for the OAuth2 callbacks and token handling.
+
     Attributes
     -----------
     oauth2: :class:`hondana.OAuth2Client`
@@ -137,16 +152,14 @@ class Client:
         client_secret: Optional[str] = None,
         oauth_scopes: Optional[list[str]] = None,
         webapp: Optional[aiohttp_web.Application] = None,
-        loop: Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
-        self._http = HTTPClient(
+        self._http: HTTPClient = HTTPClient(
             session=session,
             redirect_uri=redirect_uri,
             client_id=client_id,
             client_secret=client_secret,
             oauth_scopes=oauth_scopes,
             webapp=webapp,
-            loop=loop,
         )
 
     async def login(self) -> None:

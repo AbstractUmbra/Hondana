@@ -28,7 +28,7 @@ import datetime
 import logging
 import webbrowser
 from secrets import token_urlsafe
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict, final
+from typing import TYPE_CHECKING, Literal, Optional, TypedDict, Union, final
 
 import yarl
 from aiohttp import web as aiohttp_web
@@ -59,7 +59,7 @@ OAuthTokenPayload = TypedDict(
 
 
 @final
-class SecretManager:
+class OAuth2Handler:
     given_state: str
     code: str
     sent_state: str
@@ -101,11 +101,20 @@ class SecretManager:
     def scope(self) -> list[str]:
         return self._scope.split(" ")
 
+    @scope.setter
+    def scope(self, other: Union[str, list[str]]) -> None:
+        if isinstance(other, list):
+            self._scope = " ".join(other)
+            return
+        self._scope = other
+
     def update_with_token_payload(self, data: OAuthTokenPayload) -> None:
         self.access_token = data["access_token"]
-        self.access_expires = datetime.datetime.now() + datetime.timedelta(seconds=data["expires_in"])
+        self.access_expires = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(seconds=data["expires_in"])
         self.refresh_token = data["refresh_token"]
-        self.refresh_expires = datetime.datetime.now() + datetime.timedelta(seconds=data["refresh_expires_in"])
+        self.refresh_expires = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(
+            seconds=data["refresh_expires_in"]
+        )
         self.token_type = data["token_type"]
         self.id_token = data["id_token"]
         self._scope = data["scope"]
@@ -116,13 +125,12 @@ class OAuth2Client:
         "client_id",
         "client_secret",
         "app",
-        "loop",
-        "auth_handler",
         "_client",
         "_site",
         "_redirect_uri",
         "_has_auth_data",
         "_has_token_data",
+        "__auth_handler",
     )
 
     def __init__(
@@ -138,18 +146,26 @@ class OAuth2Client:
     ) -> None:
         self._client: HTTPClient = client
         self._redirect_uri: str = redirect_uri
-        self.auth_handler: SecretManager = SecretManager()
         self.client_id: str = client_id
         self.client_secret: Optional[str] = client_secret
-        self.loop: asyncio.AbstractEventLoop = loop or asyncio.get_event_loop()
         if webapp:
             self.app: aiohttp_web.Application = webapp
         else:
-            self.app = self.create_webapp(self.loop)
+            self.app = self.create_webapp()
         self.add_routes()
         self._site: Optional[aiohttp_web.AppRunner] = None
         self._has_auth_data: asyncio.Event = asyncio.Event()
         self._has_token_data: asyncio.Event = asyncio.Event()
+        self.__auth_handler: OAuth2Handler = OAuth2Handler()
+
+    @property
+    def scopes(self) -> list[str]:
+        """The OAuth2 Client's scopes for requesting access."""
+        return self.__auth_handler.scope
+
+    @scopes.setter
+    def scopes(self, other: Union[str, list[str]]) -> None:
+        self.__auth_handler.scope = other
 
     @property
     def redirect_uri(self) -> str:
@@ -162,24 +178,24 @@ class OAuth2Client:
 
     @property
     def access_token(self) -> str:
-        return self.auth_handler.access_token
+        return self.__auth_handler.access_token
 
     @property
     def access_token_expires(self) -> datetime.datetime:
-        return self.auth_handler.access_expires
+        return self.__auth_handler.access_expires
 
     def access_token_has_expired(self) -> bool:
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(datetime.timezone.utc)
 
-        return now > self.auth_handler.access_expires
+        return now > self.__auth_handler.access_expires
 
     @property
     def refresh_token(self) -> str:
-        return self.auth_handler.refresh_token
+        return self.__auth_handler.refresh_token
 
     @property
     def refresh_token_expires(self) -> datetime.datetime:
-        return self.auth_handler.refresh_expires
+        return self.__auth_handler.refresh_expires
 
     def app_is_running(self) -> bool:
         if self._site:
@@ -188,7 +204,7 @@ class OAuth2Client:
         return False
 
     def refresh_token_has_expired(self) -> bool:
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(datetime.timezone.utc)
 
         return now > self.refresh_token_expires
 
@@ -209,8 +225,8 @@ class OAuth2Client:
         self._has_token_data.clear()
 
     @staticmethod
-    def create_webapp(loop: Optional[asyncio.AbstractEventLoop] = None) -> aiohttp_web.Application:
-        return aiohttp_web.Application(logger=LOGGER, loop=loop)
+    def create_webapp() -> aiohttp_web.Application:
+        return aiohttp_web.Application(logger=LOGGER)
 
     def add_routes(self) -> None:
         self.app.add_routes([aiohttp_web.get("/auth_code", self.auth_code)])
@@ -236,15 +252,15 @@ class OAuth2Client:
         return aiohttp_web.Response(body=f"State: {state}\nCode: {code}")
 
     async def request_auth_token(self, session_state: str, state: str, code: str, /) -> None:
-        self.auth_handler.session_state = session_state
-        self.auth_handler.code = code
-        self.auth_handler.given_state = state
+        self.__auth_handler.session_state = session_state
+        self.__auth_handler.code = code
+        self.__auth_handler.given_state = state
 
         route = AuthRoute("POST", "/token")
 
         params: MANGADEX_QUERY_PARAM_TYPE = {
             "grant_type": "authorization_code",
-            "code": self.auth_handler.code,
+            "code": self.__auth_handler.code,
             "redirect_uri": f"{self.redirect_uri}/auth_code",
             "client_id": self.client_id,
         }
@@ -253,7 +269,7 @@ class OAuth2Client:
             route, data=params, headers={"Content-Type": "application/x-www-form-urlencoded"}, bypass=True
         )
 
-        self.auth_handler.update_with_token_payload(data)
+        self.__auth_handler.update_with_token_payload(data)
         self._has_auth_data.set()
 
     async def perform_token_refresh(self, *, oauth_scopes: list[str]) -> None:
@@ -261,7 +277,7 @@ class OAuth2Client:
 
         params: MANGADEX_QUERY_PARAM_TYPE = {
             "grant_type": "refresh_token",
-            "refresh_token": self.auth_handler.refresh_token,
+            "refresh_token": self.__auth_handler.refresh_token,
             "scope": " ".join(oauth_scopes),
             "client_id": self.client_id,
         }
@@ -270,7 +286,7 @@ class OAuth2Client:
             route, data=params, headers={"Content-Type": "application/x-www-form-urlencoded"}
         )
 
-        self.auth_handler.update_with_token_payload(data)
+        self.__auth_handler.update_with_token_payload(data)
         self._has_token_data.set()
 
     def generate_auth_url(self, *, oauth_scopes: list[str], open: bool = False) -> yarl.URL:
@@ -287,7 +303,7 @@ class OAuth2Client:
         }
 
         url = yarl.URL(route.url).with_query(php_query_builder(params))
-        self.auth_handler.sent_state = state_secret
+        self.__auth_handler.sent_state = state_secret
 
         if open:
             print(

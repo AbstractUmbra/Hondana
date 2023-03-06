@@ -169,7 +169,6 @@ class HTTPClient:
         client_secret: Optional[str] = None,
         oauth_scopes: Optional[list[str]] = None,
         webapp: Optional[aiohttp_web.Application] = None,
-        loop: Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
         self._session: Optional[aiohttp.ClientSession] = session
         self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
@@ -179,7 +178,7 @@ class HTTPClient:
         self._oauth_scopes: Optional[list[str]] = oauth_scopes
         if client_id:
             self.oauth2 = OAuth2Client(
-                self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp, loop=loop
+                self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp
             )
             self._authenticated = True
         else:
@@ -232,7 +231,7 @@ class HTTPClient:
             return self.oauth2.access_token
 
         if self.oauth2.refresh_token and not self.oauth2.refresh_token_has_expired():
-            await self.oauth2.perform_token_refresh(oauth_scopes=self.oauth_scopes or self.oauth2.auth_handler.scope)
+            await self.oauth2.perform_token_refresh(oauth_scopes=self.oauth_scopes or self.oauth2.scopes)
             return self.oauth2.access_token
 
         self.oauth2.generate_auth_url(
@@ -297,7 +296,7 @@ class HTTPClient:
         if self.oauth2 and not bypass:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
-            LOGGER.debug("Current auth token is: '%s'", headers["Authorization"])
+            LOGGER.debug("Current auth token is: '%s-%s'", headers["Authorization"][:20], headers["Authorization"][-20:])
 
         if json:
             headers["Content-Type"] = "application/json"
