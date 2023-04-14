@@ -6,10 +6,7 @@ import datetime
 import hondana
 
 
-client = hondana.Client()
-
-
-async def search_for_tags() -> hondana.MangaCollection:
+async def search_for_tags(client: hondana.Client) -> hondana.MangaCollection:
     # Using the tag builder for ease during a query
     # This will add a restriction to search for a manga with all 3 of these tags using logical AND
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
@@ -23,7 +20,7 @@ async def search_for_tags() -> hondana.MangaCollection:
     return manga_response
 
 
-async def more_refined_search() -> hondana.MangaCollection:
+async def more_refined_search(client: hondana.Client) -> hondana.MangaCollection:
     # let's do a more refined search using many of the query parameters...
     tags = hondana.QueryTags("action", "comedy", "isekai", mode="AND")
 
@@ -49,15 +46,14 @@ async def more_refined_search() -> hondana.MangaCollection:
     return search
 
 
-async def main():
-    manga = await search_for_tags()
-    print(manga)
+async def main() -> None:
+    async with hondana.Client() as client:
+        manga = await search_for_tags(client)
+        print(manga)
 
-    other_manga = await more_refined_search()
-    # this search was empty for me at the time of writing, but the fact you get a response at all means it worked.
-    print(other_manga)
-
-    await client.close()
+        other_manga = await more_refined_search(client)
+        # this search was empty for me at the time of writing, but the fact you get a response at all means it worked.
+        print(other_manga)
 
 
 asyncio.run(main())

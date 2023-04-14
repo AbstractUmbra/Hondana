@@ -25,8 +25,9 @@ from __future__ import annotations
 
 import datetime
 import json
+import logging
 import pathlib
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, TypeVar, Union
 
 from . import errors
 from .artist import Artist
@@ -90,14 +91,21 @@ from .utils import MISSING, require_authentication
 
 
 if TYPE_CHECKING:
+    from types import TracebackType
+
     from aiohttp import ClientSession
     from aiohttp import web as aiohttp_web
+    from typing_extensions import Self
 
     from .tags import QueryTags
     from .types_ import common, legacy, manga
     from .types_.settings import Settings, SettingsPayload
 
+    T = TypeVar("T")
+    BE = TypeVar("BE", bound=BaseException)
+
 _PROJECT_DIR = pathlib.Path(__file__)
+LOGGER: logging.Logger = logging.getLogger(__name__)
 
 __all__ = ("Client",)
 
@@ -161,6 +169,18 @@ class Client:
             oauth_scopes=oauth_scopes,
             webapp=webapp,
         )
+
+    async def __aenter__(self) -> Self:
+        try:
+            await self.login()
+        except RuntimeError:
+            # we haven't set credentials so just a warning
+            LOGGER.warning("No OAuth2 credentials set, so not logging in.")
+
+        return self
+
+    async def __aexit__(self, type: type[BE], value: BE, traceback: TracebackType) -> None:
+        await self.close()
 
     async def login(self) -> None:
         if not self._http.oauth2:
@@ -344,7 +364,7 @@ class Client:
             Whether to show chapters with no pages available.
         include_future_publish_at: Optional[:class:`bool`]
             Whether to show chapters with a publishAt value set in the future.
-        includeExternalUrl: Optional[:class:`bool`]
+        include_external_url: Optional[:class:`bool`]
             Whether to show chapters that have an external URL attached to them.
 
 
