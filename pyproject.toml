@@ -52,6 +52,7 @@ orjson = "*"
 [tool.poetry.group.docs.dependencies]
 sphinx = "*"
 sphinxcontrib-trio = "*"
+sphinx-autodoc-typehints = "^1.22"
 furo = "*"
 
 [tool.poetry.group.tests.dependencies]
@@ -63,6 +64,7 @@ pytest-asyncio = "*"
 poethepoet = "*"
 black = "*"
 scalene = "*"
+esbonio = "*"
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
