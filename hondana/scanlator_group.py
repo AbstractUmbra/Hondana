@@ -79,6 +79,8 @@ class ScanlatorGroup:
         If this scanlator group is considered 'locked' or not.
     official: :class:`bool`
         Whether the group is official or not.
+    ex_licensed: :class:`bool`
+        TBC.
     verified: :class:`bool`
         Whether this group is verified or not.
     inactive: :class:`bool`
@@ -107,6 +109,7 @@ class ScanlatorGroup:
         "official",
         "verified",
         "inactive",
+        "ex_licensed",
         "version",
         "_created_at",
         "_updated_at",
@@ -139,6 +142,7 @@ class ScanlatorGroup:
         self.official: bool = self._attributes["official"]
         self.verified: bool = self._attributes["verified"]
         self.inactive: bool = self._attributes["inactive"]
+        self.ex_licensed: bool = self._attributes.get("exLicensed", False)
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
@@ -430,7 +434,7 @@ class ScanlatorGroup:
             The new twitter url to update the group with.
         manga_updates: Optional[:class:`str`]
             The URL for this group's manga updates page, if any.
-        focused_languages: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        focused_languages: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
             If the group is inactive or not.

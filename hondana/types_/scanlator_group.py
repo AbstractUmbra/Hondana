@@ -73,6 +73,9 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     inactive: :class:`bool`
 
+    exLicensed: :class:`bool`
+        This key may not be present.
+
     publishDelay: :class:`str`
 
     version: :class:`int`
@@ -97,6 +100,7 @@ class ScanlationGroupAttributesResponse(TypedDict):
     official: bool
     verified: bool
     inactive: bool
+    exLicensed: NotRequired[bool]
     publishDelay: str
     version: int
     createdAt: str
