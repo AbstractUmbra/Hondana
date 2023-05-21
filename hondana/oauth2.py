@@ -36,6 +36,8 @@ from aiohttp import web as aiohttp_web
 from .utils import MISSING, AuthRoute, php_query_builder
 
 
+__all__ = ("OAuth2Client",)
+
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .utils import MANGADEX_QUERY_PARAM_TYPE
