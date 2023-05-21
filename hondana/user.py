@@ -137,7 +137,7 @@ class User:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]

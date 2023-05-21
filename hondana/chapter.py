@@ -144,7 +144,7 @@ class Chapter:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
         self.title: Optional[str] = self._attributes["title"]
         self.volume: Optional[str] = self._attributes["volume"]
@@ -592,7 +592,7 @@ class Chapter:
                 await self._http.at_home_report(
                     url=route.url,
                     success=page_resp.status == 200,
-                    cached=("X-Cache" in page_resp.headers and page_resp.headers["X-Cache"].upper().startswith("HIT")),
+                    cached=page_resp.headers.get("X-Cache", "").casefold() == "hit",
                     size=(page_resp.content_length or 0),
                     duration=int(_total * 1000),
                 )
@@ -749,9 +749,9 @@ class UploadData:
 
     Attributes
     -----------
-    succeeded: List[:class:`~hondana.types.upload.UploadedChapterResponse`]
+    succeeded: List[:class:`~hondana.types_.upload.UploadedChapterResponse`]
         The succeeded responses from the upload session.
-    errors: List[:class:`~hondana.types.errors.ErrorType`]
+    errors: List[:class:`~hondana.types_.errors.ErrorType`]
         The errors from the upload session.
     has_failures: :class:`bool`
         The upload has errors.
@@ -813,7 +813,7 @@ class ChapterUpload:
     title: Optional[:class:`str`]
         The chapter's title.
         Defaults to ``None``.
-    translated_language: :class:`~hondana.types.common.LanguageCode`
+    translated_language: :class:`~hondana.types_.common.LanguageCode`
         The language this chapter is translated in.
     external_url: Optional[:class:`str`]
         The external link to this chapter, if any.
@@ -918,7 +918,7 @@ class ChapterUpload:
 
         Returns
         --------
-        :class:`~hondana.types.upload.BeginChapterUploadResponse`
+        :class:`~hondana.types_.upload.BeginChapterUploadResponse`
         """
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
         if self.chapter_to_edit is not None:

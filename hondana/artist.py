@@ -117,7 +117,7 @@ class Artist:
         self._http: HTTPClient = http
         self._data: ArtistResponse = payload
         self._attributes: ArtistAttributesResponse = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: Optional[str] = self._attributes["imageUrl"]
@@ -322,7 +322,7 @@ class Artist:
         -----------
         name: Optional[:class:`str`]
             The new name to update the artist with.
-        biography: Optional[:class:`~hondana.types.common.LocalizedString`]
+        biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The biography of the artist we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the artist.

@@ -151,10 +151,10 @@ class Manga:
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
         self._data = payload
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
-        self._title = self._attributes["title"]
+        self._title: LocalizedString = self._attributes["title"]
         self._description: LocalizedString = self._attributes["description"]
         _related = payload.get("related", None)
         self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
