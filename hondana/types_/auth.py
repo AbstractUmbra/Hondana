@@ -50,7 +50,7 @@ class LoginPayload(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    token: :class:`~hondana.types.auth.TokenResponse`
+    token: :class:`~hondana.types_.auth.TokenResponse`
     """
 
     result: Literal["ok", "error"]
@@ -61,7 +61,7 @@ class RefreshPayload(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    token: :class:`~hondana.types.auth.TokenResponse`
+    token: :class:`~hondana.types_.auth.TokenResponse`
 
     message: :class:`str`
     """

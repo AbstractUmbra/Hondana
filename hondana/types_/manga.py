@@ -119,15 +119,15 @@ class MangaLinks(TypedDict, total=False):
 
 class MangaAttributesResponse(TypedDict):
     """
-    title: :class:`~hondana.types.common.LocalizedString`
+    title: :class:`~hondana.types_.common.LocalizedString`
 
-    altTitle: List[:class:`~hondana.types.common.LocalizedString`]
+    altTitle: List[:class:`~hondana.types_.common.LocalizedString`]
 
-    description: :class:`~hondana.types.common.LocalizedString`
+    description: :class:`~hondana.types_.common.LocalizedString`
 
     isLocked: :class:`bool`
 
-    links: :class:`~hondana.types.manga.MangaLinks`
+    links: :class:`~hondana.types_.manga.MangaLinks`
 
     originalLanguage: :class:`str`
 
@@ -147,9 +147,9 @@ class MangaAttributesResponse(TypedDict):
 
     latestUploadedChapter: :class:`str`
 
-    availableTranslatedLanguages: List[:class:`~hondana.types.common.LanguageCode`]
+    availableTranslatedLanguages: List[:class:`~hondana.types_.common.LanguageCode`]
 
-    tags: List[:class:`~hondana.types.tags.TagResponse`]
+    tags: List[:class:`~hondana.types_.tags.TagResponse`]
 
     state: :class:`~hondana.MangaState`
 
@@ -202,9 +202,9 @@ class MangaResponse(TypedDict):
 
     type: Literal[``"manga"``]
 
-    attributes: :class:`~hondana.types.manga.MangaAttributesResponse`
+    attributes: :class:`~hondana.types_.manga.MangaAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -227,7 +227,7 @@ class GetMangaResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.manga.MangaResponse`
+    data: :class:`~hondana.types_.manga.MangaResponse`
     """
 
     result: Literal["ok", "error"]
@@ -241,7 +241,7 @@ class MangaRelationCreateResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.manga.MangaRelation`
+    data: :class:`~hondana.types_.manga.MangaRelation`
     """
 
     result: Literal["ok", "error"]
@@ -255,7 +255,7 @@ class MangaSearchResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.manga.MangaResponse`]
+    data: List[:class:`~hondana.types_.manga.MangaResponse`]
 
     limit: :class:`int`
 
@@ -278,9 +278,9 @@ class MangaRelation(TypedDict):
 
     type: Literal[``"manga_relation"``]
 
-    attributes: :class:`~hondana.types.manga.MangaRelationAttributesResponse`
+    attributes: :class:`~hondana.types_.manga.MangaRelationAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -303,7 +303,7 @@ class MangaRelationResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.manga.MangaRelation`]
+    data: List[:class:`~hondana.types_.manga.MangaRelation`]
 
     limit: :class:`int`
 
@@ -333,7 +333,7 @@ class ChaptersResponse(TypedDict):
 
 class VolumesAndChaptersResponse(TypedDict, total=False):
     """
-    chapters: Dict[:class:`str`, :class:`~hondana.types.manga.ChaptersResponse`]
+    chapters: Dict[:class:`str`, :class:`~hondana.types_.manga.ChaptersResponse`]
 
     count: :class:`int`
 
@@ -349,7 +349,7 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    volumes: Optional[Dict[:class:`str`, :class:`~hondana.types.manga.VolumesAndChaptersResponse`]]
+    volumes: Optional[Dict[:class:`str`, :class:`~hondana.types_.manga.VolumesAndChaptersResponse`]]
     """
 
     result: Literal["ok", "error"]

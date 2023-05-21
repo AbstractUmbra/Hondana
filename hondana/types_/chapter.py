@@ -89,9 +89,9 @@ class ChapterResponse(TypedDict):
 
     type: Literal[``"chapter"``]
 
-    attributes: :class:`~hondana.types.chapter.ChapterAttributesResponse`
+    attributes: :class:`~hondana.types_.chapter.ChapterAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -110,7 +110,7 @@ class GetSingleChapterResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.chapter.ChapterResponse`
+    data: :class:`~hondana.types_.chapter.ChapterResponse`
     """
 
     result: Literal["ok", "error"]
@@ -124,7 +124,7 @@ class GetMultiChapterResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.chapter.ChapterResponse`]
+    data: List[:class:`~hondana.types_.chapter.ChapterResponse`]
 
     limit: :class:`int`
 
@@ -147,7 +147,7 @@ class GetAtHomeResponse(TypedDict):
 
     baseUrl: :class:`str`
 
-    chapter: :class`~hondana.types.GetAtHomeChapterResponse`
+    chapter: :class`~hondana.types_.GetAtHomeChapterResponse`
     """
 
     result: Literal["ok"]
@@ -186,7 +186,7 @@ class ChapterReadHistoryResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.chapter.ChapterReadResponse`]
+    data: List[:class:`~hondana.types_.chapter.ChapterReadResponse`]
 
     limit: :class:`int`
 

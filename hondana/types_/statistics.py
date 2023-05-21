@@ -68,7 +68,7 @@ class BatchStatisticsRatingResponse(TypedDict):
 
 class MangaStatisticsResponse(TypedDict):
     """
-    rating: :class:`~hondana.types.statistics.StatisticsRatingResponse`
+    rating: :class:`~hondana.types_.statistics.StatisticsRatingResponse`
 
     follows: :class:`int`
     """
@@ -80,7 +80,7 @@ class MangaStatisticsResponse(TypedDict):
 
 class BatchStatisticsResponse(TypedDict):
     """
-    rating: :class:`~hondana.types.statistics.BatchStatisticsRatingResponse`
+    rating: :class:`~hondana.types_.statistics.BatchStatisticsRatingResponse`
 
     follows: :class:`int`
     """
@@ -93,7 +93,7 @@ class GetMangaStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types.statistics.StatisticsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types_.statistics.StatisticsResponse`]
     """
 
     result: Literal["ok"]
@@ -104,7 +104,7 @@ class BatchGetStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types.statistics.BatchStatisticsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types_.statistics.BatchStatisticsResponse`]
     """
 
     result: Literal["ok"]
@@ -126,7 +126,7 @@ class GetPersonalMangaRatingsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    ratings: Dict[:class:`str`, :class:`~hondana.types.statistics.PersonalMangaRatingsResponse`]
+    ratings: Dict[:class:`str`, :class:`~hondana.types_.statistics.PersonalMangaRatingsResponse`]
     """
 
     result: Literal["ok"]
@@ -146,7 +146,7 @@ class CommentMetaData(TypedDict):
 
 class StatisticsCommentsResponse(TypedDict):
     """
-    comments: Optional[:class:`~hondana.types_.CommentMetaData`]
+    comments: Optional[:class:`~hondana.types_.statistics.CommentMetaData`]
     """
 
     comments: Optional[CommentMetaData]
@@ -156,7 +156,7 @@ class GetCommentsStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types_.StatisticsCommentsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types_.statistics.StatisticsCommentsResponse`]
     """
 
     result: Literal["ok"]

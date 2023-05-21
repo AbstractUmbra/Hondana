@@ -45,7 +45,7 @@ class SettingsPayload(TypedDict):
     updatedAt: :class:`str`
         Represents an ISO-8601 datetime.
 
-    settings: :class:`~hondana.types.settings.Settings`
+    settings: :class:`~hondana.types_.settings.Settings`
 
     template: :class:`str`
         UUID of the template.

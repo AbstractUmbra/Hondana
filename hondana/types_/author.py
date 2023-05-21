@@ -48,7 +48,7 @@ class AuthorAttributesResponse(TypedDict):
 
     imageUrl: Optional[:class:`str`]
 
-    biography: Optional[:class:`~hondana.types.common.LocalizedString`]
+    biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
 
     twitter: Optional[:class:`str`]
 
@@ -110,9 +110,9 @@ class AuthorResponse(TypedDict):
 
     type: Literal[``"author"``]
 
-    attributes: :class:`~hondana.types.author.AuthorAttributesResponse`
+    attributes: :class:`~hondana.types_.author.AuthorAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -131,7 +131,7 @@ class GetSingleAuthorResponse(TypedDict):
 
     response: Literal[``entity``]
 
-    data: :class:`~hondana.types.author.AuthorResponse`
+    data: :class:`~hondana.types_.author.AuthorResponse`
     """
 
     result: Literal["ok", "error"]
@@ -145,7 +145,7 @@ class GetMultiAuthorResponse(TypedDict):
 
     response: Literal[``collection``]
 
-    data: List[:class:`~hondana.types.author.AuthorResponse`]
+    data: List[:class:`~hondana.types_.author.AuthorResponse`]
 
     limit: :class:`int`
 

@@ -61,7 +61,7 @@ class CustomListResponse(TypedDict):
 
     type: Literal[``"custom_list"``]
 
-    attributes: :class:`~hondana.types.custom_list.CustomListAttributesResponse`
+    attributes: :class:`~hondana.types_.custom_list.CustomListAttributesResponse`
     """
 
     id: str
@@ -76,7 +76,7 @@ class GetSingleCustomListResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.custom_list.CustomListResponse`
+    data: :class:`~hondana.types_.custom_list.CustomListResponse`
     """
 
     result: Literal["ok", "error"]
@@ -90,7 +90,7 @@ class GetMultiCustomListResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.custom_list.CustomListResponse`]
+    data: List[:class:`~hondana.types_.custom_list.CustomListResponse`]
 
     limit: :class:`int`
 

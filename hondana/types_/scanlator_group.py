@@ -109,9 +109,9 @@ class ScanlationGroupResponse(TypedDict):
 
     type: Literal[``"scanlation_group"``]
 
-    attributes: :class:`~hondana.types.scanlator_group.ScanlationGroupAttributesResponse`
+    attributes: :class:`~hondana.types_.scanlator_group.ScanlationGroupAttributesResponse`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
         This key is optional, in the event this payload is gotten from the "relationships" of another object.
 
         This key can contain minimal or full data depending on the ``includes[]`` parameter of its request.
@@ -130,7 +130,7 @@ class GetSingleScanlationGroupResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:`~hondana.types.scanlator_group.ScanlationGroupResponse`
+    data: :class:`~hondana.types_.scanlator_group.ScanlationGroupResponse`
     """
 
     result: Literal["ok", "error"]
@@ -144,7 +144,7 @@ class GetMultiScanlationGroupResponse(TypedDict):
 
     response: Literal[``"collection"``]
 
-    data: List[:class:`~hondana.types.scanlator_group.ScanlationGroupResponse`]
+    data: List[:class:`~hondana.types_.scanlator_group.ScanlationGroupResponse`]
 
     limit: :class:`int`
 

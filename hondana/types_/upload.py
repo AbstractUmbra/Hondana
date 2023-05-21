@@ -73,9 +73,9 @@ class GetUploadSessionDataResponse(TypedDict):
 
     type: Literal[``"upload_session"``]
 
-    attributes: :class:`~hondana.types.upload.UploadSessionAttributes`
+    attributes: :class:`~hondana.types_.upload.UploadSessionAttributes`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
     """
 
     id: str
@@ -90,7 +90,7 @@ class GetUploadSessionResponse(TypedDict):
 
     response: Literal[``"entity"``]
 
-    data: :class:~hondana.types.GetUploadSessionDataResponse`
+    data: :class:~hondana.types_.GetUploadSessionDataResponse`
     """
 
     result: Literal["ok", "error"]
@@ -118,9 +118,9 @@ class ChapterUploadData(TypedDict):
 
     type: Literal[``"upload_session"``]
 
-    attributes: :class:`~hondana.types.upload.ChapterUploadAttributes`
+    attributes: :class:`~hondana.types_.upload.ChapterUploadAttributes`
 
-    relationships: List[:class:`~hondana.types.relationship.RelationshipResponse`]
+    relationships: List[:class:`~hondana.types_.relationship.RelationshipResponse`]
     """
 
     id: str
@@ -133,7 +133,7 @@ class BeginChapterUploadResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    data: :class:`~hondana.types.upload.ChapterUploadData`
+    data: :class:`~hondana.types_.upload.ChapterUploadData`
     """
 
     result: Literal["ok", "error"]
@@ -166,7 +166,7 @@ class UploadedChapterDataResponse(TypedDict):
 
     type: Literal[``"upload_session_file"``]
 
-    attributes: :class:`~hondana.types.upload.UploadedChapterPageAttributes`
+    attributes: :class:`~hondana.types_.upload.UploadedChapterPageAttributes`
     """
 
     id: str
@@ -178,9 +178,9 @@ class UploadedChapterResponse(TypedDict):
     """
     result: Literal[``"ok"``, ``"error"``]
 
-    errors: List[:class:`~hondana.types.errors.ErrorType`]
+    errors: List[:class:`~hondana.types_.errors.ErrorType`]
 
-    data: List[:class:`~hondana.types.upload.UploadedChapterDataResponse`]
+    data: List[:class:`~hondana.types_.upload.UploadedChapterDataResponse`]
     """
 
     result: Literal["ok", "error"]

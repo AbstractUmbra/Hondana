@@ -131,7 +131,7 @@ class Client:
 
     Attributes
     -----------
-    oauth2: :class:`hondana.OAuth2Client`
+    oauth2: :class:`~hondana.oauth2.OAuth2Client`
         The underlying client for handling OAuth2 requests.
 
 
@@ -336,11 +336,11 @@ class Client:
         offset: :class:`int`
             Defaults to 0. This is the pagination offset, the number must be greater than 0.
             If set lower than 0 then it is set to 0.
-        translated_language: List[:class:`~hondana.types.common.LanguageCode`]
+        translated_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -470,13 +470,13 @@ class Client:
             An instance of :class:`hondana.QueryTags` to include in the search.
         status: Optional[List[:class:`~hondana.MangaStatus`]]
             The status(es) of manga to include in the search.
-        original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        original_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             A list of language codes to include for the manga's original language.
             i.e. ``["en"]``
-        excluded_original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        excluded_original_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             A list of language codes to exclude for the manga's original language.
             i.e. ``["en"]``
-        available_translated_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        available_translated_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             A list of language codes to filter they available translation languages in.
             i.e. ``["en"]``
         publication_demographic: Optional[List[:class:`~hondana.PublicationDemographic`]]
@@ -579,20 +579,20 @@ class Client:
 
         Parameters
         -----------
-        title: :class:`~hondana.types.common.LocalizedString`
+        title: :class:`~hondana.types_.common.LocalizedString`
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~hondana.types.common.LocalizedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types_.common.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
-        description: Optional[:class:`~hondana.types.common.LocalizedString`]
+        description: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga description in the format of ``language_key: description``
             i.e. ``{"en": "My amazing manga where x y z happens"}``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[:class:`~hondana.types.manga.MangaLinks`]
+        links: Optional[:class:`~hondana.types_.manga.MangaLinks`]
             The links relevant to the manga.
             See here for more details: https://api.mangadex.org/docs.html#section/Static-data/Manga-links-data
         original_language: :class:`str`
@@ -668,14 +668,14 @@ class Client:
         -----------
         manga_id: :class:`str`
             The manga UUID we are querying against.
-        translated_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        translated_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The list of language codes you want to limit the search to.
         groups: Optional[List[:class:`str`]]
             A list of scanlator groups to filter the results by.
 
         Returns
         --------
-        :class:`~hondana.types.manga.GetMangaVolumesAndChaptersResponse`
+        :class:`~hondana.types_.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
         data = await self._http.get_manga_volumes_and_chapters(
@@ -746,17 +746,17 @@ class Client:
         -----------
         manga_id: :class:`str`
             The UUID of the manga to update.
-        title: Optional[:class:`~hondana.types.common.LocalizedString`]
+        title: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga titles in the format of ``language_key: title``
-        alt_titles: Optional[List[:class:`~hondana.types.common.LocalizedString`]]
+        alt_titles: Optional[List[:class:`~hondana.types_.common.LocalizedString`]]
             The alternative titles in the format of ``language_key: title``
-        description: Optional[:class:`~hondana.types.common.LocalizedString`]
+        description: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga description in the format of ``language_key: description``
         authors: Optional[List[:class:`str`]]
             The list of author UUIDs to credit to this manga.
         artists: Optional[List[:class:`str`]]
             The list of artist UUIDs to credit to this manga.
-        links: Optional[:class:`~hondana.types.manga.MangaLinks`]
+        links: Optional[:class:`~hondana.types_.manga.MangaLinks`]
             The links relevant to the manga.
         original_language: Optional[:class:`str`]
             The language key for the original language of the manga.
@@ -926,11 +926,11 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_language: List[:class:`~hondana.types.common.LanguageCode`]
+        translated_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -1020,7 +1020,7 @@ class Client:
 
         Returns
         --------
-        Union[:class:`~hondana.types.manga.MangaReadMarkersResponse`, :class:`~hondana.types.manga.MangaGroupedReadMarkersResponse`]
+        Union[:class:`~hondana.types_.manga.MangaReadMarkersResponse`, :class:`~hondana.types_.manga.MangaGroupedReadMarkersResponse`]
         """
         if len(manga_ids) == 1:
             return await self._http.manga_read_markers(manga_ids, grouped=False)
@@ -1157,7 +1157,7 @@ class Client:
 
         Returns
         --------
-        :class:`~hondana.types.manga.MangaMultipleReadingStatusResponse`
+        :class:`~hondana.types_.manga.MangaMultipleReadingStatusResponse`
             The payload returned from MangaDex.
         """
         return await self._http.get_all_manga_reading_status(status=status)
@@ -1182,7 +1182,7 @@ class Client:
 
         Returns
         --------
-        :class:`~hondana.types.manga.MangaSingleReadingStatusResponse`
+        :class:`~hondana.types_.manga.MangaSingleReadingStatusResponse`
             The raw response from the API on the request.
         """
         return await self._http.get_manga_reading_status(manga_id)
@@ -1470,11 +1470,11 @@ class Client:
             The volume UUID or UUIDs to limit the request with.
         chapter: Optional[Union[:class:`str`, List[:class:`str`]]]
             The chapter UUID or UUIDs to limit the request with.
-        translated_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        translated_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The list of languages codes to filter the request with.
-        original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        original_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The list of languages to specifically target in the request.
-        excluded_original_language: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        excluded_original_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The list of original languages to exclude from the request.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter the feed by.
@@ -1487,7 +1487,7 @@ class Client:
         include_empty_pages: Optional[:class:`bool`]
             Whether to include chapters that have no recorded pages.
         include_future_publish_at: Optional[:class:`bool`]
-            Whether to include chapters that have a :attr:`publish_at` set to a time in the future.
+            Whether to include chapters that have their publish time set to a time in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to include chapters that have an external url set.
         created_at_since: Optional[:class:`datetime.datetime`]
@@ -1748,7 +1748,7 @@ class Client:
             A list of cover art UUID(s) to limit the request to.
         uploaders: Optional[List[:class:`str`]]
             A list of uploader UUID(s) to limit the request to.
-        locales: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        locales: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The locales to filter this search by.
         order: Optional[:class:`~hondana.query.CoverArtListOrderQuery`]
             A query parameter to choose how the responses are ordered.
@@ -1815,7 +1815,7 @@ class Client:
             The volume this cover relates to.
         description: :class:`str`
             The description of this cover.
-        locale: Optional[:class:`~hondana.types.common.LanguageCode`]
+        locale: Optional[:class:`~hondana.types_.common.LanguageCode`]
             The locale of this cover.
 
         Raises
@@ -1949,7 +1949,7 @@ class Client:
             A list of scanlator group UUID(s) to limit the request to.
         name: Optional[:class:`str`]
             A name to limit the request to.
-        focused_language: Optional[:class:`~hondana.types.common.LanguageCode`]
+        focused_language: Optional[:class:`~hondana.types_.common.LanguageCode`]
             A focused language to limit the request to.
         order: Optional[:class:`~hondana.query.ScanlatorGroupListOrderQuery`]
             An ordering statement for the request.
@@ -2470,7 +2470,7 @@ class Client:
 
         Parameters
         -----------
-        type: :class:`~hondana.types.legacy.LegacyMappingType`
+        type: :class:`~hondana.types_.legacy.LegacyMappingType`
             The type of the object we are querying.
         item_ids: List[:class:`int`]
             The legacy integer IDs of MangaDex items.
@@ -2819,11 +2819,11 @@ class Client:
             Defaults to 100. The maximum amount of chapters to return in the response.
         offset: :class:`int`
             Defaults to 0. The pagination offset for the request.
-        translated_language: List[:class:`~hondana.types.common.LanguageCode`]
+        translated_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the returned chapters with.
-        original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to filter the original language of the returned chapters with.
-        excluded_original_language: List[:class:`~hondana.types.common.LanguageCode`]
+        excluded_original_language: List[:class:`~hondana.types_.common.LanguageCode`]
             A list of language codes to negate filter the original language of the returned chapters with.
         content_rating: Optional[List[:class:`~hondana.ContentRating`]]
             The content rating to filter this query with.
@@ -3066,7 +3066,7 @@ class Client:
             The new twitter url to update the group with.
         manga_updates: Optional[:class:`str`]
             The URL to the group's page where they post updates, if any.
-        focused_languages: Optional[List[:class:`~hondana.types.common.LanguageCode`]]
+        focused_languages: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The new list of language codes to update the group with.
         inactive: Optional[:class:`bool`]
             If the group is inactive or not.
@@ -3266,7 +3266,7 @@ class Client:
         -----------
         name: :class:`str`
             The name of the author we are creating.
-        biography: Optional[:class:`~hondana.types.common.LocalizedString`]
+        biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.
@@ -3413,7 +3413,7 @@ class Client:
             The UUID relating to the author we wish to update.
         name: Optional[:class:`str`]
             The new name to update the author with.
-        biography: Optional[:class:`~hondana.types.common.LocalizedString`]
+        biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The biography of the author we are creating.
         twitter: Optional[:class:`str`]
             The twitter URL of the author.
@@ -3704,7 +3704,7 @@ class Client:
         title: Optional[:class:`str`]
             The chapter's title.
             Defaults to ``None``.
-        translated_language: :class:`~hondana.types.common.LanguageCode`
+        translated_language: :class:`~hondana.types_.common.LanguageCode`
             The language this chapter is translated in.
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
@@ -3783,7 +3783,7 @@ class Client:
         title: Optional[:class:`str`]
             The chapter's title.
             Defaults to ``None``.
-        translated_language: :class:`~hondana.types.common.LanguageCode`
+        translated_language: :class:`~hondana.types_.common.LanguageCode`
             The language this chapter is translated in.
         scanlator_groups: List[:class:`str`]
             The list of scanlator groups to attribute to this chapter's scanlation.
@@ -3899,7 +3899,7 @@ class Client:
 
         Returns
         --------
-        :class:`hondana.types.settings.SettingsPayload`
+        :class:`hondana.types_.settings.SettingsPayload`
             The user's settings.
         """
         data = await self._http.get_user_settings()
@@ -3916,7 +3916,7 @@ class Client:
 
         Parameters
         -----------
-        payload: :class:`hondana.types.settings.Settings`
+        payload: :class:`hondana.types_.settings.Settings`
             A payload representing the settings.
         updated_at: :class:`datetime.datetime`
             The datetime at which you updated the settings.
@@ -3931,7 +3931,7 @@ class Client:
 
         Returns
         --------
-        :class:`~hondana.types.settings.SettingsPayload`
+        :class:`~hondana.types_.settings.SettingsPayload`
             The returned (and created) payload.
         """
 

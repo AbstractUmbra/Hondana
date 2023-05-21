@@ -53,7 +53,7 @@ class APIError(TypedDict):
     """
     result: Literal[``"error"``]
 
-    errors: List[:class:`~hondana.types.errors.ErrorType`]
+    errors: List[:class:`~hondana.types_.errors.ErrorType`]
     """
 
     result: Literal["error"]
