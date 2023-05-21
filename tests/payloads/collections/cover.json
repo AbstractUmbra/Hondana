@@ -3,124 +3,84 @@
     "response": "collection",
     "data": [
         {
-            "id": "67b3d40b-be5f-4331-b762-4612658e0ec9",
+            "id": "a8d1b1e2-faa2-4c1f-b9d5-279183f5b9d9",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "2",
-                "fileName": "b12d974c-bb68-452e-b861-7db4171da153.jpg",
-                "locale": "ja",
-                "createdAt": "2023-02-10T10:12:17+00:00",
-                "updatedAt": "2023-02-10T10:12:17+00:00",
+                "volume": "1",
+                "fileName": "5afaade5-e9af-4353-b842-43eb21e62860.jpg",
+                "locale": "en",
+                "createdAt": "2023-05-21T16:04:29+00:00",
+                "updatedAt": "2023-05-21T16:04:29+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "5dc5917b-01f7-4f24-baee-17b515c888f9",
+                    "id": "73a8f78c-6da9-4faf-a6cb-25db6a550e01",
                     "type": "manga"
                 },
                 {
-                    "id": "92f1689d-35c0-4fa3-ad0a-ef01bd16032e",
+                    "id": "8afdebc4-03fb-4c96-9c98-78f203ed04e5",
                     "type": "user",
                     "attributes": {
-                        "username": "loresx",
+                        "username": "Axtsilversurf",
                         "roles": [
                             "ROLE_USER"
                         ],
-                        "version": 1440
+                        "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "7c66ff70-dd01-4628-90bc-65e377b9021e",
+            "id": "35559fe4-d43a-47d2-8ab2-1017a0c454d7",
             "type": "cover_art",
             "attributes": {
                 "description": "",
                 "volume": "1",
-                "fileName": "9cc273aa-33af-441a-a55b-47332aee765f.jpg",
+                "fileName": "ea4c4d75-aa3b-41db-9914-5e01a7540e1f.jpg",
                 "locale": "ja",
-                "createdAt": "2023-02-10T10:12:16+00:00",
-                "updatedAt": "2023-02-10T10:12:16+00:00",
+                "createdAt": "2023-05-21T15:43:51+00:00",
+                "updatedAt": "2023-05-21T15:43:51+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "5dc5917b-01f7-4f24-baee-17b515c888f9",
-                    "type": "manga"
-                },
-                {
-                    "id": "92f1689d-35c0-4fa3-ad0a-ef01bd16032e",
-                    "type": "user",
-                    "attributes": {
-                        "username": "loresx",
-                        "roles": [
-                            "ROLE_USER"
-                        ],
-                        "version": 1440
-                    }
-                }
-            ]
-        },
-        {
-            "id": "2806ca07-797e-45f3-8b4b-43cef5dc1f9f",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "764dff41-90c3-4c8f-84da-e227badb7e0f.jpg",
-                "locale": "ja",
-                "createdAt": "2023-02-10T09:29:38+00:00",
-                "updatedAt": "2023-02-10T09:29:38+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "0aa2520a-a18f-406d-8908-32cec22b88ac",
+                    "id": "7b13ec62-993a-4f32-b5a6-5f9a4f886029",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Kono Sekai ga Izure Horobu Koto wo, Ore dake ga Shitte Iru"
+                            "en": "Takagami-sama to Aware na Ikenie"
                         },
                         "altTitles": [
                             {
-                                "en": "Only I Know That the World Will End"
+                                "en": "Hawk God & Miserable Sacrifice"
                             },
                             {
-                                "ja": "\u3053\u306e\u4e16\u754c\u304c\u3044\u305a\u308c\u6ec5\u3076\u3053\u3068\u3092\u3001\u4ffa\u3060\u3051\u304c\u77e5\u3063\u3066\u3044\u308b\uff5e\u30e2\u30f3\u30b9\u30bf\u30fc\u304c\u73fe\u308c\u305f\u4e16\u754c\u3067\u3001\u6b7b\u306b\u623b\u308a\u30ec\u30d9\u30eb\u30a2\u30c3\u30d7\uff5e"
-                            },
-                            {
-                                "ja-ro": "Kono Sekai ga Izure Horobu Koto o, Ore dake ga Shitteiru: Monster ga Arawareta Sekai de, Shi ni Modori Level Up"
+                                "ja": "\u9df9\u795e\u69d8\u3068\u6190\u308c\u306a\u751f\u8d04"
                             }
                         ],
                         "description": {
-                            "en": "An ordinary office worker, Akira Ichijo, was attacked by a Minotaur on his way home from work. In the next moment, he woke up in his office desk, Akira was resurrected from death, inherited his level and status, and possessed a unique skill called \"Return from the Underworld\" that allowed him to restart his life at a certain time. Now Akira makes full use of his skill and everything he had to search and survive with his childhood friend Nao Nanase to face this cruel world!!"
+                            "en": "In order to save the village from famine, Kasane, who is lame in one leg, leaves his little sister behind and becomes a sacrifice.\nArriving in the afterlife, he tries to negotiate with the Land God Murakumo to make it rain. However, not only does Murakumo refuse to grant his wish, but he also rapes Kasane.\n\u201cIf you don\u2019t like this, hurry up and disappear somewhere. I beg you\u2026\u201d\nAfter painfully pleading this while hurting him, Kasane starts to want to know Murakumo's real feelings.\nThe sweet, painful and heartrending love of salvation for two scarred and lonely people."
                         },
                         "isLocked": false,
                         "links": {
-                            "al": "161047",
-                            "bw": "series/387782",
-                            "kt": "kono-sekai-ga-izure-horobu-koto-wo-ore-dake-ga-shitte-iru",
-                            "mu": "8rszvsg",
-                            "nu": "only-i-know-that-this-world-will-eventually-perish",
-                            "amz": "https://www.amazon.co.jp/dp/B0BPSPMTFS",
-                            "mal": "151896",
-                            "raw": "https://pocket.shonenmagazine.com/episode/316112896826245581"
+                            "mu": "aby57fp"
                         },
                         "originalLanguage": "ja",
                         "lastVolume": "",
                         "lastChapter": "",
-                        "publicationDemographic": "seinen",
+                        "publicationDemographic": null,
                         "status": "ongoing",
                         "year": 2022,
-                        "contentRating": "safe",
+                        "contentRating": "erotica",
                         "tags": [
                             {
-                                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Action"
+                                        "en": "Romance"
                                     },
                                     "description": {},
                                     "group": "genre",
@@ -129,37 +89,11 @@
                                 "relationships": []
                             },
                             {
-                                "id": "5fff9cde-849c-4d78-aab0-0d52b2ee1d25",
+                                "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Survival"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "9467335a-1b83-4497-9231-765337a00b96",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Post-Apocalyptic"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ace04997-f6bd-436e-b261-779182193d3d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Isekai"
+                                        "en": "Boys' Love"
                                     },
                                     "description": {},
                                     "group": "genre",
@@ -168,66 +102,14 @@
                                 "relationships": []
                             },
                             {
-                                "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Gore"
+                                        "en": "Sexual Violence"
                                     },
                                     "description": {},
                                     "group": "content",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdad7e68-1419-41dd-bdce-27753074a640",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Horror"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Fantasy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Mystery"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Adaptation"
-                                    },
-                                    "description": {},
-                                    "group": "format",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -235,67 +117,232 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2022-09-18T13:52:00+00:00",
-                        "updatedAt": "2023-02-10T09:29:39+00:00",
-                        "version": 13,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "42fba679-8fb0-44ff-93a8-69c9933f3e03"
+                        "createdAt": "2023-05-21T15:43:49+00:00",
+                        "updatedAt": "2023-05-21T15:44:47+00:00",
+                        "version": 2,
+                        "availableTranslatedLanguages": [],
+                        "latestUploadedChapter": null
                     }
                 },
                 {
-                    "id": "fb03ae91-2304-4a1f-b9e2-6b5ba3313138",
+                    "id": "45b6fc14-9973-4fff-a0bf-5d9393e4345d",
                     "type": "user",
                     "attributes": {
-                        "username": "Mopopolis",
+                        "username": "sbs2310",
                         "roles": [
-                            "ROLE_CONTRIBUTOR"
+                            "ROLE_GROUP_MEMBER",
+                            "ROLE_USER",
+                            "ROLE_GROUP_LEADER"
                         ],
-                        "version": 5718
+                        "version": 1499
                     }
                 }
             ]
         },
         {
-            "id": "62ecd7c2-36da-4234-8f03-575c9b601896",
+            "id": "0f3dad25-8266-4996-8c62-a3ef2c6c7448",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "1",
-                "fileName": "7295847d-7673-4f94-bf3e-c109cfadf70a.jpg",
-                "locale": "ja",
-                "createdAt": "2023-02-10T08:15:44+00:00",
-                "updatedAt": "2023-02-10T08:15:44+00:00",
+                "volume": null,
+                "fileName": "8ad58b0a-a289-4f9e-ae8d-14c0529b74f5.jpg",
+                "locale": "vi",
+                "createdAt": "2023-05-21T14:42:04+00:00",
+                "updatedAt": "2023-05-21T14:42:04+00:00",
                 "version": 1
             },
             "relationships": [
                 {
-                    "id": "e9718516-ee30-4f50-b8e4-017236f85848",
+                    "id": "df7334a1-39bf-4420-95bc-ed3f05f2c82c",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "I Can't Give You the Valentine's Day Chocolate I Made!"
+                            "en": "141108"
+                        },
+                        "altTitles": [],
+                        "description": {
+                            "en": "She wakes up not remembering anything, all because of her love and a terrible accident."
+                        },
+                        "isLocked": false,
+                        "links": {
+                            "raw": "https://www.webtoons.com/en/challenge/housemates/141108/viewer?title_no=16967&episode_no=2"
+                        },
+                        "originalLanguage": "vi",
+                        "lastVolume": null,
+                        "lastChapter": null,
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2014,
+                        "contentRating": "safe",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": {},
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Psychological"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Girls' Love"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Drama"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "c8cbe35b-1b2b-4a3f-9c37-db84c4514856",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Medical"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "f8f62932-27da-4fe4-8ee1-6779a8c5edba",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Tragedy"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2019-03-08T11:52:37+00:00",
+                        "updatedAt": "2023-05-21T14:42:57+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "pl",
+                            "fr"
+                        ],
+                        "latestUploadedChapter": "fe129d8a-a617-4644-a0ab-07475868b3a0"
+                    }
+                },
+                {
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
+                    "type": "user",
+                    "attributes": {
+                        "username": "astromath",
+                        "roles": [
+                            "ROLE_CONTRIBUTOR"
+                        ],
+                        "version": 23958
+                    }
+                }
+            ]
+        },
+        {
+            "id": "f8ac0b8a-c79d-4dd1-9a57-2b0363cf5617",
+            "type": "cover_art",
+            "attributes": {
+                "description": "",
+                "volume": "2",
+                "fileName": "e1f88a1f-c703-4a9e-855c-1b8d0d982236.png",
+                "locale": "ja",
+                "createdAt": "2023-05-21T14:21:53+00:00",
+                "updatedAt": "2023-05-21T14:21:53+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "77fe723a-5b06-4362-8e6b-3a9e5a7b26bd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "14-sai to Illustrator"
                         },
                         "altTitles": [
                             {
-                                "ja-ro": "Watasenai!? Valentine Choco"
+                                "zh": "14\u5c81\u548c\u63d2\u753b\u5bb6"
                             },
                             {
-                                "ja": "\u6e21\u305b\u306a\u3044\uff01\uff1f\u30d0\u30ec\u30f3\u30bf\u30a4\u30f3\u30c1\u30e7\u30b3"
+                                "zh-hk": "14\u6b72\u548c\u63d2\u756b\u5bb6"
+                            },
+                            {
+                                "ja": "14\u6b73\u3068\u30a4\u30e9\u30b9\u30c8\u30ec\u30fc\u30bf\u30fc"
+                            },
+                            {
+                                "ko": "14\uc138\uc640 \uc77c\ub7ec\uc2a4\ud2b8\ub808\uc774\ud130"
+                            },
+                            {
+                                "en": "A fourteen and an illustrator."
+                            },
+                            {
+                                "ru": "\u0418\u043b\u043b\u044e\u0441\u0442\u0440\u0430\u0442\u043e\u0440 \u0432 14 \u043b\u0435\u0442"
                             }
                         ],
-                        "description": {},
+                        "description": {
+                            "en": "The manga center on Y\u016bto Ky\u014dbashi, an illustrator for light novels who has a particular fetish for navels. He meets a 14-year-old cosplayer named Nonoka Nogi, who is a fan of his illustrations, and begins helping him out with his housework. The story shows Y\u016bto and his colleagues, which include his editor and other light novel and adult game illustrators.\n\n**Note:**  The novel is 8 volumes long and the manga is 2 volumes long.",
+                            "ja": "[Wikipedia](https://ja.wikipedia.org/wiki/14%E6%AD%B3%E3%81%A8%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC)",
+                            "pt": "O mang\u00e1 centra-se em Yuuto Kyobayashi, um ilustrador de light novels que tem um fetiche particular por umbigos. Ele conhece uma cosplayer de 14 anos chamada Nonoka Nogi, que \u00e9 f\u00e3 de suas ilustra\u00e7\u00f5es, e come\u00e7a a ajud\u00e1-lo com suas tarefas dom\u00e9sticas. A hist\u00f3ria mostra Yuuto e seus colegas, que incluem seu editor e outros ilustradores de light novels e jogos adultos."
+                        },
                         "isLocked": false,
                         "links": {
-                            "raw": "https://twitter.com/raon_wawaji/status/1623954925817409536/photo/1"
+                            "al": "107366",
+                            "ap": "14-sai-to-illustrator",
+                            "bw": "series/252853/list",
+                            "kt": "51886",
+                            "mu": "147304",
+                            "amz": "https://www.amazon.co.jp/-/en/gp/product/4065133726",
+                            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2302389",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/594985/A002401216/",
+                            "mal": "111265",
+                            "raw": "https://cycomi.com/fw/cycomibrowser/chapter/title/82"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": "",
+                        "lastVolume": "2",
                         "lastChapter": "",
-                        "publicationDemographic": null,
-                        "status": "ongoing",
-                        "year": 2023,
+                        "publicationDemographic": "shounen",
+                        "status": "completed",
+                        "year": 2018,
                         "contentRating": "safe",
                         "tags": [
                             {
@@ -325,27 +372,14 @@
                                 "relationships": []
                             },
                             {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "School Life"
+                                        "en": "Slice of Life"
                                     },
                                     "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Web Comic"
-                                    },
-                                    "description": {},
-                                    "group": "format",
+                                    "group": "genre",
                                     "version": 1
                                 },
                                 "relationships": []
@@ -353,103 +387,88 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2023-02-10T08:15:38+00:00",
-                        "updatedAt": "2023-02-10T08:34:50+00:00",
-                        "version": 2,
+                        "createdAt": "2019-06-08T21:12:01+00:00",
+                        "updatedAt": "2023-05-21T14:21:53+00:00",
+                        "version": 4,
                         "availableTranslatedLanguages": [
-                            "en"
+                            "pt-br",
+                            "es-la"
                         ],
-                        "latestUploadedChapter": "823bbf9b-2959-41ed-b214-eec23a3d6533"
+                        "latestUploadedChapter": "9ad698e6-720d-43a2-af9b-707f2cad6572"
                     }
                 },
                 {
-                    "id": "960b5038-8043-4861-8d0e-4ef256880806",
+                    "id": "fd0fa745-5dcf-4165-a6a3-29634ca55740",
                     "type": "user",
                     "attributes": {
-                        "username": "AcridBrimistic",
+                        "username": "astromath",
                         "roles": [
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER"
+                            "ROLE_CONTRIBUTOR"
                         ],
-                        "version": 1558
+                        "version": 23958
                     }
                 }
             ]
         },
         {
-            "id": "5b6a9d70-59dc-48b7-94d3-dbe632b6903a",
+            "id": "485e943e-e382-49b2-8408-faa21508f604",
             "type": "cover_art",
             "attributes": {
                 "description": "",
-                "volume": "1",
-                "fileName": "9d3b7e68-2df0-4c7e-ae80-91a565548e3c.jpg",
+                "volume": "5",
+                "fileName": "629b9af6-c9cc-4b87-b7e0-2aaab86af746.jpg",
                 "locale": "ja",
-                "createdAt": "2023-02-10T06:01:17+00:00",
-                "updatedAt": "2023-02-10T06:01:17+00:00",
-                "version": 1
+                "createdAt": "2023-05-21T13:41:43+00:00",
+                "updatedAt": "2023-05-21T13:56:17+00:00",
+                "version": 2
             },
             "relationships": [
                 {
-                    "id": "84b40aca-0d2f-42f3-9576-b51472ed2b4e",
+                    "id": "8d3022fe-db48-49ba-92ce-8d4c813e8ba4",
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "The defeat of Ichijou from the disciplinary committee"
+                            "en": "Seishun no After"
                         },
                         "altTitles": [
                             {
-                                "ja": "\u98a8\u7d00\u59d4\u54e1 \u4e00\u6761\u306e\u6557\u5317"
+                                "en": "After Youth"
                             },
                             {
-                                "ja-ro": "Fuuki Iin Ichijou no Haiboku"
+                                "en": "\u9752\u6625\u306e\u30a2\u30d5\u30bf\u30fc"
+                            },
+                            {
+                                "en": "\u9752\u6625\u8fc7\u540e"
                             }
                         ],
-                        "description": {},
+                        "description": {
+                            "en": "Makoto Toba hates everyone in his class. Everyone except Sakura Toowa, an introverted high school girl who lives with her grandma and loves video games. But one day, Sakura disappears(?) right in front of Makoto. Makoto continues to visit the site of her disappearance on the anniversary for the next 16 years. That is, until Sakura comes back from the time slip she was stuck in, and to her not a moment has passed. Now at 32 with a girlfriend, Makoto has to take care of his 16-year-old childhood crush. What could possibly go wrong?"
+                        },
                         "isLocked": false,
                         "links": {
-                            "raw": "https://book.dmm.co.jp/product/4267017/k568agotp01906"
+                            "al": "95813",
+                            "ap": "seishun-no-after",
+                            "bw": "dea72c3dd8-c496-4f10-ad27-9ff89cce9bb6",
+                            "kt": "42534",
+                            "mu": "117322",
+                            "amz": "https://www.amazon.co.jp/gp/product/B0787YRDXB",
+                            "ebj": "https://ebookjapan.yahoo.co.jp/books/331492/A001569257/",
+                            "mal": "92262"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": "",
-                        "lastChapter": "",
-                        "publicationDemographic": null,
+                        "lastVolume": "4",
+                        "lastChapter": "27",
+                        "publicationDemographic": "seinen",
                         "status": "completed",
-                        "year": null,
-                        "contentRating": "pornographic",
+                        "year": 2015,
+                        "contentRating": "erotica",
                         "tags": [
                             {
-                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "id": "292e862b-2d17-4062-90a2-0356caa4ae27",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Oneshot"
-                                    },
-                                    "description": {},
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "97893a4c-12af-4dac-b6be-0dffb353568e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Sexual Violence"
-                                    },
-                                    "description": {},
-                                    "group": "content",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
+                                        "en": "Time Travel"
                                     },
                                     "description": {},
                                     "group": "theme",
@@ -458,24 +477,37 @@
                                 "relationships": []
                             },
                             {
-                                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Delinquents"
+                                        "en": "Romance"
                                     },
                                     "description": {},
-                                    "group": "theme",
+                                    "group": "genre",
                                     "version": 1
                                 },
                                 "relationships": []
                             },
                             {
-                                "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
                                 "type": "tag",
                                 "attributes": {
                                     "name": {
-                                        "en": "Gyaru"
+                                        "en": "Drama"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Supernatural"
                                     },
                                     "description": {},
                                     "group": "theme",
@@ -486,26 +518,26 @@
                         ],
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2023-02-10T06:01:15+00:00",
-                        "updatedAt": "2023-02-10T06:02:03+00:00",
-                        "version": 2,
+                        "createdAt": "2018-11-05T12:32:49+00:00",
+                        "updatedAt": "2023-05-21T13:41:44+00:00",
+                        "version": 4,
                         "availableTranslatedLanguages": [
                             "en"
                         ],
-                        "latestUploadedChapter": "87c8b6dc-3a0f-422c-ade1-d0f12386663b"
+                        "latestUploadedChapter": "863903c7-522d-487e-a9ff-41addbe92d14"
                     }
                 },
                 {
-                    "id": "af4d7cb1-57b0-4f0c-81f8-0f98831ee278",
+                    "id": "604e640b-601a-4b8c-b183-7967a79c9904",
                     "type": "user",
                     "attributes": {
-                        "username": "InnisDeceit",
+                        "username": "dokumushitranslator",
                         "roles": [
                             "ROLE_GROUP_MEMBER",
                             "ROLE_USER",
                             "ROLE_GROUP_LEADER"
                         ],
-                        "version": 6745
+                        "version": 129
                     }
                 }
             ]
@@ -513,5 +545,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 168237
+    "total": 190325
 }

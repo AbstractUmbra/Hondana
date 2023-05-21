@@ -232,16 +232,23 @@
                             },
                             {
                                 "ja": "\u521d\u604b\u306e\u304a\u59c9\u3055\u3093\u306b\u7518\u3048\u305f\u3044\u3060\u3051\u306e\u4eba\u751f\u3060\u3063\u305f"
+                            },
+                            {
+                                "en": "All I Wanted Was A Life Where My First Love Onee-san Only Spoils Me"
                             }
                         ],
-                        "description": {},
+                        "description": {
+                            "en": "The main character travels back in time to his elementary school days and pretends to be a child, making out with his childhood friend, a high school girl, under the covers.",
+                            "ja": "\u5c0f\u5b66\u751f\u6642\u4ee3\u306b\u30bf\u30a4\u30e0\u30b9\u30ea\u30c3\u30d7\u3057\u305f\u4e3b\u4eba\u516c\u304c\u3001\u5b50\u4f9b\u306e\u632f\u308a\u3092\u3057\u3066\u5e7c\u99b4\u67d3\u306e\u5973\u5b50\u9ad8\u751f\u3068\u5e03\u56e3\u306e\u4e2d\u3067\u30a4\u30c1\u30e3\u30a4\u30c1\u30e3\u3059\u308b\u6f2b\u753b\u3067\u3059\u3002"
+                        },
                         "isLocked": false,
                         "links": {
-                            "al": "144499"
+                            "al": "144499",
+                            "raw": "https://www.melonbooks.co.jp/detail/detail.php?product_id=1696273"
                         },
                         "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "1",
+                        "lastVolume": "",
+                        "lastChapter": "",
                         "publicationDemographic": null,
                         "status": "completed",
                         "year": 2019,
@@ -290,8 +297,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2022-04-04T07:20:09+00:00",
-                        "updatedAt": "2022-12-25T21:50:56+00:00",
-                        "version": 4,
+                        "updatedAt": "2023-03-29T17:14:29+00:00",
+                        "version": 9,
                         "availableTranslatedLanguages": [
                             "en"
                         ],
@@ -363,14 +370,19 @@
                     "type": "manga",
                     "attributes": {
                         "title": {
-                            "en": "Suki Kirai Daisuki. Bangaihen (Doujinshi)"
+                            "en": "Suki Kirai Daisuki. Bangaihen"
                         },
                         "altTitles": [
                             {
                                 "en": "Love \u2022 Hate \u2022 Really Love (Side Story)"
+                            },
+                            {
+                                "ja": "\u30b9\u30ad\u30fb\u30ad\u30e9\u30a4\u30fb\u30c0\u30a4\u30b9\u30ad\u3002\u756a\u5916\u7de8"
                             }
                         ],
-                        "description": {},
+                        "description": {
+                            "en": "Hayami siblings life...\n\nTags:\nsole female, sole male, sister, incest, big breasts"
+                        },
                         "isLocked": false,
                         "links": {
                             "al": "73203",
@@ -382,9 +394,22 @@
                         "lastChapter": "",
                         "publicationDemographic": null,
                         "status": "completed",
-                        "year": null,
+                        "year": 2012,
                         "contentRating": "pornographic",
                         "tags": [
+                            {
+                                "id": "5bd0e105-4481-44ca-b6e7-7544da56b1a3",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Incest"
+                                    },
+                                    "description": {},
+                                    "group": "theme",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
                             {
                                 "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
                                 "type": "tag",
@@ -402,8 +427,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2020-04-16T19:42:37+00:00",
-                        "updatedAt": "2022-12-25T05:31:35+00:00",
-                        "version": 6,
+                        "updatedAt": "2023-04-28T15:28:36+00:00",
+                        "version": 9,
                         "availableTranslatedLanguages": [
                             "en"
                         ],
@@ -934,9 +959,10 @@
                         "updatedAt": "2022-06-26T09:54:21+00:00",
                         "version": 7,
                         "availableTranslatedLanguages": [
-                            "en"
+                            "en",
+                            "pl"
                         ],
-                        "latestUploadedChapter": "7b309be4-29f9-4f23-aa6e-085fe3df35c1"
+                        "latestUploadedChapter": "9e70eda9-6d7e-42f6-8e39-c8d2dcbae162"
                     }
                 }
             ]
@@ -1536,5 +1562,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 46746
+    "total": 49431
 }

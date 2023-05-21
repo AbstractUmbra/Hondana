@@ -40,7 +40,7 @@
                         "contactEmail": "holo@doki.co",
                         "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
                         "twitter": null,
-                        "mangaUpdates": null,
+                        "mangaUpdates": "https://www.mangaupdates.com/group/owzmmam/doki-fansubs",
                         "focusedLanguages": [
                             "en"
                         ],
@@ -49,8 +49,8 @@
                         "inactive": false,
                         "publishDelay": null,
                         "createdAt": "2021-04-19T21:45:59+00:00",
-                        "updatedAt": "2021-04-19T21:45:59+00:00",
-                        "version": 1
+                        "updatedAt": "2023-02-13T18:14:23+00:00",
+                        "version": 2
                     }
                 },
                 {
@@ -255,7 +255,7 @@
                         "contactEmail": "holo@doki.co",
                         "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
                         "twitter": null,
-                        "mangaUpdates": null,
+                        "mangaUpdates": "https://www.mangaupdates.com/group/owzmmam/doki-fansubs",
                         "focusedLanguages": [
                             "en"
                         ],
@@ -264,8 +264,8 @@
                         "inactive": false,
                         "publishDelay": null,
                         "createdAt": "2021-04-19T21:45:59+00:00",
-                        "updatedAt": "2021-04-19T21:45:59+00:00",
-                        "version": 1
+                        "updatedAt": "2023-02-13T18:14:23+00:00",
+                        "version": 2
                     }
                 },
                 {
@@ -470,7 +470,7 @@
                         "contactEmail": "holo@doki.co",
                         "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
                         "twitter": null,
-                        "mangaUpdates": null,
+                        "mangaUpdates": "https://www.mangaupdates.com/group/owzmmam/doki-fansubs",
                         "focusedLanguages": [
                             "en"
                         ],
@@ -479,8 +479,8 @@
                         "inactive": false,
                         "publishDelay": null,
                         "createdAt": "2021-04-19T21:45:59+00:00",
-                        "updatedAt": "2021-04-19T21:45:59+00:00",
-                        "version": 1
+                        "updatedAt": "2023-02-13T18:14:23+00:00",
+                        "version": 2
                     }
                 },
                 {
@@ -685,7 +685,7 @@
                         "contactEmail": "holo@doki.co",
                         "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
                         "twitter": null,
-                        "mangaUpdates": null,
+                        "mangaUpdates": "https://www.mangaupdates.com/group/owzmmam/doki-fansubs",
                         "focusedLanguages": [
                             "en"
                         ],
@@ -694,8 +694,8 @@
                         "inactive": false,
                         "publishDelay": null,
                         "createdAt": "2021-04-19T21:45:59+00:00",
-                        "updatedAt": "2021-04-19T21:45:59+00:00",
-                        "version": 1
+                        "updatedAt": "2023-02-13T18:14:23+00:00",
+                        "version": 2
                     }
                 },
                 {
@@ -900,7 +900,7 @@
                         "contactEmail": "holo@doki.co",
                         "description": "**An anime fansub group which also does manga occasionally.**  \n*Saving anime/manga since 2009!* ",
                         "twitter": null,
-                        "mangaUpdates": null,
+                        "mangaUpdates": "https://www.mangaupdates.com/group/owzmmam/doki-fansubs",
                         "focusedLanguages": [
                             "en"
                         ],
@@ -909,8 +909,8 @@
                         "inactive": false,
                         "publishDelay": null,
                         "createdAt": "2021-04-19T21:45:59+00:00",
-                        "updatedAt": "2021-04-19T21:45:59+00:00",
-                        "version": 1
+                        "updatedAt": "2023-02-13T18:14:23+00:00",
+                        "version": 2
                     }
                 },
                 {
@@ -1080,5 +1080,5 @@
     ],
     "limit": 5,
     "offset": 0,
-    "total": 1527620
+    "total": 1600723
 }

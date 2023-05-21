@@ -307,7 +307,7 @@
                         "es-la",
                         "id"
                     ],
-                    "latestUploadedChapter": "2dce4529-1455-463c-b112-0e822ead02a5"
+                    "latestUploadedChapter": "63533421-3593-4901-b043-9fe5b50242c0"
                 }
             },
             {
@@ -388,29 +388,33 @@
                 "id": "2ece858b-2cf6-4c35-ac71-30e9f60ff824",
                 "type": "manga",
                 "attributes": {
+                    "isLocked": false,
+                    "links": {
+                        "ap": "slow-start-anthology-comic",
+                        "bw": "de51728ba9-fc92-4ece-a2ad-6f1ddb7c611b",
+                        "kt": "56819",
+                        "mu": "147464",
+                        "amz": "https://www.amazon.co.jp/dp/B079BF6H36/",
+                        "ebj": "https://ebookjapan.yahoo.co.jp/books/444921/"
+                    },
+                    "originalLanguage": "ja",
+                    "lastVolume": "1",
+                    "lastChapter": "12",
+                    "publicationDemographic": null,
+                    "status": "completed",
+                    "contentRating": "safe",
                     "title": {
                         "en": "Slow Start Anthology Comic"
                     },
                     "altTitles": [
                         {
-                            "en": "\u30b9\u30ed\u30a6\u30b9\u30bf\u30fc\u30c8\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u30b3\u30df\u30c3\u30af"
+                            "ja": "\u30b9\u30ed\u30a6\u30b9\u30bf\u30fc\u30c8\u30a2\u30f3\u30bd\u30ed\u30b8\u30fc\u30b3\u30df\u30c3\u30af"
                         }
                     ],
                     "description": {
-                        "en": "Anthology Comic of Slow Start"
+                        "en": "Anthology Comic of Slow Start.\n\n---\n**Cover**: Ruroo (\u308b\u308d\u304a)\n\n**Author list**:\n1. Wakadori Nikomi\n2. Konayama Kata\n3. Murakami Meishi\n4. Warabimochi Kinako\n5. Kasuga Sunao\n6. Mitsuki Yuu\n7. Nishimi Shin\n8. Ookuma Rasuko\n9. Kamoto Tatsuya\n10. Yuimal\n11. Ayuka\n12. Konishi Aki"
                     },
-                    "isLocked": false,
-                    "links": {
-                        "kt": "56819",
-                        "mu": "147464"
-                    },
-                    "originalLanguage": "ja",
-                    "lastVolume": null,
-                    "lastChapter": null,
-                    "publicationDemographic": null,
-                    "status": "ongoing",
-                    "year": null,
-                    "contentRating": "safe",
+                    "year": 2018,
                     "tags": [
                         {
                             "id": "51d83883-4103-437c-b4b1-731cb73d786c",
@@ -454,9 +458,9 @@
                     ],
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
+                    "version": 5,
                     "createdAt": "2019-03-29T22:22:04+00:00",
-                    "updatedAt": "2022-11-02T09:34:09+00:00",
-                    "version": 3,
+                    "updatedAt": "2023-04-09T04:38:13+00:00",
                     "availableTranslatedLanguages": [
                         "en"
                     ],

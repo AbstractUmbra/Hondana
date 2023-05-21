@@ -23,6 +23,15 @@
                         },
                         {
                             "zh-hk": "\u60f3\u8981\u7d66\u5225\u4eba\u770b\u7684\u9732\u4e43\u91ac"
+                        },
+                        {
+                            "en": "Tsuyuno-chan Likes to Show Off"
+                        },
+                        {
+                            "en": "Tsuyuno-chan Who Wants To Show Off"
+                        },
+                        {
+                            "ko": "\ubcf4\uc5ec\uc8fc\uace0 \uc2f6\uc5b4\ud558\ub294 \uce20\uc720\ub178\uc9f1"
                         }
                     ],
                     "description": {
@@ -38,7 +47,8 @@
                         "amz": "https://www.amazon.co.jp/dp/B091DVVBZT",
                         "ebj": "https://ebookjapan.yahoo.co.jp/books/604375/",
                         "mal": "129868",
-                        "raw": "https://kuragebunch.com/episode/13933686331653721909"
+                        "raw": "https://kuragebunch.com/episode/13933686331653721909",
+                        "engtl": "https://comikey.com/comics/tsuyuno-chan-likes-to-show-off-manga/477/"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": "",
@@ -91,12 +101,12 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-06-03T08:01:58+00:00",
-                    "updatedAt": "2022-08-23T17:15:52+00:00",
-                    "version": 19,
+                    "updatedAt": "2023-05-07T19:43:23+00:00",
+                    "version": 24,
                     "availableTranslatedLanguages": [
                         "en"
                     ],
-                    "latestUploadedChapter": "a767e08c-f3ba-4e48-822f-8b0e9f2cf84c"
+                    "latestUploadedChapter": "84c3f0d9-906f-4f62-9acc-8ec255d92c66"
                 }
             },
             {
@@ -269,13 +279,14 @@
                         "cs",
                         "en",
                         "zh",
+                        "nl",
                         "uk",
                         "hu",
                         "tr",
                         "es",
                         "pt"
                     ],
-                    "latestUploadedChapter": "9cea32eb-fee2-4165-b0a9-9171b3ba422e"
+                    "latestUploadedChapter": "a4c85511-2ef0-40af-b7f7-3f79795915a2"
                 }
             },
             {

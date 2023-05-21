@@ -3,89 +3,6 @@
     "response": "collection",
     "data": [
         {
-            "id": "1ad670b0-e678-434b-8160-fd50cb753ce0",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "TT",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "1adab62e-939c-49a0-8ad7-57d9097f9f75",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Musunde Scans",
-                "altNames": [],
-                "locked": true,
-                "website": "http://musundescans.blogspot.com/",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "DcQsXZn",
-                "contactEmail": null,
-                "description": "Originally formed with the purpose to scanlate Musunde Hiraite by Minase Mayu. We like romance manga. Preferably with qt\u03c0's.",
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "4b93d517-951f-4241-8a63-596b1f028b54",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "cranon",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "4b93d517-951f-4241-8a63-596b1f028b54",
-                    "type": "member",
-                    "attributes": {
-                        "username": "cranon",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 2
-                    }
-                }
-            ]
-        },
-        {
             "id": "1adb76cd-dead-4f15-831b-dd7a793c42f5",
             "type": "scanlation_group",
             "attributes": {
@@ -144,11 +61,11 @@
                     "attributes": {
                         "username": "Greatestneon",
                         "roles": [
+                            "ROLE_GROUP_MEMBER",
                             "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
+                            "ROLE_GROUP_LEADER"
                         ],
-                        "version": 9
+                        "version": 54
                     }
                 },
                 {
@@ -157,11 +74,11 @@
                     "attributes": {
                         "username": "Greatestneon",
                         "roles": [
+                            "ROLE_GROUP_MEMBER",
                             "ROLE_USER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
+                            "ROLE_GROUP_LEADER"
                         ],
-                        "version": 9
+                        "version": 54
                     }
                 }
             ]
@@ -193,9 +110,93 @@
                 "version": 1
             },
             "relationships": []
+        },
+        {
+            "id": "1ae5b7e4-5db7-42b8-915b-7edfef8e2e64",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Yannu no Mahou",
+                "altNames": [],
+                "locked": false,
+                "website": "https://yannunomahoufansub.blogspot.com",
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": "bPxEWjh",
+                "contactEmail": "yannunomahoufansub@hotmail.com",
+                "description": "Yannu no Mahou Fansub\n\nWe are a fansub dedicated to manga translation into English and Spanish.\nEspecially work yaoi, love the nutella and cookies.\n\nWe live and breathe yaoi\n\n\nWebsite: https://yannunomahoufansub.blogspot.mx/\n\nDISCORD https://discord.gg/MvgQBxv\nTUMBLR https://yannunomahou.tumblr.com/\n\nR E C R U I T M E N T\n\n\u2765Japanese and Korean Translators: Translates the Japan/Korean text to English; no MTL, please!\nYou don\u2019t need experience, as long as you have knowledge of the language!\n\n\u2765Cleaner/Redrawes for manhwa/manhua/manga\n\n\u2765Dick Redrawer: Must be able to redraw all +18 scenes!\n\n\u2765Raw Compiler: You must know how to use Photoshop to join the images and also you must use Waifux2 to increase the quality of the images. In this position you must also have a verified Bomtoon & Ridibooks account (to see the +18 content).\n\n\u2765Typesetters: The typesetter insert the proofread translation into the cleaned scans to re-create the manga with translated English text. It takes creativity to choose the right font that fit the tone of the character. An aesthetic taste is also a must when layouting, which includes shaping and positioning the text well.\n\nSend a message to yannunomahoufansub@hotmail.com which should include:\n\n\u2022 Your name or Nick you prefer to work with your age and the place where you live.\n\u2022 The position to which you postulate (typesetter, cleaner or translator).\n\u2022Reason for wanting to join:\n\nYou can contact me on discord with my user MomoDekan#1559 or daelbeek#4459 and we will contact you. ",
+                "twitter": null,
+                "mangaUpdates": "https://www.mangaupdates.com/groups.html?id=10551",
+                "focusedLanguages": [
+                    "es",
+                    "en"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2021-04-19T21:45:59+00:00",
+                "updatedAt": "2022-05-05T18:13:01+00:00",
+                "version": 4
+            },
+            "relationships": [
+                {
+                    "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
+                    "type": "leader",
+                    "attributes": {
+                        "username": "YannunoMahou",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 5
+                    }
+                },
+                {
+                    "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
+                    "type": "member",
+                    "attributes": {
+                        "username": "YannunoMahou",
+                        "roles": [
+                            "ROLE_MEMBER",
+                            "ROLE_GROUP_LEADER",
+                            "ROLE_GROUP_MEMBER"
+                        ],
+                        "version": 5
+                    }
+                }
+            ]
+        },
+        {
+            "id": "1ae88b61-644d-49d5-89d4-2829f12fcb10",
+            "type": "scanlation_group",
+            "attributes": {
+                "name": "Saori Scan",
+                "altNames": [],
+                "locked": false,
+                "website": null,
+                "ircServer": null,
+                "ircChannel": null,
+                "discord": null,
+                "contactEmail": null,
+                "description": "",
+                "twitter": null,
+                "mangaUpdates": null,
+                "focusedLanguages": [
+                    "pt-br"
+                ],
+                "official": false,
+                "verified": false,
+                "inactive": false,
+                "publishDelay": null,
+                "createdAt": "2022-03-14T00:59:52+00:00",
+                "updatedAt": "2022-03-14T00:59:52+00:00",
+                "version": 1
+            },
+            "relationships": []
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 24287
+    "total": 25726
 }
