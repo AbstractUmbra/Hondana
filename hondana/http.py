@@ -296,7 +296,11 @@ class HTTPClient:
         if self.oauth2 and not bypass:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
-            LOGGER.debug("Current auth token's start and end is: '%s :: %s'", headers["Authorization"][:20], headers["Authorization"][-20:])
+            LOGGER.debug(
+                "Current auth token's start and end is: '%s :: %s'",
+                headers["Authorization"][:20],
+                headers["Authorization"][-20:],
+            )
 
         if json:
             headers["Content-Type"] = "application/json"
@@ -444,7 +448,7 @@ class HTTPClient:
         if artists:
             query["artist"] = artists
 
-        if year:
+        if year is not MISSING:
             query["year"] = year
 
         if included_tags:

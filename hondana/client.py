@@ -425,7 +425,7 @@ class Client:
         author_or_artist: Optional[str] = None,
         authors: Optional[list[str]] = None,
         artists: Optional[list[str]] = None,
-        year: Optional[int] = None,
+        year: Optional[int] = MISSING,
         included_tags: Optional[QueryTags] = None,
         excluded_tags: Optional[QueryTags] = None,
         status: Optional[list[MangaStatus]] = None,
@@ -463,7 +463,7 @@ class Client:
         artists: Optional[List[:class:`str`]]
             The artist(s) UUIDs to include in the search.
         year: Optional[:class:`int`]
-            The release year of the manga to include in the search.
+            The release year of the manga to include in the search. Allows passing of ``None`` to search for manga with no year specified.
         included_tags: Optional[:class:`QueryTags`]
             An instance of :class:`hondana.QueryTags` to include in the search.
         excluded_tags: Optional[:class:`QueryTags`]
