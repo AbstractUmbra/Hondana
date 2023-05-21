@@ -296,7 +296,7 @@ class HTTPClient:
         if self.oauth2 and not bypass:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
-            LOGGER.debug("Current auth token is: '%s-%s'", headers["Authorization"][:20], headers["Authorization"][-20:])
+            LOGGER.debug("Current auth token's start and end is: '%s :: %s'", headers["Authorization"][:20], headers["Authorization"][-20:])
 
         if json:
             headers["Content-Type"] = "application/json"
@@ -306,12 +306,10 @@ class HTTPClient:
         if params:
             resolved_params = php_query_builder(params)
             kwargs["params"] = resolved_params
-            LOGGER.debug("Current request parameters: %s", resolved_params)
 
         kwargs["headers"] = headers
 
         LOGGER.debug("Current request headers: %s", headers)
-        LOGGER.debug("Current request url: %s", route.url)
 
         response: Optional[aiohttp.ClientResponse] = None
         await lock.acquire()
@@ -319,6 +317,7 @@ class HTTPClient:
             for tries in range(5):
                 try:
                     async with self._session.request(route.verb, route.url, **kwargs) as response:
+                        LOGGER.debug("Current request url: %s", response.url.human_repr())
                         # Requests remaining before ratelimit
                         remaining = response.headers.get("x-ratelimit-remaining", None)
                         LOGGER.debug("remaining is: %s", remaining)
