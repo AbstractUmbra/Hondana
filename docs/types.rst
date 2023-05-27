@@ -2,6 +2,11 @@ Response Types and Payloads
 ===========================
 .. currentmodule:: hondana.types_
 
+Most of the data in here will be irrelevant to 95% of the userbase.
+However if someone wishes to contribute to Hondana then they will likely read or amend this data.
+
+I do withold the right that this data can change at any time and NOT be regarded as a breaking change due to following the upstream (MangaDex)'s dev cycle.'
+
 
 Common
 ------
