@@ -144,7 +144,6 @@ class OAuth2Client:
         client_id: str,
         client_secret: Optional[str] = None,
         webapp: Optional[aiohttp_web.Application] = None,
-        loop: Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
         self._client: HTTPClient = client
         self._redirect_uri: str = redirect_uri
