@@ -14,7 +14,6 @@ classifiers = [
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Topic :: Internet",
     "Typing :: Typed",
@@ -33,7 +32,7 @@ packages = [
 "Discord" = "https://discord.gg/aYGYJxwqe5"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 aiohttp = [
     { version = "^3.8" },
     { version = "^3.8", markers = "extra == 'speed'", extras = ["speedups"] }
@@ -71,7 +70,7 @@ version = "hondana.__main__:show_version"
 
 [tool.black]
 line-length = 125
-target-version = ["py310"]
+target-version = ["py311"]
 
 [tool.isort]
 profile = "black"
