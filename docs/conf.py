@@ -71,7 +71,6 @@ extensions: list[str] = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
-    "sphinx_autodoc_typehints",
     "sphinxcontrib_trio",
     "resource_links",
 ]
@@ -81,28 +80,22 @@ extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-%s
 # Add any paths that contain templates here, relative to this directory.
 templates_path: list[str] = ["_templates"]
 
-# autodoc_typehints: str = "signature"
-# autodoc_typehints_format: str = "short"
-# autodoc_typehints_description_target: str = "documented"
+autodoc_typehints: str = "description"
+autodoc_typehints_format: str = "short"
+autodoc_typehints_description_target: str = "documented_params"
 autodoc_member_order: str = "bysource"
 autodoc_preserve_defaults: bool = False
-# autodoc_type_aliases: dict[str, str] = {
-#     "LanguageCode": "hondana.types_.common.LanguageCode",
-#     "common.LanguageCode": "hondana.types_.common.LanguageCode",
-#     "LocalizedString": "hondana.types_.common.LocalizedString",
-#     "common.LocalizedString": "hondana.types_.common.LocalizedString",
-#     "LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
-#     "legacy.LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
-#     "PathLike": "os.PathLike",
-#     "ClientSession": "aiohttp.ClientSession",
-# }
+autodoc_type_aliases: dict[str, str] = {
+    "LanguageCode": "hondana.types_.common.LanguageCode",
+    "common.LanguageCode": "hondana.types_.common.LanguageCode",
+    "LocalizedString": "hondana.types_.common.LocalizedString",
+    "common.LocalizedString": "hondana.types_.common.LocalizedString",
+    "LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
+    "legacy.LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
+    "aiohttp_web.Application": "aiohttp.web.Application",
+}
 napoleon_use_admonition_for_examples: bool = True
 napoleon_use_admonition_for_notes: bool = True
-# sphinx_autodoc_typehints
-# always_document_param_types: bool = True
-# simplify_optional_unions: bool = True
-# typehints_use_signature_return: bool = True
-# typehints_use_signature: bool = True
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
