@@ -136,17 +136,11 @@ class Client:
 
 
     .. note::
-        The Client will work without authentication, and all authenticated endpoints will fail before attempting a request.
+        The Client will work without authentication, but all authenticated endpoints will fail before attempting a request.
 
     .. note::
         The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
         Do not pass one you plan to re-use for other things, lest you leak your login data.
-
-
-    Raises
-    -------
-    ValueError
-        You failed to pass appropriate login information (login/email and password).
     """
 
     __slots__ = "_http"

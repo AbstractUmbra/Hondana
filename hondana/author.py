@@ -178,7 +178,7 @@ class Author:
 
         Parameters
         ----------
-        language: :class:`~LanguageCode`
+        language: :class:`~hondana.types_.common.LanguageCode`
             The language code of the language to return.
 
         Returns

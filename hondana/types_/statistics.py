@@ -93,7 +93,7 @@ class GetMangaStatisticsResponse(TypedDict):
     """
     result: Literal[``"ok"``]
 
-    statistics: Dict[:class:`str`, :class:`~hondana.types_.statistics.StatisticsResponse`]
+    statistics: Dict[:class:`str`, :class:`~hondana.types_.statistics.StatisticsRatingResponse`]
     """
 
     result: Literal["ok"]
