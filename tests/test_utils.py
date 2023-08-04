@@ -227,7 +227,7 @@ class TestUtils:
         ("input", "output"),
         [
             (
-                random.sample([pathlib.Path(f"{x}.png") for x in range(1, 15)], 14),
+                random.sample([pathlib.Path(f"{x}.png") for x in range(1, 15)], 14),  # type: ignore # this is list[Path]
                 [
                     pathlib.Path(f"1.png"),
                     pathlib.Path(f"2.png"),
