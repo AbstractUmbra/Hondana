@@ -13,6 +13,7 @@
 import os
 import re
 import sys
+from typing import Any
 
 
 # from typing import Literal, Optional
@@ -73,6 +74,10 @@ extensions: list[str] = [
     "sphinx.ext.viewcode",
     "sphinxcontrib_trio",
     "resource_links",
+    "prettyversion",
+    "details",
+    "exception_hierarchy",
+    "attributetable",
 ]
 
 extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-%s")}
@@ -80,11 +85,7 @@ extlinks: dict[str, tuple[str, str]] = {"issue": (f"{_GITHUB}/issues/%s", "GH-%s
 # Add any paths that contain templates here, relative to this directory.
 templates_path: list[str] = ["_templates"]
 
-autodoc_typehints: str = "description"
-autodoc_typehints_format: str = "short"
-autodoc_typehints_description_target: str = "documented_params"
 autodoc_member_order: str = "bysource"
-autodoc_preserve_defaults: bool = False
 autodoc_type_aliases: dict[str, str] = {
     "LanguageCode": "hondana.types_.common.LanguageCode",
     "common.LanguageCode": "hondana.types_.common.LanguageCode",
@@ -93,6 +94,7 @@ autodoc_type_aliases: dict[str, str] = {
     "LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
     "legacy.LegacyMappingType": "hondana.types_.legacy.LegacyMappingType",
     "aiohttp_web.Application": "aiohttp.web.Application",
+    "ClientSession": "aiohttp.ClientSession",
 }
 napoleon_use_admonition_for_examples: bool = True
 napoleon_use_admonition_for_notes: bool = True
@@ -122,13 +124,25 @@ rst_prolog: str = """
 # a list of builtin themes.
 #
 html_theme: str = "furo"
-html_theme_options: dict[str, list[dict[str, str]]] = {
+html_theme_options: dict[str, Any] = {
     "footer_icons": [
         {"name": "Discord", "url": _DISCORD, "html": _DISCORD_SVG, "class": ""},
         {"name": "Github", "url": _GITHUB, "html": _GITHUB_SVG, "class": ""},
         {"name": "readthedocs.io", "url": _RTD, "html": _RTD_SVG, "class": ""},
     ],
+    "sidebar_hide_name": True,
+    "light_logo": "logo.svg",
+    "dark_logo": "logo.svg",
 }
+html_static_path = ["_static"]
+html_css_files = ["styles/furo.css"]
+html_js_files = ["js/custom.js"]
+
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
+napoleon_include_private_with_doc = False
+napoleon_include_special_with_doc = False
+autodoc_member_order = "bysource"
 
 resource_links: dict[str, str] = {
     "github": _GITHUB,

@@ -1,7 +1,7 @@
 build:
   jobs:
     post_install:
-      - pip install poetry==1.5.0
+      - pip install poetry==1.5.1
       - poetry config virtualenvs.create false
       - poetry install --with docs
   os: ubuntu-22.04

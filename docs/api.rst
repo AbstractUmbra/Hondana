@@ -1,28 +1,28 @@
-API Reference
-=============
-
 .. currentmodule:: hondana
+
+API Reference
+-------------
+This is the API reference of Hondana.
+
+Here we outline the components and objects that allow us to interact with MangaDex.
 
 Client
 ------
 .. autoclass:: Client
     :members:
 
-API Models
-----------
-
 Artist
-~~~~~~
+------
 .. autoclass:: Artist()
     :members:
 
 Author
-~~~~~~
+------
 .. autoclass:: Author()
     :members:
 
 Chapter
-~~~~~~~
+-------
 .. autoclass:: Chapter()
     :members:
 
@@ -39,91 +39,131 @@ Chapter
     :members:
 
 Chapter Upload
-~~~~~~~~~~~~~~
+--------------
 .. autoclass:: ChapterUpload()
     :members:
 
 Collections
-~~~~~~~~~~~
+-----------
+
+MangaCollection
+~~~~~~~~~~~~~~~
 .. autoclass:: MangaCollection()
     :members: items
 
+MangaRelationCollection
+~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: MangaRelationCollection()
     :members: items
 
+ChapterFeed
+~~~~~~~~~~~
 .. autoclass:: ChapterFeed()
     :members: items
 
+AuthorCollection
+~~~~~~~~~~~~~~~~
 .. autoclass:: AuthorCollection()
     :members: items
 
+CoverCollection
+~~~~~~~~~~~~~~~
 .. autoclass:: CoverCollection()
     :members: items
 
+ScanlatorGroupCollection
+~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroupCollection()
     :members: items
 
+ReportCollection
+~~~~~~~~~~~~~~~~
 .. autoclass:: ReportCollection()
     :members: items
 
+UserCollection
+~~~~~~~~~~~~~~
 .. autoclass:: UserCollection()
     :members: items
 
+CustomListCollection
+~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: CustomListCollection()
     :members: items
 
+LegacyMappingCollection
+~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: LegacyMappingCollection()
     :members: items
 
+ChapterReadHistoryCollection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: ChapterReadHistoryCollection()
     :members: items
 
 Cover
-~~~~~
+-----
 .. autoclass:: Cover()
     :members:
 
 CustomList
-~~~~~~~~~~
+----------
 .. autoclass:: CustomList()
     :members:
 
 Forums
-~~~~~~
+------
 
+MangaComments
+~~~~~~~~~~~~~
 .. autoclass:: MangaComments()
     :members:
 
+ChapterComments
+~~~~~~~~~~~~~~~
 .. autoclass:: ChapterComments()
     :members:
 
+ScanlatorGroupComments
+~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroupComments()
     :members:
 
+ForumThread
+~~~~~~~~~~~
 .. autoclass:: ForumThread()
     :members:
 
 Legacy
-~~~~~~
+------
 .. autoclass:: LegacyItem()
     :members:
+
+Manga
+-----
 
 Manga
 ~~~~~
 .. autoclass:: Manga()
     :members:
 
+MangaRelation
+~~~~~~~~~~~~~
 .. autoclass:: MangaRelation()
     :members:
 
+MangaStatistics
+~~~~~~~~~~~~~~~
 .. autoclass:: MangaStatistics()
     :members:
 
+MangaRating
+~~~~~~~~~~~
 .. autoclass:: MangaRating()
     :members:
 
 Query
-~~~~~~~~
+-----
 .. currentmodule:: hondana.query
 
 .. autoclass:: MangaListOrderQuery
@@ -159,28 +199,44 @@ Query
 .. currentmodule:: hondana
 
 Relationship
-~~~~~~~~~~~~
+------------
 .. autoclass:: Relationship()
     :members:
 
 Report
-~~~~~~
+------
+
+ReportDetails
+~~~~~~~~~~~~~
 .. autoclass:: ReportDetails
     :members:
 
+UserReport
+~~~~~~~~~~
 .. autoclass:: UserReport()
     :members:
 
+Report
+~~~~~~
 .. autoclass:: Report()
     :members:
 
+
 Scanlation Group
-~~~~~~~~~~~~~~~~
+----------------
+
+ScanlatorGroup
+~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroup()
     :members:
 
+ScanlatorGroupStatistics
+~~~~~~~~~~~~~~~~~~~~~~~~
 .. autoclass:: ScanlatorGroupStatistics()
     :members:
+
+Tags
+----
 
 Tag
 ~~~
@@ -193,10 +249,15 @@ QueryTags
     :members:
 
 User
+----
+
+User
 ~~~~
 .. autoclass:: User()
     :members:
 
+UserInfo
+~~~~~~~~
 .. autoclass:: hondana.user.UserInfo()
     :members:
 

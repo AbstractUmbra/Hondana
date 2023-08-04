@@ -1,6 +1,7 @@
-Response Types and Payloads
-===========================
 .. currentmodule:: hondana.types_
+
+Response Types and Payloads
+---------------------------
 
 Most of the data in here will be irrelevant to 95% of the userbase.
 However if someone wishes to contribute to Hondana then they will likely read or amend this data.
