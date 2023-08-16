@@ -834,6 +834,7 @@ class Client:
         """
         await self._http.delete_manga(manga_id)
 
+    ## TODO
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
         """|coro|
@@ -854,6 +855,7 @@ class Client:
         """
         await self._http.unfollow_manga(manga_id)
 
+    ## TODO
     @require_authentication
     async def follow_manga(
         self, manga_id: str, /, *, set_status: bool = True, status: ReadingStatus = ReadingStatus.reading
@@ -4024,3 +4026,30 @@ class Client:
         data = await self._http.create_forum_thread(type=type, resource_id=resource_id)
 
         return ForumThread(self._http, data["data"])
+
+    @require_authentication
+    async def get_custom_lists_where_manga_is_present(self, manga_id: str, /) -> list[str]:
+        """|coro|
+
+        This method will return all custom lists where the given manga is present.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The Manga id we are filtering for.
+
+        Returns
+        --------
+        list[:class:`str`]
+            The array of custom list ids.
+        """
+        return await self._http.get_custom_lists_where_manga_is_present(manga_id)
+
+    @require_authentication
+    async def is_subscribed_to_custom_list(self, custom_list_id: str, /) -> bool:
+        try:
+            await self._http.is_custom_list_subscribed(custom_list_id)
+        except errors.NotFound:
+            return False
+
+        return True

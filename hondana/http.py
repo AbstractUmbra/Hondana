@@ -1467,6 +1467,14 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
+    def get_custom_lists_where_manga_is_present(self, manga_id: str) -> Response[list[str]]:
+        route = Route("GET", "/user/list/manga/{manga_id}", manga_id=manga_id)
+        return self.request(route)
+
+    def is_custom_list_subscribed(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/subscription/{custom_list_id}", custom_list_id=custom_list_id)
+        return self.request(route)
+
     def get_users_custom_lists(
         self, user_id: str, /, *, limit: int, offset: int, pinned: bool
     ) -> Response[custom_list.GetMultiCustomListResponse]:
