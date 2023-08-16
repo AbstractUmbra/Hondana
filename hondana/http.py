@@ -1265,22 +1265,30 @@ class HTTPClient:
         route = Route("GET", "/user/me")
         return self.request(route)
 
-    def get_my_followed_groups(
+    def bookmark_user(self, user_id: str) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/user/{user_id}/bookmark", user_id=user_id)
+        return self.request(route)
+
+    def unbookmark_user(self, user_id: str) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/user/{user_id}/bookmark", user_id=user_id)
+        return self.request(route)
+
+    def get_my_bookmarked_groups(
         self, *, limit: int, offset: int
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
-        route = Route("GET", "/user/follows/group")
+        route = Route("GET", "/user/bookmarks/group")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
 
-    def check_if_following_group(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id)
+    def is_group_bookmarked(self, group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/bookmarks/group/{group_id}", group_id=group_id)
         return self.request(route)
 
-    def get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
-        route = Route("GET", "/user/follows/user")
+    def get_my_bookmarked_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
+        route = Route("GET", "/user/bookmarks/user")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1288,24 +1296,24 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def check_if_following_user(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id)
+    def is_user_bookmarked(self, user_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/bookmarks/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def check_if_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+    def is_following_manga(self, manga_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
         route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
-    def get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
-        route = Route("GET", "/user/follows/list")
+    def get_user_custom_list_bookmarkss(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+        route = Route("GET", "/user/bookmarks/list")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
-    def check_if_following_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id)
+    def is_custom_list_bookmarked(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("GET", "/user/bookmarks/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
     def get_user_followed_manga(
@@ -1420,12 +1428,12 @@ class HTTPClient:
         route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def follow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
+    def bookmark_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/list/{custom_list_id}/bookmark", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def unfollow_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
-        route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
+    def unbookmark_custom_list(self, custom_list_id: str, /) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/list/{custom_list_id}/bookmark", custom_list_id=custom_list_id)
         return self.request(route)
 
     def add_manga_to_custom_list(
@@ -1683,12 +1691,12 @@ class HTTPClient:
         route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+    def bookmark_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("POST", "/group/{scanlation_group_id}/bookmark", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
-        route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+    def unbookmark_scanlation_group(self, scanlation_group_id: str, /) -> Response[dict[Literal["result"], Literal["ok"]]]:
+        route = Route("DELETE", "/group/{scanlation_group_id}/bookmark", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
     def author_list(

@@ -70,23 +70,23 @@ class MangaStatisticsResponse(TypedDict):
     """
     rating: :class:`~hondana.types_.statistics.StatisticsRatingResponse`
 
-    follows: :class:`int`
+    bookmarks: :class:`int`
     """
 
     comments: Optional[CommentMetaData]
     rating: StatisticsRatingResponse
-    follows: int
+    bookmarks: int
 
 
 class BatchStatisticsResponse(TypedDict):
     """
     rating: :class:`~hondana.types_.statistics.BatchStatisticsRatingResponse`
 
-    follows: :class:`int`
+    bookmarks: :class:`int`
     """
 
     rating: BatchStatisticsRatingResponse
-    follows: int
+    bookmarks: int
 
 
 class GetMangaStatisticsResponse(TypedDict):

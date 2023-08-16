@@ -56,9 +56,19 @@ from yarl import URL
 try:
     import orjson
 except ModuleNotFoundError:
-    _has_orjson = False
+
+    def to_json(obj: Any, /) -> str:
+        """A quick method that dumps a Python type to JSON object."""
+        return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+
+    _from_json = json.loads
 else:
-    _has_orjson = True
+
+    def to_json(obj: Any, /) -> str:
+        """A quick method that dumps a Python type to JSON object."""
+        return orjson.dumps(obj).decode("utf-8")
+
+    _from_json = orjson.loads  # type: ignore # this is guarded in an if.
 
 from .errors import AuthenticationRequired
 
@@ -68,13 +78,16 @@ if TYPE_CHECKING:
     from typing_extensions import Concatenate, ParamSpec, Protocol, TypeAlias
 
     from .http import HTTPClient
+    from .types_.common import LanguageCode
     from .types_.relationship import RelationshipResponse
 
     class SupportsHTTP(Protocol):
         _http: HTTPClient
 
 
-MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, Optional[Union[str, int, bool, list[str], dict[str, str]]]]
+MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[
+    str, Optional[Union[str, int, bool, list[str], list[LanguageCode], dict[str, str]]]
+]
 C = TypeVar("C", bound="SupportsHTTP")
 T = TypeVar("T")
 T_co = TypeVar("T_co", covariant=True)
@@ -354,23 +367,6 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
     new_offset = min(max(0, offset), MAX_DEPTH - new_limit)
 
     return new_limit, new_offset
-
-
-if _has_orjson is True:
-
-    def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""
-        return orjson.dumps(obj).decode("utf-8")
-
-    _from_json = orjson.loads  # type: ignore # this is guarded in an if.
-
-else:
-
-    def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""
-        return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
-
-    _from_json = json.loads
 
 
 async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, Any], str]:

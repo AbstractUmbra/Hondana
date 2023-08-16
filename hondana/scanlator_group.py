@@ -27,7 +27,7 @@ import datetime
 from typing import TYPE_CHECKING, Optional, Union
 
 from .forums import ScanlatorGroupComments
-from .utils import MISSING, RelationshipResolver, cached_slot_property, iso_to_delta, require_authentication
+from .utils import MISSING, RelationshipResolver, cached_slot_property, deprecated, iso_to_delta, require_authentication
 
 
 if TYPE_CHECKING:
@@ -360,6 +360,7 @@ class ScanlatorGroup:
         await self._http.delete_scanlation_group(self.id)
 
     @require_authentication
+    @deprecated("bookmark")
     async def follow(self) -> None:
         """|coro|
 
@@ -370,9 +371,12 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.follow_scanlation_group(self.id)
+        await self._http.bookmark_scanlation_group(self.id)
+
+    bookmark = follow
 
     @require_authentication
+    @deprecated("unbookmark")
     async def unfollow(self) -> None:
         """|coro|
 
@@ -383,7 +387,9 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.unfollow_scanlation_group(self.id)
+        await self._http.unbookmark_scanlation_group(self.id)
+
+    unbookmark = unfollow
 
     @require_authentication
     async def update(

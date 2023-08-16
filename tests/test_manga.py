@@ -210,7 +210,7 @@ class TestMangaStatistics:
         manga = clone_manga("stats")
 
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))
-        assert manga.follows == STATISTICS_PAYLOAD["statistics"][key]["follows"]
+        assert manga.bookmarks == STATISTICS_PAYLOAD["statistics"][key]["bookmarks"]
 
     def test_average(self):
         manga = clone_manga("stats")
