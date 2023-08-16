@@ -1460,18 +1460,19 @@ class HTTPClient:
         route = Route("DELETE", "/list/{custom_list_id}/batch-manga", custom_list_id=custom_list_id)
         return self.request(route, json={"mangaIds": manga_ids})
 
+    def get_my_custom_lists(self, limit: int, offset: int, pinned: bool) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
 
-        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset, "pinned": pinned}
 
         return self.request(route, params=query)
 
     def get_users_custom_lists(
-        self, user_id: str, /, *, limit: int, offset: int
+        self, user_id: str, /, *, limit: int, offset: int, pinned: bool
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
 
-        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset, "pinned": pinned}
 
         return self.request(route, params=query)
 

@@ -2767,7 +2767,9 @@ class Client:
     unbookmark_custom_list = unfollow_custom_list
 
     @require_authentication
-    async def get_my_custom_lists(self, *, limit: Optional[int] = 10, offset: int = 0) -> CustomListCollection:
+    async def get_my_custom_lists(
+        self, *, limit: Optional[int] = 10, offset: int = 0, pinned: bool = False
+    ) -> CustomListCollection:
         """|coro|
 
         This method will get the current authenticated user's custom list.
@@ -2778,6 +2780,8 @@ class Client:
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
+        pinned: :class:`bool`
+            Defaults to ``False``. Whether to filter by pinned lists or not.
 
 
         .. note::
@@ -2797,7 +2801,7 @@ class Client:
 
         lists: list[CustomList] = []
         while True:
-            data = await self._http.get_my_custom_lists(limit=inner_limit, offset=offset)
+            data = await self._http.get_my_custom_lists(limit=inner_limit, offset=offset, pinned=pinned)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2808,7 +2812,7 @@ class Client:
 
     @require_authentication
     async def get_users_custom_lists(
-        self, user_id: str, /, *, limit: Optional[int] = 10, offset: int = 0
+        self, user_id: str, /, *, limit: Optional[int] = 10, offset: int = 0, pinned: bool = False
     ) -> CustomListCollection:
         """|coro|
 
@@ -2822,6 +2826,8 @@ class Client:
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
+        pinned: :class:`bool`
+            Defaults to ``False``. Whether to filter by pinned lists or not.
 
 
         .. note::
@@ -2841,7 +2847,7 @@ class Client:
 
         lists: list[CustomList] = []
         while True:
-            data = await self._http.get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
+            data = await self._http.get_users_custom_lists(user_id, limit=inner_limit, offset=offset, pinned=pinned)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
