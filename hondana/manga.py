@@ -1063,7 +1063,7 @@ class Manga:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http.add_manga_to_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
+        await self._http.add_manga_to_custom_list(custom_list_id, manga_id=self.id)
 
     @require_authentication
     async def remove_from_custom_list(self, *, custom_list_id: str) -> None:
@@ -1084,7 +1084,7 @@ class Manga:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http.remove_manga_from_custom_list(manga_id=self.id, custom_list_id=custom_list_id)
+        await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=self.id)
 
     async def get_chapters(
         self,

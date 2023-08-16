@@ -1387,7 +1387,30 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http.add_manga_to_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
+        await self._http.add_manga_to_custom_list(custom_list_id, manga_id=manga_id)
+
+    @require_authentication
+    async def batch_add_manga_to_custom_list(self, custom_list_id: str, /, *, manga_ids: list[str]) -> None:
+        """|coro|
+
+        This method will add the specified manga to the specified custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The UUID associated with the custom list you wish to add the manga to.
+        manga_ids: list[:class:`str`]
+            The UUIDs associated with the manga you wish to add to the custom list.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorised to add manga to this custom list.
+        :exc:`NotFound`
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+        """
+
+        await self._http.batch_add_manga_to_custom_list(custom_list_id, manga_ids=manga_ids)
 
     @require_authentication
     async def remove_manga_from_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
@@ -1410,7 +1433,30 @@ class Client:
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """
 
-        await self._http.remove_manga_from_custom_list(manga_id=manga_id, custom_list_id=custom_list_id)
+        await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=manga_id)
+
+    @require_authentication
+    async def batch_remove_manga_from_custom_list(self, custom_list_id: str, /, *, manga_ids: list[str]) -> None:
+        """|coro|
+
+        This method will remove the specified manga from the specified custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            THe UUID associated with the custom list you wish to add the manga to.
+        manga_ids: list[:class:`str`]
+            The UUIDs associated with the manga you wish to remove from the specified custom list.
+
+        Raises
+        -------
+        :exc:`Forbidden`
+            You are not authorised to remove a manga from the specified custom list.
+        :exc:`NotFound`
+            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
+        """
+
+        await self._http.batch_remove_manga_from_custom_list(custom_list_id, manga_ids=manga_ids)
 
     async def chapter_list(
         self,

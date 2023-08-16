@@ -1437,18 +1437,29 @@ class HTTPClient:
         return self.request(route)
 
     def add_manga_to_custom_list(
-        self, *, custom_list_id: str, manga_id: str
+        self, custom_list_id: str, /, *, manga_id: str
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
+    def batch_add_manga_to_custom_list(
+        self, custom_list_id: str, /, *, manga_ids: list[str]
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("POST", "/list/{custom_list_id}/batch-manga", custom_list_id=custom_list_id)
+        return self.request(route, json={"mangaIds": manga_ids})
+
     def remove_manga_from_custom_list(
-        self, *, manga_id: str, custom_list_id: str
+        self, custom_list_id: str, /, *, manga_id: str
     ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
         route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+    def batch_remove_manga_from_custom_list(
+        self, custom_list_id: str, /, *, manga_ids: list[str]
+    ) -> Response[dict[Literal["result"], Literal["ok", "error"]]]:
+        route = Route("DELETE", "/list/{custom_list_id}/batch-manga", custom_list_id=custom_list_id)
+        return self.request(route, json={"mangaIds": manga_ids})
+
         route = Route("GET", "/user/list")
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
