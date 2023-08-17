@@ -80,6 +80,7 @@ from .query import (
     ReportListOrderQuery,
     ScanlatorGroupIncludes,
     ScanlatorGroupListOrderQuery,
+    SubscriptionIncludes,
     UserListOrderQuery,
     UserReportIncludes,
 )
@@ -297,6 +298,7 @@ class Client:
         return [Tag(item) for item in data["data"]]
 
     @require_authentication
+    @deprecated("subscription_feed")
     async def get_my_feed(
         self,
         *,
@@ -409,6 +411,8 @@ class Client:
                 break
 
         return ChapterFeed(self._http, data, chapters)
+
+    subscription_feed = get_my_feed
 
     async def manga_list(
         self,
@@ -2338,38 +2342,6 @@ class Client:
     is_user_bookmarked = check_if_following_user
 
     @require_authentication
-    @deprecated("is_manga_bookmarked")
-    async def check_if_following_manga(self, manga_id: str, /) -> bool:
-        """|coro|
-
-        This method will check if the current authenticated user is following the specified manga.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The UUID relating to the manga you wish to query against.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            The request returned an error due to authentication failure.
-
-        Returns
-        --------
-        :class:`bool`
-            Whether the target manga is followed or not.
-        """
-
-        try:
-            await self._http.is_following_manga(manga_id)
-        except errors.NotFound:
-            return False
-        else:
-            return True
-
-    is_manga_bookmarked = check_if_following_manga
-
-    @require_authentication
     @deprecated("get_my_bookmarked_custom_lists")
     async def get_my_custom_list_follows(self, limit: int = 10, offset: int = 0) -> list[CustomList]:
         """|coro|
@@ -4093,3 +4065,24 @@ class Client:
             The custom list to unpin.
         """
         await self._http.unpin_custom_list(custom_list_id)
+
+    @require_authentication
+    async def get_subscriptions(
+        self,
+        *,
+        limit: Optional[int] = 20,
+        offset: int = 0,
+        includes: Optional[SubscriptionIncludes] = SubscriptionIncludes(),
+    ) -> CustomListCollection:
+        inner_limit = limit or 20
+
+        lists: list[CustomList] = []
+        while True:
+            data = await self._http.get_subscription_list(limit=inner_limit, offset=offset, includes=includes)
+            lists.extend([CustomList(self._http, item) for item in data["data"]])
+
+            offset += inner_limit
+            if not data["data"] or offset >= 10_000 or limit is not None:
+                break
+
+        return CustomListCollection(self._http, data, lists)

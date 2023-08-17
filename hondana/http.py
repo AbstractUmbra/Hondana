@@ -88,6 +88,7 @@ if TYPE_CHECKING:
         ReportListOrderQuery,
         ScanlatorGroupIncludes,
         ScanlatorGroupListOrderQuery,
+        SubscriptionIncludes,
         UserListOrderQuery,
         UserReportIncludes,
     )
@@ -700,7 +701,7 @@ class HTTPClient:
         include_external_url: Optional[bool],
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
-            route = Route("GET", "/user/follows/manga/feed")
+            route = Route("GET", "/subscription/feed")
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
@@ -1296,10 +1297,6 @@ class HTTPClient:
 
     def is_user_bookmarked(self, user_id: str, /) -> Response[DefaultResponseType]:
         route = Route("GET", "/user/bookmarks/user/{user_id}", user_id=user_id)
-        return self.request(route)
-
-    def is_following_manga(self, manga_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
         return self.request(route)
 
     def get_user_custom_list_bookmarkss(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
@@ -2144,3 +2141,17 @@ class HTTPClient:
     def unpin_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
         route = Route("POST", "/list/{custom_list_id}/unpin", custom_list_id=custom_list_id)
         return self.request(route)
+
+    def get_subscription_list(
+        self, *, limit: int, offset: int, includes: Union[SubscriptionIncludes, None]
+    ) -> Response[custom_list.GetMultiCustomListResponse]:
+        route = Route("GET", "/subscription")
+
+        limit, offset = calculate_limits(limit, offset, max_limit=20)
+
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
+
+        if includes:
+            query["includes"] = includes.to_query()
+
+        return self.request(route, params=query)

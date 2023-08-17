@@ -50,6 +50,7 @@ __all__ = (
     "CustomListIncludes",
     "MangaIncludes",
     "ScanlatorGroupIncludes",
+    "SubscriptionIncludes",
 )
 
 
@@ -595,6 +596,32 @@ class UserReportIncludes(_Includes):
     def __init__(self, *, user: bool = True, reason: bool = True) -> None:
         self.user: bool = user
         self.reason: bool = reason
+
+    def to_query(self) -> list[str]:
+        """Returns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The list of query parameters (pre-PHP formatting).
+        """
+        return super().to_query()
+
+
+class SubscriptionIncludes(_Includes):
+    """
+    A helper for generating the ``includes[]`` parameter for queries.
+
+    Parameters
+    -----------
+    user: :class:`bool`
+        Defaults to ``True``. Whether to include user in the relationships.
+    """
+
+    __slots__ = ("user",)
+
+    def __init__(self, *, user: bool = True) -> None:
+        self.user: bool = user
 
     def to_query(self) -> list[str]:
         """Returns a list of valid query strings.
