@@ -206,7 +206,7 @@ class TestMangaStatistics:
 
         assert manga.parent_id == PAYLOAD["data"]["id"]
 
-    def test_follows(self):
+    def test_bookmarks(self):
         manga = clone_manga("stats")
 
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))

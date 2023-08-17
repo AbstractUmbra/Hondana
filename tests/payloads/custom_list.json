@@ -51,10 +51,10 @@
                         "engtl": "https://comikey.com/comics/tsuyuno-chan-likes-to-show-off-manga/477/"
                     },
                     "originalLanguage": "ja",
-                    "lastVolume": "",
-                    "lastChapter": "",
+                    "lastVolume": "5",
+                    "lastChapter": "40",
                     "publicationDemographic": "seinen",
-                    "status": "ongoing",
+                    "status": "completed",
                     "year": null,
                     "contentRating": "suggestive",
                     "tags": [
@@ -101,12 +101,12 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2020-06-03T08:01:58+00:00",
-                    "updatedAt": "2023-05-07T19:43:23+00:00",
-                    "version": 24,
+                    "updatedAt": "2023-08-10T15:33:26+00:00",
+                    "version": 25,
                     "availableTranslatedLanguages": [
                         "en"
                     ],
-                    "latestUploadedChapter": "84c3f0d9-906f-4f62-9acc-8ec255d92c66"
+                    "latestUploadedChapter": "69cec4e5-d33d-4013-8f96-6f495f37230f"
                 }
             },
             {
@@ -187,7 +187,7 @@
                         "ebj": "https://ebookjapan.yahoo.co.jp/books/443422/",
                         "mal": "110737",
                         "raw": "https://pocket.shonenmagazine.com/episode/13932016480029136187",
-                        "engtl": "https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/"
+                        "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
                     },
                     "originalLanguage": "ja",
                     "lastVolume": "",
@@ -266,8 +266,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-03-04T12:21:59+00:00",
-                    "updatedAt": "2023-01-10T15:41:08+00:00",
-                    "version": 327,
+                    "updatedAt": "2023-07-22T09:44:14+00:00",
+                    "version": 328,
                     "availableTranslatedLanguages": [
                         "id",
                         "ru",
@@ -286,7 +286,7 @@
                         "es",
                         "pt"
                     ],
-                    "latestUploadedChapter": "a4c85511-2ef0-40af-b7f7-3f79795915a2"
+                    "latestUploadedChapter": "fe65e71d-197e-4166-9fc0-3be094de401c"
                 }
             },
             {

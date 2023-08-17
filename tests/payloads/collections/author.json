@@ -3,195 +3,6 @@
     "response": "collection",
     "data": [
         {
-            "id": "742e3997-6a39-4b9d-8ec7-8282a3483da7",
-            "type": "author",
-            "attributes": {
-                "name": "Tsuhara Yasumi",
-                "imageUrl": null,
-                "biography": {},
-                "twitter": null,
-                "pixiv": null,
-                "melonBook": null,
-                "fanBox": null,
-                "booth": null,
-                "nicoVideo": null,
-                "skeb": null,
-                "fantia": null,
-                "tumblr": null,
-                "youtube": null,
-                "weibo": null,
-                "naver": null,
-                "website": null,
-                "createdAt": "2021-04-19T21:59:45+00:00",
-                "updatedAt": "2021-04-19T21:59:45+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "55208c42-665d-4bc6-aa14-c3115a2f3f3d",
-                    "type": "manga",
-                    "attributes": {
-                        "title": {
-                            "en": "Goshiki no Fune"
-                        },
-                        "altTitles": [
-                            {
-                                "tr": "Be\u015f Renkli Tekne"
-                            },
-                            {
-                                "ja-ro": "Goshoku no Fune"
-                            },
-                            {
-                                "fr": "Le Bateau aux Cinq Couleurs"
-                            },
-                            {
-                                "ja": "\u4e94\u8272\u306e\u821f"
-                            },
-                            {
-                                "en": "Five-color Boat"
-                            }
-                        ],
-                        "description": {
-                            "en": "Circumstances have intertwined the fates of five strangers. As a team of five, they make their living running a freak show. As a family of five, they live on a small covered boat together. In the midst of a terrible war, they embark to add to their number the kudan, a monster rumored to tell the future.   \n  \nNominated for the 19th Tezuka Osamu Cultural Prize.  \n  \nWinner of the Grand Prize for manga at the 2014 Japan Media Arts Festival."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "93363",
-                            "ap": "goshoku-no-fune",
-                            "kt": "27644",
-                            "mu": "100086",
-                            "amz": "https://www.amazon.co.jp/dp/B00J4KDCJ8/",
-                            "mal": "83143"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "1",
-                        "lastChapter": "8",
-                        "publicationDemographic": "seinen",
-                        "status": "completed",
-                        "year": 2013,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "0a39b5a1-b235-4886-a747-1d05d216532d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Award Winning"
-                                    },
-                                    "description": {},
-                                    "group": "format",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "33771934-028e-4cb3-8744-691e866a923e",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Historical"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Psychological"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Slice of Life"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Supernatural"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Mystery"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-11-13T20:32:19+00:00",
-                        "updatedAt": "2022-08-27T05:05:47+00:00",
-                        "version": 3,
-                        "availableTranslatedLanguages": [
-                            "en",
-                            "tr",
-                            "fr"
-                        ],
-                        "latestUploadedChapter": "94829df4-9564-4d32-872c-0a3956d52f56"
-                    }
-                }
-            ]
-        },
-        {
             "id": "742f7f83-2721-488d-b8b0-352f295fc18c",
             "type": "author",
             "attributes": {
@@ -1558,9 +1369,113 @@
                     }
                 }
             ]
+        },
+        {
+            "id": "74371314-3131-46d2-9433-48bbbe94f8d6",
+            "type": "author",
+            "attributes": {
+                "name": "Kousoku GuriHari-tei (Circle)",
+                "imageUrl": null,
+                "biography": {},
+                "twitter": null,
+                "pixiv": null,
+                "melonBook": null,
+                "fanBox": null,
+                "booth": null,
+                "nicoVideo": null,
+                "skeb": null,
+                "fantia": null,
+                "tumblr": null,
+                "youtube": null,
+                "weibo": null,
+                "naver": null,
+                "website": null,
+                "createdAt": "2021-04-19T21:59:45+00:00",
+                "updatedAt": "2021-04-19T21:59:45+00:00",
+                "version": 1
+            },
+            "relationships": [
+                {
+                    "id": "c280f182-b3ce-4701-bad6-229813c559dd",
+                    "type": "manga",
+                    "attributes": {
+                        "title": {
+                            "en": "Touhou - Samenai Yumenara (Doujinshi)"
+                        },
+                        "altTitles": [
+                            {
+                                "en": "If You Won't Awake From This Dream (Touhou Project)"
+                            },
+                            {
+                                "ja": "\u3055\u3081\u306a\u3044\u5922\u306a\u3089 (\u6771\u65b9Project)"
+                            }
+                        ],
+                        "description": {},
+                        "isLocked": false,
+                        "links": {},
+                        "originalLanguage": "ja",
+                        "lastVolume": "",
+                        "lastChapter": "",
+                        "publicationDemographic": null,
+                        "status": "completed",
+                        "year": 2012,
+                        "contentRating": "pornographic",
+                        "tags": [
+                            {
+                                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Oneshot"
+                                    },
+                                    "description": {},
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Girls' Love"
+                                    },
+                                    "description": {},
+                                    "group": "genre",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            },
+                            {
+                                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                                "type": "tag",
+                                "attributes": {
+                                    "name": {
+                                        "en": "Doujinshi"
+                                    },
+                                    "description": {},
+                                    "group": "format",
+                                    "version": 1
+                                },
+                                "relationships": []
+                            }
+                        ],
+                        "state": "published",
+                        "chapterNumbersResetOnNewVolume": false,
+                        "createdAt": "2020-02-14T20:10:20+00:00",
+                        "updatedAt": "2022-03-12T19:20:03+00:00",
+                        "version": 4,
+                        "availableTranslatedLanguages": [
+                            "en"
+                        ],
+                        "latestUploadedChapter": "d5e6e000-c1ea-4d89-bcab-a62f7222f537"
+                    }
+                }
+            ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 49431
+    "total": 51228
 }

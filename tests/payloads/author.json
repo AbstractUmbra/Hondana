@@ -132,6 +132,7 @@
                     "isLocked": false,
                     "links": {
                         "al": "105933",
+                        "kt": "kimi-dake-no-ponytail",
                         "mu": "150481",
                         "mal": "126708"
                     },
@@ -173,8 +174,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-07-29T19:18:49+00:00",
-                    "updatedAt": "2022-04-05T21:52:09+00:00",
-                    "version": 4,
+                    "updatedAt": "2023-07-22T03:24:11+00:00",
+                    "version": 5,
                     "availableTranslatedLanguages": [
                         "es",
                         "en"
@@ -197,7 +198,7 @@
                             "en": "Love Me For Who I Am"
                         },
                         {
-                            "ja": "\u4e0d\u53ef\u89e3\u306a\u307c\u304f"
+                            "ja": "\u4e0d\u53ef\u89e3\u306a\u307c\u304f\u306e\u3059\u3079\u3066\u3092"
                         },
                         {
                             "fr": "Aime moi pour ce que je suis"
@@ -216,7 +217,9 @@
                         "bw": "series/191875",
                         "kt": "54280",
                         "mu": "150104",
-                        "amz": "https://www.amazon.co.jp/kindle-dbs/product/B08FYX4V3R",
+                        "amz": "https://www.amazon.co.jp/dp/4814801521/",
+                        "cdj": "https://www.cdjapan.co.jp/searchuni?term.media_format=&q=\u4e0d\u53ef\u89e3\u306a\u307c\u304f",
+                        "ebj": "https://ebookjapan.yahoo.co.jp/books/522566/",
                         "mal": "115217",
                         "raw": "http://www.comic-medu.com/wk/fukaboku",
                         "engtl": "https://sevenseasentertainment.com/series/love-me-for-who-i-am/"
@@ -298,8 +301,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-07-24T08:58:34+00:00",
-                    "updatedAt": "2022-09-28T01:59:37+00:00",
-                    "version": 23,
+                    "updatedAt": "2023-07-18T01:01:48+00:00",
+                    "version": 24,
                     "availableTranslatedLanguages": [
                         "pt-br",
                         "fr",
@@ -307,7 +310,7 @@
                         "es-la",
                         "id"
                     ],
-                    "latestUploadedChapter": "63533421-3593-4901-b043-9fe5b50242c0"
+                    "latestUploadedChapter": "e08aebf8-f468-4e19-8c4d-5e1c8fa88f69"
                 }
             },
             {
@@ -462,9 +465,10 @@
                     "createdAt": "2019-03-29T22:22:04+00:00",
                     "updatedAt": "2023-04-09T04:38:13+00:00",
                     "availableTranslatedLanguages": [
+                        "ko",
                         "en"
                     ],
-                    "latestUploadedChapter": "487b6af1-38e5-4ce2-9db1-e67be1834d55"
+                    "latestUploadedChapter": "36ba0a22-9bf0-4cb0-a20a-ac592e4d3d07"
                 }
             },
             {
@@ -571,7 +575,7 @@
                         }
                     ],
                     "description": {
-                        "en": "An anthology of Boku wa Tomodachi ga Sukunai by various mangaka.\n\n---\n**Volume 1**\nCover: [Mizoguchi Keiji](https://mangadex.org/author/accaa73c-0040-4926-8b5e-ff43edf0289f)\nColor illustrations: [Youta](https://mangadex.org/author/0deb4fc2-516d-4aea-8c71-f20c6afdb623), [okiura](https://mangadex.org/author/291aa6c2-4908-463f-82d3-76e6e4c605ec), [karory](https://mangadex.org/author/2de90633-4afd-4027-a3b5-88bef77d61ab), [Higa Yukari](https://mangadex.org/author/b0f9c45c-7c88-4dd3-a87d-cb22167a5c94)\n\n**Chapters**:\n1. **Me and Slave and Blue Day** by Itachi\n2. **You can't make friends if you don't enter the tiger's den** by Ayakura Juu\n3. **If you want to get friends, you need a strategy to get their stomachs first!?** by nini\n4. **A Certain Aviator's Reminiscences** by Haruno Tomoya\n5. **Femininity Deviation** by pun2\n6. **Boku wa Tomodachi ga Sukunai+ Preview** by Taguchi Shouichi & Harukawa Misaki\n7. **You did it! Neighbor's Club!** by Shirabi & Kazahana Chiruwo\n8. **Kobato will do her best.** by Takei Ooki\n9. **How to Make Friends with Karaoke** by Atto\n10. **I shall return to the Rika Room!** by Hotaru Takana & Piro Shiki\n11. **A Tragedy of the Potato Chips of Darkness** by Takamura Masaya\n12. **Rose-colored Youth?** by Toru Kei\n13. **Telephone Shocking** by Toru Kei\n14. **Romance of the Three Kingdoms is a Loner's Achievement** by Shibamine Takashi\n15. **If an angel could become a smile...** by Rokushou Kokuu\n16. **Swimsuit Exhibition** by Uonuma Yuu\n17. **The Melancholy of Kashiwazaki Sena** by Shiranami Sui\n18. **I, Yukimura, Will Become a Samurai** by meet neet.\n19. **Kobato, Age 16** by Sugano Manami\n20. **Let's go to a beauty salon** by Yamada Koutarou & Miura Isao\n---\n**Volume 2**\nCover: [CUTEG](https://mangadex.org/author/7cf2ec07-fe50-4040-b4e6-e0f043a831e3)\nColor illustration: Runa (\u5c61\u90a3), [Sayori](https://mangadex.org/author/efde5bbc-b895-4331-9078-8c82b6a1bf7b), Bankoku Ayuya\n\n**Chapters**:\n1. **This ain't no vampire!** by Hasemi Ryou\n2. **Sena\u2192Sena?!** by Sanshoku Amido.\n3. *Hima wo Mate Amashita Kamigami no Asobi* (\u6687\u3092\u5f85\u3066\u4f59\u3057\u305f\u9aea\u3005\u306e\u904a\u3073) by Ichiri\n4. *Nounai Universe* (\u8133\u5185\u30e6\u30cb\u30d0\u30fc\u30b9) by Kouji\n5. *Gothic Lolinjin-bu!* (\u30b4\u30b9\u30ed\u30ea\u3093\u3058\u3093\u3076!) by kona (Konayama Kata)\n6. *Otomegokoro* (\u30aa\u30c8\u30e1\u30b4\u30b3\u30ed) by Shouno Kotaro\n7. *Zannen na Satsuei-kai* (\u6b8b\u5ff5\u306a\u64ae\u5f71\u4f1a) by 100 Yen Locker\n8. *Sister vs. Sister* (\u30b7\u30b9\u30bf\u30fcvs.\u30b7\u30b9\u30bf\u30fc) by Natsuki Yuu\n9. *Bath Time Trouble* (\u30d0\u30b9\u30bf\u30a4\u30e0\u30c8\u30e9\u30d6\u30eb) by Komoda\n10. *Getabako no Tegami wa Bara no Kaori!?* (\u4e0b\u99c4\u7bb1\u306e\u624b\u7d19\u306f\u8594\u8587\u306e\u85ab\u308a!?) by Nullken\n11. *Onegai My Sena-sama\u2606* (\u304a\u306d\u304c\u3044 \u30de\u30a4\u661f\u5948\u69d8\u2606) by Xi Daisei (Daise)\n12. *Ha wo Nai (Boku wa Real Fight wo Tomenai)* (\u306f\u3092\u306a\u3044\uff08\u50d5\u306f\u30ea\u30a2\u30eb\u30d5\u30a1\u30a4\u30c8\u3092\u3068\u3081\u306a\u3044\uff09) by Yukiwo\n13. *Hentai de Tensai demo Shoujo Desukara!* (\u5909\u614b\u3067\u5929\u624d\u3067\u3082\u5c11\u5973\u3067\u3059\u304b\u3089!) by Tsuzuri\n14. *Yaranai Zen yori Yaru Gizen!* (\u3084\u3089\u306a\u3044\u5584\u3088\u308a\u3084\u308b\u507d\u5584!) by Akiduki Akina\n15. *Tatoeba, Sonna Nichijou.* (\u4f8b\u3048\u3070\u3001\u305d\u3093\u306a\u65e5\u5e38\u3002) by Yuizaki Kazuya\n16. *Rinki Ouhen mo Tanin tomo Yoki Kankei wo* (\u81e8\u6a5f\u5fdc\u5909\u3082\u4ed6\u4eba\u3068\u3082\u5584\u304d\u95a2\u4fc2\u3092) by Mitsu King\n17. *Yukimura, Kaizou Keikaku!* (\u5e78\u6751\u3001\u6539\u9020\u8a08\u753b!) by Choborau Nyopomi\n---\n**Volume 3**\nCover: [Yuugen](https://mangadex.org/author/bb5f6354-eebb-4e6e-9d38-a7ff6818e665)\nColor illustration: [Shirabi](https://mangadex.org/author/e942a741-ea9c-400c-8513-51bb1f0610de), [Kasuga Ayumu](https://mangadex.org/author/82c4316a-f764-4e20-a563-7e6dcfee6ac9), [Ningen](https://mangadex.org/author/8f8591be-db42-49b9-b5f3-49cf9eb90647), [Yoshida Morohe](https://mangadex.org/author/072d5e96-ff44-44c7-90b4-d03f59225b09)\n\n**Chapters**:\n1. *Tenshi to Akuma to Lunchtime* (\u5929\u4f7f\u3068\u60aa\u9b54\u3068\u30e9\u30f3\u30c1\u30bf\u30a4\u30e0) by Tiv\n2. *Batsu Game* (\u7f70\u30b2\u30fc\u30e0) by Hisasi\n3. *Sena x Yozora* (\u661f\u5948\u00d7\u591c\u7a7a) by Hijiki\n4. *Taberarenai nara Tatakatte Shimaeba Ii Jyanai.* (\u98df\u3079\u3089\u308c\u306a\u3044\u306a\u3089\u95d8\u3063\u3066\u3057\u307e\u3048\u3070\u3044\u3044\u3058\u3083\u306a\u3044\u3002) by Murasaki Hisato\n5. *Tobikome! Rinjinmura* (\u3068\u3073\u3053\u3081! \u308a\u3093\u3058\u3093\u6751) by Nariie Shinichirou (Naruse Yoshiki)\n6. *Haganai!* (\u306f\u304c\u306a\u3044\u3063!) by Kon Takuto\n7. *An-chan to Issho!* (\u3042\u3093\u3061\u3083\u3093\u3068\u3044\u3063\u3057\u3087!) by Kagisora Tomiyaki\n8. *Ganbare Sumeragi-san* (\u304c\u3093\u3070\u308c\u3059\u3081\u3089\u304e\u3055\u3093) by Yoshioka Kimitake\n9. *Kisekae Yukimura-kun* (\u7740\u305b\u66ff\u3048\u5e78\u6751\u304f\u3093) by Aoki Mutsumi\n10. *Hasegawa-ke no Kyuujitsu* (\u7fbd\u702c\u5ddd\u5bb6\u306e\u4f11\u65e5) by rin\n11. *Irekawarinjin-bu* (\u3044\u308c\u304b\u308f\u308a\u3093\u3058\u3093\u3076) by Kino Konoki\n12. *Seikimatsu Nazo Inryousui Densetsu: Kodaka no Ken* (\u4e16\u7d00\u672b\u8b0e\u98f2\u6599\u6c34\u4f1d\u8aac \u5c0f\u9df9\u306e\u4ef6) by Take Shinobu\n13. *Tanoshii Rinjin-bu* (\u697d\u3057\u3044\u96a3\u4eba\u90e8) by Gin (Ishizuchi Ginko)\n14. *Yozora x Pudding x Sena* (\u591c\u7a7ax\u30d7\u30ea\u30f3x\u661f\u5948) by Mukunoki Nanatsu\n15. *Nuigurumi wa Hisoka ni Warau* (\u306c\u3044\u3050\u308b\u307f\u306f\u5bc6\u304b\u306b\u55e4\u3046) by Minazuki Shinobu\n16. *Otoko to Otoko no Love Game!?* (\u7537\u3068\u7537\u306e\u30e9\u30d6\u30b2\u30fc\u30e0!?) by Nakamura Kira\n17. *Futari no \u2606Omoiyari* (\u3075\u305f\u308a\u306e\u2606\u304a\u3082\u3044\u3084\u308a) by Shagasuku (\u3057\u3085\u304c\u3059\u304f)\n18. *Rui wa Tomo wo Yoba... nai?* (\u985e\u306f\u53cb\u3092\u547c\u3070...\u306a\u3044?) by Kuro no Miki\n19. *Tsuru to Peta* (\u3064\u308b\u3068\u30da\u30bf) by Shouji Ayumu\n20. *Bokura wa Purikura mo Torenai (\u00b4 \u30fb\u03c9\u30fb\uff40)* (\u50d5\u3089\u306f\u30d7\u30ea\u30af\u30e9\u3082\u64ae\u308c\u306a\u3044(\u00b4 \u30fb\u03c9\u30fb\uff40)) by Mori Misaki\n21. *Virtual Osaka Natsu no Jin!* (\u30f4\u30a1\u30fc\u30c1\u30e3\u30eb\u5927\u5742\u590f\u306e\u9663!) by bomi & Kiurian\n22. *Yume wo Mita Ano Hi Bokutachi wa* (\u5922\u3092\u898b\u305f\u3042\u306e\u65e5 \u50d5\u305f\u3061\u306f) by Sakayama Shinta"
+                        "en": "An anthology of Boku wa Tomodachi ga Sukunai by various mangaka.\n\n---\n**Volume 1**\nCover: [Mizoguchi Keiji](https://mangadex.org/author/accaa73c-0040-4926-8b5e-ff43edf0289f)\nColor illustrations: [Youta](https://mangadex.org/author/0deb4fc2-516d-4aea-8c71-f20c6afdb623), [okiura](https://mangadex.org/author/291aa6c2-4908-463f-82d3-76e6e4c605ec), [karory](https://mangadex.org/author/2de90633-4afd-4027-a3b5-88bef77d61ab), [Higa Yukari](https://mangadex.org/author/b0f9c45c-7c88-4dd3-a87d-cb22167a5c94)\n\n**Chapters**:\n1. **Me and Slave and Blue Day** by Itachi\n2. **You can't make friends if you don't enter the tiger's den** by Ayakura Juu\n3. **If you want to get friends, you need a strategy to get their stomachs first!?** by nini\n4. **A Certain Aviator's Reminiscences** by Haruno Tomoya\n5. **Femininity Deviation** by pun2\n6. **Boku wa Tomodachi ga Sukunai+ Preview** by Taguchi Shouichi & Harukawa Misaki\n7. **You did it! Neighbor's Club!** by Shirabi & Kazahana Chiruwo\n8. **Kobato will do her best.** by Takei Ooki\n9. **How to Make Friends with Karaoke** by Atto\n10. **I shall return to the Rika Room!** by Hotaru Takana & Piro Shiki\n11. **A Tragedy of the Potato Chips of Darkness** by Takamura Masaya\n12. **Rose-colored Youth?** by Toru Kei\n13. **Telephone Shocking** by Toru Kei\n14. **Romance of the Three Kingdoms is a Loner's Achievement** by Shibamine Takashi\n15. **If an angel could become a smile...** by Rokushou Kokuu\n16. **Swimsuit Exhibition** by Uonuma Yuu\n17. **The Melancholy of Kashiwazaki Sena** by Shiranami Sui\n18. **I, Yukimura, Will Become a Samurai** by meet neet.\n19. **Kobato, Age 16** by Sugano Manami\n20. **Let's go to a beauty salon** by Yamada Koutarou & Miura Isao\n---\n**Volume 2**\nCover: [CUTEG](https://mangadex.org/author/7cf2ec07-fe50-4040-b4e6-e0f043a831e3)\nColor illustration: Runa (\u5c61\u90a3), [Sayori](https://mangadex.org/author/efde5bbc-b895-4331-9078-8c82b6a1bf7b), Bankoku Ayuya\n\n**Chapters**:\n1. **This ain't no vampire!** by Hasemi Ryou\n2. **Sena\u2192Sena?!** by Sanshoku Amido.\n3. **We Had Too Much Free Time, So We Played With Our Hair** by Ichiri\n4. **Universe in the Mind** by Kouji\n5. **Gosurorinjinbu!** kona (Konayama Kata)\n6. **A Girl's Heart** by Shouno Kotaro\n7. **Regrettable Photoshoot** by 100 Yen Locker\n8. *Sister vs. Sister* (\u30b7\u30b9\u30bf\u30fcvs.\u30b7\u30b9\u30bf\u30fc) by Natsuki Yuu\n9. *Bath Time Trouble* (\u30d0\u30b9\u30bf\u30a4\u30e0\u30c8\u30e9\u30d6\u30eb) by Komoda\n10. *Getabako no Tegami wa Bara no Kaori!?* (\u4e0b\u99c4\u7bb1\u306e\u624b\u7d19\u306f\u8594\u8587\u306e\u85ab\u308a!?) by Nullken\n11. *Onegai My Sena-sama\u2606* (\u304a\u306d\u304c\u3044 \u30de\u30a4\u661f\u5948\u69d8\u2606) by Xi Daisei (Daise)\n12. *Ha wo Nai (Boku wa Real Fight wo Tomenai)* (\u306f\u3092\u306a\u3044\uff08\u50d5\u306f\u30ea\u30a2\u30eb\u30d5\u30a1\u30a4\u30c8\u3092\u3068\u3081\u306a\u3044\uff09) by Yukiwo\n13. *Hentai de Tensai demo Shoujo Desukara!* (\u5909\u614b\u3067\u5929\u624d\u3067\u3082\u5c11\u5973\u3067\u3059\u304b\u3089!) by Tsuzuri\n14. *Yaranai Zen yori Yaru Gizen!* (\u3084\u3089\u306a\u3044\u5584\u3088\u308a\u3084\u308b\u507d\u5584!) by Akiduki Akina\n15. *Tatoeba, Sonna Nichijou.* (\u4f8b\u3048\u3070\u3001\u305d\u3093\u306a\u65e5\u5e38\u3002) by Yuizaki Kazuya\n16. *Rinki Ouhen mo Tanin tomo Yoki Kankei wo* (\u81e8\u6a5f\u5fdc\u5909\u3082\u4ed6\u4eba\u3068\u3082\u5584\u304d\u95a2\u4fc2\u3092) by Mitsu King\n17. *Yukimura, Kaizou Keikaku!* (\u5e78\u6751\u3001\u6539\u9020\u8a08\u753b!) by Choborau Nyopomi\n---\n**Volume 3**\nCover: [Yuugen](https://mangadex.org/author/bb5f6354-eebb-4e6e-9d38-a7ff6818e665)\nColor illustration: [Shirabi](https://mangadex.org/author/e942a741-ea9c-400c-8513-51bb1f0610de), [Kasuga Ayumu](https://mangadex.org/author/82c4316a-f764-4e20-a563-7e6dcfee6ac9), [Ningen](https://mangadex.org/author/8f8591be-db42-49b9-b5f3-49cf9eb90647), [Yoshida Morohe](https://mangadex.org/author/072d5e96-ff44-44c7-90b4-d03f59225b09)\n\n**Chapters**:\n1. *Tenshi to Akuma to Lunchtime* (\u5929\u4f7f\u3068\u60aa\u9b54\u3068\u30e9\u30f3\u30c1\u30bf\u30a4\u30e0) by Tiv\n2. *Batsu Game* (\u7f70\u30b2\u30fc\u30e0) by Hisasi\n3. *Sena x Yozora* (\u661f\u5948\u00d7\u591c\u7a7a) by Hijiki\n4. *Taberarenai nara Tatakatte Shimaeba Ii Jyanai.* (\u98df\u3079\u3089\u308c\u306a\u3044\u306a\u3089\u95d8\u3063\u3066\u3057\u307e\u3048\u3070\u3044\u3044\u3058\u3083\u306a\u3044\u3002) by Murasaki Hisato\n5. *Tobikome! Rinjinmura* (\u3068\u3073\u3053\u3081! \u308a\u3093\u3058\u3093\u6751) by Nariie Shinichirou (Naruse Yoshiki)\n6. *Haganai!* (\u306f\u304c\u306a\u3044\u3063!) by Kon Takuto\n7. *An-chan to Issho!* (\u3042\u3093\u3061\u3083\u3093\u3068\u3044\u3063\u3057\u3087!) by Kagisora Tomiyaki\n8. *Ganbare Sumeragi-san* (\u304c\u3093\u3070\u308c\u3059\u3081\u3089\u304e\u3055\u3093) by Yoshioka Kimitake\n9. *Kisekae Yukimura-kun* (\u7740\u305b\u66ff\u3048\u5e78\u6751\u304f\u3093) by Aoki Mutsumi\n10. *Hasegawa-ke no Kyuujitsu* (\u7fbd\u702c\u5ddd\u5bb6\u306e\u4f11\u65e5) by rin\n11. *Irekawarinjin-bu* (\u3044\u308c\u304b\u308f\u308a\u3093\u3058\u3093\u3076) by Kino Konoki\n12. *Seikimatsu Nazo Inryousui Densetsu: Kodaka no Ken* (\u4e16\u7d00\u672b\u8b0e\u98f2\u6599\u6c34\u4f1d\u8aac \u5c0f\u9df9\u306e\u4ef6) by Take Shinobu\n13. *Tanoshii Rinjin-bu* (\u697d\u3057\u3044\u96a3\u4eba\u90e8) by Gin (Ishizuchi Ginko)\n14. *Yozora x Pudding x Sena* (\u591c\u7a7ax\u30d7\u30ea\u30f3x\u661f\u5948) by Mukunoki Nanatsu\n15. *Nuigurumi wa Hisoka ni Warau* (\u306c\u3044\u3050\u308b\u307f\u306f\u5bc6\u304b\u306b\u55e4\u3046) by Minazuki Shinobu\n16. *Otoko to Otoko no Love Game!?* (\u7537\u3068\u7537\u306e\u30e9\u30d6\u30b2\u30fc\u30e0!?) by Nakamura Kira\n17. *Futari no \u2606Omoiyari* (\u3075\u305f\u308a\u306e\u2606\u304a\u3082\u3044\u3084\u308a) by Shagasuku (\u3057\u3085\u304c\u3059\u304f)\n18. *Rui wa Tomo wo Yoba... nai?* (\u985e\u306f\u53cb\u3092\u547c\u3070...\u306a\u3044?) by Kuro no Miki\n19. *Tsuru to Peta* (\u3064\u308b\u3068\u30da\u30bf) by Shouji Ayumu\n20. *Bokura wa Purikura mo Torenai (\u00b4 \u30fb\u03c9\u30fb\uff40)* (\u50d5\u3089\u306f\u30d7\u30ea\u30af\u30e9\u3082\u64ae\u308c\u306a\u3044(\u00b4 \u30fb\u03c9\u30fb\uff40)) by Mori Misaki\n21. *Virtual Osaka Natsu no Jin!* (\u30f4\u30a1\u30fc\u30c1\u30e3\u30eb\u5927\u5742\u590f\u306e\u9663!) by bomi & Kiurian\n22. *Yume wo Mita Ano Hi Bokutachi wa* (\u5922\u3092\u898b\u305f\u3042\u306e\u65e5 \u50d5\u305f\u3061\u306f) by Sakayama Shinta"
                     },
                     "isLocked": false,
                     "links": {
@@ -661,8 +665,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2018-03-04T16:31:30+00:00",
-                    "updatedAt": "2022-11-02T17:05:37+00:00",
-                    "version": 12,
+                    "updatedAt": "2023-07-08T19:28:20+00:00",
+                    "version": 13,
                     "availableTranslatedLanguages": [
                         "it",
                         "en"

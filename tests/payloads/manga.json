@@ -16,7 +16,7 @@
                     "en": "Love Me For Who I Am"
                 },
                 {
-                    "ja": "\u4e0d\u53ef\u89e3\u306a\u307c\u304f"
+                    "ja": "\u4e0d\u53ef\u89e3\u306a\u307c\u304f\u306e\u3059\u3079\u3066\u3092"
                 },
                 {
                     "fr": "Aime moi pour ce que je suis"
@@ -35,7 +35,9 @@
                 "bw": "series/191875",
                 "kt": "54280",
                 "mu": "150104",
-                "amz": "https://www.amazon.co.jp/kindle-dbs/product/B08FYX4V3R",
+                "amz": "https://www.amazon.co.jp/dp/4814801521/",
+                "cdj": "https://www.cdjapan.co.jp/searchuni?term.media_format=&q=\u4e0d\u53ef\u89e3\u306a\u307c\u304f",
+                "ebj": "https://ebookjapan.yahoo.co.jp/books/522566/",
                 "mal": "115217",
                 "raw": "http://www.comic-medu.com/wk/fukaboku",
                 "engtl": "https://sevenseasentertainment.com/series/love-me-for-who-i-am/"
@@ -117,8 +119,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-07-24T08:58:34+00:00",
-            "updatedAt": "2022-09-28T01:59:37+00:00",
-            "version": 23,
+            "updatedAt": "2023-07-18T01:01:48+00:00",
+            "version": 24,
             "availableTranslatedLanguages": [
                 "pt-br",
                 "fr",
@@ -126,7 +128,7 @@
                 "es-la",
                 "id"
             ],
-            "latestUploadedChapter": "63533421-3593-4901-b043-9fe5b50242c0"
+            "latestUploadedChapter": "e08aebf8-f468-4e19-8c4d-5e1c8fa88f69"
         },
         "relationships": [
             {
@@ -225,6 +227,7 @@
                     "isLocked": false,
                     "links": {
                         "al": "105933",
+                        "kt": "kimi-dake-no-ponytail",
                         "mu": "150481",
                         "mal": "126708"
                     },
@@ -266,8 +269,8 @@
                     "state": "published",
                     "chapterNumbersResetOnNewVolume": false,
                     "createdAt": "2019-07-29T19:18:49+00:00",
-                    "updatedAt": "2022-04-05T21:52:09+00:00",
-                    "version": 4,
+                    "updatedAt": "2023-07-22T03:24:11+00:00",
+                    "version": 5,
                     "availableTranslatedLanguages": [
                         "es",
                         "en"

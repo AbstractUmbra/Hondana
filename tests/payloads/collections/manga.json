@@ -3,625 +3,54 @@
     "response": "collection",
     "data": [
         {
-            "id": "33a4cb9c-feff-425f-a39e-9982e25ec9f3",
+            "id": "b56ea48a-3dce-4eb0-982c-2d58097d1e58",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Ai Wo Utau Yori Ore ni Oborero!"
+                    "en": "The Strongest Ever"
                 },
                 "altTitles": [
                     {
-                        "es": "\u00a1B\u00e9same! Demu\u00e9strame el amor que pones en tus canciones"
+                        "en": "The strongest in history"
                     },
                     {
-                        "ja": "Ai wo Utau Yori Ore ni Oborero"
+                        "ru": "\u0421\u0438\u043b\u044c\u043d\u0435\u0439\u0448\u0438\u0439 \u0432 \u0438\u0441\u0442\u043e\u0440\u0438\u0438"
                     },
                     {
-                        "ja": "Ai wo Utau Yori Ore ni Oborero!"
-                    },
-                    {
-                        "de": "Blaue Rosen"
-                    },
-                    {
-                        "en": "I'd Rather You Drown in Me, Than Sing of Love"
-                    },
-                    {
-                        "vi": "M\u1ed1i t\u00ecnh hoa h\u1ed3ng xanh"
-                    },
-                    {
-                        "ru": "\u0412\u043c\u0435\u0441\u0442\u043e \u0442\u043e\u0433\u043e, \u0447\u0442\u043e\u0431\u044b \u043f\u0435\u0442\u044c \u043f\u0435\u0441\u043d\u0438 \u043e \u043b\u044e\u0431\u0432\u0438, \u043f\u043e\u0434\u0430\u0440\u0438 \u0435\u0435 \u043c\u043d\u0435!"
-                    },
-                    {
-                        "th": "\u0e17\u0e33\u0e19\u0e2d\u0e07\u0e23\u0e31\u0e01\u0e08\u0e31\u0e07\u0e2b\u0e27\u0e30\u0e2b\u0e31\u0e27\u0e43\u0e08"
-                    },
-                    {
-                        "ja": "\u611b\u3092\u6b4c\u3046\u3088\u308a\u4ffa\u306b\u6eba\u308c\u308d!"
-                    },
-                    {
-                        "zh": "\u6447\u6eda\u4e0b\u7684\u84dd\u8272\u8537\u8587"
-                    },
-                    {
-                        "zh": "\u6447\u6eda\u84dd\u8537\u8587"
-                    },
-                    {
-                        "zh": "\u6c89\u6eba\u7231\u6b4c"
-                    },
-                    {
-                        "ko": "\uc0ac\ub791\ub178\ub798 \ub9d0\uace0 \ub0b4\uac8c \ube60\uc838\ubd10!"
+                        "ko": "\uc0ac\uc0c1\ucd5c\uac15"
                     }
                 ],
                 "description": {
-                    "en": "Akira Shiraishi, a young high-school boy with feminine features, joins Blaue Rosen, the all-girl band that Mizuki Sakurazaka, an androgynous girl of the same age, performs lead electric guitar in.  \n  \nTheir high-school life is anything but typical: Mizuki is the \"prince\" of her all-girl school while Akira is the \"princess\" of the neighboring all-boy school. A series of comical events brings them closer together, even as the prejudice of the people around them tries to hold them back."
+                    "en": "The \u2018Ten Masters\u2019 had kept each other in check and maintained the balance of power and order of the world beyond human limits, until Baek Dohyun showed up with the strongest power ever!"
                 },
                 "isLocked": false,
                 "links": {
-                    "al": "32686",
-                    "ap": "ai-ore-love-me",
-                    "bw": "series/294542",
-                    "kt": "5604",
-                    "mu": "2815",
-                    "amz": "https://www.amazon.co.jp/gp/product/B074CK6D5N",
-                    "mal": "2686",
-                    "engtl": "https://www.viz.com/ai-ore"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "5",
-                "lastChapter": "29",
-                "publicationDemographic": "shoujo",
-                "status": "completed",
-                "year": 2006,
-                "contentRating": "erotica",
-                "tags": [
-                    {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Romance"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Crossdressing"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "School Life"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2018-07-25T19:12:45+00:00",
-                "updatedAt": "2021-12-06T23:38:29+00:00",
-                "version": 3,
-                "availableTranslatedLanguages": [
-                    "en",
-                    "pl"
-                ],
-                "latestUploadedChapter": "1a85946e-48fe-430d-aca5-34fc9eff1657"
-            },
-            "relationships": [
-                {
-                    "id": "60695965-d778-451d-a1eb-290019ed7a2f",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Shinjo Mayu",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "60695965-d778-451d-a1eb-290019ed7a2f",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Shinjo Mayu",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "e5c25a47-9c4d-4f1b-8717-df5f237128af",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "5",
-                        "fileName": "609e2be5-45af-4c84-a007-18b1be4c4ef0.png",
-                        "locale": "ja",
-                        "createdAt": "2021-05-23T08:13:42+00:00",
-                        "updatedAt": "2021-05-23T08:13:42+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "9032706d-92fa-48f9-9b1f-bad4c79db872",
-                    "type": "manga",
-                    "related": "sequel",
-                    "attributes": {
-                        "title": {
-                            "en": "Ai Ore! ~Danshikou no Hime to Joshikou no Ouji~"
-                        },
-                        "altTitles": [
-                            {
-                                "es": "\u00a1\u00c1mame! La Princesa del Instituto de Chicos y el Pr\u00edncipe del Instituto de Chicas"
-                            },
-                            {
-                                "en": "Ai Ore!"
-                            },
-                            {
-                                "en": "Ai Ore! Love Me!"
-                            },
-                            {
-                                "en": "AI\u00b7ORE! ~AMAMI!~"
-                            },
-                            {
-                                "de": "Blaue Rosen - Saison 2 -"
-                            },
-                            {
-                                "en": "Love Me!"
-                            },
-                            {
-                                "en": "Love Me! - The Princess of the Boy High School and the Prince of the Girl High School"
-                            },
-                            {
-                                "ru": "\u041b\u044e\u0431\u043e\u0432\u044c \u0438 \u044f!"
-                            },
-                            {
-                                "ru": "\u041f\u0440\u0438\u043d\u0446\u0435\u0441\u0441\u0430 \u043c\u0430\u043b\u044c\u0447\u0438\u043a\u043e\u0432 \u0438 \u043f\u0440\u0438\u043d\u0446 \u0434\u0435\u0432\u043e\u0447\u0435\u043a"
-                            },
-                            {
-                                "ja": "\u611b\u4ffa! ~\u7537\u5b50\u6821\u306e\u59eb\u3068\u5973\u5b50\u6821\u306e\u738b\u5b50~"
-                            },
-                            {
-                                "zh": "\u6416\u6efe\u85cd\u8594\u8587!2"
-                            },
-                            {
-                                "zh": "\u6416\u6efe\u85cd\u8594\u8587!\u2161"
-                            },
-                            {
-                                "zh": "\u6447\u6eda\u84dd\u8537\u8587!2"
-                            },
-                            {
-                                "zh": "\u6447\u6eda\u84dd\u8537\u8587!\u2161"
-                            },
-                            {
-                                "zh": "\u6c89\u6eba\u611b\u6b4c2"
-                            },
-                            {
-                                "zh": "\u6c89\u6eba\u7231\u6b4c2"
-                            },
-                            {
-                                "zh": "\u7231\u6211"
-                            },
-                            {
-                                "ko": "\ub0b4\uac8c \ube60\uc838\ubd10! ~\ub0a8\ud559\uad50\uc758 \uacf5\uc8fc\u00b7\uc5ec\ud559\uad50\uc758 \uc655\uc790~"
-                            },
-                            {
-                                "en": "Love Me!: The Princess of the Boy High School and the Prince of the Girl High School"
-                            },
-                            {
-                                "ja": "Ai Ore!: Danshikou no Hime to Joshikou no Ouji"
-                            }
-                        ],
-                        "description": {
-                            "en": "When Akira announces he was a boy in the first book \"Ai wo Utau Yori Ore ni Oborero\" so does the fact Akira goes to Dankaisan the boys school next to St. Nobora (Mizuki's school). Things start to get rough when pressure against Mizuki dating a boy from that school rise.\n\n\n---\n\n**Note:** Because Shinjo Mayu stopped her job relationship with Shogakukan, she continued her incomplete manga in Asuka and called it Ai Ore! This can be considered a continuation of Ai (w)o Utau Yori Ore ni Oborero! or even as a second series."
-                        },
-                        "isLocked": false,
-                        "links": {
-                            "al": "38771",
-                            "ap": "ai-ore-love-me-ii",
-                            "bw": "series/2",
-                            "kt": "17785",
-                            "mu": "28420",
-                            "mal": "8771"
-                        },
-                        "originalLanguage": "ja",
-                        "lastVolume": "5",
-                        "lastChapter": "23",
-                        "publicationDemographic": "shoujo",
-                        "status": "completed",
-                        "year": null,
-                        "contentRating": "safe",
-                        "tags": [
-                            {
-                                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Romance"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Comedy"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Crossdressing"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "Drama"
-                                    },
-                                    "description": {},
-                                    "group": "genre",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            },
-                            {
-                                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
-                                "type": "tag",
-                                "attributes": {
-                                    "name": {
-                                        "en": "School Life"
-                                    },
-                                    "description": {},
-                                    "group": "theme",
-                                    "version": 1
-                                },
-                                "relationships": []
-                            }
-                        ],
-                        "state": "published",
-                        "chapterNumbersResetOnNewVolume": false,
-                        "createdAt": "2018-06-21T12:01:38+00:00",
-                        "updatedAt": "2021-12-06T23:40:52+00:00",
-                        "version": 6,
-                        "availableTranslatedLanguages": [
-                            "en"
-                        ],
-                        "latestUploadedChapter": "bf47ea30-a2ab-4fc1-bea1-7be5d6dc2288"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "5896e05d-3900-4947-baf8-403a9d8fa5ec",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "Nick & Lever"
-                },
-                "altTitles": [
-                    {
-                        "ja": "\u30cb\u30c3\u30af\u3068\u30ec\u30d0\u30fc"
-                    },
-                    {
-                        "ne": "\u0928\u093f\u0915 \u0930 \u0932\u0940\u092d\u0930"
-                    }
-                ],
-                "description": {
-                    "en": "The story of two foreign men living in Japan.\n\n(from ebookjapan):\n\nNick, with his stylish hair, and Lever, with his dazzling eyes behind his sunglasses, are a HOT & CRAZY foreign duo who will face any obstacles that come their way! \n\nThe genius Kyogoro Miyata, who wastes no time in drawing, unleashes a shocking high-speed manga. Nick and Lever are finally here!"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "132557",
-                    "ap": "nick-to-lever",
-                    "bw": "de02f83f7f-6292-4582-a512-0cfa83f1d061",
-                    "mu": "m604eda",
-                    "amz": "https://www.amazon.co.jp/dp/B0BR35ZYP4?binding=kindle_edition&searchxofy=true&ref_=dbs_s_aps_series_rwt_tkin&qid=1679952641&sr=8-1",
-                    "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2676283",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/671099/"
-                },
-                "originalLanguage": "ja",
-                "lastVolume": "",
-                "lastChapter": "",
-                "publicationDemographic": "seinen",
-                "status": "ongoing",
-                "year": 2020,
-                "contentRating": "safe",
-                "tags": [
-                    {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Comedy"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "5ca48985-9a9d-4bd8-be29-80dc0303db72",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Crime"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adventure"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Slice of Life"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    }
-                ],
-                "state": "published",
-                "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2023-03-27T20:56:26+00:00",
-                "updatedAt": "2023-04-27T17:24:24+00:00",
-                "version": 10,
-                "availableTranslatedLanguages": [
-                    "en",
-                    "pt-br"
-                ],
-                "latestUploadedChapter": "bc7d9c29-19a4-4c84-a5ee-e4125a91ce42"
-            },
-            "relationships": [
-                {
-                    "id": "e61407ab-086c-464a-bbdf-6384186b6b0e",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Miyata Kyougorou",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2023-03-27T21:00:27+00:00",
-                        "updatedAt": "2023-03-27T21:00:27+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "e61407ab-086c-464a-bbdf-6384186b6b0e",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Miyata Kyougorou",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2023-03-27T21:00:27+00:00",
-                        "updatedAt": "2023-03-27T21:00:27+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "f41a51a2-9f0b-4c0e-8263-cac11cd83fb6",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "",
-                        "volume": "1",
-                        "fileName": "d87e1ecf-5071-45e7-a983-c0fbb24472f1.png",
-                        "locale": "ja",
-                        "createdAt": "2023-03-27T20:56:29+00:00",
-                        "updatedAt": "2023-03-27T20:56:29+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "fd5e8166-86a8-4f5b-8801-087e626d631c",
-                    "type": "creator"
-                }
-            ]
-        },
-        {
-            "id": "fa938045-2957-48d3-abba-4b7e34557baf",
-            "type": "manga",
-            "attributes": {
-                "title": {
-                    "en": "I Thought My Time Was Up!"
-                },
-                "altTitles": [
-                    {
-                        "ko": "\uc2dc\ud55c\ubd80\uc778 \uc904 \uc54c\uc558\uc5b4\uc694!"
-                    },
-                    {
-                        "ko-ro": "Sihanbuin Jul Arasseoyo!"
-                    },
-                    {
-                        "en": "I Thought I Didn't Have Long to Live!"
-                    },
-                    {
-                        "es": "Pens\u00e9 que ten\u00eda fecha l\u00edmite"
-                    },
-                    {
-                        "ru": "\u042f \u0434\u0443\u043c\u0430\u043b\u0430 \u0447\u0442\u043e \u0443\u043c\u0440\u0443"
-                    },
-                    {
-                        "tr": "K\u0131s\u0131tl\u0131 \u00d6mr\u00fcm Kald\u0131 San\u0131yordum!"
-                    },
-                    {
-                        "zh": "\u8fd8\u4ee5\u4e3a\u662f\u7edd\u75c7"
-                    },
-                    {
-                        "en": "I Thought It Was Time!"
-                    }
-                ],
-                "description": {
-                    "en": "Lariette, the daughter of the Duke of Blanchett, was told she only had three months left to live. She decided that she didn't want to go quietly, so she decided to create and complete her bucket list! \n\n1. Treat her maid Anne to cakes\n2. Gain independence and wealth\n3. Get rid of her fianc\u00e9, the Marquis of Secreb\n4. Date someone handsome for three months\n5. Take a trip to the West!\n\n...But it was only after she ran away that she realised... the fact her terminal illness was a complete misdiagnosis!\n\n---\nLariette, the daughter of the Duke of Blanche, was diagnosed with a terminal illness and three months left to live. She decided to try to achieve her bucket list since she was going to die anyway. First, dumping an older fianc\u00e9 whom she doesn't even love. Second, dating the monster Duke of Candel for three months! But it was only after she ran away from him that she realized, the fact that her terminal illness was a complete misdiagnosis!\n\n---\n**Original Novel:** [Naver Novel](https://novel.naver.com/webnovel/list?novelId=825581), [Naver Series](https://series.naver.com/novel/detail.series?productNo=4502291)\n\n**Original Webtoon:** [Naver Series](https://series.naver.com/comic/detail.series?productNo=9021824), [Naver Webtoon](https://comic.naver.com/webtoon/list?titleId=801711)\n\n**Official Translations:**\n* [Chinese (Simplified) / \u6c49\u8bed](https://www.dongmanmanhua.cn/LOVE/haiyiwieshijuezheng/list?title_no=2313)",
-                    "ko": "3\uac1c\uc6d4 \uc2dc\ud55c\ubd80 \uc9c4\ub2e8\uc744 \ubc1b\uc740 \uacf5\ub140, \ub77c\ub9ac\uc5d0\ud2b8. \uc5b4\ucc28\ud53c \uc8fd\uc744 \ubab8, \ubc84\ud0b7\ub9ac\uc2a4\ud2b8(\ub77c \uc4f0\uace0 \ubbf8\uce5c \uc9d3\uc774\ub77c \uc77d\ub294) \ub2ec\uc131\uc744 \ud574\ubcf4\uae30\ub85c \ud588\ub2e4. \n\n\uccab\uc9f8. \uc57d\ud63c\uc790\ub97c \uc5ff \uba39\uc774\uae30. \n\ub458\uc9f8. \uad34\ubb3c \uacf5\uc791 \uc544\uc2a4\ub77c\ud55c\uacfc 3\uac1c\uc6d4 \uac04 \uc5f0\uc560\ud558\uae30!  \n\n\uadf8\ub7ec\ub098 \uadf8\uc5d0\uac8c\uc11c \ub3c4\ub9dd\uce58\uace0 \ub098\uc11c\uc57c \uae68\ub2eb\uace0 \ub9d0\uc558\ub2e4. \uc2dc\ud55c\ubd80 \uc9c4\ub2e8\uc774 \uc644\ubcbd\ud55c \uc624\uc9c4\uc774\ub77c\ub294 \uc0ac\uc2e4\uc744!\n\n---\n**Original Novel:** [Naver Novel](https://novel.naver.com/webnovel/list?novelId=825581), [Naver Series](https://series.naver.com/novel/detail.series?productNo=4502291)\n\n**Original Webtoon:** [Naver Series](https://series.naver.com/comic/detail.series?productNo=9021824), [Naver Webtoon](https://comic.naver.com/webtoon/list?titleId=801711)\n\n**Official Translations:**\n* [Chinese (Simplified) / \u6c49\u8bed](https://www.dongmanmanhua.cn/LOVE/haiyiwieshijuezheng/list?title_no=2313)",
-                    "tr": "Leydi Lariet\u2019e bir hastal\u0131k tan\u0131s\u0131 koyulmu\u015f ve \u00fc\u00e7 ayl\u0131k \u00f6mr\u00fc kald\u0131\u011f\u0131 s\u00f6ylenmi\u015fti. \u201cZaten \u00f6lece\u011fim, o halde akl\u0131mdan ge\u00e7en her \u015feyi yapabilirim!\u201d diye d\u00fc\u015f\u00fcnen leydi, ni\u015fanl\u0131s\u0131na postay\u0131 koyup ac\u0131mas\u0131z d\u00fckle bir ili\u015fkiye ba\u015flam\u0131\u015ft\u0131. Olacaklar\u0131 i\u015fler \u00e7\u0131\u011f\u0131r\u0131ndan \u00e7\u0131kmadan \u00f6nce bilemezdi. Asl\u0131nda kendisine yanl\u0131\u015f bir te\u015fhis konulmu\u015f, k\u0131s\u0131tl\u0131 \u00f6mr\u00fc kalmam\u0131\u015ft\u0131! Bay Asrazan g\u00fcl\u00fcmsedi ve\u2026 \u201c\u015eimdi ka\u00e7maya \u00e7al\u0131\u015f\u0131rsan bunun bedelini \u00f6demek zorunda kal\u0131rs\u0131n.\u201d\n\n---\n**Original Novel:** [Naver Novel](https://novel.naver.com/webnovel/list?novelId=825581), [Naver Series](https://series.naver.com/novel/detail.series?productNo=4502291)\n\n**Original Webtoon:** [Naver Series](https://series.naver.com/comic/detail.series?productNo=9021824), [Naver Webtoon](https://comic.naver.com/webtoon/list?titleId=801711)\n\n**Official Translations:**\n* [Chinese (Simplified) / \u6c49\u8bed](https://www.dongmanmanhua.cn/LOVE/haiyiwieshijuezheng/list?title_no=2313)",
-                    "zh": "\u751f\u547d\u53ea\u5269\u6700\u540e\u4e09\u4e2a\u6708\uff1f\n\u90a3\u6211\u8981\u548c\u602a\u7269\u516c\u7235\u8c08\u604b\u7231\uff01\n\u5f97\u77e5\u81ea\u5df1\u7684\u751f\u547d\u53ea\u5269\u4e0b\u4e09\u4e2a\u6708\u7684\u62c9\u4e3d\u7231\u7279,\u60f3\u7740\u53cd\u6b63\u81ea\u5df1\u6d3b\u4e0d\u957f\uff0c\u7d22\u6027\u5728\u6b7b\u4e4b\u524d\u5b8c\u6210\u81ea\u5df1\u7684\u613f\u671b\u6e05\u5355!\u9996\u5148\u89e3\u51b3\u6389\u672a\u5a5a\u592b\u8001\u5934\u513f\uff0c\u5176\u6b21\u548c\u602a\u7269\u516c\u7235\u57c3\u65af\u62c9\u7ff0\u8c08\u4e09\u4e2a\u6708\u7684\u604b\u7231!\u4f46\u9003\u79bb\u4ed6\u8eab\u8fb9\u4e4b\u540e\uff0c\u62c9\u4e3d\u7231\u7279\u624d\u77e5\u9053\uff0c\u81ea\u5df1\u7684\u75c5\u7adf\u7136\u662f\u2026\uff1f!\n\n---\n**Original Novel:** [Naver Novel](https://novel.naver.com/webnovel/list?novelId=825581), [Naver Series](https://series.naver.com/novel/detail.series?productNo=4502291)\n\n**Original Webtoon:** [Naver Series](https://series.naver.com/comic/detail.series?productNo=9021824), [Naver Webtoon](https://comic.naver.com/webtoon/list?titleId=801711)\n\n**Official Translations:**\n* [Chinese (Simplified) / \u6c49\u8bed](https://www.dongmanmanhua.cn/LOVE/haiyiwieshijuezheng/list?title_no=2313)"
-                },
-                "isLocked": false,
-                "links": {
-                    "al": "156601",
-                    "ap": "i-thought-it-was-time",
-                    "mu": "p913lxy",
-                    "nu": "i-thought-i-didnt-have-long-to-live",
-                    "mal": "154064",
-                    "raw": "https://comic.naver.com/webtoon/list?titleId=801711",
-                    "engtl": "https://www.webtoons.com/en/romance/i-thought-my-time-was-up/list?title_no=5171"
+                    "al": "135875",
+                    "ap": "the-strongest-ever",
+                    "mu": "173943",
+                    "raw": "https://comic.naver.com/webtoon/list.nhn?titleId=748536"
                 },
                 "originalLanguage": "ko",
                 "lastVolume": "",
                 "lastChapter": "",
                 "publicationDemographic": null,
                 "status": "ongoing",
-                "year": 2022,
+                "year": null,
                 "contentRating": "safe",
                 "tags": [
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
                     {
                         "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
                         "type": "tag",
@@ -636,37 +65,24 @@
                         "relationships": []
                     },
                     {
-                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "id": "799c202e-7daa-44eb-9cf7-8a3c0441531e",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Romance"
+                                "en": "Martial Arts"
                             },
                             "description": {},
-                            "group": "genre",
+                            "group": "theme",
                             "version": 1
                         },
                         "relationships": []
                     },
                     {
-                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Comedy"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Fantasy"
+                                "en": "Adventure"
                             },
                             "description": {},
                             "group": "genre",
@@ -716,46 +132,23 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2022-11-04T20:08:13+00:00",
-                "updatedAt": "2023-04-15T14:11:49+00:00",
-                "version": 6,
+                "createdAt": "2020-12-10T11:26:03+00:00",
+                "updatedAt": "2023-06-28T16:25:01+00:00",
+                "version": 5,
                 "availableTranslatedLanguages": [
-                    "pl",
-                    "en"
+                    "en",
+                    "ru",
+                    "fr",
+                    "id"
                 ],
-                "latestUploadedChapter": "b9d3c668-c9e2-413a-89ee-1dd7302b5dda"
+                "latestUploadedChapter": "c51326ef-3b14-451a-a7a4-191cc8bfca9b"
             },
             "relationships": [
                 {
-                    "id": "409fdb79-349b-493e-b526-3c9043e01873",
+                    "id": "9a72e6c1-3562-4fa8-ab80-f045b7737d72",
                     "type": "author",
                     "attributes": {
-                        "name": "Ari Choi",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": "https://twitter.com/aritheretriever",
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2022-08-22T07:39:19+00:00",
-                        "updatedAt": "2022-08-22T17:25:36+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "9bc69ed5-cd85-4b48-a2da-64aa0917fd93",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Hyeyong (\ud61c\uc6a9)",
+                        "name": "\ud669\uaddc\uc601",
                         "imageUrl": null,
                         "biography": {},
                         "twitter": null,
@@ -772,15 +165,15 @@
                         "naver": null,
                         "website": null,
                         "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2022-03-08T17:15:05+00:00",
-                        "version": 3
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
                     }
                 },
                 {
-                    "id": "bb1177e6-14a8-4b7c-9aa0-472f5ec34393",
-                    "type": "artist",
+                    "id": "9d3e1c16-312a-4bdf-9948-99fd63e48272",
+                    "type": "author",
                     "attributes": {
-                        "name": "Essie",
+                        "name": "\uc774\ub2e8\uc544",
                         "imageUrl": null,
                         "biography": {},
                         "twitter": null,
@@ -796,136 +189,99 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2022-11-04T19:54:01+00:00",
-                        "updatedAt": "2022-11-04T19:54:01+00:00",
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "7e391cc9-1b6e-4aea-b8e4-47ae1253815b",
+                    "id": "9d3e1c16-312a-4bdf-9948-99fd63e48272",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "\uc774\ub2e8\uc544",
+                        "imageUrl": null,
+                        "biography": {},
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "74c53ce7-58c0-4164-8150-34984270e56e",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
-                        "volume": "1",
-                        "fileName": "3574b958-9822-4160-8509-4aa2a35c01bd.jpg",
+                        "volume": "2",
+                        "fileName": "ada2f15a-aefd-4e18-a829-cd70eed86828.jpg",
                         "locale": "ko",
-                        "createdAt": "2023-02-08T00:14:53+00:00",
-                        "updatedAt": "2023-02-08T00:14:53+00:00",
+                        "createdAt": "2022-06-05T20:44:14+00:00",
+                        "updatedAt": "2022-06-05T20:44:14+00:00",
                         "version": 1
                     }
-                },
-                {
-                    "id": "66fa5e4a-4024-440a-b748-4f784053e865",
-                    "type": "creator"
                 }
             ]
         },
         {
-            "id": "256c04c1-3575-44c9-9b02-e9d593a6b86d",
+            "id": "c10f3b24-dbfd-4f1c-9caa-af8a3d684872",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "The Tyrant's Guardian Is an Evil Witch"
+                    "en": "The Far East Incident"
                 },
                 "altTitles": [
                     {
-                        "ko": "\ud3ed\uad70\uc758 \ubcf4\ud638\uc790\ub294 \uc545\uc5ed \ub9c8\ub140\uc785\ub2c8\ub2e4"
+                        "es": "Accidente en el lejano oriente"
                     },
                     {
-                        "ko-ro": "Pokgunui Bohojaneun Agyeong Manyeoimnida"
+                        "en": "Far Eastern Incident"
                     },
                     {
-                        "ko-ro": "Poggun'eui Bohojaneun Ag'yeog Manyeo Ibnida"
+                        "ja-ro": "Kyokutou Jihen"
                     },
                     {
-                        "en": "The Tyrant's Guardian Is the Villainous Witch"
-                    },
-                    {
-                        "en": "The Tyrant's Guardian Is the Villain Witch"
-                    },
-                    {
-                        "pt-br": "A guardi\u00e3 do tirano \u00e9 a bruxa m\u00e1"
-                    },
-                    {
-                        "es": "El guardi\u00e1n del tirano es una bruja malvada"
-                    },
-                    {
-                        "ru": "\u0417\u043b\u0430\u044f \u0432\u0435\u0434\u044c\u043c\u0430 - \u0445\u0440\u0430\u043d\u0438\u0442\u0435\u043b\u044c \u0442\u0438\u0440\u0430\u043d\u0430"
-                    },
-                    {
-                        "th": "\u0e41\u0e21\u0e48\u0e21\u0e14\u0e15\u0e31\u0e27\u0e23\u0e49\u0e32\u0e22\u0e1c\u0e39\u0e49\u0e1e\u0e34\u0e17\u0e31\u0e01\u0e29\u0e4c\u0e17\u0e23\u0e23\u0e32\u0e0a"
-                    },
-                    {
-                        "ja": "\u66b4\u541b\u306e\u4fdd\u8b77\u8005\u306f\u60aa\u5f79\u9b54\u5973\u3067\u3059"
-                    },
-                    {
-                        "zh": "\u66b4\u541b\u7684\u76d1\u62a4\u4eba\u662f\u53cd\u6d3e\u9b54\u5973"
-                    },
-                    {
-                        "zh": "\u76d1\u62a4\u4eba\u662f\u53cd\u6d3e\u9b54\u5973"
-                    },
-                    {
-                        "zh-hk": "\u66b4\u541b\u7684\u53cd\u6d3e\u9b54\u5973\u76e3\u8b77\u4eba"
-                    },
-                    {
-                        "my": "\u1004\u103d\u1031\u1014\u103e\u1004\u103a\u1038\u1016\u103c\u1030\u1012\u100f\u1039\u100d\u102c\u101b\u102e"
-                    },
-                    {
-                        "id": "Wali Sang Tiran Adalah Penyihir Jahat"
-                    },
-                    {
-                        "tr": "Tiran\u0131n Koruyucusu K\u00f6t\u00fc Bir Cad\u0131 M\u0131"
+                        "ja": "\u6975\u6771\u4e8b\u5909"
                     }
                 ],
                 "description": {
-                    "de": "Der Eishexe Clete rutscht ihr Herz in die Hose, als eines Tages ein kleines Kind an ihrer T\u00fcr abgegeben wird. Der Junge mit den gro\u00dfen Augen ist niemand Geringeres als der uneheliche Sohn des Kaisers und Cletes furchteinfl\u00f6\u00dfender zuk\u00fcnftiger M\u00f6rder. Sie entscheidet sich jedoch, ihn liebevoll aufzuziehen \u2013 in der Hoffnung, dass er in der Zukunft einen anderen Weg einschlagen wird. Das einzige Problem? Sie hat keine Ahnung, wie man ein menschliches Kind gro\u00dfzieht! Mit der Hilfe ihres treuen Butlers beginnt sie mit den Grundlagen: Vorlesen, Spielen, sie sucht ihm sogar einen Freund... Die beiden formen langsam eine besondere Verbindung, die vorher niemand f\u00fcr m\u00f6glich gehalten h\u00e4tte. Aber als finstere M\u00e4chte beginnen, sich einzumischen, wird es immer schwieriger, den Jungen vor der Dunkelheit zu bewahren. Werden Cletes Kr\u00e4fte ausreichen, die Zukunft zu \u00e4ndern? Oder wird sie ihrem tragischen Ende nicht entkommen k\u00f6nnen?\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "en": "I seem to have reincarnated in the world of an R-rated romance fantasy novel. And not just as an ordinary character, but as the witch who loses her life to the crazy male lead! Luckily there is a long 200 years until the main characters are born and grow into their roles. Now since my life is not in imminent danger, shall I leisurely think of ways to avoid death?\n\nHowever, I had not taken notice of a very important detail about the time I'd be spending 'safe from imminent danger.' 200 years was by no means a short waiting period and by the time the younger version of the male lead appeared in front of me, I had completely forgotten the original novel's plot!\n\nOh, whatever, now that it's come to this, the only way to survive is to raise the male lead into a sane and stable adult! The first step to avoiding death by the hands of the tyrant male lead is changing this extremely frightened child's life.\n\n\"It must be very inconvenient for you to have me suddenly show up on your doorstep, I'm sorry. You can tell me to go away, I'll be fine.\"\n\n\"Nonsense. Do I look like someone who could be inconvenienced by a little boy like you? Also, what do you mean by you'll be fine even if told to go away? It's not like you have anywhere to go back to, kid.\"\n  \nThe little boy burst into tears.  \n  \n'Oh, this is so not it,' was what the witch thought to herself as the little boy sobbed.\n\n---\nClete's heart sinks when a little child shows up on her doorstep one day. The wide-eyed boy is none other than Alpen, the emperor's illegitimate son and her terrifying future killer. But as a powerful witch herself, Clete is not one to surrender to fate. She decides to raise him with warmth and kindness in the hopes that he will walk a different path in life this time. The only problem? She has no idea how to raise a human child! With the help of her loyal butler, she starts with the basics: reading him a storybook, playing house, making him a friend... The two eventually form a special bond that she never thought was possible. But when dark forces begin to interfere, it becomes harder and harder to keep the boy from succumbing to evil. Will Clete's powers be enough to alter the future? Or will she inevitably meet her tragic end?\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "fr": "Lorsqu'elle ouvre sa porte pour y trouver un petit enfant, Clete en frissonne. Le gar\u00e7on aux grands yeux innocents qui se tient devant elle n'est autre qu'Alpen, le fils ill\u00e9gitime de l'empereur, mais aussi celui qui finira par l'assassiner de sang-froid dans le futur. N'importe qui serait terroris\u00e9, mais pas cette puissante sorci\u00e8re qui d\u00e9cide alors de d\u00e9fier le destin. Clete prend donc une courageuse d\u00e9cision: elle va \u00e9lever l'enfant avec douceur et gentillesse dans l'espoir qu'il ne deviendra pas un monstre cette fois-ci! Le plan semble parfait, \u00e0 un d\u00e9tail pr\u00e8s... elle n'a pas la moindre id\u00e9e de comment \u00e9lever un petit humain! Avec l'aide de son fid\u00e8le serviteur, Clete commence par les choses \u00e9l\u00e9mentaires: lui lire un conte, jouer avec lui, lui trouver un ami... Les deux finissent par tisser un lien qu'elle n'aurait jamais imagin\u00e9 possible. Mais lorsque des forces obscures commencent \u00e0 venir troubler leur quotidien, il devient de plus en plus difficile d'emp\u00eacher l'enfant de changer pour le pire. Les pouvoirs de Clete seront-ils suffisant pour changer le futur? Ou finira-t-elle par conna\u00eetre une fin tragique malgr\u00e9 ses efforts?\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "ja": "\u4e8b\u6545\u306b\u906d\u3044\u3001\u76ee\u3092\u899a\u307e\u3059\u306819\u4e16\u7d00\u306e\u30ed\u30de\u30f3\u30b9\u30d5\u30a1\u30f3\u30bf\u30b8\u30fc\u5c0f\u8aac\u306e\u767b\u5834\u4eba\u7269\u306b\u306a\u3063\u3066\u3044\u305f\uff01\n\n\u305d\u308c\u3082\u3001\u72c2\u6c17\u306b\u6e80\u3061\u305f\u7537\u4e3b\u4eba\u516c\u306b\u3088\u308a\u547d\u3092\u843d\u3068\u3057\u3066\u3057\u307e\u3046\u60aa\u5f79\u9b54\u5973\u30fb\u30af\u30ec\u30fc\u30c6\u306b\uff01\n\n\u300c\u5e78\u3044\u7537\u4e3b\u4eba\u516c\u304c\u751f\u307e\u308c\u308b\u307e\u3067\u306b\u3042\u3068200\u5e74\u6b8b\u3063\u3066\u308b\u308f\u3002\u305d\u308c\u307e\u3067\u306b\u3086\u3063\u304f\u308a\u5bfe\u7b56\u3092\u8003\u3048\u3066\u307f\u3088\u3046\u2026\u300d\n\n\u305d\u3046\u3057\u3066200\u5e74\u304c\u904e\u304e\u3001\u539f\u4f5c\u306e\u5185\u5bb9\u3092\u3059\u3063\u304b\u308a\u5fd8\u308c\u3066\u3044\u305f\u30af\u30ec\u30fc\u30c6\u306e\u524d\u306b\u3001\u3064\u3044\u306b\u5e7c\u3044\u9803\u306e\u4e3b\u4eba\u516c\u30fb\u30c6\u30a3\u30fc\u30bf\u304c\u73fe\u308c\u308b\u3002\n\n\u3053\u3046\u306a\u3063\u305f\u4ee5\u4e0a\u6b8b\u3055\u308c\u305f\u65b9\u6cd5\u306f\u3001\u3053\u306e\u5b50\u3092\u7acb\u6d3e\u306a\u5927\u4eba\u306b\u80b2\u3066\u4e0a\u3052\u308b\u3053\u3068\u3060\u3051\u30fc \u30c4\u30f3\u30c7\u30ec\u9b54\u5973\u3068\u611b\u60c5\u306b\u98e2\u3048\u305f\u5c11\u5e74\u3068\u306e\u30c9\u30bf\u30d0\u30bf\u30d5\u30a1\u30f3\u30bf\u30b8\u30fc\uff01\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "ko": "19\uae08 \ud53c\ud3d0 \ub85c\ub9e8\uc2a4 \ud310\ud0c0\uc9c0 \uc18c\uc124\uc5d0 \ube59\uc758\ud588\ub2e4.\n\uadf8\uac83\ub3c4 \uad11\uae30\uc5d0 \ubb3c\ub4e0 \ub0a8\uc8fc\uc778\uacf5\uc5d0 \uc758\ud574 \ubaa9\uc228\uc744 \uc783\ub294 \ub9c8\ub140, \ud074\ub808\ud14c\ub85c. \ub2e4\ud589\ud788 \uc8fc\uc778\uacf5\ub4e4\uc774 \ud0dc\uc5b4\ub098\ub824\uba74 \uc544\uc9c1 200\ub144\uc744 \ub354 \uae30\ub2e4\ub824\uc57c \ud55c\ub2e4.\n\n\uadf8\ub7fc \ub290\uae0b\ud558\uac8c \ub300\ucc45\uc744 \uc0dd\uac01\ud574\ubcfc\uae4c?\n\n\uadf8\ub7ec\ub098 200\ub144\uc740 \ubaa8\ub4e0 \uac83\uc744 \uc78a\uc5b4\ubc84\ub9ac\uae30\uc5d0 \ucda9\ubd84\ud55c \uc2dc\uac04\uc774\uc5c8\ub2e4.\n\uc6d0\uc791 \ub0b4\uc6a9\ub9c8\uc800 \uae4c\ub9e3\uac8c \uc78a\uace0 \uc788\ub358 \ud074\ub808\ud14c\uc758 \uc55e\uc5d0 \ub9c8\uce68\ub0b4 \uc5b4\ub9b0 \ub0a8\uc8fc\uc778\uacf5\uc774 \ub098\ud0c0\ub0ac\ub2e4.\n\uc774\ub807\uac8c \ub41c \uc774\uc0c1, \ub0a8\uc740 \ubc29\ubc95\uc740 \ub0a8\uc8fc\uc778\uacf5\uc744 \uba40\uca61\ud55c \uc5b4\ub978\uc73c\ub85c \ud0a4\uc6b0\ub294 \uac83\ubfd0\uc774\ub2e4. \uc6b0\uc120\uc740 \uc794\ub729 \uac81\uba39\uc740 \uc774 \uaf2c\ub9c8\ubd80\ud130 \ub2ec\ub798\uc8fc\uc790.\n\n\u201c\uc81c\uac00 \uac11\uc790\uae30 \ucc3e\uc544\uc640\uc11c \uace4\ub780\ud574\uc9c0\uc2e0 \uac70 \uc54c\uc544\uc694. \uc8c4\uc1a1\ud574\uc694. \uc808 \ub3cc\ub824 \ubcf4\ub0b4\uc154\ub3c4 \uad1c\ucc2e\uc544\uc694.\u201d\n\u201c\uc5b4\ucc98\uad6c\ub2c8\uac00 \uc5c6\uad6c\ub098. \ub0b4\uac00 \ub108 \uac19\uc740 \uaf2c\ub9c8 \ud558\ub098 \ub54c\ubb38\uc5d0 \uace4\ub780\ud574\uc9c8 \uc0ac\ub78c\uc73c\ub85c \ubcf4\uc774\ub290\ub0d0? \uadf8\ub9ac\uace0 \uc5b4\ub51c \ub3cc\uc544\uac00\uaca0\ub2e4\ub294 \uac70\uc57c? \uac08 \uacf3\ub3c4 \uc5c6\ub294 \uc8fc\uc81c\uc5d0.\u201d\n\n\uac11\uc790\uae30 \uaf2c\ub9c8\uac00 \uc6b8\uba39\uc774\uae30 \uc2dc\uc791\ud588\ub2e4.\n\n\uc5b4\ub77c, \uc774\uac8c \uc544\ub2cc\uac00?\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "ru": "\u041a\u043b\u0435\u0442\u044d - \u0437\u043b\u0430\u044f \u0432\u0435\u0434\u044c\u043c\u0430, \u0443\u0431\u0438\u0442\u0430\u044f \u043e\u0431\u0435\u0437\u0443\u043c\u0435\u0432\u0448\u0438\u043c \u0433\u043b\u0430\u0432\u043d\u044b\u043c \u0433\u0435\u0440\u043e\u0435\u043c. \u041e\u0447\u0443\u0442\u0438\u0432\u0448\u0438\u0441\u044c \u0432 \u0435\u0435 \u0442\u0435\u043b\u0435 \u0437\u0430 200 \u043b\u0435\u0442 \u0434\u043e \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u043a\u043b\u044e\u0447\u0435\u0432\u044b\u0445 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u0436\u0435\u0439 \u0440\u043e\u043c\u0430\u043d\u0430, \u0433\u043b\u0430\u0432\u043d\u0430\u044f \u0433\u0435\u0440\u043e\u0438\u043d\u044f, \u043d\u0430\u043c\u0435\u0440\u0435\u0432\u0430\u044f\u0441\u044c \u0443\u0431\u0438\u0442\u044c \u0435\u0433\u043e \u0432 \u044e\u043d\u043e\u043c \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0435, \u043f\u043e\u0437\u0432\u043e\u043b\u0438\u043b\u0430 \u0441\u0435\u0431\u0435 \u0440\u0430\u0441\u0441\u043b\u0430\u0431\u0438\u0442\u044c\u0441\u044f, \u043d\u043e \u0437\u0430 \u0434\u0432\u0430 \u0432\u0435\u043a\u0430 \u0443\u0441\u043f\u0435\u043b\u0430 \u043f\u043e\u0434\u0440\u0430\u0441\u0442\u0435\u0440\u044f\u0442\u044c \u0432\u0441\u044e \u0440\u0435\u0448\u0438\u043c\u043e\u0441\u0442\u044c, \u0430 \u0432 \u043f\u0440\u0438\u0434\u0430\u0447\u0443 \u0438 \u043f\u043e\u0434\u0437\u0430\u0431\u044b\u0442\u044c \u0441\u043e\u0434\u0435\u0440\u0436\u0430\u043d\u0438\u0435 \u0440\u043e\u043c\u0430\u043d\u0430. \u0412 \u043a\u043e\u043d\u0435\u0447\u043d\u043e\u043c \u0438\u0442\u043e\u0433\u0435, \u043a\u043e\u0433\u0434\u0430 \u043d\u0430 \u043f\u043e\u0440\u043e\u0433\u0435 \u0435\u0435 \u0437\u0430\u043c\u043a\u0430 \u043e\u0431\u044a\u044f\u0432\u0438\u043b\u0441\u044f \u0433\u043b\u0430\u0432\u043d\u044b\u0439 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u0436, \u0432\u0441\u0435, \u0447\u0442\u043e \u0435\u0439 \u043e\u0441\u0442\u0430\u0432\u0430\u043b\u043e\u0441\u044c - \u043f\u0440\u0438\u043d\u044f\u0442\u044c \u0435\u0433\u043e \u0438 \u043f\u043e\u043f\u044b\u0442\u0430\u0442\u044c\u0441\u044f \u0432\u044b\u0440\u0430\u0441\u0442\u0438\u0442\u044c \u0438\u0437 \u043d\u0435\u0433\u043e \u0434\u043e\u0441\u0442\u043e\u0439\u043d\u043e\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430. \u041d\u043e \u043f\u0440\u0435\u0436\u0434\u0435 \u0441\u0442\u043e\u0438\u0442 \u043f\u043e\u043f\u044b\u0442\u0430\u0442\u044c\u0441\u044f \u043f\u043e\u043b\u0430\u0434\u0438\u0442\u044c \u0441 \u043d\u0438\u043c \u0438 \u0443\u0441\u043f\u043e\u043a\u043e\u0438\u0442\u044c\u2026\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "tr": "R dereceli bir a\u015fk fantazi roman\u0131 d\u00fcnyas\u0131nda reenkarne olmu\u015f gibiyim. Ve sadece s\u0131radan bir karakter olarak de\u011fil, hayat\u0131n\u0131 \u00e7\u0131lg\u0131n erkek ba\u015frolde kaybeden cad\u0131 olarak!\n\nNeyse ki, ana karakterlerin do\u011fup rollerine girmesine kadar uzun bir 200 y\u0131l var.\n\nArt\u0131k hayat\u0131m yak\u0131n bir tehlikede olmad\u0131\u011f\u0131na g\u00f6re, \u00f6l\u00fcmden ka\u00e7\u0131nman\u0131n yollar\u0131n\u0131 aceleyle d\u00fc\u015f\u00fcnmeli miyiz? Ancak, \u201cyak\u0131n tehlikeden korunmak\u201d i\u00e7in ge\u00e7irece\u011fim zamanla ilgili \u00e7ok \u00f6nemli bir ayr\u0131nt\u0131ya dikkat etmemi\u015ftim.\n\n200 y\u0131l hi\u00e7bir \u015fekilde k\u0131sa bir bekleme s\u00fcresi de\u011fildi ve erkek ba\u015frol\u00fcn daha gen\u00e7 versiyonu kar\u015f\u0131ma \u00e7\u0131kt\u0131\u011f\u0131nda, orijinal roman\u0131n olay \u00f6rg\u00fcs\u00fcn\u00fc tamamen unutmu\u015ftum! Oh, her neyse, \u015fimdi bu noktaya geldi\u011fine g\u00f6re, hayatta kalman\u0131n tek yolu, erkek liderli\u011fi akl\u0131 ba\u015f\u0131nda ve istikrarl\u0131 bir yeti\u015fkine y\u00fckseltmektir!\n\nZorba erkek ba\u015frol\u00fcn elinden \u00f6l\u00fcmden ka\u00e7\u0131nman\u0131n ilk ad\u0131m\u0131, bu a\u015f\u0131r\u0131 derecede korkmu\u015f \u00e7ocu\u011fun hayat\u0131n\u0131 de\u011fi\u015ftirmektir. \u201cBirdenbire kap\u0131n\u0131z\u0131n e\u015fi\u011fine gelmemin sizin i\u00e7in \u00e7ok sak\u0131ncal\u0131 olmal\u0131, \u00fczg\u00fcn\u00fcm. Bana gitmemi s\u00f6yleyebilirsin, iyi olaca\u011f\u0131m.\u201d\n\n\u201cSa\u00e7mal\u0131k. Senin gibi k\u00fc\u00e7\u00fck bir \u00e7ocuktan rahats\u0131zl\u0131k duyabilecek birine benziyor muyum?\n\nAyr\u0131ca, gitmen s\u00f6ylense bile iyi olacaks\u0131n derken neyi kastediyorsun? Geri d\u00f6necek bir yerin yok, evlat. \u201d K\u00fc\u00e7\u00fck \u00e7ocuk g\u00f6zya\u015flar\u0131na bo\u011fuldu. \u201cAh, bu o kadar de\u011fil.\u201d K\u00fc\u00e7\u00fck \u00e7ocuk h\u0131\u00e7k\u0131r\u0131rken cad\u0131n\u0131n kendi kendine d\u00fc\u015f\u00fcnd\u00fc\u011f\u00fc buydu.\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "zh": "\u7a7f\u5230\u8650\u6587\u4e5f\u5c31\u7b97\u4e86\uff0c\u504f\u504f\u6210\u4e3a\u4e86\u4e00\u4e2a\u88ab\u66b4\u541b\u5904\u6b7b\u7684\u6076\u6bd2\u9b54\u5973\uff01\uff1f\u4e3a\u4e86\u4e0d\u91cd\u8e48\u8986\u8f99\uff0c\u9b54\u5973\u5728\u4e3b\u4eba\u516c\u51fa\u4e16\u524d\u7684200\u5e74\u95f4\u601d\u8003\u7740\u5bf9\u7b56\uff0c\u4e0d\u77e5\u4e0d\u89c9\u95f4\u653e\u677e\u4e86\u8b66\u60d5\uff0c\u6700\u7ec8\u8fce\u6765\u4e86\u672a\u6210\u5e74\u7684\u66b4\u541b\u3002\u53ef\u662f\u2026\u2026\u600e\u4e48\u5267\u672c\u548c\u60f3\u8c61\u4e2d\u7684\u6709\u70b9\u4e0d\u592a\u4e00\u6837\uff1f\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)",
-                    "pt-br": "Parece que reencarnei no mundo de um romance de fantasia com classifica\u00e7\u00e3o inferior. E n\u00e3o apenas como um personagem comum, mas como a bruxa que perde sua vida para o protagonista louco! Felizmente, ainda demoram 200 anos at\u00e9 que os personagens principais nas\u00e7am e cres\u00e7am em seus pap\u00e9is. Agora que minha vida n\u00e3o est\u00e1 em perigo iminente, devemos pensar vagarosamente em maneiras de evitar a morte? No entanto, eu n\u00e3o tinha notado um detalhe muito importante sobre o tempo que eu estaria gastando \u2018protegida de um perigo iminente\u2019. 200 anos n\u00e3o foi de forma alguma um curto per\u00edodo de espera e quando a vers\u00e3o mais jovem do protagonista masculino apareceu na minha frente, eu tinha esquecido completamente o enredo do romance original! Oh, que seja, agora que chegou a esse ponto, a \u00fanica maneira de sobreviver \u00e9 elevar o protagonista masculino a um adulto s\u00e3o e est\u00e1vel! O primeiro passo para evitar a morte pelas m\u00e3os do tirano l\u00edder masculino \u00e9 mudar a vida desta crian\u00e7a extremamente assustada. \"Deve ser muito inconveniente para voc\u00ea me ver de repente aparecendo na sua porta, me desculpe. Voc\u00ea pode me dizer para ir embora, eu vou ficar bem.\" \"Absurdo. Pare\u00e7o algu\u00e9m que poderia ser incomodado por um garotinho como voc\u00ea? Al\u00e9m disso, o que voc\u00ea quer dizer com voc\u00ea ficar\u00e1 bem mesmo que mandado embora? N\u00e3o \u00e9 como se voc\u00ea tivesse para onde voltar, garoto.\" O menino come\u00e7ou a chorar. *Oh, n\u00e3o \u00e9 isso.* Foi o que a bruxa pensou consigo mesma enquanto o garotinho solu\u00e7ava.\n\n---\n**Original Webtoon:** [Daum](https://webtoon.kakao.com/content/%ED%8F%AD%EA%B5%B0%EC%9D%98-%EB%B3%B4%ED%98%B8%EC%9E%90%EB%8A%94-%EC%95%85%EC%97%AD-%EB%A7%88%EB%85%80%EC%9E%85%EB%8B%88%EB%8B%A4/2447), [KakaoPage](https://page.kakao.com/home?seriesId=56113952)\n\n**Official Translations:**\n* [English](https://www.tappytoon.com/comics/tyrants-guardian-is-evil-witch/info)\n* [Chinese (Simplified) / \u6c49\u8bed](https://manga.bilibili.com/detail/mc29534)\n* [French / Fran\u00e7ais](https://www.tappytoon.com/fr/comics/tyrants-guardian-is-evil-witch-fr)\n* [German / Deutsch](https://www.tappytoon.com/de/comics/tyrants-guardian-is-evil-witch-de)\n* [Indonesian / Bahasa Indonesia](https://id.kakaowebtoon.com/content/Wali-Sang-Tiran-adalah-Penyihir-Jahat/213)\n* [Japanese / \u65e5\u672c\u8a9e](https://piccoma.com/web/product/61053)\n* [Thai / \u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22](https://th.kakaowebtoon.com/content/%E0%B9%81%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%A2%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9E%E0%B8%B4%E0%B8%97%E0%B8%B1%E0%B8%81%E0%B8%A9%E0%B9%8C%E0%B8%97%E0%B8%A3%E0%B8%A3%E0%B8%B2%E0%B8%8A/171)"
+                    "en": "September 1945, Tokyo. A post-war process is underway. It is the extermination of the human weapons \"Unit 731\", remnants of the war which are to be eliminated.  A young immortal soldier, Saika, is determined to live and be free, with the aid of Kankuro Konoe, a former combat medic as their subordinate.",
+                    "es": "Septiembre de 1945, Tokio. Un proceso de posguerra est\u00e1 en marcha. Es el exterminio de las armas humanas \"Unidad 731\", los vestigios de la guerra que deben ser eliminados.  \nUna joven soldado inmortal, Saika, est\u00e1 decidida a vivir y ser libre, con la ayuda de Kankuro Konoe, un antiguo m\u00e9dico de combate como su subordinado."
                 },
                 "isLocked": false,
                 "links": {
-                    "al": "128000",
-                    "ap": "the-tyrants-guardian-is-an-evil-witch",
-                    "kt": "58512",
-                    "mu": "175533",
-                    "nu": "the-tyrants-guardian-is-an-evil-witch",
-                    "mal": "147735",
-                    "raw": "https://page.kakao.com/home?seriesId=56113952",
-                    "engtl": "https://www.tappytoon.com/en/comics/tyrants-guardian-is-evil-witch"
+                    "al": "113020",
+                    "ap": "kyokutou-jihen",
+                    "bw": "series/222176",
+                    "mu": "157447",
+                    "amz": "https://www.amazon.co.jp/gp/product/B08CV3TTM9",
+                    "mal": "157889"
                 },
-                "originalLanguage": "ko",
+                "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
-                "publicationDemographic": "shoujo",
-                "status": "hiatus",
-                "year": 2020,
+                "publicationDemographic": "seinen",
+                "status": "ongoing",
+                "year": null,
                 "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Reincarnation"
-                            },
-                            "description": {},
-                            "group": "theme",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "33771934-028e-4cb3-8744-691e866a923e",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Historical"
+                                "en": "Sci-Fi"
                             },
                             "description": {},
                             "group": "genre",
@@ -934,11 +290,37 @@
                         "relationships": []
                     },
                     {
-                        "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Monsters"
+                                "en": "Action"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Military"
                             },
                             "description": {},
                             "group": "theme",
@@ -947,14 +329,169 @@
                         "relationships": []
                     },
                     {
-                        "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Long Strip"
+                                "en": "Drama"
                             },
                             "description": {},
-                            "group": "format",
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Fantasy"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2020-06-14T04:42:29+00:00",
+                "updatedAt": "2023-08-17T10:07:36+00:00",
+                "version": 8,
+                "availableTranslatedLanguages": [
+                    "en"
+                ],
+                "latestUploadedChapter": "4cbc0271-7304-4b80-8010-a46f326dd89f"
+            },
+            "relationships": [
+                {
+                    "id": "1fb30ab9-394c-46e6-9117-4a08c4606294",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Ohue Aguri",
+                        "imageUrl": null,
+                        "biography": {},
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "1fb30ab9-394c-46e6-9117-4a08c4606294",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Ohue Aguri",
+                        "imageUrl": null,
+                        "biography": {},
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "c8f84af6-6e51-494f-ac31-ee1e2850ea18",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "6",
+                        "fileName": "5ed4de63-1709-40f3-b062-2c49361da46a.jpg",
+                        "locale": "ja",
+                        "createdAt": "2023-05-08T08:33:34+00:00",
+                        "updatedAt": "2023-05-08T08:33:34+00:00",
+                        "version": 1
+                    }
+                }
+            ]
+        },
+        {
+            "id": "5c9d1254-f074-4b5c-8795-6f0641b2597b",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Girl and Science"
+                },
+                "altTitles": [
+                    {
+                        "ms": "Gadis dan Sains"
+                    },
+                    {
+                        "zh-ro": "Meizi yu Kexue"
+                    },
+                    {
+                        "zh": "\u59b9\u5b50\u4e0e\u79d1\u5b66"
+                    },
+                    {
+                        "en": "Girls and Science"
+                    }
+                ],
+                "description": {
+                    "en": "They were childhood friends, and she had always been more powerful than him. But when they accidentally traveled (summoned?) to another world, it was finally time for him to become the knight in shining armor! He had to find her first though, since they were separated\u2026 Come and witness his fight to be better in a crazy world where monsters roamed and technology was so advanced your amputated limbs could be restored to perfection\u2026"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "108722",
+                    "mu": "153315",
+                    "raw": "https://ac.qq.com/Comic/comicInfo/id/531475",
+                    "engtl": "https://www.webnovel.com/comic/girl-and-science_16706144006036801"
+                },
+                "originalLanguage": "zh",
+                "lastVolume": "",
+                "lastChapter": "",
+                "publicationDemographic": null,
+                "status": "ongoing",
+                "year": null,
+                "contentRating": "suggestive",
+                "tags": [
+                    {
+                        "id": "256c8bd9-4904-4360-bf4f-508a76d67183",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Sci-Fi"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Action"
+                            },
+                            "description": {},
+                            "group": "genre",
                             "version": 1
                         },
                         "relationships": []
@@ -973,14 +510,27 @@
                         "relationships": []
                     },
                     {
-                        "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Magic"
+                                "en": "Comedy"
                             },
                             "description": {},
-                            "group": "theme",
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Adventure"
+                            },
+                            "description": {},
+                            "group": "genre",
                             "version": 1
                         },
                         "relationships": []
@@ -991,19 +541,6 @@
                         "attributes": {
                             "name": {
                                 "en": "Isekai"
-                            },
-                            "description": {},
-                            "group": "genre",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
-                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Drama"
                             },
                             "description": {},
                             "group": "genre",
@@ -1051,19 +588,6 @@
                         "relationships": []
                     },
                     {
-                        "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
-                        "type": "tag",
-                        "attributes": {
-                            "name": {
-                                "en": "Adaptation"
-                            },
-                            "description": {},
-                            "group": "format",
-                            "version": 1
-                        },
-                        "relationships": []
-                    },
-                    {
                         "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
                         "type": "tag",
                         "attributes": {
@@ -1079,26 +603,24 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2021-01-11T04:21:10+00:00",
-                "updatedAt": "2022-07-26T03:17:52+00:00",
-                "version": 8,
+                "createdAt": "2019-11-10T14:30:16+00:00",
+                "updatedAt": "2023-07-31T20:02:15+00:00",
+                "version": 9,
                 "availableTranslatedLanguages": [
+                    "fr",
                     "en",
-                    "ru",
-                    "pt-br",
-                    "id",
                     "tr",
-                    "it",
-                    "pl"
+                    "pt-br",
+                    "ar"
                 ],
-                "latestUploadedChapter": "bd481f16-2a8e-4efa-9e08-257fd86b97b2"
+                "latestUploadedChapter": "5d1b23a0-5992-4865-8571-2a11abaa1d68"
             },
             "relationships": [
                 {
-                    "id": "50bd69a6-20bb-4172-a3a2-5d26c6343fe0",
+                    "id": "f97583ee-44e5-4854-9172-db8edbbff119",
                     "type": "author",
                     "attributes": {
-                        "name": "Hari",
+                        "name": "\u8bc8\u672f\u5e08\u5fb7\u5fb7",
                         "imageUrl": null,
                         "biography": {},
                         "twitter": null,
@@ -1120,35 +642,10 @@
                     }
                 },
                 {
-                    "id": "9b7713d4-2d42-435d-a0af-cdd1fca12e0f",
-                    "type": "author",
-                    "attributes": {
-                        "name": "Blue Lagoon",
-                        "imageUrl": null,
-                        "biography": {},
-                        "twitter": null,
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": null,
-                        "createdAt": "2021-04-19T21:59:45+00:00",
-                        "updatedAt": "2021-04-19T21:59:45+00:00",
-                        "version": 1
-                    }
-                },
-                {
-                    "id": "2f307c8c-ef5f-4d8d-b6f6-3a7e84c5f5b3",
+                    "id": "f97583ee-44e5-4854-9172-db8edbbff119",
                     "type": "artist",
                     "attributes": {
-                        "name": "Rata",
+                        "name": "\u8bc8\u672f\u5e08\u5fb7\u5fb7",
                         "imageUrl": null,
                         "biography": {},
                         "twitter": null,
@@ -1170,65 +667,70 @@
                     }
                 },
                 {
-                    "id": "8914b3b7-d907-4fd6-9cd8-c569c66bc6ae",
+                    "id": "7e0924de-98bd-4004-a728-c68b791aab85",
                     "type": "cover_art",
                     "attributes": {
                         "description": "",
                         "volume": "2",
-                        "fileName": "b284188b-9895-4134-a495-1f155f114237.jpg",
-                        "locale": "ko",
-                        "createdAt": "2021-11-10T17:37:37+00:00",
-                        "updatedAt": "2021-11-10T17:37:37+00:00",
+                        "fileName": "f606b3ce-4f64-400e-8a1c-265698f68d01.jpg",
+                        "locale": "zh",
+                        "createdAt": "2023-07-03T06:53:39+00:00",
+                        "updatedAt": "2023-07-03T06:53:39+00:00",
                         "version": 1
                     }
                 }
             ]
         },
         {
-            "id": "57dbd8a6-86c3-40af-bb28-9bfb931e7d0a",
+            "id": "0bd404a6-6aee-45a7-953b-c4e553ba89c3",
             "type": "manga",
             "attributes": {
                 "title": {
-                    "en": "Bocchi Jieikan no Isekai Funsenki"
+                    "en": "Otaku ni Kibishikute Yasashii Gyaru to Gyaru ni Kibishii Otaku"
                 },
                 "altTitles": [
                     {
-                        "en": "Different World Adventures Of A Lone Japan Ground Self Defense Force Ensign"
+                        "ja": "\u30aa\u30bf\u30af\u306b\u53b3\u3057\u304f\u3066\u512a\u3057\u3044\u30ae\u30e3\u30eb\u3068\u30ae\u30e3\u30eb\u306b\u53b3\u3057\u3044\u30aa\u30bf\u30af"
                     },
                     {
-                        "ja": "\u307c\u3063\u3061\u81ea\u885b\u5b98\u306e\u7570\u4e16\u754c\u596e\u6226\u8a18"
+                        "ja-ro": "Otaku ni Kibishikute Yasashii Gyaru to Gyaru ni Kibishii Otaku"
+                    },
+                    {
+                        "en": "A Kind Gal Who Is Strict with Otaku and an Otaku Who Is Strict with Gals"
                     }
                 ],
-                "description": {
-                    "en": "Takeshi Jinguji, an executive candidate of the Self-Defense Force, who had just graduated from the University of Defense, was reincarnated into a different world due to a traffic accident. The inventory had the standard equipment of the Japan Ground Self-Defense Force! Jingoji Joe's self-defense officer battle action that makes the fantasy world unrivaled with equipment stronger than magic!!",
-                    "ja": "\u9632\u5927\u3092\u5352\u696d\u3057\u305f\u3070\u304b\u308a\u306e\u81ea\u885b\u968a\u5e79\u90e8\u5019\u88dc\u751f\u30fb\u795e\u5bae\u53f8\u4e08\u306f\u4ea4\u901a\u4e8b\u6545\u306b\u3088\u308a\u7570\u4e16\u754c\u3078\u8ee2\u751f\u3002\u30a4\u30f3\u30d9\u30f3\u30c8\u30ea\u30fc\u306b\u306f\u306a\u3093\u3068\u9678\u4e0a\u81ea\u885b\u968a\u6a19\u6e96\u88c5\u5099\u54c1\u304c\u63c3\u3063\u3066\u3044\u305f\uff01\u3000\u30d5\u30a1\u30f3\u30bf\u30b8\u30fc\u4e16\u754c\u3092\u9b54\u6cd5\u3088\u308a\u3082\u5f37\u3044\u88c5\u5099\u3067\u7121\u53cc\u3059\u308b\u30b8\u30f3\u30b0\u30fc\u30b8\u30fb\u30b8\u30e7\u30fc\u306e\u81ea\u885b\u5b98\u30d0\u30c8\u30eb\u30a2\u30af\u30b7\u30e7\u30f3\uff01\uff01",
-                    "pt-br": "Takeshi Jinguji, um candidato executivo da For\u00e7a de Autodefesa, que acabou de se formar na Universidade de Defesa, reencarnou em um mundo diferente devido a um acidente de tr\u00e2nsito. O invent\u00e1rio tinha o equipamento padr\u00e3o da For\u00e7a de Autodefesa Terrestre do Jap\u00e3o! A a\u00e7\u00e3o de batalha do oficial de autodefesa de Jingoji Joe que torna o mundo da fantasia incompar\u00e1vel com equipamentos mais fortes que a magia !!"
-                },
+                "description": {},
                 "isLocked": false,
                 "links": {
-                    "ap": "bocchi-jieikan-no-isekai-funsenki",
-                    "bw": "series/327650",
-                    "kt": "bocchi-jieikan-no-isekai-funsenki",
-                    "mu": "li3u7xb",
-                    "amz": "https://www.amazon.co.jp/dp/B09KRF9M21/",
-                    "cdj": "https://www.cdjapan.co.jp/searchuni?fq.category=UD%3A14&q=%E3%81%BC%E3%81%A3%E3%81%A1%E8%87%AA%E8%A1%9B%E5%AE%98%E3%81%AE%E7%95%B0%E4%B8%96%E7%95%8C%E5%A5%AE%E6%88%A6%E8%A8%98&order=reldesc&opt.exclude_prx=on",
-                    "ebj": "https://ebookjapan.yahoo.co.jp/books/667978/",
-                    "raw": "https://comic-boost.com/series/295"
+                    "raw": "https://www.pixiv.net/en/artworks/110593358"
                 },
                 "originalLanguage": "ja",
                 "lastVolume": "",
                 "lastChapter": "",
                 "publicationDemographic": null,
-                "status": "ongoing",
-                "year": 2021,
-                "contentRating": "suggestive",
+                "status": "completed",
+                "year": null,
+                "contentRating": "safe",
                 "tags": [
                     {
-                        "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                        "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Action"
+                                "en": "Oneshot"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Romance"
                             },
                             "description": {},
                             "group": "genre",
@@ -1237,11 +739,11 @@
                         "relationships": []
                     },
                     {
-                        "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Adventure"
+                                "en": "Comedy"
                             },
                             "description": {},
                             "group": "genre",
@@ -1250,24 +752,156 @@
                         "relationships": []
                     },
                     {
-                        "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
+                        "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Military"
+                                "en": "Web Comic"
+                            },
+                            "description": {},
+                            "group": "format",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Gyaru"
                             },
                             "description": {},
                             "group": "theme",
                             "version": 1
                         },
                         "relationships": []
-                    },
+                    }
+                ],
+                "state": "published",
+                "chapterNumbersResetOnNewVolume": false,
+                "createdAt": "2023-08-17T08:09:20+00:00",
+                "updatedAt": "2023-08-17T09:01:36+00:00",
+                "version": 4,
+                "availableTranslatedLanguages": [
+                    "id"
+                ],
+                "latestUploadedChapter": "0a902db0-7d2d-46ff-bc93-2d1e9a0fcc23"
+            },
+            "relationships": [
+                {
+                    "id": "41919cea-1bd4-4ad4-8ee6-98ce3d0c7387",
+                    "type": "author",
+                    "attributes": {
+                        "name": "Shiosato Jun",
+                        "imageUrl": null,
+                        "biography": {
+                            "en": "**Alt names**:\n\u6f6e\u91cc\u6f64"
+                        },
+                        "twitter": "https://twitter.com/shiosatojyun11",
+                        "pixiv": "https://www.pixiv.net/users/25794192",
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2023-01-10T23:56:00+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "41919cea-1bd4-4ad4-8ee6-98ce3d0c7387",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Shiosato Jun",
+                        "imageUrl": null,
+                        "biography": {
+                            "en": "**Alt names**:\n\u6f6e\u91cc\u6f64"
+                        },
+                        "twitter": "https://twitter.com/shiosatojyun11",
+                        "pixiv": "https://www.pixiv.net/users/25794192",
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2023-01-10T23:56:00+00:00",
+                        "version": 2
+                    }
+                },
+                {
+                    "id": "f96a512d-485f-40cb-9ea5-aa6c5fc4e8e2",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": "1",
+                        "fileName": "b5a1e6a5-1f27-436d-b213-06d9d448664c.jpg",
+                        "locale": "ja",
+                        "createdAt": "2023-08-17T08:31:05+00:00",
+                        "updatedAt": "2023-08-17T08:31:05+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "6092f862-12ce-4c55-9f82-af8a17e8638b",
+                    "type": "creator"
+                }
+            ]
+        },
+        {
+            "id": "81351d34-d7a3-4b5d-91f4-c6aaf8e54f8c",
+            "type": "manga",
+            "attributes": {
+                "title": {
+                    "en": "Trap Hole"
+                },
+                "altTitles": [
                     {
-                        "id": "ace04997-f6bd-436e-b261-779182193d3d",
+                        "ja": "\u30c8\u30e9\u30c3\u30d7\u30db\u30fc\u30eb"
+                    }
+                ],
+                "description": {
+                    "en": "Twenty-nine-year-old Haruko's world collapses when her fiance suddenly tells her he's leaving her. Although encouraged by family and friends, who are kindly consoling, she still feels suffocated. Sensing her need to get away, Asano, a classmate in Tokyo suggests that she \"Come to Tokyo!\" Life for Haruko, who had hit rock-bottom, is about to restart!"
+                },
+                "isLocked": false,
+                "links": {
+                    "al": "104733",
+                    "ap": "trap-hole",
+                    "kt": "33548",
+                    "mu": "77436",
+                    "amz": "https://www.amazon.co.jp/dp/B074CGXBSV/",
+                    "cdj": "http://www.cdjapan.co.jp/searches?term.cat_id=UD-14-06-10&page=&agg_use=cat_ids_hierarchal_treeish_foldable&term.media_format=&f=major&q=%E3%83%88%E3%83%A9%E3%83%83%E3%83%97%E3%83%9B%E3%83%BC%E3%83%AB&f=major&q=&f=major&q=&order=scoreboost_cdj&range.rel=&range.sale_price=&term.caption=&term.audio_language=",
+                    "ebj": "https://ebookjapan.yahoo.co.jp/books/314323/",
+                    "mal": "82849"
+                },
+                "originalLanguage": "ja",
+                "lastVolume": "4",
+                "lastChapter": "22",
+                "publicationDemographic": "josei",
+                "status": "completed",
+                "year": null,
+                "contentRating": "safe",
+                "tags": [
+                    {
+                        "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Isekai"
+                                "en": "Romance"
                             },
                             "description": {},
                             "group": "genre",
@@ -1276,11 +910,37 @@
                         "relationships": []
                     },
                     {
-                        "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                        "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
                         "type": "tag",
                         "attributes": {
                             "name": {
-                                "en": "Fantasy"
+                                "en": "Comedy"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Drama"
+                            },
+                            "description": {},
+                            "group": "genre",
+                            "version": 1
+                        },
+                        "relationships": []
+                    },
+                    {
+                        "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                        "type": "tag",
+                        "attributes": {
+                            "name": {
+                                "en": "Slice of Life"
                             },
                             "description": {},
                             "group": "genre",
@@ -1291,54 +951,23 @@
                 ],
                 "state": "published",
                 "chapterNumbersResetOnNewVolume": false,
-                "createdAt": "2021-12-14T04:32:20+00:00",
-                "updatedAt": "2023-04-21T03:54:50+00:00",
-                "version": 12,
+                "createdAt": "2019-04-09T09:32:41+00:00",
+                "updatedAt": "2023-07-20T11:41:44+00:00",
+                "version": 2,
                 "availableTranslatedLanguages": [
-                    "en",
-                    "id",
-                    "pt-br"
+                    "en"
                 ],
-                "latestUploadedChapter": "2eeacbda-2004-4959-89f2-4a8fbd7377ec"
+                "latestUploadedChapter": "e1b54a3d-d369-4fb9-99a6-ad51e0d3ddab"
             },
             "relationships": [
                 {
-                    "id": "f3337812-0c70-4a90-811c-6f81b1510658",
+                    "id": "acd81753-113a-4071-8653-07dcfb176409",
                     "type": "author",
                     "attributes": {
-                        "name": "Heesokai",
+                        "name": "Nemu Youko",
                         "imageUrl": null,
-                        "biography": {
-                            "en": "\u8233\u6c5f\u723d\u5feb"
-                        },
-                        "twitter": "https://twitter.com/heesokai",
-                        "pixiv": null,
-                        "melonBook": null,
-                        "fanBox": null,
-                        "booth": null,
-                        "nicoVideo": null,
-                        "skeb": null,
-                        "fantia": null,
-                        "tumblr": null,
-                        "youtube": null,
-                        "weibo": null,
-                        "naver": null,
-                        "website": "https://mypage.syosetu.com/601068/",
-                        "createdAt": "2021-12-14T04:22:19+00:00",
-                        "updatedAt": "2022-02-16T21:59:11+00:00",
-                        "version": 2
-                    }
-                },
-                {
-                    "id": "93a8dcf0-f17a-4a76-821a-d253056b2f6e",
-                    "type": "artist",
-                    "attributes": {
-                        "name": "Takamasu Nawoki ",
-                        "imageUrl": null,
-                        "biography": {
-                            "en": "Takamath Nawoki\n\u9ad8\u821b\u30ca\u30f2\u30ad "
-                        },
-                        "twitter": "https://twitter.com/nao_math",
+                        "biography": {},
+                        "twitter": null,
                         "pixiv": null,
                         "melonBook": null,
                         "fanBox": null,
@@ -1351,32 +980,53 @@
                         "weibo": null,
                         "naver": null,
                         "website": null,
-                        "createdAt": "2021-12-14T04:23:30+00:00",
-                        "updatedAt": "2022-02-16T21:38:28+00:00",
-                        "version": 3
-                    }
-                },
-                {
-                    "id": "0b38596f-9e80-4584-b3cc-229b67b29ff9",
-                    "type": "cover_art",
-                    "attributes": {
-                        "description": "Vol 3 cover from BookWalker",
-                        "volume": "3",
-                        "fileName": "3ab39c81-2d81-40a6-b1ad-5ad58bb50aa5.jpg",
-                        "locale": "ja",
-                        "createdAt": "2023-04-21T03:43:22+00:00",
-                        "updatedAt": "2023-04-21T03:43:22+00:00",
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
                         "version": 1
                     }
                 },
                 {
-                    "id": "56d4e00c-4f42-4fb6-9850-6ef42255e907",
-                    "type": "creator"
+                    "id": "acd81753-113a-4071-8653-07dcfb176409",
+                    "type": "artist",
+                    "attributes": {
+                        "name": "Nemu Youko",
+                        "imageUrl": null,
+                        "biography": {},
+                        "twitter": null,
+                        "pixiv": null,
+                        "melonBook": null,
+                        "fanBox": null,
+                        "booth": null,
+                        "nicoVideo": null,
+                        "skeb": null,
+                        "fantia": null,
+                        "tumblr": null,
+                        "youtube": null,
+                        "weibo": null,
+                        "naver": null,
+                        "website": null,
+                        "createdAt": "2021-04-19T21:59:45+00:00",
+                        "updatedAt": "2021-04-19T21:59:45+00:00",
+                        "version": 1
+                    }
+                },
+                {
+                    "id": "45395b6e-54af-4f0a-8801-05735089d578",
+                    "type": "cover_art",
+                    "attributes": {
+                        "description": "",
+                        "volume": null,
+                        "fileName": "44787c82-050d-4300-956b-1c375ff96b3d.jpg",
+                        "locale": "ja",
+                        "createdAt": "2021-05-24T17:07:26+00:00",
+                        "updatedAt": "2021-05-24T17:07:26+00:00",
+                        "version": 1
+                    }
                 }
             ]
         }
     ],
     "limit": 5,
     "offset": 0,
-    "total": 61085
+    "total": 26784
 }

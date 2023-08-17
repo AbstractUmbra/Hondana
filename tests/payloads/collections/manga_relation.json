@@ -38,6 +38,7 @@
                         "isLocked": false,
                         "links": {
                             "al": "105933",
+                            "kt": "kimi-dake-no-ponytail",
                             "mu": "150481",
                             "mal": "126708"
                         },
@@ -79,8 +80,8 @@
                         "state": "published",
                         "chapterNumbersResetOnNewVolume": false,
                         "createdAt": "2019-07-29T19:18:49+00:00",
-                        "updatedAt": "2022-04-05T21:52:09+00:00",
-                        "version": 4,
+                        "updatedAt": "2023-07-22T03:24:11+00:00",
+                        "version": 5,
                         "availableTranslatedLanguages": [
                             "es",
                             "en"
