@@ -676,11 +676,9 @@ class Client:
         :class:`~hondana.types_.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
-        data = await self._http.get_manga_volumes_and_chapters(
+        return await self._http.get_manga_volumes_and_chapters(
             manga_id=manga_id, translated_language=translated_language, groups=groups
         )
-
-        return data
 
     async def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
         """|coro|
@@ -1057,12 +1055,12 @@ class Client:
         :exc:`TypeError`
             You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
         """
-        if not read_chapters and not unread_chapters:
+        if read_chapters or unread_chapters:
+            await self._http.manga_read_markers_batch(
+                manga_id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
+            )
+        else:
             raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
-
-        await self._http.manga_read_markers_batch(
-            manga_id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
-        )
 
     async def get_random_manga(
         self,
@@ -1760,10 +1758,9 @@ class Client:
         """
         data = await self._http.user_read_history()
 
-        history: list[PreviouslyReadChapter] = []
-        for payload in data["data"]:
-            history.append(PreviouslyReadChapter(self._http, (payload["chapterId"], payload["readDate"])))
-
+        history: list[PreviouslyReadChapter] = [
+            PreviouslyReadChapter(self._http, (payload["chapterId"], payload["readDate"])) for payload in data["data"]
+        ]
         return ChapterReadHistoryCollection(self._http, data, history)
 
     async def cover_art_list(
@@ -3933,9 +3930,7 @@ class Client:
             The returned settings template.
         """
 
-        data = await self._http.get_specific_template_version(version)
-
-        return data
+        return await self._http.get_specific_template_version(version)
 
     @require_authentication
     async def get_my_settings(self) -> SettingsPayload:
@@ -3955,9 +3950,7 @@ class Client:
         :class:`hondana.types_.settings.SettingsPayload`
             The user's settings.
         """
-        data = await self._http.get_user_settings()
-
-        return data
+        return await self._http.get_user_settings()
 
     @require_authentication
     async def upsert_user_settings(
@@ -3989,9 +3982,7 @@ class Client:
         """
 
         time = updated_at or datetime.datetime.now(datetime.timezone.utc)
-        data = await self._http.upsert_user_settings(payload, updated_at=time)
-
-        return data
+        return await self._http.upsert_user_settings(payload, updated_at=time)
 
     @require_authentication
     async def create_forum_thread(self, type: ForumThreadType, resource_id: str) -> ForumThread:

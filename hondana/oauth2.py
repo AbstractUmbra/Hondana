@@ -149,10 +149,7 @@ class OAuth2Client:
         self._redirect_uri: str = redirect_uri
         self.client_id: str = client_id
         self.client_secret: Optional[str] = client_secret
-        if webapp:
-            self.app: aiohttp_web.Application = webapp
-        else:
-            self.app = self.create_webapp()
+        self.app = webapp or self.create_webapp()
         self.add_routes()
         self._site: Optional[aiohttp_web.AppRunner] = None
         self._has_auth_data: asyncio.Event = asyncio.Event()
@@ -199,10 +196,7 @@ class OAuth2Client:
         return self.__auth_handler.refresh_expires
 
     def app_is_running(self) -> bool:
-        if self._site:
-            return bool(self._site.server)
-
-        return False
+        return bool(self._site.server) if self._site else False
 
     def refresh_token_has_expired(self) -> bool:
         now = datetime.datetime.now(datetime.timezone.utc)

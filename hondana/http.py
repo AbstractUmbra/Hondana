@@ -587,9 +587,7 @@ class HTTPClient:
         if groups:
             query["groups"] = groups
 
-        if query:
-            return self.request(route, params=query)
-        return self.request(route)
+        return self.request(route, params=query) if query else self.request(route)
 
     def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)

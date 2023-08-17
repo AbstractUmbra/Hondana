@@ -963,12 +963,12 @@ class Manga:
         :exc:`TypeError`
             You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
         """
-        if not read_chapters and not unread_chapters:
+        if read_chapters or unread_chapters:
+            await self._http.manga_read_markers_batch(
+                self.id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
+            )
+        else:
             raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
-
-        await self._http.manga_read_markers_batch(
-            self.id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
-        )
 
     @require_authentication
     async def get_reading_status(self) -> manga.MangaSingleReadingStatusResponse:
@@ -1038,11 +1038,9 @@ class Manga:
         :class:`~hondana.types_.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
-        data = await self._http.get_manga_volumes_and_chapters(
+        return await self._http.get_manga_volumes_and_chapters(
             manga_id=self.id, translated_language=translated_language, groups=groups
         )
-
-        return data
 
     @require_authentication
     async def add_to_custom_list(self, *, custom_list_id: str) -> None:

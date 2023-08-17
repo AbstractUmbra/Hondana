@@ -152,11 +152,8 @@ class CustomList:
         if not self._manga_relationships:
             return
 
-        fmt: list[Manga] = [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]
-        if not fmt:
-            return
-
-        return fmt
+        if fmt := [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]:
+            return fmt
 
     @manga.setter
     def manga(self, other: list[Manga]) -> None:
@@ -231,11 +228,8 @@ class CustomList:
             group=None,
         )
 
-        ret = [Manga(self._http, item) for item in data["data"]]
-        if not ret:
-            return
-
-        return ret
+        if ret := [Manga(self._http, item) for item in data["data"]]:
+            return ret
 
     @require_authentication
     async def update(

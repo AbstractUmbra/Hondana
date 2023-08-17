@@ -199,9 +199,7 @@ class Cover:
             return
 
         route = Route("GET", url)
-        data = await self._http.request(route)
-
-        return data
+        return await self._http.request(route)
 
     @require_authentication
     async def edit_cover(

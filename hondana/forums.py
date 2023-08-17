@@ -105,7 +105,7 @@ class _Comments:
         :class:`~hondana.ForumThread`
             The cached or fetched ForumThread.
         """
-        if self.thread and force is False:
+        if self.thread and not force:
             return self.thread
 
         thread_payload = await self._http.create_forum_thread(type=self.__inner_type__, resource_id=self.parent_id)
