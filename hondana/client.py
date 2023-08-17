@@ -4047,9 +4047,49 @@ class Client:
 
     @require_authentication
     async def is_subscribed_to_custom_list(self, custom_list_id: str, /) -> bool:
+        """|coro|
+
+        A method to check if your are subscribed to the passed custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The custom list id to check against.
+
+        Returns
+        --------
+        :class:`bool`
+            Whether we are subscribed or not.
+        """
         try:
             await self._http.is_custom_list_subscribed(custom_list_id)
         except errors.NotFound:
             return False
 
         return True
+
+    @require_authentication
+    async def pin_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        This method will pin the custom list so it is part of the "pinned" section of the logged in user's profile.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The custom list to pin.
+        """
+        await self._http.pin_custom_list(custom_list_id)
+
+    @require_authentication
+    async def unpin_custom_list(self, custom_list_id: str, /) -> None:
+        """|coro|
+
+        This method will unpin the custom list.
+
+        Parameters
+        -----------
+        custom_list_id: :class:`str`
+            The custom list to unpin.
+        """
+        await self._http.unpin_custom_list(custom_list_id)

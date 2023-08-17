@@ -334,3 +334,19 @@ class CustomList:
         await self._http.unbookmark_custom_list(self.id)
 
     unbookmark = unfollow
+
+    @require_authentication
+    async def pin(self) -> None:
+        """|coro|
+
+        This method will pin the custom list so it is part of the "pinned" section of the logged in user's profile.
+        """
+        await self._http.pin_custom_list(self.id)
+
+    @require_authentication
+    async def unpin(self) -> None:
+        """|coro|
+
+        This method will unpin the custom list.
+        """
+        await self._http.unpin_custom_list(self.id)
