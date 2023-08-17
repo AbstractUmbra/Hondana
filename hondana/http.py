@@ -243,9 +243,7 @@ class HTTPClient:
         )
 
         await self.oauth2.wait_for_auth_response()
-        token = self.oauth2.access_token
-
-        return token
+        return self.oauth2.access_token
 
     async def request(
         self,
