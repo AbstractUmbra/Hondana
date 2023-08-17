@@ -149,7 +149,7 @@ class OAuth2Client:
         self._redirect_uri: str = redirect_uri
         self.client_id: str = client_id
         self.client_secret: Optional[str] = client_secret
-        self.app = webapp or self.create_webapp()
+        self.app: aiohttp_web.Application = webapp or self.create_webapp()
         self.add_routes()
         self._site: Optional[aiohttp_web.AppRunner] = None
         self._has_auth_data: asyncio.Event = asyncio.Event()
