@@ -38,7 +38,6 @@ jobs:
           version: latest
           virtualenvs-create: true
           virtualenvs-in-project: true
-          virtualenvs-path: ~/.venv
 
       - name: "Setup Python @ ${{ matrix.python-version }}"
         id: setup-python
@@ -47,15 +46,8 @@ jobs:
           python-version: "${{ matrix.python-version }}"
           cache: "poetry"
 
-      - name: "Load cached venv @ ${{ matrix.python-version }}"
-        id: cached-pip-wheels
-        uses: actions/cache@v3
-        with:
-          path: ~/.venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-
       - name: "Install Python deps @ ${{ matrix.python-version }}"
-        if: ${{ steps.cached-pip-wheels.outputs.cache-hit != 'true' }}
+        if: ${{ steps.setup-python.outputs.cache-hit != 'true' }}
         id: install-deps
         run: |
           poetry install --without=dev --no-interaction
@@ -68,13 +60,11 @@ jobs:
         uses: jakebailey/pyright-action@v1
         with:
           warnings: false
-          lib: true
           verify-types: "hondana"
           ignore-external: true
           no-comments: ${{ matrix.python-version != '3.x' }}
 
       - name: Lint
-        if: ${{ always() && steps.install-deps.outcome == 'success' }}
         uses: github/super-linter/slim@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

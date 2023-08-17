@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "Hondana"
-version = "4.0.0"
+version = "4.0.0a"
 description = "An asynchronous wrapper around the MangaDex v5 API"
-authors = ["Alex Nørgaard <Umbra@AbstractUmbra.dev>"]
+authors = ["Alex Nørgaard <umbra@abstractumbra.dev>"]
 
 license = "MIT"
 readme = "README.md"
@@ -35,7 +35,9 @@ packages = [
 python = "^3.11"
 aiohttp = [
     { version = "^3.8" },
-    { version = "^3.8", markers = "extra == 'speed'", extras = ["speedups"] }
+    { version = "^3.8", markers = "extra == 'speed'", extras = [
+        "speedups",
+    ] },
 ]
 typing-extensions = "*"
 
@@ -82,7 +84,7 @@ exclude = ["**/__pycache__", "docs/**/*.py", "tests/_update_payloads.py"]
 include = ["hondana", "tests", "examples"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "strict"
-reportImportCycles = false # normally I'd have this but it's a skill issue
+reportImportCycles = false                                                # normally I'd have this but it's a skill issue
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
@@ -100,7 +102,16 @@ docs = "sphinx-build -aEWT --keep-going docs/ docs/build" # TODO: add -n when sp
 tags = { script = "_preflight:__build_tags()" }
 report_reasons = { script = "_preflight:__build_report_reasons()" }
 uninstall = "pip uninstall hondana -y"
-pre = ["install", "format", "types", "tests", "docs", "tags", "report_reasons", "uninstall"]
+pre = [
+    "install",
+    "format",
+    "types",
+    "tests",
+    "docs",
+    "tags",
+    "report_reasons",
+    "uninstall",
+]
 
 [build-system]
 requires = ["poetry-core"]
