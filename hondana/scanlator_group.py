@@ -27,7 +27,6 @@ import datetime
 from typing import TYPE_CHECKING
 
 from .forums import ScanlatorGroupComments
-from .user import User
 from .utils import MISSING, RelationshipResolver, cached_slot_property, deprecated, iso_to_delta, require_authentication
 
 if TYPE_CHECKING:
@@ -37,6 +36,7 @@ if TYPE_CHECKING:
     from .types_.scanlator_group import ScanlationGroupResponse
     from .types_.statistics import CommentMetaData, StatisticsCommentsResponse
     from .types_.user import UserResponse
+    from .user import User  # noqa: TCH004
 
 __all__ = (
     "ScanlatorGroup",

@@ -26,9 +26,8 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING
 
-from .artist import Artist
 from .query import MangaIncludes
-from .utils import MISSING, RelationshipResolver, require_authentication
+from .utils import MISSING, AuthorArtistTag, RelationshipResolver, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -41,7 +40,7 @@ if TYPE_CHECKING:
 __all__ = ("Author",)
 
 
-class Author:
+class Author(AuthorArtistTag):
     """A class representing an Author returned from the MangaDex API.
 
     Attributes
@@ -147,7 +146,7 @@ class Author:
         return self.name
 
     def __eq__(self, other: object) -> bool:
-        return isinstance(other, (Author, Artist)) and self.id == other.id
+        return isinstance(other, AuthorArtistTag) and self.id == other.id
 
     @property
     def biography(self) -> str | None:

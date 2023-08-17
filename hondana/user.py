@@ -27,11 +27,11 @@ import datetime
 from typing import TYPE_CHECKING
 
 from .query import ScanlatorGroupIncludes
-from .scanlator_group import ScanlatorGroup
 from .utils import RelationshipResolver, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
+    from .scanlator_group import ScanlatorGroup  # noqa: TCH004
     from .types_.relationship import RelationshipResponse
     from .types_.scanlator_group import ScanlationGroupResponse
     from .types_.token import TokenPayload
