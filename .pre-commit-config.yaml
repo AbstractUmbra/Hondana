@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: ruff
+        language: system
+        entry: poetry run ruff check --force-exclude
+        files: \.pyi?$
+      - id: black
+        name: black
+        language: system
+        entry: poetry run black --check
+        files: \.pyi?$
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.323
+    hooks:
+      - id: pyright
+        name: pyright (3.11)
+        args: [--pythonversion=3.11]
+        files: \.pyi?$

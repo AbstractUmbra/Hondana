@@ -28,13 +28,12 @@ import datetime
 import logging
 import webbrowser
 from secrets import token_urlsafe
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict, Union, final
+from typing import TYPE_CHECKING, Literal, TypedDict, final
 
 import yarl
 from aiohttp import web as aiohttp_web
 
 from .utils import MISSING, AuthRoute, php_query_builder
-
 
 __all__ = ("OAuth2Client",)
 
@@ -104,7 +103,7 @@ class OAuth2Handler:
         return self._scope.split(" ")
 
     @scope.setter
-    def scope(self, other: Union[str, list[str]]) -> None:
+    def scope(self, other: str | list[str]) -> None:
         if isinstance(other, list):
             self._scope = " ".join(other)
             return
@@ -142,16 +141,16 @@ class OAuth2Client:
         *,
         redirect_uri: str,
         client_id: str,
-        client_secret: Optional[str] = None,
-        webapp: Optional[aiohttp_web.Application] = None,
+        client_secret: str | None = None,
+        webapp: aiohttp_web.Application | None = None,
     ) -> None:
         self._client: HTTPClient = client
         self._redirect_uri: str = redirect_uri
         self.client_id: str = client_id
-        self.client_secret: Optional[str] = client_secret
+        self.client_secret: str | None = client_secret
         self.app: aiohttp_web.Application = webapp or self.create_webapp()
         self.add_routes()
-        self._site: Optional[aiohttp_web.AppRunner] = None
+        self._site: aiohttp_web.AppRunner | None = None
         self._has_auth_data: asyncio.Event = asyncio.Event()
         self._has_token_data: asyncio.Event = asyncio.Event()
         self.__auth_handler: OAuth2Handler = OAuth2Handler()
@@ -162,7 +161,7 @@ class OAuth2Client:
         return self.__auth_handler.scope
 
     @scopes.setter
-    def scopes(self, other: Union[str, list[str]]) -> None:
+    def scopes(self, other: str | list[str]) -> None:
         self.__auth_handler.scope = other
 
     @property
@@ -211,11 +210,11 @@ class OAuth2Client:
         if self._has_token_data.is_set():
             self._has_token_data.clear()
 
-    async def wait_for_auth_response(self, timeout: Optional[float] = None) -> None:
+    async def wait_for_auth_response(self, timeout: float | None = None) -> None:
         await asyncio.wait_for(self._has_auth_data.wait(), timeout=timeout)
         self._has_auth_data.clear()
 
-    async def wait_for_token_response(self, timeout: Optional[float] = None) -> None:
+    async def wait_for_token_response(self, timeout: float | None = None) -> None:
         await asyncio.wait_for(self._has_token_data.wait(), timeout=timeout)
         self._has_token_data.clear()
 

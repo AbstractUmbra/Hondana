@@ -10,7 +10,6 @@ import logging
 import hondana
 from hondana.query import FeedOrderQuery, Order
 
-
 # This file just showcases the use of the `logging` module and how to enable debug logging for those that need it.
 
 logging.basicConfig(level=logging.DEBUG)  # <---- This is the important line. It will enable logging to the CLI.

@@ -28,9 +28,7 @@ import datetime
 import logging
 import pathlib
 import time
-from collections.abc import Callable
-from types import TracebackType
-from typing import TYPE_CHECKING, Any, AsyncGenerator, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Any, AsyncGenerator, TypeVar
 
 import aiohttp
 
@@ -52,9 +50,10 @@ from .utils import (
     upload_file_sort,
 )
 
-
 if TYPE_CHECKING:
+    from collections.abc import Callable
     from os import PathLike
+    from types import TracebackType
 
     from aiohttp import ClientResponse
     from typing_extensions import Self
@@ -146,18 +145,18 @@ class Chapter:
         self._attributes = self._data["attributes"]
         relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
-        self.title: Optional[str] = self._attributes["title"]
-        self.volume: Optional[str] = self._attributes["volume"]
-        self.chapter: Optional[str] = self._attributes["chapter"]
+        self.title: str | None = self._attributes["title"]
+        self.volume: str | None = self._attributes["volume"]
+        self.chapter: str | None = self._attributes["chapter"]
         self.pages: int = self._attributes["pages"]
         self.translated_language: str = self._attributes["translatedLanguage"]
-        self.external_url: Optional[str] = self._attributes["externalUrl"]
+        self.external_url: str | None = self._attributes["externalUrl"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
-        self._stats: Optional[ChapterStatistics] = None
+        self._stats: ChapterStatistics | None = None
         self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(with_fallback=False)[
             0
         ]
@@ -165,10 +164,10 @@ class Chapter:
             relationships, "scanlation_group"
         ).resolve(with_fallback=False)
         self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve()[0]
-        self._at_home_url: Optional[str] = None
-        self.__uploader: Optional[User] = None
-        self.__parent: Optional[Manga] = None
-        self.__scanlator_groups: Optional[list[ScanlatorGroup]] = None
+        self._at_home_url: str | None = None
+        self.__uploader: User | None = None
+        self.__parent: Manga | None = None
+        self.__scanlator_groups: list[ScanlatorGroup] | None = None
 
     def __repr__(self) -> str:
         return f"<Chapter id={self.id!r} title={self.title!r}>"
@@ -183,7 +182,7 @@ class Chapter:
         return not self.__eq__(other)
 
     @property
-    def stats(self) -> Optional[ChapterStatistics]:
+    def stats(self) -> ChapterStatistics | None:
         """Returns the statistics object of the chapter if it was fetched and cached.
 
         Returns
@@ -289,7 +288,7 @@ class Chapter:
         return datetime.datetime.fromisoformat(self._readable_at)
 
     @property
-    def manga(self) -> Optional[Manga]:
+    def manga(self) -> Manga | None:
         """The parent Manga of the chapter.
 
         Returns
@@ -313,7 +312,7 @@ class Chapter:
         self.__parent = other
 
     @property
-    def manga_id(self) -> Optional[str]:
+    def manga_id(self) -> str | None:
         """The parent manga id of this chapter.
 
 
@@ -330,7 +329,7 @@ class Chapter:
         return self._manga_relationship["id"] if self._manga_relationship else None
 
     @property
-    def scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
+    def scanlator_groups(self) -> list[ScanlatorGroup] | None:
         """The Scanlator Group that handled this chapter.
 
         Returns
@@ -359,7 +358,7 @@ class Chapter:
         self.__scanlator_groups = other
 
     @property
-    def uploader(self) -> Optional[User]:
+    def uploader(self) -> User | None:
         """The uploader who uploaded this chapter.
 
         Returns
@@ -377,7 +376,7 @@ class Chapter:
             self.__uploader = User(self._http, self._uploader_relationship)
             return self.__uploader
 
-    async def get_parent_manga(self) -> Optional[Manga]:
+    async def get_parent_manga(self) -> Manga | None:
         """|coro|
 
         This method will fetch the parent manga from a chapter's relationships and cache the response.
@@ -402,7 +401,7 @@ class Chapter:
         self.__parent = resolved
         return self.__parent
 
-    async def get_scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
+    async def get_scanlator_groups(self) -> list[ScanlatorGroup] | None:
         """|coro|
 
         This method will fetch the scanlator group from a chapter's relationships.
@@ -442,11 +441,11 @@ class Chapter:
     async def update(
         self,
         *,
-        title: Optional[str] = None,
+        title: str | None = None,
         volume: str = MISSING,
         chapter: str = MISSING,
-        translated_language: Optional[str] = None,
-        groups: Optional[list[str]] = None,
+        translated_language: str | None = None,
+        groups: list[str] | None = None,
         version: int,
     ) -> Chapter:
         """|coro|
@@ -549,7 +548,7 @@ class Chapter:
             )
 
     @require_authentication
-    async def get_statistics(self) -> Optional[ChapterStatistics]:
+    async def get_statistics(self) -> ChapterStatistics | None:
         """|coro|
 
         This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
@@ -567,7 +566,7 @@ class Chapter:
         return self.stats
 
     async def _pages(
-        self, *, start: int, end: Optional[int], data_saver: bool, ssl: bool, report: bool
+        self, *, start: int, end: int | None, data_saver: bool, ssl: bool, report: bool
     ) -> AsyncGenerator[tuple[bytes, str], None]:
         at_home_data = await self.get_at_home(ssl=ssl)
         self._at_home_url = at_home_data.base_url
@@ -613,10 +612,10 @@ class Chapter:
 
     async def download(
         self,
-        path: Optional[Union[PathLike[str], str]] = None,
+        path: PathLike[str] | str | None = None,
         *,
         start_page: int = 0,
-        end_page: Optional[int] = None,
+        end_page: int | None = None,
         data_saver: bool = False,
         ssl: bool = False,
         report: bool = True,
@@ -654,7 +653,7 @@ class Chapter:
             start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
         ):
             download_path = path_ / f"{idx}.{page_ext}"
-            with open(download_path, "wb") as f:
+            with download_path.open("wb") as f:
                 f.write(page_data)
                 LOGGER.info("Downloaded to: %s", download_path)
                 await asyncio.sleep(0)
@@ -664,7 +663,7 @@ class Chapter:
         self,
         *,
         start_page: int = 0,
-        end_page: Optional[int] = None,
+        end_page: int | None = None,
         data_saver: bool = False,
         ssl: bool = False,
         report: bool = True,
@@ -858,19 +857,19 @@ class ChapterUpload:
     def __init__(
         self,
         http: HTTPClient,
-        manga: Union[Manga, str],
+        manga: Manga | str,
         /,
         *,
         chapter: str,
-        chapter_to_edit: Optional[Union[Chapter, str]] = None,
-        volume: Optional[str] = None,
-        title: Optional[str] = None,
+        chapter_to_edit: Chapter | str | None = None,
+        volume: str | None = None,
+        title: str | None = None,
         translated_language: LanguageCode,
         scanlator_groups: list[str],
-        external_url: Optional[str] = None,
-        publish_at: Optional[datetime.datetime] = None,
-        existing_upload_session_id: Optional[str] = None,
-        version: Optional[int] = None,
+        external_url: str | None = None,
+        publish_at: datetime.datetime | None = None,
+        existing_upload_session_id: str | None = None,
+        version: int | None = None,
     ) -> None:
         if len(scanlator_groups) > 10:
             raise ValueError("You can only attribute up to 10 scanlator groups per upload.")
@@ -879,19 +878,19 @@ class ChapterUpload:
             raise ValueError("You must specify a version if you are editing a chapter.")
 
         self._http: HTTPClient = http
-        self.manga: Union[Manga, str] = manga
-        self.volume: Optional[str] = volume
+        self.manga: Manga | str = manga
+        self.volume: str | None = volume
         self.chapter: str = chapter
-        self.chapter_to_edit: Optional[Union[Chapter, str]] = chapter_to_edit
-        self.title: Optional[str] = title
+        self.chapter_to_edit: Chapter | str | None = chapter_to_edit
+        self.title: str | None = title
         self.translated_language: LanguageCode = translated_language
-        self.external_url: Optional[str] = external_url
-        self.publish_at: Optional[datetime.datetime] = publish_at
+        self.external_url: str | None = external_url
+        self.publish_at: datetime.datetime | None = publish_at
         self.scanlator_groups: list[str] = scanlator_groups
         self.uploaded: list[str] = []
         self.upload_errors: list[ErrorType] = []
-        self.upload_session_id: Optional[str] = existing_upload_session_id
-        self.version: Optional[int] = version
+        self.upload_session_id: str | None = existing_upload_session_id
+        self.version: int | None = version
         self._uploaded_filenames: set[str] = set()
         self.__committed: bool = False
 
@@ -936,7 +935,7 @@ class ChapterUpload:
         images: list[pathlib.Path],
         *,
         sort: bool = True,
-        sorting_key: Optional[Callable[[pathlib.Path], Any]] = None,
+        sorting_key: Callable[[pathlib.Path], Any] | None = None,
     ) -> UploadData:
         """|coro|
 
@@ -993,7 +992,7 @@ class ChapterUpload:
 
             response: UploadedChapterResponse = await self._http.request(route, data=form)
             for item in response["data"]:
-                self.uploaded.append(item["id"])
+                self.uploaded.append(item["id"])  # noqa: PERF401
 
             # check for errors in upload
             if response["errors"]:
@@ -1033,7 +1032,7 @@ class ChapterUpload:
             self.uploaded = [item for item in self.uploaded if item not in image_ids]
 
     @require_authentication
-    async def abandon(self, session_id: Optional[str] = None, /) -> None:
+    async def abandon(self, session_id: str | None = None, /) -> None:
         """|coro|
 
         This method will abandon your current (or passed) upload session.
@@ -1094,7 +1093,7 @@ class ChapterUpload:
         return self
 
     async def __aexit__(
-        self, exc_type: Optional[type[BaseException]], exc_value: Optional[BaseException], traceback: Optional[TracebackType]
+        self, exc_type: type[BaseException] | None, exc_value: BaseException | None, traceback: TracebackType | None
     ) -> None:
         if self.__committed is False:
             await self.commit()
@@ -1153,14 +1152,14 @@ class ChapterStatistics:
     def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsCommentsResponse) -> None:
         self._http: HTTPClient = http
         self._data: StatisticsCommentsResponse = payload
-        self._comments: Optional[CommentMetaData] = payload.get("comments")
+        self._comments: CommentMetaData | None = payload.get("comments")
         self.parent_id: str = parent_id
 
     def __repr__(self) -> str:
         return f"<ChapterStatistics for={self.parent_id!r}>"
 
     @cached_slot_property("_cs_comments")
-    def comments(self) -> Optional[ChapterComments]:
+    def comments(self) -> ChapterComments | None:
         """
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 

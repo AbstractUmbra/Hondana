@@ -5,12 +5,11 @@ from typing import TYPE_CHECKING
 
 import hondana
 
-
 if TYPE_CHECKING:
     from hondana.types_.common import LocalizedString
 
 
-async def main():
+async def main() -> None:
     """
     Here we will create a Manga in MangaDex.
     The process is multi-stage, so I will attempt to outline them here.
@@ -33,7 +32,7 @@ async def main():
         # This manga is now created in "draft" state. This is outlined more here:
         # https://api.mangadex.org/docs.html#section/Manga-Creation
         # tl;dr it's to remove the spam creations and to ensure there's a cover on the manga... so let's do that now.
-        with open("our_cover.png", "rb") as file:
+        with open("our_cover.png", "rb") as file:  # noqa: PTH123
             cover = file.read()
 
         # When we upload a cover, we need to attribute it to a manga, so lets use the draft one we created.

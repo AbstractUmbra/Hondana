@@ -60,11 +60,11 @@ pytest = "*"
 pytest-asyncio = "*"
 
 [tool.poetry.group.dev.dependencies]
-pytest-asyncio = "*"
 poethepoet = "*"
 black = "*"
 scalene = "*"
-esbonio = "*"
+pre-commit = "*"
+ruff = "*"
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
@@ -73,18 +73,61 @@ version = "hondana.__main__:show_version"
 line-length = 125
 target-version = ["py311"]
 
-[tool.isort]
-profile = "black"
-src_paths = ["hondana"]
-lines_after_imports = 2
-line_length = 125
+[tool.ruff]
+line-length = 125
+exclude = ["docs/extensions/*.py"]
+select = [
+    "C4",
+    "F",
+    "G",
+    "I",
+    "PTH",
+    "RUF",
+    "SIM",
+    "TCH",
+    "UP",
+    "W",
+    "PERF",
+    "ANN",
+]
+ignore = [
+    "F401",
+    "F402",
+    "F403",
+    "F405",
+    "PERF203",
+    "RUF001",
+    "RUF009",
+    "SIM105",
+    "UP034",
+    "UP038",
+    "ANN101",
+    "ANN102",
+    "ANN401",
+]
+[tool.ruff.isort]
+split-on-trailing-comma = true
+combine-as-imports = true
+
+[tool.ruff.flake8-annotations]
+allow-star-arg-any = true
+
+[tool.ruff.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+parametrize-names-type = "csv"
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "single"
 
 [tool.pyright]
+venvPath = "."
+venv = ".venv/"
 exclude = ["**/__pycache__", "docs/**/*.py", "tests/_update_payloads.py"]
 include = ["hondana", "tests", "examples"]
 useLibraryCodeForTypes = true
 typeCheckingMode = "strict"
-reportImportCycles = false                                                # normally I'd have this but it's a skill issue
+reportImportCycles = false
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"

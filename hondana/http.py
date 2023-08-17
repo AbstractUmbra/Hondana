@@ -28,10 +28,9 @@ import datetime
 import logging
 import sys
 import weakref
-from typing import TYPE_CHECKING, Any, Coroutine, Literal, Optional, Type, TypeVar, Union, overload
+from typing import TYPE_CHECKING, Any, Coroutine, Literal, TypeVar, overload
 
 import aiohttp
-from yarl import URL
 
 from . import __version__
 from .enums import (
@@ -49,7 +48,6 @@ from .enums import (
 )
 from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
 from .oauth2 import OAuth2Client
-from .report import ReportDetails
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -66,12 +64,12 @@ from .utils import (
     to_json,
 )
 
-
 if TYPE_CHECKING:
     from types import TracebackType
 
     from aiohttp import web as aiohttp_web
     from typing_extensions import TypeAlias
+    from yarl import URL
 
     from .query import (
         ArtistIncludes,
@@ -92,6 +90,7 @@ if TYPE_CHECKING:
         UserListOrderQuery,
         UserReportIncludes,
     )
+    from .report import ReportDetails
     from .tags import QueryTags
     from .types_ import (
         artist,
@@ -142,9 +141,9 @@ class MaybeUnlock:
 
     def __exit__(
         self,
-        exc_type: Optional[Type[BE]],
-        exc: Optional[BE],
-        traceback: Optional[TracebackType],
+        exc_type: type[BE] | None,
+        exc: BE | None,
+        traceback: TracebackType | None,
     ) -> None:
         if self._unlock:
             self.lock.release()
@@ -161,24 +160,24 @@ class HTTPClient:
         "oauth2",
     )
 
-    oauth2: Optional[OAuth2Client]
+    oauth2: OAuth2Client | None
 
     def __init__(
         self,
         *,
-        session: Optional[aiohttp.ClientSession] = None,
+        session: aiohttp.ClientSession | None = None,
         redirect_uri: str,
-        client_id: Optional[str] = None,
-        client_secret: Optional[str] = None,
-        oauth_scopes: Optional[list[str]] = None,
-        webapp: Optional[aiohttp_web.Application] = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
+        oauth_scopes: list[str] | None = None,
+        webapp: aiohttp_web.Application | None = None,
     ) -> None:
-        self._session: Optional[aiohttp.ClientSession] = session
+        self._session: aiohttp.ClientSession | None = session
         self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
         self._token_lock: asyncio.Lock = asyncio.Lock()
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
-        self._oauth_scopes: Optional[list[str]] = oauth_scopes
+        self._oauth_scopes: list[str] | None = oauth_scopes
         if client_id:
             self.oauth2 = OAuth2Client(
                 self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp
@@ -189,7 +188,7 @@ class HTTPClient:
             self._authenticated = False
 
     @property
-    def oauth_scopes(self) -> Optional[list[str]]:
+    def oauth_scopes(self) -> list[str] | None:
         if self._oauth_scopes:
             return self._oauth_scopes
 
@@ -247,10 +246,10 @@ class HTTPClient:
 
     async def request(
         self,
-        route: Union[Route, CustomRoute, AuthRoute],
+        route: Route | CustomRoute | AuthRoute,
         *,
-        params: Optional[MANGADEX_QUERY_PARAM_TYPE] = None,
-        json: Optional[Any] = None,
+        params: MANGADEX_QUERY_PARAM_TYPE | None = None,
+        json: Any | None = None,
         bypass: bool = False,
         **kwargs: Any,
     ) -> Any:
@@ -316,7 +315,7 @@ class HTTPClient:
 
         LOGGER.debug("Current request headers: %s", headers)
 
-        response: Optional[aiohttp.ClientResponse] = None
+        response: aiohttp.ClientResponse | None = None
         await lock.acquire()
         with MaybeUnlock(lock) as maybe_lock:
             for tries in range(5):
@@ -410,26 +409,26 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        title: Optional[str],
-        author_or_artist: Optional[str],
-        authors: Optional[list[str]],
-        artists: Optional[list[str]],
-        year: Optional[int],
-        included_tags: Optional[QueryTags],
-        excluded_tags: Optional[QueryTags],
-        status: Optional[list[MangaStatus]],
-        original_language: Optional[list[common.LanguageCode]],
-        excluded_original_language: Optional[list[common.LanguageCode]],
-        available_translated_language: Optional[list[common.LanguageCode]],
-        publication_demographic: Optional[list[PublicationDemographic]],
-        ids: Optional[list[str]],
-        content_rating: Optional[list[ContentRating]],
-        created_at_since: Optional[datetime.datetime],
-        updated_at_since: Optional[datetime.datetime],
-        order: Optional[MangaListOrderQuery],
-        includes: Optional[MangaIncludes],
-        has_available_chapters: Optional[bool],
-        group: Optional[str],
+        title: str | None,
+        author_or_artist: str | None,
+        authors: list[str] | None,
+        artists: list[str] | None,
+        year: int | None,
+        included_tags: QueryTags | None,
+        excluded_tags: QueryTags | None,
+        status: list[MangaStatus] | None,
+        original_language: list[common.LanguageCode] | None,
+        excluded_original_language: list[common.LanguageCode] | None,
+        available_translated_language: list[common.LanguageCode] | None,
+        publication_demographic: list[PublicationDemographic] | None,
+        ids: list[str] | None,
+        content_rating: list[ContentRating] | None,
+        created_at_since: datetime.datetime | None,
+        updated_at_since: datetime.datetime | None,
+        order: MangaListOrderQuery | None,
+        includes: MangaIncludes | None,
+        has_available_chapters: bool | None,
+        group: str | None,
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
 
@@ -507,20 +506,20 @@ class HTTPClient:
         self,
         *,
         title: common.LocalizedString,
-        alt_titles: Optional[list[common.LocalizedString]],
-        description: Optional[common.LocalizedString],
-        authors: Optional[list[str]],
-        artists: Optional[list[str]],
-        links: Optional[manga.MangaLinks],
-        original_language: Optional[str],
-        last_volume: Optional[str],
-        last_chapter: Optional[str],
-        publication_demographic: Optional[PublicationDemographic],
-        status: Optional[MangaStatus],
-        year: Optional[int],
+        alt_titles: list[common.LocalizedString] | None,
+        description: common.LocalizedString | None,
+        authors: list[str] | None,
+        artists: list[str] | None,
+        links: manga.MangaLinks | None,
+        original_language: str | None,
+        last_volume: str | None,
+        last_chapter: str | None,
+        publication_demographic: PublicationDemographic | None,
+        status: MangaStatus | None,
+        year: int | None,
         content_rating: ContentRating,
-        tags: Optional[QueryTags],
-        mod_notes: Optional[str],
+        tags: QueryTags | None,
+        mod_notes: str | None,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("POST", "/manga")
 
@@ -574,8 +573,8 @@ class HTTPClient:
         self,
         *,
         manga_id: str,
-        translated_language: Optional[list[common.LanguageCode]],
-        groups: Optional[list[str]],
+        translated_language: list[common.LanguageCode] | None,
+        groups: list[str] | None,
     ) -> Response[manga.GetMangaVolumesAndChaptersResponse]:
         route = Route("GET", "/manga/{manga_id}/aggregate", manga_id=manga_id)
 
@@ -589,7 +588,7 @@ class HTTPClient:
 
         return self.request(route, params=query) if query else self.request(route)
 
-    def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes]) -> Response[manga.GetMangaResponse]:
+    def get_manga(self, manga_id: str, /, *, includes: MangaIncludes | None) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/{manga_id}", manga_id=manga_id)
 
         if includes:
@@ -602,21 +601,21 @@ class HTTPClient:
         manga_id: str,
         /,
         *,
-        title: Optional[common.LocalizedString],
-        alt_titles: Optional[list[common.LocalizedString]],
-        description: Optional[common.LocalizedString],
-        authors: Optional[list[str]],
-        artists: Optional[list[str]],
-        links: Optional[manga.MangaLinks],
-        original_language: Optional[str],
-        last_volume: Optional[str],
-        last_chapter: Optional[str],
-        publication_demographic: Optional[PublicationDemographic],
-        status: Optional[MangaStatus],
-        year: Optional[int],
-        content_rating: Optional[ContentRating],
-        tags: Optional[QueryTags],
-        primary_cover: Optional[str],
+        title: common.LocalizedString | None,
+        alt_titles: list[common.LocalizedString] | None,
+        description: common.LocalizedString | None,
+        authors: list[str] | None,
+        artists: list[str] | None,
+        links: manga.MangaLinks | None,
+        original_language: str | None,
+        last_volume: str | None,
+        last_chapter: str | None,
+        publication_demographic: PublicationDemographic | None,
+        status: MangaStatus | None,
+        year: int | None,
+        content_rating: ContentRating | None,
+        tags: QueryTags | None,
+        primary_cover: str | None,
         version: int,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
@@ -675,26 +674,26 @@ class HTTPClient:
 
     def manga_feed(
         self,
-        manga_id: Optional[str],
+        manga_id: str | None,
         /,
         *,
         limit: int,
         offset: int,
-        translated_language: Optional[list[common.LanguageCode]],
-        original_language: Optional[list[common.LanguageCode]],
-        excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[ContentRating]],
-        excluded_groups: Optional[list[str]],
-        excluded_uploaders: Optional[list[str]],
-        include_future_updates: Optional[bool],
-        created_at_since: Optional[datetime.datetime],
-        updated_at_since: Optional[datetime.datetime],
-        published_at_since: Optional[datetime.datetime],
-        order: Optional[FeedOrderQuery],
-        includes: Optional[ChapterIncludes],
-        include_empty_pages: Optional[bool],
-        include_future_publish_at: Optional[bool],
-        include_external_url: Optional[bool],
+        translated_language: list[common.LanguageCode] | None,
+        original_language: list[common.LanguageCode] | None,
+        excluded_original_language: list[common.LanguageCode] | None,
+        content_rating: list[ContentRating] | None,
+        excluded_groups: list[str] | None,
+        excluded_uploaders: list[str] | None,
+        include_future_updates: bool | None,
+        created_at_since: datetime.datetime | None,
+        updated_at_since: datetime.datetime | None,
+        published_at_since: datetime.datetime | None,
+        order: FeedOrderQuery | None,
+        includes: ChapterIncludes | None,
+        include_empty_pages: bool | None,
+        include_future_publish_at: bool | None,
+        include_external_url: bool | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/subscription/feed")
@@ -768,10 +767,10 @@ class HTTPClient:
     def get_random_manga(
         self,
         *,
-        includes: Optional[MangaIncludes],
-        content_rating: Optional[list[ContentRating]],
-        included_tags: Optional[QueryTags],
-        excluded_tags: Optional[QueryTags],
+        includes: MangaIncludes | None,
+        content_rating: list[ContentRating] | None,
+        included_tags: QueryTags | None,
+        excluded_tags: QueryTags | None,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/random")
 
@@ -807,7 +806,7 @@ class HTTPClient:
 
     def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: bool = False
-    ) -> Response[Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]]:
+    ) -> Response[manga.MangaReadMarkersResponse | manga.MangaGroupedReadMarkersResponse]:
         if not grouped:
             if len(manga_ids) != 1:
                 raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
@@ -826,13 +825,13 @@ class HTTPClient:
         /,
         *,
         update_history: bool,
-        read_chapters: Optional[list[str]],
-        unread_chapters: Optional[list[str]],
+        read_chapters: list[str] | None,
+        unread_chapters: list[str] | None,
     ) -> Response[DefaultResponseType]:
         route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
 
         body = {}
-        query: Optional[MANGADEX_QUERY_PARAM_TYPE] = {"updateHistory": update_history} if update_history else None
+        query: MANGADEX_QUERY_PARAM_TYPE | None = {"updateHistory": update_history} if update_history else None
 
         if read_chapters:
             body["chapterIdsRead"] = read_chapters
@@ -845,7 +844,7 @@ class HTTPClient:
         return self.request(route, json=body)
 
     def get_all_manga_reading_status(
-        self, *, status: Optional[ReadingStatus] = None
+        self, *, status: ReadingStatus | None = None
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status")
         if status:
@@ -876,9 +875,9 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        state: Optional[MangaState] = None,
-        order: Optional[MangaDraftListOrderQuery] = None,
-        includes: Optional[MangaIncludes],
+        state: MangaState | None = None,
+        order: MangaDraftListOrderQuery | None = None,
+        includes: MangaIncludes | None,
     ) -> Response[manga.GetMangaResponse]:
         route = Route("GET", "/manga/draft")
 
@@ -898,7 +897,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def get_manga_relation_list(
-        self, manga_id: str, /, *, includes: Optional[MangaIncludes]
+        self, manga_id: str, /, *, includes: MangaIncludes | None
     ) -> Response[manga.MangaRelationResponse]:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
 
@@ -924,28 +923,28 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        ids: Optional[list[str]],
-        title: Optional[str],
-        groups: Optional[list[str]],
-        uploader: Optional[Union[str, list[str]]],
-        manga: Optional[str],
-        volume: Optional[Union[str, list[str]]],
-        chapter: Optional[Union[str, list[str]]],
-        translated_language: Optional[list[common.LanguageCode]],
-        original_language: Optional[list[common.LanguageCode]],
-        excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[ContentRating]],
-        excluded_groups: Optional[list[str]],
-        excluded_uploaders: Optional[list[str]],
-        include_future_updates: Optional[bool],
-        include_empty_pages: Optional[bool],
-        include_future_publish_at: Optional[bool],
-        include_external_url: Optional[bool],
-        created_at_since: Optional[datetime.datetime],
-        updated_at_since: Optional[datetime.datetime],
-        published_at_since: Optional[datetime.datetime],
-        order: Optional[FeedOrderQuery],
-        includes: Optional[ChapterIncludes],
+        ids: list[str] | None,
+        title: str | None,
+        groups: list[str] | None,
+        uploader: str | list[str] | None,
+        manga: str | None,
+        volume: str | list[str] | None,
+        chapter: str | list[str] | None,
+        translated_language: list[common.LanguageCode] | None,
+        original_language: list[common.LanguageCode] | None,
+        excluded_original_language: list[common.LanguageCode] | None,
+        content_rating: list[ContentRating] | None,
+        excluded_groups: list[str] | None,
+        excluded_uploaders: list[str] | None,
+        include_future_updates: bool | None,
+        include_empty_pages: bool | None,
+        include_future_publish_at: bool | None,
+        include_external_url: bool | None,
+        created_at_since: datetime.datetime | None,
+        updated_at_since: datetime.datetime | None,
+        published_at_since: datetime.datetime | None,
+        order: FeedOrderQuery | None,
+        includes: ChapterIncludes | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/chapter")
 
@@ -1026,7 +1025,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def get_chapter(
-        self, chapter_id: str, /, *, includes: Optional[ChapterIncludes]
+        self, chapter_id: str, /, *, includes: ChapterIncludes | None
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
@@ -1039,11 +1038,11 @@ class HTTPClient:
         chapter_id: str,
         /,
         *,
-        title: Optional[str],
-        volume: Optional[str],
-        chapter: Optional[str],
-        translated_language: Optional[str],
-        groups: Optional[list[str]],
+        title: str | None,
+        volume: str | None,
+        chapter: str | None,
+        translated_language: str | None,
+        groups: list[str] | None,
         version: int,
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
@@ -1080,12 +1079,12 @@ class HTTPClient:
         *,
         limit: int = 10,
         offset: int = 0,
-        manga: Optional[list[str]],
-        ids: Optional[list[str]],
-        uploaders: Optional[list[str]],
-        locales: Optional[list[common.LanguageCode]],
-        order: Optional[CoverArtListOrderQuery],
-        includes: Optional[CoverIncludes],
+        manga: list[str] | None,
+        ids: list[str] | None,
+        uploaders: list[str] | None,
+        locales: list[common.LanguageCode] | None,
+        order: CoverArtListOrderQuery | None,
+        includes: CoverIncludes | None,
     ) -> Response[cover.GetMultiCoverResponse]:
         route = Route("GET", "/cover")
 
@@ -1119,9 +1118,9 @@ class HTTPClient:
         /,
         *,
         cover: bytes,
-        volume: Optional[str],
+        volume: str | None,
         description: str,
-        locale: Optional[common.LanguageCode],
+        locale: common.LanguageCode | None,
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
         content_type = get_image_mime_type(cover)
@@ -1135,7 +1134,7 @@ class HTTPClient:
 
         return self.request(route, data=form_data)
 
-    def get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes]) -> Response[cover.GetSingleCoverResponse]:
+    def get_cover(self, cover_id: str, /, *, includes: CoverIncludes | None) -> Response[cover.GetSingleCoverResponse]:
         route = Route("GET", "/cover/{cover_id}", cover_id=cover_id)
 
         if includes:
@@ -1148,9 +1147,9 @@ class HTTPClient:
         cover_id: str,
         /,
         *,
-        volume: Optional[str] = MISSING,
-        description: Optional[str] = MISSING,
-        locale: Optional[str] = MISSING,
+        volume: str | None = MISSING,
+        description: str | None = MISSING,
+        locale: str | None = MISSING,
         version: int,
     ) -> Response[cover.GetSingleCoverResponse]:
         route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
@@ -1179,11 +1178,11 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        ids: Optional[list[str]],
-        name: Optional[str],
-        focused_language: Optional[common.LanguageCode],
-        includes: Optional[ScanlatorGroupIncludes],
-        order: Optional[ScanlatorGroupListOrderQuery],
+        ids: list[str] | None,
+        name: str | None,
+        focused_language: common.LanguageCode | None,
+        includes: ScanlatorGroupIncludes | None,
+        order: ScanlatorGroupListOrderQuery | None,
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/group")
 
@@ -1213,9 +1212,9 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        ids: Optional[list[str]],
-        username: Optional[str],
-        order: Optional[UserListOrderQuery],
+        ids: list[str] | None,
+        username: str | None,
+        order: UserListOrderQuery | None,
     ) -> Response[user.GetMultiUserResponse]:
         route = Route("GET", "/user")
 
@@ -1295,7 +1294,7 @@ class HTTPClient:
         route = Route("GET", "/user/bookmarks/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def get_user_custom_list_bookmarkss(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+    def get_user_custom_list_bookmarks(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/bookmarks/list")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
@@ -1308,7 +1307,7 @@ class HTTPClient:
         return self.request(route)
 
     def get_user_followed_manga(
-        self, limit: int, offset: int, includes: Optional[MangaIncludes]
+        self, limit: int, offset: int, includes: MangaIncludes | None
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/user/follows/manga")
 
@@ -1363,8 +1362,8 @@ class HTTPClient:
         self,
         *,
         name: str,
-        visibility: Optional[CustomListVisibility],
-        manga: Optional[list[str]],
+        visibility: CustomListVisibility | None,
+        manga: list[str] | None,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("POST", "/list")
 
@@ -1379,7 +1378,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def get_custom_list(
-        self, custom_list_id: str, /, *, includes: Optional[CustomListIncludes]
+        self, custom_list_id: str, /, *, includes: CustomListIncludes | None
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
@@ -1393,9 +1392,9 @@ class HTTPClient:
         custom_list_id: str,
         /,
         *,
-        name: Optional[str],
-        visibility: Optional[CustomListVisibility],
-        manga: Optional[list[str]],
+        name: str | None,
+        visibility: CustomListVisibility | None,
+        manga: list[str] | None,
         version: int,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("POST", "/list/{custom_list_id}", custom_list_id=custom_list_id)
@@ -1476,21 +1475,21 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        translated_language: Optional[list[common.LanguageCode]],
-        original_language: Optional[list[common.LanguageCode]],
-        excluded_original_language: Optional[list[common.LanguageCode]],
-        content_rating: Optional[list[ContentRating]],
-        excluded_groups: Optional[list[str]],
-        excluded_uploaders: Optional[list[str]],
-        include_future_updates: Optional[bool],
-        created_at_since: Optional[datetime.datetime],
-        updated_at_since: Optional[datetime.datetime],
-        published_at_since: Optional[datetime.datetime],
-        order: Optional[FeedOrderQuery],
-        includes: Optional[ChapterIncludes],
-        include_empty_pages: Optional[bool],
-        include_future_publish_at: Optional[bool],
-        include_external_url: Optional[bool],
+        translated_language: list[common.LanguageCode] | None,
+        original_language: list[common.LanguageCode] | None,
+        excluded_original_language: list[common.LanguageCode] | None,
+        content_rating: list[ContentRating] | None,
+        excluded_groups: list[str] | None,
+        excluded_uploaders: list[str] | None,
+        include_future_updates: bool | None,
+        created_at_since: datetime.datetime | None,
+        updated_at_since: datetime.datetime | None,
+        published_at_since: datetime.datetime | None,
+        order: FeedOrderQuery | None,
+        includes: ChapterIncludes | None,
+        include_empty_pages: bool | None,
+        include_future_publish_at: bool | None,
+        include_external_url: bool | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         route = Route("GET", "/list/{custom_list_id}/feed", custom_list_id=custom_list_id)
 
@@ -1550,16 +1549,16 @@ class HTTPClient:
         self,
         *,
         name: str,
-        website: Optional[str],
-        irc_server: Optional[str],
-        irc_channel: Optional[str],
-        discord: Optional[str],
-        contact_email: Optional[str],
-        description: Optional[str],
-        twitter: Optional[str],
-        manga_updates: Optional[str],
-        inactive: Optional[bool],
-        publish_delay: Optional[Union[str, datetime.timedelta]],
+        website: str | None,
+        irc_server: str | None,
+        irc_channel: str | None,
+        discord: str | None,
+        contact_email: str | None,
+        description: str | None,
+        twitter: str | None,
+        manga_updates: str | None,
+        inactive: bool | None,
+        publish_delay: str | datetime.timedelta | None,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("POST", "/group")
 
@@ -1604,7 +1603,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def view_scanlation_group(
-        self, scanlation_group_id: str, /, *, includes: Optional[ScanlatorGroupIncludes]
+        self, scanlation_group_id: str, /, *, includes: ScanlatorGroupIncludes | None
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
 
@@ -1618,21 +1617,21 @@ class HTTPClient:
         scanlation_group_id: str,
         /,
         *,
-        name: Optional[str],
-        leader: Optional[str],
-        members: Optional[list[str]],
-        website: Optional[str],
-        irc_server: Optional[str],
-        irc_channel: Optional[str],
-        discord: Optional[str],
-        contact_email: Optional[str],
-        description: Optional[str],
-        twitter: Optional[str],
-        manga_updates: Optional[str],
-        focused_languages: Optional[list[common.LanguageCode]],
-        inactive: Optional[bool],
-        locked: Optional[bool],
-        publish_delay: Optional[Union[str, datetime.timedelta]],
+        name: str | None,
+        leader: str | None,
+        members: list[str] | None,
+        website: str | None,
+        irc_server: str | None,
+        irc_channel: str | None,
+        discord: str | None,
+        contact_email: str | None,
+        description: str | None,
+        twitter: str | None,
+        manga_updates: str | None,
+        focused_languages: list[common.LanguageCode] | None,
+        inactive: bool | None,
+        locked: bool | None,
+        publish_delay: str | datetime.timedelta | None,
         version: int,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
@@ -1709,10 +1708,10 @@ class HTTPClient:
         *,
         limit: int,
         offset: int,
-        ids: Optional[list[str]],
-        name: Optional[str],
-        order: Optional[AuthorListOrderQuery],
-        includes: Optional[AuthorIncludes],
+        ids: list[str] | None,
+        name: str | None,
+        order: AuthorListOrderQuery | None,
+        includes: AuthorIncludes | None,
     ) -> Response[author.GetMultiAuthorResponse]:
         route = Route("GET", "/author")
 
@@ -1738,7 +1737,7 @@ class HTTPClient:
         self,
         *,
         name: str,
-        biography: Optional[common.LocalizedString],
+        biography: common.LocalizedString | None,
         twitter: str,
         pixiv: str,
         melon_book: str,
@@ -1793,9 +1792,7 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def get_author(
-        self, author_id: str, /, *, includes: Optional[AuthorIncludes]
-    ) -> Response[author.GetSingleAuthorResponse]:
+    def get_author(self, author_id: str, /, *, includes: AuthorIncludes | None) -> Response[author.GetSingleAuthorResponse]:
         route = Route("GET", "/author/{author_id}", author_id=author_id)
 
         if includes:
@@ -1808,20 +1805,20 @@ class HTTPClient:
         self,
         author_id: str,
         *,
-        name: Optional[str],
-        biography: Optional[common.LocalizedString],
-        twitter: Optional[str],
-        pixiv: Optional[str],
-        melon_book: Optional[str],
-        fan_box: Optional[str],
-        booth: Optional[str],
-        nico_video: Optional[str],
-        skeb: Optional[str],
-        fantia: Optional[str],
-        tumblr: Optional[str],
-        youtube: Optional[str],
-        website: Optional[str],
-        version: Optional[int],
+        name: str | None,
+        biography: common.LocalizedString | None,
+        twitter: str | None,
+        pixiv: str | None,
+        melon_book: str | None,
+        fan_box: str | None,
+        booth: str | None,
+        nico_video: str | None,
+        skeb: str | None,
+        fantia: str | None,
+        tumblr: str | None,
+        youtube: str | None,
+        website: str | None,
+        version: int | None,
     ) -> Response[author.GetSingleAuthorResponse]:
         route = Route("PUT", "/author/{author_id}", author_id=author_id)
 
@@ -1875,9 +1872,7 @@ class HTTPClient:
         route = Route("DELETE", "/author/{author_id}", author_id=author_id)
         return self.request(route)
 
-    def get_artist(
-        self, artist_id: str, /, *, includes: Optional[ArtistIncludes]
-    ) -> Response[artist.GetSingleArtistResponse]:
+    def get_artist(self, artist_id: str, /, *, includes: ArtistIncludes | None) -> Response[artist.GetSingleArtistResponse]:
         route = Route("GET", "/author/{artist_id}", artist_id=artist_id)
 
         if includes:
@@ -1889,20 +1884,20 @@ class HTTPClient:
         self,
         author_id: str,
         *,
-        name: Optional[str],
-        biography: Optional[common.LocalizedString],
-        twitter: Optional[str],
-        pixiv: Optional[str],
-        melon_book: Optional[str],
-        fan_box: Optional[str],
-        booth: Optional[str],
-        nico_video: Optional[str],
-        skeb: Optional[str],
-        fantia: Optional[str],
-        tumblr: Optional[str],
-        youtube: Optional[str],
-        website: Optional[str],
-        version: Optional[int],
+        name: str | None,
+        biography: common.LocalizedString | None,
+        twitter: str | None,
+        pixiv: str | None,
+        melon_book: str | None,
+        fan_box: str | None,
+        booth: str | None,
+        nico_video: str | None,
+        skeb: str | None,
+        fantia: str | None,
+        tumblr: str | None,
+        youtube: str | None,
+        website: str | None,
+        version: int | None,
     ) -> Response[artist.GetSingleArtistResponse]:
         route = Route("POST", "/author/{author_id}", author_id=author_id)
 
@@ -1965,12 +1960,12 @@ class HTTPClient:
         *,
         limit: int = 10,
         offset: int = 0,
-        object_id: Optional[str],
-        reason: Optional[ReportReason],
-        category: Optional[ReportCategory],
-        status: Optional[ReportStatus],
-        order: Optional[ReportListOrderQuery],
-        includes: Optional[UserReportIncludes],
+        object_id: str | None,
+        reason: ReportReason | None,
+        category: ReportCategory | None,
+        status: ReportStatus | None,
+        order: ReportListOrderQuery | None,
+        includes: UserReportIncludes | None,
     ) -> Response[report.GetUserReportReasonResponse]:
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -2043,7 +2038,7 @@ class HTTPClient:
         return self.request(route)
 
     def get_chapter_statistics(
-        self, chapter_id: Optional[str], chapter_ids: Optional[str]
+        self, chapter_id: str | None, chapter_ids: str | None
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if chapter_id:
             route = Route("GET", "/statistics/chapter/{chapter_id}", chapter_id=chapter_id)
@@ -2054,7 +2049,7 @@ class HTTPClient:
         raise ValueError("Either chapter_id or chapter_ids is required.")
 
     def get_scanlation_group_statistics(
-        self, scanlation_group_id: Optional[str], scanlation_group_ids: Optional[str]
+        self, scanlation_group_id: str | None, scanlation_group_ids: str | None
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if scanlation_group_id:
             route = Route("GET", "/statistics/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_ids)
@@ -2065,7 +2060,7 @@ class HTTPClient:
         raise ValueError("Either chapter_id or chapter_ids is required.")
 
     def get_manga_statistics(
-        self, manga_id: Optional[str], manga_ids: Optional[list[str]], /
+        self, manga_id: str | None, manga_ids: list[str] | None, /
     ) -> Response[statistics.GetMangaStatisticsResponse]:
         if manga_id:
             route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
@@ -2078,7 +2073,7 @@ class HTTPClient:
             raise ValueError("Either `manga_id` or `manga_ids` must be passed.")
 
     def open_upload_session(
-        self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: Optional[str], version: Optional[int]
+        self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: str | None, version: int | None
     ) -> Response[upload.BeginChapterUploadResponse]:
         query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
         if chapter_id is not None:
@@ -2139,7 +2134,7 @@ class HTTPClient:
         return self.request(route)
 
     def get_subscription_list(
-        self, *, limit: int, offset: int, includes: Union[SubscriptionIncludes, None]
+        self, *, limit: int, offset: int, includes: SubscriptionIncludes | None
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/subscription")
 

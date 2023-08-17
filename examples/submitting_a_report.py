@@ -4,11 +4,10 @@ import asyncio
 
 import hondana
 
-
 # We need to log in as reports cannot be submitted anonymously.
 
 
-async def main():
+async def main() -> None:
     async with hondana.Client(client_id="...", client_secret="...") as client:
         # let's get a manga
         manga = await client.get_manga("...")

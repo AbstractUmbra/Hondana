@@ -26,7 +26,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Literal, TypedDict
 
-
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
 

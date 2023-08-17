@@ -24,11 +24,11 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING
 
 from .forums import ScanlatorGroupComments
+from .user import User
 from .utils import MISSING, RelationshipResolver, cached_slot_property, deprecated, iso_to_delta, require_authentication
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -37,7 +37,6 @@ if TYPE_CHECKING:
     from .types_.scanlator_group import ScanlationGroupResponse
     from .types_.statistics import CommentMetaData, StatisticsCommentsResponse
     from .types_.user import UserResponse
-    from .user import User
 
 __all__ = (
     "ScanlatorGroup",
@@ -129,15 +128,15 @@ class ScanlatorGroup:
         relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
-        self.website: Optional[str] = self._attributes["website"]
-        self.irc_server: Optional[str] = self._attributes["ircServer"]
-        self.irc_channel: Optional[str] = self._attributes["ircServer"]
-        self.discord: Optional[str] = self._attributes["discord"]
-        self.focused_languages: Optional[list[str]] = self._attributes.get("focusedLanguages")
-        self.contact_email: Optional[str] = self._attributes["contactEmail"]
-        self.description: Optional[str] = self._attributes["description"]
-        self.twitter: Optional[str] = self._attributes["twitter"]
-        self.manga_updates: Optional[str] = self._attributes["mangaUpdates"]
+        self.website: str | None = self._attributes["website"]
+        self.irc_server: str | None = self._attributes["ircServer"]
+        self.irc_channel: str | None = self._attributes["ircServer"]
+        self.discord: str | None = self._attributes["discord"]
+        self.focused_languages: list[str] | None = self._attributes.get("focusedLanguages")
+        self.contact_email: str | None = self._attributes["contactEmail"]
+        self.description: str | None = self._attributes["description"]
+        self.twitter: str | None = self._attributes["twitter"]
+        self.manga_updates: str | None = self._attributes["mangaUpdates"]
         self.locked: bool = self._attributes.get("locked", False)
         self.official: bool = self._attributes["official"]
         self.verified: bool = self._attributes["verified"]
@@ -147,15 +146,15 @@ class ScanlatorGroup:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._publish_delay: str = self._attributes["publishDelay"]
-        self._stats: Optional[ScanlatorGroupStatistics] = None
-        self._leader_relationship: Optional[UserResponse] = RelationshipResolver["UserResponse"](
+        self._stats: ScanlatorGroupStatistics | None = None
+        self._leader_relationship: UserResponse | None = RelationshipResolver["UserResponse"](
             relationships, "leader"
         ).resolve(with_fallback=True)[0]
         self._member_relationships: list[UserResponse] = RelationshipResolver["UserResponse"](
             relationships, "member"
         ).resolve()
-        self.__leader: Optional[User] = None
-        self.__members: Optional[list[User]] = None
+        self.__leader: User | None = None
+        self.__members: list[User] | None = None
 
     def __repr__(self) -> str:
         return f"<ScanlatorGroup id={self.id!r} name={self.name!r}>"
@@ -170,7 +169,7 @@ class ScanlatorGroup:
         return not self.__eq__(other)
 
     @property
-    def stats(self) -> Optional[ScanlatorGroupStatistics]:
+    def stats(self) -> ScanlatorGroupStatistics | None:
         """Returns the statistics object of the scanlator group if it was fetched and cached.
 
         Returns
@@ -213,7 +212,7 @@ class ScanlatorGroup:
         return f"https://mangadex.org/group/{self.id}"
 
     @property
-    def publish_delay(self) -> Optional[datetime.timedelta]:
+    def publish_delay(self) -> datetime.timedelta | None:
         """The publishing delay of this scanlation group.
 
         Returns
@@ -225,7 +224,7 @@ class ScanlatorGroup:
             return iso_to_delta(self._publish_delay)
 
     @property
-    def leader(self) -> Optional[User]:
+    def leader(self) -> User | None:
         """The leader of this scanlation group, if any.
 
         Returns
@@ -251,7 +250,7 @@ class ScanlatorGroup:
         self.__leader = other
 
     @property
-    def members(self) -> Optional[list[User]]:
+    def members(self) -> list[User] | None:
         """The members of this scanlation group, if any.
 
         Returns
@@ -279,7 +278,7 @@ class ScanlatorGroup:
         self.__members = fmt
         return self.__members
 
-    async def get_leader(self) -> Optional[User]:
+    async def get_leader(self) -> User | None:
         """|coro|
 
         This method will return the User representing the leader of the scanlation group.
@@ -313,7 +312,7 @@ class ScanlatorGroup:
         self.__leader = leader
         return self.__leader
 
-    async def get_members(self) -> Optional[list[User]]:
+    async def get_members(self) -> list[User] | None:
         """|coro|
 
         This method will return a list of members of the scanlation group, if present.
@@ -395,21 +394,21 @@ class ScanlatorGroup:
     async def update(
         self,
         *,
-        name: Optional[str] = None,
-        leader: Optional[str] = None,
-        members: Optional[list[str]] = None,
-        website: Optional[str] = MISSING,
-        irc_server: Optional[str] = MISSING,
-        irc_channel: Optional[str] = MISSING,
-        discord: Optional[str] = MISSING,
-        contact_email: Optional[str] = MISSING,
-        description: Optional[str] = MISSING,
-        twitter: Optional[str] = MISSING,
-        manga_updates: Optional[str] = MISSING,
+        name: str | None = None,
+        leader: str | None = None,
+        members: list[str] | None = None,
+        website: str | None = MISSING,
+        irc_server: str | None = MISSING,
+        irc_channel: str | None = MISSING,
+        discord: str | None = MISSING,
+        contact_email: str | None = MISSING,
+        description: str | None = MISSING,
+        twitter: str | None = MISSING,
+        manga_updates: str | None = MISSING,
         focused_languages: list[LanguageCode] = MISSING,
-        inactive: Optional[bool] = None,
-        locked: Optional[bool] = None,
-        publish_delay: Optional[Union[str, datetime.timedelta]] = MISSING,
+        inactive: bool | None = None,
+        locked: bool | None = None,
+        publish_delay: str | datetime.timedelta | None = MISSING,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -497,7 +496,7 @@ class ScanlatorGroup:
         return self.__class__(self._http, data["data"])
 
     @require_authentication
-    async def get_statistics(self) -> Optional[ScanlatorGroupStatistics]:
+    async def get_statistics(self) -> ScanlatorGroupStatistics | None:
         """|coro|
 
         This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
@@ -534,14 +533,14 @@ class ScanlatorGroupStatistics:
     def __init__(self, http: HTTPClient, parent_id: str, payload: StatisticsCommentsResponse) -> None:
         self._http: HTTPClient = http
         self._data: StatisticsCommentsResponse = payload
-        self._comments: Optional[CommentMetaData] = payload.get("comments")
+        self._comments: CommentMetaData | None = payload.get("comments")
         self.parent_id: str = parent_id
 
     def __repr__(self) -> str:
         return f"<ChapterStatistics for={self.parent_id!r}>"
 
     @cached_slot_property("_cs_comments")
-    def comments(self) -> Optional[ScanlatorGroupComments]:
+    def comments(self) -> ScanlatorGroupComments | None:
         """
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 

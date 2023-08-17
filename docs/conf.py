@@ -15,7 +15,6 @@ import re
 import sys
 from typing import Any
 
-
 # from typing import Literal, Optional
 
 
@@ -48,12 +47,9 @@ copyright: str = "2021 - Present, Alex Nørgaard"
 author: str = "Alex Nørgaard"
 
 # The full version, including alpha/beta/rc tags
-with open("../hondana/__init__.py") as f:
+with open("../hondana/__init__.py") as f:  # noqa: PTH123
     match = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE)
-    if match is not None:
-        version = match.group(1)
-    else:
-        version = ""
+    version = match.group(1) if match is not None else ""
 
 release = version
 
@@ -63,8 +59,8 @@ release = version
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-sys.path.insert(0, os.path.abspath(".."))
-sys.path.append(os.path.abspath("extensions"))
+sys.path.insert(0, os.path.abspath(".."))  # noqa: PTH100
+sys.path.append(os.path.abspath("extensions"))  # noqa: PTH100
 
 extensions: list[str] = [
     "sphinx.ext.autodoc",

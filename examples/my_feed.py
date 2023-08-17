@@ -6,7 +6,6 @@ import datetime
 import hondana
 from hondana.query import FeedOrderQuery, Order
 
-
 # We need to log in with username/email and password since MangaDex does not let you create user based API tokens.
 # We instead use our credentials to log in and fetch an expiring auth token.
 

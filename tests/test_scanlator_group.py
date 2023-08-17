@@ -6,17 +6,16 @@ import pathlib
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from hondana.http import HTTPClient
 from hondana.scanlator_group import ScanlatorGroup
 from hondana.utils import iso_to_delta, to_snake_case
 
-
 if TYPE_CHECKING:
+    from hondana.http import HTTPClient
     from hondana.types_.scanlator_group import GetSingleScanlationGroupResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "scanlator_group.json"
 
-PAYLOAD: GetSingleScanlationGroupResponse = json.load(open(PATH, "r"))
+PAYLOAD: GetSingleScanlationGroupResponse = json.load(PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
@@ -26,11 +25,11 @@ def clone_group() -> ScanlatorGroup:
 
 
 class TestScanlatorGroup:
-    def test_id(self):
+    def test_id(self) -> None:
         group = clone_group()
         assert group.id == PAYLOAD["data"]["id"]
 
-    def test_attributes(self):
+    def test_attributes(self) -> None:
         group = clone_group()
 
         for item in PAYLOAD["data"]["attributes"]:
@@ -38,7 +37,7 @@ class TestScanlatorGroup:
                 item = "_publish_delay"  # we made this a property to allow manipulation
             assert hasattr(group, to_snake_case(item))
 
-    def test_relationship_length(self):
+    def test_relationship_length(self) -> None:
         group = clone_group()
 
         assert group.members is not None
@@ -49,7 +48,7 @@ class TestScanlatorGroup:
         assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
-    def test_datetime_properties(self):
+    def test_datetime_properties(self) -> None:
         group = clone_group()
 
         assert group.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])

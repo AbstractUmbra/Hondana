@@ -23,11 +23,10 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional, Type
+from typing import TYPE_CHECKING
 
 from .enums import Order
 from .utils import to_camel_case
-
 
 if TYPE_CHECKING:
     from typing_extensions import Self
@@ -57,7 +56,7 @@ __all__ = (
 class _OrderQuery:
     __slots__: tuple[str, ...] = ()
 
-    def __init__(self, **kwargs: Optional[Order]) -> None:
+    def __init__(self, **kwargs: Order | None) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
 
@@ -75,7 +74,7 @@ class _OrderQuery:
         opt: list[str] = []
         for key in self.__slots__:
             if val := getattr(self, key, None):
-                opt.append(f"{key}={val.name}")
+                opt.append(f"{key}={val.name}")  # noqa: PERF401
         return f"<{self.__class__.__name__} {' '.join(opt)}>"
 
     def to_dict(self) -> dict[str, str]:
@@ -112,7 +111,7 @@ class _Includes:
         return f"<{self.__class__.__name__} {fmt}>"
 
     @classmethod
-    def all(cls: Type[Self]) -> Self:
+    def all(cls: type[Self]) -> Self:
         """A factory method that returns all possible reference expansions for this type."""
         self = cls()
 
@@ -122,7 +121,7 @@ class _Includes:
         return self
 
     @classmethod
-    def none(cls: Type[Self]) -> Self:
+    def none(cls: type[Self]) -> Self:
         """A factory method that disables all possible reference expansions for this type."""
         self = cls()
 
@@ -165,14 +164,14 @@ class MangaListOrderQuery(_OrderQuery):
         "rating",
     )
 
-    title: Optional[Order]
-    year: Optional[Order]
-    created_at: Optional[Order]
-    updated_at: Optional[Order]
-    latest_uploaded_chapter: Optional[Order]
-    subscribed_count: Optional[Order]
-    relevance: Optional[Order]
-    rating: Optional[Order]
+    title: Order | None
+    year: Order | None
+    created_at: Order | None
+    updated_at: Order | None
+    latest_uploaded_chapter: Order | None
+    subscribed_count: Order | None
+    relevance: Order | None
+    rating: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -205,12 +204,12 @@ class FeedOrderQuery(_OrderQuery):
         "chapter",
     )
 
-    created_at: Optional[Order]
-    updated_at: Optional[Order]
-    publish_at: Optional[Order]
-    readable_at: Optional[Order]
-    volume: Optional[Order]
-    chapter: Optional[Order]
+    created_at: Order | None
+    updated_at: Order | None
+    publish_at: Order | None
+    readable_at: Order | None
+    volume: Order | None
+    chapter: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -237,10 +236,10 @@ class MangaDraftListOrderQuery(_OrderQuery):
         "updated_at",
     )
 
-    title: Optional[Order]
-    year: Optional[Order]
-    created_at: Optional[Order]
-    updated_at: Optional[Order]
+    title: Order | None
+    year: Order | None
+    created_at: Order | None
+    updated_at: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -264,9 +263,9 @@ class CoverArtListOrderQuery(_OrderQuery):
         "volume",
     )
 
-    created_at: Optional[Order]
-    updated_at: Optional[Order]
-    volume: Optional[Order]
+    created_at: Order | None
+    updated_at: Order | None
+    volume: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -296,11 +295,11 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         "relevance",
     )
 
-    name: Optional[Order]
-    created_at: Optional[Order]
-    updated_at: Optional[Order]
-    bookmarked_count: Optional[Order]
-    relevance: Optional[Order]
+    name: Order | None
+    created_at: Order | None
+    updated_at: Order | None
+    bookmarked_count: Order | None
+    relevance: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -316,7 +315,7 @@ class AuthorListOrderQuery(_OrderQuery):
 
     __slots__ = ("name",)
 
-    name: Optional[Order]
+    name: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -332,7 +331,7 @@ class UserListOrderQuery(_OrderQuery):
 
     __slots__ = ("username",)
 
-    username: Optional[Order]
+    username: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)
@@ -348,7 +347,7 @@ class ReportListOrderQuery(_OrderQuery):
 
     __slots__ = ("created_at",)
 
-    created_at: Optional[Order]
+    created_at: Order | None
 
     def __init__(self, **kwargs: Order) -> None:
         super().__init__(**kwargs)

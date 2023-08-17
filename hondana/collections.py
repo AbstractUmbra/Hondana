@@ -26,7 +26,6 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Generic, TypeVar
 
-
 if TYPE_CHECKING:
     from .author import Author
     from .chapter import Chapter, PreviouslyReadChapter

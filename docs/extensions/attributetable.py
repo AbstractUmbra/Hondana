@@ -3,19 +3,18 @@ from __future__ import annotations
 import importlib
 import inspect
 import re
-from enum import Enum
-from typing import TYPE_CHECKING, Dict, List, NamedTuple, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, NamedTuple, Sequence
 
 from docutils import nodes
 from sphinx import addnodes
-from sphinx.application import Sphinx
-from sphinx.environment import BuildEnvironment
 from sphinx.locale import _
 from sphinx.util.docutils import SphinxDirective
-from sphinx.util.typing import OptionSpec
-
 
 if TYPE_CHECKING:
+    from sphinx.application import Sphinx
+    from sphinx.environment import BuildEnvironment
+    from sphinx.util.typing import OptionSpec
+
     from .builder import DPYHTML5Translator
 
 
@@ -98,7 +97,7 @@ class PyAttributeTable(SphinxDirective):
     final_argument_whitespace = False
     option_spec: OptionSpec = {}
 
-    def parse_name(self, content: str) -> Tuple[str, str]:
+    def parse_name(self, content: str) -> tuple[str, str]:
         match = _name_parser_regex.match(content)
         if match is None:
             raise RuntimeError(f"content {content} somehow doesn't match regex in {self.env.docname}.")
@@ -114,7 +113,7 @@ class PyAttributeTable(SphinxDirective):
 
         return modulename, name
 
-    def run(self) -> List[attributetableplaceholder]:
+    def run(self) -> list[attributetableplaceholder]:
         """If you're curious on the HTML this is meant to generate:
 
         <div class="py-attribute-table">
@@ -151,7 +150,7 @@ class PyAttributeTable(SphinxDirective):
         return [node]
 
 
-def build_lookup_table(env: BuildEnvironment) -> Dict[str, List[str]]:
+def build_lookup_table(env: BuildEnvironment) -> dict[str, list[str]]:
     # Given an environment, load up a lookup table of
     # full-class-name: objects
     result = {}
@@ -180,7 +179,7 @@ def build_lookup_table(env: BuildEnvironment) -> Dict[str, List[str]]:
 class TableElement(NamedTuple):
     fullname: str
     label: str
-    badge: Optional[attributetablebadge]
+    badge: attributetablebadge | None
 
 
 def process_attributetable(app: Sphinx, doctree: nodes.Node, fromdocname: str) -> None:
@@ -205,12 +204,12 @@ def process_attributetable(app: Sphinx, doctree: nodes.Node, fromdocname: str) -
 
 
 def get_class_results(
-    lookup: Dict[str, List[str]], modulename: str, name: str, fullname: str
-) -> Dict[str, List[TableElement]]:
+    lookup: dict[str, list[str]], modulename: str, name: str, fullname: str
+) -> dict[str, list[TableElement]]:
     module = importlib.import_module(modulename)
     cls = getattr(module, name)
 
-    groups: Dict[str, List[TableElement]] = {
+    groups: dict[str, list[TableElement]] = {
         _("Attributes"): [],
         _("Methods"): [],
     }

@@ -24,11 +24,10 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Literal
 
 from .relationship import Relationship
 from .utils import MANGA_TAGS, cached_slot_property
-
 
 if TYPE_CHECKING:
     from .types_.common import LocalizedString
@@ -180,9 +179,9 @@ class QueryTags:
         If you feel this is out of date, you can try the helper method :meth:`~hondana.Client.update_tags`
     """
 
-    def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND"):
+    def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND") -> None:
         self._tags = tags
-        self.tags: Optional[list[str]] = None
+        self.tags: list[str] | None = None
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
             raise TypeError("Tags mode has to be 'AND' or 'OR'.")

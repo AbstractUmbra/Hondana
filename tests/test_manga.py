@@ -4,15 +4,14 @@ import datetime
 import json
 import pathlib
 from copy import deepcopy
-from typing import TYPE_CHECKING, Literal, Union, overload
+from typing import TYPE_CHECKING, Literal, overload
 
 from hondana.enums import MangaRelationType
-from hondana.http import HTTPClient
 from hondana.manga import Manga, MangaRating, MangaRelation, MangaStatistics
 from hondana.utils import RelationshipResolver, to_snake_case
 
-
 if TYPE_CHECKING:
+    from hondana.http import HTTPClient
     from hondana.types_.artist import ArtistResponse
     from hondana.types_.author import AuthorResponse
     from hondana.types_.common import LocalizedString
@@ -26,10 +25,10 @@ RELATION_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "mang
 STATISTICS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_statistics.json"
 RATING_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_ratings.json"
 
-PAYLOAD: GetMangaResponse = json.load(open(PATH, "r"))
-RELATION_PAYLOAD: MangaRelationResponse = json.load(open(RELATION_PATH, "r"))
-STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(open(STATISTICS_PATH, "r"))
-RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(open(RATING_PATH, "r"))
+PAYLOAD: GetMangaResponse = json.load(PATH.open())
+RELATION_PAYLOAD: MangaRelationResponse = json.load(RELATION_PATH.open())
+STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(STATISTICS_PATH.open())
+RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(RATING_PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
@@ -55,7 +54,7 @@ def clone_manga(type_: Literal["rating"]) -> MangaRating:
 
 def clone_manga(
     type_: Literal["manga", "relation", "stats", "rating"] = "manga"
-) -> Union[Manga, MangaRelation, MangaStatistics, MangaRating]:
+) -> Manga | MangaRelation | MangaStatistics | MangaRating:
     if type_ == "manga":
         t = deepcopy(PAYLOAD)
         return Manga(HTTP, t["data"])
@@ -73,11 +72,11 @@ def clone_manga(
 
 
 class TestManga:
-    def test_id(self):
+    def test_id(self) -> None:
         manga = clone_manga("manga")
         assert manga.id == PAYLOAD["data"]["id"]
 
-    def test_attributes(self):
+    def test_attributes(self) -> None:
         manga = clone_manga("manga")
 
         for item in PAYLOAD["data"]["attributes"]:
@@ -87,7 +86,7 @@ class TestManga:
                 item = "locked"
             assert hasattr(manga, to_snake_case(item))
 
-    def test_relationship_length(self):
+    def test_relationship_length(self) -> None:
         manga = clone_manga("manga")
         assert manga.artists is not None
         assert manga.authors is not None
@@ -100,7 +99,7 @@ class TestManga:
 
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
-    def test_cache_slot_property(self):
+    def test_cache_slot_property(self) -> None:
         manga = clone_manga("manga")
 
         assert not hasattr(manga, "_cs_tags")
@@ -109,7 +108,7 @@ class TestManga:
 
         assert hasattr(manga, "_cs_tags")
 
-    def test_artists_property(self):
+    def test_artists_property(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.artists is not None
@@ -118,7 +117,7 @@ class TestManga:
 
         assert len(manga.artists) == len(artist_rels)
 
-    def test_authors_property(self):
+    def test_authors_property(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.authors is not None
@@ -127,7 +126,7 @@ class TestManga:
 
         assert len(manga.authors) == len(author_rels)
 
-    def test_cover_property(self):
+    def test_cover_property(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.cover is not None
@@ -147,7 +146,7 @@ class TestManga:
             == f"https://uploads.mangadex.org/covers/{manga.id}/{cover_rel['attributes']['fileName']}.512.jpg"
         )
 
-    def test_related_manga_property(self):
+    def test_related_manga_property(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.related_manga is not None
@@ -158,7 +157,7 @@ class TestManga:
 
         assert len(manga.related_manga) == len(related_keys)
 
-    def test_alt_title(self):
+    def test_alt_title(self) -> None:
         manga = clone_manga("manga")
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
@@ -168,18 +167,18 @@ class TestManga:
         for code, title in fmt.items():
             assert manga.alternate_titles.get(code) == title
 
-    def test_localized_title(self):
+    def test_localized_title(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.title == next(iter(PAYLOAD["data"]["attributes"]["title"].values()))  # why did I need to do this
 
-    def test_localized_description(self):
+    def test_localized_description(self) -> None:
         manga = clone_manga("manga")
 
         for key, value in manga._description.items():  # type: ignore # sorry, need this for test purposes
             assert manga.localized_description(key) == value  # type: ignore # can't narrow strings
 
-    def test_date_attributes(self):
+    def test_date_attributes(self) -> None:
         manga = clone_manga("manga")
 
         assert manga.created_at == datetime.datetime.fromisoformat(PAYLOAD["data"]["attributes"]["createdAt"])
@@ -187,13 +186,13 @@ class TestManga:
 
 
 class TestMangaRelation:
-    def test_id(self):
+    def test_id(self) -> None:
         manga = clone_manga("relation")
 
         assert manga.source_manga_id == PAYLOAD["data"]["id"]
         assert manga.id == RELATION_PAYLOAD["data"][0]["id"]
 
-    def test_type(self):
+    def test_type(self) -> None:
         manga = clone_manga("relation")
 
         assert str(manga.relation_type) == RELATION_PAYLOAD["data"][0]["attributes"]["relation"]
@@ -201,24 +200,24 @@ class TestMangaRelation:
 
 
 class TestMangaStatistics:
-    def test_id(self):
+    def test_id(self) -> None:
         manga = clone_manga("stats")
 
         assert manga.parent_id == PAYLOAD["data"]["id"]
 
-    def test_bookmarks(self):
+    def test_bookmarks(self) -> None:
         manga = clone_manga("stats")
 
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))
         assert manga.bookmarks == STATISTICS_PAYLOAD["statistics"][key]["bookmarks"]
 
-    def test_average(self):
+    def test_average(self) -> None:
         manga = clone_manga("stats")
 
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))
         assert manga.average == STATISTICS_PAYLOAD["statistics"][key]["rating"]["average"]
 
-    def test_bayesian(self):
+    def test_bayesian(self) -> None:
         manga = clone_manga("stats")
 
         key = next(iter(STATISTICS_PAYLOAD["statistics"]))
@@ -226,12 +225,12 @@ class TestMangaStatistics:
 
 
 class TestMangaRating:
-    def test_id(self):
+    def test_id(self) -> None:
         manga = clone_manga("rating")
 
         assert manga.parent_id == PAYLOAD["data"]["id"]
 
-    def test_rating(self):
+    def test_rating(self) -> None:
         manga = clone_manga("rating")
 
         key = next(iter(RATING_PAYLOAD["ratings"]))

@@ -31,10 +31,7 @@ __version__ = "4.0.0a"
 import logging
 from typing import Literal, NamedTuple
 
-from . import oauth2 as oauth2
-from . import query as query
-from . import types_ as types_
-from . import utils as utils
+from . import oauth2 as oauth2, query as query, types_ as types_, utils as utils
 from .artist import *
 from .author import *
 from .chapter import *
@@ -52,8 +49,7 @@ from .report import *
 from .scanlator_group import *
 from .tags import *
 from .user import *
-from .utils import MANGA_TAGS as MANGA_TAGS
-from .utils import MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
+from .utils import MANGA_TAGS as MANGA_TAGS, MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
 
 
 class VersionInfo(NamedTuple):

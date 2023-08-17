@@ -25,10 +25,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import aiohttp
-
-
 if TYPE_CHECKING:
+    import aiohttp
+
     from .types_.errors import ErrorType
 
 __all__ = (

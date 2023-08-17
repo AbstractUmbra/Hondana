@@ -23,8 +23,7 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union
-
+from typing import TYPE_CHECKING, TypeAlias
 
 if TYPE_CHECKING:
     from . import artist, author, chapter, cover, manga, scanlator_group, user
@@ -33,15 +32,7 @@ if TYPE_CHECKING:
 __all__ = ("RelationshipResponse",)
 
 
-RelationshipResponse = Union[
-    "artist.ArtistResponse",
-    "author.AuthorResponse",
-    "chapter.ChapterResponse",
-    "cover.CoverResponse",
-    "manga.MangaResponse",
-    "scanlator_group.ScanlationGroupResponse",
-    "user.UserResponse",
-]
+RelationshipResponse: TypeAlias = "artist.ArtistResponse | author.AuthorResponse | chapter.ChapterResponse | cover.CoverResponse | manga.MangaResponse | scanlator_group.ScanlationGroupResponse | user.UserResponse"
 """
 id: :class:`str`
 

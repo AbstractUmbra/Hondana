@@ -24,12 +24,11 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from .query import ScanlatorGroupIncludes
 from .scanlator_group import ScanlatorGroup
 from .utils import RelationshipResolver, require_authentication
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -145,7 +144,7 @@ class User:
         self._group_relationships: list[ScanlationGroupResponse] = RelationshipResolver["ScanlationGroupResponse"](
             relationships, "scanlation_group"
         ).resolve()
-        self.__groups: Optional[list[ScanlatorGroup]] = None
+        self.__groups: list[ScanlatorGroup] | None = None
 
     def __repr__(self) -> str:
         return f"<User id={self.id!r} username={self.username!r}>"
@@ -170,7 +169,7 @@ class User:
         """
         return f"https://mangadex.org/user/{self.id}"
 
-    async def get_scanlator_groups(self) -> Optional[list[ScanlatorGroup]]:
+    async def get_scanlator_groups(self) -> list[ScanlatorGroup] | None:
         """|coro|
 
         This method will fetch the scanlator groups of this user from the API.

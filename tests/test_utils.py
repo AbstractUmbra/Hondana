@@ -3,10 +3,10 @@ from __future__ import annotations
 import datetime
 import pathlib
 import random
-import zoneinfo
-from typing import TYPE_CHECKING, Iterable, TypeVar, Union
+from typing import TYPE_CHECKING, TypeVar
 
 import pytest
+import zoneinfo
 from multidict import MultiDict
 
 from hondana.utils import (
@@ -25,8 +25,9 @@ from hondana.utils import (
     upload_file_sort,
 )
 
-
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from hondana.utils import MANGADEX_QUERY_PARAM_TYPE
 
 
@@ -45,11 +46,11 @@ multidict_two.add("param[]", "c")
 multidict_two.add("includes[]", "test")
 multidict_two.add("includes[]", "mark")
 
-multidict_three = MultiDict[Union[str, int]]()
+multidict_three = MultiDict[str | int]()
 multidict_three.add("sorted", "true")
 multidict_three.add("value", 1)
 
-multidict_four = MultiDict[Union[str, int]]()
+multidict_four = MultiDict[str | int]()
 multidict_four.add("sorted[]", 1)
 multidict_four.add("sorted[]", 2)
 multidict_four.add("includes[]", 1)
@@ -60,11 +61,11 @@ multidict_four.add("value[query]", 7)
 
 
 class TestUtils:
-    def test_missing(self):
+    def test_missing(self) -> None:
         assert MISSING is not None
         assert not bool(MISSING)
 
-    def test_custom_route(self):
+    def test_custom_route(self) -> None:
         route = CustomRoute("GET", "https://uploads.mangadex.org", "/chapter/{chapter_id}", chapter_id="abcd")
 
         assert route.base == "https://uploads.mangadex.org"
@@ -72,7 +73,7 @@ class TestUtils:
         assert route.path == "/chapter/{chapter_id}"
         assert str(route.url) == "https://uploads.mangadex.org/chapter/abcd"
 
-    def test_route(self):
+    def test_route(self) -> None:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id="efgh")
 
         assert route.verb == "GET"
@@ -88,7 +89,7 @@ class TestUtils:
             ([1, 2, 3, 4, 5, 6], 5, [[1, 2, 3, 4, 5], [6]]),
         ],
     )
-    def test_as_chunks(self, source: Iterable[T], chunk_size: int, chunked: Iterable[Iterable[T]]):
+    def test_as_chunks(self, source: Iterable[T], chunk_size: int, chunked: Iterable[Iterable[T]]) -> None:
         assert list(as_chunks(source, chunk_size)) == chunked
 
     @pytest.mark.parametrize(
@@ -100,7 +101,7 @@ class TestUtils:
             (100, 5000, 10, (10, 5000)),
         ],
     )
-    def test_calculate_limit(self, limit: int, offset: int, max_limit: int, output: tuple[int, int]):
+    def test_calculate_limit(self, limit: int, offset: int, max_limit: int, output: tuple[int, int]) -> None:
         assert calculate_limits(limit, offset, max_limit=max_limit) == output
 
     @pytest.mark.parametrize(
@@ -111,7 +112,7 @@ class TestUtils:
             (datetime.timedelta(days=7, hours=7, minutes=13, seconds=58), "P1WT7H13M58S"),
         ],
     )
-    def test_delta_to_iso(self, input: datetime.timedelta, output: str):
+    def test_delta_to_iso(self, input: datetime.timedelta, output: str) -> None:
         assert delta_to_iso(input) == output
 
     @pytest.mark.parametrize(
@@ -122,7 +123,7 @@ class TestUtils:
             ("P1WT7H13M58S", datetime.timedelta(days=7, seconds=26038)),
         ],
     )
-    def test_iso_to_delta(self, input: str, output: datetime.timedelta):
+    def test_iso_to_delta(self, input: str, output: datetime.timedelta) -> None:
         assert iso_to_delta(input) == output
 
     @pytest.mark.parametrize(
@@ -146,22 +147,22 @@ class TestUtils:
     def test_query_builder(
         self,
         input: MANGADEX_QUERY_PARAM_TYPE,
-        output: MultiDict[Union[str, int]],
-    ):
+        output: MultiDict[str | int],
+    ) -> None:
         assert php_query_builder(input) == output
 
     @pytest.mark.parametrize(
         ("input", "output"),
         [("some_value", "someValue"), ("some_other_value", "someOtherValue"), ("manga_or_chapter", "mangaOrChapter")],
     )
-    def test_to_camel_case(self, input: str, output: str):
+    def test_to_camel_case(self, input: str, output: str) -> None:
         assert to_camel_case(input) == output
 
     @pytest.mark.parametrize(
         ("input", "output"),
         [("someValue", "some_value"), ("someOtherValue", "some_other_value"), ("mangaOrChapter", "manga_or_chapter")],
     )
-    def test_to_snake_case(self, input: str, output: str):
+    def test_to_snake_case(self, input: str, output: str) -> None:
         assert to_snake_case(input) == output
 
     @pytest.mark.parametrize(
@@ -185,7 +186,7 @@ class TestUtils:
             ),
         ],
     )
-    def test_relationship_finder(self, input: list[dict[str, str]], output: Union[list[dict[str, str]], dict[str, str]]):
+    def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]] | dict[str, str]) -> None:
         ret = RelationshipResolver[dict[str, str]](input, "test").resolve()  # type: ignore # yeah
 
         assert ret is not None
@@ -220,7 +221,7 @@ class TestUtils:
             ),
         ],
     )
-    def test_isoformatter(self, input: datetime.datetime, output: str):
+    def test_isoformatter(self, input: datetime.datetime, output: str) -> None:
         assert clean_isoformat(input) == output
 
     @pytest.mark.parametrize(
@@ -251,5 +252,5 @@ class TestUtils:
             ),
         ],
     )
-    def test_path_sorter(self, input: list[pathlib.Path], output: list[pathlib.Path]):
+    def test_path_sorter(self, input: list[pathlib.Path], output: list[pathlib.Path]) -> None:
         assert sorted(input, key=upload_file_sort) == output

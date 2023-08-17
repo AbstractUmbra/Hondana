@@ -24,12 +24,11 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
-
-from typing_extensions import NotRequired
-
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
+    from typing_extensions import NotRequired
+
     from .common import LanguageCode
     from .relationship import RelationshipResponse
 
@@ -59,10 +58,10 @@ class CoverAttributesResponse(TypedDict):
     updatedAt: :class:`str`
     """
 
-    volume: Optional[str]
+    volume: str | None
     fileName: str
-    description: Optional[str]
-    locale: Optional[LanguageCode]
+    description: str | None
+    locale: LanguageCode | None
     version: int
     createdAt: str
     updatedAt: str

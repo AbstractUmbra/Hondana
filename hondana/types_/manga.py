@@ -24,22 +24,22 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
-
-from typing_extensions import NotRequired
-
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
-    from .common import LocalizedString, LanguageCode
+    from typing_extensions import NotRequired
+
+    from ..enums import (
+        ContentRating as _ContentRating,
+        MangaRelationType as _MangaRelationType,
+        MangaState as _MangaState,
+        MangaStatus as _MangaStatus,
+        PublicationDemographic as _PublicationDemographic,
+        ReadingStatus as _ReadingStatus,
+    )
+    from .common import LanguageCode, LocalizedString
     from .relationship import RelationshipResponse
     from .tags import TagResponse
-
-from ..enums import ContentRating as _ContentRating
-from ..enums import MangaRelationType as _MangaRelationType
-from ..enums import MangaState as _MangaState
-from ..enums import MangaStatus as _MangaStatus
-from ..enums import PublicationDemographic as _PublicationDemographic
-from ..enums import ReadingStatus as _ReadingStatus
 
 
 __all__ = (
@@ -103,18 +103,18 @@ class MangaLinks(TypedDict, total=False):
     engtl: Optional[:class:`str`]
     """
 
-    al: Optional[str]
-    ap: Optional[str]
-    bw: Optional[str]
-    mu: Optional[str]
-    nu: Optional[str]
-    kt: Optional[str]
-    amz: Optional[str]
-    ebj: Optional[str]
-    mal: Optional[str]
-    cdj: Optional[str]
-    raw: Optional[str]
-    engtl: Optional[str]
+    al: str | None
+    ap: str | None
+    bw: str | None
+    mu: str | None
+    nu: str | None
+    kt: str | None
+    amz: str | None
+    ebj: str | None
+    mal: str | None
+    cdj: str | None
+    raw: str | None
+    engtl: str | None
 
 
 class MangaAttributesResponse(TypedDict):
@@ -169,12 +169,12 @@ class MangaAttributesResponse(TypedDict):
     isLocked: bool
     links: MangaLinks
     originalLanguage: str
-    lastVolume: Optional[str]
-    lastChapter: Optional[str]
-    publicationDemographic: Optional[_PublicationDemographic]
+    lastVolume: str | None
+    lastChapter: str | None
+    publicationDemographic: _PublicationDemographic | None
     status: _MangaStatus
-    year: Optional[int]
-    contentRating: Optional[_ContentRating]
+    year: int | None
+    contentRating: _ContentRating | None
     chapterNumbersResetOnNewVolume: bool
     latestUploadedChapter: str
     availableTranslatedLanguages: list[LanguageCode]
@@ -353,7 +353,7 @@ class GetMangaVolumesAndChaptersResponse(TypedDict):
     """
 
     result: Literal["ok", "error"]
-    volumes: Optional[dict[str, VolumesAndChaptersResponse]]
+    volumes: dict[str, VolumesAndChaptersResponse] | None
 
 
 class MangaReadMarkersResponse(TypedDict):

@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Optional, Union
+from typing import TYPE_CHECKING, Literal
 
 from .artist import Artist
 from .author import Author
@@ -36,7 +36,6 @@ from .forums import MangaComments
 from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
 from .utils import MISSING, RelationshipResolver, cached_slot_property, require_authentication
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -157,28 +156,28 @@ class Manga:
         self._title: LocalizedString = self._attributes["title"]
         self._description: LocalizedString = self._attributes["description"]
         _related = payload.get("related", None)
-        self.relation_type: Optional[MangaRelationType] = MangaRelationType(_related) if _related else None
+        self.relation_type: MangaRelationType | None = MangaRelationType(_related) if _related else None
         self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
-        self.last_volume: Optional[str] = self._attributes["lastVolume"]
-        self.last_chapter: Optional[str] = self._attributes["lastChapter"]
-        self.publication_demographic: Optional[PublicationDemographic] = (
+        self.last_volume: str | None = self._attributes["lastVolume"]
+        self.last_chapter: str | None = self._attributes["lastChapter"]
+        self.publication_demographic: PublicationDemographic | None = (
             PublicationDemographic(self._attributes["publicationDemographic"])
             if self._attributes["publicationDemographic"]
             else None
         )
-        self.status: Optional[MangaStatus] = MangaStatus(self._attributes["status"])
-        self.year: Optional[int] = self._attributes["year"]
-        self.content_rating: Optional[ContentRating] = (
+        self.status: MangaStatus | None = MangaStatus(self._attributes["status"])
+        self.year: int | None = self._attributes["year"]
+        self.content_rating: ContentRating | None = (
             ContentRating(self._attributes["contentRating"]) if self._attributes["contentRating"] else None
         )
         self.chapter_numbers_reset_on_new_volume: bool = self._attributes["chapterNumbersResetOnNewVolume"]
         self.available_translated_languages: list[LanguageCode] = self._attributes["availableTranslatedLanguages"]
         self.latest_uploaded_chapter: str = self._attributes["latestUploadedChapter"]
-        self.state: Optional[MangaState] = MangaState(self._attributes["state"]) if self._attributes["state"] else None
-        self.stats: Optional[MangaStatistics] = None
+        self.state: MangaState | None = MangaState(self._attributes["state"]) if self._attributes["state"] else None
+        self.stats: MangaStatistics | None = None
         self.version: int = self._attributes["version"]
         self._tags = self._attributes["tags"]
         self._created_at = self._attributes["createdAt"]
@@ -192,13 +191,13 @@ class Manga:
         self._related_manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
         ).resolve()
-        self._cover_relationship: Optional[CoverResponse] = RelationshipResolver["CoverResponse"](
+        self._cover_relationship: CoverResponse | None = RelationshipResolver["CoverResponse"](
             relationships, "cover_art"
         ).resolve(with_fallback=True)[0]
-        self.__authors: Optional[list[Author]] = None
-        self.__artists: Optional[list[Artist]] = None
-        self.__cover: Optional[Cover] = None
-        self.__related_manga: Optional[list[Manga]] = None
+        self.__authors: list[Author] | None = None
+        self.__artists: list[Artist] | None = None
+        self.__cover: Cover | None = None
+        self.__related_manga: list[Manga] | None = None
 
     def __repr__(self) -> str:
         return f"<Manga id={self.id!r} title={self.title!r}>"
@@ -242,7 +241,7 @@ class Manga:
         return title  # type: ignore # this is safe since the key is from the dict
 
     @property
-    def description(self) -> Optional[str]:
+    def description(self) -> str | None:
         """The manga's description/synopsis.
 
         Returns
@@ -318,7 +317,7 @@ class Manga:
         return [Tag(item) for item in self._tags]
 
     @property
-    def artists(self) -> Optional[list[Artist]]:
+    def artists(self) -> list[Artist] | None:
         """The artists of the parent Manga.
 
 
@@ -352,7 +351,7 @@ class Manga:
         self.__artists = value
 
     @property
-    def authors(self) -> Optional[list[Author]]:
+    def authors(self) -> list[Author] | None:
         """The artists of the parent Manga.
 
 
@@ -387,7 +386,7 @@ class Manga:
         self.__authors = value
 
     @property
-    def cover(self) -> Optional[Cover]:
+    def cover(self) -> Cover | None:
         """The cover of the manga.
 
 
@@ -415,7 +414,7 @@ class Manga:
         self.__cover = value
 
     @property
-    def related_manga(self) -> Optional[list[Manga]]:
+    def related_manga(self) -> list[Manga] | None:
         """The related manga of the parent Manga.
 
         Returns
@@ -443,7 +442,7 @@ class Manga:
     def related_manga(self, value: list[Manga]) -> None:
         self.__related_manga = value
 
-    async def get_artists(self) -> Optional[list[Artist]]:
+    async def get_artists(self) -> list[Artist] | None:
         """|coro|
 
         This method will return the artists of the manga and caches the response.
@@ -477,7 +476,7 @@ class Manga:
         self.artists = formatted
         return formatted
 
-    async def get_authors(self) -> Optional[list[Author]]:
+    async def get_authors(self) -> list[Author] | None:
         """|coro|
 
         This method will return the authors of the manga and caches the response.
@@ -511,7 +510,7 @@ class Manga:
         self.authors = formatted
         return formatted
 
-    async def get_cover(self) -> Optional[Cover]:
+    async def get_cover(self) -> Cover | None:
         """|coro|
 
         This method will return the cover URL of the parent Manga if it exists and caches the response.
@@ -531,7 +530,7 @@ class Manga:
         self.cover = Cover(self._http, data["data"])
         return self.cover
 
-    def cover_url(self, *, size: Optional[Literal[256, 512]] = None) -> Optional[str]:
+    def cover_url(self, *, size: Literal[256, 512] | None = None) -> str | None:
         """This method will return a direct url to the cover art of the parent Manga.
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
@@ -545,7 +544,7 @@ class Manga:
 
         return self.cover.url(size, parent_id=self.id)
 
-    async def get_related_manga(self, *, limit: int = 100, offset: int = 0) -> Optional[list[Manga]]:
+    async def get_related_manga(self, *, limit: int = 100, offset: int = 0) -> list[Manga] | None:
         """|coro|
 
         This method will return all the related manga and cache their response.
@@ -611,21 +610,21 @@ class Manga:
     async def update(
         self,
         *,
-        title: Optional[LocalizedString] = None,
-        alt_titles: Optional[list[LocalizedString]] = None,
-        description: Optional[LocalizedString] = None,
-        authors: Optional[list[str]] = None,
-        artists: Optional[list[str]] = None,
-        links: Optional[manga.MangaLinks] = None,
-        original_language: Optional[str] = None,
-        last_volume: Optional[str] = MISSING,
-        last_chapter: Optional[str] = MISSING,
+        title: LocalizedString | None = None,
+        alt_titles: list[LocalizedString] | None = None,
+        description: LocalizedString | None = None,
+        authors: list[str] | None = None,
+        artists: list[str] | None = None,
+        links: manga.MangaLinks | None = None,
+        original_language: str | None = None,
+        last_volume: str | None = MISSING,
+        last_chapter: str | None = MISSING,
         publication_demographic: PublicationDemographic = MISSING,
-        status: Optional[MangaStatus] = None,
-        year: Optional[int] = MISSING,
-        content_rating: Optional[ContentRating] = None,
-        tags: Optional[QueryTags] = None,
-        primary_cover: Optional[str] = MISSING,
+        status: MangaStatus | None = None,
+        year: int | None = MISSING,
+        content_rating: ContentRating | None = None,
+        tags: QueryTags | None = None,
+        primary_cover: str | None = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -770,7 +769,7 @@ class Manga:
         if set_status:
             await self.update_reading_status(status=status)
 
-    def localised_title(self, language_code: LanguageCode, /) -> Optional[str]:
+    def localised_title(self, language_code: LanguageCode, /) -> str | None:
         """
         This method will attempt to return the current manga's title in the provided language code.
         Falling back to the :attr:`title`.
@@ -791,7 +790,7 @@ class Manga:
 
     localized_title = localised_title
 
-    def localised_description(self, language_code: LanguageCode, /) -> Optional[str]:
+    def localised_description(self, language_code: LanguageCode, /) -> str | None:
         """
         This method will attempt to return the current manga's description in the provided language code.
         Falling back to the :attr:`description`.
@@ -815,23 +814,23 @@ class Manga:
     async def feed(
         self,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        translated_language: Optional[list[LanguageCode]] = None,
-        original_language: Optional[list[LanguageCode]] = None,
-        excluded_original_language: Optional[list[LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
+        translated_language: list[LanguageCode] | None = None,
+        original_language: list[LanguageCode] | None = None,
+        excluded_original_language: list[LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -942,7 +941,7 @@ class Manga:
 
     @require_authentication
     async def bulk_update_read_markers(
-        self, *, update_history: bool = True, read_chapters: Optional[list[str]], unread_chapters: Optional[list[str]]
+        self, *, update_history: bool = True, read_chapters: list[str] | None, unread_chapters: list[str] | None
     ) -> None:
         """|coro|
 
@@ -1019,8 +1018,8 @@ class Manga:
     async def get_volumes_and_chapters(
         self,
         *,
-        translated_language: Optional[list[LanguageCode]] = None,
-        groups: Optional[list[str]] = None,
+        translated_language: list[LanguageCode] | None = None,
+        groups: list[str] | None = None,
     ) -> manga.GetMangaVolumesAndChaptersResponse:
         """|coro|
 
@@ -1087,29 +1086,29 @@ class Manga:
     async def get_chapters(
         self,
         *,
-        limit: Optional[int] = 10,
+        limit: int | None = 10,
         offset: int = 0,
-        ids: Optional[list[str]] = None,
-        title: Optional[str] = None,
-        groups: Optional[list[str]] = None,
-        uploader: Optional[str] = None,
-        volumes: Optional[list[str]] = None,
-        chapter: Optional[list[str]] = None,
-        translated_language: Optional[list[LanguageCode]] = None,
-        original_language: Optional[list[LanguageCode]] = None,
-        excluded_original_language: Optional[list[LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        ids: list[str] | None = None,
+        title: str | None = None,
+        groups: list[str] | None = None,
+        uploader: str | None = None,
+        volumes: list[str] | None = None,
+        chapter: list[str] | None = None,
+        translated_language: list[LanguageCode] | None = None,
+        original_language: list[LanguageCode] | None = None,
+        excluded_original_language: list[LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
     ) -> ChapterFeed:
         """|coro|
 
@@ -1264,7 +1263,7 @@ class Manga:
         data = await self._http.submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
-    async def get_relations(self, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> MangaRelationCollection:
+    async def get_relations(self, *, includes: MangaIncludes | None = MangaIncludes()) -> MangaRelationCollection:
         """|coro|
 
         This method will return a list of all relations to a given manga.
@@ -1290,7 +1289,7 @@ class Manga:
 
     @require_authentication
     async def upload_cover(
-        self, *, cover: bytes, volume: Optional[str] = None, description: str, locale: Optional[LanguageCode] = None
+        self, *, cover: bytes, volume: str | None = None, description: str, locale: LanguageCode | None = None
     ) -> Cover:
         """|coro|
 
@@ -1496,24 +1495,22 @@ class MangaStatistics:
         "distribution",
     )
 
-    def __init__(
-        self, http: HTTPClient, parent_id: str, payload: Union[MangaStatisticsResponse, BatchStatisticsResponse]
-    ) -> None:
+    def __init__(self, http: HTTPClient, parent_id: str, payload: MangaStatisticsResponse | BatchStatisticsResponse) -> None:
         self._http: HTTPClient = http
         self._data = payload
         self._rating = payload["rating"]
-        self._comments: Optional[CommentMetaData] = payload.get("comments")
+        self._comments: CommentMetaData | None = payload.get("comments")
         self.bookmarks: int = payload["bookmarks"]
         self.parent_id: str = parent_id
-        self.average: Optional[float] = self._rating["average"]
-        self.bayesian: Optional[float] = self._rating["bayesian"]
-        self.distribution: Optional[dict[str, int]] = self._rating.get("distribution")
+        self.average: float | None = self._rating["average"]
+        self.bayesian: float | None = self._rating["bayesian"]
+        self.distribution: dict[str, int] | None = self._rating.get("distribution")
 
     def __repr__(self) -> str:
         return f"<MangaStatistics for={self.parent_id!r}>"
 
     @cached_slot_property("_cs_comments")
-    def comments(self) -> Optional[MangaComments]:
+    def comments(self) -> MangaComments | None:
         """
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 

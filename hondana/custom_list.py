@@ -23,14 +23,13 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from .enums import CustomListVisibility
 from .manga import Manga
 from .query import MangaIncludes
 from .user import User
 from .utils import RelationshipResolver, deprecated, require_authentication
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -81,14 +80,14 @@ class CustomList:
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
-        self._owner_relationship: Optional[UserResponse] = RelationshipResolver["UserResponse"](
-            relationships, "user"
-        ).resolve(with_fallback=True)[0]
+        self._owner_relationship: UserResponse | None = RelationshipResolver["UserResponse"](relationships, "user").resolve(
+            with_fallback=True
+        )[0]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
         ).resolve()
-        self.__owner: Optional[User] = None
-        self.__manga: Optional[list[Manga]] = None
+        self.__owner: User | None = None
+        self.__manga: list[Manga] | None = None
 
     def __repr__(self) -> str:
         return f"<CustomList id={self.id!r} name={self.name!r}>"
@@ -114,7 +113,7 @@ class CustomList:
         return f"https://mangadex.org/list/{self.id}"
 
     @property
-    def owner(self) -> Optional[User]:
+    def owner(self) -> User | None:
         """Returns the owner of this custom list.
 
         Returns
@@ -137,7 +136,7 @@ class CustomList:
         self.__owner = other
 
     @property
-    def manga(self) -> Optional[list[Manga]]:
+    def manga(self) -> list[Manga] | None:
         """Returns the of manga present in this custom list, if any.
 
         Returns
@@ -159,7 +158,7 @@ class CustomList:
     def manga(self, other: list[Manga]) -> None:
         self.__manga = other
 
-    async def get_owner(self) -> Optional[User]:
+    async def get_owner(self) -> User | None:
         """|coro|
 
         This method will make an API request to get the owner of a Custom List.
@@ -179,7 +178,7 @@ class CustomList:
         self.__owner = User(self._http, data["data"])
         return self.__owner
 
-    async def get_manga(self, *, limit: Optional[int] = 100, offset: int = 0) -> Optional[list[Manga]]:
+    async def get_manga(self, *, limit: int | None = 100, offset: int = 0) -> list[Manga] | None:
         """|coro|
 
         This method will attempt to fetch the manga that are members of this custom list.
@@ -235,9 +234,9 @@ class CustomList:
     async def update(
         self,
         *,
-        name: Optional[str] = None,
-        visibility: Optional[CustomListVisibility] = None,
-        manga: Optional[list[str]] = None,
+        name: str | None = None,
+        visibility: CustomListVisibility | None = None,
+        manga: list[str] | None = None,
         version: int,
     ) -> CustomList:
         """|coro|

@@ -22,14 +22,13 @@ from hondana.collections import (
 )
 from hondana.cover import Cover
 from hondana.custom_list import CustomList
-from hondana.http import HTTPClient
 from hondana.legacy import LegacyItem
 from hondana.manga import Manga, MangaRelation
 from hondana.scanlator_group import ScanlatorGroup
 from hondana.user import User
 
-
 if TYPE_CHECKING:
+    from hondana.http import HTTPClient
     from hondana.types_.author import GetMultiAuthorResponse
     from hondana.types_.chapter import GetMultiChapterResponse
     from hondana.types_.cover import GetMultiCoverResponse
@@ -115,40 +114,40 @@ def clone_collection(type_: Literal["user_report"], /) -> UserReportCollection:
 def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
     path = PATH / f"{type_}.json"
     if type_ == "author":
-        author_payload: GetMultiAuthorResponse = json.load(open(path, "r"))
+        author_payload: GetMultiAuthorResponse = json.load(path.open())
         authors = [Author(HTTP, item) for item in author_payload["data"]]
         return AuthorCollection(HTTP, author_payload, authors=authors)
     elif type_ == "chapter_feed":
-        chapter_payload: GetMultiChapterResponse = json.load(open(path, "r"))
+        chapter_payload: GetMultiChapterResponse = json.load(path.open())
         chapters = [Chapter(HTTP, item) for item in chapter_payload["data"]]
         return ChapterFeed(HTTP, chapter_payload, chapters=chapters)
     elif type_ == "cover":
-        cover_payload: GetMultiCoverResponse = json.load(open(path, "r"))
+        cover_payload: GetMultiCoverResponse = json.load(path.open())
         covers = [Cover(HTTP, item) for item in cover_payload["data"]]
         return CoverCollection(HTTP, cover_payload, covers=covers)
     elif type_ == "custom_list":
-        custom_list_payload: GetMultiCustomListResponse = json.load(open(path, "r"))
+        custom_list_payload: GetMultiCustomListResponse = json.load(path.open())
         custom_lists = [CustomList(HTTP, item) for item in custom_list_payload["data"]]
         return CustomListCollection(HTTP, custom_list_payload, lists=custom_lists)
     elif type_ == "legacy_mapping":
-        mapping_payload: GetLegacyMappingResponse = json.load(open(path, "r"))
+        mapping_payload: GetLegacyMappingResponse = json.load(path.open())
         mappings = [LegacyItem(HTTP, item) for item in mapping_payload["data"]]
         return LegacyMappingCollection(HTTP, mapping_payload, mappings=mappings)
     elif type_ == "manga":
-        manga_payload: MangaSearchResponse = json.load(open(path, "r"))
+        manga_payload: MangaSearchResponse = json.load(path.open())
         manga: list[Manga] = [Manga(HTTP, item) for item in manga_payload["data"]]
         return MangaCollection(HTTP, manga_payload, manga=manga)
     elif type_ == "manga_relation":
-        relation_payload: MangaRelationResponse = json.load(open(path, "r"))
+        relation_payload: MangaRelationResponse = json.load(path.open())
         parent_id: str = ""
         manga_relation: list[MangaRelation] = [MangaRelation(HTTP, parent_id, item) for item in relation_payload["data"]]
         return MangaRelationCollection(HTTP, relation_payload, relations=manga_relation)
     elif type_ == "scanlator_group":
-        group_payload: GetMultiScanlationGroupResponse = json.load(open(path, "r"))
+        group_payload: GetMultiScanlationGroupResponse = json.load(path.open())
         groups = [ScanlatorGroup(HTTP, item) for item in group_payload["data"]]
         return ScanlatorGroupCollection(HTTP, group_payload, groups=groups)
     elif type_ == "user":
-        user_payload: GetMultiUserResponse = json.load(open(path, "r"))
+        user_payload: GetMultiUserResponse = json.load(path.open())
         users = [User(HTTP, item) for item in user_payload["data"]]
         return UserCollection(HTTP, user_payload, users=users)
 
@@ -156,9 +155,9 @@ def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
 
 
 class TestCollection:
-    def test_author_collection(self):
+    def test_author_collection(self) -> None:
         path = PATH / "author.json"
-        payload: GetMultiAuthorResponse = json.load(open(path, "r"))
+        payload: GetMultiAuthorResponse = json.load(path.open())
         collection = clone_collection("author")
 
         assert collection.limit == payload["limit"]
@@ -166,9 +165,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_chapter_feed(self):
+    def test_chapter_feed(self) -> None:
         path = PATH / "chapter_feed.json"
-        payload: GetMultiChapterResponse = json.load(open(path, "r"))
+        payload: GetMultiChapterResponse = json.load(path.open())
         collection = clone_collection("chapter_feed")
 
         assert collection.limit == payload["limit"]
@@ -176,9 +175,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_cover_collection(self):
+    def test_cover_collection(self) -> None:
         path = PATH / "cover.json"
-        payload: GetMultiCoverResponse = json.load(open(path, "r"))
+        payload: GetMultiCoverResponse = json.load(path.open())
         collection = clone_collection("cover")
 
         assert collection.limit == payload["limit"]
@@ -186,9 +185,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_custom_list_collection(self):
+    def test_custom_list_collection(self) -> None:
         path = PATH / "custom_list.json"
-        payload: GetMultiCustomListResponse = json.load(open(path, "r"))
+        payload: GetMultiCustomListResponse = json.load(path.open())
         collection = clone_collection("custom_list")
 
         assert collection.limit == payload["limit"]
@@ -196,9 +195,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_legacy_mapping_collection(self):
+    def test_legacy_mapping_collection(self) -> None:
         path = PATH / "legacy_mapping.json"
-        payload: GetLegacyMappingResponse = json.load(open(path, "r"))
+        payload: GetLegacyMappingResponse = json.load(path.open())
         collection = clone_collection("legacy_mapping")
 
         assert collection.limit == payload["limit"]
@@ -206,9 +205,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_manga_collection(self):
+    def test_manga_collection(self) -> None:
         path = PATH / "manga.json"
-        payload: MangaSearchResponse = json.load(open(path, "r"))
+        payload: MangaSearchResponse = json.load(path.open())
         collection = clone_collection("manga")
 
         assert collection.limit == payload["limit"]
@@ -216,9 +215,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_manga_relation_collection(self):
+    def test_manga_relation_collection(self) -> None:
         path = PATH / "manga_relation.json"
-        payload: MangaRelationResponse = json.load(open(path, "r"))
+        payload: MangaRelationResponse = json.load(path.open())
         collection = clone_collection("manga_relation")
 
         assert collection.limit == payload["limit"]
@@ -226,9 +225,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_scanlator_group_collection(self):
+    def test_scanlator_group_collection(self) -> None:
         path = PATH / "scanlator_group.json"
-        payload: GetMultiScanlationGroupResponse = json.load(open(path, "r"))
+        payload: GetMultiScanlationGroupResponse = json.load(path.open())
         collection = clone_collection("scanlator_group")
 
         assert collection.limit == payload["limit"]
@@ -236,9 +235,9 @@ class TestCollection:
         assert collection.offset == payload["offset"]
         assert len(collection.items) == len(payload["data"])
 
-    def test_user_collection(self):
+    def test_user_collection(self) -> None:
         path = PATH / "user.json"
-        payload: GetMultiUserResponse = json.load(open(path, "r"))
+        payload: GetMultiUserResponse = json.load(path.open())
         collection = clone_collection("user")
 
         assert collection.limit == payload["limit"]

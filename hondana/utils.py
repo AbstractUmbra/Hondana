@@ -40,7 +40,6 @@ from typing import (
     Iterable,
     Literal,
     Optional,
-    Type,
     TypedDict,
     TypeVar,
     Union,
@@ -48,10 +47,8 @@ from typing import (
 )
 from urllib.parse import quote as _uriquote
 
-import aiohttp
 import multidict
 from yarl import URL
-
 
 try:
     import orjson
@@ -72,8 +69,8 @@ else:
 
 from .errors import AuthenticationRequired
 
-
 if TYPE_CHECKING:
+    import aiohttp
     from _typeshed import SupportsRichComparison
     from typing_extensions import Concatenate, ParamSpec, Protocol, TypeAlias
 
@@ -264,14 +261,14 @@ class CachedSlotProperty(Generic[T, T_co]):
         self.__doc__ = getattr(function, "__doc__")
 
     @overload
-    def __get__(self, instance: None, owner: Type[T]) -> CachedSlotProperty[T, T_co]:
+    def __get__(self, instance: None, owner: type[T]) -> CachedSlotProperty[T, T_co]:
         ...
 
     @overload
-    def __get__(self, instance: T, owner: Type[T]) -> T_co:
+    def __get__(self, instance: T, owner: type[T]) -> T_co:
         ...
 
-    def __get__(self, instance: Optional[T], owner: Type[T]) -> Any:
+    def __get__(self, instance: T | None, owner: type[T]) -> Any:
         if instance is None:
             return self
 
@@ -303,7 +300,7 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
     return wrapper
 
 
-def deprecated(alternate: Optional[str] = None, /) -> Callable[[Callable[B, T]], Callable[B, T]]:
+def deprecated(alternate: str | None = None, /) -> Callable[[Callable[B, T]], Callable[B, T]]:
     """A decorator to mark a method as deprecated.
 
     Parameters
@@ -369,7 +366,7 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
     return new_limit, new_offset
 
 
-async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, Any], str]:
+async def json_or_text(response: aiohttp.ClientResponse, /) -> dict[str, Any] | str:
     """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text."""
     text = await response.text(encoding="utf-8")
     try:
@@ -381,7 +378,7 @@ async def json_or_text(response: aiohttp.ClientResponse, /) -> Union[dict[str, A
     return text
 
 
-def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[Union[str, int]]:
+def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[str | int]:
     """
     A helper function that builds a MangaDex (PHP) query string from a mapping.
 
@@ -555,20 +552,20 @@ class RelationshipResolver(Generic[T]):
         ...
 
     @overload
-    def resolve(self, *, with_fallback: Literal[True]) -> list[Union[T, None]]:
+    def resolve(self, *, with_fallback: Literal[True]) -> list[T | None]:
         ...
 
     @overload
     def resolve(self) -> list[T]:
         ...
 
-    def resolve(self, *, with_fallback: bool = False) -> Union[list[T], list[Union[T, None]]]:
+    def resolve(self, *, with_fallback: bool = False) -> list[T] | list[T | None]:
         relationships = self.relationships.copy()
 
-        ret: list[Union[T, None]] = []
+        ret: list[T | None] = []
         for relationship in relationships:
             if relationship["type"] == self._type:
-                ret.append(relationship)  # type: ignore
+                ret.append(relationship)  # type: ignore  # noqa: PERF401
 
         if not ret and with_fallback:
             ret.append(None)
@@ -606,9 +603,8 @@ _PATH_WITH_EXTRA = re.compile(r"(?P<num>\d+)(\-?(?P<extra>\w*))?\.(?P<ext>png|jp
 
 
 def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
-    if isinstance(key, pathlib.Path):
-        if match := _PATH_WITH_EXTRA.fullmatch(key.name):
-            return (len(match["num"]), match["num"])
+    if isinstance(key, pathlib.Path) and (match := _PATH_WITH_EXTRA.fullmatch(key.name)):
+        return (len(match["num"]), match["num"])
 
     raise ValueError("Invalid filename format given.")
 

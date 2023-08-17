@@ -24,12 +24,11 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
-
-from typing_extensions import NotRequired
-
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
+    from typing_extensions import NotRequired
+
     from .relationship import RelationshipResponse
 
 
@@ -87,15 +86,15 @@ class ScanlationGroupAttributesResponse(TypedDict):
 
     name: str
     altNames: list[str]
-    website: Optional[str]
-    ircServer: Optional[str]
-    ircChannel: Optional[str]
-    discord: Optional[str]
-    contactEmail: Optional[str]
-    description: Optional[str]
-    twitter: Optional[str]
-    mangaUpdates: Optional[str]
-    focusedLanguage: Optional[list[str]]
+    website: str | None
+    ircServer: str | None
+    ircChannel: str | None
+    discord: str | None
+    contactEmail: str | None
+    description: str | None
+    twitter: str | None
+    mangaUpdates: str | None
+    focusedLanguage: list[str] | None
     locked: bool
     official: bool
     verified: bool

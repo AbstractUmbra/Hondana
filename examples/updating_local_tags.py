@@ -3,7 +3,7 @@ import asyncio
 import hondana
 
 
-async def main():
+async def main() -> None:
     # Auth is not required for this process, so just a Client will work.
     async with hondana.Client() as client:
         current_tags = hondana.MANGA_TAGS

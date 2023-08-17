@@ -27,7 +27,7 @@ import datetime
 import json
 import logging
 import pathlib
-from typing import TYPE_CHECKING, Any, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from . import errors
 from .artist import Artist
@@ -90,12 +90,10 @@ from .tags import Tag
 from .user import User
 from .utils import MISSING, deprecated, require_authentication
 
-
 if TYPE_CHECKING:
     from types import TracebackType
 
-    from aiohttp import ClientSession
-    from aiohttp import web as aiohttp_web
+    from aiohttp import ClientSession, web as aiohttp_web
     from typing_extensions import Self
 
     from .tags import QueryTags
@@ -149,12 +147,12 @@ class Client:
     def __init__(
         self,
         *,
-        session: Optional[ClientSession] = None,
+        session: ClientSession | None = None,
         redirect_uri: str = "http://localhost:3000",
-        client_id: Optional[str] = None,
-        client_secret: Optional[str] = None,
-        oauth_scopes: Optional[list[str]] = None,
-        webapp: Optional[aiohttp_web.Application] = None,
+        client_id: str | None = None,
+        client_secret: str | None = None,
+        oauth_scopes: list[str] | None = None,
+        webapp: aiohttp_web.Application | None = None,
     ) -> None:
         self._http: HTTPClient = HTTPClient(
             session=session,
@@ -233,7 +231,7 @@ class Client:
         fmt = dict(sorted(pre_fmt.items(), key=lambda t: t[0]))
 
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
-        with open(path, "w") as fp:
+        with path.open("w") as fp:
             json.dump(fmt, fp, indent=4)
 
         return fmt
@@ -302,23 +300,23 @@ class Client:
     async def get_my_feed(
         self,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        translated_language: Optional[list[common.LanguageCode]] = None,
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
+        translated_language: list[common.LanguageCode] | None = None,
+        original_language: list[common.LanguageCode] | None = None,
+        excluded_original_language: list[common.LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -417,28 +415,28 @@ class Client:
     async def manga_list(
         self,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        title: Optional[str] = None,
-        author_or_artist: Optional[str] = None,
-        authors: Optional[list[str]] = None,
-        artists: Optional[list[str]] = None,
-        year: Optional[int] = MISSING,
-        included_tags: Optional[QueryTags] = None,
-        excluded_tags: Optional[QueryTags] = None,
-        status: Optional[list[MangaStatus]] = None,
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        available_translated_language: Optional[list[common.LanguageCode]] = None,
-        publication_demographic: Optional[list[PublicationDemographic]] = None,
-        ids: Optional[list[str]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        order: Optional[MangaListOrderQuery] = None,
-        includes: Optional[MangaIncludes] = MangaIncludes(),
-        has_available_chapters: Optional[bool] = None,
-        group: Optional[str] = None,
+        title: str | None = None,
+        author_or_artist: str | None = None,
+        authors: list[str] | None = None,
+        artists: list[str] | None = None,
+        year: int | None = MISSING,
+        included_tags: QueryTags | None = None,
+        excluded_tags: QueryTags | None = None,
+        status: list[MangaStatus] | None = None,
+        original_language: list[common.LanguageCode] | None = None,
+        excluded_original_language: list[common.LanguageCode] | None = None,
+        available_translated_language: list[common.LanguageCode] | None = None,
+        publication_demographic: list[PublicationDemographic] | None = None,
+        ids: list[str] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        order: MangaListOrderQuery | None = None,
+        includes: MangaIncludes | None = MangaIncludes(),
+        has_available_chapters: bool | None = None,
+        group: str | None = None,
     ) -> MangaCollection:
         """|coro|
 
@@ -556,20 +554,20 @@ class Client:
         self,
         *,
         title: common.LocalizedString,
-        alt_titles: Optional[list[common.LocalizedString]] = None,
-        description: Optional[common.LocalizedString] = None,
-        authors: Optional[list[str]] = None,
-        artists: Optional[list[str]] = None,
-        links: Optional[manga.MangaLinks] = None,
+        alt_titles: list[common.LocalizedString] | None = None,
+        description: common.LocalizedString | None = None,
+        authors: list[str] | None = None,
+        artists: list[str] | None = None,
+        links: manga.MangaLinks | None = None,
         original_language: str,
-        last_volume: Optional[str] = None,
-        last_chapter: Optional[str] = None,
-        publication_demographic: Optional[PublicationDemographic] = None,
+        last_volume: str | None = None,
+        last_chapter: str | None = None,
+        publication_demographic: PublicationDemographic | None = None,
         status: MangaStatus,
-        year: Optional[int] = None,
+        year: int | None = None,
         content_rating: ContentRating,
-        tags: Optional[QueryTags] = None,
-        mod_notes: Optional[str] = None,
+        tags: QueryTags | None = None,
+        mod_notes: str | None = None,
     ) -> Manga:
         """|coro|
 
@@ -655,8 +653,8 @@ class Client:
         manga_id: str,
         /,
         *,
-        translated_language: Optional[list[common.LanguageCode]] = None,
-        groups: Optional[list[str]] = None,
+        translated_language: list[common.LanguageCode] | None = None,
+        groups: list[str] | None = None,
     ) -> manga.GetMangaVolumesAndChaptersResponse:
         """|coro|
 
@@ -680,7 +678,7 @@ class Client:
             manga_id=manga_id, translated_language=translated_language, groups=groups
         )
 
-    async def get_manga(self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()) -> Manga:
+    async def get_manga(self, manga_id: str, /, *, includes: MangaIncludes | None = MangaIncludes()) -> Manga:
         """|coro|
 
         The method will fetch a Manga from the MangaDex API.
@@ -717,21 +715,21 @@ class Client:
         manga_id: str,
         /,
         *,
-        title: Optional[common.LocalizedString] = None,
-        alt_titles: Optional[list[common.LocalizedString]] = None,
-        description: Optional[common.LocalizedString] = None,
-        authors: Optional[list[str]] = None,
-        artists: Optional[list[str]] = None,
-        links: Optional[manga.MangaLinks] = None,
-        original_language: Optional[str] = None,
-        last_volume: Optional[str] = MISSING,
-        last_chapter: Optional[str] = MISSING,
-        publication_demographic: Optional[PublicationDemographic] = MISSING,
-        status: Optional[MangaStatus],
-        year: Optional[int] = MISSING,
-        content_rating: Optional[ContentRating] = None,
-        tags: Optional[QueryTags] = None,
-        primary_cover: Optional[str] = MISSING,
+        title: common.LocalizedString | None = None,
+        alt_titles: list[common.LocalizedString] | None = None,
+        description: common.LocalizedString | None = None,
+        authors: list[str] | None = None,
+        artists: list[str] | None = None,
+        links: manga.MangaLinks | None = None,
+        original_language: str | None = None,
+        last_volume: str | None = MISSING,
+        last_chapter: str | None = MISSING,
+        publication_demographic: PublicationDemographic | None = MISSING,
+        status: MangaStatus | None,
+        year: int | None = MISSING,
+        content_rating: ContentRating | None = None,
+        tags: QueryTags | None = None,
+        primary_cover: str | None = MISSING,
         version: int,
     ) -> Manga:
         """|coro|
@@ -894,23 +892,23 @@ class Client:
         manga_id: str,
         /,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        translated_language: Optional[list[common.LanguageCode]] = None,
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
+        translated_language: list[common.LanguageCode] | None = None,
+        original_language: list[common.LanguageCode] | None = None,
+        excluded_original_language: list[common.LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -1006,7 +1004,7 @@ class Client:
     @require_authentication
     async def manga_read_markers(
         self, *, manga_ids: list[str]
-    ) -> Union[manga.MangaReadMarkersResponse, manga.MangaGroupedReadMarkersResponse]:
+    ) -> manga.MangaReadMarkersResponse | manga.MangaGroupedReadMarkersResponse:
         """|coro|
 
         This method will return the read chapters of the passed manga if singular, or all manga if plural.
@@ -1031,8 +1029,8 @@ class Client:
         /,
         *,
         update_history: bool = True,
-        read_chapters: Optional[list[str]] = None,
-        unread_chapters: Optional[list[str]] = None,
+        read_chapters: list[str] | None = None,
+        unread_chapters: list[str] | None = None,
     ) -> None:
         """|coro|
 
@@ -1065,10 +1063,10 @@ class Client:
     async def get_random_manga(
         self,
         *,
-        includes: Optional[MangaIncludes] = MangaIncludes(),
-        content_rating: Optional[list[ContentRating]] = None,
-        included_tags: Optional[QueryTags] = None,
-        excluded_tags: Optional[QueryTags] = None,
+        includes: MangaIncludes | None = MangaIncludes(),
+        content_rating: list[ContentRating] | None = None,
+        included_tags: QueryTags | None = None,
+        excluded_tags: QueryTags | None = None,
     ) -> Manga:
         """|coro|
 
@@ -1101,9 +1099,9 @@ class Client:
     async def get_my_followed_manga(
         self,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        includes: Optional[MangaIncludes] = MangaIncludes(),
+        includes: MangaIncludes | None = MangaIncludes(),
     ) -> MangaCollection:
         """|coro|
 
@@ -1142,7 +1140,7 @@ class Client:
 
     @require_authentication
     async def get_all_manga_reading_status(
-        self, *, status: Optional[ReadingStatus] = None
+        self, *, status: ReadingStatus | None = None
     ) -> manga.MangaMultipleReadingStatusResponse:
         """|coro|
 
@@ -1266,9 +1264,9 @@ class Client:
         *,
         limit: int = 10,
         offset: int = 0,
-        state: Optional[MangaState] = None,
-        order: Optional[MangaDraftListOrderQuery] = None,
-        includes: Optional[MangaIncludes] = MangaIncludes(),
+        state: MangaState | None = None,
+        order: MangaDraftListOrderQuery | None = None,
+        includes: MangaIncludes | None = MangaIncludes(),
     ) -> Manga:
         """|coro|
 
@@ -1297,7 +1295,7 @@ class Client:
         return Manga(self._http, data["data"])
 
     async def get_manga_relation_list(
-        self, manga_id: str, /, *, includes: Optional[MangaIncludes] = MangaIncludes()
+        self, manga_id: str, /, *, includes: MangaIncludes | None = MangaIncludes()
     ) -> MangaRelationCollection:
         """|coro|
 
@@ -1465,30 +1463,30 @@ class Client:
     async def chapter_list(
         self,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        ids: Optional[list[str]] = None,
-        title: Optional[str] = None,
-        groups: Optional[list[str]] = None,
-        uploader: Optional[Union[str, list[str]]] = None,
-        manga: Optional[str] = None,
-        volume: Optional[Union[str, list[str]]] = None,
-        chapter: Optional[Union[str, list[str]]] = None,
-        translated_language: Optional[list[common.LanguageCode]] = None,
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        ids: list[str] | None = None,
+        title: str | None = None,
+        groups: list[str] | None = None,
+        uploader: str | list[str] | None = None,
+        manga: str | None = None,
+        volume: str | list[str] | None = None,
+        chapter: str | list[str] | None = None,
+        translated_language: list[common.LanguageCode] | None = None,
+        original_language: list[common.LanguageCode] | None = None,
+        excluded_original_language: list[common.LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
     ) -> ChapterFeed:
         """|coro|
 
@@ -1610,7 +1608,7 @@ class Client:
         chapter_id: str,
         /,
         *,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
+        includes: ChapterIncludes | None = ChapterIncludes(),
         fetch_full_manga: bool = False,
     ) -> Chapter:
         """|coro|
@@ -1657,11 +1655,11 @@ class Client:
         chapter_id: str,
         /,
         *,
-        title: Optional[str] = None,
+        title: str | None = None,
         volume: str = MISSING,
         chapter: str = MISSING,
-        translated_language: Optional[str] = None,
-        groups: Optional[list[str]] = None,
+        translated_language: str | None = None,
+        groups: list[str] | None = None,
         version: int,
     ) -> Chapter:
         """|coro|
@@ -1766,14 +1764,14 @@ class Client:
     async def cover_art_list(
         self,
         *,
-        limit: Optional[int] = 10,
+        limit: int | None = 10,
         offset: int = 0,
-        manga: Optional[list[str]] = None,
-        ids: Optional[list[str]] = None,
-        uploaders: Optional[list[str]] = None,
-        locales: Optional[list[common.LanguageCode]] = None,
-        order: Optional[CoverArtListOrderQuery] = None,
-        includes: Optional[CoverIncludes] = CoverIncludes(),
+        manga: list[str] | None = None,
+        ids: list[str] | None = None,
+        uploaders: list[str] | None = None,
+        locales: list[common.LanguageCode] | None = None,
+        order: CoverArtListOrderQuery | None = None,
+        includes: CoverIncludes | None = CoverIncludes(),
     ) -> CoverCollection:
         """|coro|
 
@@ -1840,9 +1838,9 @@ class Client:
         /,
         *,
         cover: bytes,
-        volume: Optional[str] = None,
+        volume: str | None = None,
         description: str,
-        locale: Optional[common.LanguageCode] = None,
+        locale: common.LanguageCode | None = None,
     ) -> Cover:
         """|coro|
 
@@ -1876,7 +1874,7 @@ class Client:
 
         return Cover(self._http, data["data"])
 
-    async def get_cover(self, cover_id: str, /, *, includes: Optional[CoverIncludes] = CoverIncludes()) -> Cover:
+    async def get_cover(self, cover_id: str, /, *, includes: CoverIncludes | None = CoverIncludes()) -> Cover:
         """|coro|
 
         The method will fetch a Cover from the MangaDex API.
@@ -1970,13 +1968,13 @@ class Client:
     async def scanlation_group_list(
         self,
         *,
-        limit: Optional[int] = 10,
+        limit: int | None = 10,
         offset: int = 0,
-        ids: Optional[list[str]] = None,
-        name: Optional[str] = None,
-        focused_language: Optional[common.LanguageCode] = None,
-        order: Optional[ScanlatorGroupListOrderQuery] = None,
-        includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
+        ids: list[str] | None = None,
+        name: str | None = None,
+        focused_language: common.LanguageCode | None = None,
+        order: ScanlatorGroupListOrderQuery | None = None,
+        includes: ScanlatorGroupIncludes | None = ScanlatorGroupIncludes(),
     ) -> ScanlatorGroupCollection:
         """|coro|
 
@@ -2041,11 +2039,11 @@ class Client:
     async def user_list(
         self,
         *,
-        limit: Optional[int] = 10,
+        limit: int | None = 10,
         offset: int = 0,
-        ids: Optional[list[str]] = None,
-        username: Optional[str] = None,
-        order: Optional[UserListOrderQuery] = None,
+        ids: list[str] | None = None,
+        username: str | None = None,
+        order: UserListOrderQuery | None = None,
     ) -> UserCollection:
         """|coro|
 
@@ -2265,7 +2263,7 @@ class Client:
 
     @require_authentication
     @deprecated("get_my_bookmarked_users")
-    async def get_my_followed_users(self, *, limit: Optional[int] = 10, offset: int = 0) -> UserCollection:
+    async def get_my_followed_users(self, *, limit: int | None = 10, offset: int = 0) -> UserCollection:
         """|coro|
 
         This method will return the current authenticated user's followed users.
@@ -2350,7 +2348,7 @@ class Client:
         list[:class:`CustomList`]
             The list of custom lists you follow.
         """
-        data = await self._http.get_user_custom_list_bookmarkss(limit=limit, offset=offset)
+        data = await self._http.get_user_custom_list_bookmarks(limit=limit, offset=offset)
 
         return [CustomList(self._http, item) for item in data["data"]]
 
@@ -2552,8 +2550,8 @@ class Client:
         self,
         *,
         name: str,
-        visibility: Optional[CustomListVisibility] = None,
-        manga: Optional[list[str]] = None,
+        visibility: CustomListVisibility | None = None,
+        manga: list[str] | None = None,
     ) -> CustomList:
         """|coro|
 
@@ -2589,7 +2587,7 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        includes: Optional[CustomListIncludes] = CustomListIncludes(),
+        includes: CustomListIncludes | None = CustomListIncludes(),
     ) -> CustomList:
         """|coro|
 
@@ -2622,9 +2620,9 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        name: Optional[str] = None,
-        visibility: Optional[CustomListVisibility] = None,
-        manga: Optional[list[str]] = None,
+        name: str | None = None,
+        visibility: CustomListVisibility | None = None,
+        manga: list[str] | None = None,
         version: int,
     ) -> CustomList:
         """|coro|
@@ -2739,7 +2737,7 @@ class Client:
 
     @require_authentication
     async def get_my_custom_lists(
-        self, *, limit: Optional[int] = 10, offset: int = 0, pinned: bool = False
+        self, *, limit: int | None = 10, offset: int = 0, pinned: bool = False
     ) -> CustomListCollection:
         """|coro|
 
@@ -2783,7 +2781,7 @@ class Client:
 
     @require_authentication
     async def get_users_custom_lists(
-        self, user_id: str, /, *, limit: Optional[int] = 10, offset: int = 0, pinned: bool = False
+        self, user_id: str, /, *, limit: int | None = 10, offset: int = 0, pinned: bool = False
     ) -> CustomListCollection:
         """|coro|
 
@@ -2833,23 +2831,23 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        limit: Optional[int] = 100,
+        limit: int | None = 100,
         offset: int = 0,
-        translated_language: Optional[list[common.LanguageCode]] = None,
-        original_language: Optional[list[common.LanguageCode]] = None,
-        excluded_original_language: Optional[list[common.LanguageCode]] = None,
-        content_rating: Optional[list[ContentRating]] = None,
-        excluded_groups: Optional[list[str]] = None,
-        excluded_uploaders: Optional[list[str]] = None,
-        include_future_updates: Optional[bool] = None,
-        created_at_since: Optional[datetime.datetime] = None,
-        updated_at_since: Optional[datetime.datetime] = None,
-        published_at_since: Optional[datetime.datetime] = None,
-        order: Optional[FeedOrderQuery] = None,
-        includes: Optional[ChapterIncludes] = ChapterIncludes(),
-        include_empty_pages: Optional[bool] = None,
-        include_future_publish_at: Optional[bool] = None,
-        include_external_url: Optional[bool] = None,
+        translated_language: list[common.LanguageCode] | None = None,
+        original_language: list[common.LanguageCode] | None = None,
+        excluded_original_language: list[common.LanguageCode] | None = None,
+        content_rating: list[ContentRating] | None = None,
+        excluded_groups: list[str] | None = None,
+        excluded_uploaders: list[str] | None = None,
+        include_future_updates: bool | None = None,
+        created_at_since: datetime.datetime | None = None,
+        updated_at_since: datetime.datetime | None = None,
+        published_at_since: datetime.datetime | None = None,
+        order: FeedOrderQuery | None = None,
+        includes: ChapterIncludes | None = ChapterIncludes(),
+        include_empty_pages: bool | None = None,
+        include_future_publish_at: bool | None = None,
+        include_external_url: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -2950,16 +2948,16 @@ class Client:
         self,
         *,
         name: str,
-        website: Optional[str] = None,
-        irc_server: Optional[str] = None,
-        irc_channel: Optional[str] = None,
-        discord: Optional[str] = None,
-        contact_email: Optional[str] = None,
-        description: Optional[str] = None,
-        twitter: Optional[str] = None,
-        manga_updates: Optional[str] = None,
-        inactive: Optional[bool] = None,
-        publish_delay: Optional[Union[str, datetime.timedelta]] = None,
+        website: str | None = None,
+        irc_server: str | None = None,
+        irc_channel: str | None = None,
+        discord: str | None = None,
+        contact_email: str | None = None,
+        description: str | None = None,
+        twitter: str | None = None,
+        manga_updates: str | None = None,
+        inactive: bool | None = None,
+        publish_delay: str | datetime.timedelta | None = None,
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -3028,7 +3026,7 @@ class Client:
         scanlation_group_id: str,
         /,
         *,
-        includes: Optional[ScanlatorGroupIncludes] = ScanlatorGroupIncludes(),
+        includes: ScanlatorGroupIncludes | None = ScanlatorGroupIncludes(),
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -3063,21 +3061,21 @@ class Client:
         scanlation_group_id: str,
         /,
         *,
-        name: Optional[str] = None,
-        leader: Optional[str] = None,
-        members: Optional[list[str]] = None,
-        website: Optional[str] = MISSING,
-        irc_server: Optional[str] = MISSING,
-        irc_channel: Optional[str] = MISSING,
-        discord: Optional[str] = MISSING,
-        contact_email: Optional[str] = MISSING,
-        description: Optional[str] = MISSING,
-        twitter: Optional[str] = MISSING,
-        manga_updates: Optional[str] = MISSING,
+        name: str | None = None,
+        leader: str | None = None,
+        members: list[str] | None = None,
+        website: str | None = MISSING,
+        irc_server: str | None = MISSING,
+        irc_channel: str | None = MISSING,
+        discord: str | None = MISSING,
+        contact_email: str | None = MISSING,
+        description: str | None = MISSING,
+        twitter: str | None = MISSING,
+        manga_updates: str | None = MISSING,
         focused_languages: list[common.LanguageCode] = MISSING,
-        inactive: Optional[bool] = None,
-        locked: Optional[bool] = None,
-        publish_delay: Optional[Union[str, datetime.timedelta]] = None,
+        inactive: bool | None = None,
+        locked: bool | None = None,
+        publish_delay: str | datetime.timedelta | None = None,
         version: int,
     ) -> ScanlatorGroup:
         """|coro|
@@ -3231,12 +3229,12 @@ class Client:
     async def author_list(
         self,
         *,
-        limit: Optional[int] = 10,
+        limit: int | None = 10,
         offset: int = 0,
-        ids: Optional[list[str]] = None,
-        name: Optional[str] = None,
-        order: Optional[AuthorListOrderQuery] = None,
-        includes: Optional[AuthorIncludes] = AuthorIncludes(),
+        ids: list[str] | None = None,
+        name: str | None = None,
+        order: AuthorListOrderQuery | None = None,
+        includes: AuthorIncludes | None = AuthorIncludes(),
     ) -> AuthorCollection:
         """|coro|
 
@@ -3295,7 +3293,7 @@ class Client:
         self,
         *,
         name: str,
-        biography: Optional[common.LocalizedString] = None,
+        biography: common.LocalizedString | None = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
@@ -3370,7 +3368,7 @@ class Client:
         )
         return Author(self._http, data["data"])
 
-    async def get_author(self, author_id: str, /, *, includes: Optional[AuthorIncludes] = AuthorIncludes()) -> Author:
+    async def get_author(self, author_id: str, /, *, includes: AuthorIncludes | None = AuthorIncludes()) -> Author:
         """|coro|
 
         The method will fetch an Author from the MangaDex API.
@@ -3401,7 +3399,7 @@ class Client:
 
         return Author(self._http, data["data"])
 
-    async def get_artist(self, artist_id: str, /, *, includes: Optional[ArtistIncludes] = ArtistIncludes()) -> Artist:
+    async def get_artist(self, artist_id: str, /, *, includes: ArtistIncludes | None = ArtistIncludes()) -> Artist:
         """|coro|
 
         The method will fetch an artist from the MangaDex API.
@@ -3438,8 +3436,8 @@ class Client:
         author_id: str,
         /,
         *,
-        name: Optional[str] = None,
-        biography: Optional[common.LocalizedString] = None,
+        name: str | None = None,
+        biography: common.LocalizedString | None = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,
@@ -3549,12 +3547,12 @@ class Client:
         *,
         limit: int = 10,
         offset: int = 0,
-        object_id: Optional[str] = None,
-        reason: Optional[ReportReason] = None,
-        category: Optional[ReportCategory] = None,
-        status: Optional[ReportStatus] = None,
-        order: Optional[ReportListOrderQuery] = None,
-        includes: Optional[UserReportIncludes] = None,
+        object_id: str | None = None,
+        reason: ReportReason | None = None,
+        category: ReportCategory | None = None,
+        status: ReportStatus | None = None,
+        order: ReportListOrderQuery | None = None,
+        includes: UserReportIncludes | None = None,
     ) -> UserReportCollection:
         data = await self._http.get_reports_current_user(
             limit=limit,
@@ -3665,7 +3663,7 @@ class Client:
         await self._http.delete_manga_rating(manga_id)
 
     async def get_manga_statistics(
-        self, manga_id: Optional[str] = None, manga_ids: Optional[list[str]] = None, /
+        self, manga_id: str | None = None, manga_ids: list[str] | None = None, /
     ) -> MangaStatistics:
         """|coro|
 
@@ -3703,19 +3701,19 @@ class Client:
     @require_authentication
     def upload_session(
         self,
-        manga: Union[Manga, str],
+        manga: Manga | str,
         /,
         *,
         chapter: str,
-        chapter_to_edit: Optional[Union[Chapter, str]] = None,
-        volume: Optional[str] = None,
-        title: Optional[str] = None,
+        chapter_to_edit: Chapter | str | None = None,
+        volume: str | None = None,
+        title: str | None = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
-        external_url: Optional[str] = None,
-        publish_at: Optional[datetime.datetime] = None,
-        existing_upload_session_id: Optional[str] = None,
-        version: Optional[int] = None,
+        external_url: str | None = None,
+        publish_at: datetime.datetime | None = None,
+        existing_upload_session_id: str | None = None,
+        version: int | None = None,
     ) -> ChapterUpload:
         """
         This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
@@ -3797,19 +3795,19 @@ class Client:
     @require_authentication
     async def upload_chapter(
         self,
-        manga: Union[Manga, str],
+        manga: Manga | str,
         /,
         *,
         chapter: str,
-        chapter_to_edit: Optional[Union[Chapter, str]] = None,
-        volume: Optional[str] = None,
-        title: Optional[str] = None,
+        chapter_to_edit: Chapter | str | None = None,
+        volume: str | None = None,
+        title: str | None = None,
         translated_language: common.LanguageCode,
         scanlator_groups: list[str],
-        external_url: Optional[str] = None,
-        publish_at: Optional[datetime.datetime] = None,
-        existing_upload_session_id: Optional[str] = None,
-        version: Optional[int] = None,
+        external_url: str | None = None,
+        publish_at: datetime.datetime | None = None,
+        existing_upload_session_id: str | None = None,
+        version: int | None = None,
         images: list[pathlib.Path],
     ) -> Chapter:
         """|coro|
@@ -3953,9 +3951,7 @@ class Client:
         return await self._http.get_user_settings()
 
     @require_authentication
-    async def upsert_user_settings(
-        self, payload: Settings, updated_at: Optional[datetime.datetime] = None
-    ) -> SettingsPayload:
+    async def upsert_user_settings(self, payload: Settings, updated_at: datetime.datetime | None = None) -> SettingsPayload:
         """|coro|
 
         This method will update or create user settings based on a formatted settings templates.
@@ -4061,9 +4057,9 @@ class Client:
     async def get_subscriptions(
         self,
         *,
-        limit: Optional[int] = 20,
+        limit: int | None = 20,
         offset: int = 0,
-        includes: Optional[SubscriptionIncludes] = SubscriptionIncludes(),
+        includes: SubscriptionIncludes | None = SubscriptionIncludes(),
     ) -> CustomListCollection:
         inner_limit = limit or 20
 

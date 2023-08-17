@@ -37,7 +37,6 @@ from .enums import (
     UserReportReason,
 )
 
-
 if TYPE_CHECKING:
     from .http import HTTPClient
     from .types_.common import LocalizedString

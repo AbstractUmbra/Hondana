@@ -33,7 +33,6 @@ import hondana
 
 
 def show_version() -> None:
-
     version_info = sys.version_info
     md_version_info = hondana.version_info
 

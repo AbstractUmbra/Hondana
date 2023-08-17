@@ -24,12 +24,11 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
-
-from typing_extensions import NotRequired
-
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
+    from typing_extensions import NotRequired
+
     from .relationship import RelationshipResponse
 
 
@@ -70,12 +69,12 @@ class ChapterAttributesResponse(TypedDict):
     readableAt: :class:`str`
     """
 
-    title: Optional[str]
+    title: str | None
     volume: str
     chapter: str
     pages: int
     translatedLanguage: str
-    externalUrl: Optional[str]
+    externalUrl: str | None
     version: int
     createdAt: str
     updatedAt: str

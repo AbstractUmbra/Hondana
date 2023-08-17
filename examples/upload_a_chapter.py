@@ -10,7 +10,7 @@ import pathlib
 import hondana
 
 
-async def main():
+async def main() -> None:
     """
     In this example we are going to upload a chapter to the MangaDex API.
     """

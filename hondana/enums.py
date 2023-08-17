@@ -23,10 +23,9 @@ DEALINGS IN THE SOFTWARE.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from .utils import _REPORT_REASONS, _StrEnum  # type: ignore # these will stay private due to potential breakages or changes
-
 
 if TYPE_CHECKING:
     from typing_extensions import TypeAlias
@@ -191,6 +190,6 @@ class ForumThreadType(_StrEnum):
     chapter = "chapter"
 
 
-ReportReason: TypeAlias = Union[
-    AuthorReportReason, ChapterReportReason, ScanlationGroupReportReason, MangaReportReason, UserReportReason
-]
+ReportReason: TypeAlias = (
+    "AuthorReportReason | ChapterReportReason | ScanlationGroupReportReason | MangaReportReason | UserReportReason"
+)

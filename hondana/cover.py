@@ -24,11 +24,10 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Literal
 
 from .user import User
 from .utils import MISSING, RelationshipResolver, Route, require_authentication
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -80,17 +79,17 @@ class Cover:
         self._attributes = self._data["attributes"]
         relationships = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
-        self.volume: Optional[str] = self._attributes["volume"]
+        self.volume: str | None = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
-        self.description: Optional[str] = self._attributes["description"]
-        self.locale: Optional[LanguageCode] = self._attributes["locale"]
+        self.description: str | None = self._attributes["description"]
+        self.locale: LanguageCode | None = self._attributes["locale"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._manga_relationship: Optional[MangaResponse] = RelationshipResolver(relationships, "manga").resolve(
+        self._manga_relationship: MangaResponse | None = RelationshipResolver(relationships, "manga").resolve(
             with_fallback=True
         )[0]
-        self._uploader_relationship: Optional[UserResponse] = RelationshipResolver(relationships, "user").resolve(
+        self._uploader_relationship: UserResponse | None = RelationshipResolver(relationships, "user").resolve(
             with_fallback=True
         )[0]
 
@@ -129,7 +128,7 @@ class Cover:
         return datetime.datetime.fromisoformat(self._updated_at)
 
     @property
-    def uploader(self) -> Optional[User]:
+    def uploader(self) -> User | None:
         """The user who uploaded this cover.
 
         .. note::
@@ -146,7 +145,7 @@ class Cover:
         if "attributes" in self._uploader_relationship:
             return User(self._http, self._uploader_relationship)
 
-    def url(self, type: Optional[Literal[256, 512]] = None, /, parent_id: Optional[str] = None) -> Optional[str]:
+    def url(self, type: Literal[256, 512] | None = None, /, parent_id: str | None = None) -> str | None:
         """Method to return the Cover url.
 
         Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
@@ -178,7 +177,7 @@ class Cover:
 
         return f"https://uploads.mangadex.org/covers/{manga_id}/{self.file_name}{fmt}"
 
-    async def fetch_image(self, size: Optional[Literal[256, 512]] = None, /) -> Optional[bytes]:
+    async def fetch_image(self, size: Literal[256, 512] | None = None, /) -> bytes | None:
         """|coro|
 
         This method depends on :attr:`url`, as such, it can return None.
@@ -202,9 +201,7 @@ class Cover:
         return await self._http.request(route)
 
     @require_authentication
-    async def edit_cover(
-        self, *, volume: Optional[str] = MISSING, description: Optional[str] = MISSING, version: int
-    ) -> Cover:
+    async def edit_cover(self, *, volume: str | None = MISSING, description: str | None = MISSING, version: int) -> Cover:
         """|coro|
 
         This method will edit the current cover on the MangaDex API.

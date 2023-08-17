@@ -24,8 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import Literal, Optional, TypedDict
-
+from typing import Literal, TypedDict
 
 __all__ = (
     "StatisticsRatingResponse",
@@ -50,8 +49,8 @@ class StatisticsRatingResponse(TypedDict):
     distribution: Dict[:class:`str`, :class:`int`]
     """
 
-    average: Optional[float]
-    bayesian: Optional[float]
+    average: float | None
+    bayesian: float | None
     distribution: dict[str, int]
 
 
@@ -73,7 +72,7 @@ class MangaStatisticsResponse(TypedDict):
     bookmarks: :class:`int`
     """
 
-    comments: Optional[CommentMetaData]
+    comments: CommentMetaData | None
     rating: StatisticsRatingResponse
     bookmarks: int
 
@@ -149,7 +148,7 @@ class StatisticsCommentsResponse(TypedDict):
     comments: Optional[:class:`~hondana.types_.statistics.CommentMetaData`]
     """
 
-    comments: Optional[CommentMetaData]
+    comments: CommentMetaData | None
 
 
 class GetCommentsStatisticsResponse(TypedDict):

@@ -21,11 +21,11 @@ from hondana.query import (
 
 
 class TestOrderQuery:
-    def test_author_list_order_query(self):
+    def test_author_list_order_query(self) -> None:
         query = AuthorListOrderQuery(name=Order.descending)
         assert query.to_dict() == {"name": "desc"}
 
-    def test_cover_art_order_query(self):
+    def test_cover_art_order_query(self) -> None:
         query = CoverArtListOrderQuery(created_at=Order.ascending)
         assert query.to_dict() == {"createdAt": "asc"}
 
@@ -35,7 +35,7 @@ class TestOrderQuery:
         query = CoverArtListOrderQuery(volume=Order.ascending)
         assert query.to_dict() == {"volume": "asc"}
 
-    def test_feed_order_query(self):
+    def test_feed_order_query(self) -> None:
         query = FeedOrderQuery(created_at=Order.ascending)
         assert query.to_dict() == {"createdAt": "asc"}
 
@@ -54,7 +54,7 @@ class TestOrderQuery:
         query = FeedOrderQuery(chapter=Order.ascending)
         assert query.to_dict() == {"chapter": "asc"}
 
-    def test_manga_draft_list_order_query(self):
+    def test_manga_draft_list_order_query(self) -> None:
         query = MangaDraftListOrderQuery(title=Order.descending)
         assert query.to_dict() == {"title": "desc"}
 
@@ -67,18 +67,18 @@ class TestOrderQuery:
         query = MangaDraftListOrderQuery(updated_at=Order.descending)
         assert query.to_dict() == {"updatedAt": "desc"}
 
-    def test_manga_list_order_query(self):
+    def test_manga_list_order_query(self) -> None:
         query = MangaListOrderQuery(created_at=Order.descending)
         assert query.to_dict() == {"createdAt": "desc"}
 
         query = MangaListOrderQuery(title=Order.ascending)
         assert query.to_dict() == {"title": "asc"}
 
-    def test_report_list_order_query(self):
+    def test_report_list_order_query(self) -> None:
         query = ReportListOrderQuery(created_at=Order.descending)
         assert query.to_dict() == {"createdAt": "desc"}
 
-    def test_scanlator_group_list_order_query(self):
+    def test_scanlator_group_list_order_query(self) -> None:
         query = ScanlatorGroupListOrderQuery(name=Order.descending)
         assert query.to_dict() == {"name": "desc"}
 
@@ -94,13 +94,13 @@ class TestOrderQuery:
         query = ScanlatorGroupListOrderQuery(relevance=Order.descending)
         assert query.to_dict() == {"relevance": "desc"}
 
-    def test_user_list_order_query(self):
+    def test_user_list_order_query(self) -> None:
         query = UserListOrderQuery(username=Order.descending)
         assert query.to_dict() == {"username": "desc"}
 
 
 class TestIncludes:
-    def test_artist_includes(self):
+    def test_artist_includes(self) -> None:
         includes = ArtistIncludes(manga=False)
         assert includes.to_query() == []
 
@@ -110,7 +110,7 @@ class TestIncludes:
         includes = ArtistIncludes()
         assert includes.to_query() == ArtistIncludes.all().to_query()
 
-    def test_author_includes(self):
+    def test_author_includes(self) -> None:
         includes = AuthorIncludes(manga=False)
         assert includes.to_query() == []
 
@@ -120,7 +120,7 @@ class TestIncludes:
         includes = AuthorIncludes()
         assert includes.to_query() == AuthorIncludes.all().to_query()
 
-    def test_chapter_includes(self):
+    def test_chapter_includes(self) -> None:
         includes = ChapterIncludes(manga=False, user=False, scanlation_group=False)
         assert includes.to_query() == []
 
@@ -133,7 +133,7 @@ class TestIncludes:
         includes = ChapterIncludes()
         assert includes.to_query() == ChapterIncludes.all().to_query()
 
-    def test_cover_includes(self):
+    def test_cover_includes(self) -> None:
         includes = CoverIncludes.none()
         assert includes.to_query() == []
 
@@ -146,7 +146,7 @@ class TestIncludes:
         includes = CoverIncludes()
         assert includes.to_query() == CoverIncludes.all().to_query()
 
-    def test_custom_list_includes(self):
+    def test_custom_list_includes(self) -> None:
         includes = CustomListIncludes.none()
         assert includes.to_query() == []
 
@@ -156,7 +156,7 @@ class TestIncludes:
         includes = CustomListIncludes(manga=False)
         assert includes.to_query() == ["owner", "user"]
 
-    def test_manga_includes(self):
+    def test_manga_includes(self) -> None:
         includes = MangaIncludes()
         assert includes.to_query() == ["artist", "author", "cover_art", "manga"]
 
@@ -166,7 +166,7 @@ class TestIncludes:
         includes = MangaIncludes(artist=False)
         assert includes.to_query() == ["author", "cover_art", "manga"]
 
-    def test_scanlator_group_includes(self):
+    def test_scanlator_group_includes(self) -> None:
         includes = ScanlatorGroupIncludes.none()
         assert includes.to_query() == []
 

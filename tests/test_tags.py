@@ -5,19 +5,18 @@ import pathlib
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any, Mapping
 
-from hondana.http import HTTPClient
 from hondana.manga import Manga
-from hondana.relationship import Relationship
 from hondana.tags import QueryTags, Tag
 
-
 if TYPE_CHECKING:
+    from hondana.http import HTTPClient
+    from hondana.relationship import Relationship
     from hondana.types_.manga import GetMangaResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
 
-PAYLOAD: GetMangaResponse = json.load(open(PATH, "r"))
+PAYLOAD: GetMangaResponse = json.load(PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
@@ -27,14 +26,14 @@ def clone_tags() -> list[Tag]:
 
 
 class TestTags:
-    def test_ids(self):
+    def test_ids(self) -> None:
         tags = clone_tags()
 
         tag_ids = [t.id for t in tags]
 
         assert len(tag_ids) == len(PAYLOAD["data"]["attributes"]["tags"])
 
-    def test_tag_names(self):
+    def test_tag_names(self) -> None:
         tags = clone_tags()
 
         raw_tags: list[str] = []
@@ -47,7 +46,7 @@ class TestTags:
         ):
             assert tag.name == raw_tag
 
-    def test_tag_relationships(self):  # currently, tags have no relationships, but even so.
+    def test_tag_relationships(self) -> None:  # currently, tags have no relationships, but even so.
         tags = clone_tags()
 
         tag_rels: list[Relationship] = [r for tag in tags for r in tag.relationships]
@@ -59,7 +58,7 @@ class TestTags:
         for a, b in zip(sorted(tag_rels, key=lambda r: r.id), sorted(raw_rels, key=lambda r: r["id"])):
             assert a == b
 
-    def test_tag_descriptions(self):  # currently, tags have no descriptions, but even so.
+    def test_tag_descriptions(self) -> None:  # currently, tags have no descriptions, but even so.
         tags = clone_tags()
         raw_tags = PAYLOAD["data"]["attributes"]["tags"]
 
@@ -67,12 +66,12 @@ class TestTags:
             _description = tag._description  # type: ignore # sorry, need this for test purposes
             _raw_descriptions = raw_tag["attributes"]["description"]
             _raw_descriptions = _raw_descriptions or {}
-            _raw_description = {k: v for k, v in _raw_descriptions}
+            _raw_description = dict(_raw_descriptions)
             assert _description == _raw_description
 
 
 class TestQueryTags:
-    def test_query_tags(self):
+    def test_query_tags(self) -> None:
         tags = QueryTags("Comedy", "Genderswap", "Romance", mode="OR")
         assert tags.mode == "OR"
         assert tags.tags == [

@@ -6,7 +6,7 @@ import asyncio
 import hondana
 
 
-async def main():
+async def main() -> None:
     async with hondana.Client() as client:
         # Get the manga, we will need its chapters
         manga = await client.get_manga("some-manga-id-here")

@@ -24,14 +24,13 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
+from .author import Author
 from .query import MangaIncludes
 from .utils import MISSING, RelationshipResolver, require_authentication
 
-
 if TYPE_CHECKING:
-    from .author import Author
     from .http import HTTPClient
     from .manga import Manga
     from .types_.artist import ArtistAttributesResponse, ArtistResponse
@@ -120,28 +119,28 @@ class Artist:
         relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
-        self.image_url: Optional[str] = self._attributes["imageUrl"]
-        self.twitter: Optional[str] = self._attributes["twitter"]
-        self.pixiv: Optional[str] = self._attributes["pixiv"]
-        self.melon_book: Optional[str] = self._attributes["melonBook"]
-        self.fan_box: Optional[str] = self._attributes["fanBox"]
-        self.booth: Optional[str] = self._attributes["booth"]
-        self.nico_video: Optional[str] = self._attributes["nicoVideo"]
-        self.skeb: Optional[str] = self._attributes["skeb"]
-        self.fantia: Optional[str] = self._attributes["fantia"]
-        self.tumblr: Optional[str] = self._attributes["tumblr"]
-        self.youtube: Optional[str] = self._attributes["youtube"]
-        self.weibo: Optional[str] = self._attributes.get("weibo")
-        self.naver: Optional[str] = self._attributes.get("naver")
-        self.website: Optional[str] = self._attributes["website"]
+        self.image_url: str | None = self._attributes["imageUrl"]
+        self.twitter: str | None = self._attributes["twitter"]
+        self.pixiv: str | None = self._attributes["pixiv"]
+        self.melon_book: str | None = self._attributes["melonBook"]
+        self.fan_box: str | None = self._attributes["fanBox"]
+        self.booth: str | None = self._attributes["booth"]
+        self.nico_video: str | None = self._attributes["nicoVideo"]
+        self.skeb: str | None = self._attributes["skeb"]
+        self.fantia: str | None = self._attributes["fantia"]
+        self.tumblr: str | None = self._attributes["tumblr"]
+        self.youtube: str | None = self._attributes["youtube"]
+        self.weibo: str | None = self._attributes.get("weibo")
+        self.naver: str | None = self._attributes.get("naver")
+        self.website: str | None = self._attributes["website"]
         self.version: int = self._attributes["version"]
-        self._biography: Optional[LocalizedString] = self._attributes["biography"]
+        self._biography: LocalizedString | None = self._attributes["biography"]
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
         ).resolve(with_fallback=False)
-        self.__manga: Optional[list[Manga]] = None
+        self.__manga: list[Manga] | None = None
 
     def __repr__(self) -> str:
         return f"<Artist id={self.id!r} name={self.name!r}>"
@@ -153,7 +152,7 @@ class Artist:
         return isinstance(other, (Artist, Author)) and self.id == other.id
 
     @property
-    def biography(self) -> Optional[str]:
+    def biography(self) -> str | None:
         """The artist's biography, if present.
 
         Returns
@@ -175,7 +174,7 @@ class Artist:
 
         return biography
 
-    def localised_biography(self, language: LanguageCode) -> Optional[str]:
+    def localised_biography(self, language: LanguageCode) -> str | None:
         """The artist's biography in the specified language, if present.
 
         Parameters
@@ -225,7 +224,7 @@ class Artist:
         return f"https://mangadex.org/author/{self.id}"
 
     @property
-    def manga(self) -> Optional[list[Manga]]:
+    def manga(self) -> list[Manga] | None:
         """Returns a list Manga related to this artist.
 
 
@@ -259,7 +258,7 @@ class Artist:
     def manga(self, value: list[Manga]) -> None:
         self.__manga = value
 
-    async def get_manga(self) -> Optional[list[Manga]]:
+    async def get_manga(self) -> list[Manga] | None:
         """|coro|
 
         This method will return cached manga responses, or attempt to fetch them from the API.
@@ -299,8 +298,8 @@ class Artist:
         self,
         /,
         *,
-        name: Optional[str] = None,
-        biography: Optional[LocalizedString] = None,
+        name: str | None = None,
+        biography: LocalizedString | None = None,
         twitter: str = MISSING,
         pixiv: str = MISSING,
         melon_book: str = MISSING,

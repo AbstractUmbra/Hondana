@@ -24,12 +24,11 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, Optional, TypedDict
-
-from typing_extensions import NotRequired
-
+from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
+    from typing_extensions import NotRequired
+
     from .common import LocalizedString
     from .relationship import RelationshipResponse
 
@@ -84,21 +83,21 @@ class ArtistAttributesResponse(TypedDict):
     """
 
     name: str
-    imageUrl: Optional[str]
+    imageUrl: str | None
     biography: LocalizedString
-    twitter: Optional[str]
-    pixiv: Optional[str]
-    melonBook: Optional[str]
-    fanBox: Optional[str]
-    booth: Optional[str]
-    nicoVideo: Optional[str]
-    skeb: Optional[str]
-    fantia: Optional[str]
-    tumblr: Optional[str]
-    youtube: Optional[str]
-    weibo: Optional[str]
-    naver: Optional[str]
-    website: Optional[str]
+    twitter: str | None
+    pixiv: str | None
+    melonBook: str | None
+    fanBox: str | None
+    booth: str | None
+    nicoVideo: str | None
+    skeb: str | None
+    fantia: str | None
+    tumblr: str | None
+    youtube: str | None
+    weibo: str | None
+    naver: str | None
+    website: str | None
     version: int
     createdAt: str
     updatedAt: str

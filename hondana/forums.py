@@ -24,10 +24,9 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from .enums import ForumThreadType
-
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -65,13 +64,13 @@ class _Comments:
         self.parent_id: str = parent_id
         self.thread_id: int = self._data["threadId"]
         self.reply_count: int = self._data["repliesCount"]
-        self.__thread: Optional[ForumThread] = None
+        self.__thread: ForumThread | None = None
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} thread_id={self.thread_id} reply_count={self.reply_count} parent_id={self.parent_id!r}>"
 
     @property
-    def thread(self) -> Optional[ForumThread]:
+    def thread(self) -> ForumThread | None:
         """The objects thread, if it exists.
 
         Returns

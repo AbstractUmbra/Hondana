@@ -5,19 +5,18 @@ import pathlib
 from copy import deepcopy
 from typing import TYPE_CHECKING
 
-from hondana.http import HTTPClient
 from hondana.user import User
 from hondana.utils import to_snake_case
 
-
 if TYPE_CHECKING:
+    from hondana.http import HTTPClient
     from hondana.types_.user import GetSingleUserResponse
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "user.json"
 
 
-PAYLOAD: GetSingleUserResponse = json.load(open(PATH, "r"))
+PAYLOAD: GetSingleUserResponse = json.load(PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
 
 
@@ -27,16 +26,16 @@ def clone_user() -> User:
 
 
 class TestUser:
-    def test_id(self):
+    def test_id(self) -> None:
         user = clone_user()
         assert user.id == PAYLOAD["data"]["id"]
 
-    def test_attributes(self):
+    def test_attributes(self) -> None:
         user = clone_user()
         for item in PAYLOAD["data"]["attributes"]:
             getattr(user, to_snake_case(item))
 
-    def test_relationships_length(self):
+    def test_relationships_length(self) -> None:
         user = clone_user()
 
         assert user._group_relationships is not None  # type: ignore # sorry, need this for test purposes
@@ -45,7 +44,7 @@ class TestUser:
         assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])
 
-    def test_attribute_matching(self):
+    def test_attribute_matching(self) -> None:
         user = clone_user()
 
         assert user.username == PAYLOAD["data"]["attributes"]["username"]
