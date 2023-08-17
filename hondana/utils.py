@@ -86,7 +86,7 @@ if TYPE_CHECKING:
 
 
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[
-    str, Optional[Union[str, int, bool, list[str], list[LanguageCode], dict[str, str]]]
+    str, Optional[Union[str, int, bool, list[str], list["LanguageCode"], dict[str, str]]]
 ]
 C = TypeVar("C", bound="SupportsHTTP")
 T = TypeVar("T")
