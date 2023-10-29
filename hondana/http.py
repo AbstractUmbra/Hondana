@@ -28,7 +28,8 @@ import datetime
 import logging
 import sys
 import weakref
-from typing import TYPE_CHECKING, Any, Coroutine, Literal, TypeVar, overload
+from base64 import b64decode
+from typing import TYPE_CHECKING, Any, Coroutine, Literal, Self, TypeVar, overload
 
 import aiohttp
 
@@ -47,7 +48,6 @@ from .enums import (
     ReportStatus,
 )
 from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
-from .oauth2 import OAuth2Client
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -58,6 +58,7 @@ from .utils import (
     calculate_limits,
     clean_isoformat,
     delta_to_iso,
+    from_json,
     get_image_mime_type,
     json_or_text,
     php_query_builder,
@@ -67,7 +68,6 @@ from .utils import (
 if TYPE_CHECKING:
     from types import TracebackType
 
-    from aiohttp import web as aiohttp_web
     from typing_extensions import TypeAlias
     from yarl import URL
 
@@ -104,6 +104,7 @@ if TYPE_CHECKING:
         report,
         scanlator_group,
         statistics,
+        token,
         upload,
         user,
     )
@@ -126,6 +127,88 @@ ALLOWED_IMAGE_FORMATS: set[str] = {"image/png", "image/gif", "image/jpeg", "imag
 
 
 __all__ = ("HTTPClient",)
+
+
+class Token:
+    __slots__ = (
+        "refresh_token",
+        "created_at",
+        "client_id",
+        "expires",
+        "_inner",
+        "_http",
+        "_client_secret",
+    )
+    created_at: datetime.datetime
+    expires: datetime.datetime
+
+    def __init__(
+        self,
+        token: str,
+        /,
+        *,
+        client_id: str,
+        client_secret: str,
+        session: aiohttp.ClientSession,
+    ) -> None:
+        self._inner: str = token
+        self._http: aiohttp.ClientSession = session
+        self._client_secret: str = client_secret
+        self.client_id: str = client_id
+        self.refresh_token: Token | None
+        self.parse()
+
+    def __str__(self) -> str:
+        return self._inner
+
+    def parse(self) -> None:
+        _, payload, _ = self._inner.split(".")
+
+        padding = len(payload) % 4
+        token = payload + ("=" * padding)
+
+        raw = b64decode(token).decode("utf-8")
+        parsed: token.TokenPayload = from_json(raw)
+
+        self.expires = datetime.datetime.fromtimestamp(parsed["exp"], tz=datetime.timezone.utc)
+        self.created_at = datetime.datetime.fromtimestamp(parsed["iat"], tz=datetime.timezone.utc)
+
+    def has_expired(self) -> bool:
+        now = datetime.datetime.now(datetime.timezone.utc)
+
+        if self.expires > now:
+            return False
+        return True
+
+    async def refresh(self) -> Self:
+        if not self.refresh_token:
+            raise TypeError("Current token is an access token, not a refresh_token")
+
+        route = AuthRoute("POST", "/token/auth/refresh")
+
+        data = aiohttp.FormData(
+            [
+                ("grant_type", "refresh_token"),
+                ("refresh_token", self._inner),
+                ("client_id", self.client_id),
+                ("client_secret", self._client_secret),
+            ]
+        )
+
+        async with self._http.request(route.verb, route.url, data=data) as resp:
+            response_data: token.GetTokenPayload = await resp.json()
+
+        self._inner = response_data["access_token"]
+
+        self.parse()
+
+        self.add_refresh_token(response_data["refresh_token"])
+        return self
+
+    def add_refresh_token(self, raw_token: str) -> None:
+        self.refresh_token = self.__class__(
+            raw_token, client_id=self.client_id, client_secret=self._client_secret, session=self._http
+        )
 
 
 class MaybeUnlock:
@@ -156,45 +239,40 @@ class HTTPClient:
         "_locks",
         "_token_lock",
         "_oauth_scopes",
+        "_password",
+        "_client_secret",
+        "_auth_token",
+        "_refresh_token",
+        "username",
+        "client_id",
         "user_agent",
-        "oauth2",
     )
-
-    oauth2: OAuth2Client | None
 
     def __init__(
         self,
         *,
         session: aiohttp.ClientSession | None = None,
-        redirect_uri: str,
+        username: str | None = None,
+        password: str | None = None,
         client_id: str | None = None,
         client_secret: str | None = None,
-        oauth_scopes: list[str] | None = None,
-        webapp: aiohttp_web.Application | None = None,
     ) -> None:
         self._session: aiohttp.ClientSession | None = session
         self._locks: weakref.WeakValueDictionary[str, asyncio.Lock] = weakref.WeakValueDictionary()
         self._token_lock: asyncio.Lock = asyncio.Lock()
         user_agent = "Hondana (https://github.com/AbstractUmbra/Hondana {0}) Python/{1[0]}.{1[1]} aiohttp/{2}"
         self.user_agent: str = user_agent.format(__version__, sys.version_info, aiohttp.__version__)
-        self._oauth_scopes: list[str] | None = oauth_scopes
-        if client_id:
-            self.oauth2 = OAuth2Client(
-                self, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret, webapp=webapp
+        self.username: str | None = username
+        self._password: str | None = password
+        self.client_id: str | None = client_id
+        self._client_secret: str | None = client_secret
+        self._auth_token: Token | None = None
+        self._refresh_token: Token | None = None
+        self._authenticated: bool = all([username, password, client_id, client_secret])
+        if any([username, password, client_id, client_secret]) and not self._authenticated:
+            raise RuntimeError(
+                "You must pass all required login attributes: `username`, `password`, `client_id`, `client_secret`"
             )
-            self._authenticated = True
-        else:
-            self.oauth2 = None
-            self._authenticated = False
-
-    @property
-    def oauth_scopes(self) -> list[str] | None:
-        if self._oauth_scopes:
-            return self._oauth_scopes
-
-    @oauth_scopes.setter
-    def oauth_scopes(self, other: list[str]) -> None:
-        self._oauth_scopes = other
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
@@ -211,38 +289,59 @@ class HTTPClient:
         """
         return aiohttp.ClientSession()
 
-    async def close(self) -> None:
+    async def close(self, *, with_logout: bool = True) -> None:
         """|coro|
 
         This method will close the internal client session to ensure a clean exit.
         """
 
+        if self._authenticated and with_logout:
+            # TODO: implement logout.
+            # await self._logout()
+            return
+
         if self._session is not None:
             await self._session.close()
-        if self.oauth2 is not None:
-            await self.oauth2.close()
 
-    async def get_token(self) -> str:
-        assert self.oauth2 is not None  # we won't be in here otherwise.
-        assert self.oauth_scopes is not None  # we won't be in here otherwise.
+    async def get_token(self) -> Token:
+        assert self.client_id
+        assert self._client_secret
 
-        if not self.oauth2.app_is_running():
-            await self.oauth2.run_app()
+        if self._auth_token and not self._auth_token.has_expired():
+            return self._auth_token
 
-        if self.oauth2.access_token and not self.oauth2.access_token_has_expired():
-            return self.oauth2.access_token
+        if self._auth_token and self._auth_token.has_expired():
+            return await self._auth_token.refresh()
 
-        if self.oauth2.refresh_token and not self.oauth2.refresh_token_has_expired():
-            await self.oauth2.perform_token_refresh(oauth_scopes=self.oauth_scopes or self.oauth2.scopes)
-            return self.oauth2.access_token
+        route = AuthRoute("POST", "/token")
 
-        self.oauth2.generate_auth_url(
-            oauth_scopes=self.oauth_scopes,
-            open=True,
+        data = aiohttp.FormData(
+            [
+                ("grant_type", "password"),
+                ("username", self.username),
+                ("password", self._password),
+                ("client_id", self.client_id),
+                ("client_secret", self._client_secret),
+            ]
         )
 
-        await self.oauth2.wait_for_auth_response()
-        return self.oauth2.access_token
+        if not self._session:
+            self._session = await self._generate_session()
+
+        # to prevent circular we handle this logic manually, not the request method
+        async with self._session.request(route.verb, route.url, data=data) as resp:
+            response_data: token.GetTokenPayload = await resp.json()
+            print(resp.url)
+            print(resp.status)
+
+        print(response_data)
+
+        self._auth_token = Token(
+            response_data["access_token"], client_id=self.client_id, client_secret=self._client_secret, session=self._session
+        )
+        self._auth_token.add_refresh_token(response_data["refresh_token"])
+
+        return self._auth_token
 
     async def request(
         self,
@@ -250,7 +349,6 @@ class HTTPClient:
         *,
         params: MANGADEX_QUERY_PARAM_TYPE | None = None,
         json: Any | None = None,
-        bypass: bool = False,
         **kwargs: Any,
     ) -> Any:
         """|coro|
@@ -259,7 +357,7 @@ class HTTPClient:
 
         Parameters
         -----------
-        route: Union[:class:`Route`, :class:`DownloadRoute`]
+        route: Union[:class:`Route`, :class:`CustomRoute`, :class:`AuthRoute`]
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
@@ -293,7 +391,7 @@ class HTTPClient:
         headers = kwargs.pop("headers", {})
         headers["User-Agent"] = self.user_agent
 
-        if self.oauth2 and not bypass:
+        if self._authenticated:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
             LOGGER.debug(

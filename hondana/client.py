@@ -93,7 +93,7 @@ from .utils import MISSING, deprecated, require_authentication
 if TYPE_CHECKING:
     from types import TracebackType
 
-    from aiohttp import ClientSession, web as aiohttp_web
+    from aiohttp import ClientSession
     from typing_extensions import Self
 
     from .tags import QueryTags
@@ -117,21 +117,14 @@ class Client:
     session: :class:`aiohttp.ClientSession` | None
         An optional ClientSession to pass to the client for internal use.
         NOTE: This will make requests with authentication headers if supplied, do not supply one if this is an issue.
-    redirect_uri: :class:`str`
-        The OAuth2 redirect URI for user access.
-    client_id: :class:`str`
+    username: :class:`str` | None
+        The username of the account to use.
+    password: :class:`str` | None
+        The password of the account to use.
+    client_id: :class:`str` | None
         The OAuth2 Client ID to use.
-    client_secret: :class:`str`
+    client_secret: :class:`str` | None
         The OAuth2 Client Secret to use.
-    oauth_scopes: list[:class:`str`]
-        The OAuth2 scopes to request access to when authenticating.
-    webapp: :class:`aiohttp.web.Application` | None
-        An aiohttp web application to use for the OAuth2 callbacks and token handling.
-
-    Attributes
-    -----------
-    oauth2: :class:`~hondana.oauth2.OAuth2Client`
-        The underlying client for handling OAuth2 requests.
 
 
     .. note::
@@ -148,19 +141,13 @@ class Client:
         self,
         *,
         session: ClientSession | None = None,
-        redirect_uri: str = "http://localhost:3000",
+        username: str | None = None,
+        password: str | None = None,
         client_id: str | None = None,
         client_secret: str | None = None,
-        oauth_scopes: list[str] | None = None,
-        webapp: aiohttp_web.Application | None = None,
     ) -> None:
         self._http: HTTPClient = HTTPClient(
-            session=session,
-            redirect_uri=redirect_uri,
-            client_id=client_id,
-            client_secret=client_secret,
-            oauth_scopes=oauth_scopes,
-            webapp=webapp,
+            session=session, username=username, password=password, client_id=client_id, client_secret=client_secret
         )
 
     async def __aenter__(self) -> Self:
@@ -176,7 +163,7 @@ class Client:
         await self.close()
 
     async def login(self) -> None:
-        if not self._http.oauth2:
+        if not self._http._authenticated:  # type: ignore # sanity reasons
             raise RuntimeError("Cannot login as no OAuth2 credentials are set.")
 
         await self._http.get_token()

@@ -29,36 +29,112 @@ from typing import Literal, TypedDict
 __all__ = ("TokenPayload",)
 
 
-class TokenPayload(TypedDict):
+class _InnerAccountData(TypedDict):
     """
-    type: Literal[``session``]
+    roles: list[:class:`str`]
+        The list of roles for the current session state
+    """
 
-    iss: Literal[``mangadex.org``]
+    roles: list[str]
 
-    aud: Literal[``mangadex.org``]
+
+class _InnerSessionState(TypedDict):
+    """
+    account: :class:`_InnerAccountData`
+        The current session account data
+    """
+
+    account: _InnerAccountData
+
+
+class _BaseToken(TypedDict):
+    exp: int
+    iat: int
+    jti: str
+    iss: Literal["https://auth.mangadex.org/realms/mangadex"]
+    aud: Literal["https://auth.mangadex.org/realms/mangadex"]
+    sub: str
+    typ: Literal["Bearer", "Refresh"]
+    azp: str
+    scope: str
+    sid: str
+
+
+class TokenPayload(_BaseToken):
+    """
+    typ: Literal[``Bearer``]
+
+    iss: Literal[``https://auth.mangadex.org/realms/mangadex``]
+        Issuer name
+
+    aud: Literal[``account``]
+        Token audience
 
     iat: :class:`int`
-
-    nbf: :class:`int`
+        Time token was issued in UTC timestamp
 
     exp: :class:`int`
-
-    uid: :class:`str`
-
-    rol: List[:class:`str`]
-
-    prm: List[:class:`str`]
+        Expiring time in UTC timestamp
 
     sid: :class:`str`
+        Session UUID
+
+    auth_time: :class:`int`
+        Time when authentication occurred in UTC timestamp.
+
+    jti: :class:`str`
+        JWT unique identifier
+
+    sub :class:`str`
+        Token subject UUID.
+
+    azp: :class:`str`
+        Authorized party name
+
+    session_state: dict[:class:`str`, :class:`_InnerSessionState`]
+        The current session state data
+
+    scope: :class:`str`
+        A space delimited list of oauth scopes
+
+    roles: list[:class:`str`]
+        A list of roles the user has in the API
+
+    groups: :class:`str`
+        A space delimited string of groups one has in the API
+
+    preferred_username: :class:`str`
+        The username of the current user
+
+    email_address: :class:`str`
+        The email address of the current user
     """
 
-    typ: Literal["session"]
-    iss: Literal["mangadex.org"]
-    aud: Literal["mangadex.org"]
-    iat: int
-    nbf: int
-    exp: int
-    uid: str
-    rol: list[str]
-    prm: list[str]
-    sid: str
+    act: str
+    auth_time: int
+    scope: str
+    roles: list[str]
+    groups: list[str]
+    preferred_username: str
+    email: str
+    session_state: dict[str, _InnerSessionState]
+
+
+class AuthToken(TypedDict):
+    session_state: str
+
+
+GetTokenPayload = TypedDict(
+    "GetTokenPayload",
+    {
+        "access_token": str,
+        "expires_in": int,
+        "refresh_expires_in": int,
+        "refresh_token": str,
+        "token_type": Literal["Bearer"],
+        "id_token": str,
+        "not-before-policy": int,
+        "session_state": str,
+        "scope": str,
+    },
+)

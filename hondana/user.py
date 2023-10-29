@@ -73,11 +73,9 @@ class UserInfo:
         "issuer",
         "audience",
         "issued_at",
-        "not_before",
         "expires",
         "user_id",
         "roles",
-        "permissions",
         "sid",
     )
 
@@ -86,15 +84,13 @@ class UserInfo:
         self.issuer: str = payload["iss"]
         self.audience: str = payload["aud"]
         self.issued_at: datetime.datetime = datetime.datetime.fromtimestamp(payload["iat"], datetime.timezone.utc)
-        self.not_before: datetime.datetime = datetime.datetime.fromtimestamp(payload["nbf"], datetime.timezone.utc)
         self.expires: datetime.datetime = datetime.datetime.fromtimestamp(payload["exp"], datetime.timezone.utc)
-        self.user_id: str = payload["uid"]
-        self.roles: list[str] = payload["rol"]
-        self.permissions: list[str] = payload["prm"]
+        self.user_id: str = payload["sub"]
+        self.roles: list[str] = payload["roles"]
         self.sid: str = payload["sid"]
 
     def __repr__(self) -> str:
-        return f"<Permissions type={self.type!r} issuer={self.issuer!r} audience={self.audience!r} issued_at={self.issued_at} not_before={self.not_before} expires={self.expires} user_id={self.user_id!r} sid={self.sid!r}>"
+        return f"<Permissions type={self.type!r} issuer={self.issuer!r} audience={self.audience!r} issued_at={self.issued_at} expires={self.expires} user_id={self.user_id!r} sid={self.sid!r}>"
 
 
 class User:
