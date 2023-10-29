@@ -82,6 +82,9 @@ if TYPE_CHECKING:
         _http: HTTPClient
 
 
+from_json = _from_json
+
+
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[
     str, Optional[Union[str, int, bool, list[str], list["LanguageCode"], dict[str, str]]]
 ]
@@ -115,6 +118,7 @@ __all__ = (
     "RelationshipResolver",
     "clean_isoformat",
     "MANGA_TAGS",
+    "from_json",
 )
 
 _PROJECT_DIR = pathlib.Path(__file__)
@@ -220,15 +224,7 @@ class AuthRoute(Route):
         making ``"manga/..."``
     """
 
-    BASE: ClassVar[str] = "https://auth.mangadex.dev/realms/mangadex/protocol/openid-connect"
-
-    def __init__(self, verb: str, path: str, **parameters: Any) -> None:
-        self.verb: str = verb
-        self.path: str = path
-        url = self.BASE + self.path
-        if parameters:
-            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: URL = URL(url, encoded=True)
+    BASE: ClassVar[str] = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect"
 
 
 class MissingSentinel:
