@@ -992,7 +992,7 @@ class ChapterUpload:
 
             response: UploadedChapterResponse = await self._http.request(route, data=form)
             for item in response["data"]:
-                self.uploaded.append(item["id"])  # noqa: PERF401
+                self.uploaded.append(item["id"])
 
             # check for errors in upload
             if response["errors"]:
