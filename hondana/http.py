@@ -156,12 +156,12 @@ class Token:
         self._client_secret: str = client_secret
         self.client_id: str = client_id
         self.refresh_token: Token | None
-        self.parse()
+        self._parse()
 
     def __str__(self) -> str:
         return self._inner
 
-    def parse(self) -> None:
+    def _parse(self) -> None:
         _, payload, _ = self._inner.split(".")
 
         padding = len(payload) % 4
@@ -182,9 +182,9 @@ class Token:
 
     async def refresh(self) -> Self:
         if not self.refresh_token:
-            raise TypeError("Current token is an access token, not a refresh_token")
+            raise TypeError("Current token has no refresh_token.")
 
-        route = AuthRoute("POST", "/token/auth/refresh")
+        route = AuthRoute("POST", "/token")
 
         data = aiohttp.FormData(
             [
@@ -200,7 +200,7 @@ class Token:
 
         self._inner = response_data["access_token"]
 
-        self.parse()
+        self._parse()
 
         self.add_refresh_token(response_data["refresh_token"])
         return self
@@ -310,7 +310,11 @@ class HTTPClient:
         if self._auth_token and not self._auth_token.has_expired():
             return self._auth_token
 
-        if self._auth_token and self._auth_token.has_expired():
+        if (
+            self._auth_token
+            and self._auth_token.has_expired()
+            and (self._auth_token.refresh_token and not self._auth_token.refresh_token.has_expired())
+        ):
             return await self._auth_token.refresh()
 
         route = AuthRoute("POST", "/token")
@@ -331,10 +335,6 @@ class HTTPClient:
         # to prevent circular we handle this logic manually, not the request method
         async with self._session.request(route.verb, route.url, data=data) as resp:
             response_data: token.GetTokenPayload = await resp.json()
-            print(resp.url)
-            print(resp.status)
-
-        print(response_data)
 
         self._auth_token = Token(
             response_data["access_token"], client_id=self.client_id, client_secret=self._client_secret, session=self._session
