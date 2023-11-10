@@ -32,19 +32,6 @@ You can see our stable docs [here](https://hondana.readthedocs.io/en/stable/)!
 
 ---
 
-## Important Notice
-
-The MangaDex team have made great strides in implementing their OAuth2 authentication system, and as such have deprecated standard login flows (email/user and pass -> token).
-This means that any accounts created AFTER December 7th 2022 cannot use Hondana currently to authenticate.
-This also means for accounts created BEFORE the above date, you will also be unable to authenticate once the methods are fully removed, to which there is no set date at the time of writing this.
-
-I have asked the staff about adding the [Client Credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials/) OAuth2 workflow as this fits this library wrapper's auth needs, as currently it only supports [Authorization Code](https://www.oauth.com/oauth2-servers/server-side-apps/authorization-code/) flows which doesn't really work here, as it is more designed for static apps, not per-user apps.
-I have merged my current OAuth2 implementation into the `main` branch. My testing on this seems okay and will need feedback when it is fully released.
-
-If you wish to remain on the old authentication system, please pin your dependency to commit `e47dfbca444edd45b1f04b7eb169a8e801e7548b`. This was the last commit before the OAuth2 merge.
-
----
-
 ## Features
 
 We are currently at 100% feature compliance with the API.
@@ -72,6 +59,23 @@ Please take a look at the [examples](./examples/) directory for working examples
 
 - For a bit more clarity on a Chapter's `readableAt` vs `publishAt`, see [this page](https://api.mangadex.org/docs/dates/#readableat) on the MangaDex docs.
 - A query with the `include_future_updates` bool set to `True` will include chapters that are pending release by scanlation groups on MangaDex, but which may be available on their sites.
+
+### How to request your own personal OAuth2 Client.
+
+For authentication with `hondana` to work, you'll need to create and request your own personal OAuth2 client within the MangaDex web portal.
+This can be done [here](https://mangadex.org/settings) (under the "API Clients" section).
+
+Within here you'll want to hit "Create":-
+![api client](./.github/assets/img_api_client_create.png)
+
+Fill out the relevant name and description of the api client, and hit "Create" once again.
+
+This is currently (as of 10th Nov 2023) still a manual review and approval process by the MangaDex team, so check back regularly to find out if your client is active or still awaiting review.
+
+Once it is active, you can fetch it's client id and client secret:-
+![api client details](./.github/assets/img_api_client_id_secret.png)
+
+You then pass this information to the `hondana.Client` constructor alongside your username and password for MangaDex, as this will be used to authenticate you within the API.
 
 ### Contributing
 
