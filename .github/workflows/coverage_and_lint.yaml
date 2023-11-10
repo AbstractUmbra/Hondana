@@ -65,13 +65,5 @@ jobs:
           no-comments: ${{ matrix.python-version != '3.x' }}
 
       - name: Lint
-        uses: github/super-linter/slim@v4
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: main
-          VALIDATE_ALL_CODEBASE: false
-          VALIDATE_PYTHON_BLACK: true
-          VALIDATE_PYTHON_ISORT: true
-          LINTER_RULES_PATH: /
-          PYTHON_ISORT_CONFIG_FILE: pyproject.toml
-          PYTHON_BLACK_CONFIG_FILE: pyproject.toml
+        if: ${{ always() && steps.install-deps.outcome == 'success' }}
+        uses: chartboost/ruff-action@v1
