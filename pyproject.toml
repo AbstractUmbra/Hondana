@@ -34,8 +34,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.11"
 aiohttp = [
-    { version = "^3.8" },
-    { version = "^3.8", markers = "extra == 'speed'", extras = [
+    { version = "^3.9" },
+    { version = "^3.9", markers = "extra == 'speed'", extras = [
         "speedups",
     ] },
 ]
