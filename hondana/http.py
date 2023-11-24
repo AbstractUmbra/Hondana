@@ -287,18 +287,14 @@ class HTTPClient:
         .. note::
             This method must be a coroutine to avoid the deprecation warning of Python 3.9+.
         """
-        return aiohttp.ClientSession()
+        self._session = aiohttp.ClientSession()
+        return self._session
 
-    async def close(self, *, with_logout: bool = True) -> None:
+    async def close(self) -> None:
         """|coro|
 
         This method will close the internal client session to ensure a clean exit.
         """
-
-        if self._authenticated and with_logout:
-            # TODO: implement logout.
-            # await self._logout()
-            return
 
         if self._session is not None:
             await self._session.close()

@@ -31,7 +31,7 @@ __version__ = "4.0.0a"
 import logging
 from typing import Literal, NamedTuple
 
-from . import oauth2 as oauth2, query as query, types_ as types_, utils as utils
+from . import query as query, types_ as types_, utils as utils
 from .artist import *
 from .author import *
 from .chapter import *
