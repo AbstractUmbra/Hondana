@@ -16,7 +16,7 @@ async def main() -> None:
     """
 
     # Create your client, you must be authorised to upload a chapter.
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Define your chapter details
         chapter = "1"
         volume = "1"
@@ -56,7 +56,7 @@ async def main() -> None:
 
 
 async def alternative_main() -> None:
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Define your chapter details
         chapter = "1"
         volume = "1"
@@ -92,7 +92,7 @@ async def alternative_main() -> None:
 
 
 async def other_alternative_main() -> None:
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Define your chapter details
         chapter = "1"
         volume = "1"

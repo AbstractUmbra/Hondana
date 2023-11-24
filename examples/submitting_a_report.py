@@ -8,7 +8,7 @@ import hondana
 
 
 async def main() -> None:
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # let's get a manga
         manga = await client.get_manga("...")
 

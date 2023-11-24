@@ -27,7 +27,7 @@ import datetime
 import json
 import logging
 import pathlib
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, overload
 
 from . import errors
 from .artist import Artist
@@ -116,7 +116,6 @@ class Client:
     -----------
     session: :class:`aiohttp.ClientSession` | None
         An optional ClientSession to pass to the client for internal use.
-        NOTE: This will make requests with authentication headers if supplied, do not supply one if this is an issue.
     username: :class:`str` | None
         The username of the account to use.
     password: :class:`str` | None
@@ -136,6 +135,16 @@ class Client:
     """
 
     __slots__ = "_http"
+
+    @overload
+    def __init__(self) -> None:
+        ...
+
+    @overload
+    def __init__(
+        self, *, session: ClientSession | None = ..., username: str, password: str, client_id: str, client_secret: str
+    ) -> None:
+        ...
 
     def __init__(
         self,

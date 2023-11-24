@@ -17,7 +17,7 @@ async def main() -> None:
 
     # Using the context manager will try and login if credentials are set, or act anonymously if not.
     # Authentication *is* needed for this example.
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Outline the needed attributes for this manga here
         manga_title: LocalizedString = {"en": "Some neat manga!", "ja": "本棚"}
         original_language = "en"

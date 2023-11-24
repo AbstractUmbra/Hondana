@@ -11,7 +11,7 @@ from hondana.query import FeedOrderQuery, Order
 
 
 async def main() -> None:
-    async with hondana.Client(client_id="...", client_secret="...") as client:
+    async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Let's get the last 15 minutes of released manga
         fifteen_minutes_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=15)
 
