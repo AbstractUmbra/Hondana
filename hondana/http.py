@@ -550,7 +550,7 @@ class HTTPClient:
         if artists:
             query["artist"] = artists
 
-        if year is not MISSING:
+        if year:
             query["year"] = year
 
         if included_tags:
@@ -932,7 +932,7 @@ class HTTPClient:
     ) -> Response[DefaultResponseType]:
         route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
 
-        body = {}
+        body: dict[Any, Any] = {}
         query: MANGADEX_QUERY_PARAM_TYPE | None = {"updateHistory": update_history} if update_history else None
 
         if read_chapters:
