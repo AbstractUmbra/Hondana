@@ -61,7 +61,6 @@ pytest-asyncio = "*"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "*"
-black = "*"
 scalene = "*"
 pre-commit = "*"
 ruff = "*"
@@ -136,7 +135,8 @@ testpaths = ["tests"]
 [tool.poe.tasks]
 spec = "python _api_dl.py"
 install = "poetry install --with tests,docs,speedups"
-format = "black ."
+check = "ruff check ."
+format = "ruff format ."
 pyright = "pyright"
 types_ = "pyright --ignoreexternal --verifytypes hondana"
 types = ["pyright", "types_"]
@@ -147,6 +147,7 @@ report_reasons = { script = "_preflight:__build_report_reasons()" }
 uninstall = "pip uninstall hondana -y"
 pre = [
     "install",
+    "check",
     "format",
     "types",
     "tests",

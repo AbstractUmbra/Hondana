@@ -1,11 +1,4 @@
 repos:
-  - repo: local
-    hooks:
-      - id: black
-        name: black
-        language: system
-        entry: poetry run black --check
-        files: \.pyi?$
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.323
     hooks:
