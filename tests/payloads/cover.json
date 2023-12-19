@@ -1,163 +1,214 @@
 {
-    "result": "ok",
-    "response": "entity",
-    "data": {
-        "id": "8e2a1205-d93d-406c-b242-4ec308c1eac4",
-        "type": "cover_art",
+  "result": "ok",
+  "response": "entity",
+  "data": {
+    "id": "55e86e61-8206-4f61-862f-8879b535b295",
+    "type": "cover_art",
+    "attributes": {
+      "description": "Volume Cover From BookWalker",
+      "volume": "18",
+      "fileName": "5a37d4b7-28d5-4d02-8355-c6e21c611f96.jpg",
+      "locale": "ja",
+      "createdAt": "2023-11-28T01:54:36+00:00",
+      "updatedAt": "2023-11-28T01:54:36+00:00",
+      "version": 1
+    },
+    "relationships": [
+      {
+        "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+        "type": "manga",
         "attributes": {
-            "description": "",
-            "volume": "5",
-            "fileName": "1bf2fee4-bfda-47ae-b3b1-514a102362a1.jpg",
-            "locale": "ja",
-            "createdAt": "2022-08-19T01:04:37+00:00",
-            "updatedAt": "2022-08-19T01:04:37+00:00",
-            "version": 1
-        },
-        "relationships": [
+          "title": {
+            "ja-ro": "Ijiranaide, Nagatoro-san"
+          },
+          "altTitles": [
             {
-                "id": "6cc77b74-4c4a-4a58-9ae1-682471d50840",
-                "type": "manga",
-                "attributes": {
-                    "title": {
-                        "en": "Fukakai na Boku no Subete o"
-                    },
-                    "altTitles": [
-                        {
-                            "ja-ro": "FukaBoku"
-                        },
-                        {
-                            "en": "Love Me For Who I Am"
-                        },
-                        {
-                            "ja": "\u4e0d\u53ef\u89e3\u306a\u307c\u304f\u306e\u3059\u3079\u3066\u3092"
-                        },
-                        {
-                            "fr": "Aime moi pour ce que je suis"
-                        }
-                    ],
-                    "description": {
-                        "en": "High school student Tetsu Iwaoka notices that his classmate Mogumo is always alone at school. Wanting to give Mogumo a chance to make some friends, Tetsu invites Mogumo to work at his family\u2019s maid cafe. Although Mogumo is initially enthusiastic, there is just one problem: this is a cross-dressing boys cafe, but Mogumo is adamant about being neither a boy nor a girl.",
-                        "fr": "Lyc\u00e9en, Iwaoka Tetsu remarque que son camarade de classe Mogumo est toujours seul \u00e0 l'\u00e9cole. Voulant lui donner la chance de se faire des amis, Tetsu invite Mogumo \u00e0 travailler dans le maid caf\u00e9 de sa famille. Bien que Mogumo soit enthousiaste au d\u00e9but, il y a un petit probl\u00e8me : il s'agit d'un caf\u00e9 otokonoko, mais Mogumo ne se consid\u00e8re ni comme un gar\u00e7on, ni comme une fille.  \n\n\n---\n\n[Author's Twitter](https://twitter.com/kt_konyam)",
-                        "pt": "O estudante do ensino m\u00e9dio Tetsu Iwaoka percebe que seu colega Mogumo est\u00e1 sempre sozinho na escola. Querendo dar a Mogumo a oportunidade de fazer amigos, Tetsu convida Mogumo para trabalhar no caf\u00e9 de empregadas de sua fam\u00edlia. Embora Mogumo esteja inicialmente entusiasmado, h\u00e1 apenas um problema, este \u00e9 um caf\u00e9 para garoto-garota (garotos que se vestem de garotas), mas Mogumo \u00e9 inflex\u00edvel quanto a n\u00e3o ser garoto nem garota.",
-                        "pt-br": "O estudante do ensino m\u00e9dio Tetsu Iwaoka percebe que seu colega Mogumo est\u00e1 sempre sozinho na escola. Querendo dar a Mogumo a oportunidade de fazer amigos, Tetsu convida Mogumo para trabalhar no caf\u00e9 de empregadas de sua fam\u00edlia. Embora Mogumo esteja inicialmente entusiasmado, h\u00e1 apenas um problema, este \u00e9 um caf\u00e9 para garotos garotas (garotos que se vestem de garotas), mas Mogumo \u00e9 inflex\u00edvel quanto a n\u00e3o ser garoto nem garota."
-                    },
-                    "isLocked": false,
-                    "links": {
-                        "al": "104140",
-                        "ap": "fukakai-na-boku-no-subete-wo",
-                        "bw": "series/191875",
-                        "kt": "54280",
-                        "mu": "150104",
-                        "amz": "https://www.amazon.co.jp/dp/4814801521/",
-                        "cdj": "https://www.cdjapan.co.jp/searchuni?term.media_format=&q=\u4e0d\u53ef\u89e3\u306a\u307c\u304f",
-                        "ebj": "https://ebookjapan.yahoo.co.jp/books/522566/",
-                        "mal": "115217",
-                        "raw": "http://www.comic-medu.com/wk/fukaboku",
-                        "engtl": "https://sevenseasentertainment.com/series/love-me-for-who-i-am/"
-                    },
-                    "originalLanguage": "ja",
-                    "lastVolume": "5",
-                    "lastChapter": "28",
-                    "publicationDemographic": "shounen",
-                    "status": "completed",
-                    "year": 2018,
-                    "contentRating": "safe",
-                    "tags": [
-                        {
-                            "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Romance"
-                                },
-                                "description": [],
-                                "group": "genre",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Comedy"
-                                },
-                                "description": [],
-                                "group": "genre",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "5920b825-4181-4a17-beeb-9918b0ff7a30",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Boys' Love"
-                                },
-                                "description": [],
-                                "group": "genre",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Crossdressing"
-                                },
-                                "description": [],
-                                "group": "theme",
-                                "version": 1
-                            },
-                            "relationships": []
-                        },
-                        {
-                            "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
-                            "type": "tag",
-                            "attributes": {
-                                "name": {
-                                    "en": "Drama"
-                                },
-                                "description": [],
-                                "group": "genre",
-                                "version": 1
-                            },
-                            "relationships": []
-                        }
-                    ],
-                    "state": "published",
-                    "chapterNumbersResetOnNewVolume": false,
-                    "createdAt": "2019-07-24T08:58:34+00:00",
-                    "updatedAt": "2023-07-18T01:01:48+00:00",
-                    "version": 24,
-                    "availableTranslatedLanguages": [
-                        "pt-br",
-                        "fr",
-                        "en",
-                        "es-la",
-                        "id"
-                    ],
-                    "latestUploadedChapter": "e08aebf8-f468-4e19-8c4d-5e1c8fa88f69"
-                }
+              "id": "Jangan goda aku, Nagatoro"
             },
             {
-                "id": "7ffd6cd5-7cd8-42ae-8cf0-31afe300af0d",
-                "type": "user",
-                "attributes": {
-                    "username": "ROBSU",
-                    "roles": [
-                        "ROLE_GROUP_MEMBER",
-                        "ROLE_MEMBER",
-                        "ROLE_GROUP_LEADER",
-                        "ROLE_POWER_UPLOADER"
-                    ],
-                    "version": 6674
-                }
+              "es-la": "No te burles de mi, Nagatoro"
+            },
+            {
+              "fr": "Arrête de me chauffer, Nagatoro"
+            },
+            {
+              "ru": "Не издевайся, Нагаторо"
+            },
+            {
+              "ja": "イジらないで、長瀞さん"
+            },
+            {
+              "ko": "괴롭히지 말아요, 나가토로 양"
+            },
+            {
+              "de": "Neck mich nicht, Nagatoro-san"
+            },
+            {
+              "zh-hk": "不要欺負我，長瀞同學"
+            },
+            {
+              "th": "ยัยตัวแสบแอบน่ารัก นางาโทโระ"
+            },
+            {
+              "ar": "لا تلعبي معي يا آنسة ناغاتورو"
+            },
+            {
+              "it": "Non tormentarmi, Nagatoro!"
+            },
+            {
+              "fa": "اذیتم نکن، ناگاتورو سان"
+            },
+            {
+              "he": "אל תשתעשעי איתי, נאגאטורו"
+            },
+            {
+              "es-la": "No me Molestes, Nagatoro-san"
+            },
+            {
+              "en": "Please Don't Bully Me, Nagatoro"
+            },
+            {
+              "uk": "Не дражни мене, Нагаторо-сан"
+            },
+            {
+              "cs": "Nehraj si se mnou Nagatoro"
+            },
+            {
+              "en": "Don't Toy With Me, Miss Nagatoro!"
             }
-        ]
-    }
+          ],
+          "description": {
+            "en": "Naoto Hachiouji —our spineless— MC (Known also as \"Senpai\") is a second-year high school student and a loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.\n\n---\n\n**Links:**\n\n- Alternative Official English - [K Manga](https://kmanga.kodansha.com/title/10042/episode/313808) (U.S. Only), [Kodansha](https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/)",
+            "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
+            "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
+            "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
+          },
+          "isLocked": false,
+          "links": {
+            "al": "100664",
+            "ap": "dont-toy-with-me-miss-nagatoro",
+            "bw": "series/155089",
+            "kt": "40324",
+            "mu": "145530",
+            "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
+            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2193546",
+            "ebj": "https://ebookjapan.yahoo.co.jp/books/443422/",
+            "mal": "110737",
+            "raw": "https://pocket.shonenmagazine.com/episode/13932016480029136187",
+            "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
+          },
+          "originalLanguage": "ja",
+          "lastVolume": "",
+          "lastChapter": "",
+          "publicationDemographic": "shounen",
+          "status": "ongoing",
+          "year": 2017,
+          "contentRating": "suggestive",
+          "tags": [
+            {
+              "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Romance"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Comedy"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "School Life"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Slice of Life"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Gyaru"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            }
+          ],
+          "state": "published",
+          "chapterNumbersResetOnNewVolume": false,
+          "createdAt": "2019-03-04T12:21:59+00:00",
+          "updatedAt": "2023-12-08T21:54:14+00:00",
+          "version": 337,
+          "availableTranslatedLanguages": [
+            "id",
+            "ru",
+            "es-la",
+            "pt-br",
+            "fa",
+            "it",
+            "sr",
+            "en",
+            "cs",
+            "zh",
+            "nl",
+            "uk",
+            "hu",
+            "tr",
+            "es",
+            "pt"
+          ],
+          "latestUploadedChapter": "621283a0-2a12-4a7a-8da7-ce14f18a353e"
+        }
+      },
+      {
+        "id": "7b8b7d42-9004-464d-950f-a2bafec1a4df",
+        "type": "user",
+        "attributes": {
+          "username": "Ndtm",
+          "roles": [
+            "ROLE_MEMBER",
+            "ROLE_CONTRIBUTOR"
+          ],
+          "version": 109793
+        }
+      }
+    ]
+  }
 }

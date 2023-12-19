@@ -1,28 +1,28 @@
 {
-    "result": "ok",
-    "statistics": {
-        "6cc77b74-4c4a-4a58-9ae1-682471d50840": {
-            "comments": {
-                "threadId": 33318,
-                "repliesCount": 544
-            },
-            "rating": {
-                "average": 8.5092,
-                "bayesian": 8.491831375007987,
-                "distribution": {
-                    "1": 118,
-                    "2": 11,
-                    "3": 11,
-                    "4": 30,
-                    "5": 29,
-                    "6": 59,
-                    "7": 161,
-                    "8": 382,
-                    "9": 604,
-                    "10": 1036
-                }
-            },
-            "follows": 13358
+  "result": "ok",
+  "statistics": {
+    "d86cf65b-5f6c-437d-a0af-19a31f94ec55": {
+      "comments": {
+        "threadId": 1383,
+        "repliesCount": 1082
+      },
+      "rating": {
+        "average": 8.7663,
+        "bayesian": 8.761983080105669,
+        "distribution": {
+          "1": 307,
+          "2": 45,
+          "3": 54,
+          "4": 126,
+          "5": 161,
+          "6": 378,
+          "7": 1158,
+          "8": 2511,
+          "9": 4131,
+          "10": 6693
         }
+      },
+      "follows": 147477
     }
+  }
 }

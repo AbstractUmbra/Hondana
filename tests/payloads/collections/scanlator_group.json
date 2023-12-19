@@ -1,202 +1,90 @@
 {
-    "result": "ok",
-    "response": "collection",
-    "data": [
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Ecchi No Doujinshi Scans",
+        "altNames": [],
+        "locked": false,
+        "website": "https://www.patreon.com/luigiymario2",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": "bbHQVVgG63",
+        "contactEmail": "guzman.luis10@gmail.com",
+        "description": "We focus on translating upcoming mangakas from twitter or other social medias, usually for ecchi mangas.",
+        "twitter": "https://twitter.com/luigiymario2",
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "en"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "exLicensed": false,
+        "createdAt": "2022-10-02T08:54:24+00:00",
+        "updatedAt": "2023-10-12T04:42:13+00:00",
+        "version": 12
+      },
+      "relationships": [
         {
-            "id": "1adb76cd-dead-4f15-831b-dd7a793c42f5",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Tengoku Team",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": "Team ferm\u00e9e",
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "fr"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": []
+          "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+          "type": "leader",
+          "attributes": {
+            "username": "luigiymario2",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_MEMBER",
+              "ROLE_GROUP_LEADER"
+            ],
+            "version": 27589
+          }
         },
         {
-            "id": "1ae0ae04-dcea-4dfa-9a1e-e24b4696b81b",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "NeoN's Translate Crew",
-                "altNames": [],
-                "locked": false,
-                "website": "https://vk.com/61neon61",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "GEA4PDCm5M",
-                "contactEmail": "neon61pro@gmail.com",
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2022-01-16T16:52:09+00:00",
-                "updatedAt": "2022-01-16T19:22:07+00:00",
-                "version": 2
-            },
-            "relationships": [
-                {
-                    "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "Greatestneon",
-                        "roles": [
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 54
-                    }
-                },
-                {
-                    "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
-                    "type": "member",
-                    "attributes": {
-                        "username": "Greatestneon",
-                        "roles": [
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_USER",
-                            "ROLE_GROUP_LEADER"
-                        ],
-                        "version": 54
-                    }
-                }
-            ]
+          "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+          "type": "member",
+          "attributes": {
+            "username": "luigiymario2",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_MEMBER",
+              "ROLE_GROUP_LEADER"
+            ],
+            "version": 27589
+          }
         },
         {
-            "id": "1ae2684e-31ce-4417-8749-f754d527d6b9",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Skull Gang",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": null,
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2021-04-19T21:45:59+00:00",
-                "version": 1
-            },
-            "relationships": []
+          "id": "a449e779-d748-4e41-ba78-a6999b382589",
+          "type": "member",
+          "attributes": {
+            "username": "tawsif1",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_MEMBER",
+              "ROLE_GROUP_LEADER"
+            ],
+            "version": 32349
+          }
         },
         {
-            "id": "1ae5b7e4-5db7-42b8-915b-7edfef8e2e64",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Yannu no Mahou",
-                "altNames": [],
-                "locked": false,
-                "website": "https://yannunomahoufansub.blogspot.com",
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": "bPxEWjh",
-                "contactEmail": "yannunomahoufansub@hotmail.com",
-                "description": "Yannu no Mahou Fansub\n\nWe are a fansub dedicated to manga translation into English and Spanish.\nEspecially work yaoi, love the nutella and cookies.\n\nWe live and breathe yaoi\n\n\nWebsite: https://yannunomahoufansub.blogspot.mx/\n\nDISCORD https://discord.gg/MvgQBxv\nTUMBLR https://yannunomahou.tumblr.com/\n\nR E C R U I T M E N T\n\n\u2765Japanese and Korean Translators: Translates the Japan/Korean text to English; no MTL, please!\nYou don\u2019t need experience, as long as you have knowledge of the language!\n\n\u2765Cleaner/Redrawes for manhwa/manhua/manga\n\n\u2765Dick Redrawer: Must be able to redraw all +18 scenes!\n\n\u2765Raw Compiler: You must know how to use Photoshop to join the images and also you must use Waifux2 to increase the quality of the images. In this position you must also have a verified Bomtoon & Ridibooks account (to see the +18 content).\n\n\u2765Typesetters: The typesetter insert the proofread translation into the cleaned scans to re-create the manga with translated English text. It takes creativity to choose the right font that fit the tone of the character. An aesthetic taste is also a must when layouting, which includes shaping and positioning the text well.\n\nSend a message to yannunomahoufansub@hotmail.com which should include:\n\n\u2022 Your name or Nick you prefer to work with your age and the place where you live.\n\u2022 The position to which you postulate (typesetter, cleaner or translator).\n\u2022Reason for wanting to join:\n\nYou can contact me on discord with my user MomoDekan#1559 or daelbeek#4459 and we will contact you. ",
-                "twitter": null,
-                "mangaUpdates": "https://www.mangaupdates.com/groups.html?id=10551",
-                "focusedLanguages": [
-                    "es",
-                    "en"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2021-04-19T21:45:59+00:00",
-                "updatedAt": "2022-05-05T18:13:01+00:00",
-                "version": 4
-            },
-            "relationships": [
-                {
-                    "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
-                    "type": "leader",
-                    "attributes": {
-                        "username": "YannunoMahou",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 5
-                    }
-                },
-                {
-                    "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
-                    "type": "member",
-                    "attributes": {
-                        "username": "YannunoMahou",
-                        "roles": [
-                            "ROLE_MEMBER",
-                            "ROLE_GROUP_LEADER",
-                            "ROLE_GROUP_MEMBER"
-                        ],
-                        "version": 5
-                    }
-                }
-            ]
-        },
-        {
-            "id": "1ae88b61-644d-49d5-89d4-2829f12fcb10",
-            "type": "scanlation_group",
-            "attributes": {
-                "name": "Saori Scan",
-                "altNames": [],
-                "locked": false,
-                "website": null,
-                "ircServer": null,
-                "ircChannel": null,
-                "discord": null,
-                "contactEmail": null,
-                "description": "",
-                "twitter": null,
-                "mangaUpdates": null,
-                "focusedLanguages": [
-                    "pt-br"
-                ],
-                "official": false,
-                "verified": false,
-                "inactive": false,
-                "publishDelay": null,
-                "createdAt": "2022-03-14T00:59:52+00:00",
-                "updatedAt": "2022-03-14T00:59:52+00:00",
-                "version": 1
-            },
-            "relationships": []
+          "id": "b6cede53-fb89-4863-ba06-4dcc037a8401",
+          "type": "member",
+          "attributes": {
+            "username": "ATF4",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_USER"
+            ],
+            "version": 6
+          }
         }
-    ],
-    "limit": 5,
-    "offset": 0,
-    "total": 26996
+      ]
+    }
+  ],
+  "limit": 1,
+  "offset": 0,
+  "total": 1
 }

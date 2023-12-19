@@ -1,24 +1,27 @@
 {
-    "result": "ok",
-    "response": "entity",
-    "data": {
-        "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
-        "type": "user",
-        "attributes": {
-            "username": "Tooko",
-            "roles": [
-                "ROLE_MEMBER",
-                "ROLE_GROUP_LEADER",
-                "ROLE_POWER_UPLOADER",
-                "ROLE_GROUP_MEMBER"
-            ],
-            "version": 2
-        },
-        "relationships": [
-            {
-                "id": "2b7e9733-64a0-4e50-9739-1b260ce5605d",
-                "type": "scanlation_group"
-            }
-        ]
-    }
+  "result": "ok",
+  "response": "entity",
+  "data": {
+    "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+    "type": "user",
+    "attributes": {
+      "username": "luigiymario2",
+      "roles": [
+        "ROLE_GROUP_MEMBER",
+        "ROLE_MEMBER",
+        "ROLE_GROUP_LEADER"
+      ],
+      "version": 27589
+    },
+    "relationships": [
+      {
+        "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
+        "type": "scanlation_group"
+      },
+      {
+        "id": "74400b6d-45f1-4e83-9b03-ab6f599e4a6b",
+        "type": "scanlation_group"
+      }
+    ]
+  }
 }

@@ -1,69 +1,32 @@
 {
-    "result": "ok",
-    "response": "collection",
-    "data": [
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+      "type": "user",
+      "attributes": {
+        "username": "luigiymario2",
+        "roles": [
+          "ROLE_GROUP_MEMBER",
+          "ROLE_MEMBER",
+          "ROLE_GROUP_LEADER"
+        ],
+        "version": 27589
+      },
+      "relationships": [
         {
-            "id": "1567f289-7772-4115-9570-8f8cf944c4b2",
-            "type": "user",
-            "attributes": {
-                "username": "30rtymoredays",
-                "roles": [
-                    "ROLE_MEMBER"
-                ],
-                "version": 1
-            },
-            "relationships": []
+          "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
+          "type": "scanlation_group"
         },
         {
-            "id": "969f3ed0-b5c8-4171-b152-5fd14b0b54bb",
-            "type": "user",
-            "attributes": {
-                "username": "1744adil",
-                "roles": [
-                    "ROLE_MEMBER"
-                ],
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "6bd1194b-9fd4-437a-aed0-21019859638f",
-            "type": "user",
-            "attributes": {
-                "username": "30_fujoshi_07",
-                "roles": [
-                    "ROLE_UNVERIFIED"
-                ],
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "813238bb-6517-4195-8533-5009244ec075",
-            "type": "user",
-            "attributes": {
-                "username": "176",
-                "roles": [
-                    "ROLE_MEMBER"
-                ],
-                "version": 1
-            },
-            "relationships": []
-        },
-        {
-            "id": "063bd435-14ce-4c11-84fa-21a7f3fbdd97",
-            "type": "user",
-            "attributes": {
-                "username": "1763",
-                "roles": [
-                    "ROLE_UNVERIFIED"
-                ],
-                "version": 1
-            },
-            "relationships": []
+          "id": "74400b6d-45f1-4e83-9b03-ab6f599e4a6b",
+          "type": "scanlation_group"
         }
-    ],
-    "limit": 5,
-    "offset": 0,
-    "total": 3689716
+      ]
+    }
+  ],
+  "limit": 1,
+  "offset": 0,
+  "total": 1
 }

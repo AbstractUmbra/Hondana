@@ -1,161 +1,219 @@
 {
-    "result": "ok",
-    "response": "collection",
-    "data": [
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "55e86e61-8206-4f61-862f-8879b535b295",
+      "type": "cover_art",
+      "attributes": {
+        "description": "Volume Cover From BookWalker",
+        "volume": "18",
+        "fileName": "5a37d4b7-28d5-4d02-8355-c6e21c611f96.jpg",
+        "locale": "ja",
+        "createdAt": "2023-11-28T01:54:36+00:00",
+        "updatedAt": "2023-11-28T01:54:36+00:00",
+        "version": 1
+      },
+      "relationships": [
         {
-            "id": "527cee4c-b0f5-497e-9f84-e00f62cf76bc",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "2",
-                "fileName": "e376eb1e-f738-4fe1-83e1-cbce8d8aa2e2.png",
-                "locale": "zh",
-                "createdAt": "2023-08-17T13:02:52+00:00",
-                "updatedAt": "2023-08-17T13:02:52+00:00",
-                "version": 1
+          "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "ja-ro": "Ijiranaide, Nagatoro-san"
             },
-            "relationships": [
-                {
-                    "id": "6b06a840-5ac4-4211-930c-7c66024474e0",
-                    "type": "manga"
+            "altTitles": [
+              {
+                "id": "Jangan goda aku, Nagatoro"
+              },
+              {
+                "es-la": "No te burles de mi, Nagatoro"
+              },
+              {
+                "fr": "Arrête de me chauffer, Nagatoro"
+              },
+              {
+                "ru": "Не издевайся, Нагаторо"
+              },
+              {
+                "ja": "イジらないで、長瀞さん"
+              },
+              {
+                "ko": "괴롭히지 말아요, 나가토로 양"
+              },
+              {
+                "de": "Neck mich nicht, Nagatoro-san"
+              },
+              {
+                "zh-hk": "不要欺負我，長瀞同學"
+              },
+              {
+                "th": "ยัยตัวแสบแอบน่ารัก นางาโทโระ"
+              },
+              {
+                "ar": "لا تلعبي معي يا آنسة ناغاتورو"
+              },
+              {
+                "it": "Non tormentarmi, Nagatoro!"
+              },
+              {
+                "fa": "اذیتم نکن، ناگاتورو سان"
+              },
+              {
+                "he": "אל תשתעשעי איתי, נאגאטורו"
+              },
+              {
+                "es-la": "No me Molestes, Nagatoro-san"
+              },
+              {
+                "en": "Please Don't Bully Me, Nagatoro"
+              },
+              {
+                "uk": "Не дражни мене, Нагаторо-сан"
+              },
+              {
+                "cs": "Nehraj si se mnou Nagatoro"
+              },
+              {
+                "en": "Don't Toy With Me, Miss Nagatoro!"
+              }
+            ],
+            "description": {
+              "en": "Naoto Hachiouji —our spineless— MC (Known also as \"Senpai\") is a second-year high school student and a loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.\n\n---\n\n**Links:**\n\n- Alternative Official English - [K Manga](https://kmanga.kodansha.com/title/10042/episode/313808) (U.S. Only), [Kodansha](https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/)",
+              "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
+              "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
+              "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
+            },
+            "isLocked": false,
+            "links": {
+              "al": "100664",
+              "ap": "dont-toy-with-me-miss-nagatoro",
+              "bw": "series/155089",
+              "kt": "40324",
+              "mu": "145530",
+              "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
+              "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2193546",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/443422/",
+              "mal": "110737",
+              "raw": "https://pocket.shonenmagazine.com/episode/13932016480029136187",
+              "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": "shounen",
+            "status": "ongoing",
+            "year": 2017,
+            "contentRating": "suggestive",
+            "tags": [
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
                 },
-                {
-                    "id": "0a2d846b-e69b-4087-824d-e0cf6cc23062",
-                    "type": "user",
-                    "attributes": {
-                        "username": "watermelo_on",
-                        "roles": [
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_USER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Gyaru"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2019-03-04T12:21:59+00:00",
+            "updatedAt": "2023-12-08T21:54:14+00:00",
+            "version": 337,
+            "availableTranslatedLanguages": [
+              "id",
+              "ru",
+              "es-la",
+              "pt-br",
+              "fa",
+              "it",
+              "sr",
+              "en",
+              "cs",
+              "zh",
+              "nl",
+              "uk",
+              "hu",
+              "tr",
+              "es",
+              "pt"
+            ],
+            "latestUploadedChapter": "621283a0-2a12-4a7a-8da7-ce14f18a353e"
+          }
         },
         {
-            "id": "004296c5-9d2d-4f5e-a151-5550e538cd6b",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "ae30b51b-46a6-416c-97b5-33ea49173d99.png",
-                "locale": "en",
-                "createdAt": "2023-08-17T13:02:52+00:00",
-                "updatedAt": "2023-08-17T13:10:59+00:00",
-                "version": 2
-            },
-            "relationships": [
-                {
-                    "id": "6b06a840-5ac4-4211-930c-7c66024474e0",
-                    "type": "manga"
-                },
-                {
-                    "id": "0a2d846b-e69b-4087-824d-e0cf6cc23062",
-                    "type": "user",
-                    "attributes": {
-                        "username": "watermelo_on",
-                        "roles": [
-                            "ROLE_GROUP_MEMBER",
-                            "ROLE_USER"
-                        ],
-                        "version": 4
-                    }
-                }
-            ]
-        },
-        {
-            "id": "196773b1-80b1-4a0e-a38f-d22de21f30a2",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "3",
-                "fileName": "89e6c2df-9a8d-4fbd-9e97-f6e994abd7fd.jpg",
-                "locale": "ja",
-                "createdAt": "2023-08-17T12:57:36+00:00",
-                "updatedAt": "2023-08-17T12:57:36+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f8edf44e-7fc9-4abd-a970-bc7578deee20",
-                    "type": "manga"
-                },
-                {
-                    "id": "f532795c-169c-4047-a31d-04cb563413f4",
-                    "type": "user",
-                    "attributes": {
-                        "username": "StarryHeart",
-                        "roles": [
-                            "ROLE_MEMBER"
-                        ],
-                        "version": 37
-                    }
-                }
-            ]
-        },
-        {
-            "id": "d64bbc64-0dd5-4323-a544-7e15a2b2027e",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "4",
-                "fileName": "04ad1abf-11b6-4bf3-b8c8-b7ec51a79a7a.jpg",
-                "locale": "ja",
-                "createdAt": "2023-08-17T12:57:35+00:00",
-                "updatedAt": "2023-08-17T12:57:35+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f8edf44e-7fc9-4abd-a970-bc7578deee20",
-                    "type": "manga"
-                },
-                {
-                    "id": "f532795c-169c-4047-a31d-04cb563413f4",
-                    "type": "user",
-                    "attributes": {
-                        "username": "StarryHeart",
-                        "roles": [
-                            "ROLE_MEMBER"
-                        ],
-                        "version": 37
-                    }
-                }
-            ]
-        },
-        {
-            "id": "1afd73b0-e8df-459c-84ab-581a61b6f450",
-            "type": "cover_art",
-            "attributes": {
-                "description": "",
-                "volume": "1",
-                "fileName": "af56c328-2d19-4841-a3ef-8fd3755dd1eb.jpg",
-                "locale": "ja",
-                "createdAt": "2023-08-17T12:57:18+00:00",
-                "updatedAt": "2023-08-17T12:57:18+00:00",
-                "version": 1
-            },
-            "relationships": [
-                {
-                    "id": "f8edf44e-7fc9-4abd-a970-bc7578deee20",
-                    "type": "manga"
-                },
-                {
-                    "id": "f532795c-169c-4047-a31d-04cb563413f4",
-                    "type": "user",
-                    "attributes": {
-                        "username": "StarryHeart",
-                        "roles": [
-                            "ROLE_MEMBER"
-                        ],
-                        "version": 37
-                    }
-                }
-            ]
+          "id": "7b8b7d42-9004-464d-950f-a2bafec1a4df",
+          "type": "user",
+          "attributes": {
+            "username": "Ndtm",
+            "roles": [
+              "ROLE_MEMBER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 109793
+          }
         }
-    ],
-    "limit": 5,
-    "offset": 0,
-    "total": 206338
+      ]
+    }
+  ],
+  "limit": 1,
+  "offset": 0,
+  "total": 1
 }

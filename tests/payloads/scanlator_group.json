@@ -1,61 +1,85 @@
 {
-    "result": "ok",
-    "response": "entity",
-    "data": {
-        "id": "2b7e9733-64a0-4e50-9739-1b260ce5605d",
-        "type": "scanlation_group",
+  "result": "ok",
+  "response": "entity",
+  "data": {
+    "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
+    "type": "scanlation_group",
+    "attributes": {
+      "name": "Ecchi No Doujinshi Scans",
+      "altNames": [],
+      "locked": false,
+      "website": "https://www.patreon.com/luigiymario2",
+      "ircServer": null,
+      "ircChannel": null,
+      "discord": "bbHQVVgG63",
+      "contactEmail": "guzman.luis10@gmail.com",
+      "description": "We focus on translating upcoming mangakas from twitter or other social medias, usually for ecchi mangas.",
+      "twitter": "https://twitter.com/luigiymario2",
+      "mangaUpdates": null,
+      "focusedLanguages": [
+        "en"
+      ],
+      "official": false,
+      "verified": false,
+      "inactive": false,
+      "publishDelay": null,
+      "exLicensed": false,
+      "createdAt": "2022-10-02T08:54:24+00:00",
+      "updatedAt": "2023-10-12T04:42:13+00:00",
+      "version": 12
+    },
+    "relationships": [
+      {
+        "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+        "type": "leader",
         "attributes": {
-            "name": "Hachimitsu Scans",
-            "altNames": [],
-            "locked": false,
-            "website": "https://hachimitsu-scans.blogspot.com/",
-            "ircServer": "irc.rizon.net",
-            "ircChannel": "#hachimitsu-scans",
-            "discord": "f4kzX8k",
-            "contactEmail": null,
-            "description": "Hachimitsu Scans is a group mostly dedicated to scanlating gender bender-related manga, but we occasionally also work on non-gender bender series.",
-            "twitter": null,
-            "mangaUpdates": null,
-            "focusedLanguages": [
-                "en"
-            ],
-            "official": false,
-            "verified": false,
-            "inactive": true,
-            "publishDelay": null,
-            "createdAt": "2021-04-19T21:45:59+00:00",
-            "updatedAt": "2022-02-12T00:05:46+00:00",
-            "version": 4
-        },
-        "relationships": [
-            {
-                "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
-                "type": "leader",
-                "attributes": {
-                    "username": "Tooko",
-                    "roles": [
-                        "ROLE_MEMBER",
-                        "ROLE_GROUP_LEADER",
-                        "ROLE_POWER_UPLOADER",
-                        "ROLE_GROUP_MEMBER"
-                    ],
-                    "version": 2
-                }
-            },
-            {
-                "id": "d8dd0986-98e1-4162-9a26-3503a63fdead",
-                "type": "member",
-                "attributes": {
-                    "username": "Tooko",
-                    "roles": [
-                        "ROLE_MEMBER",
-                        "ROLE_GROUP_LEADER",
-                        "ROLE_POWER_UPLOADER",
-                        "ROLE_GROUP_MEMBER"
-                    ],
-                    "version": 2
-                }
-            }
-        ]
-    }
+          "username": "luigiymario2",
+          "roles": [
+            "ROLE_GROUP_MEMBER",
+            "ROLE_MEMBER",
+            "ROLE_GROUP_LEADER"
+          ],
+          "version": 27589
+        }
+      },
+      {
+        "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+        "type": "member",
+        "attributes": {
+          "username": "luigiymario2",
+          "roles": [
+            "ROLE_GROUP_MEMBER",
+            "ROLE_MEMBER",
+            "ROLE_GROUP_LEADER"
+          ],
+          "version": 27589
+        }
+      },
+      {
+        "id": "a449e779-d748-4e41-ba78-a6999b382589",
+        "type": "member",
+        "attributes": {
+          "username": "tawsif1",
+          "roles": [
+            "ROLE_GROUP_MEMBER",
+            "ROLE_MEMBER",
+            "ROLE_GROUP_LEADER"
+          ],
+          "version": 32349
+        }
+      },
+      {
+        "id": "b6cede53-fb89-4863-ba06-4dcc037a8401",
+        "type": "member",
+        "attributes": {
+          "username": "ATF4",
+          "roles": [
+            "ROLE_GROUP_MEMBER",
+            "ROLE_USER"
+          ],
+          "version": 6
+        }
+      }
+    ]
+  }
 }
