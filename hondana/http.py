@@ -155,11 +155,20 @@ class Token:
         self._http: aiohttp.ClientSession = session
         self._client_secret: str = client_secret
         self.client_id: str = client_id
-        self.refresh_token: Token | None
+        self.refresh_token: Token | None = None
         self._parse()
 
     def __str__(self) -> str:
         return self._inner
+
+    @classmethod
+    def from_token_response(
+        cls, *, payload: token.GetTokenPayload, session: aiohttp.ClientSession, client_secret: str, client_id: str
+    ) -> Self:
+        self = cls(payload["access_token"], session=session, client_id=client_id, client_secret=client_secret)
+        self.add_refresh_token(payload["refresh_token"])
+
+        return self
 
     def _parse(self) -> None:
         _, payload, _ = self._inner.split(".")
@@ -332,10 +341,9 @@ class HTTPClient:
         async with self._session.request(route.verb, route.url, data=data) as resp:
             response_data: token.GetTokenPayload = await resp.json()
 
-        self._auth_token = Token(
-            response_data["access_token"], client_id=self.client_id, client_secret=self._client_secret, session=self._session
+        self._auth_token = Token.from_token_response(
+            payload=response_data, client_id=self.client_id, client_secret=self._client_secret, session=self._session
         )
-        self._auth_token.add_refresh_token(response_data["refresh_token"])
 
         return self._auth_token
 
