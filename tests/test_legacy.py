@@ -12,7 +12,7 @@ if TYPE_CHECKING:
     from hondana.types_.legacy import GetLegacyMappingResponse
 
 
-PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "legacy_mapping.json"
+PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections" / "legacy_mapping.json"
 
 PAYLOAD: GetLegacyMappingResponse = json.load(PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.

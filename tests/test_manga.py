@@ -21,12 +21,12 @@ if TYPE_CHECKING:
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
-RELATION_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_relation.json"
+RELATIONS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_relation.json"
 STATISTICS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_statistics.json"
 RATING_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_ratings.json"
 
 PAYLOAD: GetMangaResponse = json.load(PATH.open())
-RELATION_PAYLOAD: MangaRelationResponse = json.load(RELATION_PATH.open())
+RELATIONS_PAYLOAD: MangaRelationResponse = json.load(RELATIONS_PATH.open())
 STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(STATISTICS_PATH.open())
 RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(RATING_PATH.open())
 HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
@@ -53,13 +53,13 @@ def clone_manga(type_: Literal["rating"]) -> MangaRating:
 
 
 def clone_manga(
-    type_: Literal["manga", "relation", "stats", "rating"] = "manga"
+    type_: Literal["manga", "relation", "stats", "rating"] = "manga",
 ) -> Manga | MangaRelation | MangaStatistics | MangaRating:
     if type_ == "manga":
         t = deepcopy(PAYLOAD)
         return Manga(HTTP, t["data"])
     elif type_ == "relation":
-        t = deepcopy(RELATION_PAYLOAD)
+        t = deepcopy(RELATIONS_PAYLOAD)
         return MangaRelation(HTTP, PAYLOAD["data"]["id"], t["data"][0])
     elif type_ == "stats":
         t = deepcopy(STATISTICS_PAYLOAD)
@@ -190,13 +190,13 @@ class TestMangaRelation:
         manga = clone_manga("relation")
 
         assert manga.source_manga_id == PAYLOAD["data"]["id"]
-        assert manga.id == RELATION_PAYLOAD["data"][0]["id"]
+        assert manga.id == RELATIONS_PAYLOAD["data"][0]["id"]
 
     def test_type(self) -> None:
         manga = clone_manga("relation")
 
-        assert str(manga.relation_type) == RELATION_PAYLOAD["data"][0]["attributes"]["relation"]
-        assert manga.relation_type is MangaRelationType(RELATION_PAYLOAD["data"][0]["attributes"]["relation"])
+        assert str(manga.relation_type) == RELATIONS_PAYLOAD["data"][0]["attributes"]["relation"]
+        assert manga.relation_type is MangaRelationType(RELATIONS_PAYLOAD["data"][0]["attributes"]["relation"])
 
 
 class TestMangaStatistics:
