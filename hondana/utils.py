@@ -56,14 +56,14 @@ except ModuleNotFoundError:
 
     def to_json(obj: Any, /) -> str:
         """A quick method that dumps a Python type to JSON object."""
-        return json.dumps(obj, separators=(",", ":"), ensure_ascii=True)
+        return json.dumps(obj, separators=(",", ":"), ensure_ascii=True, indent=2)
 
     _from_json = json.loads
 else:
 
     def to_json(obj: Any, /) -> str:
         """A quick method that dumps a Python type to JSON object."""
-        return orjson.dumps(obj).decode("utf-8")
+        return orjson.dumps(obj, option=orjson.OPT_INDENT_2).decode("utf-8")
 
     _from_json = orjson.loads  # type: ignore # this is guarded in an if.
 
@@ -550,24 +550,30 @@ class RelationshipResolver(Generic[T]):
         self._type: RelType = relationship_type
 
     @overload
-    def resolve(self, *, with_fallback: Literal[False]) -> list[T]:
+    def resolve(self, *, with_fallback: Literal[False], remove_empty: bool = ...) -> list[T]:
         ...
 
     @overload
-    def resolve(self, *, with_fallback: Literal[True]) -> list[T | None]:
+    def resolve(self, *, with_fallback: Literal[True], remove_empty: bool = ...) -> list[T | None]:
         ...
 
     @overload
     def resolve(self) -> list[T]:
         ...
 
-    def resolve(self, *, with_fallback: bool = False) -> list[T] | list[T | None]:
+    @overload
+    def resolve(self, *, remove_empty: bool = ...) -> list[T]:
+        ...
+
+    def resolve(self, *, with_fallback: bool = False, remove_empty: bool = False) -> list[T] | list[T | None]:
         relationships = self.relationships.copy()
 
         ret: list[T | None] = []
         for relationship in relationships:
             if relationship["type"] == self._type:
-                ret.append(relationship)  # type: ignore  # noqa: PERF401
+                if remove_empty and not relationship.get("attributes"):
+                    continue
+                ret.append(relationship)  # type: ignore
 
         if not ret and with_fallback:
             ret.append(None)
