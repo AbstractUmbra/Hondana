@@ -165,9 +165,6 @@ class Artist(AuthorArtistTag):
 
         biography = self._biography.get("en")
         if biography is None:
-            if not self._biography:
-                return None
-
             key = next(iter(self._biography))
             return self._biography[key]  # type: ignore # this is safe since the key is from the dict
 
@@ -242,13 +239,9 @@ class Artist(AuthorArtistTag):
         if not self._manga_relationships:
             return None
 
-        formatted: list[Manga] = []
         from .manga import Manga
 
-        formatted.extend(Manga(self._http, item) for item in self._manga_relationships if "attributes" in item)
-
-        if not formatted:
-            return
+        formatted = [Manga(self._http, item) for item in self._manga_relationships]
 
         self.__manga = formatted
         return self.__manga

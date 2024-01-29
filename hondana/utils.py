@@ -34,15 +34,11 @@ from functools import wraps
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     ClassVar,
     Generic,
-    Iterable,
     Literal,
-    Optional,
     TypedDict,
     TypeVar,
-    Union,
     overload,
 )
 from urllib.parse import quote as _uriquote
@@ -70,9 +66,12 @@ else:
 from .errors import AuthenticationRequired
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
+    from typing import Concatenate, TypeAlias
+
     import aiohttp
     from _typeshed import SupportsRichComparison
-    from typing_extensions import Concatenate, ParamSpec, Protocol, TypeAlias
+    from typing_extensions import ParamSpec, Protocol
 
     from .http import HTTPClient
     from .types_.common import LanguageCode
@@ -85,9 +84,7 @@ if TYPE_CHECKING:
 from_json = _from_json
 
 
-MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[
-    str, Optional[Union[str, int, bool, list[str], list["LanguageCode"], dict[str, str]]]
-]
+MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, str | int | bool | list[str] | list["LanguageCode"] | dict[str, str] | None]
 C = TypeVar("C", bound="SupportsHTTP")
 T = TypeVar("T")
 T_co = TypeVar("T_co", covariant=True)
@@ -394,7 +391,7 @@ def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[
     :class:`multidict.MultiDict`
         A dictionary/mapping type that allows for duplicate keys.
     """
-    fmt = multidict.MultiDict[Union[str, int]]()
+    fmt = multidict.MultiDict[str | int]()
     for key, value in obj.items():
         if value is None:
             fmt.add(key, "null")
@@ -598,8 +595,8 @@ def clean_isoformat(dt: datetime.datetime, /) -> str:
         The passed datetime will have its timezone converted to UTC and then have its timezone stripped.
 
     """
-    if dt.tzinfo != datetime.timezone.utc:
-        dt = dt.astimezone(datetime.timezone.utc)
+    if dt.tzinfo != datetime.UTC:
+        dt = dt.astimezone(datetime.UTC)
 
     if dt.tzinfo is not None:
         dt = dt.replace(tzinfo=None)

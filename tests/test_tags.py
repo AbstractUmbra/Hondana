@@ -3,12 +3,14 @@ from __future__ import annotations
 import json
 import pathlib
 from copy import deepcopy
-from typing import TYPE_CHECKING, Any, Mapping
+from typing import TYPE_CHECKING, Any
 
 from hondana.manga import Manga
 from hondana.tags import QueryTags, Tag
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from hondana.http import HTTPClient
     from hondana.relationship import Relationship
     from hondana.types_.manga import GetMangaResponse

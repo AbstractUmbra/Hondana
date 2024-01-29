@@ -28,7 +28,7 @@ import datetime
 import logging
 import pathlib
 import time
-from typing import TYPE_CHECKING, Any, AsyncGenerator, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar
 
 import aiohttp
 
@@ -51,12 +51,12 @@ from .utils import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
+    from collections.abc import AsyncGenerator, Callable
     from os import PathLike
     from types import TracebackType
+    from typing import Self
 
     from aiohttp import ClientResponse
-    from typing_extensions import Self
 
     from .http import HTTPClient
     from .types_.chapter import ChapterResponse, GetAtHomeChapterResponse, GetAtHomeResponse, GetSingleChapterResponse
@@ -157,13 +157,13 @@ class Chapter:
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
         self._stats: ChapterStatistics | None = None
-        self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(with_fallback=False)[
-            0
-        ]
+        self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(
+            with_fallback=False, remove_empty=True
+        )[0]
         self._scanlator_group_relationships: list[ScanlationGroupResponse] = RelationshipResolver(
             relationships, "scanlation_group"
-        ).resolve(with_fallback=False)
-        self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve()[0]
+        ).resolve(with_fallback=False, remove_empty=True)
+        self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve(remove_empty=True)[0]
         self._at_home_url: str | None = None
         self.__uploader: User | None = None
         self.__parent: Manga | None = None
@@ -302,10 +302,9 @@ class Chapter:
         if not self._manga_relationship:
             return
 
-        if "attributes" in self._manga_relationship:
-            manga = Manga(self._http, self._manga_relationship)
-            self.__parent = manga
-            return self.__parent
+        manga = Manga(self._http, self._manga_relationship)
+        self.__parent = manga
+        return self.__parent
 
     @manga.setter
     def manga(self, other: Manga) -> None:
@@ -343,9 +342,7 @@ class Chapter:
         if not self._scanlator_group_relationships:
             return
 
-        fmt = [
-            ScanlatorGroup(self._http, payload) for payload in self._scanlator_group_relationships if "attributes" in payload
-        ]
+        fmt = [ScanlatorGroup(self._http, payload) for payload in self._scanlator_group_relationships]
 
         if not fmt:
             return
@@ -372,9 +369,8 @@ class Chapter:
         if not self._uploader_relationship:
             return
 
-        if "attributes" in self._uploader_relationship:
-            self.__uploader = User(self._http, self._uploader_relationship)
-            return self.__uploader
+        self.__uploader = User(self._http, self._uploader_relationship)
+        return self.__uploader
 
     async def get_parent_manga(self) -> Manga | None:
         """|coro|
@@ -1115,7 +1111,7 @@ class PreviouslyReadChapter:
         self._http = http
         self.chapter_id: str = data[0]
         dt = datetime.datetime.strptime(data[1], "%Y-%m-%dT%H:%M:%S.%fZ")
-        dt.replace(tzinfo=datetime.timezone.utc)
+        dt.replace(tzinfo=datetime.UTC)
         self.read_date: datetime.datetime = dt
 
     async def fetch_chapter(self, *, includes: ChapterIncludes = ChapterIncludes()) -> Chapter:

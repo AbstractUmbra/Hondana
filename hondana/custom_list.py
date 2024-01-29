@@ -81,10 +81,11 @@ class CustomList:
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.version: int = self._attributes["version"]
         self._owner_relationship: UserResponse | None = RelationshipResolver["UserResponse"](relationships, "user").resolve(
-            with_fallback=True
+            with_fallback=True,
         )[0]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
-            relationships, "manga"
+            relationships,
+            "manga",
         ).resolve()
         self.__owner: User | None = None
         self.__manga: list[Manga] | None = None
@@ -149,7 +150,7 @@ class CustomList:
             return self.__manga
 
         if not self._manga_relationships:
-            return
+            return None
 
         if fmt := [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]:
             return fmt
@@ -172,7 +173,7 @@ class CustomList:
             return self.owner
 
         if not self._owner_relationship:
-            return
+            return None
 
         data = await self._http.get_user(self._owner_relationship["id"])
         self.__owner = User(self._http, data["data"])
@@ -198,7 +199,7 @@ class CustomList:
             return self.manga
 
         if not self._manga_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._manga_relationships]
 

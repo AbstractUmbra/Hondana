@@ -29,7 +29,7 @@ import logging
 import sys
 import weakref
 from base64 import b64decode
-from typing import TYPE_CHECKING, Any, Coroutine, Literal, Self, TypeVar, overload
+from typing import TYPE_CHECKING, Any, Literal, Self, TypeVar, overload
 
 import aiohttp
 
@@ -66,9 +66,10 @@ from .utils import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Coroutine
     from types import TracebackType
+    from typing import TypeAlias
 
-    from typing_extensions import TypeAlias
     from yarl import URL
 
     from .query import (
@@ -179,11 +180,11 @@ class Token:
         raw = b64decode(token).decode("utf-8")
         parsed: token.TokenPayload = from_json(raw)
 
-        self.expires = datetime.datetime.fromtimestamp(parsed["exp"], tz=datetime.timezone.utc)
-        self.created_at = datetime.datetime.fromtimestamp(parsed["iat"], tz=datetime.timezone.utc)
+        self.expires = datetime.datetime.fromtimestamp(parsed["exp"], tz=datetime.UTC)
+        self.created_at = datetime.datetime.fromtimestamp(parsed["iat"], tz=datetime.UTC)
 
     def has_expired(self) -> bool:
-        now = datetime.datetime.now(datetime.timezone.utc)
+        now = datetime.datetime.now(datetime.UTC)
 
         if self.expires > now:
             return False

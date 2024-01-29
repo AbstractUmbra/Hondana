@@ -92,9 +92,9 @@ from .utils import MISSING, deprecated, require_authentication
 
 if TYPE_CHECKING:
     from types import TracebackType
+    from typing import Self
 
     from aiohttp import ClientSession
-    from typing_extensions import Self
 
     from .tags import QueryTags
     from .types_ import common, legacy, manga
@@ -3973,7 +3973,7 @@ class Client:
             The returned (and created) payload.
         """
 
-        time = updated_at or datetime.datetime.now(datetime.timezone.utc)
+        time = updated_at or datetime.datetime.now(datetime.UTC)
         return await self._http.upsert_user_settings(payload, updated_at=time)
 
     @require_authentication

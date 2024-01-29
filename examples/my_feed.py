@@ -13,7 +13,7 @@ from hondana.query import FeedOrderQuery, Order
 async def main() -> None:
     async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Let's get the last 15 minutes of released manga
-        fifteen_minutes_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=15)
+        fifteen_minutes_ago = datetime.datetime.now(datetime.UTC) - datetime.timedelta(minutes=15)
 
         # And let's order the responses by created at descending
         # we also coerce the type here to prevent typechecker issues. This isn't needed but if you use a typechecker this is good to do.

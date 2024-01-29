@@ -68,11 +68,8 @@ ruff = "*"
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
 
-[tool.black]
-line-length = 125
-target-version = ["py311"]
-
 [tool.ruff]
+target-version = "py311"
 line-length = 125
 exclude = ["docs/extensions/*.py"]
 select = [

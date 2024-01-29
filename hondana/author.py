@@ -135,7 +135,7 @@ class Author(AuthorArtistTag):
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver(relationships, "manga").resolve(
-            with_fallback=False
+            with_fallback=False, remove_empty=True
         )
         self.__manga: list[Manga] | None = None
 
@@ -163,9 +163,6 @@ class Author(AuthorArtistTag):
 
         biography = self._biography.get("en")
         if biography is None:
-            if not self._biography:
-                return
-
             key = next(iter(self._biography))
             return self._biography[key]  # type: ignore # this is safe since the key is from the dict
 
@@ -240,13 +237,9 @@ class Author(AuthorArtistTag):
         if not self._manga_relationships:
             return None
 
-        formatted: list[Manga] = []
         from .manga import Manga
 
-        formatted.extend(Manga(self._http, item) for item in self._manga_relationships if "attributes" in item)
-
-        if not formatted:
-            return
+        formatted = [Manga(self._http, item) for item in self._manga_relationships]
 
         self.__manga = formatted
         return self.__manga

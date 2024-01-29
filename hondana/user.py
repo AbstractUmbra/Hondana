@@ -83,8 +83,8 @@ class UserInfo:
         self.type: str = payload["typ"]
         self.issuer: str = payload["iss"]
         self.audience: str = payload["aud"]
-        self.issued_at: datetime.datetime = datetime.datetime.fromtimestamp(payload["iat"], datetime.timezone.utc)
-        self.expires: datetime.datetime = datetime.datetime.fromtimestamp(payload["exp"], datetime.timezone.utc)
+        self.issued_at: datetime.datetime = datetime.datetime.fromtimestamp(payload["iat"], datetime.UTC)
+        self.expires: datetime.datetime = datetime.datetime.fromtimestamp(payload["exp"], datetime.UTC)
         self.user_id: str = payload["sub"]
         self.roles: list[str] = payload["roles"]
         self.sid: str = payload["sid"]

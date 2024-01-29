@@ -3,10 +3,10 @@ from __future__ import annotations
 import datetime
 import pathlib
 import random
+import zoneinfo
 from typing import TYPE_CHECKING, TypeVar
 
 import pytest
-import zoneinfo
 from multidict import MultiDict
 
 from hondana.utils import (
@@ -198,7 +198,7 @@ class TestUtils:
         [
             (
                 datetime.datetime(
-                    year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0, tzinfo=datetime.timezone.utc
+                    year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0, tzinfo=datetime.UTC
                 ),
                 "2022-03-19T12:00:00",
             ),

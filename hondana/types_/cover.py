@@ -27,7 +27,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
-    from typing_extensions import NotRequired
+    from typing import NotRequired
 
     from .common import LanguageCode
     from .relationship import RelationshipResponse
