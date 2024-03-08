@@ -71,8 +71,11 @@ version = "hondana.__main__:show_version"
 [tool.ruff]
 target-version = "py311"
 line-length = 125
+
+[tool.ruff.lint]
 exclude = ["docs/extensions/*.py"]
 select = [
+    "A",
     "C4",
     "F",
     "G",
@@ -101,19 +104,20 @@ ignore = [
     "ANN102",
     "ANN401",
 ]
-[tool.ruff.isort]
-split-on-trailing-comma = true
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
 combine-as-imports = true
 
-[tool.ruff.flake8-annotations]
+[tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 
-[tool.ruff.flake8-pytest-style]
+[tool.ruff.lint.flake8-pytest-style]
 fixture-parentheses = false
 mark-parentheses = false
-parametrize-names-type = "csv"
+parametrize-names-type = "tuple"
 
-[tool.ruff.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"
 
 [tool.pyright]

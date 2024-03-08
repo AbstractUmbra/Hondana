@@ -6,6 +6,7 @@ docs/build
 docs/_build
 hondana.log
 target/
+.vscode/settings.json
 
 # local testing
 _api*.yaml

@@ -1,17 +1,14 @@
 repos:
   - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.323
+    rev: v1.1.353
     hooks:
       - id: pyright
         name: pyright (3.11)
         args: [--pythonversion=3.11]
         files: \.pyi?$
-  # Run the Ruff linter.
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
-    rev: v0.1.1
+    rev: v0.3.1
     hooks:
-      # Run the Ruff linter.
       - id: ruff
-      # Run the Ruff formatter.
       - id: ruff-format
