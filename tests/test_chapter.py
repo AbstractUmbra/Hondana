@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "chapter.json"
 
 PAYLOAD: GetSingleChapterResponse = json.load(PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 def clone_chapter() -> Chapter:

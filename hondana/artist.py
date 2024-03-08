@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -115,7 +116,7 @@ class Artist(AuthorArtistTag):
         self._http: HTTPClient = http
         self._data: ArtistResponse = payload
         self._attributes: ArtistAttributesResponse = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.image_url: str | None = self._attributes["imageUrl"]
@@ -138,7 +139,7 @@ class Artist(AuthorArtistTag):
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships, "manga"
-        ).resolve(with_fallback=False)
+        ).resolve(with_fallback=False, remove_empty=True)
         self.__manga: list[Manga] | None = None
 
     def __repr__(self) -> str:
@@ -166,7 +167,7 @@ class Artist(AuthorArtistTag):
         biography = self._biography.get("en")
         if biography is None:
             key = next(iter(self._biography))
-            return self._biography[key]  # type: ignore # this is safe since the key is from the dict
+            return self._biography[key]  # pyright: ignore[reportUnknownVariableType] # this is safe since the key is from the dict
 
         return biography
 

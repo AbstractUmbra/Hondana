@@ -107,7 +107,7 @@ class _Comments:
         if self.thread and not force:
             return self.thread
 
-        thread_payload = await self._http.create_forum_thread(type=self.__inner_type__, resource_id=self.parent_id)
+        thread_payload = await self._http.create_forum_thread(thread_type=self.__inner_type__, resource_id=self.parent_id)
 
         forum_thread = ForumThread(self._http, thread_payload["data"])
         self.__thread = forum_thread

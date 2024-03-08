@@ -17,7 +17,7 @@ PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "user.json"
 
 
 PAYLOAD: GetSingleUserResponse = json.load(PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 def clone_user() -> User:
@@ -38,8 +38,8 @@ class TestUser:
     def test_relationships_length(self) -> None:
         user = clone_user()
 
-        assert user._group_relationships is not None  # type: ignore # sorry, need this for test purposes
-        obj_len = len(user._group_relationships)  # type: ignore # sorry, need this for test purposes
+        assert user._group_relationships is not None  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
+        obj_len = len(user._group_relationships)  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
 
         assert "relationships" in PAYLOAD["data"]
         assert obj_len == len(PAYLOAD["data"]["relationships"])

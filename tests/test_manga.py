@@ -29,27 +29,23 @@ PAYLOAD: GetMangaResponse = json.load(PATH.open())
 RELATIONS_PAYLOAD: MangaRelationResponse = json.load(RELATIONS_PATH.open())
 STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(STATISTICS_PATH.open())
 RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(RATING_PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 @overload
-def clone_manga(type_: Literal["manga"]) -> Manga:
-    ...
+def clone_manga(type_: Literal["manga"]) -> Manga: ...
 
 
 @overload
-def clone_manga(type_: Literal["relation"]) -> MangaRelation:
-    ...
+def clone_manga(type_: Literal["relation"]) -> MangaRelation: ...
 
 
 @overload
-def clone_manga(type_: Literal["stats"]) -> MangaStatistics:
-    ...
+def clone_manga(type_: Literal["stats"]) -> MangaStatistics: ...
 
 
 @overload
-def clone_manga(type_: Literal["rating"]) -> MangaRating:
-    ...
+def clone_manga(type_: Literal["rating"]) -> MangaRating: ...
 
 
 def clone_manga(
@@ -162,7 +158,7 @@ class TestManga:
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
 
-        fmt: LocalizedString = {k: v for obj in alt_titles for k, v in obj.items()}  # type: ignore # silly narrowing
+        fmt: LocalizedString = {k: v for obj in alt_titles for k, v in obj.items()}  # pyright: ignore[reportAssignmentType] # TypedDict.items() is weird
 
         for code, title in fmt.items():
             assert manga.alternate_titles.get(code) == title
@@ -175,8 +171,8 @@ class TestManga:
     def test_localized_description(self) -> None:
         manga = clone_manga("manga")
 
-        for key, value in manga._description.items():  # type: ignore # sorry, need this for test purposes
-            assert manga.localized_description(key) == value  # type: ignore # can't narrow strings
+        for key, value in manga._description.items():  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
+            assert manga.localized_description(key) == value  # pyright: ignore[reportArgumentType] # can't narrow strings
 
     def test_date_attributes(self) -> None:
         manga = clone_manga("manga")
@@ -195,7 +191,7 @@ class TestMangaRelation:
     def test_type(self) -> None:
         manga = clone_manga("relation")
 
-        assert str(manga.relation_type) == RELATIONS_PAYLOAD["data"][0]["attributes"]["relation"]
+        assert manga.relation_type.value == RELATIONS_PAYLOAD["data"][0]["attributes"]["relation"]
         assert manga.relation_type is MangaRelationType(RELATIONS_PAYLOAD["data"][0]["attributes"]["relation"])
 
 

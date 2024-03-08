@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -143,7 +144,7 @@ class Chapter:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.title: str | None = self._attributes["title"]
         self.volume: str | None = self._attributes["volume"]
@@ -726,7 +727,7 @@ class ChapterAtHome:
         self._http: HTTPClient = http
         self._data: GetAtHomeResponse = payload
         self.base_url: str = payload["baseUrl"]
-        chapter: GetAtHomeChapterResponse = payload.pop("chapter")  # type: ignore # can't pop from a TypedDict
+        chapter: GetAtHomeChapterResponse = payload.pop("chapter")  # pyright: ignore[reportAssignmentType,reportArgumentType] # can't pop from a TypedDict
         self.hash: str = chapter["hash"]
         self.data: list[str] = chapter["data"]
         self.data_saver: list[str] = chapter["dataSaver"]

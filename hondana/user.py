@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -132,7 +133,7 @@ class User:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.username: str = self._attributes["username"]
         self.version: int = self._attributes["version"]

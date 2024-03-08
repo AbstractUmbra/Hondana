@@ -43,7 +43,7 @@ _RTD_SVG: str = """
 # -- Project information -----------------------------------------------------
 
 project: str = "Hondana"
-copyright: str = "2021 - Present, Alex Nørgaard"
+copyright: str = "2021 - Present, Alex Nørgaard"  # noqa: A001
 author: str = "Alex Nørgaard"
 
 # The full version, including alpha/beta/rc tags

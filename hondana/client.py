@@ -168,11 +168,11 @@ class Client:
 
         return self
 
-    async def __aexit__(self, type: type[BE], value: BE, traceback: TracebackType) -> None:
+    async def __aexit__(self, type_: type[BE], value: BE, traceback: TracebackType) -> None:
         await self.close()
 
     async def login(self) -> None:
-        if not self._http._authenticated:  # type: ignore # sanity reasons
+        if not self._http._authenticated:  # pyright: ignore[reportPrivateUsage] # sanity reasons
             raise RuntimeError("Cannot login as no OAuth2 credentials are set.")
 
         await self._http.get_token()
@@ -264,7 +264,7 @@ class Client:
             ret[category.value] = {}
             for inner in data["data"]:
                 key_name = (
-                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # type: ignore # these will always be in the `en` key.
+                    inner["attributes"]["reason"]["en"].lower().replace("-", "").replace("/", " or ").replace(" ", "_")  # pyright: ignore[reportTypedDictNotRequiredAccess] # these will always be in the `en` key.
                 )
                 ret[category.value][key_name] = inner["id"]
 
@@ -2489,14 +2489,16 @@ class Client:
         data = await self._http.ping_the_server()
         return data == "pong"
 
-    async def legacy_id_mapping(self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]) -> LegacyMappingCollection:
+    async def legacy_id_mapping(
+        self, mapping_type: legacy.LegacyMappingType, /, *, item_ids: list[int]
+    ) -> LegacyMappingCollection:
         """|coro|
 
         This method will return a small response from the API to retrieve a legacy MangaDex's new details.
 
         Parameters
         -----------
-        type: :class:`~hondana.types_.legacy.LegacyMappingType`
+        mapping_type: :class:`~hondana.types_.legacy.LegacyMappingType`
             The type of the object we are querying.
         item_ids: List[:class:`int`]
             The legacy integer IDs of MangaDex items.
@@ -2511,7 +2513,7 @@ class Client:
         :class:`LegacyMappingCollection`
             The list of returned items from this query.
         """
-        data = await self._http.legacy_id_mapping(type, item_ids=item_ids)
+        data = await self._http.legacy_id_mapping(mapping_type, item_ids=item_ids)
         items = [LegacyItem(self._http, item) for item in data["data"]]
         return LegacyMappingCollection(self._http, data, items)
 
@@ -3977,8 +3979,8 @@ class Client:
         return await self._http.upsert_user_settings(payload, updated_at=time)
 
     @require_authentication
-    async def create_forum_thread(self, type: ForumThreadType, resource_id: str) -> ForumThread:
-        data = await self._http.create_forum_thread(type=type, resource_id=resource_id)
+    async def create_forum_thread(self, thread_type: ForumThreadType, resource_id: str) -> ForumThread:
+        data = await self._http.create_forum_thread(thread_type=thread_type, resource_id=resource_id)
 
         return ForumThread(self._http, data["data"])
 

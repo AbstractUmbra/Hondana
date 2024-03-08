@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -56,14 +57,14 @@ __all__ = (
 class _OrderQuery:
     __slots__: tuple[str, ...] = ()
 
-    def __init__(self, **kwargs: Order | None) -> None:
+    def __init__(self, **kwargs: Order) -> None:
         if not kwargs:
             raise TypeError("You must pass valid kwargs.")
 
         _fmt: list[str] = []
         for name, value in kwargs.items():
             if name in self.__slots__:
-                setattr(self, name, value)
+                setattr(self, name, value.value)
             else:
                 _fmt.append(name)
 
@@ -80,8 +81,9 @@ class _OrderQuery:
     def to_dict(self) -> dict[str, str]:
         fmt: dict[str, str] = {}
         for item in self.__slots__:
-            if val := getattr(self, item, None):
-                fmt[to_camel_case(str(item))] = val.value
+            if val := getattr(self, item, None):  # pyright: ignore[reportAssignmentType] # only Order can be assigned here
+                val: str
+                fmt[to_camel_case(str(item))] = val
 
         return fmt
 

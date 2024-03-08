@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Literal, TypedDict
+from typing import TYPE_CHECKING, Literal, NotRequired, TypedDict
 
 if TYPE_CHECKING:
     from .relationship import RelationshipResponse
@@ -46,11 +46,14 @@ class CustomListAttributesResponse(TypedDict):
 
     visibility: :class:`~hondana.CustomListVisibility`
 
+    pinned: NotRequired[:class:`bool`]
+
     version: :class:`int`
     """
 
     name: str
     visibility: _CustomListVisibility
+    pinned: NotRequired[bool]
     version: int
 
 

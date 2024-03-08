@@ -105,29 +105,29 @@ class TestUtils:
         assert calculate_limits(limit, offset, max_limit=max_limit) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             (datetime.timedelta(hours=3, minutes=12), "T3H12M"),
             (datetime.timedelta(days=12, hours=13, minutes=27, seconds=12), "P5D1WT13H27M12S"),
             (datetime.timedelta(days=7, hours=7, minutes=13, seconds=58), "P1WT7H13M58S"),
         ],
     )
-    def test_delta_to_iso(self, input: datetime.timedelta, output: str) -> None:
-        assert delta_to_iso(input) == output
+    def test_delta_to_iso(self, input_: datetime.timedelta, output: str) -> None:
+        assert delta_to_iso(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             ("T3H12M", datetime.timedelta(seconds=11520)),
             ("P5D1WT13H27M12S", datetime.timedelta(days=12, seconds=48432)),
             ("P1WT7H13M58S", datetime.timedelta(days=7, seconds=26038)),
         ],
     )
-    def test_iso_to_delta(self, input: str, output: datetime.timedelta) -> None:
-        assert iso_to_delta(input) == output
+    def test_iso_to_delta(self, input_: str, output: datetime.timedelta) -> None:
+        assert iso_to_delta(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             (
                 {"order": {"publishAt": "desc"}, "translatedLanguages": ["en", "jp"]},
@@ -146,27 +146,27 @@ class TestUtils:
     )
     def test_query_builder(
         self,
-        input: MANGADEX_QUERY_PARAM_TYPE,
+        input_: MANGADEX_QUERY_PARAM_TYPE,
         output: MultiDict[str | int],
     ) -> None:
-        assert php_query_builder(input) == output
+        assert php_query_builder(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [("some_value", "someValue"), ("some_other_value", "someOtherValue"), ("manga_or_chapter", "mangaOrChapter")],
     )
-    def test_to_camel_case(self, input: str, output: str) -> None:
-        assert to_camel_case(input) == output
+    def test_to_camel_case(self, input_: str, output: str) -> None:
+        assert to_camel_case(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [("someValue", "some_value"), ("someOtherValue", "some_other_value"), ("mangaOrChapter", "manga_or_chapter")],
     )
-    def test_to_snake_case(self, input: str, output: str) -> None:
-        assert to_snake_case(input) == output
+    def test_to_snake_case(self, input_: str, output: str) -> None:
+        assert to_snake_case(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             (
                 [{"type": "test", "hello": "goodbye"}],
@@ -180,30 +180,29 @@ class TestUtils:
                 [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
                 [{"type": "test", "pass": "mark", "something": "anything"}],
             ),
-            (
-                [{"type": "test", "pass": "mark", "something": "anything"}, {"type": "bad"}],
-                [{"type": "test", "pass": "mark", "something": "anything"}],
-            ),
         ],
     )
-    def test_relationship_finder(self, input: list[dict[str, str]], output: list[dict[str, str]] | dict[str, str]) -> None:
-        ret = RelationshipResolver[dict[str, str]](input, "test").resolve()  # type: ignore # yeah
+    def test_relationship_finder(self, input_: list[dict[str, str]], output: list[dict[str, str]] | dict[str, str]) -> None:
+        ret = RelationshipResolver[dict[str, str]](input_, "test").resolve()  # type: ignore[reportArgumentType] # we lie here for the test case
 
         assert ret is not None
 
         assert ret == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             (
                 datetime.datetime(
-                    year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0, tzinfo=datetime.UTC
+                    year=2022,
+                    month=3,
+                    day=19,
+                    hour=12,
+                    minute=0,
+                    second=0,
+                    microsecond=0,
+                    tzinfo=datetime.UTC,
                 ),
-                "2022-03-19T12:00:00",
-            ),
-            (
-                datetime.datetime(year=2022, month=3, day=19, hour=12, minute=0, second=0, microsecond=0),
                 "2022-03-19T12:00:00",
             ),
             (
@@ -221,14 +220,14 @@ class TestUtils:
             ),
         ],
     )
-    def test_isoformatter(self, input: datetime.datetime, output: str) -> None:
-        assert clean_isoformat(input) == output
+    def test_isoformatter(self, input_: datetime.datetime, output: str) -> None:
+        assert clean_isoformat(input_) == output
 
     @pytest.mark.parametrize(
-        ("input", "output"),
+        ("input_", "output"),
         [
             (
-                random.sample([pathlib.Path(f"{x}.png") for x in range(1, 15)], 14),  # type: ignore # this is list[Path]
+                random.sample([pathlib.Path(f"{x}.png") for x in range(1, 15)], 14),
                 [
                     pathlib.Path("1.png"),
                     pathlib.Path("2.png"),
@@ -252,5 +251,5 @@ class TestUtils:
             ),
         ],
     )
-    def test_path_sorter(self, input: list[pathlib.Path], output: list[pathlib.Path]) -> None:
-        assert sorted(input, key=upload_file_sort) == output
+    def test_path_sorter(self, input_: list[pathlib.Path], output: list[pathlib.Path]) -> None:
+        assert sorted(input_, key=upload_file_sort) == output

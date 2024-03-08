@@ -19,7 +19,7 @@ PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "author.json"
 
 
 PAYLOAD: GetSingleAuthorResponse = json.load(PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 def clone_author() -> Author:
@@ -39,9 +39,13 @@ class TestAuthor:
 
     def test_relationship_length(self) -> None:
         author = clone_author()
-        obj_len = len(author._manga_relationships)  # type: ignore # sorry, need this for test purposes
+        obj_len = len(author._manga_relationships)  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
         assert "relationships" in PAYLOAD["data"]
-        assert obj_len == len(PAYLOAD["data"]["relationships"])
+
+        # remove empty relationships
+        resolved_relationships = [r for r in PAYLOAD["data"]["relationships"] if "attributes" in r]
+
+        assert obj_len == len(resolved_relationships)
 
     def test_manga_relationships(self) -> None:
         author = clone_author()

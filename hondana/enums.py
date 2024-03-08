@@ -21,14 +21,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from enum import Enum
 
-from .utils import _REPORT_REASONS, _StrEnum  # type: ignore # these will stay private due to potential breakages or changes
-
-if TYPE_CHECKING:
-    from typing import TypeAlias
+from .utils import (
+    _REPORT_REASONS,  # pyright: ignore[reportPrivateUsage] # these will stay private due to potential breakages or changes
+)
 
 __all__ = (
     "ContentRating",
@@ -50,31 +50,31 @@ __all__ = (
 )
 
 
-class Order(_StrEnum):
+class Order(Enum):
     ascending = "asc"
     descending = "desc"
 
 
-class ContentRating(_StrEnum):
+class ContentRating(Enum):
     safe = "safe"
     suggestive = "suggestive"
     erotica = "erotica"
     pornographic = "pornographic"
 
 
-class PublicationDemographic(_StrEnum):
+class PublicationDemographic(Enum):
     shounen = "shounen"
     shoujo = "shoujo"
     josei = "josei"
     seinen = "seinen"
 
 
-class CustomListVisibility(_StrEnum):
+class CustomListVisibility(Enum):
     public = "public"
     private = "private"
 
 
-class ReportCategory(_StrEnum):
+class ReportCategory(Enum):
     manga = "manga"
     chapter = "chapter"
     scanlation_group = "scanlation_group"
@@ -82,21 +82,21 @@ class ReportCategory(_StrEnum):
     author = "author"
 
 
-class ReportStatus(_StrEnum):
+class ReportStatus(Enum):
     waiting = "waiting"
     accepted = "accepted"
     refused = "refused"
     autoresolved = "autoresolved"
 
 
-class MangaStatus(_StrEnum):
+class MangaStatus(Enum):
     ongoing = "ongoing"
     completed = "completed"
     hiatus = "hiatus"
     cancelled = "cancelled"
 
 
-class ReadingStatus(_StrEnum):
+class ReadingStatus(Enum):
     reading = "reading"
     on_hold = "on_hold"
     plan_to_read = "plan_to_read"
@@ -105,14 +105,14 @@ class ReadingStatus(_StrEnum):
     completed = "completed"
 
 
-class MangaState(_StrEnum):
+class MangaState(Enum):
     draft = "draft"
     submitted = "submitted"
     published = "published"
     rejected = "rejected"
 
 
-class MangaRelationType(_StrEnum):
+class MangaRelationType(Enum):
     monochrome = "monochrome"
     main_story = "main_story"
     adapted_from = "adapted_from"
@@ -131,14 +131,14 @@ class MangaRelationType(_StrEnum):
     alternate_version = "alternate_version"
 
 
-class AuthorReportReason(_StrEnum):
+class AuthorReportReason(Enum):
     duplicate_entry = _REPORT_REASONS["author"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["author"]["information_to_correct"]
     other = _REPORT_REASONS["author"]["other"]
     troll_entry = _REPORT_REASONS["author"]["troll_entry"]
 
 
-class ChapterReportReason(_StrEnum):
+class ChapterReportReason(Enum):
     credit_page_in_the_middle_of_the_chapter = _REPORT_REASONS["chapter"]["credit_page_in_the_middle_of_the_chapter"]
     duplicate_upload_from_same_user_or_group = _REPORT_REASONS["chapter"]["duplicate_upload_from_same_user_or_group"]
     extraneous_political_or_racebaiting_or_offensive_content = _REPORT_REASONS["chapter"][
@@ -162,7 +162,7 @@ class ChapterReportReason(_StrEnum):
     watermarked_images = _REPORT_REASONS["chapter"]["watermarked_images"]
 
 
-class ScanlationGroupReportReason(_StrEnum):
+class ScanlationGroupReportReason(Enum):
     duplicate_entry = _REPORT_REASONS["scanlation_group"]["duplicate_entry"]
     group_claim_request = _REPORT_REASONS["scanlation_group"]["group_claim_request"]
     inactivity_request = _REPORT_REASONS["scanlation_group"]["inactivity_request"]
@@ -171,25 +171,23 @@ class ScanlationGroupReportReason(_StrEnum):
     troll_entry = _REPORT_REASONS["scanlation_group"]["troll_entry"]
 
 
-class MangaReportReason(_StrEnum):
+class MangaReportReason(Enum):
     duplicate_entry = _REPORT_REASONS["manga"]["duplicate_entry"]
     information_to_correct = _REPORT_REASONS["manga"]["information_to_correct"]
     other = _REPORT_REASONS["manga"]["other"]
     troll_entry = _REPORT_REASONS["manga"]["troll_entry"]
 
 
-class UserReportReason(_StrEnum):
+class UserReportReason(Enum):
     offensive_username_or_biography_or_avatar = _REPORT_REASONS["user"]["offensive_username_or_biography_or_avatar"]
     other = _REPORT_REASONS["user"]["other"]
     spambot = _REPORT_REASONS["user"]["spambot"]
 
 
-class ForumThreadType(_StrEnum):
+class ForumThreadType(Enum):
     manga = "manga"
     scanlation_group = "group"
     chapter = "chapter"
 
 
-ReportReason: (
-    TypeAlias
-) = "AuthorReportReason | ChapterReportReason | ScanlationGroupReportReason | MangaReportReason | UserReportReason"
+ReportReason = AuthorReportReason | ChapterReportReason | ScanlationGroupReportReason | MangaReportReason | UserReportReason

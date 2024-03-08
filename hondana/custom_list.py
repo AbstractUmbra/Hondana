@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -53,6 +54,9 @@ class CustomList:
         The name of this custom list.
     visibility: :class:`~hondana.CustomListVisibility`
         The visibility of this custom list.
+    pinned: :class:`bool`
+        Whether this custom list is pinned or not.
+        Defaults to ``False`` as this key is not always present.
     version: :class:`int`
         The version revision of this custom list.
     """
@@ -64,6 +68,7 @@ class CustomList:
         "id",
         "name",
         "visibility",
+        "pinned",
         "version",
         "_owner_relationship",
         "_manga_relationships",
@@ -75,10 +80,11 @@ class CustomList:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # can't pop from a TypedDict
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self.id: str = self._data["id"]
         self.name: str = self._attributes["name"]
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
+        self.pinned: bool = self._attributes.get("pinned", False)
         self.version: int = self._attributes["version"]
         self._owner_relationship: UserResponse | None = RelationshipResolver["UserResponse"](relationships, "user").resolve(
             with_fallback=True,

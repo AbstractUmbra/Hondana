@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -124,7 +125,7 @@ class MangaCollection(BaseCollection["Manga"]):
 
     def __init__(self, http: HTTPClient, payload: MangaSearchResponse, manga: list[Manga]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: MangaSearchResponse = payload
         self.manga: list[Manga] = manga
         self.total: int = payload.get("total", 0)
@@ -175,7 +176,7 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
 
     def __init__(self, http: HTTPClient, payload: MangaRelationResponse, relations: list[MangaRelation]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data = payload
         self.relations: list[MangaRelation] = relations
         self.total: int = payload.get("total", 0)
@@ -226,7 +227,7 @@ class ChapterFeed(BaseCollection["Chapter"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiChapterResponse, chapters: list[Chapter]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiChapterResponse = payload
         self.chapters: list[Chapter] = chapters
         self.total: int = payload.get("total", 0)
@@ -277,7 +278,7 @@ class AuthorCollection(BaseCollection["Author"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiAuthorResponse, authors: list[Author]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiAuthorResponse = payload
         self.authors: list[Author] = authors
         self.total: int = payload.get("total", 0)
@@ -328,7 +329,7 @@ class CoverCollection(BaseCollection["Cover"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiCoverResponse, covers: list[Cover]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiCoverResponse = payload
         self.covers: list[Cover] = covers
         self.total: int = payload.get("total", 0)
@@ -379,7 +380,7 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiScanlationGroupResponse, groups: list[ScanlatorGroup]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiScanlationGroupResponse = payload
         self.groups: list[ScanlatorGroup] = groups
         self.total: int = payload.get("total", 0)
@@ -430,7 +431,7 @@ class ReportCollection(BaseCollection["Report"]):
 
     def __init__(self, http: HTTPClient, payload: GetReportReasonResponse, reports: list[Report]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetReportReasonResponse = payload
         self.reports: list[Report] = reports
         self.total: int = payload.get("total", 0)
@@ -481,7 +482,7 @@ class UserReportCollection(BaseCollection["UserReport"]):
 
     def __init__(self, http: HTTPClient, payload: GetUserReportReasonResponse, reports: list[UserReport]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetUserReportReasonResponse = payload
         self.reports: list[UserReport] = reports
         self.total: int = payload.get("total", 0)
@@ -534,7 +535,7 @@ class UserCollection(BaseCollection["User"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiUserResponse, users: list[User]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiUserResponse = payload
         self.users: list[User] = users
         self.total: int = payload.get("total", 0)
@@ -585,7 +586,7 @@ class CustomListCollection(BaseCollection["CustomList"]):
 
     def __init__(self, http: HTTPClient, payload: GetMultiCustomListResponse, lists: list[CustomList]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetMultiCustomListResponse = payload
         self.lists: list[CustomList] = lists
         self.total: int = payload.get("total", 0)
@@ -636,7 +637,7 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
 
     def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data: GetLegacyMappingResponse = payload
         self.legacy_mappings: list[LegacyItem] = mappings
         self.total: int = payload.get("total", 0)
@@ -687,7 +688,7 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
 
     def __init__(self, http: HTTPClient, payload: ChapterReadHistoryResponse, history: list[PreviouslyReadChapter]) -> None:
         self._http: HTTPClient = http
-        payload.pop("data", [])  # type: ignore # can't pop from a TypedDict
+        payload.pop("data", [])  # pyright: ignore[reportAssignmentType,reportArgumentType,reportUnknownArgumentType] # can't pop from a TypedDict
         self._data = payload
         self.history: list[PreviouslyReadChapter] = history
         self.total: int = payload.get("total", 0)

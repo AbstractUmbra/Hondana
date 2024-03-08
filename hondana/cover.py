@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -77,7 +78,7 @@ class Cover:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        relationships = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships = self._data.pop("relationships", [])
         self.id: str = self._data["id"]
         self.volume: str | None = self._attributes["volume"]
         self.file_name: str = self._attributes["fileName"]
@@ -145,14 +146,14 @@ class Cover:
         if "attributes" in self._uploader_relationship:
             return User(self._http, self._uploader_relationship)
 
-    def url(self, type: Literal[256, 512] | None = None, /, parent_id: str | None = None) -> str | None:
+    def url(self, image_size: Literal[256, 512] | None = None, /, parent_id: str | None = None) -> str | None:
         """Method to return the Cover url.
 
         Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
 
         Parameters
         -----------
-        type: Optional[Literal[``256``, ``512``]]
+        image_size: Optional[Literal[``256``, ``512``]]
             Defaults to ``None`` to return original quality.
             Specifies the return image dimensions.
         parent_id: Optional[:class:`str`]
@@ -168,9 +169,9 @@ class Cover:
         if manga_id is None:
             return
 
-        if type == 256:
+        if image_size == 256:
             fmt = ".256.jpg"
-        elif type == 512:
+        elif image_size == 512:
             fmt = ".512.jpg"
         else:
             fmt = ""

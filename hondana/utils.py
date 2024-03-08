@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -29,18 +30,8 @@ import logging
 import pathlib
 import re
 import warnings
-from enum import Enum
 from functools import wraps
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    Generic,
-    Literal,
-    TypedDict,
-    TypeVar,
-    overload,
-)
+from typing import TYPE_CHECKING, Any, ClassVar, Generic, Literal, TypedDict, TypeVar, overload
 from urllib.parse import quote as _uriquote
 
 import multidict
@@ -61,7 +52,7 @@ else:
         """A quick method that dumps a Python type to JSON object."""
         return orjson.dumps(obj, option=orjson.OPT_INDENT_2).decode("utf-8")
 
-    _from_json = orjson.loads  # type: ignore # this is guarded in an if.
+    _from_json = orjson.loads  # pyright: ignore[] # this is guarded in an if.
 
 from .errors import AuthenticationRequired
 
@@ -165,6 +156,7 @@ class Route:
     """
 
     BASE: ClassVar[str] = "https://api.mangadex.org"
+    DEV_BASE: ClassVar[str] = "https://api.mangadex.dev"
 
     def __init__(self, verb: str, path: str, **parameters: Any) -> None:
         self.verb: str = verb
@@ -222,6 +214,7 @@ class AuthRoute(Route):
     """
 
     BASE: ClassVar[str] = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect"
+    DEV_BASE: ClassVar[str] = "https://auth.mangadex.dev/realms/mangadex/protocol/openid-connect"
 
 
 class MissingSentinel:
@@ -241,18 +234,9 @@ class MissingSentinel:
 MISSING: Any = MissingSentinel()
 
 
-class _StrEnum(Enum):  # type: ignore # we import this as needed
-    value: str  # type: ignore # we need to override the type here
-
-    def __str__(self) -> str:
-        return self.value
-
-
 ## This class and subsequent decorator have been copied from Rapptz' Discord.py
 ## (https://github.com/Rapptz/discord.py)
 ## Credit goes to Rapptz and contributors
-
-
 class CachedSlotProperty(Generic[T, T_co]):
     def __init__(self, name: str, function: Callable[[T], T_co]) -> None:
         self.name: str = name
@@ -260,12 +244,10 @@ class CachedSlotProperty(Generic[T, T_co]):
         self.__doc__ = getattr(function, "__doc__")
 
     @overload
-    def __get__(self, instance: None, owner: type[T]) -> CachedSlotProperty[T, T_co]:
-        ...
+    def __get__(self, instance: None, owner: type[T]) -> CachedSlotProperty[T, T_co]: ...
 
     @overload
-    def __get__(self, instance: T, owner: type[T]) -> T_co:
-        ...
+    def __get__(self, instance: T, owner: type[T]) -> T_co: ...
 
     def __get__(self, instance: T | None, owner: type[T]) -> Any:
         if instance is None:
@@ -291,7 +273,7 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
 
     @wraps(func)
     def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
-        if not item._http._authenticated:  # type: ignore # we're gonna keep this private
+        if not item._http._authenticated:  # pyright: ignore[reportPrivateUsage] # we're gonna keep this private
             raise AuthenticationRequired("This method requires authentication.")
 
         return func(item, *args, **kwargs)
@@ -413,7 +395,7 @@ def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[
 
 def get_image_mime_type(data: bytes, /) -> str:
     """Returns the image type from the first few bytes."""
-    if data.startswith(b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"):
+    if data.startswith(b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a"):
         return "image/png"
     elif data[:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
         return "image/jpeg"
@@ -547,20 +529,16 @@ class RelationshipResolver(Generic[T]):
         self._type: RelType = relationship_type
 
     @overload
-    def resolve(self, *, with_fallback: Literal[False], remove_empty: bool = ...) -> list[T]:
-        ...
+    def resolve(self, *, with_fallback: Literal[False], remove_empty: bool = ...) -> list[T]: ...
 
     @overload
-    def resolve(self, *, with_fallback: Literal[True], remove_empty: bool = ...) -> list[T | None]:
-        ...
+    def resolve(self, *, with_fallback: Literal[True], remove_empty: bool = ...) -> list[T | None]: ...
 
     @overload
-    def resolve(self) -> list[T]:
-        ...
+    def resolve(self) -> list[T]: ...
 
     @overload
-    def resolve(self, *, remove_empty: bool = ...) -> list[T]:
-        ...
+    def resolve(self, *, remove_empty: bool = ...) -> list[T]: ...
 
     def resolve(self, *, with_fallback: bool = False, remove_empty: bool = False) -> list[T] | list[T | None]:
         relationships = self.relationships.copy()
@@ -570,7 +548,7 @@ class RelationshipResolver(Generic[T]):
             if relationship["type"] == self._type:
                 if remove_empty and not relationship.get("attributes"):
                     continue
-                ret.append(relationship)  # type: ignore
+                ret.append(relationship)  # pyright: ignore[reportArgumentType] # can't type narrow here
 
         if not ret and with_fallback:
             ret.append(None)

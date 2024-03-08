@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "scanlator_group.json"
 
 PAYLOAD: GetSingleScanlationGroupResponse = json.load(PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 def clone_group() -> ScanlatorGroup:

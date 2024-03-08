@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -898,14 +899,12 @@ class HTTPClient:
     @overload
     def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: Literal[False]
-    ) -> Response[manga.MangaReadMarkersResponse]:
-        ...
+    ) -> Response[manga.MangaReadMarkersResponse]: ...
 
     @overload
     def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: Literal[True]
-    ) -> Response[manga.MangaGroupedReadMarkersResponse]:
-        ...
+    ) -> Response[manga.MangaGroupedReadMarkersResponse]: ...
 
     def manga_read_markers(
         self, manga_ids: list[str], /, *, grouped: bool = False
@@ -1450,10 +1449,10 @@ class HTTPClient:
         return self.request(route)
 
     def legacy_id_mapping(
-        self, type: legacy.LegacyMappingType, /, *, item_ids: list[int]
+        self, mapping_type: legacy.LegacyMappingType, /, *, item_ids: list[int]
     ) -> Response[legacy.GetLegacyMappingResponse]:
         route = Route("POST", "/legacy/mapping")
-        query: dict[str, Any] = {"type": type, "ids": item_ids}
+        query: dict[str, Any] = {"type": mapping_type, "ids": item_ids}
         return self.request(route, json=query)
 
     def get_at_home_url(self, chapter_id: str, /, *, ssl: bool) -> Response[chapter.GetAtHomeResponse]:
@@ -2217,10 +2216,10 @@ class HTTPClient:
 
         return self.request(route, json=query)
 
-    def create_forum_thread(self, type: ForumThreadType, resource_id: str) -> Response[ForumPayloadResponse]:
+    def create_forum_thread(self, thread_type: ForumThreadType, resource_id: str) -> Response[ForumPayloadResponse]:
         route = Route("POST", "/forums/thread")
 
-        query: dict[str, str] = {"type": type.value, "id": resource_id}
+        query: dict[str, str] = {"type": thread_type.value, "id": resource_id}
 
         return self.request(route, json=query)
 

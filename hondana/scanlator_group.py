@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -125,7 +126,7 @@ class ScanlatorGroup:
         self._data = payload
         self._attributes = self._data["attributes"]
         self.id: str = self._data["id"]
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self.name: str = self._attributes["name"]
         self.alt_names: list[str] = self._attributes["altNames"]
         self.website: str | None = self._attributes["website"]

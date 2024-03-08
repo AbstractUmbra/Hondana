@@ -150,14 +150,14 @@ class Manga:
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
         self._http = http
         self._data = payload
-        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # type: ignore # we know the type
+        relationships: list[RelationshipResponse] = self._data.pop("relationships", [])
         self._attributes = payload["attributes"]
         self.id: str = payload["id"]
         self._title: LocalizedString = self._attributes["title"]
         self._description: LocalizedString = self._attributes["description"]
         _related = payload.get("related", None)
         self.relation_type: MangaRelationType | None = MangaRelationType(_related) if _related else None
-        self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # type: ignore # this is actually valid but breaks pylance (not pyright...?)? TODO: test in later version
+        self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # pyright: ignore[reportAttributeAccessIssue]  # TypedDict.items() is weird
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
@@ -236,9 +236,9 @@ class Manga:
         title = self._title.get("en")
         if title is None:
             key = next(iter(self._title))
-            title = self._title.get(self.original_language, self._title[key])  # type: ignore # this is safe since the key is from the dict
+            return self._title.get(self.original_language, self._title[key])  # pyright: ignore[reportUnknownArgumentType] # this is safe since the key is from the dict
 
-        return title  # type: ignore # this is safe since the key is from the dict
+        return title
 
     @property
     def description(self) -> str | None:
@@ -256,7 +256,7 @@ class Manga:
             if not self._description:
                 return None
             key = next(iter(self._description))
-            return self._description[key]  # type: ignore # this is safe since the key is from the dict
+            return self._description[key]  # pyright: ignore[reportUnknownVariableType] # this is safe since the key is from the dict
         return desc
 
     @property
@@ -1443,7 +1443,7 @@ class MangaRelation:
         self._http = http
         self._data = payload
         self._attributes = self._data["attributes"]
-        self._relationships = self._data.pop("relationships", [])  # type: ignore # we know the type
+        self._relationships = self._data.pop("relationships", [])
         self.source_manga_id: str = parent_id
         self.id: str = self._data["id"]
         self.version: int = self._attributes["version"]

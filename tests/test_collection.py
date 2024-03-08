@@ -39,7 +39,7 @@ if TYPE_CHECKING:
     from hondana.types_.user import GetMultiUserResponse
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections"
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 CollectionType = Literal[
     "author",
@@ -57,58 +57,47 @@ CollectionType = Literal[
 
 
 @overload
-def clone_collection(type_: Literal["author"], /) -> AuthorCollection:
-    ...
+def clone_collection(type_: Literal["author"], /) -> AuthorCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["chapter_feed"], /) -> ChapterFeed:
-    ...
+def clone_collection(type_: Literal["chapter_feed"], /) -> ChapterFeed: ...
 
 
 @overload
-def clone_collection(type_: Literal["cover"], /) -> CoverCollection:
-    ...
+def clone_collection(type_: Literal["cover"], /) -> CoverCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["custom_list"], /) -> CustomListCollection:
-    ...
+def clone_collection(type_: Literal["custom_list"], /) -> CustomListCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["legacy_mapping"], /) -> LegacyMappingCollection:
-    ...
+def clone_collection(type_: Literal["legacy_mapping"], /) -> LegacyMappingCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["manga"], /) -> MangaCollection:
-    ...
+def clone_collection(type_: Literal["manga"], /) -> MangaCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["manga_relation"], /) -> MangaRelationCollection:
-    ...
+def clone_collection(type_: Literal["manga_relation"], /) -> MangaRelationCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["report"], /) -> ReportCollection:
-    ...
+def clone_collection(type_: Literal["report"], /) -> ReportCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["scanlator_group"], /) -> ScanlatorGroupCollection:
-    ...
+def clone_collection(type_: Literal["scanlator_group"], /) -> ScanlatorGroupCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["user"], /) -> UserCollection:
-    ...
+def clone_collection(type_: Literal["user"], /) -> UserCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["user_report"], /) -> UserReportCollection:
-    ...
+def clone_collection(type_: Literal["user_report"], /) -> UserReportCollection: ...
 
 
 def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:

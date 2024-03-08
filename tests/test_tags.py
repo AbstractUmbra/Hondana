@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
 
 PAYLOAD: GetMangaResponse = json.load(PATH.open())
-HTTP: HTTPClient = object()  # type: ignore # this is just for test purposes.
+HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
 def clone_tags() -> list[Tag]:
@@ -65,7 +65,7 @@ class TestTags:
         raw_tags = PAYLOAD["data"]["attributes"]["tags"]
 
         for tag, raw_tag in zip(sorted(tags, key=lambda t: t.id), sorted(raw_tags, key=lambda t: t["id"])):
-            _description = tag._description  # type: ignore # sorry, need this for test purposes
+            _description = tag._description  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
             _raw_descriptions = raw_tag["attributes"]["description"]
             _raw_descriptions = _raw_descriptions or {}
             _raw_description = dict(_raw_descriptions)

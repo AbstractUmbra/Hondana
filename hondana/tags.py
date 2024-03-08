@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import logging
@@ -80,10 +81,7 @@ class Tag:
     def __init__(self, payload: TagResponse) -> None:
         self._data = payload
         self._attributes = payload["attributes"]
-        self._relationships: list[RelationshipResponse] = self._data.pop(  # type: ignore # can't pop from a TypedDict
-            "relationships",  # type: ignore # can't pop from a TypedDict
-            [],  # type: ignore # can't pop from a TypedDict
-        )  # TODO: remove this when they have relationships to be in line.
+        self._relationships: list[RelationshipResponse] = self._data.pop("relationships", [])  # pyright: ignore[reportUnknownArgumentType,reportAttributeAccessIssue,reportArgumentType] # can't pop from a typed dict
         self._name = self._attributes["name"]
         self.id: str = payload["id"]
         self._description: LocalizedString = self._attributes["description"]
@@ -113,7 +111,7 @@ class Tag:
         name = self._name.get("en")
         if name is None:
             key = next(iter(self._name))
-            return self._name[key]  # type: ignore # this is safe since the key is from the dict
+            return self._name[key]  # pyright: ignore[reportUnknownVariableType] # this is safe since the key is from the dict
         return name
 
     @property
@@ -130,7 +128,7 @@ class Tag:
         description = self._description.get("en")
         if description is None:
             key = next(iter(self._description))
-            return self._description[key]  # type: ignore # this is safe since the key is from the dict
+            return self._description[key]  # pyright: ignore[reportUnknownVariableType] # this is safe since the key is from the dict
         return description
 
     @property

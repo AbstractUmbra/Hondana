@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -76,14 +77,12 @@ class ReportDetails:
     @overload
     def __init__(
         self, *, category: Literal[ReportCategory.author], reason: AuthorReportReason, details: ..., target_id: ...
-    ) -> None:
-        ...
+    ) -> None: ...
 
     @overload
     def __init__(
         self, *, category: Literal[ReportCategory.chapter], reason: ChapterReportReason, details: ..., target_id: ...
-    ) -> None:
-        ...
+    ) -> None: ...
 
     @overload
     def __init__(
@@ -93,20 +92,17 @@ class ReportDetails:
         reason: ScanlationGroupReportReason,
         details: ...,
         target_id: ...,
-    ) -> None:
-        ...
+    ) -> None: ...
 
     @overload
     def __init__(
         self, *, category: Literal[ReportCategory.manga], reason: MangaReportReason, details: ..., target_id: ...
-    ) -> None:
-        ...
+    ) -> None: ...
 
     @overload
     def __init__(
         self, *, category: Literal[ReportCategory.user], reason: UserReportReason, details: ..., target_id: ...
-    ) -> None:
-        ...
+    ) -> None: ...
 
     def __init__(
         self,

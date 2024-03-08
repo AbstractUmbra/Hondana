@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
@@ -63,7 +64,7 @@ class Relationship:
         self._data: RelationshipResponse = payload
         self.id: str = self._data["id"]
         self.type: str = self._data["type"]
-        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})  # type: ignore # can't pop from a TypedDict
+        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})  # pyright: ignore # can't pop from a TypedDict
 
     def __repr__(self) -> str:
         return f"<Relationship id={self.id!r} type={self.type!r}>"
