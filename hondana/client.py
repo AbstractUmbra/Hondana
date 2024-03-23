@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 """
+
 from __future__ import annotations
 
 import datetime
@@ -124,27 +125,37 @@ class Client:
         The OAuth2 Client ID to use.
     client_secret: :class:`str` | None
         The OAuth2 Client Secret to use.
+    dev_api: :class:`bool`
+        If you want to use the Dev api instead of production.
+        Defaults to ``False``.
 
 
     .. note::
         The Client will work without authentication, but all authenticated endpoints will fail before attempting a request.
-
-    .. note::
-        The :class:`aiohttp.ClientSession` passed via constructor will have headers and authentication set.
-        Do not pass one you plan to re-use for other things, lest you leak your login data.
     """
 
     __slots__ = "_http"
 
     @overload
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
 
     @overload
     def __init__(
-        self, *, session: ClientSession | None = ..., username: str, password: str, client_id: str, client_secret: str
-    ) -> None:
-        ...
+        self,
+        *,
+        session: ClientSession | None = ...,
+        username: str,
+        password: str,
+        client_id: str,
+        client_secret: str,
+        dev_api: bool = ...,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, *, session: ClientSession) -> None: ...
+
+    @overload
+    def __init__(self, *, dev_api: bool) -> None: ...
 
     def __init__(
         self,
@@ -154,9 +165,15 @@ class Client:
         password: str | None = None,
         client_id: str | None = None,
         client_secret: str | None = None,
+        dev_api: bool = False,
     ) -> None:
         self._http: HTTPClient = HTTPClient(
-            session=session, username=username, password=password, client_id=client_id, client_secret=client_secret
+            session=session,
+            username=username,
+            password=password,
+            client_id=client_id,
+            client_secret=client_secret,
+            dev_api=dev_api,
         )
 
     async def __aenter__(self) -> Self:

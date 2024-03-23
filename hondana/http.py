@@ -30,6 +30,7 @@ import logging
 import sys
 import weakref
 from base64 import b64decode
+from os import getenv
 from typing import TYPE_CHECKING, Any, Literal, Self, TypeVar, overload
 
 import aiohttp
@@ -263,6 +264,7 @@ class HTTPClient:
         self,
         *,
         session: aiohttp.ClientSession | None = None,
+        dev_api: bool = False,
         username: str | None = None,
         password: str | None = None,
         client_id: str | None = None,
@@ -280,10 +282,16 @@ class HTTPClient:
         self._auth_token: Token | None = None
         self._refresh_token: Token | None = None
         self._authenticated: bool = all([username, password, client_id, client_secret])
+        self._resolve_api_type(dev_api)
         if any([username, password, client_id, client_secret]) and not self._authenticated:
             raise RuntimeError(
                 "You must pass all required login attributes: `username`, `password`, `client_id`, `client_secret`"
             )
+
+    def _resolve_api_type(self, dev_api: bool) -> None:
+        if dev_api or getenv("HONDANA_API_DEV"):
+            Route.BASE = Route.DEV_BASE
+            AuthRoute.BASE = AuthRoute.DEV_BASE
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
