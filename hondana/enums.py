@@ -176,6 +176,9 @@ class MangaReportReason(Enum):
     information_to_correct = _REPORT_REASONS["manga"]["information_to_correct"]
     other = _REPORT_REASONS["manga"]["other"]
     troll_entry = _REPORT_REASONS["manga"]["troll_entry"]
+    incorrect_or_missing_volume_numbers = _REPORT_REASONS["manga"]["incorrect_or_missing_volume_numbers"]
+    missing_cover_art = _REPORT_REASONS["manga"]["missing_cover_art"]
+    vandalism = _REPORT_REASONS["manga"]["vandalism"]
 
 
 class UserReportReason(Enum):

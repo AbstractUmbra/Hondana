@@ -38,7 +38,10 @@
         "duplicate_entry": "8a44e584-d2b1-11eb-a84d-0242ac110002",
         "information_to_correct": "8a44e5ca-d2b1-11eb-a84d-0242ac110002",
         "other": "8a44e624-d2b1-11eb-a84d-0242ac110002",
-        "troll_entry": "8a44e534-d2b1-11eb-a84d-0242ac110002"
+        "troll_entry": "8a44e534-d2b1-11eb-a84d-0242ac110002",
+        "incorrect_or_missing_volume_numbers": "1a0b6e60-cacd-453f-ba16-b0aafee3ddad",
+        "missing_cover_art": "97d0a78d-1d08-4a30-b382-3de2effe43c",
+        "vandalism": "fc472c20-fe84-4bc4-92d9-6660133c2412"
     },
     "user": {
         "offensive_username_or_biography_or_avatar": "8a44e7aa-d2b1-11eb-a84d-0242ac110002",
