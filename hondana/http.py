@@ -2256,3 +2256,12 @@ class HTTPClient:
             query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
+
+    def check_approval_required(
+        self, manga_id: str, locale: common.LanguageCode
+    ) -> Response[upload.GetCheckApprovalRequired]:
+        route = Route("POST", "/upload/check-approval-required")
+
+        query: dict[str, Any] = {"manga": manga_id, "locale": locale}
+
+        return self.request(route, json=query)

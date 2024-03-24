@@ -40,6 +40,7 @@ __all__ = (
     "UploadedChapterPageAttributes",
     "UploadedChapterDataResponse",
     "UploadedChapterResponse",
+    "GetCheckApprovalRequired",
 )
 
 
@@ -185,3 +186,14 @@ class UploadedChapterResponse(TypedDict):
     result: Literal["ok", "error"]
     errors: list[ErrorType]
     data: list[UploadedChapterDataResponse]
+
+
+class GetCheckApprovalRequired(TypedDict):
+    """
+    result: Literal[``"ok"``, ``"error"``]
+
+    requiresApproval: :class:`bool`
+    """
+
+    result: Literal["ok", "error"]
+    requiresApproval: bool

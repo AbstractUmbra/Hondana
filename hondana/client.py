@@ -4088,3 +4088,23 @@ class Client:
                 break
 
         return CustomListCollection(self._http, data, lists)
+
+    @require_authentication
+    async def check_upload_approval_required(self, *, manga_id: str, locale: common.LanguageCode) -> bool:
+        """|coro|
+
+        This method will check if moderator approval will be required for uploading to a manga.
+
+        Parameters
+        -----------
+        manga_id: :class:`str`
+            The ID of the manga we will be checking against.
+        locale: :class:`hondana.types_.common.LanguageCode`
+            The locale we will be uploading.
+
+        Returns
+        --------
+        :class:`bool`
+        """
+        data = await self._http.check_approval_required(manga_id, locale)
+        return data["requiresApproval"]
