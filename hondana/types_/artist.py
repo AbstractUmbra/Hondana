@@ -73,6 +73,8 @@ class ArtistAttributesResponse(TypedDict):
 
     naver: Optional[:class:`str`]
 
+    namicomi: Optional[:class:`str`]
+
     website: Optional[:class:`str`]
 
     version: :class:`int`
@@ -97,6 +99,7 @@ class ArtistAttributesResponse(TypedDict):
     youtube: str | None
     weibo: str | None
     naver: str | None
+    namicomi: str | None
     website: str | None
     version: int
     createdAt: str

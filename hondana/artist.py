@@ -77,6 +77,8 @@ class Artist(AuthorArtistTag):
         The artist's Weibo url, if any.
     naver: Optional[:class:`str`]
         The artist's Naver url, if any.
+    namicomi: Optional[:class:`str`]
+        The artists's Namicomi url, if any.
     website: Optional[:class:`str`]
         The artist's website url, if any.
     version: :class:`int`
@@ -103,6 +105,7 @@ class Artist(AuthorArtistTag):
         "youtube",
         "weibo",
         "naver",
+        "namicomi",
         "website",
         "version",
         "_biography",
@@ -130,8 +133,9 @@ class Artist(AuthorArtistTag):
         self.fantia: str | None = self._attributes["fantia"]
         self.tumblr: str | None = self._attributes["tumblr"]
         self.youtube: str | None = self._attributes["youtube"]
-        self.weibo: str | None = self._attributes.get("weibo")
-        self.naver: str | None = self._attributes.get("naver")
+        self.weibo: str | None = self._attributes["weibo"]
+        self.naver: str | None = self._attributes["naver"]
+        self.namicomi: str | None = self._attributes["namicomi"]
         self.website: str | None = self._attributes["website"]
         self.version: int = self._attributes["version"]
         self._biography: LocalizedString | None = self._attributes["biography"]
