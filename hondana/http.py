@@ -289,7 +289,7 @@ class HTTPClient:
             )
 
     def _resolve_api_type(self, dev_api: bool) -> None:
-        if dev_api or getenv("HONDANA_API_DEV"):
+        if dev_api is True or getenv("HONDANA_API_DEV"):
             Route.BASE = Route.DEV_BASE
             AuthRoute.BASE = AuthRoute.DEV_BASE
 
@@ -424,8 +424,6 @@ class HTTPClient:
             kwargs["params"] = resolved_params
 
         kwargs["headers"] = headers
-
-        LOGGER.debug("Current request headers: %s", headers)
 
         response: aiohttp.ClientResponse | None = None
         await lock.acquire()
