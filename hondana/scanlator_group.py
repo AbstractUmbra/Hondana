@@ -371,7 +371,7 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.bookmark_scanlation_group(self.id)
+        await self._http.follow_scanlation_group(self.id)
 
     bookmark = follow
 
@@ -387,7 +387,7 @@ class ScanlatorGroup:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.unbookmark_scanlation_group(self.id)
+        await self._http.unfollow_scanlation_group(self.id)
 
     unbookmark = unfollow
 

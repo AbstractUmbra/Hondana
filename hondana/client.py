@@ -81,7 +81,6 @@ from .query import (
     ReportListOrderQuery,
     ScanlatorGroupIncludes,
     ScanlatorGroupListOrderQuery,
-    SubscriptionIncludes,
     UserListOrderQuery,
     UserReportIncludes,
 )
@@ -309,7 +308,6 @@ class Client:
         return [Tag(item) for item in data["data"]]
 
     @require_authentication
-    @deprecated("subscription_feed")
     async def get_my_feed(
         self,
         *,
@@ -1405,29 +1403,6 @@ class Client:
         await self._http.add_manga_to_custom_list(custom_list_id, manga_id=manga_id)
 
     @require_authentication
-    async def batch_add_manga_to_custom_list(self, custom_list_id: str, /, *, manga_ids: list[str]) -> None:
-        """|coro|
-
-        This method will add the specified manga to the specified custom list.
-
-        Parameters
-        -----------
-        custom_list_id: :class:`str`
-            The UUID associated with the custom list you wish to add the manga to.
-        manga_ids: list[:class:`str`]
-            The UUIDs associated with the manga you wish to add to the custom list.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            You are not authorised to add manga to this custom list.
-        :exc:`NotFound`
-            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """
-
-        await self._http.batch_add_manga_to_custom_list(custom_list_id, manga_ids=manga_ids)
-
-    @require_authentication
     async def remove_manga_from_custom_list(self, manga_id: str, /, *, custom_list_id: str) -> None:
         """|coro|
 
@@ -1449,29 +1424,6 @@ class Client:
         """
 
         await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=manga_id)
-
-    @require_authentication
-    async def batch_remove_manga_from_custom_list(self, custom_list_id: str, /, *, manga_ids: list[str]) -> None:
-        """|coro|
-
-        This method will remove the specified manga from the specified custom list.
-
-        Parameters
-        -----------
-        custom_list_id: :class:`str`
-            THe UUID associated with the custom list you wish to add the manga to.
-        manga_ids: list[:class:`str`]
-            The UUIDs associated with the manga you wish to remove from the specified custom list.
-
-        Raises
-        -------
-        :exc:`Forbidden`
-            You are not authorised to remove a manga from the specified custom list.
-        :exc:`NotFound`
-            The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """
-
-        await self._http.batch_remove_manga_from_custom_list(custom_list_id, manga_ids=manga_ids)
 
     async def chapter_list(
         self,
@@ -2218,7 +2170,6 @@ class Client:
         return User(self._http, data["data"])
 
     @require_authentication
-    @deprecated("get_my_bookmarked_groups")
     async def get_my_followed_groups(self, limit: int = 10, offset: int = 0) -> list[ScanlatorGroup]:
         """|coro|
 
@@ -2241,14 +2192,11 @@ class Client:
         List[:class:`ScanlatorGroup`]
             The list of groups that are being followed.
         """
-        data = await self._http.get_my_bookmarked_groups(limit=limit, offset=offset)
+        data = await self._http.get_my_followed_groups(limit=limit, offset=offset)
 
         return [ScanlatorGroup(self._http, item) for item in data["data"]]
 
-    get_my_bookmarked_groups = get_my_followed_groups
-
     @require_authentication
-    @deprecated("check_if_group_is_bookmarked")
     async def check_if_following_group(self, group_id: str, /) -> bool:
         """|coro|
 
@@ -2266,16 +2214,20 @@ class Client:
         """
 
         try:
-            await self._http.is_group_bookmarked(group_id)
+            await self._http.is_group_followed(group_id)
         except errors.NotFound:
             return False
-        else:
-            return True
-
-    check_if_group_is_bookmarked = check_if_following_group
+        return True
 
     @require_authentication
-    @deprecated("get_my_bookmarked_users")
+    async def check_if_following_manga(self, manga_id: str, /) -> bool:
+        try:
+            await self._http.is_manga_followed(manga_id)
+        except errors.NotFound:
+            return False
+        return True
+
+    @require_authentication
     async def get_my_followed_users(self, *, limit: int | None = 10, offset: int = 0) -> UserCollection:
         """|coro|
 
@@ -2306,7 +2258,7 @@ class Client:
 
         users: list[User] = []
         while True:
-            data = await self._http.get_my_bookmarked_users(limit=inner_limit, offset=offset)
+            data = await self._http.get_my_followed_users(limit=inner_limit, offset=offset)
             users.extend([User(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2315,10 +2267,7 @@ class Client:
 
         return UserCollection(self._http, data, users)
 
-    get_my_bookmarked_users = get_my_followed_users
-
     @require_authentication
-    @deprecated("is_user_bookmarked")
     async def check_if_following_user(self, user_id: str, /) -> bool:
         """|coro|
 
@@ -2341,16 +2290,13 @@ class Client:
         """
 
         try:
-            await self._http.is_user_bookmarked(user_id)
+            await self._http.is_user_followed(user_id)
         except errors.NotFound:
             return False
         else:
             return True
 
-    is_user_bookmarked = check_if_following_user
-
     @require_authentication
-    @deprecated("get_my_bookmarked_custom_lists")
     async def get_my_custom_list_follows(self, limit: int = 10, offset: int = 0) -> list[CustomList]:
         """|coro|
 
@@ -2361,14 +2307,11 @@ class Client:
         list[:class:`CustomList`]
             The list of custom lists you follow.
         """
-        data = await self._http.get_user_custom_list_bookmarks(limit=limit, offset=offset)
+        data = await self._http.get_user_custom_list_follows(limit=limit, offset=offset)
 
         return [CustomList(self._http, item) for item in data["data"]]
 
-    get_my_bookmarked_custom_lists = get_my_custom_list_follows
-
     @require_authentication
-    @deprecated("is_custom_list_bookmarked")
     async def check_if_following_custom_list(self, custom_list_id: str, /) -> bool:
         """|coro|
 
@@ -2380,13 +2323,11 @@ class Client:
             Whether you follow this custom list or not.
         """
         try:
-            await self._http.is_custom_list_bookmarked(custom_list_id)
+            await self._http.is_custom_list_followed(custom_list_id)
         except errors.NotFound:
             return False
         else:
             return True
-
-    is_custom_list_bookmarked = check_if_following_custom_list
 
     async def create_account(self, *, username: str, password: str, email: str) -> User:
         """|coro|
@@ -2723,7 +2664,7 @@ class Client:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http.bookmark_custom_list(custom_list_id)
+        await self._http.follow_custom_list(custom_list_id)
 
     bookmark_custom_list = follow_custom_list
 
@@ -2746,14 +2687,12 @@ class Client:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http.unbookmark_custom_list(custom_list_id)
+        await self._http.unfollow_custom_list(custom_list_id)
 
     unbookmark_custom_list = unfollow_custom_list
 
     @require_authentication
-    async def get_my_custom_lists(
-        self, *, limit: int | None = 10, offset: int = 0, pinned: bool = False
-    ) -> CustomListCollection:
+    async def get_my_custom_lists(self, *, limit: int | None = 10, offset: int = 0) -> CustomListCollection:
         """|coro|
 
         This method will get the current authenticated user's custom list.
@@ -2764,8 +2703,6 @@ class Client:
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
-        pinned: :class:`bool`
-            Defaults to ``False``. Whether to filter by pinned lists or not.
 
 
         .. note::
@@ -2785,7 +2722,7 @@ class Client:
 
         lists: list[CustomList] = []
         while True:
-            data = await self._http.get_my_custom_lists(limit=inner_limit, offset=offset, pinned=pinned)
+            data = await self._http.get_my_custom_lists(limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -2796,7 +2733,7 @@ class Client:
 
     @require_authentication
     async def get_users_custom_lists(
-        self, user_id: str, /, *, limit: int | None = 10, offset: int = 0, pinned: bool = False
+        self, user_id: str, /, *, limit: int | None = 10, offset: int = 0
     ) -> CustomListCollection:
         """|coro|
 
@@ -2810,8 +2747,6 @@ class Client:
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
-        pinned: :class:`bool`
-            Defaults to ``False``. Whether to filter by pinned lists or not.
 
 
         .. note::
@@ -2831,7 +2766,7 @@ class Client:
 
         lists: list[CustomList] = []
         while True:
-            data = await self._http.get_users_custom_lists(user_id, limit=inner_limit, offset=offset, pinned=pinned)
+            data = await self._http.get_users_custom_lists(user_id, limit=inner_limit, offset=offset)
             lists.extend([CustomList(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -3216,7 +3151,7 @@ class Client:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.bookmark_scanlation_group(scanlation_group_id)
+        await self._http.follow_scanlation_group(scanlation_group_id)
 
     bookmark_scanlation_group = follow_scanlation_group
 
@@ -3237,7 +3172,7 @@ class Client:
         :exc:`NotFound`
             The scanlation group cannot be found, likely due to an incorrect ID.
         """
-        await self._http.unbookmark_scanlation_group(scanlation_group_id)
+        await self._http.unfollow_scanlation_group(scanlation_group_id)
 
     unbookmark_scanlation_group = unfollow_scanlation_group
 
@@ -4000,94 +3935,6 @@ class Client:
         data = await self._http.create_forum_thread(thread_type=thread_type, resource_id=resource_id)
 
         return ForumThread(self._http, data["data"])
-
-    @require_authentication
-    async def get_custom_lists_where_manga_is_present(self, manga_id: str, /) -> list[str]:
-        """|coro|
-
-        This method will return all custom lists where the given manga is present.
-
-        Parameters
-        -----------
-        manga_id: :class:`str`
-            The Manga id we are filtering for.
-
-        Returns
-        --------
-        list[:class:`str`]
-            The array of custom list ids.
-        """
-        return await self._http.get_custom_lists_where_manga_is_present(manga_id)
-
-    @require_authentication
-    async def is_subscribed_to_custom_list(self, custom_list_id: str, /) -> bool:
-        """|coro|
-
-        A method to check if your are subscribed to the passed custom list.
-
-        Parameters
-        -----------
-        custom_list_id: :class:`str`
-            The custom list id to check against.
-
-        Returns
-        --------
-        :class:`bool`
-            Whether we are subscribed or not.
-        """
-        try:
-            await self._http.is_custom_list_subscribed(custom_list_id)
-        except errors.NotFound:
-            return False
-
-        return True
-
-    @require_authentication
-    async def pin_custom_list(self, custom_list_id: str, /) -> None:
-        """|coro|
-
-        This method will pin the custom list so it is part of the "pinned" section of the logged in user's profile.
-
-        Parameters
-        -----------
-        custom_list_id: :class:`str`
-            The custom list to pin.
-        """
-        await self._http.pin_custom_list(custom_list_id)
-
-    @require_authentication
-    async def unpin_custom_list(self, custom_list_id: str, /) -> None:
-        """|coro|
-
-        This method will unpin the custom list.
-
-        Parameters
-        -----------
-        custom_list_id: :class:`str`
-            The custom list to unpin.
-        """
-        await self._http.unpin_custom_list(custom_list_id)
-
-    @require_authentication
-    async def get_subscriptions(
-        self,
-        *,
-        limit: int | None = 20,
-        offset: int = 0,
-        includes: SubscriptionIncludes | None = SubscriptionIncludes(),
-    ) -> CustomListCollection:
-        inner_limit = limit or 20
-
-        lists: list[CustomList] = []
-        while True:
-            data = await self._http.get_subscription_list(limit=inner_limit, offset=offset, includes=includes)
-            lists.extend([CustomList(self._http, item) for item in data["data"]])
-
-            offset += inner_limit
-            if not data["data"] or offset >= 10_000 or limit is not None:
-                break
-
-        return CustomListCollection(self._http, data, lists)
 
     @require_authentication
     async def check_upload_approval_required(self, *, manga_id: str, locale: common.LanguageCode) -> bool:

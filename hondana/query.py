@@ -147,8 +147,6 @@ class MangaListOrderQuery(_OrderQuery):
         Ordering by last updated date.
     latest_uploaded_chapter: :class:`~hondana.query.Order`
         Ordering by latest uploaded chapter.
-    subscribed_count: :class:`~hondana.query.Order`
-        Ordering by followed count.
     relevance: :class:`~hondana.query.Order`
         Ordering by relevance to search query.
     rating: :class:`~hondana.query.Order`
@@ -161,7 +159,6 @@ class MangaListOrderQuery(_OrderQuery):
         "created_at",
         "updated_at",
         "latest_uploaded_chapter",
-        "subscribed_count",
         "relevance",
         "rating",
     )
@@ -171,7 +168,6 @@ class MangaListOrderQuery(_OrderQuery):
     created_at: Order | None
     updated_at: Order | None
     latest_uploaded_chapter: Order | None
-    subscribed_count: Order | None
     relevance: Order | None
     rating: Order | None
 
@@ -283,7 +279,7 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         Ordering by creation date.
     updated_at: :class:`~hondana.query.Order`
         Ordering by last updated date.
-    bookmarked_count: :class:`~hondana.query.Order`
+    followed_count: :class:`~hondana.query.Order`
         Ordering by followed count.
     relevance: :class:`~hondana.query.Order`
         Ordering by relevance to search query.
@@ -293,14 +289,14 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
         "name",
         "created_at",
         "updated_at",
-        "bookmarked_count",
+        "followed_count",
         "relevance",
     )
 
     name: Order | None
     created_at: Order | None
     updated_at: Order | None
-    bookmarked_count: Order | None
+    followed_count: Order | None
     relevance: Order | None
 
     def __init__(self, **kwargs: Order) -> None:

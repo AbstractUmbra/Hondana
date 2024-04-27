@@ -88,8 +88,8 @@ class TestOrderQuery:
         query = ScanlatorGroupListOrderQuery(updated_at=Order.descending)
         assert query.to_dict() == {"updatedAt": "desc"}
 
-        query = ScanlatorGroupListOrderQuery(bookmarked_count=Order.descending)
-        assert query.to_dict() == {"bookmarkedCount": "desc"}
+        query = ScanlatorGroupListOrderQuery(followed_count=Order.descending)
+        assert query.to_dict() == {"followedCount": "desc"}
 
         query = ScanlatorGroupListOrderQuery(relevance=Order.descending)
         assert query.to_dict() == {"relevance": "desc"}

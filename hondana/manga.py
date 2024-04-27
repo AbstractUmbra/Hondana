@@ -1488,7 +1488,7 @@ class MangaStatistics:
         "_rating",
         "_comments",
         "_cs_comments",
-        "bookmarks",
+        "follows",
         "parent_id",
         "average",
         "bayesian",
@@ -1500,7 +1500,7 @@ class MangaStatistics:
         self._data = payload
         self._rating = payload["rating"]
         self._comments: CommentMetaData | None = payload.get("comments")
-        self.bookmarks: int = payload["bookmarks"]
+        self.follows: int = payload["follows"]
         self.parent_id: str = parent_id
         self.average: float | None = self._rating["average"]
         self.bayesian: float | None = self._rating["bayesian"]

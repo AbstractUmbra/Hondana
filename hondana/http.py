@@ -89,7 +89,6 @@ if TYPE_CHECKING:
         ReportListOrderQuery,
         ScanlatorGroupIncludes,
         ScanlatorGroupListOrderQuery,
-        SubscriptionIncludes,
         UserListOrderQuery,
         UserReportIncludes,
     )
@@ -806,7 +805,7 @@ class HTTPClient:
         include_external_url: bool | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
-            route = Route("GET", "/subscription/feed")
+            route = Route("GET", "/user/follows/manga/feed")
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
@@ -1367,30 +1366,30 @@ class HTTPClient:
         route = Route("GET", "/user/me")
         return self.request(route)
 
-    def bookmark_user(self, user_id: str) -> Response[DefaultResponseType]:
-        route = Route("POST", "/user/{user_id}/bookmark", user_id=user_id)
+    def follow_user(self, user_id: str) -> Response[DefaultResponseType]:
+        route = Route("POST", "/user/{user_id}/follow", user_id=user_id)
         return self.request(route)
 
-    def unbookmark_user(self, user_id: str) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/user/{user_id}/bookmark", user_id=user_id)
+    def unfollow_user(self, user_id: str) -> Response[DefaultResponseType]:
+        route = Route("DELETE", "/user/{user_id}/follow", user_id=user_id)
         return self.request(route)
 
-    def get_my_bookmarked_groups(
+    def get_my_followed_groups(
         self, *, limit: int, offset: int
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
-        route = Route("GET", "/user/bookmarks/group")
+        route = Route("GET", "/user/follows/group")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
         return self.request(route, params=query)
 
-    def is_group_bookmarked(self, group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/bookmarks/group/{group_id}", group_id=group_id)
+    def is_group_followed(self, group_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id)
         return self.request(route)
 
-    def get_my_bookmarked_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
-        route = Route("GET", "/user/bookmarks/user")
+    def get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
+        route = Route("GET", "/user/follows/user")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1398,20 +1397,20 @@ class HTTPClient:
 
         return self.request(route, params=query)
 
-    def is_user_bookmarked(self, user_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/bookmarks/user/{user_id}", user_id=user_id)
+    def is_user_followed(self, user_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id)
         return self.request(route)
 
-    def get_user_custom_list_bookmarks(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
-        route = Route("GET", "/user/bookmarks/list")
+    def get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
+        route = Route("GET", "/user/follows/list")
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
-    def is_custom_list_bookmarked(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/bookmarks/list/{custom_list_id}", custom_list_id=custom_list_id)
+    def is_custom_list_followed(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
     def get_user_followed_manga(
@@ -1425,6 +1424,10 @@ class HTTPClient:
             query["includes"] = includes.to_query()
 
         return self.request(route, params=query)
+
+    def is_manga_followed(self, manga_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
+        return self.request(route)
 
     def create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
         route = Route("POST", "/account/create")
@@ -1524,55 +1527,35 @@ class HTTPClient:
         route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def bookmark_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/bookmark", custom_list_id=custom_list_id)
+    def follow_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
         return self.request(route)
 
-    def unbookmark_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/list/{custom_list_id}/bookmark", custom_list_id=custom_list_id)
+    def unfollow_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
         return self.request(route)
 
     def add_manga_to_custom_list(self, custom_list_id: str, /, *, manga_id: str) -> Response[DefaultResponseType]:
         route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def batch_add_manga_to_custom_list(
-        self, custom_list_id: str, /, *, manga_ids: list[str]
-    ) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/batch-manga", custom_list_id=custom_list_id)
-        return self.request(route, json={"mangaIds": manga_ids})
-
     def remove_manga_from_custom_list(self, custom_list_id: str, /, *, manga_id: str) -> Response[DefaultResponseType]:
         route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
         return self.request(route)
 
-    def batch_remove_manga_from_custom_list(
-        self, custom_list_id: str, /, *, manga_ids: list[str]
-    ) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/list/{custom_list_id}/batch-manga", custom_list_id=custom_list_id)
-        return self.request(route, json={"mangaIds": manga_ids})
-
-    def get_my_custom_lists(self, limit: int, offset: int, pinned: bool) -> Response[custom_list.GetMultiCustomListResponse]:
+    def get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/list")
 
-        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset, "pinned": pinned}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
-    def get_custom_lists_where_manga_is_present(self, manga_id: str) -> Response[list[str]]:
-        route = Route("GET", "/user/list/manga/{manga_id}", manga_id=manga_id)
-        return self.request(route)
-
-    def is_custom_list_subscribed(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/subscription/{custom_list_id}", custom_list_id=custom_list_id)
-        return self.request(route)
-
     def get_users_custom_lists(
-        self, user_id: str, /, *, limit: int, offset: int, pinned: bool
+        self, user_id: str, /, *, limit: int, offset: int
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
 
-        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset, "pinned": pinned}
+        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
         return self.request(route, params=query)
 
@@ -1803,12 +1786,12 @@ class HTTPClient:
         route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def bookmark_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/group/{scanlation_group_id}/bookmark", scanlation_group_id=scanlation_group_id)
+    def follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
-    def unbookmark_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/group/{scanlation_group_id}/bookmark", scanlation_group_id=scanlation_group_id)
+    def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
+        route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
         return self.request(route)
 
     def author_list(
@@ -2228,32 +2211,6 @@ class HTTPClient:
         query: dict[str, str] = {"type": thread_type.value, "id": resource_id}
 
         return self.request(route, json=query)
-
-    def set_default_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/default", custom_list_id=custom_list_id)
-        return self.request(route)
-
-    def pin_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/pin", custom_list_id=custom_list_id)
-        return self.request(route)
-
-    def unpin_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/unpin", custom_list_id=custom_list_id)
-        return self.request(route)
-
-    def get_subscription_list(
-        self, *, limit: int, offset: int, includes: SubscriptionIncludes | None
-    ) -> Response[custom_list.GetMultiCustomListResponse]:
-        route = Route("GET", "/subscription")
-
-        limit, offset = calculate_limits(limit, offset, max_limit=20)
-
-        query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
-
-        if includes:
-            query["includes"] = includes.to_query()
-
-        return self.request(route, params=query)
 
     def check_approval_required(
         self, manga_id: str, locale: common.LanguageCode

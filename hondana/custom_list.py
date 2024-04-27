@@ -30,7 +30,7 @@ from .enums import CustomListVisibility
 from .manga import Manga
 from .query import MangaIncludes
 from .user import User
-from .utils import RelationshipResolver, deprecated, require_authentication
+from .utils import RelationshipResolver, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
@@ -300,7 +300,6 @@ class CustomList:
         await self._http.delete_custom_list(self.id)
 
     @require_authentication
-    @deprecated("bookmark")
     async def follow(self) -> None:
         """|coro|
 
@@ -313,12 +312,9 @@ class CustomList:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http.bookmark_custom_list(self.id)
-
-    bookmark = follow
+        await self._http.follow_custom_list(self.id)
 
     @require_authentication
-    @deprecated("unbookmark")
     async def unfollow(self) -> None:
         """|coro|
 
@@ -331,22 +327,4 @@ class CustomList:
         :exc:`NotFound`
             The specified custom list does not exist.
         """
-        await self._http.unbookmark_custom_list(self.id)
-
-    unbookmark = unfollow
-
-    @require_authentication
-    async def pin(self) -> None:
-        """|coro|
-
-        This method will pin the custom list so it is part of the "pinned" section of the logged in user's profile.
-        """
-        await self._http.pin_custom_list(self.id)
-
-    @require_authentication
-    async def unpin(self) -> None:
-        """|coro|
-
-        This method will unpin the custom list.
-        """
-        await self._http.unpin_custom_list(self.id)
+        await self._http.unfollow_custom_list(self.id)
