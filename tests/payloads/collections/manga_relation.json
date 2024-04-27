@@ -600,12 +600,25 @@
             "links": {},
             "originalLanguage": "ja",
             "lastVolume": null,
-            "lastChapter": "1",
+            "lastChapter": "",
             "publicationDemographic": null,
             "status": "completed",
             "year": null,
             "contentRating": "pornographic",
             "tags": [
+              {
+                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Oneshot"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
               {
                 "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
                 "type": "tag",
@@ -623,8 +636,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2021-02-16T03:06:51+00:00",
-            "updatedAt": "2023-08-04T12:23:47+00:00",
-            "version": 3,
+            "updatedAt": "2024-04-20T16:47:01+00:00",
+            "version": 4,
             "availableTranslatedLanguages": [
               "it"
             ],

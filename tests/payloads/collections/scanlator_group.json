@@ -36,11 +36,12 @@
           "attributes": {
             "username": "luigiymario2",
             "roles": [
+              "ROLE_GROUP_LEADER",
               "ROLE_GROUP_MEMBER",
               "ROLE_MEMBER",
-              "ROLE_GROUP_LEADER"
+              "ROLE_SUPPORTER"
             ],
-            "version": 36006
+            "version": 36007
           }
         },
         {
@@ -49,11 +50,12 @@
           "attributes": {
             "username": "luigiymario2",
             "roles": [
+              "ROLE_GROUP_LEADER",
               "ROLE_GROUP_MEMBER",
               "ROLE_MEMBER",
-              "ROLE_GROUP_LEADER"
+              "ROLE_SUPPORTER"
             ],
-            "version": 36006
+            "version": 36007
           }
         },
         {
@@ -62,11 +64,12 @@
           "attributes": {
             "username": "tawsif1",
             "roles": [
+              "ROLE_GROUP_LEADER",
               "ROLE_GROUP_MEMBER",
               "ROLE_MEMBER",
-              "ROLE_GROUP_LEADER"
+              "ROLE_SUPPORTER"
             ],
-            "version": 35221
+            "version": 35222
           }
         },
         {

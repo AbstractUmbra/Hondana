@@ -76,11 +76,22 @@
               },
               {
                 "en": "Don't Toy With Me, Miss Nagatoro!"
+              },
+              {
+                "es": "No me rayes, Nagatoro"
+              },
+              {
+                "pt-br": "Não Mexa Comigo, Nagatoro"
+              },
+              {
+                "pl": "Nie drocz się ze mną, Nagatoro!"
               }
             ],
             "description": {
               "en": "Naoto Hachiouji —our spineless— MC (Known also as \"Senpai\") is a second-year high school student and a loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.\n\n---\n\n**Links:**\n\n- Alternative Official English - [K Manga](https://kmanga.kodansha.com/title/10042/episode/313808) (U.S. Only), [Kodansha](https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/)",
+              "es": "Naoto Hachioji está en segundo de bachillerato, es un chico tan tímido e introvertido como buen dibujante. Un día, mientras busca un sitio donde sentarse a dibujar en la biblioteca, se le caen las páginas del manga que hacía, justo al lado de un grupo de chicas que, al verlas, se ríen de él en su cara y se van… excepto una estudiante de primero, Hayase Nagatoro, que básicamente empieza a darle caña hasta hacerlo llorar.\n\nDesde entonces, Nagatoro y consecuentemente sus amigas, no van a parar de rayar a su “senpai” y molestarlo de todas las maneras posibles… Pero hay tres cosas a tener en cuenta: Nagatoro es especialmente tocanarices cuando están a solas, se molesta bastante si sus amigas se pasan con él, y en definitiva lo que ella busca es que su senpai salga de su burbuja autoimpuesta para que se divierta y conozca un poco el mundo que lo rodea… y quizás algo más…",
               "ja": "憎たらしいけど愛おしい。苦しいのに傍にいたい。あなたの中の何かが目覚める、“Sデレ少女”の物語。",
+              "pl": "Naoto Hachiouji to nieśmiały chłopak, którego mało co przeraża tak, jak wredne dziewczyny. Nic więc dziwnego, że jego największym szkolnym koszmarem zostaje Nagatoro – koleżanka z niższego roku, która obrała go sobie za cel, regularnie serwując mu atrakcje z pogranicza wojskowej fali i końskich zalotów. Choć wydawać by się mogło, że szkolne życie chłopaka na zawsze pozostanie pasmem nieszczęść, nieoczekiwanie relacja tych dwojga zaczyna zmierzać w niespodziewanym kierunku…\n\n(źródło: Studio JG)",
               "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
               "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
               "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
@@ -92,7 +103,7 @@
               "bw": "series/155089",
               "kt": "40324",
               "mu": "145530",
-              "amz": "https://www.amazon.co.jp/gp/product/B07F7QD132",
+              "amz": "https://www.amazon.co.jp/dp/B07F7QD132",
               "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2193546",
               "ebj": "https://ebookjapan.yahoo.co.jp/books/443422/",
               "mal": "110737",
@@ -176,8 +187,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-03-04T12:21:59+00:00",
-            "updatedAt": "2024-03-27T14:53:00+00:00",
-            "version": 339,
+            "updatedAt": "2024-04-16T11:04:59+00:00",
+            "version": 346,
             "availableTranslatedLanguages": [
               "id",
               "ru",
@@ -196,7 +207,7 @@
               "es",
               "pt"
             ],
-            "latestUploadedChapter": "ebfc8c97-9fcb-4168-a456-a91fb30ac651"
+            "latestUploadedChapter": "a316f385-7b86-490f-9255-fdc164dc0b2b"
           }
         },
         {
@@ -210,7 +221,7 @@
               "ROLE_MEMBER",
               "ROLE_STAFF"
             ],
-            "version": 156137
+            "version": 156261
           }
         }
       ]
