@@ -67,6 +67,7 @@
         ],
         "description": {
           "en": "Naoto Hachiouji —our spineless— MC (Known also as \"Senpai\") is a second-year high school student and a loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.\n\n---\n\n**Links:**\n\n- Alternative Official English - [K Manga](https://kmanga.kodansha.com/title/10042/episode/313808) (U.S. Only), [Kodansha](https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/)",
+          "ja": "憎たらしいけど愛おしい。苦しいのに傍にいたい。あなたの中の何かが目覚める、“Sデレ少女”の物語。",
           "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
           "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
           "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
@@ -162,8 +163,8 @@
         "state": "published",
         "chapterNumbersResetOnNewVolume": false,
         "createdAt": "2019-03-04T12:21:59+00:00",
-        "updatedAt": "2023-12-08T21:54:14+00:00",
-        "version": 337,
+        "updatedAt": "2024-03-27T14:53:00+00:00",
+        "version": 339,
         "availableTranslatedLanguages": [
           "id",
           "ru",
@@ -182,7 +183,7 @@
           "es",
           "pt"
         ],
-        "latestUploadedChapter": "621283a0-2a12-4a7a-8da7-ce14f18a353e"
+        "latestUploadedChapter": "ebfc8c97-9fcb-4168-a456-a91fb30ac651"
       },
       "relationships": [
         {
@@ -199,6 +200,7 @@
             "melonBook": null,
             "fanBox": null,
             "booth": null,
+            "namicomi": null,
             "nicoVideo": null,
             "skeb": null,
             "fantia": null,
@@ -226,6 +228,7 @@
             "melonBook": null,
             "fanBox": null,
             "booth": null,
+            "namicomi": null,
             "nicoVideo": null,
             "skeb": null,
             "fantia": null,
@@ -240,15 +243,15 @@
           }
         },
         {
-          "id": "55e86e61-8206-4f61-862f-8879b535b295",
+          "id": "8656b846-aa0f-40e6-84f3-527f12abd91b",
           "type": "cover_art",
           "attributes": {
-            "description": "Volume Cover From BookWalker",
-            "volume": "18",
-            "fileName": "5a37d4b7-28d5-4d02-8355-c6e21c611f96.jpg",
+            "description": "",
+            "volume": "19",
+            "fileName": "55ba0f41-b363-46bd-8338-53b236a282a7.jpg",
             "locale": "ja",
-            "createdAt": "2023-11-28T01:54:36+00:00",
-            "updatedAt": "2023-11-28T01:54:36+00:00",
+            "createdAt": "2024-03-27T14:53:00+00:00",
+            "updatedAt": "2024-03-27T14:53:00+00:00",
             "version": 1
           }
         },
@@ -357,6 +360,7 @@
             "isLocked": false,
             "links": {
               "al": "104616",
+              "ap": "ijiranaide-nagatoro-san-comic-anthology",
               "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
               "kt": "56972",
               "mu": "151069",
@@ -428,8 +432,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-08-16T01:01:02+00:00",
-            "updatedAt": "2023-12-16T13:03:00+00:00",
-            "version": 19,
+            "updatedAt": "2024-03-26T12:00:25+00:00",
+            "version": 20,
             "availableTranslatedLanguages": [
               "pt-br",
               "th",

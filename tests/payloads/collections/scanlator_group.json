@@ -16,7 +16,7 @@
         "contactEmail": "guzman.luis10@gmail.com",
         "description": "We focus on translating upcoming mangakas from twitter or other social medias, usually for ecchi mangas.",
         "twitter": "https://twitter.com/luigiymario2",
-        "mangaUpdates": null,
+        "mangaUpdates": "https://www.mangaupdates.com/group/pwf6y85/ecchi-no-doujinshi-scans",
         "focusedLanguages": [
           "en"
         ],
@@ -26,8 +26,8 @@
         "publishDelay": null,
         "exLicensed": false,
         "createdAt": "2022-10-02T08:54:24+00:00",
-        "updatedAt": "2023-10-12T04:42:13+00:00",
-        "version": 12
+        "updatedAt": "2024-01-05T23:18:32+00:00",
+        "version": 13
       },
       "relationships": [
         {
@@ -40,7 +40,7 @@
               "ROLE_MEMBER",
               "ROLE_GROUP_LEADER"
             ],
-            "version": 27589
+            "version": 36006
           }
         },
         {
@@ -53,7 +53,7 @@
               "ROLE_MEMBER",
               "ROLE_GROUP_LEADER"
             ],
-            "version": 27589
+            "version": 36006
           }
         },
         {
@@ -66,7 +66,7 @@
               "ROLE_MEMBER",
               "ROLE_GROUP_LEADER"
             ],
-            "version": 32349
+            "version": 35221
           }
         },
         {

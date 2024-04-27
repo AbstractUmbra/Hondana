@@ -123,6 +123,7 @@
             "isLocked": false,
             "links": {
               "al": "104616",
+              "ap": "ijiranaide-nagatoro-san-comic-anthology",
               "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
               "kt": "56972",
               "mu": "151069",
@@ -194,8 +195,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-08-16T01:01:02+00:00",
-            "updatedAt": "2023-12-16T13:03:00+00:00",
-            "version": 19,
+            "updatedAt": "2024-03-26T12:00:25+00:00",
+            "version": 20,
             "availableTranslatedLanguages": [
               "pt-br",
               "th",

@@ -16,6 +16,7 @@
         "melonBook": null,
         "fanBox": null,
         "booth": null,
+        "namicomi": null,
         "nicoVideo": null,
         "skeb": null,
         "fantia": null,
@@ -144,7 +145,7 @@
             "originalLanguage": "ja",
             "lastVolume": "2",
             "lastChapter": "12",
-            "publicationDemographic": "seinen",
+            "publicationDemographic": null,
             "status": "completed",
             "year": 2019,
             "contentRating": "suggestive",
@@ -205,8 +206,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2020-08-08T06:33:13+00:00",
-            "updatedAt": "2022-08-07T03:12:15+00:00",
-            "version": 7,
+            "updatedAt": "2024-01-12T14:23:11+00:00",
+            "version": 8,
             "availableTranslatedLanguages": [
               "en"
             ],
