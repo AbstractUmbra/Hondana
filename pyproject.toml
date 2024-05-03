@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Hondana"
-version = "4.0.0a"
+version = "3.5.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = ["Alex Nørgaard <umbra@abstractumbra.dev>"]
 
@@ -15,6 +15,7 @@ classifiers = [
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Internet",
     "Typing :: Typed",
 ]
@@ -47,7 +48,7 @@ orjson = { version = "*", optional = true }
 speed = ["aiohttp", "orjson"]
 
 [tool.poetry.group.speedups.dependencies]
-aiohttp = { version = "^3.8", extras = ["speedups"] }
+aiohttp = { version = "^3.9", extras = ["speedups"] }
 orjson = "*"
 
 [tool.poetry.group.docs.dependencies]
