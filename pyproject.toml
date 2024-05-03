@@ -40,7 +40,6 @@ aiohttp = [
         "speedups",
     ] },
 ]
-typing-extensions = "*"
 
 orjson = { version = "*", optional = true }
 
@@ -62,9 +61,9 @@ pytest-asyncio = "*"
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "*"
-scalene = "*"
 pre-commit = "*"
 ruff = "*"
+typing-extensions = "*"
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
