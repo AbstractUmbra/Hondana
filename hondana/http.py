@@ -133,11 +133,11 @@ __all__ = ("HTTPClient",)
 
 class Token:
     __slots__ = (
+        "raw_token",
         "refresh_token",
         "created_at",
         "client_id",
         "expires",
-        "_inner",
         "_http",
         "_client_secret",
     )
@@ -153,15 +153,15 @@ class Token:
         client_secret: str,
         session: aiohttp.ClientSession,
     ) -> None:
-        self._inner: str = token
         self._http: aiohttp.ClientSession = session
         self._client_secret: str = client_secret
+        self.raw_token: str = token
         self.client_id: str = client_id
         self.refresh_token: Token | None = None
         self._parse()
 
     def __str__(self) -> str:
-        return self._inner
+        return self.raw_token
 
     @classmethod
     def from_token_response(
@@ -173,7 +173,7 @@ class Token:
         return self
 
     def _parse(self) -> None:
-        _, payload, _ = self._inner.split(".")
+        _, payload, _ = self.raw_token.split(".")
 
         padding = len(payload) % 4
         token = payload + ("=" * padding)
@@ -200,7 +200,7 @@ class Token:
         data = aiohttp.FormData(
             [
                 ("grant_type", "refresh_token"),
-                ("refresh_token", self._inner),
+                ("refresh_token", self.refresh_token.raw_token),
                 ("client_id", self.client_id),
                 ("client_secret", self._client_secret),
             ]
@@ -209,7 +209,7 @@ class Token:
         async with self._http.request(route.verb, route.url, data=data) as resp:
             response_data: token.GetTokenPayload = await resp.json()
 
-        self._inner = response_data["access_token"]
+        self.raw_token = response_data["access_token"]
 
         self._parse()
 
