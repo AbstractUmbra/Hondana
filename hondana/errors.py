@@ -29,10 +29,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     import aiohttp
 
+    from hondana.types_.token import GetTokenPayload
+
     from .types_.errors import ErrorType
 
 __all__ = (
     "AuthenticationRequired",
+    "RefreshTokenFailure",
     "UploadInProgress",
     "MangaDexServerError",
     "APIException",
@@ -81,6 +84,14 @@ class Error:
 
 class AuthenticationRequired(Exception):
     """An exception to be raised when authentication is required to use this endpoint."""
+
+
+class RefreshTokenFailure(Exception):
+    """An exception to be raised when trying to use or access the refresh token fails."""
+
+    def __init__(self, message: str, response_data: GetTokenPayload | None = None) -> None:
+        self.message = message
+        self.data = response_data
 
 
 class UploadInProgress(Exception):
