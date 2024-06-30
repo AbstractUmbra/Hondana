@@ -187,9 +187,7 @@ class Token:
     def has_expired(self) -> bool:
         now = datetime.datetime.now(datetime.UTC)
 
-        if self.expires > now:
-            return False
-        return True
+        return not self.expires > now
 
     async def refresh(self) -> Self:
         if not self.refresh_token:
