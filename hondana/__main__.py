@@ -23,11 +23,11 @@ DEALINGS IN THE SOFTWARE.
 """
 
 import argparse
+import importlib.metadata
 import platform
 import sys
 
 import aiohttp
-import pkg_resources
 
 import hondana
 
@@ -44,11 +44,11 @@ def show_version() -> None:
 
     if md_version_info.releaselevel != "final":
         try:
-            pkg = pkg_resources.get_distribution("Hondana")
-        except pkg_resources.DistributionNotFound:
+            version = importlib.metadata.version("Hondana")
+        except importlib.metadata.PackageNotFoundError:
             pass
         else:
-            entries.append(f"    - Hondana pkg_resources: v{pkg.version}")
+            entries.append(f"    - Hondana pkg_resources: v{version}")
 
     entries.append(f" - aiohttp {aiohttp.__version__}")
     uname = platform.uname()
