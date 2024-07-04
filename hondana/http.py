@@ -49,7 +49,7 @@ from .enums import (
     ReportReason,
     ReportStatus,
 )
-from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, Unauthorized
+from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, RefreshTokenFailure, Unauthorized
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -187,9 +187,7 @@ class Token:
     def has_expired(self) -> bool:
         now = datetime.datetime.now(datetime.UTC)
 
-        if self.expires > now:
-            return False
-        return True
+        return not self.expires > now
 
     async def refresh(self) -> Self:
         if not self.refresh_token:
@@ -207,9 +205,12 @@ class Token:
         )
 
         async with self._http.request(route.verb, route.url, data=data) as resp:
-            response_data: token.GetTokenPayload = await resp.json()
+            response_data = await resp.json()
 
-        self.raw_token = response_data["access_token"]
+            try:
+                self.raw_token = response_data["access_token"]
+            except KeyError as exc:
+                raise RefreshTokenFailure("Failed to refresh token", resp, response_data) from exc
 
         self._parse()
 
@@ -329,7 +330,14 @@ class HTTPClient:
             and self._auth_token.has_expired()
             and (self._auth_token.refresh_token and not self._auth_token.refresh_token.has_expired())
         ):
-            return await self._auth_token.refresh()
+            try:
+                await self._auth_token.refresh()
+            except RefreshTokenFailure as exc:
+                LOGGER.error(
+                    "Failed to refresh token. Will attempt the login flow again. Errored payload:\n%s",
+                    exc.data,
+                    exc_info=exc,
+                )
 
         route = AuthRoute("POST", "/token")
 

@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     import aiohttp
@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
 __all__ = (
     "AuthenticationRequired",
+    "RefreshTokenFailure",
     "UploadInProgress",
     "MangaDexServerError",
     "APIException",
@@ -81,6 +82,29 @@ class Error:
 
 class AuthenticationRequired(Exception):
     """An exception to be raised when authentication is required to use this endpoint."""
+
+
+class RefreshTokenFailure(Exception):
+    """An exception to be raised when trying to use or access the refresh token fails.
+
+    Attriutes
+    ----------
+    message: :class:`str`
+        The error message.
+    response: :class:`aiohttp.ClientResponse`
+        The client response the error originated from.
+    data: Dict[:class:`str`, :class:`~typing.Any`]
+        The data from the error.
+    """
+
+    def __init__(self, message: str, /, response: aiohttp.ClientResponse, response_data: dict[str, Any]) -> None:
+        self.message = message
+        self.response = response
+        self.data = response_data
+
+    @property
+    def status(self) -> int:
+        return self.response.status
 
 
 class UploadInProgress(Exception):
