@@ -179,26 +179,25 @@ class QueryTags:
     """
 
     def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND") -> None:
-        self._tags = tags
         self.tags: list[str] = []
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
             raise TypeError("Tags mode has to be 'AND' or 'OR'.")
-        self._set_tags()
+        self._set_tags(tags)
 
     def __repr__(self) -> str:
-        return f"<Tags mode={self.mode} number_of_tags={len(self._tags)}>"
+        return f"<Tags mode={self.mode} number_of_tags={len(self.tags)}>"
 
-    def _set_tags(self) -> list[str]:
-        tags: list[str] = []
-        for tag in self._tags:
+    def _set_tags(self, tags: tuple[str, ...]) -> list[str]:
+        resolved_tags: list[str] = []
+        for tag in tags:
             if tag_ := MANGA_TAGS.get(tag.title()):
-                tags.append(tag_)
+                resolved_tags.append(tag_)
             else:
                 logger.warning("Tag '%s' cannot be found in the local tag cache, skipping.", tag)
 
         if not tags:
             raise ValueError("No tags passed matched any valid MangaDex tags.")
 
-        self.tags = tags
+        self.tags = resolved_tags
         return self.tags
