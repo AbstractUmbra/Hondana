@@ -180,7 +180,7 @@ class QueryTags:
 
     def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND") -> None:
         self._tags = tags
-        self.tags: list[str] | None = None
+        self.tags: list[str] = []
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
             raise TypeError("Tags mode has to be 'AND' or 'OR'.")
