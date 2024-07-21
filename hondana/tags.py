@@ -178,6 +178,11 @@ class QueryTags:
         If you feel this is out of date, you can try the helper method :meth:`~hondana.Client.update_tags`
     """
 
+    __slots__ = (
+        "tags",
+        "mode",
+    )
+
     def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND") -> None:
         self.tags: list[str] = []
         self.mode: str = mode.upper()
