@@ -201,7 +201,7 @@ class QueryTags:
             else:
                 logger.warning("Tag '%s' cannot be found in the local tag cache, skipping.", tag)
 
-        if not tags:
+        if not resolved_tags:
             raise ValueError("No tags passed matched any valid MangaDex tags.")
 
         self.tags = resolved_tags
