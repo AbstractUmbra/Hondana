@@ -5,8 +5,6 @@ import pathlib
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any
 
-import pytest
-
 from hondana.manga import Manga
 from hondana.tags import QueryTags, Tag
 
@@ -75,7 +73,7 @@ class TestTags:
 
 
 class TestQueryTags:
-    def test_known_query_tags(self) -> None:
+    def test_query_tags(self) -> None:
         tags = QueryTags("Comedy", "Genderswap", "Romance", mode="OR")
         assert tags.mode == "OR"
         assert tags.tags == [
@@ -88,10 +86,8 @@ class TestQueryTags:
         assert tags.mode == "AND"
         assert tags.tags == ["4d32cc48-9f00-4cca-9b5a-a839f0764984", "50880a9d-5440-4732-9afb-8f457127e836"]
 
-    @pytest.mark.xfail
-    def test_unknown_query_tag(self) -> None:
         try:
-            QueryTags("SomethingElse", mode="OR")
+            tags = QueryTags("SomethingElse", mode="OR")
         except ValueError:
             pass
         else:
