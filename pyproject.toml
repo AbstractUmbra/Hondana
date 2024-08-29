@@ -35,8 +35,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.11"
 aiohttp = [
-    { version = "~3.9" },
-    { version = "~3.9", markers = "extra == 'speed'", extras = [
+    { version = "^3.9" },
+    { version = "^3.9", markers = "extra == 'speed'", extras = [
         "speedups",
     ] },
 ]
@@ -47,7 +47,7 @@ orjson = { version = "*", optional = true }
 speed = ["aiohttp", "orjson"]
 
 [tool.poetry.group.speedups.dependencies]
-aiohttp = { version = "~3.9", extras = ["speedups"] }
+aiohttp = { version = "^3.9", extras = ["speedups"] }
 orjson = "*"
 
 [tool.poetry.group.docs.dependencies]
