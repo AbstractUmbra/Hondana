@@ -306,7 +306,7 @@ class HTTPClient:
         .. note::
             This method must be a coroutine to avoid the deprecation warning of Python 3.9+.
         """
-        self._session = aiohttp.ClientSession()
+        self._session = aiohttp.ClientSession(cookie_jar=aiohttp.DummyCookieJar())
         return self._session
 
     async def close(self) -> None:
