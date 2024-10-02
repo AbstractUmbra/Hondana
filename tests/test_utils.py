@@ -11,7 +11,6 @@ from multidict import MultiDict
 
 from hondana.utils import (
     MISSING,
-    CustomRoute,
     RelationshipResolver,
     Route,
     as_chunks,
@@ -64,14 +63,6 @@ class TestUtils:
     def test_missing(self) -> None:
         assert MISSING is not None
         assert not bool(MISSING)
-
-    def test_custom_route(self) -> None:
-        route = CustomRoute("GET", "https://uploads.mangadex.org", "/chapter/{chapter_id}", chapter_id="abcd")
-
-        assert route.base == "https://uploads.mangadex.org"
-        assert route.verb == "GET"
-        assert route.path == "/chapter/{chapter_id}"
-        assert str(route.url) == "https://uploads.mangadex.org/chapter/abcd"
 
     def test_route(self) -> None:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id="efgh")
