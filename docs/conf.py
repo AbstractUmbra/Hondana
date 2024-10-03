@@ -103,7 +103,7 @@ exclude_patterns: list[str] = ["build", "Thumbs.db", ".DS_Store"]
 # Links used for cross-referencing other documentation
 intersphinx_mapping: dict[str, tuple[str, None]] = {
     "python": ("https://docs.python.org/3", None),
-    "aiohttp": ("https://docs.aiohttp.org/en/stable/", None),
+    "aiohttp": ("https://docs.aiohttp.org/en/stable", None),
 }
 
 # Prolog for asynchronous functions
