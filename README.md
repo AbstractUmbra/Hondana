@@ -6,10 +6,9 @@
     </h1>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml'><img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/build.yaml/badge.svg' alt='Build status' /></a>
     <a href='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml'><img src='https://github.com/AbstractUmbra/Hondana/actions/workflows/coverage_and_lint.yaml/badge.svg' alt='Linting and Typechecking' /></a>
+    <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' /></a>
 </div>
 <div align="center">
-    <a href='https://api.mangadex.org/'><img src='https://img.shields.io/website?down_color=red&down_message=offline&label=API%20Status&logo=MangaDex%20API&up_color=lime&up_message=online&url=https%3A%2F%2Fapi.mangadex.org%2Fping' alt='API Status'/></a>
-    <a href='https://hondana.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/hondana/badge/?version=latest' alt='Documentation Status' /></a>
     <a href="https://discord.gg/aYGYJxwqe5"><img src='https://img.shields.io/discord/705500489248145459?color=blue&label=Discord&logo=Discord%20Server&logoColor=green' alt='Discord Server'></a>
 </div>
 <h1></h1>
