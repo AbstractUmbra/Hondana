@@ -41,7 +41,6 @@ from .scanlator_group import ScanlatorGroup
 from .user import User
 from .utils import (
     MISSING,
-    CustomRoute,
     RelationshipResolver,
     Route,
     as_chunks,
@@ -571,10 +570,10 @@ class Chapter:
         _pages = at_home_data.data_saver if data_saver else at_home_data.data
         _actual_pages = _pages[start:] if end is None else _pages[start:end]
         for i, url in enumerate(_actual_pages, start=1):
-            route = CustomRoute(
+            route = Route(
                 "GET",
-                self._at_home_url,
                 f"/{'data-saver' if data_saver else 'data'}/{at_home_data.hash}/{url}",
+                base=self._at_home_url,
             )
             LOGGER.debug("Attempting to download: %s", route.url)
             _start = time.monotonic()
@@ -895,7 +894,7 @@ class ChapterUpload:
         return f"<ChapterUpload id={self.upload_session_id!r} current_uploads={len(self.uploaded)}>"
 
     async def _check_for_session(self) -> None:
-        route = Route("GET", "/upload")
+        route = Route("GET", "/upload", authenticate=True)
         try:
             data: GetUploadSessionResponse = await self._http.request(route)
         except NotFound:
@@ -968,7 +967,7 @@ class ChapterUpload:
             If ``sorting_key`` is provided, then it must be a callable that takes a single parameter of ``pathlib.Path`` and returns a sortable value.
             This means that the return value of ``sorting_key`` must be richly comparable, with ``__lt__`` and ``__gt__``.
         """
-        route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id)
+        route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id, authenticate=True)
         success: list[UploadedChapterResponse] = []
 
         if sort:
@@ -1018,11 +1017,17 @@ class ChapterUpload:
         """
         if len(image_ids) == 1:
             image_id = image_ids[0]
-            route = Route("DELETE", "/upload/{session_id}/{image_id}", session_id=self.upload_session_id, image_id=image_id)
+            route = Route(
+                "DELETE",
+                "/upload/{session_id}/{image_id}",
+                session_id=self.upload_session_id,
+                image_id=image_id,
+                authenticate=True,
+            )
             await self._http.request(route)
             return
 
-        route = Route("DELETE", "/upload/{session_id}/batch", session_id=self.upload_session_id)
+        route = Route("DELETE", "/upload/{session_id}/batch", session_id=self.upload_session_id, authenticate=True)
         await self._http.request(route, json=image_ids)
 
         if self.uploaded:
@@ -1073,7 +1078,7 @@ class ChapterUpload:
         if self.publish_at:
             payload["chapterDraft"]["publishAt"] = clean_isoformat(self.publish_at)
 
-        route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id)
+        route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id, authenticate=True)
         data: GetSingleChapterResponse = await self._http.request(route, json=payload)
 
         self.__committed = True

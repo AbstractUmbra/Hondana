@@ -74,7 +74,6 @@ if TYPE_CHECKING:
 
 from_json = _from_json
 
-
 MANGADEX_QUERY_PARAM_TYPE: TypeAlias = dict[str, str | int | bool | list[str] | list["LanguageCode"] | dict[str, str] | None]
 C = TypeVar("C", bound="SupportsHTTP")
 T = TypeVar("T")
@@ -91,7 +90,6 @@ __all__ = (
     "AuthorArtistTag",
     "MISSING",
     "Route",
-    "CustomRoute",
     "cached_slot_property",
     "to_json",
     "json_or_text",
@@ -149,47 +147,25 @@ class Route:
     path: :class:`str`
         The prepended path to the API endpoint you with to target.
         e.g. ``"/manga/{manga_id}"``
+    authenticate: :class:`bool`
+        Whether to provide authentication headers to the resulting HTTP request, or not.
+        Defaults to ``False``.
     parameters: Any
         This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
         E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
         making ``"manga/..."``
     """
 
-    BASE: ClassVar[str] = "https://api.mangadex.org"
-    DEV_BASE: ClassVar[str] = "https://api.mangadex.dev"
+    API_BASE_URL: ClassVar[str] = "https://api.mangadex.org"
+    API_DEV_BASE_URL: ClassVar[str] = "https://api.mangadex.dev"
 
-    def __init__(self, verb: str, path: str, **parameters: Any) -> None:
+    def __init__(
+        self, verb: str, path: str, *, base: str | None = None, authenticate: bool = False, **parameters: Any
+    ) -> None:
         self.verb: str = verb
         self.path: str = path
-        url = self.BASE + self.path
-        if parameters:
-            url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
-        self.url: URL = URL(url, encoded=True)
-
-
-class CustomRoute(Route):
-    """A helper class for instantiating a HTTP method to download from MangaDex.
-
-    Parameters
-    -----------
-    verb: :class:`str`
-        The HTTP verb you wish to perform. E.g. ``"POST"``
-    base: :class:`str`
-        The base URL for the download path.
-    path: :class:`str`
-        The prepended path to the API endpoint you with to target.
-        e.g. ``"/manga/{manga_id}"``
-    parameters: Any
-        This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
-        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
-        making ``"manga/..."``
-    """
-
-    def __init__(self, verb: str, base: str, path: str, **parameters: Any) -> None:
-        self.verb: str = verb
-        self.base: str = base
-        self.path: str = path
-        url = self.base + self.path
+        self.auth: bool = authenticate
+        url = (base or self.API_BASE_URL) + self.path
         if parameters:
             url = url.format_map({k: _uriquote(v) if isinstance(v, str) else v for k, v in parameters.items()})
         self.url: URL = URL(url, encoded=True)
@@ -207,14 +183,17 @@ class AuthRoute(Route):
     path: :class:`str`
         The prepended path to the API endpoint you with to target.
         e.g. ``"/manga/{manga_id}"``
+    authenticate: :class:`bool`
+        Whether to procide authentication headers to the resulting HTTP method, or not.
+        Defaults to ``False``.
     parameters: Any
         This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
         E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
         making ``"manga/..."``
     """
 
-    BASE: ClassVar[str] = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect"
-    DEV_BASE: ClassVar[str] = "https://auth.mangadex.dev/realms/mangadex/protocol/openid-connect"
+    API_BASE_URL: ClassVar[str] = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect"
+    API_DEV_BASE_URL: ClassVar[str] = "https://auth.mangadex.dev/realms/mangadex/protocol/openid-connect"
 
 
 class MissingSentinel:

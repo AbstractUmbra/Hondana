@@ -11,7 +11,6 @@ from multidict import MultiDict
 
 from hondana.utils import (
     MISSING,
-    CustomRoute,
     RelationshipResolver,
     Route,
     as_chunks,
@@ -65,20 +64,29 @@ class TestUtils:
         assert MISSING is not None
         assert not bool(MISSING)
 
-    def test_custom_route(self) -> None:
-        route = CustomRoute("GET", "https://uploads.mangadex.org", "/chapter/{chapter_id}", chapter_id="abcd")
+    @pytest.mark.parametrize(
+        ("route", "match"),
+        [
+            (
+                Route("GET", "/chapter/{chapter_id}", chapter_id="abcd", authenticate=False),
+                ("GET", "/chapter/abcd", False),
+            ),
+            (
+                Route("POST", "/manga/{manga_id}", manga_id="some_manga", authenticate=True),
+                ("POST", "/manga/some_manga", True),
+            ),
+        ],
+    )
+    def test_route(self, route: Route, match: tuple[str, str, bool]) -> None:
+        verb, path, auth = match
 
-        assert route.base == "https://uploads.mangadex.org"
-        assert route.verb == "GET"
-        assert route.path == "/chapter/{chapter_id}"
-        assert str(route.url) == "https://uploads.mangadex.org/chapter/abcd"
+        assert route.verb == verb
 
-    def test_route(self) -> None:
-        route = Route("GET", "/chapter/{chapter_id}", chapter_id="efgh")
+        assert route.url.scheme == "https"
+        assert route.url.host == "api.mangadex.org"
+        assert route.url.path == path
 
-        assert route.verb == "GET"
-        assert route.path == "/chapter/{chapter_id}"
-        assert str(route.url) == "https://api.mangadex.org/chapter/efgh"
+        assert route.auth is auth
 
     @pytest.mark.parametrize(
         ("source", "chunk_size", "chunked"),

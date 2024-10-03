@@ -55,7 +55,6 @@ from .utils import (
     MANGADEX_TIME_REGEX,
     MISSING,
     AuthRoute,
-    CustomRoute,
     Route,
     calculate_limits,
     clean_isoformat,
@@ -290,8 +289,8 @@ class HTTPClient:
 
     def _resolve_api_type(self, dev_api: bool) -> None:
         if dev_api is True or getenv("HONDANA_API_DEV"):
-            Route.BASE = Route.DEV_BASE
-            AuthRoute.BASE = AuthRoute.DEV_BASE
+            Route.API_BASE_URL = Route.API_DEV_BASE_URL
+            AuthRoute.API_BASE_URL = AuthRoute.API_DEV_BASE_URL
 
     async def _generate_session(self) -> aiohttp.ClientSession:
         """|coro|
@@ -366,7 +365,7 @@ class HTTPClient:
 
     async def request(
         self,
-        route: Route | CustomRoute | AuthRoute,
+        route: Route | AuthRoute,
         *,
         params: MANGADEX_QUERY_PARAM_TYPE | None = None,
         json: Any | None = None,
@@ -378,7 +377,7 @@ class HTTPClient:
 
         Parameters
         -----------
-        route: Union[:class:`Route`, :class:`CustomRoute`, :class:`AuthRoute`]
+        route: Union[:class:`Route`, :class:`AuthRoute`]
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
@@ -412,7 +411,7 @@ class HTTPClient:
         headers = kwargs.pop("headers", {})
         headers["User-Agent"] = self.user_agent
 
-        if self._authenticated:
+        if self._authenticated and route.auth:
             token = await self.get_token()
             headers["Authorization"] = f"Bearer {token}"
             LOGGER.debug(
@@ -638,7 +637,7 @@ class HTTPClient:
         tags: QueryTags | None,
         mod_notes: str | None,
     ) -> Response[manga.GetMangaResponse]:
-        route = Route("POST", "/manga")
+        route = Route("POST", "/manga", authenticate=True)
 
         query: dict[str, Any] = {"title": title}
 
@@ -735,7 +734,7 @@ class HTTPClient:
         primary_cover: str | None,
         version: int,
     ) -> Response[manga.GetMangaResponse]:
-        route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id)
+        route = Route("PUT", "/manga/{manga_id}", manga_id=manga_id, authenticate=True)
 
         query: dict[str, Any] = {"version": version}
 
@@ -813,7 +812,7 @@ class HTTPClient:
         include_external_url: bool | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
-            route = Route("GET", "/user/follows/manga/feed")
+            route = Route("GET", "/user/follows/manga/feed", authenticate=True)
         else:
             route = Route("GET", "/manga/{manga_id}/feed", manga_id=manga_id)
 
@@ -870,15 +869,15 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def delete_manga(self, manga_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id)
+        route = Route("DELETE", "/manga/{manga_id}", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def unfollow_manga(self, manga_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id)
+        route = Route("DELETE", "/manga/{manga_id}/follow", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def follow_manga(self, manga_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id)
+        route = Route("POST", "/manga/{manga_id}/follow", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def get_random_manga(
@@ -927,10 +926,10 @@ class HTTPClient:
                 raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
 
             id_ = manga_ids[0]
-            route = Route("GET", "/manga/{manga_id}/read", manga_id=id_)
+            route = Route("GET", "/manga/{manga_id}/read", manga_id=id_, authenticate=True)
             return self.request(route)
 
-        route = Route("GET", "/manga/read")
+        route = Route("GET", "/manga/read", authenticate=True)
         query: MANGADEX_QUERY_PARAM_TYPE = {"ids": manga_ids, "grouped": True}
         return self.request(route, params=query)
 
@@ -943,7 +942,7 @@ class HTTPClient:
         read_chapters: list[str] | None,
         unread_chapters: list[str] | None,
     ) -> Response[DefaultResponseType]:
-        route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id)
+        route = Route("POST", "/manga/{manga_id}/read", manga_id=manga_id, authenticate=True)
 
         body: dict[Any, Any] = {}
         query: MANGADEX_QUERY_PARAM_TYPE | None = {"updateHistory": update_history} if update_history else None
@@ -961,27 +960,27 @@ class HTTPClient:
     def get_all_manga_reading_status(
         self, *, status: ReadingStatus | None = None
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
-        route = Route("GET", "/manga/status")
+        route = Route("GET", "/manga/status", authenticate=True)
         if status:
             query: MANGADEX_QUERY_PARAM_TYPE = {"status": status.value}
             return self.request(route, params=query)
         return self.request(route)
 
     def get_manga_reading_status(self, manga_id: str, /) -> Response[manga.MangaSingleReadingStatusResponse]:
-        route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id)
+        route = Route("GET", "/manga/{manga_id}/status", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def update_manga_reading_status(self, manga_id: str, /, status: ReadingStatus) -> Response[DefaultResponseType]:
-        route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id)
+        route = Route("POST", "/manga/{manga_id}/status", manga_id=manga_id, authenticate=True)
         query: dict[str, Any] = {"status": status.value}
         return self.request(route, json=query)
 
     def get_manga_draft(self, manga_id: str, /) -> Response[manga.GetMangaResponse]:
-        route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id)
+        route = Route("GET", "/manga/draft/{manga_id}", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def submit_manga_draft(self, manga_id: str, /, *, version: int) -> Response[manga.GetMangaResponse]:
-        route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id)
+        route = Route("POST", "/manga/draft/{manga_id}/commit", manga_id=manga_id, authenticate=True)
         query: dict[str, Any] = {"version": version}
         return self.request(route, json=query)
 
@@ -994,7 +993,7 @@ class HTTPClient:
         order: MangaDraftListOrderQuery | None = None,
         includes: MangaIncludes | None,
     ) -> Response[manga.GetMangaResponse]:
-        route = Route("GET", "/manga/draft")
+        route = Route("GET", "/manga/draft", authenticate=True)
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1025,12 +1024,18 @@ class HTTPClient:
     def create_manga_relation(
         self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
     ) -> Response[manga.MangaRelationCreateResponse]:
-        route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id)
+        route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id, authenticate=True)
         query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type.value}
         return self.request(route, json=query)
 
     def delete_manga_relation(self, manga_id: str, relation_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/manga/{manga_id}/relation/{relation_id}", manga_id=manga_id, relation_id=relation_id)
+        route = Route(
+            "DELETE",
+            "/manga/{manga_id}/relation/{relation_id}",
+            manga_id=manga_id,
+            relation_id=relation_id,
+            authenticate=True,
+        )
         return self.request(route)
 
     def chapter_list(
@@ -1160,7 +1165,7 @@ class HTTPClient:
         groups: list[str] | None,
         version: int,
     ) -> Response[chapter.GetSingleChapterResponse]:
-        route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id)
+        route = Route("PUT", "/chapter/{chapter_id}", chapter_id=chapter_id, authenticate=True)
 
         query: dict[str, Any] = {"version": version}
 
@@ -1182,11 +1187,11 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def delete_chapter(self, chapter_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/chapter/{chapter_id}", chapter_id=chapter_id)
+        route = Route("DELETE", "/chapter/{chapter_id}", chapter_id=chapter_id, authenticate=True)
         return self.request(route)
 
     def user_read_history(self) -> Response[chapter.ChapterReadHistoryResponse]:
-        route = Route("GET", "/user/history")
+        route = Route("GET", "/user/history", authenticate=True)
         return self.request(route)
 
     def cover_art_list(
@@ -1237,7 +1242,8 @@ class HTTPClient:
         description: str,
         locale: common.LanguageCode | None,
     ) -> Response[cover.GetSingleCoverResponse]:
-        route = Route("POST", "/cover/{manga_id}", manga_id=manga_id)
+        route = Route("POST", "/cover/{manga_id}", manga_id=manga_id, authenticate=True)
+
         content_type = get_image_mime_type(cover)
         ext = content_type.split("/")[-1]
         form_data = aiohttp.FormData()
@@ -1255,6 +1261,7 @@ class HTTPClient:
         if includes:
             query: MANGADEX_QUERY_PARAM_TYPE = {"includes": includes.to_query()}
             return self.request(route, params=query)
+
         return self.request(route)
 
     def edit_cover(
@@ -1267,7 +1274,7 @@ class HTTPClient:
         locale: str | None = MISSING,
         version: int,
     ) -> Response[cover.GetSingleCoverResponse]:
-        route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id)
+        route = Route("PUT", "/cover/{cover_id}", cover_id=cover_id, authenticate=True)
 
         query: dict[str, Any] = {"version": version}
 
@@ -1285,7 +1292,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def delete_cover(self, cover_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/cover/{cover_id}", cover_id=cover_id)
+        route = Route("DELETE", "/cover/{cover_id}", cover_id=cover_id, authenticate=True)
         return self.request(route)
 
     def scanlation_group_list(
@@ -1331,7 +1338,7 @@ class HTTPClient:
         username: str | None,
         order: UserListOrderQuery | None,
     ) -> Response[user.GetMultiUserResponse]:
-        route = Route("GET", "/user")
+        route = Route("GET", "/user", authenticate=True)
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1353,11 +1360,11 @@ class HTTPClient:
         return self.request(route)
 
     def delete_user(self, user_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/user/{user_id}", user_id=user_id)
+        route = Route("DELETE", "/user/{user_id}", user_id=user_id, authenticate=True)
         return self.request(route)
 
     def approve_user_deletion(self, approval_code: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/user/delete/{approval_code}", approval_code=approval_code)
+        route = Route("POST", "/user/delete/{approval_code}", approval_code=approval_code, authenticate=True)
         return self.request(route)
 
     def update_user_password(self, *, old_password: str, new_password: str) -> Response[DefaultResponseType]:
@@ -1371,7 +1378,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def get_my_details(self) -> Response[user.GetSingleUserResponse]:
-        route = Route("GET", "/user/me")
+        route = Route("GET", "/user/me", authenticate=True)
         return self.request(route)
 
     def follow_user(self, user_id: str) -> Response[DefaultResponseType]:
@@ -1385,7 +1392,7 @@ class HTTPClient:
     def get_my_followed_groups(
         self, *, limit: int, offset: int
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
-        route = Route("GET", "/user/follows/group")
+        route = Route("GET", "/user/follows/group", authenticate=True)
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1393,11 +1400,11 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def is_group_followed(self, group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id)
+        route = Route("GET", "/user/follows/group/{group_id}", group_id=group_id, authenticate=True)
         return self.request(route)
 
     def get_my_followed_users(self, *, limit: int, offset: int) -> Response[user.GetMultiUserResponse]:
-        route = Route("GET", "/user/follows/user")
+        route = Route("GET", "/user/follows/user", authenticate=True)
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
@@ -1406,11 +1413,11 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def is_user_followed(self, user_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id)
+        route = Route("GET", "/user/follows/user/{user_id}", user_id=user_id, authenticate=True)
         return self.request(route)
 
     def get_user_custom_list_follows(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
-        route = Route("GET", "/user/follows/list")
+        route = Route("GET", "/user/follows/list", authenticate=True)
 
         limit, offset = calculate_limits(limit, offset, max_limit=100)
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
@@ -1418,13 +1425,13 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def is_custom_list_followed(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id)
+        route = Route("GET", "/user/follows/list/{custom_list_id}", custom_list_id=custom_list_id, authenticate=True)
         return self.request(route)
 
     def get_user_followed_manga(
         self, limit: int, offset: int, includes: MangaIncludes | None
     ) -> Response[manga.MangaSearchResponse]:
-        route = Route("GET", "/user/follows/manga")
+        route = Route("GET", "/user/follows/manga", authenticate=True)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
@@ -1434,7 +1441,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def is_manga_followed(self, manga_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id)
+        route = Route("GET", "/user/follows/manga/{manga_id}", manga_id=manga_id, authenticate=True)
         return self.request(route)
 
     def create_account(self, *, username: str, password: str, email: str) -> Response[user.GetSingleUserResponse]:
@@ -1484,7 +1491,7 @@ class HTTPClient:
         visibility: CustomListVisibility | None,
         manga: list[str] | None,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
-        route = Route("POST", "/list")
+        route = Route("POST", "/list", authenticate=True)
 
         query: dict[str, Any] = {"name": name}
 
@@ -1516,7 +1523,7 @@ class HTTPClient:
         manga: list[str] | None,
         version: int,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
-        route = Route("POST", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+        route = Route("PUT", "/list/{custom_list_id}", custom_list_id=custom_list_id, authenticate=True)
 
         query: dict[str, Any] = {"version": version}
 
@@ -1532,27 +1539,39 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def delete_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id)
+        route = Route("DELETE", "/list/{custom_list_id}", custom_list_id=custom_list_id, authenticate=True)
         return self.request(route)
 
     def follow_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
+        route = Route("POST", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id, authenticate=True)
         return self.request(route)
 
     def unfollow_custom_list(self, custom_list_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id)
+        route = Route("DELETE", "/list/{custom_list_id}/follow", custom_list_id=custom_list_id, authenticate=True)
         return self.request(route)
 
     def add_manga_to_custom_list(self, custom_list_id: str, /, *, manga_id: str) -> Response[DefaultResponseType]:
-        route = Route("POST", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        route = Route(
+            "POST",
+            "/manga/{manga_id}/list/{custom_list_id}",
+            manga_id=manga_id,
+            custom_list_id=custom_list_id,
+            authenticate=True,
+        )
         return self.request(route)
 
     def remove_manga_from_custom_list(self, custom_list_id: str, /, *, manga_id: str) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/manga/{manga_id}/list/{custom_list_id}", manga_id=manga_id, custom_list_id=custom_list_id)
+        route = Route(
+            "DELETE",
+            "/manga/{manga_id}/list/{custom_list_id}",
+            manga_id=manga_id,
+            custom_list_id=custom_list_id,
+            authenticate=True,
+        )
         return self.request(route)
 
     def get_my_custom_lists(self, limit: int, offset: int) -> Response[custom_list.GetMultiCustomListResponse]:
-        route = Route("GET", "/user/list")
+        route = Route("GET", "/user/list", authenticate=True)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
@@ -1659,7 +1678,7 @@ class HTTPClient:
         inactive: bool | None,
         publish_delay: str | datetime.timedelta | None,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
-        route = Route("POST", "/group")
+        route = Route("POST", "/group", authenticate=True)
 
         query: dict[str, Any] = {"name": name}
 
@@ -1733,7 +1752,7 @@ class HTTPClient:
         publish_delay: str | datetime.timedelta | None,
         version: int,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
-        route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+        route = Route("PUT", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id, authenticate=True)
 
         query: dict[str, Any] = {"version": version}
 
@@ -1791,15 +1810,19 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def delete_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
+        route = Route("DELETE", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id, authenticate=True)
         return self.request(route)
 
     def follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+        route = Route(
+            "POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id, authenticate=True
+        )
         return self.request(route)
 
     def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id)
+        route = Route(
+            "DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id, authenticate=True
+        )
         return self.request(route)
 
     def author_list(
@@ -1849,7 +1872,7 @@ class HTTPClient:
         youtube: str,
         website: str,
     ) -> Response[author.GetSingleAuthorResponse]:
-        route = Route("POST", "/author")
+        route = Route("POST", "/author", authenticate=True)
 
         query: dict[str, Any] = {"name": name}
 
@@ -1919,7 +1942,7 @@ class HTTPClient:
         website: str | None,
         version: int | None,
     ) -> Response[author.GetSingleAuthorResponse]:
-        route = Route("PUT", "/author/{author_id}", author_id=author_id)
+        route = Route("PUT", "/author/{author_id}", author_id=author_id, authenticate=True)
 
         query: dict[str, Any] = {"name": name}
 
@@ -1968,7 +1991,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def delete_author(self, author_id: str, /) -> Response[DefaultResponseType]:
-        route = Route("DELETE", "/author/{author_id}", author_id=author_id)
+        route = Route("DELETE", "/author/{author_id}", author_id=author_id, authenticate=True)
         return self.request(route)
 
     def get_artist(self, artist_id: str, /, *, includes: ArtistIncludes | None) -> Response[artist.GetSingleArtistResponse]:
@@ -2051,7 +2074,7 @@ class HTTPClient:
         return self.request(route)
 
     def get_report_reason_list(self, report_category: ReportCategory, /) -> Response[report.GetReportReasonResponse]:
-        route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value)
+        route = Route("GET", "/report/reasons/{report_category}", report_category=report_category.value, authenticate=True)
         return self.request(route)
 
     def get_reports_current_user(
@@ -2068,7 +2091,7 @@ class HTTPClient:
     ) -> Response[report.GetUserReportReasonResponse]:
         limit, offset = calculate_limits(limit, offset, max_limit=100)
 
-        route = Route("GET", "/report")
+        route = Route("GET", "/report", authenticate=True)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"limit": limit, "offset": offset}
 
@@ -2093,7 +2116,7 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def at_home_report(self, *, url: URL, success: bool, cached: bool, size: int, duration: int) -> Response[None]:
-        route = CustomRoute("POST", "https://api.mangadex.network", "/report")
+        route = Route("POST", "/report", base="https://api.mangadex.network")
 
         query: dict[str, Any] = {
             "url": str(url),
@@ -2106,7 +2129,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def create_report(self, *, details: ReportDetails) -> Response[DefaultResponseType]:
-        route = Route("POST", "/report")
+        route = Route("POST", "/report", authenticate=True)
 
         query: dict[str, Any] = {
             "category": details.category.value,
@@ -2118,21 +2141,21 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def get_my_ratings(self, manga_ids: list[str], /) -> Response[statistics.GetPersonalMangaRatingsResponse]:
-        route = Route("GET", "/rating")
+        route = Route("GET", "/rating", authenticate=True)
 
         query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
 
         return self.request(route, params=query)
 
     def set_manga_rating(self, manga_id: str, /, *, rating: int) -> Response[Literal["ok", "error"]]:
-        route = Route("POST", "/rating/{manga_id}", manga_id=manga_id)
+        route = Route("POST", "/rating/{manga_id}", manga_id=manga_id, authenticate=True)
 
         query: dict[str, Any] = {"rating": rating}
 
         return self.request(route, json=query)
 
     def delete_manga_rating(self, manga_id: str, /) -> Response[Literal["ok", "error"]]:
-        route = Route("DELETE", "/rating/{manga_id}", manga_id=manga_id)
+        route = Route("DELETE", "/rating/{manga_id}", manga_id=manga_id, authenticate=True)
 
         return self.request(route)
 
@@ -2140,10 +2163,10 @@ class HTTPClient:
         self, chapter_id: str | None, chapter_ids: str | None
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if chapter_id:
-            route = Route("GET", "/statistics/chapter/{chapter_id}", chapter_id=chapter_id)
+            route = Route("GET", "/statistics/chapter/{chapter_id}", chapter_id=chapter_id, authenticate=True)
             return self.request(route)
         elif chapter_ids:
-            route = Route("GET", "/statistics/chapter")
+            route = Route("GET", "/statistics/chapter", authenticate=True)
             return self.request(route, params={"chapter": chapter_ids})
         raise ValueError("Either chapter_id or chapter_ids is required.")
 
@@ -2151,10 +2174,12 @@ class HTTPClient:
         self, scanlation_group_id: str | None, scanlation_group_ids: str | None
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if scanlation_group_id:
-            route = Route("GET", "/statistics/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_ids)
+            route = Route(
+                "GET", "/statistics/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_ids, authenticate=True
+            )
             return self.request(route)
         elif scanlation_group_ids:
-            route = Route("GET", "/statistics/group")
+            route = Route("GET", "/statistics/group", authenticate=True)
             return self.request(route, params={"group": scanlation_group_ids})
         raise ValueError("Either chapter_id or chapter_ids is required.")
 
@@ -2162,10 +2187,10 @@ class HTTPClient:
         self, manga_id: str | None, manga_ids: list[str] | None, /
     ) -> Response[statistics.GetMangaStatisticsResponse]:
         if manga_id:
-            route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id)
+            route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id, authenticate=True)
             return self.request(route)
         elif manga_ids:
-            route = Route("GET", "/statistics/manga")
+            route = Route("GET", "/statistics/manga", authenticate=True)
             query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
             return self.request(route, params=query)
         else:
@@ -2176,35 +2201,35 @@ class HTTPClient:
     ) -> Response[upload.BeginChapterUploadResponse]:
         query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
         if chapter_id is not None:
-            route = Route("POST", "/upload/begin/{chapter_id}", chapter_id=chapter_id)
+            route = Route("POST", "/upload/begin/{chapter_id}", chapter_id=chapter_id, authenticate=True)
             query["version"] = version
         else:
-            route = Route("POST", "/upload/begin")
+            route = Route("POST", "/upload/begin", authenticate=True)
 
         return self.request(route, json=query)
 
     def abandon_upload_session(self, session_id: str, /) -> Response[None]:
-        route = Route("DELETE", "/upload/{session_id}", session_id=session_id)
+        route = Route("DELETE", "/upload/{session_id}", session_id=session_id, authenticate=True)
 
         return self.request(route)
 
     def get_latest_settings_template(self) -> Response[dict[str, Any]]:
-        route = Route("GET", "/settings/template")
+        route = Route("GET", "/settings/template", authenticate=True)
 
         return self.request(route)
 
     def get_specific_template_version(self, version: str) -> Response[dict[str, Any]]:
-        route = Route("GET", "/settings/template/{version}", version=version)
+        route = Route("GET", "/settings/template/{version}", version=version, authenticate=True)
 
         return self.request(route)
 
     def get_user_settings(self) -> Response[SettingsPayload]:
-        route = Route("GET", "/settings")
+        route = Route("GET", "/settings", authenticate=True)
 
         return self.request(route)
 
     def upsert_user_settings(self, settings: Settings, updated_at: datetime.datetime) -> Response[SettingsPayload]:
-        route = Route("POST", "/settings")
+        route = Route("POST", "/settings", authenticate=True)
 
         query: dict[str, Any] = {
             "settings": settings,
@@ -2214,7 +2239,7 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def create_forum_thread(self, thread_type: ForumThreadType, resource_id: str) -> Response[ForumPayloadResponse]:
-        route = Route("POST", "/forums/thread")
+        route = Route("POST", "/forums/thread", authenticate=True)
 
         query: dict[str, str] = {"type": thread_type.value, "id": resource_id}
 
@@ -2223,7 +2248,7 @@ class HTTPClient:
     def check_approval_required(
         self, manga_id: str, locale: common.LanguageCode
     ) -> Response[upload.GetCheckApprovalRequired]:
-        route = Route("POST", "/upload/check-approval-required")
+        route = Route("POST", "/upload/check-approval-required", authenticate=True)
 
         query: dict[str, Any] = {"manga": manga_id, "locale": locale}
 
