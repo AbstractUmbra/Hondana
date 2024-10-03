@@ -377,7 +377,7 @@ class HTTPClient:
 
         Parameters
         -----------
-        route: Union[:class:`Route`, :class:`CustomRoute`, :class:`AuthRoute`]
+        route: Union[:class:`Route`, :class:`AuthRoute`]
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
