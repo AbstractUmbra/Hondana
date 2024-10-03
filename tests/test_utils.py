@@ -64,12 +64,29 @@ class TestUtils:
         assert MISSING is not None
         assert not bool(MISSING)
 
-    def test_route(self) -> None:
-        route = Route("GET", "/chapter/{chapter_id}", chapter_id="efgh")
+    @pytest.mark.parametrize(
+        ("route", "match"),
+        [
+            (
+                Route("GET", "/chapter/{chapter_id}", chapter_id="abcd", authenticate=False),
+                ("GET", "/chapter/abcd", False),
+            ),
+            (
+                Route("POST", "/manga/{manga_id}", manga_id="some_manga", authenticate=True),
+                ("POST", "/manga/some_manga", True),
+            ),
+        ],
+    )
+    def test_route(self, route: Route, match: tuple[str, str, bool]) -> None:
+        verb, path, auth = match
 
-        assert route.verb == "GET"
-        assert route.path == "/chapter/{chapter_id}"
-        assert str(route.url) == "https://api.mangadex.org/chapter/efgh"
+        assert route.verb == verb
+
+        assert route.url.scheme == "https"
+        assert route.url.host == "api.mangadex.org"
+        assert route.url.path == path
+
+        assert route.auth is auth
 
     @pytest.mark.parametrize(
         ("source", "chunk_size", "chunked"),
