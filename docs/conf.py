@@ -138,7 +138,6 @@ napoleon_google_docstring = False
 napoleon_numpy_docstring = True
 napoleon_include_private_with_doc = False
 napoleon_include_special_with_doc = False
-autodoc_member_order = "bysource"
 
 resource_links: dict[str, str] = {
     "github": _GITHUB,
