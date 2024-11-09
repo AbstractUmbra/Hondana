@@ -1,3 +1,4 @@
+# type: ignore[reportUnusedFunction] # preflight use
 """
 This file is inteded for manual CI/Integration usage only.
 It is NOT part of the Hondana API or for public use. No support will be provided for this file. Use at your own risk.
