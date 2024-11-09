@@ -1,0 +1,27 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "Python 3",
+	"image": "python:3.11-bookworm",
+	"features": {
+		"ghcr.io/devcontainers-extra/features/ruff:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-extra/features/npm-package": {
+			"package": "pyright",
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers-extra/features/poetry:2": {
+			"version": "latest"
+		}
+	},
+	"postCreateCommand": "bash ./.devcontainer/post-install.sh",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff"
+			]
+		}
+	}
+}
