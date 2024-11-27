@@ -55,16 +55,16 @@ class Relationship:
 
     __slots__ = (
         "_data",
+        "attributes",
         "id",
         "type",
-        "attributes",
     )
 
     def __init__(self, payload: RelationshipResponse) -> None:
         self._data: RelationshipResponse = payload
         self.id: str = self._data["id"]
         self.type: str = self._data["type"]
-        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})  # pyright: ignore # can't pop from a TypedDict
+        self.attributes: Mapping[str, Any] = self._data.pop("attributes", {})  # pyright: ignore[reportAttributeAccessIssue,reportCallIssue,reportArgumentType] # can't pop from a TypedDict
 
     def __repr__(self) -> str:
         return f"<Relationship id={self.id!r} type={self.type!r}>"

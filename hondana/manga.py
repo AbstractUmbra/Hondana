@@ -57,9 +57,9 @@ if TYPE_CHECKING:
 
 __all__ = (
     "Manga",
+    "MangaRating",
     "MangaRelation",
     "MangaStatistics",
-    "MangaRating",
 )
 
 
@@ -110,41 +110,41 @@ class Manga:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
-        "_attributes",
-        "_title",
-        "_description",
-        "id",
-        "relation_type",
-        "alternate_titles",
-        "locked",
-        "links",
-        "original_language",
-        "last_volume",
-        "last_chapter",
-        "publication_demographic",
-        "status",
-        "year",
-        "content_rating",
-        "chapter_numbers_reset_on_new_volume",
-        "available_translated_languages",
-        "latest_uploaded_chapter",
-        "state",
-        "stats",
-        "version",
-        "_tags",
-        "_created_at",
-        "_updated_at",
-        "_artist_relationships",
-        "_author_relationships",
-        "_related_manga_relationships",
-        "_cover_relationship",
-        "__authors",
         "__artists",
+        "__authors",
         "__cover",
         "__related_manga",
+        "_artist_relationships",
+        "_attributes",
+        "_author_relationships",
+        "_cover_relationship",
+        "_created_at",
         "_cs_tags",
+        "_data",
+        "_description",
+        "_http",
+        "_related_manga_relationships",
+        "_tags",
+        "_title",
+        "_updated_at",
+        "alternate_titles",
+        "available_translated_languages",
+        "chapter_numbers_reset_on_new_volume",
+        "content_rating",
+        "id",
+        "last_chapter",
+        "last_volume",
+        "latest_uploaded_chapter",
+        "links",
+        "locked",
+        "original_language",
+        "publication_demographic",
+        "relation_type",
+        "state",
+        "stats",
+        "status",
+        "version",
+        "year",
     )
 
     def __init__(self, http: HTTPClient, payload: manga.MangaResponse) -> None:
@@ -183,16 +183,20 @@ class Manga:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._author_relationships: list[AuthorResponse] = RelationshipResolver["AuthorResponse"](
-            relationships, "author"
+            relationships,
+            "author",
         ).resolve()
         self._artist_relationships: list[ArtistResponse] = RelationshipResolver["ArtistResponse"](
-            relationships, "artist"
+            relationships,
+            "artist",
         ).resolve()
         self._related_manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
-            relationships, "manga"
+            relationships,
+            "manga",
         ).resolve()
         self._cover_relationship: CoverResponse | None = RelationshipResolver["CoverResponse"](
-            relationships, "cover_art"
+            relationships,
+            "cover_art",
         ).resolve(with_fallback=True)[0]
         self.__authors: list[Author] | None = None
         self.__artists: list[Artist] | None = None
@@ -204,6 +208,9 @@ class Manga:
 
     def __str__(self) -> str:
         return self.title
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, (Manga, MangaRelation)) and self.id == other.id
@@ -267,7 +274,8 @@ class Manga:
         --------
         :class:`~hondana.types_.common.LocalizedString`
             The raw object from the manga's api response payload.
-            Provides no formatting on its own. Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
+            Provides no formatting on its own.
+            Consider :meth:`~hondana.Manga.description` or :meth:`~hondana.Manga.localised_description` instead.
         """
         return self._description
 
@@ -334,7 +342,7 @@ class Manga:
             return self.__artists
 
         if not self._artist_relationships:
-            return
+            return None
 
         formatted: list[Artist] = [
             Artist(self._http, artist) for artist in self._artist_relationships if "attributes" in artist
@@ -369,14 +377,14 @@ class Manga:
             return self.__authors
 
         if not self._author_relationships:
-            return
+            return None
 
         formatted: list[Author] = [
             Author(self._http, author) for author in self._author_relationships if "attributes" in author
         ]
 
         if not formatted:
-            return
+            return None
 
         self.__authors = formatted
         return self.__authors
@@ -403,11 +411,13 @@ class Manga:
             return self.__cover
 
         if not self._cover_relationship:
-            return
+            return None
 
         if "attributes" in self._cover_relationship:
             self.__cover = Cover(self._http, self._cover_relationship)
             return self.__cover
+
+        return None
 
     @cover.setter
     def cover(self, value: Cover) -> None:
@@ -426,14 +436,14 @@ class Manga:
             return self.__related_manga
 
         if not self._related_manga_relationships:
-            return
+            return None
 
         formatted: list[Manga] = [
             self.__class__(self._http, item) for item in self._related_manga_relationships if "attributes" in item
         ]
 
         if not formatted:
-            return
+            return None
 
         self.__related_manga = formatted
         return self.__related_manga
@@ -461,7 +471,7 @@ class Manga:
             return self.artists
 
         if not self._artist_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._artist_relationships]
 
@@ -471,7 +481,7 @@ class Manga:
             formatted.append(Artist(self._http, data["data"]))
 
         if not formatted:
-            return
+            return None
 
         self.artists = formatted
         return formatted
@@ -495,7 +505,7 @@ class Manga:
             return self.authors
 
         if not self._author_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._related_manga_relationships]
 
@@ -505,7 +515,7 @@ class Manga:
             formatted.append(Author(self._http, data["data"]))
 
         if not formatted:
-            return
+            return None
 
         self.authors = formatted
         return formatted
@@ -524,7 +534,7 @@ class Manga:
             return self.cover
 
         if not self._cover_relationship:
-            return
+            return None
 
         data = await self._http.get_cover(self._cover_relationship["id"], includes=CoverIncludes())
         self.cover = Cover(self._http, data["data"])
@@ -535,12 +545,17 @@ class Manga:
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
 
+        Returns
+        --------
+        Optional[:class:`str`]
+            The cover url, if present in the underlying manga details.
+
 
         .. note::
             For a more stable cover return, try :meth:`~hondana.Manga.get_cover`
         """
         if not self.cover:
-            return
+            return None
 
         return self.cover.url(size, parent_id=self.id)
 
@@ -570,7 +585,7 @@ class Manga:
             return self.related_manga
 
         if not self._related_manga_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._related_manga_relationships]
 
@@ -601,7 +616,7 @@ class Manga:
 
         ret: list[Manga] = [Manga(self._http, item) for item in data["data"]]
         if not ret:
-            return
+            return None
 
         self.related_manga = ret
         return self.related_manga
@@ -752,7 +767,8 @@ class Manga:
         -----------
         set_status: :class:`bool`
             Whether to set the reading status of the manga you follow.
-            Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
+            Due to the current MangaDex infrastructure, not setting a
+            status will cause the manga to not show up in your lists.
             Defaults to ``True``
         status: :class:`~hondana.ReadingStatus`
             The status to apply to the newly followed manga.
@@ -827,7 +843,7 @@ class Manga:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
@@ -909,13 +925,13 @@ class Manga:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
             )
 
-            from .chapter import Chapter
+            from .chapter import Chapter  # noqa: PLC0415 # cyclic import cheat
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
@@ -941,7 +957,11 @@ class Manga:
 
     @require_authentication
     async def bulk_update_read_markers(
-        self, *, update_history: bool = True, read_chapters: list[str] | None, unread_chapters: list[str] | None
+        self,
+        *,
+        update_history: bool = True,
+        read_chapters: list[str] | None,
+        unread_chapters: list[str] | None,
     ) -> None:
         """|coro|
 
@@ -964,10 +984,15 @@ class Manga:
         """
         if read_chapters or unread_chapters:
             await self._http.manga_read_markers_batch(
-                self.id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
+                self.id,
+                update_history=update_history,
+                read_chapters=read_chapters,
+                unread_chapters=unread_chapters,
             )
-        else:
-            raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
+            return
+
+        msg = "You must provide either `read_chapters` and/or `unread_chapters` to this method."
+        raise TypeError(msg)
 
     @require_authentication
     async def get_reading_status(self) -> manga.MangaSingleReadingStatusResponse:
@@ -1038,7 +1063,9 @@ class Manga:
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
         return await self._http.get_manga_volumes_and_chapters(
-            manga_id=self.id, translated_language=translated_language, groups=groups
+            manga_id=self.id,
+            translated_language=translated_language,
+            groups=groups,
         )
 
     @require_authentication
@@ -1108,7 +1135,7 @@ class Manga:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -1212,9 +1239,9 @@ class Manga:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
             )
-            from .chapter import Chapter
+            from .chapter import Chapter  # noqa: PLC0415 # cyclic import cheat
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
@@ -1263,7 +1290,7 @@ class Manga:
         data = await self._http.submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
-    async def get_relations(self, *, includes: MangaIncludes | None = MangaIncludes()) -> MangaRelationCollection:
+    async def get_relations(self, *, includes: MangaIncludes | None = None) -> MangaRelationCollection:
         """|coro|
 
         This method will return a list of all relations to a given manga.
@@ -1283,13 +1310,18 @@ class Manga:
         --------
         :class:`~hondana.MangaRelationCollection`
         """
-        data = await self._http.get_manga_relation_list(self.id, includes=includes)
+        data = await self._http.get_manga_relation_list(self.id, includes=includes or MangaIncludes())
         fmt = [MangaRelation(self._http, self.id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
 
     @require_authentication
     async def upload_cover(
-        self, *, cover: bytes, volume: str | None = None, description: str, locale: LanguageCode | None = None
+        self,
+        *,
+        cover: bytes,
+        volume: str | None = None,
+        description: str,
+        locale: LanguageCode | None = None,
     ) -> Cover:
         """|coro|
 
@@ -1429,14 +1461,14 @@ class MangaRelation:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_attributes",
+        "_data",
+        "_http",
         "_relationships",
-        "source_manga_id",
         "id",
-        "version",
         "relation_type",
+        "source_manga_id",
+        "version",
     )
 
     def __init__(self, http: HTTPClient, parent_id: str, payload: manga.MangaRelation, /) -> None:
@@ -1451,6 +1483,9 @@ class MangaRelation:
 
     def __repr__(self) -> str:
         return f"<MangaRelation id={self.id!r} source_manga_id={self.source_manga_id!r}>"
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, (Manga, MangaRelation)) and (self.id == other.id or self.source_manga_id == other.id)
@@ -1479,20 +1514,21 @@ class MangaStatistics:
 
 
     .. note::
-        The :attr:`distribution` attribute will be None unless this object was created with :meth:`hondana.Client.get_manga_statistics` or :meth:`hondana.Manga.get_statistics`
+        The :attr:`distribution` attribute will be None unless this object was
+        created with :meth:`hondana.Client.get_manga_statistics` or :meth:`hondana.Manga.get_statistics`
     """
 
     __slots__ = (
-        "_http",
-        "_data",
-        "_rating",
         "_comments",
         "_cs_comments",
-        "follows",
-        "parent_id",
+        "_data",
+        "_http",
+        "_rating",
         "average",
         "bayesian",
         "distribution",
+        "follows",
+        "parent_id",
     )
 
     def __init__(self, http: HTTPClient, parent_id: str, payload: MangaStatisticsResponse | BatchStatisticsResponse) -> None:
@@ -1521,6 +1557,8 @@ class MangaStatistics:
         if self._comments:
             return MangaComments(self._http, self._comments, self.parent_id)
 
+        return None
+
 
 class MangaRating:
     """
@@ -1537,11 +1575,11 @@ class MangaRating:
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
+        "created_at",
         "parent_id",
         "rating",
-        "created_at",
     )
 
     def __init__(self, http: HTTPClient, parent_id: str, payload: PersonalMangaRatingsResponse) -> None:

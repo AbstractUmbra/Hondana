@@ -27,16 +27,16 @@ from __future__ import annotations
 from typing import Literal, TypedDict
 
 __all__ = (
-    "StatisticsRatingResponse",
-    "BatchStatisticsRatingResponse",
-    "MangaStatisticsResponse",
-    "BatchStatisticsResponse",
-    "GetMangaStatisticsResponse",
     "BatchGetStatisticsResponse",
-    "PersonalMangaRatingsResponse",
-    "GetPersonalMangaRatingsResponse",
-    "GetCommentsStatisticsResponse",
+    "BatchStatisticsRatingResponse",
+    "BatchStatisticsResponse",
     "CommentMetaData",
+    "GetCommentsStatisticsResponse",
+    "GetMangaStatisticsResponse",
+    "GetPersonalMangaRatingsResponse",
+    "MangaStatisticsResponse",
+    "PersonalMangaRatingsResponse",
+    "StatisticsRatingResponse",
 )
 
 

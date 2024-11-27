@@ -34,10 +34,10 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "CoverResponse",
     "CoverAttributesResponse",
-    "GetSingleCoverResponse",
+    "CoverResponse",
     "GetMultiCoverResponse",
+    "GetSingleCoverResponse",
 )
 
 

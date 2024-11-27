@@ -38,7 +38,7 @@ class TestChapter:
         chapter = clone_chapter()
         for item in PAYLOAD["data"]["attributes"]:
             if item == "publishAt":
-                item = "publishedAt"  # special cased because it's the only attribute that is future tense, i.e. created_at, updated_at vs publish_at.
+                item = "publishedAt"  # noqa: PLW2901 # special cased because it's the only attribute that is future tense, i.e. created_at, updated_at vs publish_at.
             assert hasattr(chapter, to_snake_case(item))
 
     def test_relationship_length(self) -> None:

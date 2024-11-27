@@ -50,12 +50,12 @@ class LegacyItem:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
-        "id",
         "_attributes",
-        "obj_new_id",
+        "_data",
+        "_http",
+        "id",
         "obj_legacy_id",
+        "obj_new_id",
         "obj_type",
     )
 
@@ -69,7 +69,16 @@ class LegacyItem:
         self.obj_type: LegacyMappingType = self._attributes["type"]
 
     def __repr__(self) -> str:
-        return f"<LegacyItem id={self.id!r} obj_type={self.obj_type!r} obj_new_id={self.obj_new_id!r} obj_legacy_id={self.obj_legacy_id!r}>"
+        return (
+            "<LegacyItem "
+            f"id={self.id!r} "
+            f"obj_type={self.obj_type!r} "
+            f"obj_new_id={self.obj_new_id!r} "
+            f"obj_legacy_id={self.obj_legacy_id!r}>"
+        )
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, LegacyItem) and self.id == other.id

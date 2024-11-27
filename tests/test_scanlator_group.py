@@ -34,7 +34,7 @@ class TestScanlatorGroup:
 
         for item in PAYLOAD["data"]["attributes"]:
             if item == "publishDelay":
-                item = "_publish_delay"  # we made this a property to allow manipulation
+                item = "_publish_delay"  # noqa: PLW2901  # we made this a property to allow manipulation
             assert hasattr(group, to_snake_case(item))
 
     def test_relationship_length(self) -> None:

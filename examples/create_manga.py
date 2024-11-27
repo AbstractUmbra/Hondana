@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import pathlib
 from typing import TYPE_CHECKING
 
 import hondana
@@ -26,18 +27,23 @@ async def main() -> None:
 
         # Create the manga with them:
         draft_manga = await client.create_manga(
-            title=manga_title, original_language=original_language, status=status, content_rating=content_rating
+            title=manga_title,
+            original_language=original_language,
+            status=status,
+            content_rating=content_rating,
         )
 
         # This manga is now created in "draft" state. This is outlined more here:
         # https://api.mangadex.org/docs.html#section/Manga-Creation
         # tl;dr it's to remove the spam creations and to ensure there's a cover on the manga... so let's do that now.
-        with open("our_cover.png", "rb") as file:  # noqa: PTH123
-            cover = file.read()
+        cover = pathlib.Path("our_cover.png").read_bytes()
 
         # When we upload a cover, we need to attribute it to a manga, so lets use the draft one we created.
         uploaded_cover = await draft_manga.upload_cover(
-            cover=cover, volume=None, description="My awesome cover", locale="en"
+            cover=cover,
+            volume=None,
+            description="My awesome cover",
+            locale="en",
         )
         print(uploaded_cover)
 
@@ -45,7 +51,8 @@ async def main() -> None:
         submitted_manga = await draft_manga.submit_draft(version=1)
         print(submitted_manga)
 
-        # NOTE: Something to note is that the version of draft MUST match the version of submitted manga during the approval stage.
+        # NOTE: Something to note is that the version of draft MUST match the version of
+        # submitted manga during the approval stage.
 
 
 # we don't log out as exiting the context manager provides a clean exit.

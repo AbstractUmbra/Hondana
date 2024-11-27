@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
-"""
+"""  # noqa: A005 # we would use this as a namespace ideally
 
 from __future__ import annotations
 
@@ -49,18 +49,18 @@ if TYPE_CHECKING:
     from .user import User
 
 __all__ = (
-    "MangaCollection",
-    "MangaRelationCollection",
-    "ChapterFeed",
     "AuthorCollection",
+    "ChapterFeed",
+    "ChapterReadHistoryCollection",
     "CoverCollection",
-    "ScanlatorGroupCollection",
-    "ReportCollection",
-    "UserReportCollection",
-    "UserCollection",
     "CustomListCollection",
     "LegacyMappingCollection",
-    "ChapterReadHistoryCollection",
+    "MangaCollection",
+    "MangaRelationCollection",
+    "ReportCollection",
+    "ScanlatorGroupCollection",
+    "UserCollection",
+    "UserReportCollection",
 )
 
 T = TypeVar("T")
@@ -115,12 +115,12 @@ class MangaCollection(BaseCollection["Manga"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
-        "manga",
-        "total",
+        "_http",
         "limit",
+        "manga",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: MangaSearchResponse, manga: list[Manga]) -> None:
@@ -166,12 +166,12 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
+        "limit",
+        "offset",
         "relations",
         "total",
-        "offset",
-        "limit",
     )
 
     def __init__(self, http: HTTPClient, payload: MangaRelationResponse, relations: list[MangaRelation]) -> None:
@@ -185,7 +185,13 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<MangaRelationCollection authors={len(self.relations)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return (
+            "<MangaRelationCollection "
+            f"authors={len(self.relations)} "
+            f"total={self.total} "
+            f"offset={self.offset} "
+            f"limit={self.limit}>"
+        )
 
     @property
     def items(self) -> list[MangaRelation]:
@@ -217,12 +223,12 @@ class ChapterFeed(BaseCollection["Chapter"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "chapters",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiChapterResponse, chapters: list[Chapter]) -> None:
@@ -268,12 +274,12 @@ class AuthorCollection(BaseCollection["Author"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "authors",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiAuthorResponse, authors: list[Author]) -> None:
@@ -319,12 +325,12 @@ class CoverCollection(BaseCollection["Cover"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "covers",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiCoverResponse, covers: list[Cover]) -> None:
@@ -370,12 +376,12 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "groups",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiScanlationGroupResponse, groups: list[ScanlatorGroup]) -> None:
@@ -389,7 +395,13 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<ScanlatorGroupCollection groups={len(self.groups)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return (
+            "<ScanlatorGroupCollection "
+            f"groups={len(self.groups)} "
+            f"total={self.total} "
+            f"offset={self.offset} "
+            f"limit={self.limit}>"
+        )
 
     @property
     def items(self) -> list[ScanlatorGroup]:
@@ -421,12 +433,12 @@ class ReportCollection(BaseCollection["Report"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
-        "reports",
-        "total",
+        "_http",
         "limit",
         "offset",
+        "reports",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetReportReasonResponse, reports: list[Report]) -> None:
@@ -472,12 +484,12 @@ class UserReportCollection(BaseCollection["UserReport"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
-        "reports",
-        "total",
+        "_http",
         "limit",
         "offset",
+        "reports",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetUserReportReasonResponse, reports: list[UserReport]) -> None:
@@ -525,12 +537,12 @@ class UserCollection(BaseCollection["User"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
-        "users",
-        "total",
+        "_http",
         "limit",
         "offset",
+        "total",
+        "users",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiUserResponse, users: list[User]) -> None:
@@ -576,12 +588,12 @@ class CustomListCollection(BaseCollection["CustomList"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
-        "lists",
-        "total",
+        "_http",
         "limit",
+        "lists",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetMultiCustomListResponse, lists: list[CustomList]) -> None:
@@ -627,12 +639,12 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "legacy_mappings",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: GetLegacyMappingResponse, mappings: list[LegacyItem]) -> None:
@@ -646,7 +658,13 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<LegacyMappingCollection legacy_mappings={len(self.legacy_mappings)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return (
+            "<LegacyMappingCollection "
+            f"legacy_mappings={len(self.legacy_mappings)} "
+            f"total={self.total} "
+            f"offset={self.offset} "
+            f"limit={self.limit}>"
+        )
 
     @property
     def items(self) -> list[LegacyItem]:
@@ -678,12 +696,12 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "chapter_read_histories",
-        "total",
         "limit",
         "offset",
+        "total",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterReadHistoryResponse, history: list[PreviouslyReadChapter]) -> None:
@@ -697,7 +715,13 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
         super().__init__()
 
     def __repr__(self) -> str:
-        return f"<ChapterReadHistoryCollection history={len(self.history)} total={self.total} offset={self.offset} limit={self.limit}>"
+        return (
+            "<ChapterReadHistoryCollection "
+            f"history={len(self.history)} "
+            f"total={self.total} "
+            f"offset={self.offset} "
+            f"limit={self.limit}>"
+        )
 
     @property
     def items(self) -> list[PreviouslyReadChapter]:

@@ -32,15 +32,15 @@ if TYPE_CHECKING:
     from .types_.errors import ErrorType
 
 __all__ = (
-    "AuthenticationRequired",
-    "RefreshTokenFailure",
-    "UploadInProgress",
-    "MangaDexServerError",
     "APIException",
-    "NotFound",
+    "AuthenticationRequired",
     "BadRequest",
-    "Unauthorized",
     "Forbidden",
+    "MangaDexServerError",
+    "NotFound",
+    "RefreshTokenFailure",
+    "Unauthorized",
+    "UploadInProgress",
 )
 
 
@@ -61,10 +61,10 @@ class Error:
     """
 
     __slots__ = (
+        "error_detail",
         "error_id",
         "error_status",
         "error_title",
-        "error_detail",
     )
 
     def __init__(self, error: ErrorType) -> None:
@@ -171,11 +171,11 @@ class APIException(Exception):
     """
 
     __slots__ = (
-        "response",
-        "status_code",
-        "response_id",
-        "errors",
         "_errors",
+        "errors",
+        "response",
+        "response_id",
+        "status_code",
     )
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, status_code: int, errors: list[ErrorType]) -> None:
@@ -188,10 +188,18 @@ class APIException(Exception):
         super().__init__(self.status_code, self.errors)
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} response_id={self.response_id} status_code={self.status_code} error_amount: {len(self.errors)}>"
+        return (
+            f"<{self.__class__.__name__} "
+            f"response_id={self.response_id} "
+            f"status_code={self.status_code} "
+            f"error_amount: {len(self.errors)}>"
+        )
 
     def __str__(self) -> str:
-        return f"HTTP Status: {self.status_code} and response id: {self.response_id} :: {', '.join([error.error_detail for error in self.errors])}"
+        return (
+            f"HTTP Status: {self.status_code} and response id: {self.response_id} :: "
+            f"{', '.join([error.error_detail for error in self.errors])}"
+        )
 
 
 class BadRequest(APIException):

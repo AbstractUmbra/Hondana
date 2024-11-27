@@ -74,10 +74,10 @@ ChapterUploadT = TypeVar("ChapterUploadT", bound="ChapterUpload")
 __all__ = (
     "Chapter",
     "ChapterAtHome",
-    "UploadData",
+    "ChapterStatistics",
     "ChapterUpload",
     "PreviouslyReadChapter",
-    "ChapterStatistics",
+    "UploadData",
 )
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
@@ -108,35 +108,37 @@ class Chapter:
 
 
     .. warning::
-        THe :attr:`manga` and :meth:`get_parent_manga` will both return a :class:`~hondana.Manga` with minimal data if this Chapter was requested as part of a feed.
-        The reason is that the ``Chapter.relationships["manga"].relationships`` key is null the API response during feed requests to avoid potential recursive data.
+        THe :attr:`manga` and :meth:`get_parent_manga` will both return a :class:`~hondana.Manga`
+        with minimal data if this Chapter was requested as part of a feed.
+        The reason is that the ``Chapter.relationships["manga"].relationships`` key is null
+        the API response during feed requests to avoid potential recursive data.
     """
 
     __slots__ = (
-        "_http",
-        "_data",
-        "_attributes",
-        "id",
-        "title",
-        "volume",
-        "chapter",
-        "pages",
-        "translated_language",
-        "external_url",
-        "version",
-        "_created_at",
-        "_updated_at",
-        "_published_at",
-        "_readable_at",
-        "_manga_relationship",
-        "_scanlator_group_relationships",
-        "_uploader_relationship",
-        "_at_home_url",
-        "_stats",
-        "__uploader",
         "__parent",
         "__scanlator_groups",
+        "__uploader",
+        "_at_home_url",
+        "_attributes",
+        "_created_at",
         "_cs_relationships",
+        "_data",
+        "_http",
+        "_manga_relationship",
+        "_published_at",
+        "_readable_at",
+        "_scanlator_group_relationships",
+        "_stats",
+        "_updated_at",
+        "_uploader_relationship",
+        "chapter",
+        "external_url",
+        "id",
+        "pages",
+        "title",
+        "translated_language",
+        "version",
+        "volume",
     )
 
     def __init__(self, http: HTTPClient, payload: ChapterResponse) -> None:
@@ -158,10 +160,12 @@ class Chapter:
         self._readable_at = self._attributes["readableAt"]
         self._stats: ChapterStatistics | None = None
         self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(
-            with_fallback=False, remove_empty=True
+            with_fallback=False,
+            remove_empty=True,
         )[0]
         self._scanlator_group_relationships: list[ScanlationGroupResponse] = RelationshipResolver(
-            relationships, "scanlation_group"
+            relationships,
+            "scanlation_group",
         ).resolve(with_fallback=False, remove_empty=True)
         self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve(remove_empty=True)[0]
         self._at_home_url: str | None = None
@@ -174,6 +178,9 @@ class Chapter:
 
     def __str__(self) -> str:
         return self.title or f"No title for this chapter, with ID: {self.id!r}"
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Chapter) and self.id == other.id
@@ -213,7 +220,7 @@ class Chapter:
                 fmt[name] = getattr(self, name)
         return fmt
 
-    async def get_at_home(self, ssl: bool = True) -> ChapterAtHome:
+    async def get_at_home(self, *, ssl: bool = True) -> ChapterAtHome:
         """|coro|
 
         This method returns the @Home data for this chapter.
@@ -300,7 +307,7 @@ class Chapter:
             return self.__parent
 
         if not self._manga_relationship:
-            return
+            return None
 
         manga = Manga(self._http, self._manga_relationship)
         self.__parent = manga
@@ -340,12 +347,12 @@ class Chapter:
             return self.__scanlator_groups
 
         if not self._scanlator_group_relationships:
-            return
+            return None
 
         fmt = [ScanlatorGroup(self._http, payload) for payload in self._scanlator_group_relationships]
 
         if not fmt:
-            return
+            return None
 
         self.__scanlator_groups = fmt
         return self.__scanlator_groups
@@ -367,7 +374,7 @@ class Chapter:
             return self.__uploader
 
         if not self._uploader_relationship:
-            return
+            return None
 
         self.__uploader = User(self._http, self._uploader_relationship)
         return self.__uploader
@@ -386,10 +393,10 @@ class Chapter:
             return self.manga
 
         if not self._manga_relationship:
-            return
+            return None
 
         if self.manga_id is None:
-            return
+            return None
 
         manga = await self._http.get_manga(self.manga_id, includes=MangaIncludes())
 
@@ -415,7 +422,7 @@ class Chapter:
             return self.scanlator_groups
 
         if not self._scanlator_group_relationships:
-            return
+            return None
 
         ids = [item["id"] for item in self._scanlator_group_relationships]
 
@@ -512,7 +519,7 @@ class Chapter:
         await self._http.delete_chapter(self.id)
 
     @require_authentication
-    async def mark_as_read(self, update_history: bool = True) -> None:
+    async def mark_as_read(self, *, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark the current chapter as read for the current authenticated user in the MangaDex API.
@@ -524,11 +531,14 @@ class Chapter:
         """
         if self.manga_id:
             await self._http.manga_read_markers_batch(
-                self.manga_id, update_history=update_history, read_chapters=[self.id], unread_chapters=None
+                self.manga_id,
+                update_history=update_history,
+                read_chapters=[self.id],
+                unread_chapters=None,
             )
 
     @require_authentication
-    async def mark_as_unread(self, update_history: bool = True) -> None:
+    async def mark_as_unread(self, *, update_history: bool = True) -> None:
         """|coro|
 
         This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
@@ -540,7 +550,10 @@ class Chapter:
         """
         if self.manga_id:
             await self._http.manga_read_markers_batch(
-                self.manga_id, update_history=update_history, read_chapters=None, unread_chapters=[self.id]
+                self.manga_id,
+                update_history=update_history,
+                read_chapters=None,
+                unread_chapters=[self.id],
             )
 
     @require_authentication
@@ -562,14 +575,20 @@ class Chapter:
         return self.stats
 
     async def _pages(
-        self, *, start: int, end: int | None, data_saver: bool, ssl: bool, report: bool
+        self,
+        *,
+        start: int,
+        end: int | None,
+        data_saver: bool,
+        ssl: bool,
+        report: bool,
     ) -> AsyncGenerator[tuple[bytes, str], None]:
         at_home_data = await self.get_at_home(ssl=ssl)
         self._at_home_url = at_home_data.base_url
 
         _pages = at_home_data.data_saver if data_saver else at_home_data.data
         _actual_pages = _pages[start:] if end is None else _pages[start:end]
-        for i, url in enumerate(_actual_pages, start=1):
+        for i, url in enumerate(_actual_pages, start=1):  # noqa: B007 # it gets used in the outer scope
             route = Route(
                 "GET",
                 f"/{'data-saver' if data_saver else 'data'}/{at_home_data.hash}/{url}",
@@ -632,7 +651,8 @@ class Chapter:
         data_saver: :class:`bool`
             Whether to use the smaller (and poorer quality) images, if you are on a data budget. Defaults to ``False``.
         ssl: :class:`bool`
-            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared to potentially getting an HTTP url.
+            Whether to request an SSL @Home link from MangaDex, this guarantees https as compared
+            to potentially getting a HTTP url.
             Defaults to ``False``.
         report: :class:`bool`
             Whether to report success or failures to MangaDex per page download.
@@ -646,7 +666,11 @@ class Chapter:
 
         idx = 1
         async for page_data, page_ext in self._pages(
-            start=start_page, end=end_page, data_saver=data_saver, ssl=ssl, report=report
+            start=start_page,
+            end=end_page,
+            data_saver=data_saver,
+            ssl=ssl,
+            report=report,
         ):
             download_path = path_ / f"{idx}.{page_ext}"
             with download_path.open("wb") as f:
@@ -714,12 +738,12 @@ class ChapterAtHome:
     """
 
     __slots__ = (
-        "_http",
         "_data",
+        "_http",
         "base_url",
-        "hash",
         "data",
         "data_saver",
+        "hash",
     )
 
     def __init__(self, http: HTTPClient, payload: GetAtHomeResponse) -> None:
@@ -733,6 +757,9 @@ class ChapterAtHome:
 
     def __repr__(self) -> str:
         return f"<ChapterAtHome hash={self.hash!r}>"
+
+    def __hash__(self) -> int:
+        return hash(self.hash)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, ChapterAtHome) and self.hash == other.hash
@@ -753,11 +780,11 @@ class UploadData:
     """
 
     __slots__ = (
-        "succeeded",
+        "_cs_errored_files",
+        "_filenames",
         "errors",
         "has_failures",
-        "_filenames",
-        "_cs_errored_files",
+        "succeeded",
     )
 
     def __init__(self, succeeded: list[UploadedChapterResponse], errors: list[ErrorType], /, *, filenames: set[str]) -> None:
@@ -783,8 +810,7 @@ class UploadData:
         """
         _succeeded: set[str] = set()
         for item in self.succeeded:
-            for data in item["data"]:
-                _succeeded.add(data["attributes"]["originalFileName"])
+            _succeeded.update(data["attributes"]["originalFileName"] for data in item["data"])
 
         return self._filenames ^ _succeeded
 
@@ -832,22 +858,22 @@ class ChapterUpload:
     """
 
     __slots__ = (
+        "__committed",
         "_http",
-        "manga",
-        "volume",
+        "_uploaded_filenames",
         "chapter",
         "chapter_to_edit",
-        "title",
-        "translated_language",
         "external_url",
+        "manga",
         "publish_at",
         "scanlator_groups",
-        "uploaded",
+        "title",
+        "translated_language",
         "upload_errors",
         "upload_session_id",
+        "uploaded",
         "version",
-        "_uploaded_filenames",
-        "__committed",
+        "volume",
     )
 
     def __init__(
@@ -868,10 +894,12 @@ class ChapterUpload:
         version: int | None = None,
     ) -> None:
         if len(scanlator_groups) > 10:
-            raise ValueError("You can only attribute up to 10 scanlator groups per upload.")
+            msg = "You can only attribute up to 10 scanlator groups per upload."
+            raise ValueError(msg)
 
         if chapter_to_edit and not version:
-            raise ValueError("You must specify a version if you are editing a chapter.")
+            msg = "You must specify a version if you are editing a chapter."
+            raise ValueError(msg)
 
         self._http: HTTPClient = http
         self.manga: Manga | str = manga
@@ -900,8 +928,9 @@ class ChapterUpload:
         except NotFound:
             LOGGER.info("No upload session found, continuing.")
         else:
+            msg = f"You already have an existing session, please terminate it: {data['data']['id']}"
             raise UploadInProgress(
-                f"You already have an existing session, please terminate it: {data['data']['id']}",
+                msg,
                 session_id=data["data"]["id"],
             )
 
@@ -919,10 +948,16 @@ class ChapterUpload:
         if self.chapter_to_edit is not None:
             chapter_id = self.chapter_to_edit.id if isinstance(self.chapter_to_edit, Chapter) else self.chapter_to_edit
             return await self._http.open_upload_session(
-                manga_id, scanlator_groups=self.scanlator_groups, chapter_id=chapter_id, version=self.version
+                manga_id,
+                scanlator_groups=self.scanlator_groups,
+                chapter_id=chapter_id,
+                version=self.version,
             )
         return await self._http.open_upload_session(
-            manga_id, scanlator_groups=self.scanlator_groups, chapter_id=None, version=None
+            manga_id,
+            scanlator_groups=self.scanlator_groups,
+            chapter_id=None,
+            version=None,
         )
 
     @require_authentication
@@ -964,7 +999,8 @@ class ChapterUpload:
 
 
         .. note::
-            If ``sorting_key`` is provided, then it must be a callable that takes a single parameter of ``pathlib.Path`` and returns a sortable value.
+            If ``sorting_key`` is provided, then it must be a callable that takes a single parameter of
+            ``pathlib.Path`` and returns a sortable value.
             This means that the return value of ``sorting_key`` must be richly comparable, with ``__lt__`` and ``__gt__``.
         """
         route = Route("POST", "/upload/{session_id}", session_id=self.upload_session_id, authenticate=True)
@@ -978,7 +1014,7 @@ class ChapterUpload:
         outer_idx = 1
         for batch in chunks:
             form = aiohttp.FormData()
-            for _, item in enumerate(batch, start=outer_idx):
+            for _, item in enumerate(batch, start=outer_idx):  # noqa: FURB148 # we use this for the passable enumeration
                 with item.open("rb") as f:
                     data = f.read()
 
@@ -996,9 +1032,7 @@ class ChapterUpload:
 
             success.append(response)
 
-        data = UploadData(success, self.upload_errors, filenames=self._uploaded_filenames)
-
-        return data
+        return UploadData(success, self.upload_errors, filenames=self._uploaded_filenames)
 
     @require_authentication
     async def delete_images(self, image_ids: list[str], /) -> None:
@@ -1095,7 +1129,10 @@ class ChapterUpload:
         return self
 
     async def __aexit__(
-        self, exc_type: type[BaseException] | None, exc_value: BaseException | None, traceback: TracebackType | None
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: TracebackType | None,
     ) -> None:
         if self.__committed is False:
             await self.commit()
@@ -1116,11 +1153,11 @@ class PreviouslyReadChapter:
     def __init__(self, http: HTTPClient, data: tuple[str, str]) -> None:
         self._http = http
         self.chapter_id: str = data[0]
-        dt = datetime.datetime.strptime(data[1], "%Y-%m-%dT%H:%M:%S.%fZ")
+        dt = datetime.datetime.strptime(data[1], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=datetime.UTC)
         dt.replace(tzinfo=datetime.UTC)
         self.read_date: datetime.datetime = dt
 
-    async def fetch_chapter(self, *, includes: ChapterIncludes = ChapterIncludes()) -> Chapter:
+    async def fetch_chapter(self, *, includes: ChapterIncludes = MISSING) -> Chapter:
         """|coro|
 
         This method will fetch the chapter from the ID in the read payload.
@@ -1129,7 +1166,7 @@ class PreviouslyReadChapter:
         ---------
         :class:`~hondana.Chapter`
         """
-        data = await self._http.get_chapter(self.chapter_id, includes=includes)
+        data = await self._http.get_chapter(self.chapter_id, includes=includes or ChapterIncludes())
         return Chapter(self._http, data["data"])
 
 
@@ -1144,10 +1181,10 @@ class ChapterStatistics:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_comments",
         "_cs_comments",
+        "_data",
+        "_http",
         "parent_id",
     )
 
@@ -1171,3 +1208,5 @@ class ChapterStatistics:
         """
         if self._comments:
             return ChapterComments(self._http, self._comments, self.parent_id)
+
+        return None

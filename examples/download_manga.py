@@ -16,7 +16,8 @@ async def main() -> None:
         feed = await manga.feed(limit=500, offset=0, translated_language=["en"])
 
         # This is how you recursively download the chapters.
-        # The string in the `.download()` call is the path to save all the chapters in. It will recursively create it, if needed.
+        # The string in the `.download()` call is the path to save all the chapters in.
+        # It will recursively create it, if needed.
         for chapter in feed.chapters:
             await chapter.download(f"{manga.title}/{chapter.chapter}")
 

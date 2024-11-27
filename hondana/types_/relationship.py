@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 __all__ = ("RelationshipResponse",)
 
 
-RelationshipResponse: TypeAlias = "artist.ArtistResponse | author.AuthorResponse | chapter.ChapterResponse | cover.CoverResponse | manga.MangaResponse | scanlator_group.ScanlationGroupResponse | user.UserResponse"
+RelationshipResponse: TypeAlias = "artist.ArtistResponse | author.AuthorResponse | chapter.ChapterResponse | cover.CoverResponse | manga.MangaResponse | scanlator_group.ScanlationGroupResponse | user.UserResponse"  # noqa: E501 # cannot be formatted otherwise
 """
 id: :class:`str`
 

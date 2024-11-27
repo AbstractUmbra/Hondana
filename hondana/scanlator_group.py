@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     from .types_.scanlator_group import ScanlationGroupResponse
     from .types_.statistics import CommentMetaData, StatisticsCommentsResponse
     from .types_.user import UserResponse
-    from .user import User  # noqa: TCH004
+    from .user import User  # noqa: TC004
 
 __all__ = (
     "ScanlatorGroup",
@@ -90,35 +90,35 @@ class ScanlatorGroup:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
-        "_attributes",
-        "id",
-        "name",
-        "alt_names",
-        "website",
-        "irc_server",
-        "irc_channel",
-        "discord",
-        "focused_languages",
-        "contact_email",
-        "description",
-        "twitter",
-        "manga_updates",
-        "locked",
-        "official",
-        "verified",
-        "inactive",
-        "ex_licensed",
-        "version",
-        "_created_at",
-        "_updated_at",
-        "_publish_delay",
-        "_stats",
-        "_leader_relationship",
-        "_member_relationships",
         "__leader",
         "__members",
+        "_attributes",
+        "_created_at",
+        "_data",
+        "_http",
+        "_leader_relationship",
+        "_member_relationships",
+        "_publish_delay",
+        "_stats",
+        "_updated_at",
+        "alt_names",
+        "contact_email",
+        "description",
+        "discord",
+        "ex_licensed",
+        "focused_languages",
+        "id",
+        "inactive",
+        "irc_channel",
+        "irc_server",
+        "locked",
+        "manga_updates",
+        "name",
+        "official",
+        "twitter",
+        "verified",
+        "version",
+        "website",
     )
 
     def __init__(self, http: HTTPClient, payload: ScanlationGroupResponse) -> None:
@@ -149,10 +149,12 @@ class ScanlatorGroup:
         self._publish_delay: str = self._attributes["publishDelay"]
         self._stats: ScanlatorGroupStatistics | None = None
         self._leader_relationship: UserResponse | None = RelationshipResolver["UserResponse"](
-            relationships, "leader"
+            relationships,
+            "leader",
         ).resolve(with_fallback=True)[0]
         self._member_relationships: list[UserResponse] = RelationshipResolver["UserResponse"](
-            relationships, "member"
+            relationships,
+            "member",
         ).resolve()
         self.__leader: User | None = None
         self.__members: list[User] | None = None
@@ -162,6 +164,9 @@ class ScanlatorGroup:
 
     def __str__(self) -> str:
         return self.name
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, ScanlatorGroup) and self.id == other.id
@@ -224,6 +229,8 @@ class ScanlatorGroup:
         if self._publish_delay:
             return iso_to_delta(self._publish_delay)
 
+        return None
+
     @property
     def leader(self) -> User | None:
         """The leader of this scanlation group, if any.
@@ -237,14 +244,16 @@ class ScanlatorGroup:
             return self.__leader
 
         if not self._leader_relationship:
-            return
+            return None
 
         if "attributes" in self._leader_relationship:
-            from .user import User
+            from .user import User  # noqa: PLC0415 # cyclic import cheat
 
             user = User(self._http, self._leader_relationship)
             self.__leader = user
             return self.__leader
+
+        return None
 
     @leader.setter
     def leader(self, other: User) -> None:
@@ -263,18 +272,18 @@ class ScanlatorGroup:
             return self.__members
 
         if not self._member_relationships:
-            return
+            return None
 
         fmt: list[User] = []
 
         for relationship in self._member_relationships:
-            from .user import User
+            from .user import User  # noqa: PLC0415 # cyclic import cheat
 
             if "attributes" in relationship:
                 fmt.append(User(self._http, relationship))
 
         if not fmt:
-            return
+            return None
 
         self.__members = fmt
         return self.__members
@@ -302,12 +311,12 @@ class ScanlatorGroup:
             return self.leader
 
         if not self._leader_relationship:
-            return
+            return None
 
         leader_id = self._leader_relationship["id"]
         data = await self._http.get_user(leader_id)
 
-        from .user import User
+        from .user import User  # noqa: PLC0415 # cyclic import cheat
 
         leader = User(self._http, data["data"])
         self.__leader = leader
@@ -335,7 +344,7 @@ class ScanlatorGroup:
             return self.members
 
         if not self._member_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._member_relationships]
 
@@ -453,7 +462,8 @@ class ScanlatorGroup:
 
 
         .. note::
-            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``manga_updates``, ``focused_language`` and ``publish_delay``
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``,
+            ``twitter``, ``manga_updates``, ``focused_language`` and ``publish_delay``
             keys are all nullable in the API. To do so pass ``None`` explicitly to these keys.
 
         .. note::
@@ -524,10 +534,10 @@ class ScanlatorGroupStatistics:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_comments",
         "_cs_comments",
+        "_data",
+        "_http",
         "parent_id",
     )
 
@@ -551,3 +561,5 @@ class ScanlatorGroupStatistics:
         """
         if self._comments:
             return ScanlatorGroupComments(self._http, self._comments, self.parent_id)
+
+        return None

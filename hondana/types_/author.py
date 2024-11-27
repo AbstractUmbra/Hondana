@@ -36,8 +36,8 @@ if TYPE_CHECKING:
 __all__ = (
     "AuthorAttributesResponse",
     "AuthorResponse",
-    "GetSingleAuthorResponse",
     "GetMultiAuthorResponse",
+    "GetSingleAuthorResponse",
 )
 
 

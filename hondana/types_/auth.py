@@ -27,10 +27,10 @@ from __future__ import annotations
 from typing import Literal, TypedDict
 
 __all__ = (
-    "TokenResponse",
+    "CheckPayload",
     "LoginPayload",
     "RefreshPayload",
-    "CheckPayload",
+    "TokenResponse",
 )
 
 

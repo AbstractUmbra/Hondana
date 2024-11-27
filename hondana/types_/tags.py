@@ -32,9 +32,9 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "TagResponse",
     "GetTagListResponse",
     "TagAttributesResponse",
+    "TagResponse",
 )
 
 

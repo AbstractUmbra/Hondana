@@ -42,17 +42,17 @@ try:
 except ModuleNotFoundError:
 
     def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""
+        """A quick method that dumps a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
         return json.dumps(obj, separators=(",", ":"), ensure_ascii=True, indent=2)
 
     _from_json = json.loads
 else:
 
     def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""
+        """A quick method that dumps a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
         return orjson.dumps(obj, option=orjson.OPT_INDENT_2).decode("utf-8")
 
-    _from_json = orjson.loads  # pyright: ignore[] # this is guarded in an if.
+    _from_json = orjson.loads
 
 from .errors import AuthenticationRequired
 
@@ -85,42 +85,42 @@ if TYPE_CHECKING:
 LOGGER = logging.getLogger(__name__)
 
 __all__ = (
-    "MANGADEX_URL_REGEX",
     "MANGADEX_TIME_REGEX",
-    "AuthorArtistTag",
+    "MANGADEX_URL_REGEX",
+    "MANGA_TAGS",
     "MISSING",
+    "AuthorArtistTag",
+    "RelationshipResolver",
     "Route",
+    "as_chunks",
     "cached_slot_property",
-    "to_json",
+    "clean_isoformat",
+    "delta_to_iso",
+    "deprecated",
+    "from_json",
+    "get_image_mime_type",
+    "iso_to_delta",
     "json_or_text",
     "php_query_builder",
-    "deprecated",
-    "to_snake_case",
     "to_camel_case",
-    "get_image_mime_type",
-    "as_chunks",
-    "delta_to_iso",
-    "iso_to_delta",
-    "RelationshipResolver",
-    "clean_isoformat",
-    "MANGA_TAGS",
-    "from_json",
+    "to_json",
+    "to_snake_case",
 )
 
 _PROJECT_DIR = pathlib.Path(__file__)
 MAX_DEPTH: int = 10_000
 MANGADEX_URL_REGEX = re.compile(
-    r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"
+    r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)",
 )
 r"""
 ``r"(?:http[s]?:\/\/)?mangadex\.org\/(?P<type>title|chapter|author|tag)\/(?P<ID>[a-z0-9]{8}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{4}\-[a-z0-9]{12})\/?(?P<title>.*)"``
 
 This `regex pattern <https://docs.python.org/3/library/re.html#re-objects>`_ can be used to isolate common elements from a MangaDex URL.
 This means that Manga, Chapter, Author or Tag urls can be parsed for their ``type``, ``ID`` and ``title``.
-"""
+"""  # noqa: E501
 
 MANGADEX_TIME_REGEX = re.compile(
-    r"^(P(?P<days>[1-9]|[1-9][0-9])D)?(P?(?P<weeks>[1-9])W)?(P?T((?P<hours>[1-9]|1[0-9]|2[0-4])H)?((?P<minutes>[1-9]|[1-5][0-9]|60)M)?((?P<seconds>[1-9]|[1-5][0-9]|60)S)?)?$"
+    r"^(P(?P<days>[1-9]|[1-9][0-9])D)?(P?(?P<weeks>[1-9])W)?(P?T((?P<hours>[1-9]|1[0-9]|2[0-4])H)?((?P<minutes>[1-9]|[1-5][0-9]|60)M)?((?P<seconds>[1-9]|[1-5][0-9]|60)S)?)?$",
 )
 """
 ``r"^(P([1-9]|[1-9][0-9])D)?(P?([1-9])W)?(P?T(([1-9]|1[0-9]|2[0-4])H)?(([1-9]|[1-5][0-9]|60)M)?(([1-9]|[1-5][0-9]|60)S)?)?$"``
@@ -129,12 +129,11 @@ This `regex pattern <https://docs.python.org/3/library/re.html#re-objects>`_ fol
 The pattern *is* usable but more meant as a guideline for your formatting.
 
 It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day, 2 weeks, 3 hours and 4 minutes)
-"""
+"""  # noqa: E501
 
 
 class AuthorArtistTag:
     id: str
-    pass
 
 
 class Route:
@@ -152,15 +151,21 @@ class Route:
         Defaults to ``False``.
     parameters: Any
         This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
-        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
-        making ``"manga/..."``
+        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``,
+        then it will expand into the path making ``"manga/..."``
     """
 
     API_BASE_URL: ClassVar[str] = "https://api.mangadex.org"
     API_DEV_BASE_URL: ClassVar[str] = "https://api.mangadex.dev"
 
     def __init__(
-        self, verb: str, path: str, *, base: str | None = None, authenticate: bool = False, **parameters: Any
+        self,
+        verb: str,
+        path: str,
+        *,
+        base: str | None = None,
+        authenticate: bool = False,
+        **parameters: Any,
     ) -> None:
         self.verb: str = verb
         self.path: str = path
@@ -188,8 +193,8 @@ class AuthRoute(Route):
         Defaults to ``False``.
     parameters: Any
         This is a special cased kwargs. Anything passed to these will substitute it's key to value in the `path`.
-        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``, then it will expand into the path
-        making ``"manga/..."``
+        E.g. if your `path` is ``"/manga/{manga_id}"``, and your parameters are ``manga_id="..."``,
+        then it will expand into the path making ``"manga/..."``
     """
 
     API_BASE_URL: ClassVar[str] = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect"
@@ -197,7 +202,7 @@ class AuthRoute(Route):
 
 
 class MissingSentinel:
-    def __eq__(self, _: Any) -> bool:
+    def __eq__(self, _: object) -> bool:
         return False
 
     def __bool__(self) -> bool:
@@ -213,14 +218,14 @@ class MissingSentinel:
 MISSING: Any = MissingSentinel()
 
 
-## This class and subsequent decorator have been copied from Rapptz' Discord.py
-## (https://github.com/Rapptz/discord.py)
-## Credit goes to Rapptz and contributors
+# This class and subsequent decorator have been copied from Rapptz' Discord.py
+# (https://github.com/Rapptz/discord.py)
+# Credit goes to Rapptz and contributors
 class CachedSlotProperty(Generic[T, T_co]):
     def __init__(self, name: str, function: Callable[[T], T_co]) -> None:
         self.name: str = name
         self.function: Callable[[T], T_co] = function
-        self.__doc__ = getattr(function, "__doc__")
+        self.__doc__ = function.__doc__
 
     @overload
     def __get__(self, instance: None, owner: type[T]) -> CachedSlotProperty[T, T_co]: ...
@@ -248,12 +253,13 @@ def cached_slot_property(name: str, /) -> Callable[[Callable[[T], T_co]], Cached
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
-    """A decorator to raise on authentication methods."""
+    """A decorator to raise on authentication methods."""  # noqa: DOC201 # not part of the public API.
 
     @wraps(func)
     def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
         if not item._http._authenticated:  # pyright: ignore[reportPrivateUsage] # we're gonna keep this private
-            raise AuthenticationRequired("This method requires authentication.")
+            msg = "This method requires authentication."
+            raise AuthenticationRequired(msg)
 
         return func(item, *args, **kwargs)
 
@@ -267,7 +273,7 @@ def deprecated(alternate: str | None = None, /) -> Callable[[Callable[B, T]], Ca
     -----------
     alternate: Optional[:class:`str`]
         The alternate method to use.
-    """
+    """  # noqa: DOC201 # not part of the public API.
 
     def decorator(func: Callable[B, T]) -> Callable[B, T]:
         @wraps(func)
@@ -310,7 +316,8 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
     Tuple[:class:`int`, :class:`int`]
     """
     if offset >= MAX_DEPTH:
-        raise ValueError(f"An offset of {MAX_DEPTH} will not return results.")
+        msg = f"An offset of {MAX_DEPTH} will not return results."
+        raise ValueError(msg)
 
     offset = max(offset, 0)
 
@@ -327,7 +334,13 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
 
 
 async def json_or_text(response: aiohttp.ClientResponse, /) -> dict[str, Any] | str:
-    """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text."""
+    """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text.
+
+    Returns
+    --------
+    Union[Dict[:class:`str`, Any], str]
+        The parsed json object as a dictionary, or the response text.
+    """
     text = await response.text(encoding="utf-8")
     try:
         if response.headers["content-type"] == "application/json":
@@ -351,7 +364,7 @@ def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[
     --------
     :class:`multidict.MultiDict`
         A dictionary/mapping type that allows for duplicate keys.
-    """
+    """  # noqa: E501 # required for formatting
     fmt = multidict.MultiDict[str | int]()
     for key, value in obj.items():
         if value is None:
@@ -373,21 +386,37 @@ def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[
 
 
 def get_image_mime_type(data: bytes, /) -> str:
-    """Returns the image type from the first few bytes."""
+    """Returns the image type from the first few bytes.
+
+    Raises
+    -------
+    :exc:`ValueError`
+        Unsupported image type used.
+
+    Returns
+    --------
+    :class:`str`
+        The mime type of the image data.
+    """
     if data.startswith(b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a"):
         return "image/png"
-    elif data[:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
+    if data[:3] == b"\xff\xd8\xff" or data[6:10] in (b"JFIF", b"Exif"):
         return "image/jpeg"
-    elif data.startswith((b"\x47\x49\x46\x38\x37\x61", b"\x47\x49\x46\x38\x39\x61")):
+    if data.startswith((b"\x47\x49\x46\x38\x37\x61", b"\x47\x49\x46\x38\x39\x61")):
         return "image/gif"
-    # elif data.startswith(b"RIFF") and data[8:12] == b"WEBP":
-    #     return "image/webp"
-    else:
-        raise ValueError("Unsupported image type given")
+
+    msg = "Unsupported image type given"
+    raise ValueError(msg)
 
 
 def to_snake_case(string: str, /) -> str:
-    """Quick function to return snake_case from camelCase."""
+    """Quick function to return snake_case from camelCase.
+
+    Returns
+    --------
+    :class:`str`
+        The formatted string.
+    """
     fmt: list[str] = []
     for character in string:
         if character.isupper():
@@ -398,7 +427,13 @@ def to_snake_case(string: str, /) -> str:
 
 
 def to_camel_case(string: str, /) -> str:
-    """Quick function to return camelCase from snake_case."""
+    """Quick function to return camelCase from snake_case.
+
+    Returns
+    --------
+    :class:`str`
+        The formatted string.
+    """
     first, *rest = string.split("_")
     chunks = [first.lower(), *map(str.capitalize, rest)]
 
@@ -475,7 +510,8 @@ def iso_to_delta(iso: str, /) -> datetime.timedelta:
         The timedelta based on the parsed string.
     """
     if (match := MANGADEX_TIME_REGEX.fullmatch(iso)) is None:
-        raise TypeError("The passed string does not match the regex pattern.")
+        msg = "The passed string does not match the regex pattern."
+        raise TypeError(msg)
 
     match_dict = match.groupdict()
 
@@ -498,9 +534,9 @@ RelType = Literal[
 
 class RelationshipResolver(Generic[T]):
     __slots__ = (
-        "relationships",
-        "limit",
         "_type",
+        "limit",
+        "relationships",
     )
 
     def __init__(self, relationships: list[RelationshipResponse], relationship_type: RelType, /) -> None:
@@ -568,7 +604,8 @@ def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
     if isinstance(key, pathlib.Path) and (match := _PATH_WITH_EXTRA.fullmatch(key.name)):
         return (len(match["num"]), match["num"])
 
-    raise ValueError("Invalid filename format given.")
+    msg = "Invalid filename format given."
+    raise ValueError(msg)
 
 
 _tags_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"

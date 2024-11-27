@@ -86,33 +86,33 @@ class Artist(AuthorArtistTag):
     """
 
     __slots__ = (
-        "_http",
-        "_data",
+        "__manga",
         "_attributes",
-        "_relationships",
-        "id",
-        "name",
-        "image_url",
-        "twitter",
-        "pixiv",
-        "melon_book",
-        "fan_box",
-        "booth",
-        "nico_video",
-        "skeb",
-        "fantia",
-        "tumblr",
-        "youtube",
-        "weibo",
-        "naver",
-        "namicomi",
-        "website",
-        "version",
         "_biography",
         "_created_at",
-        "_updated_at",
+        "_data",
+        "_http",
         "_manga_relationships",
-        "__manga",
+        "_relationships",
+        "_updated_at",
+        "booth",
+        "fan_box",
+        "fantia",
+        "id",
+        "image_url",
+        "melon_book",
+        "name",
+        "namicomi",
+        "naver",
+        "nico_video",
+        "pixiv",
+        "skeb",
+        "tumblr",
+        "twitter",
+        "version",
+        "website",
+        "weibo",
+        "youtube",
     )
 
     def __init__(self, http: HTTPClient, payload: ArtistResponse) -> None:
@@ -142,7 +142,8 @@ class Artist(AuthorArtistTag):
         self._created_at: str = self._attributes["createdAt"]
         self._updated_at: str = self._attributes["updatedAt"]
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
-            relationships, "manga"
+            relationships,
+            "manga",
         ).resolve(with_fallback=False, remove_empty=True)
         self.__manga: list[Manga] | None = None
 
@@ -151,6 +152,9 @@ class Artist(AuthorArtistTag):
 
     def __str__(self) -> str:
         return self.name
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, AuthorArtistTag) and self.id == other.id
@@ -166,7 +170,7 @@ class Artist(AuthorArtistTag):
             This property will attempt to get the ``"en"`` key first, and fallback to the first key in the object.
         """
         if not self._biography:
-            return
+            return None
 
         biography = self._biography.get("en")
         if biography is None:
@@ -189,7 +193,7 @@ class Artist(AuthorArtistTag):
             The artist's biography in the specified language.
         """
         if not self._biography:
-            return
+            return None
 
         return self._biography.get(language)
 
@@ -244,7 +248,7 @@ class Artist(AuthorArtistTag):
         if not self._manga_relationships:
             return None
 
-        from .manga import Manga
+        from .manga import Manga  # noqa: PLC0415 # cyclic import cheat
 
         formatted = [Manga(self._http, item) for item in self._manga_relationships]
 
@@ -273,19 +277,19 @@ class Artist(AuthorArtistTag):
             return self.manga
 
         if not self._manga_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._manga_relationships]
 
         formatted: list[Manga] = []
-        from .manga import Manga
+        from .manga import Manga  # noqa: PLC0415 # cyclic import cheat
 
         for manga_id in ids:
             data = await self._http.get_manga(manga_id, includes=MangaIncludes())
             formatted.append(Manga(self._http, data["data"]))
 
         if not formatted:
-            return
+            return None
 
         self.__manga = formatted
         return self.__manga

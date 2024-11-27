@@ -37,8 +37,8 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "Tag",
     "QueryTags",
+    "Tag",
 )
 
 logger: logging.Logger = logging.getLogger("hondana")
@@ -67,15 +67,15 @@ class Tag:
     """
 
     __slots__ = (
-        "_data",
         "_attributes",
-        "_relationships",
-        "_name",
-        "_description",
-        "id",
-        "group",
-        "version",
         "_cs_relationships",
+        "_data",
+        "_description",
+        "_name",
+        "_relationships",
+        "group",
+        "id",
+        "version",
     )
 
     def __init__(self, payload: TagResponse) -> None:
@@ -93,6 +93,9 @@ class Tag:
 
     def __str__(self) -> str:
         return self.name
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Tag) and self.id == other.id
@@ -179,15 +182,16 @@ class QueryTags:
     """
 
     __slots__ = (
-        "tags",
         "mode",
+        "tags",
     )
 
     def __init__(self, *tags: str, mode: Literal["AND", "OR"] = "AND") -> None:
         self.tags: list[str] = []
         self.mode: str = mode.upper()
         if self.mode not in {"AND", "OR"}:
-            raise TypeError("Tags mode has to be 'AND' or 'OR'.")
+            msg = "Tags mode has to be 'AND' or 'OR'."
+            raise TypeError(msg)
         self._set_tags(tags)
 
     def __repr__(self) -> str:
@@ -202,7 +206,8 @@ class QueryTags:
                 logger.warning("Tag '%s' cannot be found in the local tag cache, skipping.", tag)
 
         if not resolved_tags:
-            raise ValueError("No tags passed matched any valid MangaDex tags.")
+            msg = "No tags passed matched any valid MangaDex tags."
+            raise ValueError(msg)
 
         self.tags = resolved_tags
         return self.tags

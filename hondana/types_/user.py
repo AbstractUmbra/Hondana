@@ -33,10 +33,10 @@ if TYPE_CHECKING:
 
 
 __all__ = (
+    "GetMultiUserResponse",
+    "GetSingleUserResponse",
     "GetUserAttributesResponse",
     "UserResponse",
-    "GetSingleUserResponse",
-    "GetMultiUserResponse",
 )
 
 

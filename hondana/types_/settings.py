@@ -34,8 +34,6 @@ class Settings(TypedDict):
     This object is currently not documented.
     """
 
-    ...
-
 
 class SettingsPayload(TypedDict):
     """

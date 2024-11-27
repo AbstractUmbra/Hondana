@@ -27,6 +27,7 @@ from __future__ import annotations
 import datetime
 import json
 import logging
+import operator
 import pathlib
 from typing import TYPE_CHECKING, Any, TypeVar, overload
 
@@ -133,7 +134,7 @@ class Client:
         The Client will work without authentication, but all authenticated endpoints will fail before attempting a request.
     """
 
-    __slots__ = "_http"
+    __slots__ = ("_http",)
 
     @overload
     def __init__(self) -> None: ...
@@ -184,12 +185,13 @@ class Client:
 
         return self
 
-    async def __aexit__(self, type_: type[BE], value: BE, traceback: TracebackType) -> None:
+    async def __aexit__(self, type_: type[BE] | None, value: BE, traceback: TracebackType) -> None:  # noqa: PYI036 # not expanding the typevar
         await self.close()
 
     async def login(self) -> None:
         if not self._http._authenticated:  # pyright: ignore[reportPrivateUsage] # sanity reasons
-            raise RuntimeError("Cannot login as no OAuth2 credentials are set.")
+            msg = "Cannot login as no OAuth2 credentials are set."
+            raise RuntimeError(msg)
 
         await self._http.get_token()
 
@@ -240,7 +242,7 @@ class Client:
         tags = await self.get_tags()
 
         pre_fmt = {tag.name: tag.id for tag in tags}
-        fmt = dict(sorted(pre_fmt.items(), key=lambda t: t[0]))
+        fmt = dict(sorted(pre_fmt.items(), key=operator.itemgetter(0)))
 
         path = _PROJECT_DIR.parent / "extras" / "tags.json"
         with path.open("w") as fp:
@@ -324,7 +326,7 @@ class Client:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
@@ -406,7 +408,7 @@ class Client:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
@@ -445,7 +447,7 @@ class Client:
         created_at_since: datetime.datetime | None = None,
         updated_at_since: datetime.datetime | None = None,
         order: MangaListOrderQuery | None = None,
-        includes: MangaIncludes | None = MangaIncludes(),
+        includes: MangaIncludes | None = None,
         has_available_chapters: bool | None = None,
         group: str | None = None,
     ) -> MangaCollection:
@@ -470,7 +472,8 @@ class Client:
         artists: Optional[List[:class:`str`]]
             The artist(s) UUIDs to include in the search.
         year: Optional[:class:`int`]
-            The release year of the manga to include in the search. Allows passing of ``None`` to search for manga with no year specified.
+            The release year of the manga to include in the search. Allows passing of ``None`` to
+            search for manga with no year specified.
         included_tags: Optional[:class:`QueryTags`]
             An instance of :class:`hondana.QueryTags` to include in the search.
         excluded_tags: Optional[:class:`QueryTags`]
@@ -547,7 +550,7 @@ class Client:
                 created_at_since=created_at_since,
                 updated_at_since=updated_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or MangaIncludes(),
                 has_available_chapters=has_available_chapters,
                 group=group,
             )
@@ -686,10 +689,12 @@ class Client:
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
         return await self._http.get_manga_volumes_and_chapters(
-            manga_id=manga_id, translated_language=translated_language, groups=groups
+            manga_id=manga_id,
+            translated_language=translated_language,
+            groups=groups,
         )
 
-    async def get_manga(self, manga_id: str, /, *, includes: MangaIncludes | None = MangaIncludes()) -> Manga:
+    async def get_manga(self, manga_id: str, /, *, includes: MangaIncludes | None = None) -> Manga:
         """|coro|
 
         The method will fetch a Manga from the MangaDex API.
@@ -716,7 +721,7 @@ class Client:
 
         .. versionadded:: 2.0.11
         """
-        data = await self._http.get_manga(manga_id, includes=includes)
+        data = await self._http.get_manga(manga_id, includes=includes or MangaIncludes())
 
         return Manga(self._http, data["data"])
 
@@ -845,7 +850,7 @@ class Client:
         """
         await self._http.delete_manga(manga_id)
 
-    ## TODO
+    # TODO
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
         """|coro|
@@ -866,10 +871,15 @@ class Client:
         """
         await self._http.unfollow_manga(manga_id)
 
-    ## TODO
+    # TODO
     @require_authentication
     async def follow_manga(
-        self, manga_id: str, /, *, set_status: bool = True, status: ReadingStatus = ReadingStatus.reading
+        self,
+        manga_id: str,
+        /,
+        *,
+        set_status: bool = True,
+        status: ReadingStatus = ReadingStatus.reading,
     ) -> None:
         """|coro|
 
@@ -881,7 +891,8 @@ class Client:
             The UUID of the manga to follow.
         set_status: :class:`bool`
             Whether to set the reading status of the manga you follow.
-            Due to the current MangaDex infrastructure, not setting a status will cause the manga to not show up in your lists.
+            Due to the current MangaDex infrastructure, not setting a status will cause
+            the manga to not show up in your lists.
             Defaults to ``True``
         status: :class:`~hondana.ReadingStatus`
             The status to apply to the newly followed manga.
@@ -916,7 +927,7 @@ class Client:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
@@ -998,7 +1009,7 @@ class Client:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
@@ -1014,7 +1025,9 @@ class Client:
 
     @require_authentication
     async def manga_read_markers(
-        self, *, manga_ids: list[str]
+        self,
+        *,
+        manga_ids: list[str],
     ) -> manga.MangaReadMarkersResponse | manga.MangaGroupedReadMarkersResponse:
         """|coro|
 
@@ -1028,7 +1041,7 @@ class Client:
         Returns
         --------
         Union[:class:`~hondana.types_.manga.MangaReadMarkersResponse`, :class:`~hondana.types_.manga.MangaGroupedReadMarkersResponse`]
-        """
+        """  # noqa: E501 # required for formatting
         if len(manga_ids) == 1:
             return await self._http.manga_read_markers(manga_ids, grouped=False)
         return await self._http.manga_read_markers(manga_ids, grouped=True)
@@ -1066,15 +1079,19 @@ class Client:
         """
         if read_chapters or unread_chapters:
             await self._http.manga_read_markers_batch(
-                manga_id, update_history=update_history, read_chapters=read_chapters, unread_chapters=unread_chapters
+                manga_id,
+                update_history=update_history,
+                read_chapters=read_chapters,
+                unread_chapters=unread_chapters,
             )
-        else:
-            raise TypeError("You must provide either `read_chapters` and/or `unread_chapters` to this method.")
+            return
+        msg = "You must provide either `read_chapters` and/or `unread_chapters` to this method."
+        raise TypeError(msg)
 
     async def get_random_manga(
         self,
         *,
-        includes: MangaIncludes | None = MangaIncludes(),
+        includes: MangaIncludes | None = None,
         content_rating: list[ContentRating] | None = None,
         included_tags: QueryTags | None = None,
         excluded_tags: QueryTags | None = None,
@@ -1101,7 +1118,10 @@ class Client:
             The random Manga that was returned.
         """
         data = await self._http.get_random_manga(
-            includes=includes, content_rating=content_rating, included_tags=included_tags, excluded_tags=excluded_tags
+            includes=includes or MangaIncludes(),
+            content_rating=content_rating,
+            included_tags=included_tags,
+            excluded_tags=excluded_tags,
         )
 
         return Manga(self._http, data["data"])
@@ -1112,7 +1132,7 @@ class Client:
         *,
         limit: int | None = 100,
         offset: int = 0,
-        includes: MangaIncludes | None = MangaIncludes(),
+        includes: MangaIncludes | None = None,
     ) -> MangaCollection:
         """|coro|
 
@@ -1140,7 +1160,11 @@ class Client:
 
         manga: list[Manga] = []
         while True:
-            data = await self._http.get_user_followed_manga(limit=inner_limit, offset=offset, includes=includes)
+            data = await self._http.get_user_followed_manga(
+                limit=inner_limit,
+                offset=offset,
+                includes=includes or MangaIncludes(),
+            )
             manga.extend([Manga(self._http, item) for item in data["data"]])
 
             offset += inner_limit
@@ -1151,7 +1175,9 @@ class Client:
 
     @require_authentication
     async def get_all_manga_reading_status(
-        self, *, status: ReadingStatus | None = None
+        self,
+        *,
+        status: ReadingStatus | None = None,
     ) -> manga.MangaMultipleReadingStatusResponse:
         """|coro|
 
@@ -1277,7 +1303,7 @@ class Client:
         offset: int = 0,
         state: MangaState | None = None,
         order: MangaDraftListOrderQuery | None = None,
-        includes: MangaIncludes | None = MangaIncludes(),
+        includes: MangaIncludes | None = None,
     ) -> Manga:
         """|coro|
 
@@ -1302,11 +1328,21 @@ class Client:
         --------
         :class:`~hondana.Manga`
         """
-        data = await self._http.get_manga_draft_list(limit=limit, offset=offset, state=state, order=order, includes=includes)
+        data = await self._http.get_manga_draft_list(
+            limit=limit,
+            offset=offset,
+            state=state,
+            order=order,
+            includes=includes or MangaIncludes(),
+        )
         return Manga(self._http, data["data"])
 
     async def get_manga_relation_list(
-        self, manga_id: str, /, *, includes: MangaIncludes | None = MangaIncludes()
+        self,
+        manga_id: str,
+        /,
+        *,
+        includes: MangaIncludes | None = None,
     ) -> MangaRelationCollection:
         """|coro|
 
@@ -1329,13 +1365,18 @@ class Client:
         :exc:`BadRequest`
             The manga ID passed is malformed
         """
-        data = await self._http.get_manga_relation_list(manga_id, includes=includes)
+        data = await self._http.get_manga_relation_list(manga_id, includes=includes or MangaIncludes())
         fmt = [MangaRelation(self._http, manga_id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
 
     @require_authentication
     async def create_manga_relation(
-        self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
+        self,
+        manga_id: str,
+        /,
+        *,
+        target_manga: str,
+        relation_type: MangaRelationType,
     ) -> MangaRelation:
         """|coro|
 
@@ -1451,7 +1492,7 @@ class Client:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -1557,7 +1598,7 @@ class Client:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
@@ -1573,7 +1614,7 @@ class Client:
         chapter_id: str,
         /,
         *,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
         fetch_full_manga: bool = False,
     ) -> Chapter:
         """|coro|
@@ -1600,7 +1641,7 @@ class Client:
         :class:`~hondana.Chapter`
             The Chapter we fetched from the API.
         """
-        data = await self._http.get_chapter(chapter_id, includes=includes)
+        data = await self._http.get_chapter(chapter_id, includes=includes or ChapterIncludes())
 
         chapter = Chapter(self._http, data["data"])
 
@@ -1736,7 +1777,7 @@ class Client:
         uploaders: list[str] | None = None,
         locales: list[common.LanguageCode] | None = None,
         order: CoverArtListOrderQuery | None = None,
-        includes: CoverIncludes | None = CoverIncludes(),
+        includes: CoverIncludes | None = None,
     ) -> CoverCollection:
         """|coro|
 
@@ -1785,7 +1826,7 @@ class Client:
                 uploaders=uploaders,
                 locales=locales,
                 order=order,
-                includes=includes,
+                includes=includes or CoverIncludes(),
             )
 
             covers.extend([Cover(self._http, item) for item in data["data"]])
@@ -1839,7 +1880,7 @@ class Client:
 
         return Cover(self._http, data["data"])
 
-    async def get_cover(self, cover_id: str, /, *, includes: CoverIncludes | None = CoverIncludes()) -> Cover:
+    async def get_cover(self, cover_id: str, /, *, includes: CoverIncludes | None = None) -> Cover:
         """|coro|
 
         The method will fetch a Cover from the MangaDex API.
@@ -1865,13 +1906,19 @@ class Client:
         :class:`~hondana.Cover`
             The Cover returned from the API.
         """
-        data = await self._http.get_cover(cover_id, includes=includes)
+        data = await self._http.get_cover(cover_id, includes=includes or CoverIncludes())
 
         return Cover(self._http, data["data"])
 
     @require_authentication
     async def edit_cover(
-        self, cover_id: str, /, *, volume: str = MISSING, description: str = MISSING, version: int
+        self,
+        cover_id: str,
+        /,
+        *,
+        volume: str = MISSING,
+        description: str = MISSING,
+        version: int,
     ) -> Cover:
         """|coro|
 
@@ -1939,7 +1986,7 @@ class Client:
         name: str | None = None,
         focused_language: common.LanguageCode | None = None,
         order: ScanlatorGroupListOrderQuery | None = None,
-        includes: ScanlatorGroupIncludes | None = ScanlatorGroupIncludes(),
+        includes: ScanlatorGroupIncludes | None = None,
     ) -> ScanlatorGroupCollection:
         """|coro|
 
@@ -1989,7 +2036,7 @@ class Client:
                 name=name,
                 focused_language=focused_language,
                 order=order,
-                includes=includes,
+                includes=includes or ScanlatorGroupIncludes(),
             )
 
             groups.extend([ScanlatorGroup(self._http, item) for item in data["data"]])
@@ -2448,7 +2495,11 @@ class Client:
         return data == "pong"
 
     async def legacy_id_mapping(
-        self, mapping_type: legacy.LegacyMappingType, /, *, item_ids: list[int]
+        self,
+        mapping_type: legacy.LegacyMappingType,
+        /,
+        *,
+        item_ids: list[int],
     ) -> LegacyMappingCollection:
         """|coro|
 
@@ -2543,7 +2594,7 @@ class Client:
         custom_list_id: str,
         /,
         *,
-        includes: CustomListIncludes | None = CustomListIncludes(),
+        includes: CustomListIncludes | None = None,
     ) -> CustomList:
         """|coro|
 
@@ -2566,7 +2617,7 @@ class Client:
         :class:`~hondana.CustomList`
             The retrieved custom list.
         """
-        data = await self._http.get_custom_list(custom_list_id, includes=includes)
+        data = await self._http.get_custom_list(custom_list_id, includes=includes or CustomListIncludes())
 
         return CustomList(self._http, data["data"])
 
@@ -2618,7 +2669,11 @@ class Client:
             The returned custom list after it was updated.
         """
         data = await self._http.update_custom_list(
-            custom_list_id, name=name, visibility=visibility, manga=manga, version=version
+            custom_list_id,
+            name=name,
+            visibility=visibility,
+            manga=manga,
+            version=version,
         )
 
         return CustomList(self._http, data["data"])
@@ -2733,7 +2788,12 @@ class Client:
 
     @require_authentication
     async def get_users_custom_lists(
-        self, user_id: str, /, *, limit: int | None = 10, offset: int = 0
+        self,
+        user_id: str,
+        /,
+        *,
+        limit: int | None = 10,
+        offset: int = 0,
     ) -> CustomListCollection:
         """|coro|
 
@@ -2794,7 +2854,7 @@ class Client:
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
         order: FeedOrderQuery | None = None,
-        includes: ChapterIncludes | None = ChapterIncludes(),
+        includes: ChapterIncludes | None = None,
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
@@ -2879,7 +2939,7 @@ class Client:
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
                 order=order,
-                includes=includes,
+                includes=includes or ChapterIncludes(),
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
@@ -2976,7 +3036,7 @@ class Client:
         scanlation_group_id: str,
         /,
         *,
-        includes: ScanlatorGroupIncludes | None = ScanlatorGroupIncludes(),
+        includes: ScanlatorGroupIncludes | None = None,
     ) -> ScanlatorGroup:
         """|coro|
 
@@ -3002,7 +3062,7 @@ class Client:
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API.
         """
-        data = await self._http.view_scanlation_group(scanlation_group_id, includes=includes)
+        data = await self._http.view_scanlation_group(scanlation_group_id, includes=includes or ScanlatorGroupIncludes())
         return ScanlatorGroup(self._http, data["data"])
 
     @require_authentication
@@ -3071,7 +3131,8 @@ class Client:
 
 
         .. note::
-            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``, ``twitter``, ``manga_updates`` and ``focused_language``
+            The ``website``, ``irc_server``, ``irc_channel``, ``discord``, ``contact_email``, ``description``,
+            ``twitter``, ``manga_updates`` and ``focused_language``
             keys are all nullable in the API. To do so please pass ``None`` explicitly to these keys.
 
         .. note::
@@ -3184,7 +3245,7 @@ class Client:
         ids: list[str] | None = None,
         name: str | None = None,
         order: AuthorListOrderQuery | None = None,
-        includes: AuthorIncludes | None = AuthorIncludes(),
+        includes: AuthorIncludes | None = None,
     ) -> AuthorCollection:
         """|coro|
 
@@ -3227,7 +3288,12 @@ class Client:
         authors: list[Author] = []
         while True:
             data = await self._http.author_list(
-                limit=inner_limit, offset=offset, ids=ids, name=name, order=order, includes=includes
+                limit=inner_limit,
+                offset=offset,
+                ids=ids,
+                name=name,
+                order=order,
+                includes=includes or AuthorIncludes(),
             )
 
             authors.extend([Author(self._http, item) for item in data["data"]])
@@ -3318,7 +3384,7 @@ class Client:
         )
         return Author(self._http, data["data"])
 
-    async def get_author(self, author_id: str, /, *, includes: AuthorIncludes | None = AuthorIncludes()) -> Author:
+    async def get_author(self, author_id: str, /, *, includes: AuthorIncludes | None = None) -> Author:
         """|coro|
 
         The method will fetch an Author from the MangaDex API.
@@ -3345,11 +3411,11 @@ class Client:
         :class:`~hondana.Author`
             The Author returned from the API.
         """
-        data = await self._http.get_author(author_id, includes=includes)
+        data = await self._http.get_author(author_id, includes=includes or AuthorIncludes())
 
         return Author(self._http, data["data"])
 
-    async def get_artist(self, artist_id: str, /, *, includes: ArtistIncludes | None = ArtistIncludes()) -> Artist:
+    async def get_artist(self, artist_id: str, /, *, includes: ArtistIncludes | None = None) -> Artist:
         """|coro|
 
         The method will fetch an artist from the MangaDex API.
@@ -3376,7 +3442,7 @@ class Client:
         :class:`~hondana.Artist`
             The Author returned from the API.
         """
-        data = await self._http.get_artist(artist_id, includes=includes)
+        data = await self._http.get_artist(artist_id, includes=includes or ArtistIncludes())
 
         return Artist(self._http, data["data"])
 
@@ -3613,7 +3679,10 @@ class Client:
         await self._http.delete_manga_rating(manga_id)
 
     async def get_manga_statistics(
-        self, manga_id: str | None = None, manga_ids: list[str] | None = None, /
+        self,
+        manga_id: str | None = None,
+        manga_ids: list[str] | None = None,
+        /,
     ) -> MangaStatistics:
         """|coro|
 
@@ -3666,7 +3735,8 @@ class Client:
         version: int | None = None,
     ) -> ChapterUpload:
         """
-        This method will return an async `context manager <https://realpython.com/python-with-statement/>`_ to handle some upload session management.
+        This method will return an async `context manager <https://realpython.com/python-with-statement/>`_
+        to handle some upload session management.
 
 
         Examples
@@ -3800,6 +3870,11 @@ class Client:
         images: List[:class:`pathlib.Path`]
             The list of images to upload as their Paths.
 
+        Returns
+        --------
+        :class:`hondana.Chapter`
+            The chapter we created.
+
 
         .. note::
             The ``external_url`` parameter requires an explicit permission on MangaDex to set.
@@ -3816,7 +3891,8 @@ class Client:
             I suggest using :meth:`~hondana.Client.upload_session` instead for greater control.
 
         .. note::
-            I personally advise the `context manager <https://realpython.com/python-with-statement/>`_ method as it allows more control over your upload session.
+            I personally advise the `context manager <https://realpython.com/python-with-statement/>`_
+            method as it allows more control over your upload session.
         """
 
         async with ChapterUpload(
@@ -3834,9 +3910,7 @@ class Client:
             version=version,
         ) as session:
             await session.upload_images(images)
-            new_chapter = await session.commit()
-
-        return new_chapter
+            return await session.commit()
 
     @require_authentication
     async def get_latest_settings_template(self) -> dict[str, Any]:

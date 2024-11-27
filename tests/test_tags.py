@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import operator
 import pathlib
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any
@@ -45,10 +46,13 @@ class TestTags:
         for tag, raw_tag in zip(
             sorted(tags, key=lambda t: t.name),
             sorted(raw_tags, key=lambda t: t),
+            strict=False,
         ):
             assert tag.name == raw_tag
 
-    def test_tag_relationships(self) -> None:  # currently, tags have no relationships, but even so.
+    def test_tag_relationships(
+        self,
+    ) -> None:  # currently, tags have no relationships, but even so.
         tags = clone_tags()
 
         tag_rels: list[Relationship] = [r for tag in tags for r in tag.relationships]
@@ -57,14 +61,24 @@ class TestTags:
             obj for rel in PAYLOAD["data"]["attributes"]["tags"] for obj in rel["relationships"]
         ]
 
-        for a, b in zip(sorted(tag_rels, key=lambda r: r.id), sorted(raw_rels, key=lambda r: r["id"])):
+        for a, b in zip(
+            sorted(tag_rels, key=lambda r: r.id),
+            sorted(raw_rels, key=operator.itemgetter("id")),
+            strict=True,
+        ):
             assert a == b
 
-    def test_tag_descriptions(self) -> None:  # currently, tags have no descriptions, but even so.
+    def test_tag_descriptions(
+        self,
+    ) -> None:  # currently, tags have no descriptions, but even so.
         tags = clone_tags()
         raw_tags = PAYLOAD["data"]["attributes"]["tags"]
 
-        for tag, raw_tag in zip(sorted(tags, key=lambda t: t.id), sorted(raw_tags, key=lambda t: t["id"])):
+        for tag, raw_tag in zip(
+            sorted(tags, key=lambda t: t.id),
+            sorted(raw_tags, key=operator.itemgetter("id")),
+            strict=True,
+        ):
             _description = tag._description  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
             _raw_descriptions = raw_tag["attributes"]["description"]
             _raw_descriptions = _raw_descriptions or {}
@@ -84,7 +98,10 @@ class TestQueryTags:
 
         tags = QueryTags("Comedy", "Mecha", mode="AND")
         assert tags.mode == "AND"
-        assert tags.tags == ["4d32cc48-9f00-4cca-9b5a-a839f0764984", "50880a9d-5440-4732-9afb-8f457127e836"]
+        assert tags.tags == [
+            "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+            "50880a9d-5440-4732-9afb-8f457127e836",
+        ]
 
         try:
             tags = QueryTags("SomethingElse", mode="OR")

@@ -62,18 +62,18 @@ class CustomList:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
+        "__manga",
+        "__owner",
         "_attributes",
+        "_data",
+        "_http",
+        "_manga_relationships",
+        "_owner_relationship",
         "id",
         "name",
-        "visibility",
         "pinned",
         "version",
-        "_owner_relationship",
-        "_manga_relationships",
-        "__owner",
-        "__manga",
+        "visibility",
     )
 
     def __init__(self, http: HTTPClient, payload: CustomListResponse) -> None:
@@ -101,6 +101,9 @@ class CustomList:
 
     def __str__(self) -> str:
         return self.name
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, CustomList) and self.id == other.id
@@ -138,6 +141,8 @@ class CustomList:
             self.__owner = User(self._http, self._owner_relationship)
             return self.__owner
 
+        return None
+
     @owner.setter
     def owner(self, other: User) -> None:
         self.__owner = other
@@ -160,6 +165,8 @@ class CustomList:
 
         if fmt := [Manga(self._http, manga) for manga in self._manga_relationships if "attributes" in manga]:
             return fmt
+
+        return None
 
     @manga.setter
     def manga(self, other: list[Manga]) -> None:
@@ -236,6 +243,8 @@ class CustomList:
 
         if ret := [Manga(self._http, item) for item in data["data"]]:
             return ret
+
+        return None
 
     @require_authentication
     async def update(

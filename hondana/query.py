@@ -34,23 +34,23 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "Order",
-    "MangaListOrderQuery",
-    "FeedOrderQuery",
-    "MangaDraftListOrderQuery",
-    "CoverArtListOrderQuery",
-    "ScanlatorGroupListOrderQuery",
-    "AuthorListOrderQuery",
-    "UserListOrderQuery",
-    "ReportListOrderQuery",
     "ArtistIncludes",
     "AuthorIncludes",
+    "AuthorListOrderQuery",
     "ChapterIncludes",
+    "CoverArtListOrderQuery",
     "CoverIncludes",
     "CustomListIncludes",
+    "FeedOrderQuery",
+    "MangaDraftListOrderQuery",
     "MangaIncludes",
+    "MangaListOrderQuery",
+    "Order",
+    "ReportListOrderQuery",
     "ScanlatorGroupIncludes",
+    "ScanlatorGroupListOrderQuery",
     "SubscriptionIncludes",
+    "UserListOrderQuery",
 )
 
 
@@ -59,7 +59,8 @@ class _OrderQuery:
 
     def __init__(self, **kwargs: Order) -> None:
         if not kwargs:
-            raise TypeError("You must pass valid kwargs.")
+            msg = "You must pass valid kwargs."
+            raise TypeError(msg)
 
         _fmt: list[str] = []
         for name, value in kwargs.items():
@@ -69,7 +70,8 @@ class _OrderQuery:
                 _fmt.append(name)
 
         if _fmt:
-            raise TypeError(f"You have passed invalid kwargs: {', '.join(_fmt)}")
+            msg = f"You have passed invalid kwargs: {', '.join(_fmt)}"
+            raise TypeError(msg)
 
     def __repr__(self) -> str:
         opt: list[str] = []
@@ -114,7 +116,12 @@ class _Includes:
 
     @classmethod
     def all(cls: type[Self]) -> Self:
-        """A factory method that returns all possible reference expansions for this type."""
+        """A factory method that returns all possible reference expansions for this type.
+
+        Returns
+        --------
+        An Includes type object with all flags set.
+        """
         self = cls()
 
         for item in self.__slots__:
@@ -124,7 +131,12 @@ class _Includes:
 
     @classmethod
     def none(cls: type[Self]) -> Self:
-        """A factory method that disables all possible reference expansions for this type."""
+        """A factory method that disables all possible reference expansions for this type.
+
+        Returns
+        --------
+        An Includes type object with no flags set.
+        """
         self = cls()
 
         for item in self.__slots__:
@@ -154,13 +166,13 @@ class MangaListOrderQuery(_OrderQuery):
     """
 
     __slots__ = (
-        "title",
-        "year",
         "created_at",
-        "updated_at",
         "latest_uploaded_chapter",
-        "relevance",
         "rating",
+        "relevance",
+        "title",
+        "updated_at",
+        "year",
     )
 
     title: Order | None
@@ -194,12 +206,12 @@ class FeedOrderQuery(_OrderQuery):
     """
 
     __slots__ = (
+        "chapter",
         "created_at",
-        "updated_at",
         "publish_at",
         "readable_at",
+        "updated_at",
         "volume",
-        "chapter",
     )
 
     created_at: Order | None
@@ -228,10 +240,10 @@ class MangaDraftListOrderQuery(_OrderQuery):
     """
 
     __slots__ = (
-        "title",
-        "year",
         "created_at",
+        "title",
         "updated_at",
+        "year",
     )
 
     title: Order | None
@@ -286,11 +298,11 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
     """
 
     __slots__ = (
-        "name",
         "created_at",
-        "updated_at",
         "followed_count",
+        "name",
         "relevance",
+        "updated_at",
     )
 
     name: Order | None
@@ -419,8 +431,8 @@ class ChapterIncludes(_Includes):
 
     __slots__ = (
         "manga",
-        "user",
         "scanlation_group",
+        "user",
     )
 
     def __init__(self, *, manga: bool = True, user: bool = True, scanlation_group: bool = True) -> None:
@@ -487,8 +499,8 @@ class CustomListIncludes(_Includes):
 
     __slots__ = (
         "manga",
-        "user",
         "owner",
+        "user",
     )
 
     def __init__(self, *, manga: bool = True, user: bool = True, owner: bool = True) -> None:
@@ -497,7 +509,13 @@ class CustomListIncludes(_Includes):
         self.owner: bool = owner
 
     def to_query(self) -> list[str]:
-        """Returns a list of valid query strings."""
+        """Returns a list of valid query strings.
+
+        Returns
+        --------
+        List[:class:`str`]
+            The formatted query string.
+        """
         return super().to_query()
 
 
@@ -518,8 +536,8 @@ class MangaIncludes(_Includes):
     """
 
     __slots__ = (
-        "author",
         "artist",
+        "author",
         "cover_art",
         "manga",
     )
@@ -529,16 +547,6 @@ class MangaIncludes(_Includes):
         self.artist: bool = artist
         self.cover_art: bool = cover_art
         self.manga: bool = manga
-
-    def to_query(self) -> list[str]:
-        """Returns a list of valid query strings.
-
-        Returns
-        --------
-        List[:class:`str`]
-            The list of query parameters (pre-PHP formatting).
-        """
-        return super().to_query()
 
 
 class ScanlatorGroupIncludes(_Includes):
@@ -586,8 +594,8 @@ class UserReportIncludes(_Includes):
     """
 
     __slots__ = (
-        "user",
         "reason",
+        "user",
     )
 
     def __init__(self, *, user: bool = True, reason: bool = True) -> None:

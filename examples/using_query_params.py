@@ -12,7 +12,8 @@ async def main() -> None:
         collection = await client.manga_list(includes=manga_list_includes)
         print(len(collection.manga))
 
-        # Since our default is all possible expansions, you can just call an empty constructor, and it will populate accordingly.
+        # Since our default is all possible expansions,
+        # you can just call an empty constructor, and it will populate accordingly.
         chapter_list_includes = hondana.query.ChapterIncludes()
         # We also have the `all()` classmethod should you wish to use that.
 

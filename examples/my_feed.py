@@ -16,12 +16,17 @@ async def main() -> None:
         fifteen_minutes_ago = datetime.datetime.now(datetime.UTC) - datetime.timedelta(minutes=15)
 
         # And let's order the responses by created at descending
-        # we also coerce the type here to prevent typechecker issues. This isn't needed but if you use a typechecker this is good to do.
+        # we also coerce the type here to prevent typechecker issues.
+        # This isn't needed but if you use a typechecker this is good to do.
         order = FeedOrderQuery(created_at=Order.descending)
 
         # `feed` will return a ChapterFeed instance. This just has the response info and list of chapters.
         feed = await client.get_my_feed(
-            limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order
+            limit=20,
+            offset=0,
+            translated_language=["en"],
+            created_at_since=fifteen_minutes_ago,
+            order=order,
         )
 
         # Let's view the responses.

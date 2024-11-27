@@ -27,15 +27,16 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, TypedDict
 
 if TYPE_CHECKING:
-    from ..enums import ReportStatus
+    from hondana.enums import ReportStatus
+
     from .common import LocalizedString
     from .relationship import RelationshipResponse
 
 
 __all__ = (
     "GetReportReasonAttributesResponse",
-    "ReportReasonResponse",
     "GetReportReasonResponse",
+    "ReportReasonResponse",
 )
 
 

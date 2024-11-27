@@ -38,8 +38,7 @@ def show_version() -> None:
 
     entries: list[str] = [
         f"- Python v{version_info.major}.{version_info.minor}.{version_info.micro}-{version_info.releaselevel}",
-        f"- Hondana v{md_version_info.major}.{md_version_info.minor}."
-        f"{md_version_info.micro}-{md_version_info.releaselevel}",
+        f"- Hondana v{md_version_info.major}.{md_version_info.minor}.{md_version_info.micro}-{md_version_info.releaselevel}",
     ]
 
     if md_version_info.releaselevel != "final":
@@ -54,7 +53,7 @@ def show_version() -> None:
     uname = platform.uname()
     entries.append(f"- System Info: {uname.system} {uname.release} {uname.version}")
 
-    print("\n".join(entries))
+    print("\n".join(entries))  # noqa: T201 # this is intended
 
 
 def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:

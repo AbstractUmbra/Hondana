@@ -34,10 +34,10 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ArtistResponse",
     "ArtistAttributesResponse",
-    "GetSingleArtistResponse",
+    "ArtistResponse",
     "GetMultiArtistResponse",
+    "GetSingleArtistResponse",
 )
 
 

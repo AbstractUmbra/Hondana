@@ -38,7 +38,8 @@ async def main() -> None:
         ) as upload_session:
             # let's open up some files and use their paths...
             files = [*pathlib.Path("./to_upload").iterdir()]
-            # the above is a quick and easy method to create a list of pathlib.Path objects based on the `./to_upload` directory.
+            # the above is a quick and easy method to create a list of pathlib.Path objects
+            # based on the `./to_upload` directory.
 
             # First we pass the list of paths, adhering to the earlier note.
             # this method does sort them (alphabetically) by default, you can toggle this behaviour by passing `sort=False`
@@ -46,13 +47,16 @@ async def main() -> None:
             data = await upload_session.upload_images(files)
             if data.has_failures:
                 print(
-                    data.errored_files
-                )  # this means the upload request has one or more errors, you may wish to restart the session once fixing the error or other steps.
+                    data.errored_files,
+                )
+                # this means the upload request has one or more errors,
+                # you may wish to restart the session once fixing the error or other steps.
 
             # Then we choose to commit that data, which returns a valid ``hondana.Chapter`` instance.
             chapter = await upload_session.commit()
 
-        ## You can also choose not to commit manually, exiting this context manager will commit for you, and discard the returned chapter data.
+        # You can also choose not to commit manually, exiting this context manager will
+        # commit for you, and discard the returned chapter data.
 
 
 async def alternative_main() -> None:
@@ -65,7 +69,7 @@ async def alternative_main() -> None:
         scanlator_groups = ["..."]
 
         # This will create and return an instance of ``hondana.ChapterUpload``
-        ## You can also use a manga ID, or a ``hondana.Manga`` instance as the first parameter
+        # You can also use a manga ID, or a ``hondana.Manga`` instance as the first parameter
         upload_session = client.upload_session(
             "...",
             volume=volume,
@@ -84,10 +88,12 @@ async def alternative_main() -> None:
         data = await upload_session.upload_images(files)
         if data.has_failures:
             print(
-                data.errored_files
-            )  # this means the upload request has one or more errors, you may wish to restart the session once fixing the error or other steps.
+                data.errored_files,
+            )
+            # this means the upload request has one or more errors
+            # you may wish to restart the session once fixing the error or other steps.
 
-        ## NOTE: You **MUST** commit when not using the context manager.
+        # NOTE: You **MUST** commit when not using the context manager.
         chapter = await upload_session.commit()
 
 

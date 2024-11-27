@@ -24,7 +24,7 @@ DEALINGS IN THE SOFTWARE.
 
 from typing import Literal, TypedDict
 
-__all__ = ("ErrorType", "APIError")
+__all__ = ("APIError", "ErrorType")
 
 
 class ErrorType(TypedDict):

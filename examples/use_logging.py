@@ -1,5 +1,6 @@
-## Preface note: DEBUG logging on `hondana` (specifically it's `http` module) will result in your token as well as other information that could be sensitive
-## showing to the CLI. Be careful if sharing these logs.
+# Preface note: DEBUG logging on `hondana` (specifically it's `http` module)
+# will result in your token as well as other information that could be sensitive
+# showing to the CLI. Be careful if sharing these logs.
 
 from __future__ import annotations
 
@@ -32,7 +33,11 @@ async def main() -> None:
 
         # `feed` will return a `hondana.ChapterFeed` instance.
         feed = await client.get_my_feed(
-            limit=20, offset=0, translated_language=["en"], created_at_since=fifteen_minutes_ago, order=order
+            limit=20,
+            offset=0,
+            translated_language=["en"],
+            created_at_since=fifteen_minutes_ago,
+            order=order,
         )
 
         # Let's view the response repr.

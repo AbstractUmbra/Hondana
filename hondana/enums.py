@@ -31,22 +31,22 @@ from .utils import (
 )
 
 __all__ = (
-    "ContentRating",
-    "PublicationDemographic",
-    "CustomListVisibility",
-    "ReportCategory",
-    "ReportStatus",
-    "MangaStatus",
-    "ReadingStatus",
-    "MangaState",
-    "MangaRelationType",
     "AuthorReportReason",
     "ChapterReportReason",
-    "ScanlationGroupReportReason",
-    "MangaReportReason",
-    "UserReportReason",
-    "ReportReason",
+    "ContentRating",
+    "CustomListVisibility",
     "ForumThreadType",
+    "MangaRelationType",
+    "MangaReportReason",
+    "MangaState",
+    "MangaStatus",
+    "PublicationDemographic",
+    "ReadingStatus",
+    "ReportCategory",
+    "ReportReason",
+    "ReportStatus",
+    "ScanlationGroupReportReason",
+    "UserReportReason",
 )
 
 

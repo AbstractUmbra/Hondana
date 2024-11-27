@@ -45,8 +45,8 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "ReportDetails",
     "Report",
+    "ReportDetails",
     "UserReport",
 )
 
@@ -65,23 +65,33 @@ class ReportDetails:
     target_id: :class:`str`
         The ID of the object we are reporting.
         E.g. the chapter's ID, or the scanlator group's ID.
-    """
+    """  # noqa: E501 # required for documentation formatting
 
     __slots__ = (
         "category",
-        "reason",
         "details",
+        "reason",
         "target_id",
     )
 
     @overload
     def __init__(
-        self, *, category: Literal[ReportCategory.author], reason: AuthorReportReason, details: ..., target_id: ...
+        self,
+        *,
+        category: Literal[ReportCategory.author],
+        reason: AuthorReportReason,
+        details: ...,
+        target_id: ...,
     ) -> None: ...
 
     @overload
     def __init__(
-        self, *, category: Literal[ReportCategory.chapter], reason: ChapterReportReason, details: ..., target_id: ...
+        self,
+        *,
+        category: Literal[ReportCategory.chapter],
+        reason: ChapterReportReason,
+        details: ...,
+        target_id: ...,
     ) -> None: ...
 
     @overload
@@ -96,12 +106,22 @@ class ReportDetails:
 
     @overload
     def __init__(
-        self, *, category: Literal[ReportCategory.manga], reason: MangaReportReason, details: ..., target_id: ...
+        self,
+        *,
+        category: Literal[ReportCategory.manga],
+        reason: MangaReportReason,
+        details: ...,
+        target_id: ...,
     ) -> None: ...
 
     @overload
     def __init__(
-        self, *, category: Literal[ReportCategory.user], reason: UserReportReason, details: ..., target_id: ...
+        self,
+        *,
+        category: Literal[ReportCategory.user],
+        reason: UserReportReason,
+        details: ...,
+        target_id: ...,
     ) -> None: ...
 
     def __init__(
@@ -118,7 +138,13 @@ class ReportDetails:
         self.target_id: str = target_id
 
     def __repr__(self) -> str:
-        return f"<ReportReason target_id={self.target_id!r} type={self.category.value!r} reason={self.reason.value!r} details={self.details!r}>"
+        return (
+            "<ReportReason "
+            f"target_id={self.target_id!r} "
+            f"type={self.category.value!r} "
+            f"reason={self.reason.value!r} "
+            f"details={self.details!r}>"
+        )
 
 
 class Report:
@@ -138,13 +164,13 @@ class Report:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_attributes",
+        "_data",
+        "_http",
+        "category",
+        "details_required",
         "id",
         "reason",
-        "details_required",
-        "category",
         "version",
     )
 
@@ -163,6 +189,9 @@ class Report:
 
     def __str__(self) -> str:
         return f"Report for {str(self.category).title()} and reason: {self.reason}"
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Report) and self.id == other.id
@@ -188,14 +217,14 @@ class UserReport:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_attributes",
-        "id",
+        "_created_at",
+        "_data",
+        "_http",
         "details",
+        "id",
         "object_id",
         "status",
-        "_created_at",
     )
 
     def __init__(self, http: HTTPClient, payload: UserReportReasonResponse) -> None:
@@ -210,6 +239,9 @@ class UserReport:
 
     def __repr__(self) -> str:
         return f"<UserReport id={self.id!r} status={self.status.value!r}>"
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, UserReport) and self.id == other.id

@@ -31,10 +31,10 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "LegacyMappingType",
+    "GetLegacyMappingResponse",
     "LegacyMappingAttributesResponse",
     "LegacyMappingResponse",
-    "GetLegacyMappingResponse",
+    "LegacyMappingType",
 )
 
 

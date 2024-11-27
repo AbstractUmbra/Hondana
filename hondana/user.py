@@ -32,7 +32,7 @@ from .utils import RelationshipResolver, require_authentication
 
 if TYPE_CHECKING:
     from .http import HTTPClient
-    from .scanlator_group import ScanlatorGroup  # noqa: TCH004
+    from .scanlator_group import ScanlatorGroup  # noqa: TC004
     from .types_.relationship import RelationshipResponse
     from .types_.scanlator_group import ScanlationGroupResponse
     from .types_.token import TokenPayload
@@ -70,14 +70,14 @@ class UserInfo:
     """
 
     __slots__ = (
-        "type",
-        "issuer",
         "audience",
-        "issued_at",
         "expires",
-        "user_id",
+        "issued_at",
+        "issuer",
         "roles",
         "sid",
+        "type",
+        "user_id",
     )
 
     def __init__(self, payload: TokenPayload) -> None:
@@ -91,7 +91,16 @@ class UserInfo:
         self.sid: str = payload["sid"]
 
     def __repr__(self) -> str:
-        return f"<Permissions type={self.type!r} issuer={self.issuer!r} audience={self.audience!r} issued_at={self.issued_at} expires={self.expires} user_id={self.user_id!r} sid={self.sid!r}>"
+        return (
+            "<Permissions"
+            f"type={self.type!r}"
+            f"issuer={self.issuer!r}"
+            f"audience={self.audience!r}"
+            f"issued_at={self.issued_at}"
+            f"expires={self.expires}"
+            f"user_id={self.user_id!r}"
+            f"sid={self.sid!r}>"
+        )
 
 
 class User:
@@ -111,22 +120,23 @@ class User:
 
 
     .. note::
-        Unlike most other api objects, this type does not have related relationship properties due to not returning a full ``relationships`` key.
+        Unlike most other api objects, this type does not have related relationship properties
+        due to not returning a full ``relationships`` key.
 
 
     """
 
     __slots__ = (
-        "_http",
-        "_data",
+        "__groups",
         "_attributes",
+        "_data",
+        "_group_relationships",
+        "_http",
         "_relationships",
         "id",
+        "roles",
         "username",
         "version",
-        "roles",
-        "_group_relationships",
-        "__groups",
     )
 
     def __init__(self, http: HTTPClient, payload: UserResponse) -> None:
@@ -139,7 +149,8 @@ class User:
         self.version: int = self._attributes["version"]
         self.roles: list[str] = self._attributes["roles"]
         self._group_relationships: list[ScanlationGroupResponse] = RelationshipResolver["ScanlationGroupResponse"](
-            relationships, "scanlation_group"
+            relationships,
+            "scanlation_group",
         ).resolve()
         self.__groups: list[ScanlatorGroup] | None = None
 
@@ -148,6 +159,9 @@ class User:
 
     def __str__(self) -> str:
         return self.username
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, User) and self.id == other.id
@@ -177,17 +191,23 @@ class User:
             The list of groups for this user, if any.
         """
         if not self._group_relationships:
-            return
+            return None
 
         ids = [r["id"] for r in self._group_relationships]
 
         data = await self._http.scanlation_group_list(
-            limit=100, offset=0, ids=ids, name=None, focused_language=None, includes=ScanlatorGroupIncludes(), order=None
+            limit=100,
+            offset=0,
+            ids=ids,
+            name=None,
+            focused_language=None,
+            includes=ScanlatorGroupIncludes(),
+            order=None,
         )
 
         fmt: list[ScanlatorGroup] = [ScanlatorGroup(self._http, payload) for payload in data["data"]]
         if not fmt:
-            return
+            return None
 
         self.__groups = fmt
         return self.__groups

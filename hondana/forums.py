@@ -34,10 +34,10 @@ if TYPE_CHECKING:
     from .types_.statistics import CommentMetaData
 
 __all__ = (
-    "MangaComments",
     "ChapterComments",
-    "ScanlatorGroupComments",
     "ForumThread",
+    "MangaComments",
+    "ScanlatorGroupComments",
 )
 
 
@@ -55,7 +55,7 @@ class _Comments:
         The amount of replies (comments) this object has in total.
     """
 
-    __slots__ = ("_data", "_http", "__thread", "thread_id", "reply_count", "parent_id")
+    __slots__ = ("__thread", "_data", "_http", "parent_id", "reply_count", "thread_id")
     __inner_type__: ForumThreadType
 
     def __init__(self, http: HTTPClient, comment_payload: CommentMetaData, parent_id: str, /) -> None:
@@ -67,7 +67,12 @@ class _Comments:
         self.__thread: ForumThread | None = None
 
     def __repr__(self) -> str:
-        return f"<{self.__class__.__name__} thread_id={self.thread_id} reply_count={self.reply_count} parent_id={self.parent_id!r}>"
+        return (
+            f"<{self.__class__.__name__} "
+            f"thread_id={self.thread_id} "
+            f"reply_count={self.reply_count} "
+            f"parent_id={self.parent_id!r}>"
+        )
 
     @property
     def thread(self) -> ForumThread | None:
@@ -140,9 +145,9 @@ class ForumThread:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_attributes",
+        "_data",
+        "_http",
         "id",
         "replies_count",
     )

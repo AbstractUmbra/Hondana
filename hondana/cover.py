@@ -59,19 +59,19 @@ class Cover:
     """
 
     __slots__ = (
-        "_http",
-        "_data",
         "_attributes",
-        "id",
-        "volume",
-        "file_name",
+        "_created_at",
+        "_data",
+        "_http",
+        "_manga_relationship",
+        "_updated_at",
+        "_uploader_relationship",
         "description",
+        "file_name",
+        "id",
         "locale",
         "version",
-        "_created_at",
-        "_updated_at",
-        "_manga_relationship",
-        "_uploader_relationship",
+        "volume",
     )
 
     def __init__(self, http: HTTPClient, payload: CoverResponse) -> None:
@@ -88,10 +88,10 @@ class Cover:
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
         self._manga_relationship: MangaResponse | None = RelationshipResolver(relationships, "manga").resolve(
-            with_fallback=True
+            with_fallback=True,
         )[0]
         self._uploader_relationship: UserResponse | None = RelationshipResolver(relationships, "user").resolve(
-            with_fallback=True
+            with_fallback=True,
         )[0]
 
     def __repr__(self) -> str:
@@ -99,6 +99,9 @@ class Cover:
 
     def __str__(self) -> str:
         return self.file_name
+
+    def __hash__(self) -> int:
+        return hash(self.id)
 
     def __eq__(self, other: object) -> bool:
         return isinstance(other, Cover) and self.id == other.id
@@ -141,15 +144,18 @@ class Cover:
             The user who uploaded this cover, if present.
         """
         if not self._uploader_relationship:
-            return
+            return None
 
         if "attributes" in self._uploader_relationship:
             return User(self._http, self._uploader_relationship)
 
+        return None
+
     def url(self, image_size: Literal[256, 512] | None = None, /, parent_id: str | None = None) -> str | None:
         """Method to return the Cover url.
 
-        Due to the API structure, this will return ``None`` if the parent manga key is missing from the response relationships.
+        Due to the API structure, this will return ``None`` if the parent manga key is missing from the
+        response relationships.
 
         Parameters
         -----------
@@ -167,7 +173,7 @@ class Cover:
         """
         manga_id = parent_id or (self._manga_relationship["id"] if self._manga_relationship else None)
         if manga_id is None:
-            return
+            return None
 
         if image_size == 256:
             fmt = ".256.jpg"
@@ -196,7 +202,7 @@ class Cover:
         """
         url = self.url(size)
         if url is None:
-            return
+            return None
 
         route = Route("GET", url)
         return await self._http.request(route)

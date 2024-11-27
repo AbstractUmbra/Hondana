@@ -54,17 +54,16 @@ def clone_manga(
     if type_ == "manga":
         t = deepcopy(PAYLOAD)
         return Manga(HTTP, t["data"])
-    elif type_ == "relation":
+    if type_ == "relation":
         t = deepcopy(RELATIONS_PAYLOAD)
         return MangaRelation(HTTP, PAYLOAD["data"]["id"], t["data"][0])
-    elif type_ == "stats":
+    if type_ == "stats":
         t = deepcopy(STATISTICS_PAYLOAD)
         key = next(iter(t["statistics"]))
         return MangaStatistics(HTTP, PAYLOAD["data"]["id"], t["statistics"][key])
-    elif type_ == "rating":
-        t = deepcopy(RATING_PAYLOAD)
-        key = next(iter(t["ratings"]))
-        return MangaRating(HTTP, PAYLOAD["data"]["id"], t["ratings"][key])
+    t = deepcopy(RATING_PAYLOAD)
+    key = next(iter(t["ratings"]))
+    return MangaRating(HTTP, PAYLOAD["data"]["id"], t["ratings"][key])
 
 
 class TestManga:
@@ -77,9 +76,9 @@ class TestManga:
 
         for item in PAYLOAD["data"]["attributes"]:
             if item == "altTitles":  # special case sane attribute renaming
-                item = "alternateTitles"
+                item = "alternateTitles"  # noqa: PLW2901  # renaming raw payload items
             elif item == "isLocked":  # special case sane attribute renaming
-                item = "locked"
+                item = "locked"  # noqa: PLW2901  # renaming raw payload items
             assert hasattr(manga, to_snake_case(item))
 
     def test_relationship_length(self) -> None:
@@ -100,7 +99,7 @@ class TestManga:
 
         assert not hasattr(manga, "_cs_tags")
 
-        manga.tags
+        _ = manga.tags
 
         assert hasattr(manga, "_cs_tags")
 

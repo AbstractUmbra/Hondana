@@ -33,10 +33,10 @@ if TYPE_CHECKING:
 
 
 __all__ = (
+    "GetMultiScanlationGroupResponse",
+    "GetSingleScanlationGroupResponse",
     "ScanlationGroupAttributesResponse",
     "ScanlationGroupResponse",
-    "GetSingleScanlationGroupResponse",
-    "GetMultiScanlationGroupResponse",
 )
 
 

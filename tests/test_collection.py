@@ -106,36 +106,36 @@ def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
         author_payload: GetMultiAuthorResponse = json.load(path.open())
         authors = [Author(HTTP, item) for item in author_payload["data"]]
         return AuthorCollection(HTTP, author_payload, authors=authors)
-    elif type_ == "chapter_feed":
+    if type_ == "chapter_feed":
         chapter_payload: GetMultiChapterResponse = json.load(path.open())
         chapters = [Chapter(HTTP, item) for item in chapter_payload["data"]]
         return ChapterFeed(HTTP, chapter_payload, chapters=chapters)
-    elif type_ == "cover":
+    if type_ == "cover":
         cover_payload: GetMultiCoverResponse = json.load(path.open())
         covers = [Cover(HTTP, item) for item in cover_payload["data"]]
         return CoverCollection(HTTP, cover_payload, covers=covers)
-    elif type_ == "custom_list":
+    if type_ == "custom_list":
         custom_list_payload: GetMultiCustomListResponse = json.load(path.open())
         custom_lists = [CustomList(HTTP, item) for item in custom_list_payload["data"]]
         return CustomListCollection(HTTP, custom_list_payload, lists=custom_lists)
-    elif type_ == "legacy_mapping":
+    if type_ == "legacy_mapping":
         mapping_payload: GetLegacyMappingResponse = json.load(path.open())
         mappings = [LegacyItem(HTTP, item) for item in mapping_payload["data"]]
         return LegacyMappingCollection(HTTP, mapping_payload, mappings=mappings)
-    elif type_ == "manga":
+    if type_ == "manga":
         manga_payload: MangaSearchResponse = json.load(path.open())
         manga: list[Manga] = [Manga(HTTP, item) for item in manga_payload["data"]]
         return MangaCollection(HTTP, manga_payload, manga=manga)
-    elif type_ == "manga_relation":
+    if type_ == "manga_relation":
         relation_payload: MangaRelationResponse = json.load(path.open())
         parent_id: str = ""
         manga_relation: list[MangaRelation] = [MangaRelation(HTTP, parent_id, item) for item in relation_payload["data"]]
         return MangaRelationCollection(HTTP, relation_payload, relations=manga_relation)
-    elif type_ == "scanlator_group":
+    if type_ == "scanlator_group":
         group_payload: GetMultiScanlationGroupResponse = json.load(path.open())
         groups = [ScanlatorGroup(HTTP, item) for item in group_payload["data"]]
         return ScanlatorGroupCollection(HTTP, group_payload, groups=groups)
-    elif type_ == "user":
+    if type_ == "user":
         user_payload: GetMultiUserResponse = json.load(path.open())
         users = [User(HTTP, item) for item in user_payload["data"]]
         return UserCollection(HTTP, user_payload, users=users)

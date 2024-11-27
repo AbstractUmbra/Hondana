@@ -33,8 +33,8 @@ if TYPE_CHECKING:
 __all__ = (
     "CustomListAttributesResponse",
     "CustomListResponse",
-    "GetSingleCustomListResponse",
     "GetMultiCustomListResponse",
+    "GetSingleCustomListResponse",
 )
 
 _CustomListVisibility = Literal["public", "private"]

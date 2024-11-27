@@ -34,13 +34,13 @@ if TYPE_CHECKING:
 
 __all__ = (
     "ChapterAttributesResponse",
-    "ChapterResponse",
-    "GetSingleChapterResponse",
-    "GetMultiChapterResponse",
-    "GetAtHomeResponse",
-    "GetAtHomeChapterResponse",
-    "ChapterReadResponse",
     "ChapterReadHistoryResponse",
+    "ChapterReadResponse",
+    "ChapterResponse",
+    "GetAtHomeChapterResponse",
+    "GetAtHomeResponse",
+    "GetMultiChapterResponse",
+    "GetSingleChapterResponse",
 )
 
 

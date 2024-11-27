@@ -20,7 +20,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
-"""
+"""  # noqa: A005 # we only use this as part of a namespace, not directly
 
 from __future__ import annotations
 
@@ -49,7 +49,16 @@ from .enums import (
     ReportReason,
     ReportStatus,
 )
-from .errors import APIException, BadRequest, Forbidden, MangaDexServerError, NotFound, RefreshTokenFailure, Unauthorized
+from .errors import (
+    APIException,
+    AuthenticationRequired,
+    BadRequest,
+    Forbidden,
+    MangaDexServerError,
+    NotFound,
+    RefreshTokenFailure,
+    Unauthorized,
+)
 from .utils import (
     MANGA_TAGS,
     MANGADEX_TIME_REGEX,
@@ -132,13 +141,13 @@ __all__ = ("HTTPClient",)
 
 class Token:
     __slots__ = (
+        "_client_secret",
+        "_http",
+        "client_id",
+        "created_at",
+        "expires",
         "raw_token",
         "refresh_token",
-        "created_at",
-        "client_id",
-        "expires",
-        "_http",
-        "_client_secret",
     )
     created_at: datetime.datetime
     expires: datetime.datetime
@@ -164,7 +173,12 @@ class Token:
 
     @classmethod
     def from_token_response(
-        cls, *, payload: token.GetTokenPayload, session: aiohttp.ClientSession, client_secret: str, client_id: str
+        cls,
+        *,
+        payload: token.GetTokenPayload,
+        session: aiohttp.ClientSession,
+        client_secret: str,
+        client_id: str,
     ) -> Self:
         self = cls(payload["access_token"], session=session, client_id=client_id, client_secret=client_secret)
         self.add_refresh_token(payload["refresh_token"])
@@ -190,7 +204,8 @@ class Token:
 
     async def refresh(self) -> Self:
         if not self.refresh_token:
-            raise TypeError("Current token has no refresh_token.")
+            msg = "Current token has no refresh_token."
+            raise TypeError(msg)
 
         route = AuthRoute("POST", "/token")
 
@@ -200,7 +215,7 @@ class Token:
                 ("refresh_token", self.refresh_token.raw_token),
                 ("client_id", self.client_id),
                 ("client_secret", self._client_secret),
-            ]
+            ],
         )
 
         async with self._http.request(route.verb, route.url, data=data) as resp:
@@ -209,7 +224,8 @@ class Token:
             try:
                 self.raw_token = response_data["access_token"]
             except KeyError as exc:
-                raise RefreshTokenFailure("Failed to refresh token", resp, response_data) from exc
+                msg = "Failed to refresh token"
+                raise RefreshTokenFailure(msg, resp, response_data) from exc
 
         self._parse()
 
@@ -218,7 +234,10 @@ class Token:
 
     def add_refresh_token(self, raw_token: str) -> None:
         self.refresh_token = self.__class__(
-            raw_token, client_id=self.client_id, client_secret=self._client_secret, session=self._http
+            raw_token,
+            client_id=self.client_id,
+            client_secret=self._client_secret,
+            session=self._http,
         )
 
 
@@ -235,8 +254,8 @@ class MaybeUnlock:
 
     def __exit__(
         self,
-        exc_type: type[BE] | None,
-        exc: BE | None,
+        exc_type: type[BE] | None,  # noqa: PYI036 # not expanding the typevar
+        exc: BE | None,  # noqa: PYI036 # not expanding the typevar
         traceback: TracebackType | None,
     ) -> None:
         if self._unlock:
@@ -245,18 +264,18 @@ class MaybeUnlock:
 
 class HTTPClient:
     __slots__ = (
+        "_auth_token",
         "_authenticated",
-        "_session",
+        "_client_secret",
         "_locks",
-        "_token_lock",
         "_oauth_scopes",
         "_password",
-        "_client_secret",
-        "_auth_token",
         "_refresh_token",
-        "username",
+        "_session",
+        "_token_lock",
         "client_id",
         "user_agent",
+        "username",
     )
 
     def __init__(
@@ -281,13 +300,12 @@ class HTTPClient:
         self._auth_token: Token | None = None
         self._refresh_token: Token | None = None
         self._authenticated: bool = all([username, password, client_id, client_secret])
-        self._resolve_api_type(dev_api)
+        self._resolve_api_type(dev_api=dev_api)
         if any([username, password, client_id, client_secret]) and not self._authenticated:
-            raise RuntimeError(
-                "You must pass all required login attributes: `username`, `password`, `client_id`, `client_secret`"
-            )
+            msg = "You must pass all required login attributes: `username`, `password`, `client_id`, `client_secret`"
+            raise RuntimeError(msg)
 
-    def _resolve_api_type(self, dev_api: bool) -> None:
+    def _resolve_api_type(self, *, dev_api: bool) -> None:
         if dev_api is True or getenv("HONDANA_API_DEV"):
             Route.API_BASE_URL = Route.API_DEV_BASE_URL
             AuthRoute.API_BASE_URL = AuthRoute.API_DEV_BASE_URL
@@ -318,8 +336,9 @@ class HTTPClient:
             await self._session.close()
 
     async def get_token(self) -> Token:
-        assert self.client_id
-        assert self._client_secret
+        if not self.client_id or not self._client_secret:
+            msg = "You must pass the correct OAuth2 details to use authentication."
+            raise AuthenticationRequired(msg)
 
         if self._auth_token and not self._auth_token.has_expired():
             return self._auth_token
@@ -332,7 +351,7 @@ class HTTPClient:
             try:
                 await self._auth_token.refresh()
             except RefreshTokenFailure as exc:
-                LOGGER.error(
+                LOGGER.exception(
                     "Failed to refresh token. Will attempt the login flow again. Errored payload:\n%s",
                     exc.data,
                     exc_info=exc,
@@ -347,7 +366,7 @@ class HTTPClient:
                 ("password", self._password),
                 ("client_id", self.client_id),
                 ("client_secret", self._client_secret),
-            ]
+            ],
         )
 
         if not self._session:
@@ -355,10 +374,16 @@ class HTTPClient:
 
         # to prevent circular we handle this logic manually, not the request method
         async with self._session.request(route.verb, route.url, data=data) as resp:
-            response_data: token.GetTokenPayload = await resp.json()
+            if 200 < resp.status < 300:
+                response_data: token.GetTokenPayload = await resp.json()
+            else:
+                raise APIException(resp, status_code=resp.status, errors=[])
 
         self._auth_token = Token.from_token_response(
-            payload=response_data, client_id=self.client_id, client_secret=self._client_secret, session=self._session
+            payload=response_data,
+            client_id=self.client_id,
+            client_secret=self._client_secret,
+            session=self._session,
         )
 
         return self._auth_token
@@ -445,14 +470,15 @@ class HTTPClient:
                         retry = response.headers.get("x-ratelimit-retry-after", None)
                         LOGGER.debug("retry is: %s", retry)
                         if retry is not None:
-                            retry = datetime.datetime.fromtimestamp(int(retry))
+                            retry = datetime.datetime.fromtimestamp(int(retry), datetime.UTC)
                         # The total ratelimit session hits
                         limit = response.headers.get("x-ratelimit-limit", None)
                         LOGGER.debug("limit is: %s", limit)
 
                         if remaining == "0" and response.status != 429:
-                            assert retry is not None
-                            delta = retry - datetime.datetime.now()
+                            if not retry:
+                                break  # unreachable
+                            delta = retry - datetime.datetime.now(datetime.UTC)
                             sleep = delta.total_seconds() + 1
                             LOGGER.warning("A ratelimit has been exhausted, sleeping for: %d", sleep)
                             maybe_lock.defer()
@@ -471,8 +497,10 @@ class HTTPClient:
                             return data
 
                         if response.status == 429:
-                            assert retry is not None
-                            delta = retry - datetime.datetime.now()
+                            if not retry:
+                                break  # unreachable
+
+                            delta = retry - datetime.datetime.now(datetime.UTC)
                             sleep = delta.total_seconds() + 1
                             LOGGER.warning("A ratelimit has been hit, sleeping for: %d", sleep)
                             await asyncio.sleep(sleep)
@@ -484,14 +512,16 @@ class HTTPClient:
                             await asyncio.sleep(sleep_)
                             continue
 
-                        assert isinstance(data, dict)
+                        if not isinstance(data, dict):
+                            break  # unreachable
+
                         if response.status == 400:
                             raise BadRequest(response, errors=data["errors"])
-                        elif response.status == 401:
+                        if response.status == 401:
                             raise Unauthorized(response, errors=data["errors"])
-                        elif response.status == 403:
+                        if response.status == 403:
                             raise Forbidden(response, errors=data["errors"])
-                        elif response.status == 404:
+                        if response.status == 404:
                             raise NotFound(response, errors=data["errors"])
                         LOGGER.exception("Unhandled HTTP error occurred: %s -> %s", response.status, data)
                         raise APIException(
@@ -499,8 +529,8 @@ class HTTPClient:
                             status_code=response.status,
                             errors=data["errors"],
                         )
-                except (aiohttp.ServerDisconnectedError, aiohttp.ServerTimeoutError) as error:
-                    LOGGER.exception("Network error occurred: %s", error)
+                except (aiohttp.ServerDisconnectedError, aiohttp.ServerTimeoutError):
+                    LOGGER.exception("Network error occurred:-")
                     await asyncio.sleep(5)
                     continue
 
@@ -510,7 +540,8 @@ class HTTPClient:
 
                 raise APIException(response, status_code=response.status, errors=[])
 
-            raise RuntimeError("Unreachable code in HTTP handling.")
+            msg = "Unreachable code in HTTP handling."
+            raise RuntimeError(msg)
 
     def account_available(self, username: str) -> Response[GetAccountAvailable]:
         route = Route("GET", "/account/available/{username}", username=username)
@@ -568,12 +599,10 @@ class HTTPClient:
             query["year"] = year
 
         if included_tags:
-            assert included_tags.tags is not None  # the init of QueryTags raises if this is None
             query["includedTags"] = included_tags.tags
             query["includedTagsMode"] = included_tags.mode
 
         if excluded_tags:
-            assert excluded_tags.tags is not None  # the init of QueryTags raises if this is None
             query["excludedTags"] = excluded_tags.tags
             query["excludedTagsMode"] = excluded_tags.mode
 
@@ -910,20 +939,33 @@ class HTTPClient:
 
     @overload
     def manga_read_markers(
-        self, manga_ids: list[str], /, *, grouped: Literal[False]
+        self,
+        manga_ids: list[str],
+        /,
+        *,
+        grouped: Literal[False],
     ) -> Response[manga.MangaReadMarkersResponse]: ...
 
     @overload
     def manga_read_markers(
-        self, manga_ids: list[str], /, *, grouped: Literal[True]
+        self,
+        manga_ids: list[str],
+        /,
+        *,
+        grouped: Literal[True],
     ) -> Response[manga.MangaGroupedReadMarkersResponse]: ...
 
     def manga_read_markers(
-        self, manga_ids: list[str], /, *, grouped: bool = False
+        self,
+        manga_ids: list[str],
+        /,
+        *,
+        grouped: bool = False,
     ) -> Response[manga.MangaReadMarkersResponse | manga.MangaGroupedReadMarkersResponse]:
         if not grouped:
             if len(manga_ids) != 1:
-                raise ValueError("If `grouped` is False, then `manga_ids` should be a single length list.")
+                msg = "If `grouped` is False, then `manga_ids` should be a single length list."
+                raise ValueError(msg)
 
             id_ = manga_ids[0]
             route = Route("GET", "/manga/{manga_id}/read", manga_id=id_, authenticate=True)
@@ -958,7 +1000,9 @@ class HTTPClient:
         return self.request(route, json=body)
 
     def get_all_manga_reading_status(
-        self, *, status: ReadingStatus | None = None
+        self,
+        *,
+        status: ReadingStatus | None = None,
     ) -> Response[manga.MangaMultipleReadingStatusResponse]:
         route = Route("GET", "/manga/status", authenticate=True)
         if status:
@@ -1011,7 +1055,11 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def get_manga_relation_list(
-        self, manga_id: str, /, *, includes: MangaIncludes | None
+        self,
+        manga_id: str,
+        /,
+        *,
+        includes: MangaIncludes | None,
     ) -> Response[manga.MangaRelationResponse]:
         route = Route("GET", "/manga/{manga_id}/relation", manga_id=manga_id)
 
@@ -1022,7 +1070,12 @@ class HTTPClient:
         return self.request(route)
 
     def create_manga_relation(
-        self, manga_id: str, /, *, target_manga: str, relation_type: MangaRelationType
+        self,
+        manga_id: str,
+        /,
+        *,
+        target_manga: str,
+        relation_type: MangaRelationType,
     ) -> Response[manga.MangaRelationCreateResponse]:
         route = Route("POST", "/manga/{manga_id}/relation", manga_id=manga_id, authenticate=True)
         query: dict[str, Any] = {"targetManga": target_manga, "relation": relation_type.value}
@@ -1145,7 +1198,11 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def get_chapter(
-        self, chapter_id: str, /, *, includes: ChapterIncludes | None
+        self,
+        chapter_id: str,
+        /,
+        *,
+        includes: ChapterIncludes | None,
     ) -> Response[chapter.GetSingleChapterResponse]:
         route = Route("GET", "/chapter/{chapter_id}", chapter_id=chapter_id)
 
@@ -1279,7 +1336,8 @@ class HTTPClient:
         query: dict[str, Any] = {"version": version}
 
         if volume is MISSING:
-            raise TypeError("`volume` key must be a value of `str` or `NoneType`.")
+            msg = "`volume` key must be a value of `str` or `NoneType`."
+            raise TypeError(msg)
 
         query["volume"] = volume
 
@@ -1390,7 +1448,10 @@ class HTTPClient:
         return self.request(route)
 
     def get_my_followed_groups(
-        self, *, limit: int, offset: int
+        self,
+        *,
+        limit: int,
+        offset: int,
     ) -> Response[scanlator_group.GetMultiScanlationGroupResponse]:
         route = Route("GET", "/user/follows/group", authenticate=True)
 
@@ -1429,7 +1490,10 @@ class HTTPClient:
         return self.request(route)
 
     def get_user_followed_manga(
-        self, limit: int, offset: int, includes: MangaIncludes | None
+        self,
+        limit: int,
+        offset: int,
+        includes: MangaIncludes | None,
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/user/follows/manga", authenticate=True)
 
@@ -1473,7 +1537,11 @@ class HTTPClient:
         return self.request(route)
 
     def legacy_id_mapping(
-        self, mapping_type: legacy.LegacyMappingType, /, *, item_ids: list[int]
+        self,
+        mapping_type: legacy.LegacyMappingType,
+        /,
+        *,
+        item_ids: list[int],
     ) -> Response[legacy.GetLegacyMappingResponse]:
         route = Route("POST", "/legacy/mapping")
         query: dict[str, Any] = {"type": mapping_type, "ids": item_ids}
@@ -1504,7 +1572,11 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def get_custom_list(
-        self, custom_list_id: str, /, *, includes: CustomListIncludes | None
+        self,
+        custom_list_id: str,
+        /,
+        *,
+        includes: CustomListIncludes | None,
     ) -> Response[custom_list.GetSingleCustomListResponse]:
         route = Route("GET", "/list/{custom_list_id}", custom_list_id=custom_list_id)
 
@@ -1578,7 +1650,12 @@ class HTTPClient:
         return self.request(route, params=query)
 
     def get_users_custom_lists(
-        self, user_id: str, /, *, limit: int, offset: int
+        self,
+        user_id: str,
+        /,
+        *,
+        limit: int,
+        offset: int,
     ) -> Response[custom_list.GetMultiCustomListResponse]:
         route = Route("GET", "/user/{user_id}/list", user_id=user_id)
 
@@ -1714,14 +1791,19 @@ class HTTPClient:
                 publish_delay = delta_to_iso(publish_delay)
 
             if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
-                raise ValueError("The `publish_delay` parameter must match the regex format.")
+                msg = "The `publish_delay` parameter must match the regex format."
+                raise ValueError(msg)
 
             query["publishDelay"] = publish_delay
 
         return self.request(route, json=query)
 
     def view_scanlation_group(
-        self, scanlation_group_id: str, /, *, includes: ScanlatorGroupIncludes | None
+        self,
+        scanlation_group_id: str,
+        /,
+        *,
+        includes: ScanlatorGroupIncludes | None,
     ) -> Response[scanlator_group.GetSingleScanlationGroupResponse]:
         route = Route("GET", "/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_id)
 
@@ -1797,7 +1879,8 @@ class HTTPClient:
                 publish_delay = delta_to_iso(publish_delay)
 
             if not MANGADEX_TIME_REGEX.fullmatch(publish_delay):
-                raise ValueError("The `publish_delay` parameter's string must match the regex pattern.")
+                msg = "The `publish_delay` parameter's string must match the regex pattern."
+                raise ValueError(msg)
 
             query["publishDelay"] = publish_delay
 
@@ -1815,13 +1898,19 @@ class HTTPClient:
 
     def follow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
         route = Route(
-            "POST", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id, authenticate=True
+            "POST",
+            "/group/{scanlation_group_id}/follow",
+            scanlation_group_id=scanlation_group_id,
+            authenticate=True,
         )
         return self.request(route)
 
     def unfollow_scanlation_group(self, scanlation_group_id: str, /) -> Response[DefaultResponseType]:
         route = Route(
-            "DELETE", "/group/{scanlation_group_id}/follow", scanlation_group_id=scanlation_group_id, authenticate=True
+            "DELETE",
+            "/group/{scanlation_group_id}/follow",
+            scanlation_group_id=scanlation_group_id,
+            authenticate=True,
         )
         return self.request(route)
 
@@ -2160,44 +2249,65 @@ class HTTPClient:
         return self.request(route)
 
     def get_chapter_statistics(
-        self, chapter_id: str | None, chapter_ids: str | None
+        self,
+        chapter_id: str | None,
+        chapter_ids: str | None,
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if chapter_id:
             route = Route("GET", "/statistics/chapter/{chapter_id}", chapter_id=chapter_id, authenticate=True)
             return self.request(route)
-        elif chapter_ids:
+        if chapter_ids:
             route = Route("GET", "/statistics/chapter", authenticate=True)
             return self.request(route, params={"chapter": chapter_ids})
-        raise ValueError("Either chapter_id or chapter_ids is required.")
+
+        msg = "Either chapter_id or chapter_ids is required."
+        raise ValueError(msg)
 
     def get_scanlation_group_statistics(
-        self, scanlation_group_id: str | None, scanlation_group_ids: str | None
+        self,
+        scanlation_group_id: str | None,
+        scanlation_group_ids: str | None,
     ) -> Response[statistics.GetCommentsStatisticsResponse]:
         if scanlation_group_id:
             route = Route(
-                "GET", "/statistics/group/{scanlation_group_id}", scanlation_group_id=scanlation_group_ids, authenticate=True
+                "GET",
+                "/statistics/group/{scanlation_group_id}",
+                scanlation_group_id=scanlation_group_ids,
+                authenticate=True,
             )
             return self.request(route)
-        elif scanlation_group_ids:
+        if scanlation_group_ids:
             route = Route("GET", "/statistics/group", authenticate=True)
             return self.request(route, params={"group": scanlation_group_ids})
-        raise ValueError("Either chapter_id or chapter_ids is required.")
+
+        msg = "Either chapter_id or chapter_ids is required."
+        raise ValueError(msg)
 
     def get_manga_statistics(
-        self, manga_id: str | None, manga_ids: list[str] | None, /
+        self,
+        manga_id: str | None,
+        manga_ids: list[str] | None,
+        /,
     ) -> Response[statistics.GetMangaStatisticsResponse]:
         if manga_id:
             route = Route("GET", "/statistics/manga/{manga_id}", manga_id=manga_id, authenticate=True)
             return self.request(route)
-        elif manga_ids:
+        if manga_ids:
             route = Route("GET", "/statistics/manga", authenticate=True)
             query: MANGADEX_QUERY_PARAM_TYPE = {"manga": manga_ids}
             return self.request(route, params=query)
-        else:
-            raise ValueError("Either `manga_id` or `manga_ids` must be passed.")
+
+        msg = "Either `manga_id` or `manga_ids` must be passed."
+        raise ValueError(msg)
 
     def open_upload_session(
-        self, manga_id: str, /, *, scanlator_groups: list[str], chapter_id: str | None, version: int | None
+        self,
+        manga_id: str,
+        /,
+        *,
+        scanlator_groups: list[str],
+        chapter_id: str | None,
+        version: int | None,
     ) -> Response[upload.BeginChapterUploadResponse]:
         query: dict[str, Any] = {"manga": manga_id, "groups": scanlator_groups}
         if chapter_id is not None:
@@ -2246,7 +2356,9 @@ class HTTPClient:
         return self.request(route, json=query)
 
     def check_approval_required(
-        self, manga_id: str, locale: common.LanguageCode
+        self,
+        manga_id: str,
+        locale: common.LanguageCode,
     ) -> Response[upload.GetCheckApprovalRequired]:
         route = Route("POST", "/upload/check-approval-required", authenticate=True)
 
