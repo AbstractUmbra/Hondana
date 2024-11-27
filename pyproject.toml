@@ -44,7 +44,6 @@ orjson = { version = "*", optional = true }
 
 [tool.poetry.dev-dependencies]
 poethepoet = "*"
-pre-commit = "*"
 ruff = "*"
 typing-extensions = "*"
 
