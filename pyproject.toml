@@ -43,6 +43,12 @@ aiohttp = [
 
 orjson = { version = "*", optional = true }
 
+[tool.poetry.dev-dependencies]
+poethepoet = "*"
+pre-commit = "*"
+ruff = "*"
+typing-extensions = "*"
+
 [tool.poetry.extras]
 speed = ["aiohttp", "orjson"]
 
@@ -58,12 +64,6 @@ furo = "*"
 [tool.poetry.group.tests.dependencies]
 pytest = "*"
 pytest-asyncio = "*"
-
-[tool.poetry.group.dev.dependencies]
-poethepoet = "*"
-pre-commit = "*"
-ruff = "*"
-typing-extensions = "*"
 
 [tool.poetry.scripts]
 version = "hondana.__main__:show_version"
