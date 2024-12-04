@@ -66,4 +66,4 @@ jobs:
 
       - name: Lint
         if: ${{ always() && steps.install-deps.outcome == 'success' }}
-        uses: chartboost/ruff-action@v1
+        uses: astral-sh/ruff-action@v2
