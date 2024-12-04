@@ -38,6 +38,7 @@ __all__ = (
     "Forbidden",
     "MangaDexServerError",
     "NotFound",
+    "PreviousAPIVersionRequest",
     "RefreshTokenFailure",
     "Unauthorized",
     "UploadInProgress",
@@ -220,6 +221,33 @@ class BadRequest(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         super().__init__(response, status_code=400, errors=errors)
+
+
+class PreviousAPIVersionRequest(BadRequest):
+    """
+    An error for when the API query matches the criteria of an older API version.
+
+    Attributes
+    -----------
+    response: :class:`aiohttp.ClientResponse`
+        The response object pertaining to this request.
+    status_code: Literal[``400``]
+        The HTTP status code for this request.
+    response_id: :class:`str`
+        The UUID relating to this failed HTTP request.
+        This is to be used when contacting MangaDex about an error.
+    errors: List[:class:`~hondana.errors.Error`]
+        The list of errors returned from MangaDex.
+    """
+
+    def __init__(self, response: aiohttp.ClientResponse, /) -> None:
+        super().__init__(response, errors=[])
+
+    def __str__(self) -> str:
+        return (
+            f"HTTP Status: {self.status_code} and response id: {self.response_id} :: "
+            "Your API request matches the critera for MangaDex API version <5."
+        )
 
 
 class Unauthorized(APIException):

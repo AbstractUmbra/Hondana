@@ -56,6 +56,7 @@ from .errors import (
     Forbidden,
     MangaDexServerError,
     NotFound,
+    PreviousAPIVersionRequest,
     RefreshTokenFailure,
     Unauthorized,
 )
@@ -513,6 +514,8 @@ class HTTPClient:
                             continue
 
                         if not isinstance(data, dict):
+                            if isinstance(data, str):
+                                raise PreviousAPIVersionRequest(response)
                             break  # unreachable
 
                         if response.status == 400:
