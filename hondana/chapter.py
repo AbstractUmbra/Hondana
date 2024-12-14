@@ -586,20 +586,20 @@ class Chapter:
         at_home_data = await self.get_at_home(ssl=ssl)
         self._at_home_url = at_home_data.base_url
 
-        _pages = at_home_data.data_saver if data_saver else at_home_data.data
-        _actual_pages = _pages[start:] if end is None else _pages[start:end]
-        for i, url in enumerate(_actual_pages, start=1):  # noqa: B007 # it gets used in the outer scope
+        pages = at_home_data.data_saver if data_saver else at_home_data.data
+        resolved_pages = pages[start:] if end is None else pages[start:end]
+        for i, url in enumerate(resolved_pages, start=1):  # noqa: B007 # it gets used in the outer scope
             route = Route(
                 "GET",
                 f"/{'data-saver' if data_saver else 'data'}/{at_home_data.hash}/{url}",
                 base=self._at_home_url,
             )
             LOGGER.debug("Attempting to download: %s", route.url)
-            _start = time.monotonic()
+            start_req = time.monotonic()
             response: tuple[bytes, ClientResponse] = await self._http.request(route)
             data, page_resp = response
-            _end = time.monotonic()
-            _total = _end - _start
+            end_req = time.monotonic()
+            total_req_secs = end_req - start_req
             LOGGER.debug("Downloaded: %s", route.url)
 
             if report and self._at_home_url != "https://uploads.mangadex.org":
@@ -608,7 +608,7 @@ class Chapter:
                     success=page_resp.status == 200,
                     cached=page_resp.headers.get("X-Cache", "").casefold() == "hit",
                     size=(page_resp.content_length or 0),
-                    duration=int(_total * 1000),
+                    duration=int(total_req_secs * 1000),
                 )
 
             if page_resp.status != 200:
@@ -808,11 +808,9 @@ class UploadData:
         Set[:class:`str`]
             The filenames of the failed uploads.
         """
-        _succeeded: set[str] = set()
-        for item in self.succeeded:
-            _succeeded.update(data["attributes"]["originalFileName"] for data in item["data"])
+        succeeded: set[str] = {data["attributes"]["originalFileName"] for item in self.succeeded for data in item["data"]}
 
-        return self._filenames ^ _succeeded
+        return self._filenames ^ succeeded
 
 
 class ChapterUpload:

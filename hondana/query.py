@@ -62,15 +62,15 @@ class _OrderQuery:
             msg = "You must pass valid kwargs."
             raise TypeError(msg)
 
-        _fmt: list[str] = []
+        fmt: list[str] = []
         for name, value in kwargs.items():
             if name in self.__slots__:
                 setattr(self, name, value.value)
             else:
-                _fmt.append(name)
+                fmt.append(name)
 
-        if _fmt:
-            msg = f"You have passed invalid kwargs: {', '.join(_fmt)}"
+        if fmt:
+            msg = f"You have passed invalid kwargs: {', '.join(fmt)}"
             raise TypeError(msg)
 
     def __repr__(self) -> str:

@@ -79,11 +79,11 @@ class TestTags:
             sorted(raw_tags, key=operator.itemgetter("id")),
             strict=True,
         ):
-            _description = tag._description  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
-            _raw_descriptions = raw_tag["attributes"]["description"]
-            _raw_descriptions = _raw_descriptions or {}
-            _raw_description = dict(_raw_descriptions)
-            assert _description == _raw_description
+            description = tag._description  # pyright: ignore[reportPrivateUsage] # sorry, need this for test purposes
+            raw_descriptions = raw_tag["attributes"]["description"]
+            raw_descriptions = raw_descriptions or {}
+            raw_description = dict(raw_descriptions)
+            assert description == raw_description
 
 
 class TestQueryTags:

@@ -414,8 +414,7 @@ class Client:
                 include_external_url=include_external_url,
             )
 
-            _extend: list[Chapter] = [Chapter(self._http, item) for item in data["data"]]
-            chapters.extend(_extend)
+            chapters.extend([Chapter(self._http, item) for item in data["data"]])
 
             offset += inner_limit
             if not data["data"] or offset >= 10_000 or limit is not None:

@@ -155,8 +155,8 @@ class Manga:
         self.id: str = payload["id"]
         self._title: LocalizedString = self._attributes["title"]
         self._description: LocalizedString = self._attributes["description"]
-        _related = payload.get("related", None)
-        self.relation_type: MangaRelationType | None = MangaRelationType(_related) if _related else None
+        related = payload.get("related", None)
+        self.relation_type: MangaRelationType | None = MangaRelationType(related) if related else None
         self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # pyright: ignore[reportAttributeAccessIssue]  # TypedDict.items() is weird
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
