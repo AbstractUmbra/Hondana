@@ -1,13 +1,16 @@
-[tool.poetry]
+[project]
 name = "Hondana"
 version = "3.6.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
-authors = ["Alex Nørgaard <umbra@abstractumbra.dev>"]
-
-license = "MIT"
+authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
+dependencies = [
+    "aiohttp<4.0,>=3.9",
+    "aiohttp[speedups]<4.0,>=3.9; extra == \"speed\"",
+    "orjson; extra == \"speed\"",
+]
+requires-python = "<4.0,>=3.11"
 readme = "README.md"
-repository = "https://github.com/AbstractUmbra/hondana"
-
+license = { file = "LICENSE" }
 keywords = ["mangadex", "manga", "api", "wrapper"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -19,52 +22,38 @@ classifiers = [
     "Topic :: Internet",
     "Typing :: Typed",
 ]
-include = ["LICENSE"]
-packages = [
-    { include = "hondana" },
-    { include = "hondana/**/*.py" },
-    { include = "hondana/py.typed" },
-    { include = "hondana/extras/tags.json" },
-    { include = "hondana/extras/report_reasons.json" },
-]
 
-[tool.poetry.urls]
+[project.urls]
 "Issue Tracker" = "https://github.com/AbstractUmbra/hondana/issues"
-"Discord" = "https://discord.gg/aYGYJxwqe5"
+Discord = "https://discord.gg/aYGYJxwqe5"
+repository = "https://github.com/AbstractUmbra/hondana"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-aiohttp = [
-    { version = "^3.9" },
-    { version = "^3.9", markers = "extra == 'speed'", extras = [
-        "speedups",
-    ] },
-]
-orjson = { version = "*", optional = true }
+[project.optional-dependencies]
+speed = ["orjson", "aiohttp[speedups]"]
 
-[tool.poetry.dev-dependencies]
-poethepoet = "*"
-ruff = "*"
-typing-extensions = "*"
-
-[tool.poetry.extras]
-speed = ["aiohttp", "orjson"]
-
-[tool.poetry.group.speedups.dependencies]
-aiohttp = { version = "^3.9", extras = ["speedups"] }
-orjson = "*"
-
-[tool.poetry.group.docs.dependencies]
-sphinx = "*"
-sphinxcontrib-trio = "*"
-furo = "*"
-
-[tool.poetry.group.tests.dependencies]
-pytest = "*"
-pytest-asyncio = "*"
-
-[tool.poetry.scripts]
+[project.scripts]
 version = "hondana.__main__:show_version"
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = ["ruff", "typing-extensions"]
+docs = ["sphinx", "sphinxcontrib-trio", "furo"]
+tests = ["pytest", "pytest-asyncio"]
+
+[tool.pdm.build]
+includes = [
+    "hondana",
+    "hondana/**/*.py",
+    "hondana/py.typed",
+    "hondana/extras/tags.json",
+    "hondana/extras/report_reasons.json",
+    "LICENSE",
+]
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
 [tool.ruff]
 line-length = 125
@@ -197,8 +186,6 @@ inline-quotes = "double"
 "typing_extensions.TypeGuard".msg = "TypeGuard is fundamentally unsafe"
 
 [tool.pyright]
-venvPath = "."
-venv = ".venv/"
 exclude = [
     "**/__pycache__",
     "docs/**/*.py",
@@ -213,23 +200,21 @@ pythonVersion = "3.11"
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "session"
 testpaths = ["tests"]
 
-[tool.poe.tasks]
+[tool.pdm.scripts]
 spec = "python _api_dl.py"
-install = "poetry install --with tests,docs,speedups"
-check = "ruff check . --preview" # we use preview rules
-format = "ruff format ."
+check = "ruff check ."
+format = "ruff format --check"
 pyright = "pyright"
-types_ = "pyright --ignoreexternal --verifytypes hondana"
-types = ["pyright", "types_"]
+_types = "pyright --ignoreexternal --verifytypes hondana"
+types = { composite = ["pyright", "_types"] }
 tests = "pytest"
 docs = "sphinx-build -aEWT --keep-going docs/ docs/build" # TODO: add -n when sphinx is fixed
-tags = { script = "_preflight:__update_tags()" }
-report_reasons = { script = "_preflight:__update_report_reasons()" }
-uninstall = "pip uninstall hondana -y"
-pre = [
-    "install",
+tags = { call = "_preflight:__update_tags" }
+report_reasons = { call = "_preflight:__update_report_reasons" }
+pre = { composite = [
     "check",
     "format",
     "types",
@@ -237,9 +222,4 @@ pre = [
     "docs",
     "tags",
     "report_reasons",
-    "uninstall",
-]
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+] }

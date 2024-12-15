@@ -1,21 +1,20 @@
+# python ignores
 __pycache__/
-env/
-build/
+*.py[cod]
+.venv/
 dist/
+build/
+target/
+.pdm-python
+
+# docs related
 docs/build
 docs/_build
-hondana.log
-target/
-.vscode/settings.json
 
 # local testing
-_api*.yaml
-.hondana-refresh-token
-_testing/
-*.ipynb
+_api*.ya?ml
 _*.py
-docker-compose.yml
-_*
+.vscode/settings.json
 
 # media files
 *.png
