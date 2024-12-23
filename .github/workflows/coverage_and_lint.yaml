@@ -47,4 +47,4 @@ jobs:
           annotate: ${{ matrix.python-version != '3.x' && 'all' || 'none' }}
 
       - name: Lint
-        uses: astral-sh/ruff-action@v2
+        uses: astral-sh/ruff-action@v3
