@@ -375,7 +375,7 @@ class HTTPClient:
 
         # to prevent circular we handle this logic manually, not the request method
         async with self._session.request(route.verb, route.url, data=data) as resp:
-            if 200 < resp.status < 300:
+            if 200 <= resp.status < 300:
                 response_data: token.GetTokenPayload = await resp.json()
             else:
                 raise APIException(resp, status_code=resp.status, errors=[])
