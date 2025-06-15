@@ -2,27 +2,28 @@
   "result": "ok",
   "response": "entity",
   "data": {
-    "id": "247c238f-45bf-4068-897a-c33c6ada89b7",
+    "id": "4eb9d5c6-53b7-4e5b-8b1c-da3e1a0f6ed0",
     "type": "chapter",
     "attributes": {
-      "volume": "1",
-      "chapter": "8.2",
-      "title": "Have I Put Senpai's Mind in the Gutter~? ❤ (R18 Edit)",
+      "volume": "4",
+      "chapter": "14",
+      "title": "Nagatoro-San vs Senpai",
       "translatedLanguage": "en",
       "externalUrl": null,
-      "publishAt": "2019-01-26T15:42:29+00:00",
-      "readableAt": "2019-01-26T15:42:29+00:00",
-      "createdAt": "2019-01-26T15:42:29+00:00",
-      "updatedAt": "2023-05-08T10:38:37+00:00",
-      "pages": 9,
-      "version": 2
+      "isUnavailable": false,
+      "publishAt": "2022-04-19T15:37:14+00:00",
+      "readableAt": "2022-04-19T15:37:14+00:00",
+      "createdAt": "2022-04-19T15:37:14+00:00",
+      "updatedAt": "2022-04-20T19:55:27+00:00",
+      "pages": 16,
+      "version": 4
     },
     "relationships": [
       {
-        "id": "2f2a1c45-eed0-4015-91f8-ebdad6a8e638",
+        "id": "e56f8f0e-9248-406c-9567-048ae3c63b28",
         "type": "scanlation_group",
         "attributes": {
-          "name": "alt.ver.",
+          "name": "S.T.A.L.K.E.R.",
           "altNames": [],
           "locked": false,
           "website": null,
@@ -30,7 +31,7 @@
           "ircChannel": null,
           "discord": null,
           "contactEmail": null,
-          "description": "Functional Group.  \n  \nTo prevent bugs with the reader.  \nTo be used when a group releases two versions of a chapter that both have to stay up.",
+          "description": null,
           "twitter": null,
           "mangaUpdates": null,
           "focusedLanguages": [
@@ -46,24 +47,20 @@
         }
       },
       {
-        "id": "ffbeb262-d9e4-4c6d-8b2a-632743854ded",
+        "id": "f19ee895-ecd8-4061-a655-3d8f5c3aa7df",
         "type": "scanlation_group",
         "attributes": {
-          "name": "Fangéd Scans",
-          "altNames": [
-            {
-              "en": "Fanged Scans"
-            }
-          ],
-          "locked": true,
-          "website": null,
+          "name": "/a/nonymous",
+          "altNames": [],
+          "locked": false,
+          "website": "http://boards.4chan.org/a/",
           "ircServer": null,
           "ircChannel": null,
           "discord": null,
-          "contactEmail": "otherpeeps@gmail.com",
-          "description": null,
+          "contactEmail": null,
+          "description": "Some anons like scanlating, those anons are nice. \n\n**Only upload releases from /a/ to this group, this is not a general purpose \"anonymous\" group for random uploads.**",
           "twitter": null,
-          "mangaUpdates": null,
+          "mangaUpdates": "https://www.mangaupdates.com/group/q42bhj3/a-nonymous",
           "focusedLanguages": [
             "en"
           ],
@@ -71,127 +68,56 @@
           "verified": false,
           "inactive": false,
           "publishDelay": null,
+          "exLicensed": false,
           "createdAt": "2021-04-19T21:45:59+00:00",
-          "updatedAt": "2021-05-17T02:38:15+00:00",
-          "version": 2
+          "updatedAt": "2024-01-30T17:55:01+00:00",
+          "version": 4
         }
       },
       {
-        "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+        "id": "2a4bc9ec-2d70-428a-8b46-27f6218ed267",
         "type": "manga",
         "attributes": {
           "title": {
-            "ja-ro": "Ijiranaide, Nagatoro-san"
+            "en": "Don't Toy With Me, Miss Nagatoro!: Comic Anthology"
           },
           "altTitles": [
             {
-              "id": "Jangan goda aku, Nagatoro"
+              "en": "Please Don't Bully Me, Nagatoro Comic Anthology"
             },
             {
-              "es-la": "No te burles de mi, Nagatoro"
+              "ru": "Не издевайся, Нагаторо-сан Антология"
             },
             {
-              "fr": "Arrête de me chauffer, Nagatoro"
+              "ja": "イジらないで、長瀞さん コミックアンソロジー"
             },
             {
-              "ru": "Не издевайся, Нагаторо"
-            },
-            {
-              "ja": "イジらないで、長瀞さん"
-            },
-            {
-              "ko": "괴롭히지 말아요, 나가토로 양"
-            },
-            {
-              "de": "Neck mich nicht, Nagatoro-san"
-            },
-            {
-              "zh-hk": "不要欺負我，長瀞同學"
-            },
-            {
-              "th": "ยัยตัวแสบแอบน่ารัก นางาโทโระ"
-            },
-            {
-              "ar": "لا تلعبي معي يا آنسة ناغاتورو"
-            },
-            {
-              "it": "Non tormentarmi, Nagatoro!"
-            },
-            {
-              "fa": "اذیتم نکن، ناگاتورو سان"
-            },
-            {
-              "he": "אל תשתעשעי איתי, נאגאטורו"
-            },
-            {
-              "es-la": "No me Molestes, Nagatoro-san"
-            },
-            {
-              "en": "Please Don't Bully Me, Nagatoro"
-            },
-            {
-              "uk": "Не дражни мене, Нагаторо-сан"
-            },
-            {
-              "cs": "Nehraj si se mnou Nagatoro"
-            },
-            {
-              "en": "Don't Toy With Me, Miss Nagatoro!"
-            },
-            {
-              "es": "No me rayes, Nagatoro"
-            },
-            {
-              "pt-br": "Não Mexa Comigo, Nagatoro"
-            },
-            {
-              "pl": "Nie drocz się ze mną, Nagatoro!"
+              "ja-ro": "Ijiranaide, Nagatoro-san: Comic Anthology"
             }
           ],
           "description": {
-            "en": "Naoto Hachiouji —our spineless— MC (Known also as \"Senpai\") is a second-year high school student and a loner who spends his afternoons at the Arts Club room. He attracts the attention of one of his schoolmates, a sadistic freshman girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.\n\nA lovey-dovey(…?) story between a shy nerd and an S-Dere (Sadistic Tsundere) begins.\n\n---\n\n**Links:**\n\n- Alternative Official English - [K Manga](https://kmanga.kodansha.com/title/10042/episode/313808) (U.S. Only), [Kodansha](https://kodansha.us/series/dont-toy-with-me-miss-nagatoro/)",
-            "es": "Naoto Hachioji está en segundo de bachillerato, es un chico tan tímido e introvertido como buen dibujante. Un día, mientras busca un sitio donde sentarse a dibujar en la biblioteca, se le caen las páginas del manga que hacía, justo al lado de un grupo de chicas que, al verlas, se ríen de él en su cara y se van… excepto una estudiante de primero, Hayase Nagatoro, que básicamente empieza a darle caña hasta hacerlo llorar.\n\nDesde entonces, Nagatoro y consecuentemente sus amigas, no van a parar de rayar a su “senpai” y molestarlo de todas las maneras posibles… Pero hay tres cosas a tener en cuenta: Nagatoro es especialmente tocanarices cuando están a solas, se molesta bastante si sus amigas se pasan con él, y en definitiva lo que ella busca es que su senpai salga de su burbuja autoimpuesta para que se divierta y conozca un poco el mundo que lo rodea… y quizás algo más…",
-            "ja": "憎たらしいけど愛おしい。苦しいのに傍にいたい。あなたの中の何かが目覚める、“Sデレ少女”の物語。",
-            "pl": "Naoto Hachiouji to nieśmiały chłopak, którego mało co przeraża tak, jak wredne dziewczyny. Nic więc dziwnego, że jego największym szkolnym koszmarem zostaje Nagatoro – koleżanka z niższego roku, która obrała go sobie za cel, regularnie serwując mu atrakcje z pogranicza wojskowej fali i końskich zalotów. Choć wydawać by się mogło, że szkolne życie chłopaka na zawsze pozostanie pasmem nieszczęść, nieoczekiwanie relacja tych dwojga zaczyna zmierzać w niespodziewanym kierunku…\n\n(źródło: Studio JG)",
-            "ru": "Нагаторо - переведённая ученица в старшей школе, которой нравится дразнить своего семпая. Но он всё стерпит. И пусть ему придётся пройти через все виды издевательств - он всё простит, потому что влюблён.",
-            "es-la": "A la estudiante de preparatoria Hayase Nagatoro le encanta pasar su tiempo libre haciendo una cosa, ¡y eso es molestar a su Senpai! Después de que Nagatoro y sus amigos se topan con los dibujos del aspirante a artista, disfrutan molestando sin piedad al tímido Senpai. Nagatoro decide continuar con su cruel juego y lo visita a diario para poder obligar a Senpai a hacer lo que le interese en ese momento, especialmente si eso lo hace sentir incómodo. Ligeramente interesado por Nagatoro y algo temeroso de ella, Senpai está constantemente involucrado en sus payasadas mientras sus intereses, pasatiempos, apariencia e incluso personalidad se usan en su contra mientras ella se entretiene a sus expensas. A medida que pasa el tiempo, Senpai se da cuenta de que no le desagrada la presencia de Nagatoro, y los dos desarrollan una amistad incómoda mientras uno soporta pacientemente las payasadas del otro.",
-            "pt-br": "Nagatoro é uma menina de primeiro ano na escola que adora fazer bullying com seu Senpai. Mas ele aceita isso, mesmo depois de ter passado por todos os tipos de situações humilhantes e embaraçosas, porque ele está apaixonado por ela."
+            "en": "Anthology from various doujin artists about Nagatoro and Senpai keeping to the theme of Nagatoro teasing Senpai and sometimes it backfiring on her.",
+            "ru": "Антология с короткими историями от разных авторов на тему оригинальной манги \"Не издевайся, Нагаторо-сан\"."
           },
           "isLocked": false,
           "links": {
-            "al": "100664",
-            "ap": "dont-toy-with-me-miss-nagatoro",
-            "bw": "series/155089",
-            "kt": "40324",
-            "mu": "145530",
-            "amz": "https://www.amazon.co.jp/dp/B07F7QD132",
-            "cdj": "https://www.cdjapan.co.jp/product/NEOBK-2193546",
-            "ebj": "https://ebookjapan.yahoo.co.jp/books/443422/",
-            "mal": "110737",
-            "raw": "https://pocket.shonenmagazine.com/episode/13932016480029136187",
-            "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
+            "al": "104616",
+            "ap": "ijiranaide-nagatoro-san-comic-anthology",
+            "bw": "series/298381/list",
+            "kt": "56972",
+            "mu": "151069",
+            "amz": "https://www.amazon.co.jp/dp/B0932J2Q5R",
+            "ebj": "https://ebookjapan.yahoo.co.jp/books/635389/",
+            "mal": "136168"
           },
           "originalLanguage": "ja",
-          "lastVolume": "",
+          "lastVolume": "5",
           "lastChapter": "",
           "publicationDemographic": "shounen",
-          "status": "ongoing",
-          "year": 2017,
+          "status": "completed",
+          "year": 2018,
           "contentRating": "suggestive",
           "tags": [
-            {
-              "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
-              "type": "tag",
-              "attributes": {
-                "name": {
-                  "en": "Romance"
-                },
-                "description": {},
-                "group": "genre",
-                "version": 1
-              },
-              "relationships": []
-            },
             {
               "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
               "type": "tag",
@@ -201,6 +127,19 @@
                 },
                 "description": {},
                 "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Anthology"
+                },
+                "description": {},
+                "group": "format",
                 "version": 1
               },
               "relationships": []
@@ -230,59 +169,34 @@
                 "version": 1
               },
               "relationships": []
-            },
-            {
-              "id": "fad12b5e-68ba-460e-b933-9ae8318f5b65",
-              "type": "tag",
-              "attributes": {
-                "name": {
-                  "en": "Gyaru"
-                },
-                "description": {},
-                "group": "theme",
-                "version": 1
-              },
-              "relationships": []
             }
           ],
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
-          "createdAt": "2019-03-04T12:21:59+00:00",
-          "updatedAt": "2024-04-16T11:04:59+00:00",
-          "version": 346,
+          "createdAt": "2019-08-16T01:01:02+00:00",
+          "updatedAt": "2025-06-12T12:31:09+00:00",
+          "version": 24,
           "availableTranslatedLanguages": [
-            "id",
-            "ru",
-            "es-la",
             "pt-br",
-            "fa",
-            "it",
-            "sr",
-            "en",
-            "cs",
+            "th",
             "zh",
-            "nl",
-            "uk",
-            "hu",
-            "tr",
-            "es",
-            "pt"
+            "en",
+            "ru"
           ],
-          "latestUploadedChapter": "a316f385-7b86-490f-9255-fdc164dc0b2b"
+          "latestUploadedChapter": "37ac2e82-a4ce-46ac-be41-c233841a8ecd"
         }
       },
       {
-        "id": "dd1ce388-f3d1-4ecb-8002-45ac94801008",
+        "id": "f19e5dea-8eeb-421b-9d9a-fa1c4a14ea8c",
         "type": "user",
         "attributes": {
-          "username": "Esper",
+          "username": "rawhat",
           "roles": [
-            "ROLE_GROUP_LEADER",
-            "ROLE_GROUP_MEMBER",
             "ROLE_MEMBER",
-            "ROLE_SUPPORTER"
+            "ROLE_CONTRIBUTOR",
+            "ROLE_POWER_UPLOADER"
           ],
-          "version": 16109
+          "version": 21089
         }
       }
     ]

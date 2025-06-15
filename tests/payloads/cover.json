@@ -2,16 +2,16 @@
   "result": "ok",
   "response": "entity",
   "data": {
-    "id": "55e86e61-8206-4f61-862f-8879b535b295",
+    "id": "f8e2f663-31a5-4c4b-86e6-d1e0514dfe19",
     "type": "cover_art",
     "attributes": {
-      "description": "Volume Cover From BookWalker",
-      "volume": "18",
-      "fileName": "5a37d4b7-28d5-4d02-8355-c6e21c611f96.jpg",
+      "description": "Format: Digital\nImprint: Magazine Pocket Comics \nPublisher: Kodansha\nYear: 2018",
+      "volume": "20.1",
+      "fileName": "5e4a4e0e-b2a6-4e7e-8e6e-169a8d26c7a8.jpg",
       "locale": "ja",
-      "createdAt": "2023-11-28T01:54:36+00:00",
-      "updatedAt": "2023-11-28T01:54:36+00:00",
-      "version": 1
+      "createdAt": "2024-07-30T12:41:50+00:00",
+      "updatedAt": "2024-09-23T16:25:24+00:00",
+      "version": 2
     },
     "relationships": [
       {
@@ -65,7 +65,7 @@
               "es-la": "No me Molestes, Nagatoro-san"
             },
             {
-              "en": "Please Don't Bully Me, Nagatoro"
+              "en": "Don't Toy With Me, Miss Nagatoro!"
             },
             {
               "uk": "Не дражни мене, Нагаторо-сан"
@@ -74,7 +74,7 @@
               "cs": "Nehraj si se mnou Nagatoro"
             },
             {
-              "en": "Don't Toy With Me, Miss Nagatoro!"
+              "en": "Please Don't Bully Me, Nagatoro"
             },
             {
               "es": "No me rayes, Nagatoro"
@@ -84,6 +84,15 @@
             },
             {
               "pl": "Nie drocz się ze mną, Nagatoro!"
+            },
+            {
+              "vi": "Đừng bắt nạt anh nữa, Nagatoro!!!"
+            },
+            {
+              "vi": "Đừng chọc anh nữa mà, Nagatoro-san"
+            },
+            {
+              "tr": "Uğraşma Benimle Nagatoro-san"
             }
           ],
           "description": {
@@ -99,7 +108,7 @@
           "links": {
             "al": "100664",
             "ap": "dont-toy-with-me-miss-nagatoro",
-            "bw": "series/155089",
+            "bw": "series/155089/list",
             "kt": "40324",
             "mu": "145530",
             "amz": "https://www.amazon.co.jp/dp/B07F7QD132",
@@ -110,10 +119,10 @@
             "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
           },
           "originalLanguage": "ja",
-          "lastVolume": "",
-          "lastChapter": "",
+          "lastVolume": "20",
+          "lastChapter": "154",
           "publicationDemographic": "shounen",
-          "status": "ongoing",
+          "status": "completed",
           "year": 2017,
           "contentRating": "suggestive",
           "tags": [
@@ -186,41 +195,42 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2019-03-04T12:21:59+00:00",
-          "updatedAt": "2024-04-16T11:04:59+00:00",
-          "version": 346,
+          "updatedAt": "2025-03-03T01:41:48+00:00",
+          "version": 353,
           "availableTranslatedLanguages": [
             "id",
             "ru",
             "es-la",
             "pt-br",
+            "vi",
             "fa",
             "it",
             "sr",
             "en",
             "cs",
             "zh",
+            "tr",
             "nl",
             "uk",
             "hu",
-            "tr",
             "es",
             "pt"
           ],
-          "latestUploadedChapter": "a316f385-7b86-490f-9255-fdc164dc0b2b"
+          "latestUploadedChapter": "6ff87c1f-a084-424e-994f-05bc77e3d095"
         }
       },
       {
-        "id": "7b8b7d42-9004-464d-950f-a2bafec1a4df",
+        "id": "f73d34f6-f678-4f8b-9dff-5c759d5fc767",
         "type": "user",
         "attributes": {
-          "username": "Ndtm",
+          "username": "wodniobojca188",
           "roles": [
             "ROLE_CONTRIBUTOR",
-            "ROLE_GLOBAL_MODERATOR",
-            "ROLE_MEMBER",
-            "ROLE_STAFF"
+            "ROLE_GROUP_LEADER",
+            "ROLE_GROUP_MEMBER",
+            "ROLE_USER"
           ],
-          "version": 156261
+          "version": 52641
         }
       }
     ]

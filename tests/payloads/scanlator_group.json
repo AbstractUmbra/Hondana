@@ -2,85 +2,55 @@
   "result": "ok",
   "response": "entity",
   "data": {
-    "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
+    "id": "cbe33769-3fdd-4fa1-9602-e2eb30f93317",
     "type": "scanlation_group",
     "attributes": {
-      "name": "Ecchi No Doujinshi Scans",
+      "name": "Dhana Land",
       "altNames": [],
       "locked": false,
-      "website": "https://www.patreon.com/luigiymario2",
+      "website": null,
       "ircServer": null,
       "ircChannel": null,
-      "discord": "bbHQVVgG63",
-      "contactEmail": "guzman.luis10@gmail.com",
-      "description": "We focus on translating upcoming mangakas from twitter or other social medias, usually for ecchi mangas.",
-      "twitter": "https://twitter.com/luigiymario2",
-      "mangaUpdates": "https://www.mangaupdates.com/group/pwf6y85/ecchi-no-doujinshi-scans",
-      "focusedLanguages": [
-        "en"
-      ],
+      "discord": null,
+      "contactEmail": null,
+      "description": "Cuma TL manga yang Wholesome",
+      "twitter": null,
+      "mangaUpdates": null,
+      "focusedLanguages": [],
       "official": false,
       "verified": false,
       "inactive": false,
       "publishDelay": null,
       "exLicensed": false,
-      "createdAt": "2022-10-02T08:54:24+00:00",
-      "updatedAt": "2024-01-05T23:18:32+00:00",
-      "version": 13
+      "createdAt": "2025-04-06T07:47:13+00:00",
+      "updatedAt": "2025-04-08T08:21:22+00:00",
+      "version": 2
     },
     "relationships": [
       {
-        "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+        "id": "9583188e-fec5-4141-a2b5-1540e9b779e3",
         "type": "leader",
         "attributes": {
-          "username": "luigiymario2",
+          "username": "PramRamadhan",
           "roles": [
+            "ROLE_USER",
             "ROLE_GROUP_LEADER",
-            "ROLE_GROUP_MEMBER",
-            "ROLE_MEMBER",
-            "ROLE_SUPPORTER"
+            "ROLE_GROUP_MEMBER"
           ],
-          "version": 36007
+          "version": 8
         }
       },
       {
-        "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+        "id": "9583188e-fec5-4141-a2b5-1540e9b779e3",
         "type": "member",
         "attributes": {
-          "username": "luigiymario2",
+          "username": "PramRamadhan",
           "roles": [
+            "ROLE_USER",
             "ROLE_GROUP_LEADER",
-            "ROLE_GROUP_MEMBER",
-            "ROLE_MEMBER",
-            "ROLE_SUPPORTER"
+            "ROLE_GROUP_MEMBER"
           ],
-          "version": 36007
-        }
-      },
-      {
-        "id": "a449e779-d748-4e41-ba78-a6999b382589",
-        "type": "member",
-        "attributes": {
-          "username": "tawsif1",
-          "roles": [
-            "ROLE_GROUP_LEADER",
-            "ROLE_GROUP_MEMBER",
-            "ROLE_MEMBER",
-            "ROLE_SUPPORTER"
-          ],
-          "version": 35222
-        }
-      },
-      {
-        "id": "b6cede53-fb89-4863-ba06-4dcc037a8401",
-        "type": "member",
-        "attributes": {
-          "username": "ATF4",
-          "roles": [
-            "ROLE_GROUP_MEMBER",
-            "ROLE_USER"
-          ],
-          "version": 6
+          "version": 8
         }
       }
     ]

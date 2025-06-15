@@ -1,0 +1,1072 @@
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "7115ac48-a667-4b81-80f7-8af85d371718",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "1",
+        "fileName": "17f259e8-3570-46d4-b745-8ea9c82c9657.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:15:15+00:00",
+        "updatedAt": "2025-06-15T22:15:15+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "9f21d36f-0134-407b-b43a-f1ae99f18307",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Zettai Fukujuu Ojousama"
+            },
+            "altTitles": [
+              {
+                "ja": "絶対服従お嬢様"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "86587",
+              "bw": "def1862cfd-a9e5-4c5b-bb65-780665b1ccf0",
+              "mu": "siriigd",
+              "amz": "https://www.amazon.co.jp/-/en/%E4%B8%83%E7%AB%88%E3%82%A2%E3%83%B3%E3%83%8E-ebook/dp/B01264VI1M/ref=sr_1_1?crid=KIYEFXX58DFU&dib=eyJ2IjoiMSJ9.3e778XtiagT4DCjP_k21IaEtKZzMcFQL37Vnjeat06bGjHj071QN20LucGBJIEps.JEY9DabHpGdbiTc4nnk9MUGgqTp24vMsN1yoGSkhMSg&dib_tag=se&keywords=%E7%B5%B6%E5%AF%BE%E6%9C%8D%E5%BE%93%E3%81%8A%E5%AC%A2%E6%A7%98&qid=1750025584&s=digital-text&sprefix=%E7%B5%B6%E5%AF%BE%E6%9C%8D%E5%BE%93%E3%81%8A%E5%AC%A2%E6%A7%98%2Cdigital-text%2C543&sr=1-1",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/207255/",
+              "mal": "61021"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "1",
+            "lastChapter": "",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2010,
+            "contentRating": "suggestive",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:15:12+00:00",
+            "updatedAt": "2025-06-15T22:16:08+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "43021a2b-5f7c-40c4-8366-44c824674c84",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "2",
+        "fileName": "340bb01e-4d68-4f79-a2ab-92e141152ab7.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:12:12+00:00",
+        "updatedAt": "2025-06-15T22:12:12+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "d9390589-4540-45db-aa92-ac7d32132440",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+            },
+            "altTitles": [
+              {
+                "ja-ro": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "95974",
+              "bw": "series/22989/list",
+              "mu": "bccghrg",
+              "amz": "https://www.amazon.co.jp/-/en/dp/B074CCDYXW?binding=kindle_edition&ref_=dbs_s_ks_series_rwt_tkin&qid=1750025298&sr=1-1",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/308862/",
+              "mal": "92960"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "3",
+            "lastChapter": "18",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2012,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Military"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:12:09+00:00",
+            "updatedAt": "2025-06-15T22:16:07+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "2fa82897-08b6-4208-bce0-e8f10fa39c10",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "1",
+        "fileName": "0241f037-41b4-4ef7-97a7-aad1cfb7129e.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:12:12+00:00",
+        "updatedAt": "2025-06-15T22:12:12+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "d9390589-4540-45db-aa92-ac7d32132440",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+            },
+            "altTitles": [
+              {
+                "ja-ro": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "95974",
+              "bw": "series/22989/list",
+              "mu": "bccghrg",
+              "amz": "https://www.amazon.co.jp/-/en/dp/B074CCDYXW?binding=kindle_edition&ref_=dbs_s_ks_series_rwt_tkin&qid=1750025298&sr=1-1",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/308862/",
+              "mal": "92960"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "3",
+            "lastChapter": "18",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2012,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Military"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:12:09+00:00",
+            "updatedAt": "2025-06-15T22:16:07+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "52d967c5-c0f6-430c-a78e-9da4ccc1665d",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "3",
+        "fileName": "b650aa12-cf0f-42d8-bf0f-fb4de8f958ef.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:12:12+00:00",
+        "updatedAt": "2025-06-15T22:12:12+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "d9390589-4540-45db-aa92-ac7d32132440",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+            },
+            "altTitles": [
+              {
+                "ja-ro": "Rasha to Rasha: Jaaku na Yurushigatai Itan no"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "95974",
+              "bw": "series/22989/list",
+              "mu": "bccghrg",
+              "amz": "https://www.amazon.co.jp/-/en/dp/B074CCDYXW?binding=kindle_edition&ref_=dbs_s_ks_series_rwt_tkin&qid=1750025298&sr=1-1",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/308862/",
+              "mal": "92960"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "3",
+            "lastChapter": "18",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2012,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ac72833b-c4e9-4878-b9db-6c8a4a99444a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Military"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:12:09+00:00",
+            "updatedAt": "2025-06-15T22:16:07+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "eea7eced-cdf9-4094-b471-f122f17d0af0",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "2",
+        "fileName": "46b83086-c0d0-4150-a57d-e1876ca18ce5.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:05:54+00:00",
+        "updatedAt": "2025-06-15T22:05:54+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "1760fe47-5bc0-4923-8861-7643668da6f0",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Rascal"
+            },
+            "altTitles": [
+              {
+                "ja": "ラスカル"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "86586",
+              "bw": "series/56735/list",
+              "mu": "a8zz4w3",
+              "amz": "https://www.amazon.co.jp/-/en/%E4%B8%83%E7%AB%88%E3%82%A2%E3%83%B3%E3%83%8E-ebook/dp/B016B6CHPM/ref=sr_1_5?crid=1IN5JL55UXE0G&dib=eyJ2IjoiMSJ9.L60zHXFFArFIfWWeHQ_dhUCiXuuj1FWW_l0XHEopc4Sh8dR55XsjnHexUTQbgmO00Y-VICT4i8ZCmmbnagwEar_cGb0MAlNF94eAwNf2mGa_QXANFBNgpvAy_De61THRB_3cH2_ZrVgpNwJCPKzbXXyl3mAsM5GnILw--_fJLco65kGIRZtCm7WHx7Xolh-e9z3d8rMQbbRPM5hhf9a-9w8jZXIHNQGDbpIJvDSzqxg.NZEbOBqdKT5IQw784OB2dMxI0lSXztz6saMAPDH5Uac&dib_tag=se&keywords=%E3%83%A9%E3%82%B9%E3%82%AB%E3%83%AB&qid=1750025006&s=books&sprefix=%E3%83%A9%E3%82%B9%E3%82%AB%E3%83%AB%2Cstripbooks%2C542&sr=1-5",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/340547/",
+              "mal": "94636"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "2",
+            "lastChapter": "14",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2014,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Mafia"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:05:51+00:00",
+            "updatedAt": "2025-06-15T22:16:05+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "b6e7f786-d406-4480-9654-9150b0a0f3b5",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "1",
+        "fileName": "10d1aba9-4d78-47a7-befa-75a74bff4d92.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:05:53+00:00",
+        "updatedAt": "2025-06-15T22:05:53+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "1760fe47-5bc0-4923-8861-7643668da6f0",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Rascal"
+            },
+            "altTitles": [
+              {
+                "ja": "ラスカル"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "al": "86586",
+              "bw": "series/56735/list",
+              "mu": "a8zz4w3",
+              "amz": "https://www.amazon.co.jp/-/en/%E4%B8%83%E7%AB%88%E3%82%A2%E3%83%B3%E3%83%8E-ebook/dp/B016B6CHPM/ref=sr_1_5?crid=1IN5JL55UXE0G&dib=eyJ2IjoiMSJ9.L60zHXFFArFIfWWeHQ_dhUCiXuuj1FWW_l0XHEopc4Sh8dR55XsjnHexUTQbgmO00Y-VICT4i8ZCmmbnagwEar_cGb0MAlNF94eAwNf2mGa_QXANFBNgpvAy_De61THRB_3cH2_ZrVgpNwJCPKzbXXyl3mAsM5GnILw--_fJLco65kGIRZtCm7WHx7Xolh-e9z3d8rMQbbRPM5hhf9a-9w8jZXIHNQGDbpIJvDSzqxg.NZEbOBqdKT5IQw784OB2dMxI0lSXztz6saMAPDH5Uac&dib_tag=se&keywords=%E3%83%A9%E3%82%B9%E3%82%AB%E3%83%AB&qid=1750025006&s=books&sprefix=%E3%83%A9%E3%82%B9%E3%82%AB%E3%83%AB%2Cstripbooks%2C542&sr=1-5",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/340547/",
+              "mal": "94636"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "2",
+            "lastChapter": "14",
+            "publicationDemographic": "seinen",
+            "status": "completed",
+            "year": 2014,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "85daba54-a71c-4554-8a28-9901a8b0afad",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Mafia"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:05:51+00:00",
+            "updatedAt": "2025-06-15T22:16:05+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "0cc0ccfd-667d-49f8-81d7-f10dd48e3444",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "1",
+        "fileName": "c602a686-e17a-4f07-a8eb-c61dab3d768d.png",
+        "locale": "ja",
+        "createdAt": "2025-06-15T22:03:00+00:00",
+        "updatedAt": "2025-06-15T22:03:00+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "0562b339-eadb-4732-ab01-09a316a99637",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Koube Ijinkan"
+            },
+            "altTitles": [
+              {
+                "ja": "神戸異人館"
+              }
+            ],
+            "description": {
+              "en": "1. Koube Ijinkan (神戸異人館)\n2. Kaze no Hoozuki (風のほおずき)\n3. Kazehikaru Asa (風光る朝)\n4. Teramachi Kyoumachi Kouyamachi (寺町・京町・紺屋町)\n5. Spade no Joou (スペードの女王)\n6. Akai Peter Pan (赤いピーターパン)"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "194375"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "1",
+            "lastChapter": "6",
+            "publicationDemographic": null,
+            "status": "completed",
+            "year": 1978,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "51d83883-4103-437c-b4b1-731cb73d786c",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Anthology"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T22:02:58+00:00",
+            "updatedAt": "2025-06-15T22:16:03+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "eead95d2-59e7-451f-8ef6-8d14a36b2286",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": null,
+        "fileName": "39c37af3-772e-4887-b114-7db7904d9424.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T21:59:52+00:00",
+        "updatedAt": "2025-06-15T21:59:52+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "c3f52819-7f9c-4243-a786-29ccd3ee0b6d",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Kaizoku x Shoujo"
+            },
+            "altTitles": [
+              {
+                "en": "Pirate x Girl"
+              },
+              {
+                "ja": "海賊×少女"
+              }
+            ],
+            "description": {},
+            "isLocked": false,
+            "links": {
+              "raw": "https://shukanmanga.jp/work_list/detail/pirates-girl/"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": "seinen",
+            "status": "ongoing",
+            "year": 2025,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "33771934-028e-4cb3-8744-691e866a923e",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Historical"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Adventure"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T21:59:50+00:00",
+            "updatedAt": "2025-06-15T22:16:01+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "07779491-c0e7-487e-ab51-53bf96b9f915",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "1",
+        "fileName": "d3831b48-5f9f-4026-b582-6328140d0d49.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T21:56:03+00:00",
+        "updatedAt": "2025-06-15T21:56:03+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "977e721c-50f0-4615-ac0d-897942b8dcf2",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Neko no Oshigoto"
+            },
+            "altTitles": [
+              {
+                "ja": "ねこのおしごと"
+              },
+              {
+                "en": "Cats With Jobs"
+              }
+            ],
+            "description": {
+              "en": "Ever wondered what it would be like if your cat had to get a job? The cats in this book do every kind of occupation you can imagine, and they do it just the way they like. Feline chefs, dentists, wrestlers, detectives, opera singers and much more await in this hilarious full-color collection!"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "194211",
+              "bw": "series/409260/list",
+              "amz": "https://www.amazon.co.jp/%E3%81%AD%E3%81%93%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-1-%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E3%82%8F%E3%81%84%E3%82%8B%E3%81%A9-%E3%81%B1%E3%82%93%E3%81%A0%E3%81%AB%E3%81%82/dp/4864681643",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/754652/",
+              "engtl": "https://sevenseasentertainment.com/series/cats-with-jobs/"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": "seinen",
+            "status": "ongoing",
+            "year": 2023,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Animals"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T21:56:00+00:00",
+            "updatedAt": "2025-06-15T22:15:59+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    },
+    {
+      "id": "3adf9ac1-d76d-4817-98e0-21cb507eeb0a",
+      "type": "cover_art",
+      "attributes": {
+        "description": "",
+        "volume": "2",
+        "fileName": "df701e38-7b60-4772-b9e8-d4acc612e8a8.jpg",
+        "locale": "ja",
+        "createdAt": "2025-06-15T21:56:02+00:00",
+        "updatedAt": "2025-06-15T21:56:02+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "977e721c-50f0-4615-ac0d-897942b8dcf2",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Neko no Oshigoto"
+            },
+            "altTitles": [
+              {
+                "ja": "ねこのおしごと"
+              },
+              {
+                "en": "Cats With Jobs"
+              }
+            ],
+            "description": {
+              "en": "Ever wondered what it would be like if your cat had to get a job? The cats in this book do every kind of occupation you can imagine, and they do it just the way they like. Feline chefs, dentists, wrestlers, detectives, opera singers and much more await in this hilarious full-color collection!"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "194211",
+              "bw": "series/409260/list",
+              "amz": "https://www.amazon.co.jp/%E3%81%AD%E3%81%93%E3%81%AE%E3%81%8A%E3%81%97%E3%81%94%E3%81%A8-1-%E3%83%92%E3%83%BC%E3%83%AD%E3%83%BC%E3%82%BA%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E3%82%8F%E3%81%84%E3%82%8B%E3%81%A9-%E3%81%B1%E3%82%93%E3%81%A0%E3%81%AB%E3%81%82/dp/4864681643",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/754652/",
+              "engtl": "https://sevenseasentertainment.com/series/cats-with-jobs/"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": "seinen",
+            "status": "ongoing",
+            "year": 2023,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "3de8c75d-8ee3-48ff-98ee-e20a65c86451",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Animals"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2025-06-15T21:56:00+00:00",
+            "updatedAt": "2025-06-15T22:15:59+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        },
+        {
+          "id": "67591cb1-95e1-45fd-ab85-4a45485ffc80",
+          "type": "user",
+          "attributes": {
+            "username": "Anselmo0454",
+            "roles": [
+              "ROLE_USER",
+              "ROLE_CONTRIBUTOR"
+            ],
+            "version": 17787
+          }
+        }
+      ]
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 295898
+}

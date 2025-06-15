@@ -124,7 +124,7 @@
             "links": {
               "al": "104616",
               "ap": "ijiranaide-nagatoro-san-comic-anthology",
-              "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
+              "bw": "series/298381/list",
               "kt": "56972",
               "mu": "151069",
               "amz": "https://www.amazon.co.jp/dp/B0932J2Q5R",
@@ -132,10 +132,10 @@
               "mal": "136168"
             },
             "originalLanguage": "ja",
-            "lastVolume": "",
+            "lastVolume": "5",
             "lastChapter": "",
-            "publicationDemographic": null,
-            "status": "ongoing",
+            "publicationDemographic": "shounen",
+            "status": "completed",
             "year": 2018,
             "contentRating": "suggestive",
             "tags": [
@@ -195,8 +195,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2019-08-16T01:01:02+00:00",
-            "updatedAt": "2024-03-26T12:00:25+00:00",
-            "version": 20,
+            "updatedAt": "2025-06-12T12:31:09+00:00",
+            "version": 24,
             "availableTranslatedLanguages": [
               "pt-br",
               "th",
@@ -204,7 +204,7 @@
               "en",
               "ru"
             ],
-            "latestUploadedChapter": "20994d76-c8cd-45a2-8bb8-b0b3e260e091"
+            "latestUploadedChapter": "37ac2e82-a4ce-46ac-be41-c233841a8ecd"
           }
         }
       ]
@@ -221,14 +221,6 @@
           "id": "546668d6-b91a-4c4f-8391-29f3e7e5bd86",
           "type": "manga",
           "attributes": {
-            "isLocked": false,
-            "links": {},
-            "originalLanguage": "ja",
-            "lastVolume": "1",
-            "lastChapter": "3",
-            "publicationDemographic": null,
-            "status": "completed",
-            "contentRating": "pornographic",
             "title": {
               "en": "Lightning Speed + MAGIC WAYS."
             },
@@ -252,7 +244,15 @@
             "description": {
               "en": "Uzaki is in the first 2 chapters (Full color)  \nOthers are in chapter 3 (No color)"
             },
+            "isLocked": false,
+            "links": {},
+            "originalLanguage": "ja",
+            "lastVolume": "1",
+            "lastChapter": "3",
+            "publicationDemographic": null,
+            "status": "completed",
             "year": null,
+            "contentRating": "pornographic",
             "tags": [
               {
                 "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
@@ -270,9 +270,9 @@
             ],
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
-            "version": 3,
             "createdAt": "2019-12-08T23:44:35+00:00",
             "updatedAt": "2023-08-15T07:58:29+00:00",
+            "version": 3,
             "availableTranslatedLanguages": [
               "en"
             ],
@@ -296,9 +296,20 @@
             "title": {
               "en": "Ijiranaide, Nagatoro-san - The Joy of Breeding (Doujinshi)"
             },
-            "altTitles": [],
+            "altTitles": [
+              {
+                "es": "El Placer de Criar (Ijiranaide, Nagatoro-san)"
+              },
+              {
+                "es-la": "El Placer de Criar (Ijiranaide, Nagatoro-san)"
+              },
+              {
+                "en": "The Joy of Breeding"
+              }
+            ],
             "description": {
-              "en": "The Joy of Breeding (Don't Toy With Me, Miss Nagatoro)"
+              "es": "El senpai se folla a Nagatoro y el resto de chicas. Todo un pro.",
+              "es-la": "El senpai se folla a Nagatoro y el resto de chicas. Todo un pro."
             },
             "isLocked": false,
             "links": {
@@ -355,10 +366,12 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2021-12-16T05:22:02+00:00",
-            "updatedAt": "2023-08-15T10:10:32+00:00",
-            "version": 10,
-            "availableTranslatedLanguages": [],
-            "latestUploadedChapter": null
+            "updatedAt": "2025-04-29T14:52:45+00:00",
+            "version": 11,
+            "availableTranslatedLanguages": [
+              "es"
+            ],
+            "latestUploadedChapter": "3461fe8b-317a-4fe4-a7c6-75ff596e3946"
           }
         }
       ]
@@ -636,8 +649,8 @@
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
             "createdAt": "2021-02-16T03:06:51+00:00",
-            "updatedAt": "2024-04-20T16:47:01+00:00",
-            "version": 4,
+            "updatedAt": "2025-03-02T07:43:13+00:00",
+            "version": 5,
             "availableTranslatedLanguages": [
               "it"
             ],
@@ -658,14 +671,6 @@
           "id": "df26bf01-110d-4b7c-9b7a-964ca39a784e",
           "type": "manga",
           "attributes": {
-            "isLocked": false,
-            "links": {},
-            "originalLanguage": "ja",
-            "lastVolume": "",
-            "lastChapter": "",
-            "publicationDemographic": "shounen",
-            "status": "completed",
-            "contentRating": "suggestive",
             "title": {
               "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
             },
@@ -673,7 +678,15 @@
             "description": {
               "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(…?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
             },
+            "isLocked": false,
+            "links": {},
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": "shounen",
+            "status": "completed",
             "year": null,
+            "contentRating": "suggestive",
             "tags": [
               {
                 "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
@@ -743,9 +756,9 @@
             ],
             "state": "published",
             "chapterNumbersResetOnNewVolume": false,
-            "version": 3,
             "createdAt": "2019-07-31T06:40:07+00:00",
             "updatedAt": "2022-11-20T01:37:41+00:00",
+            "version": 3,
             "availableTranslatedLanguages": [
               "en"
             ],

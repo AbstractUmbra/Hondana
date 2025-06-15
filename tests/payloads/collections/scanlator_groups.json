@@ -1,0 +1,342 @@
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "1ae0ae04-dcea-4dfa-9a1e-e24b4696b81b",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "NeoN's Translate Crew",
+        "altNames": [],
+        "locked": false,
+        "website": "https://vk.com/61neon61",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": "GEA4PDCm5M",
+        "contactEmail": "neon61pro@gmail.com",
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2022-01-16T16:52:09+00:00",
+        "updatedAt": "2022-01-16T19:22:07+00:00",
+        "version": 2
+      },
+      "relationships": [
+        {
+          "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
+          "type": "leader",
+          "attributes": {
+            "username": "Greatestneon",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_USER",
+              "ROLE_GROUP_LEADER"
+            ],
+            "version": 54
+          }
+        },
+        {
+          "id": "2c44a842-6b4f-49ed-854a-494d3ca8a21a",
+          "type": "member",
+          "attributes": {
+            "username": "Greatestneon",
+            "roles": [
+              "ROLE_GROUP_MEMBER",
+              "ROLE_USER",
+              "ROLE_GROUP_LEADER"
+            ],
+            "version": 54
+          }
+        }
+      ]
+    },
+    {
+      "id": "1ae5b7e4-5db7-42b8-915b-7edfef8e2e64",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Yannu no Mahou",
+        "altNames": [],
+        "locked": false,
+        "website": "https://yannunomahoufansub.blogspot.com",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": "bPxEWjh",
+        "contactEmail": "yannunomahoufansub@hotmail.com",
+        "description": "Yannu no Mahou Fansub\n\nWe are a fansub dedicated to manga translation into English and Spanish.\nEspecially work yaoi, love the nutella and cookies.\n\nWe live and breathe yaoi\n\n\nWebsite: https://yannunomahoufansub.blogspot.mx/\n\nDISCORD https://discord.gg/MvgQBxv\nTUMBLR https://yannunomahou.tumblr.com/\n\nR E C R U I T M E N T\n\n❥Japanese and Korean Translators: Translates the Japan/Korean text to English; no MTL, please!\nYou don’t need experience, as long as you have knowledge of the language!\n\n❥Cleaner/Redrawes for manhwa/manhua/manga\n\n❥Dick Redrawer: Must be able to redraw all +18 scenes!\n\n❥Raw Compiler: You must know how to use Photoshop to join the images and also you must use Waifux2 to increase the quality of the images. In this position you must also have a verified Bomtoon & Ridibooks account (to see the +18 content).\n\n❥Typesetters: The typesetter insert the proofread translation into the cleaned scans to re-create the manga with translated English text. It takes creativity to choose the right font that fit the tone of the character. An aesthetic taste is also a must when layouting, which includes shaping and positioning the text well.\n\nSend a message to yannunomahoufansub@hotmail.com which should include:\n\n• Your name or Nick you prefer to work with your age and the place where you live.\n• The position to which you postulate (typesetter, cleaner or translator).\n•Reason for wanting to join:\n\nYou can contact me on discord with my user MomoDekan#1559 or daelbeek#4459 and we will contact you. ",
+        "twitter": null,
+        "mangaUpdates": "https://www.mangaupdates.com/groups.html?id=10551",
+        "focusedLanguages": [
+          "es",
+          "en"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2022-05-05T18:13:01+00:00",
+        "version": 4
+      },
+      "relationships": [
+        {
+          "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
+          "type": "leader",
+          "attributes": {
+            "username": "YannunoMahou",
+            "roles": [
+              "ROLE_MEMBER",
+              "ROLE_GROUP_LEADER",
+              "ROLE_GROUP_MEMBER"
+            ],
+            "version": 5
+          }
+        },
+        {
+          "id": "aa84cbad-65cb-4ae7-ab70-760a5e413a2b",
+          "type": "member",
+          "attributes": {
+            "username": "YannunoMahou",
+            "roles": [
+              "ROLE_MEMBER",
+              "ROLE_GROUP_LEADER",
+              "ROLE_GROUP_MEMBER"
+            ],
+            "version": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "1ae88b61-644d-49d5-89d4-2829f12fcb10",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Saori Scan",
+        "altNames": [],
+        "locked": false,
+        "website": null,
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": "",
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "pt-br"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2022-03-14T00:59:52+00:00",
+        "updatedAt": "2022-03-14T00:59:52+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1aea3f6d-68ad-4b94-86af-bca0fa4f4b07",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Milky Translation",
+        "altNames": [],
+        "locked": false,
+        "website": null,
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "en"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1af1b437-88ee-4179-bfc8-05011069afee",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "El rincón de Athena Asamiya",
+        "altNames": [],
+        "locked": false,
+        "website": "https://www.facebook.com/asamiyathena",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": "El Rincón de Atena Asamiya:   \n  \nSitio dedicado a Athena Asamiya, hecho por fans para fans, con la intención de compartir información referente al personaje y a los juegos en donde aparece, principalmente King of Fighters.  \n  \nEnglish: Gamer and fan of Athena Asamiya!, my favorite game is KOF but also I like play others games as GG, Just Dance, Blazblue and Megaman  \n  \n- [Twitter](https://twitter.com/athenasamiya)\n",
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "es-la"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-05-15T21:06:43+00:00",
+        "version": 2
+      },
+      "relationships": []
+    },
+    {
+      "id": "1af3040b-3c3c-4d55-b46d-63e0685a71d3",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Dorohedoro||Dai Dark",
+        "altNames": [],
+        "locked": false,
+        "website": "https://vk.com/dorohedoro",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "ru"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1af63fd2-dc8d-4e0e-9fd9-063270abc44b",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Red Line",
+        "altNames": [],
+        "locked": false,
+        "website": "https://vk.com/club36879803",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "ru"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1af882ea-0e10-43dc-8b24-2e06b291a951",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "kusugu",
+        "altNames": [],
+        "locked": false,
+        "website": null,
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": null,
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "en"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1af9ee81-79c0-4e58-b3b8-580920b12680",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "Kamakura Scans",
+        "altNames": [],
+        "locked": false,
+        "website": null,
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": "uh3Atv",
+        "contactEmail": null,
+        "description": null,
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "en"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "1b08a596-e714-40d3-9acf-e2eaf06618bd",
+      "type": "scanlation_group",
+      "attributes": {
+        "name": "NMA",
+        "altNames": [],
+        "locked": false,
+        "website": "https://naolalaman.blogspot.com/",
+        "ircServer": null,
+        "ircChannel": null,
+        "discord": null,
+        "contactEmail": "absolutemaoying@gmail.com",
+        "description": "SELAMAT DATANG DI NMA :)",
+        "twitter": null,
+        "mangaUpdates": null,
+        "focusedLanguages": [
+          "id"
+        ],
+        "official": false,
+        "verified": false,
+        "inactive": false,
+        "publishDelay": null,
+        "createdAt": "2021-04-19T21:45:59+00:00",
+        "updatedAt": "2021-04-19T21:45:59+00:00",
+        "version": 1
+      },
+      "relationships": []
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 42025
+}

@@ -52,7 +52,7 @@
           "es-la": "No me Molestes, Nagatoro-san"
         },
         {
-          "en": "Please Don't Bully Me, Nagatoro"
+          "en": "Don't Toy With Me, Miss Nagatoro!"
         },
         {
           "uk": "Не дражни мене, Нагаторо-сан"
@@ -61,7 +61,7 @@
           "cs": "Nehraj si se mnou Nagatoro"
         },
         {
-          "en": "Don't Toy With Me, Miss Nagatoro!"
+          "en": "Please Don't Bully Me, Nagatoro"
         },
         {
           "es": "No me rayes, Nagatoro"
@@ -71,6 +71,15 @@
         },
         {
           "pl": "Nie drocz się ze mną, Nagatoro!"
+        },
+        {
+          "vi": "Đừng bắt nạt anh nữa, Nagatoro!!!"
+        },
+        {
+          "vi": "Đừng chọc anh nữa mà, Nagatoro-san"
+        },
+        {
+          "tr": "Uğraşma Benimle Nagatoro-san"
         }
       ],
       "description": {
@@ -86,7 +95,7 @@
       "links": {
         "al": "100664",
         "ap": "dont-toy-with-me-miss-nagatoro",
-        "bw": "series/155089",
+        "bw": "series/155089/list",
         "kt": "40324",
         "mu": "145530",
         "amz": "https://www.amazon.co.jp/dp/B07F7QD132",
@@ -97,10 +106,10 @@
         "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
       },
       "originalLanguage": "ja",
-      "lastVolume": "",
-      "lastChapter": "",
+      "lastVolume": "20",
+      "lastChapter": "154",
       "publicationDemographic": "shounen",
-      "status": "ongoing",
+      "status": "completed",
       "year": 2017,
       "contentRating": "suggestive",
       "tags": [
@@ -173,27 +182,28 @@
       "state": "published",
       "chapterNumbersResetOnNewVolume": false,
       "createdAt": "2019-03-04T12:21:59+00:00",
-      "updatedAt": "2024-04-16T11:04:59+00:00",
-      "version": 346,
+      "updatedAt": "2025-03-03T01:41:48+00:00",
+      "version": 353,
       "availableTranslatedLanguages": [
         "id",
         "ru",
         "es-la",
         "pt-br",
+        "vi",
         "fa",
         "it",
         "sr",
         "en",
         "cs",
         "zh",
+        "tr",
         "nl",
         "uk",
         "hu",
-        "tr",
         "es",
         "pt"
       ],
-      "latestUploadedChapter": "a316f385-7b86-490f-9255-fdc164dc0b2b"
+      "latestUploadedChapter": "6ff87c1f-a084-424e-994f-05bc77e3d095"
     },
     "relationships": [
       {
@@ -203,7 +213,7 @@
           "name": "774 (Nanashi)",
           "imageUrl": null,
           "biography": {
-            "en": "**Alt names**:\nナナシ"
+            "en": "**Alt names**:\nナナシ\n\n**Trackers:**\n- [AniList](https://anilist.co/staff/124304/Nanashi) "
           },
           "twitter": "https://twitter.com/774nanash",
           "pixiv": "https://www.pixiv.net/en/users/72342",
@@ -220,8 +230,8 @@
           "naver": null,
           "website": null,
           "createdAt": "2021-04-19T21:59:45+00:00",
-          "updatedAt": "2023-01-10T23:51:43+00:00",
-          "version": 3
+          "updatedAt": "2024-08-16T14:45:41+00:00",
+          "version": 4
         }
       },
       {
@@ -231,7 +241,7 @@
           "name": "774 (Nanashi)",
           "imageUrl": null,
           "biography": {
-            "en": "**Alt names**:\nナナシ"
+            "en": "**Alt names**:\nナナシ\n\n**Trackers:**\n- [AniList](https://anilist.co/staff/124304/Nanashi) "
           },
           "twitter": "https://twitter.com/774nanash",
           "pixiv": "https://www.pixiv.net/en/users/72342",
@@ -248,21 +258,21 @@
           "naver": null,
           "website": null,
           "createdAt": "2021-04-19T21:59:45+00:00",
-          "updatedAt": "2023-01-10T23:51:43+00:00",
-          "version": 3
+          "updatedAt": "2024-08-16T14:45:41+00:00",
+          "version": 4
         }
       },
       {
-        "id": "0dd39095-451d-4f0d-89e1-1f09bd3c8c99",
+        "id": "f8e2f663-31a5-4c4b-86e6-d1e0514dfe19",
         "type": "cover_art",
         "attributes": {
-          "description": "",
-          "volume": "19",
-          "fileName": "9536e948-9e5c-4b22-8e35-e88174731984.jpg",
+          "description": "Format: Digital\nImprint: Magazine Pocket Comics \nPublisher: Kodansha\nYear: 2018",
+          "volume": "20.1",
+          "fileName": "5e4a4e0e-b2a6-4e7e-8e6e-169a8d26c7a8.jpg",
           "locale": "ja",
-          "createdAt": "2024-04-11T22:35:25+00:00",
-          "updatedAt": "2024-04-11T22:35:25+00:00",
-          "version": 1
+          "createdAt": "2024-07-30T12:41:50+00:00",
+          "updatedAt": "2024-09-23T16:25:24+00:00",
+          "version": 2
         }
       },
       {
@@ -371,7 +381,7 @@
           "links": {
             "al": "104616",
             "ap": "ijiranaide-nagatoro-san-comic-anthology",
-            "bw": "de4fbbf9a6-c50b-4ef3-ae2a-90818afd52fe",
+            "bw": "series/298381/list",
             "kt": "56972",
             "mu": "151069",
             "amz": "https://www.amazon.co.jp/dp/B0932J2Q5R",
@@ -379,10 +389,10 @@
             "mal": "136168"
           },
           "originalLanguage": "ja",
-          "lastVolume": "",
+          "lastVolume": "5",
           "lastChapter": "",
-          "publicationDemographic": null,
-          "status": "ongoing",
+          "publicationDemographic": "shounen",
+          "status": "completed",
           "year": 2018,
           "contentRating": "suggestive",
           "tags": [
@@ -442,8 +452,8 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2019-08-16T01:01:02+00:00",
-          "updatedAt": "2024-03-26T12:00:25+00:00",
-          "version": 20,
+          "updatedAt": "2025-06-12T12:31:09+00:00",
+          "version": 24,
           "availableTranslatedLanguages": [
             "pt-br",
             "th",
@@ -451,7 +461,7 @@
             "en",
             "ru"
           ],
-          "latestUploadedChapter": "20994d76-c8cd-45a2-8bb8-b0b3e260e091"
+          "latestUploadedChapter": "37ac2e82-a4ce-46ac-be41-c233841a8ecd"
         }
       },
       {
@@ -459,14 +469,6 @@
         "type": "manga",
         "related": "doujinshi",
         "attributes": {
-          "isLocked": false,
-          "links": {},
-          "originalLanguage": "ja",
-          "lastVolume": "1",
-          "lastChapter": "3",
-          "publicationDemographic": null,
-          "status": "completed",
-          "contentRating": "pornographic",
           "title": {
             "en": "Lightning Speed + MAGIC WAYS."
           },
@@ -490,7 +492,15 @@
           "description": {
             "en": "Uzaki is in the first 2 chapters (Full color)  \nOthers are in chapter 3 (No color)"
           },
+          "isLocked": false,
+          "links": {},
+          "originalLanguage": "ja",
+          "lastVolume": "1",
+          "lastChapter": "3",
+          "publicationDemographic": null,
+          "status": "completed",
           "year": null,
+          "contentRating": "pornographic",
           "tags": [
             {
               "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
@@ -508,9 +518,9 @@
           ],
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
-          "version": 3,
           "createdAt": "2019-12-08T23:44:35+00:00",
           "updatedAt": "2023-08-15T07:58:29+00:00",
+          "version": 3,
           "availableTranslatedLanguages": [
             "en"
           ],
@@ -525,9 +535,20 @@
           "title": {
             "en": "Ijiranaide, Nagatoro-san - The Joy of Breeding (Doujinshi)"
           },
-          "altTitles": [],
+          "altTitles": [
+            {
+              "es": "El Placer de Criar (Ijiranaide, Nagatoro-san)"
+            },
+            {
+              "es-la": "El Placer de Criar (Ijiranaide, Nagatoro-san)"
+            },
+            {
+              "en": "The Joy of Breeding"
+            }
+          ],
           "description": {
-            "en": "The Joy of Breeding (Don't Toy With Me, Miss Nagatoro)"
+            "es": "El senpai se folla a Nagatoro y el resto de chicas. Todo un pro.",
+            "es-la": "El senpai se folla a Nagatoro y el resto de chicas. Todo un pro."
           },
           "isLocked": false,
           "links": {
@@ -584,10 +605,12 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2021-12-16T05:22:02+00:00",
-          "updatedAt": "2023-08-15T10:10:32+00:00",
-          "version": 10,
-          "availableTranslatedLanguages": [],
-          "latestUploadedChapter": null
+          "updatedAt": "2025-04-29T14:52:45+00:00",
+          "version": 11,
+          "availableTranslatedLanguages": [
+            "es"
+          ],
+          "latestUploadedChapter": "3461fe8b-317a-4fe4-a7c6-75ff596e3946"
         }
       },
       {
@@ -838,8 +861,8 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2021-02-16T03:06:51+00:00",
-          "updatedAt": "2024-04-20T16:47:01+00:00",
-          "version": 4,
+          "updatedAt": "2025-03-02T07:43:13+00:00",
+          "version": 5,
           "availableTranslatedLanguages": [
             "it"
           ],
@@ -851,14 +874,6 @@
         "type": "manga",
         "related": "colored",
         "attributes": {
-          "isLocked": false,
-          "links": {},
-          "originalLanguage": "ja",
-          "lastVolume": "",
-          "lastChapter": "",
-          "publicationDemographic": "shounen",
-          "status": "completed",
-          "contentRating": "suggestive",
           "title": {
             "en": "Ijiranaide, Nagatoro-san (Fan Colored)"
           },
@@ -866,7 +881,15 @@
           "description": {
             "en": "Our nameless - and spineless - hero attracts the attention of one of his classmates, a sadistic young girl named Nagatoro. However, in between the bullying and teasing, something else begins to blossom.  \nA lovey dovey(…?) story between a shy nerd and a S-Dere (Sadistic Tsundere) begins."
           },
+          "isLocked": false,
+          "links": {},
+          "originalLanguage": "ja",
+          "lastVolume": "",
+          "lastChapter": "",
+          "publicationDemographic": "shounen",
+          "status": "completed",
           "year": null,
+          "contentRating": "suggestive",
           "tags": [
             {
               "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
@@ -936,9 +959,9 @@
           ],
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
-          "version": 3,
           "createdAt": "2019-07-31T06:40:07+00:00",
           "updatedAt": "2022-11-20T01:37:41+00:00",
+          "version": 3,
           "availableTranslatedLanguages": [
             "en"
           ],

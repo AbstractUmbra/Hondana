@@ -32,10 +32,14 @@
             },
             {
               "ko": "보여주고 싶어하는 츠유노짱"
+            },
+            {
+              "vi": "Tsuyuno-Chan Muốn Được Phơi Bày Cơ Thể"
             }
           ],
           "description": {
-            "en": "A little boy who has an armpit fetish and a high school girl who loves male attention and exposing herself so much so that she doesn't care who it is. When she notices that he has stalked her to her basketball game, she decides it wouldn't be bad to indulge him more.  \n  \n**Raw: [**[ComicBunch](https://www.comicbunch.com/manga/mon/tsuyunochan/) **|** [KurageBunch](https://kuragebunch.com/episode/13933686331653721909) **|** [NicoNicoBunch](https://seiga.nicovideo.jp/comic/47585)**]**"
+            "en": "A little boy who has an armpit fetish and a high school girl who loves male attention and exposing herself so much so that she doesn't care who it is. When she notices that he has stalked her to her basketball game, she decides it wouldn't be bad to indulge him more.\n___\n**Alt Official Raws:**\n- [niconico Manga](https://seiga.nicovideo.jp/comic/47585)\n - [ComicBunch](https://www.comicbunch.com/manga/mon/tsuyunochan/)",
+            "vi": "Một thằng nhóc sơ trung nghiện nách và một bà chị cao trung luôn muốn \"tự tin khoe cá tính\""
           },
           "isLocked": false,
           "links": {
@@ -45,7 +49,7 @@
             "kt": "56773",
             "mu": "163108",
             "amz": "https://www.amazon.co.jp/dp/B091DVVBZT",
-            "cdj": "https://www.cdjapan.co.jp/searchuni?fq.category=UD%3A14%3A03%3A21&q=%E8%A6%8B%E3%81%9B%E3%81%9F%E3%81%8C%E3%82%8A%E3%81%AE%E9%9C%B2%E4%B9%83%E3%81%A1%E3%82%83%E3%82%93&order=reldesc&opt.exclude_prx=on",
+            "cdj": "https://www.cdjapan.co.jp/searchuni?fq.category=UD:14:03:21&q=見せたがりの露乃ちゃん&order=reldesc&opt.exclude_prx=on",
             "ebj": "https://ebookjapan.yahoo.co.jp/books/604375/",
             "mal": "129868",
             "raw": "https://kuragebunch.com/episode/13933686331653721909",
@@ -78,19 +82,6 @@
               "attributes": {
                 "name": {
                   "en": "Comedy"
-                },
-                "description": [],
-                "group": "genre",
-                "version": 1
-              },
-              "relationships": []
-            },
-            {
-              "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
-              "type": "tag",
-              "attributes": {
-                "name": {
-                  "en": "Girls' Love"
                 },
                 "description": [],
                 "group": "genre",
@@ -141,12 +132,13 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2020-06-03T08:01:58+00:00",
-          "updatedAt": "2024-04-14T14:13:06+00:00",
-          "version": 29,
+          "updatedAt": "2025-03-18T10:53:48+00:00",
+          "version": 32,
           "availableTranslatedLanguages": [
-            "en"
+            "en",
+            "vi"
           ],
-          "latestUploadedChapter": "380a6cd5-5964-4bbf-b599-88a553ee9ebb"
+          "latestUploadedChapter": "0f482b44-83c3-4a3e-b772-f174b35359cb"
         }
       },
       {
@@ -200,7 +192,7 @@
               "es-la": "No me Molestes, Nagatoro-san"
             },
             {
-              "en": "Please Don't Bully Me, Nagatoro"
+              "en": "Don't Toy With Me, Miss Nagatoro!"
             },
             {
               "uk": "Не дражни мене, Нагаторо-сан"
@@ -209,7 +201,7 @@
               "cs": "Nehraj si se mnou Nagatoro"
             },
             {
-              "en": "Don't Toy With Me, Miss Nagatoro!"
+              "en": "Please Don't Bully Me, Nagatoro"
             },
             {
               "es": "No me rayes, Nagatoro"
@@ -219,6 +211,15 @@
             },
             {
               "pl": "Nie drocz się ze mną, Nagatoro!"
+            },
+            {
+              "vi": "Đừng bắt nạt anh nữa, Nagatoro!!!"
+            },
+            {
+              "vi": "Đừng chọc anh nữa mà, Nagatoro-san"
+            },
+            {
+              "tr": "Uğraşma Benimle Nagatoro-san"
             }
           ],
           "description": {
@@ -234,7 +235,7 @@
           "links": {
             "al": "100664",
             "ap": "dont-toy-with-me-miss-nagatoro",
-            "bw": "series/155089",
+            "bw": "series/155089/list",
             "kt": "40324",
             "mu": "145530",
             "amz": "https://www.amazon.co.jp/dp/B07F7QD132",
@@ -245,10 +246,10 @@
             "engtl": "https://comics.inkr.com/title/2231-don-t-toy-with-me-miss-nagatoro?utm_source=mgd"
           },
           "originalLanguage": "ja",
-          "lastVolume": "",
-          "lastChapter": "",
+          "lastVolume": "20",
+          "lastChapter": "154",
           "publicationDemographic": "shounen",
-          "status": "ongoing",
+          "status": "completed",
           "year": 2017,
           "contentRating": "suggestive",
           "tags": [
@@ -321,27 +322,28 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2019-03-04T12:21:59+00:00",
-          "updatedAt": "2024-04-16T11:04:59+00:00",
-          "version": 346,
+          "updatedAt": "2025-03-03T01:41:48+00:00",
+          "version": 353,
           "availableTranslatedLanguages": [
             "id",
             "ru",
             "es-la",
             "pt-br",
+            "vi",
             "fa",
             "it",
             "sr",
             "en",
             "cs",
             "zh",
+            "tr",
             "nl",
             "uk",
             "hu",
-            "tr",
             "es",
             "pt"
           ],
-          "latestUploadedChapter": "a316f385-7b86-490f-9255-fdc164dc0b2b"
+          "latestUploadedChapter": "6ff87c1f-a084-424e-994f-05bc77e3d095"
         }
       },
       {
@@ -350,10 +352,9 @@
         "attributes": {
           "username": "AbstractUmbra",
           "roles": [
-            "ROLE_BOT",
             "ROLE_MEMBER"
           ],
-          "version": 145
+          "version": 146
         }
       }
     ]

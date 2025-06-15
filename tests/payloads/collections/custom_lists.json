@@ -1,0 +1,101 @@
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "238f7b80-bb7e-42ca-b56a-342b430b98a8",
+      "type": "custom_list",
+      "attributes": {
+        "name": "TestList1",
+        "visibility": "public",
+        "version": 4
+      },
+      "relationships": [
+        {
+          "id": "077de7b6-ea9d-4e41-a4be-6b9eb73e308e",
+          "type": "manga"
+        },
+        {
+          "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+          "type": "manga"
+        },
+        {
+          "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+          "type": "user"
+        }
+      ]
+    },
+    {
+      "id": "306e6504-6d52-4e8a-b890-8e94d3f9eca6",
+      "type": "custom_list",
+      "attributes": {
+        "name": "TestList2",
+        "visibility": "public",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+          "type": "user"
+        }
+      ]
+    },
+    {
+      "id": "7e9da89b-ac6f-4f73-8645-772fb3e96db8",
+      "type": "custom_list",
+      "attributes": {
+        "name": "Test",
+        "visibility": "private",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "bd6d0982-0091-4945-ad70-c028ed3c0917",
+          "type": "manga"
+        },
+        {
+          "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+          "type": "user"
+        }
+      ]
+    },
+    {
+      "id": "aed5f89c-4259-4572-afac-a69dbc3874c8",
+      "type": "custom_list",
+      "attributes": {
+        "name": "Castle",
+        "visibility": "private",
+        "version": 3
+      },
+      "relationships": [
+        {
+          "id": "36966895-9fa5-4225-8fce-21708df87ea2",
+          "type": "manga"
+        },
+        {
+          "id": "a77742b1-befd-49a4-bff5-1ad4e6b0ef7b",
+          "type": "manga"
+        },
+        {
+          "id": "d86cf65b-5f6c-437d-a0af-19a31f94ec55",
+          "type": "manga"
+        },
+        {
+          "id": "80422e14-b9ad-4fda-970f-de370d5fa4e5",
+          "type": "manga"
+        },
+        {
+          "id": "cade38b7-64c4-4a29-8e3c-8c283291d6c6",
+          "type": "manga"
+        },
+        {
+          "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
+          "type": "user"
+        }
+      ]
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 4
+}

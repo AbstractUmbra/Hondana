@@ -1,0 +1,1438 @@
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "cc0b9d92-2e66-477c-ad27-ae481fa3dc6f",
+      "type": "author",
+      "attributes": {
+        "name": "Song Shu 200",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2022-11-10T16:55:56+00:00",
+        "updatedAt": "2022-11-10T20:17:57+00:00",
+        "version": 2
+      },
+      "relationships": [
+        {
+          "id": "b8b31598-ca6a-4872-a118-2aa4bb6ccd84",
+          "type": "manga"
+        }
+      ]
+    },
+    {
+      "id": "20a0977c-ebd0-4865-8dfa-030256b4f9aa",
+      "type": "author",
+      "attributes": {
+        "name": "DOES",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2022-05-29T23:20:57+00:00",
+        "updatedAt": "2022-05-29T23:20:57+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "cb676e05-8e6e-4ec4-8ba0-d3cb4f033cfa",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Ending Maker"
+            },
+            "altTitles": [
+              {
+                "ko": "엔딩 메이커"
+              },
+              {
+                "ru": "Создатель концовки"
+              },
+              {
+                "zh-hk": "結局創造者"
+              },
+              {
+                "zh": "终结者"
+              },
+              {
+                "ko-ro": "Ending Meikeo"
+              },
+              {
+                "ja": "エンディング メーカー"
+              },
+              {
+                "fr": "Les Créateurs d'une Fin qui les Arrange"
+              },
+              {
+                "es-la": "Creador de finales"
+              }
+            ],
+            "description": {
+              "en": "After \"outboxer009\" wakes up in the body of Yuder Bayel from Legend of Heroes 2, he soon discovers that his rival \"sandstorm\" has also entered the game world as Cordelia Chace. \r\n\r\nThese top-two-ranked old pros come to realize that navigating this game world is much harder than just pointing and clicking. With the apocalyptic conclusion of the game looming before them, they'll have to combine his quick wit, her foul mouth, and both their gamer mindsets to make a new, less cataclysmic ending.",
+              "ko": "게임 영웅전기2의 고이다 못해 썩은물인 두 사람.\r\n만년 1등 '아웃복서009'와 만년 2등인 '노란폭풍'.\r\n어느 날, 두 사람은 게임 속에서 눈을 뜨는데…….\r\n\r\n“야… 너두?”\r\n“야… 나두!”\r\n\r\n영웅전기2의 결말은 세계의 멸망.\r\n\r\n하지만 혼자가 아닌 둘이라면.\r\n그것도 서버 랭킹 1위와 2위가 함께라면!\r\n\r\n완벽한 해피 엔딩을 위한 썩은물들의 행보가 시작된다!\r\n\r\n---\r\n\r\n- [Webtoon PV](https://www.youtube.com/watch?v=ltAlY-YQNvU)",
+              "ru": "Два профессиональных игрока в игре \"Легенда Героев 2\": Кан Чжин Хо - Первый в мировом топе и Хон Ю Хи - вторая в мировом топе, однажды открыли глаза и оказались внутри своей любимой игры в телах игровых персонажей.\r\n\r\n- Эй, и ты... тоже?\r\n\r\n- Д-да, и я...\r\n\r\nФиналом \"Легенды Героев 2 \" является разрушение человеческого мира. \r\nОднако, если они не одни... если топ 1 и топ 2 мира вместе... то... Они вновь пройдут по протоптанному пути с намерениями добиться \"Хорошей Концовки\"!\r\n\r\n---\r\n\r\n- [Webtoon PV](https://www.youtube.com/watch?v=ltAlY-YQNvU)",
+              "pt-br": "Dois heróis platinaram o jogo Legend of Heroes 2. Kang Jinho sendo o jogador top 1, e a Hong YuHee logo atrás no top 2. Um dia, eles abriram os olhos e se encontraram dentro do corpo de seus personagens desse jogo…\r\n\r\n“Ei… você também?”\r\n\r\n“Calma… por que você tá aqui?”\r\n\r\nO fim de Legend of Heroes 2 era a destruição de toda a humanidade.\r\n\r\nMas se tiver dois deles que não estejam sozinhos e que sejam o top 1 e 2 do jogo, havia esperança.\r\n\r\nE esse é o início de duas maçãs podres em busca de um final perfeito!\r\n\r\n---\r\n\r\n- [Webtoon PV](https://www.youtube.com/watch?v=ltAlY-YQNvU)"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "150170",
+              "ap": "ending-maker",
+              "mu": "o4y7mjk",
+              "nu": "ending-maker",
+              "mal": "150204",
+              "raw": "https://page.kakao.com/content/57710234",
+              "engtl": "https://tapas.io/series/ending-maker/info"
+            },
+            "originalLanguage": "ko",
+            "lastVolume": null,
+            "lastChapter": null,
+            "publicationDemographic": null,
+            "status": "hiatus",
+            "year": 2022,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "0bc90acb-ccc1-44ca-a34a-b9f3a73259d0",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Reincarnation"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "36fd93ea-e8b8-445e-b836-358f02b3d33d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Monsters"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Demons"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Long Strip"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Adventure"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "9438db5a-7e2a-4ac0-b39e-e0d95a34b8a8",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Video Games"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "a1f53773-c69a-4ce5-8cab-fffcd90b1565",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Magic"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ace04997-f6bd-436e-b261-779182193d3d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Isekai"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Fantasy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f4122d1c-3b44-44d0-9936-ff7502c39ad3",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Adaptation"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2022-05-29T23:25:24+00:00",
+            "updatedAt": "2024-08-13T05:10:02+00:00",
+            "version": 24,
+            "availableTranslatedLanguages": [
+              "pt-br",
+              "es-la",
+              "en",
+              "it"
+            ],
+            "latestUploadedChapter": "9588df60-5ce8-4a17-8c7a-048d87568d66"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a13147-678c-494d-849d-9c142ffba7b9",
+      "type": "author",
+      "attributes": {
+        "name": "Lee Eun Jung",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2022-06-09T12:40:05+00:00",
+        "updatedAt": "2022-06-09T12:40:05+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "9445afb3-f5fd-49c6-b247-f583baa7b8c2",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Two Steps Away"
+            },
+            "altTitles": [
+              {
+                "ko": "1미터 사이"
+              },
+              {
+                "ko-ro": "1-Meter Sai"
+              }
+            ],
+            "description": {
+              "en": "Hosu is an average, carefree high school student who isn’t particularly special in any kind of way. Danwoo is the attractive, untouchable top student of the class. There shouldn’t really be any reason for them to interact at all. But one day, Danwoo announces that he wants Hosu to sit next to him in class. In fact, he wants to be within her presence as much as possible, and he’s willing to do whatever it takes to stay by her side. Not too close, but not too far. Just two steps away is enough. However, will they be able to maintain that distance? Come take a closer look, from just a couple steps away…"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "136088",
+              "mu": "1eyo9mo",
+              "raw": "https://www.lezhin.com/ko/comic/1m",
+              "engtl": "https://www.lezhinus.com/en/comic/two_steps"
+            },
+            "originalLanguage": "ko",
+            "lastVolume": "",
+            "lastChapter": "50",
+            "publicationDemographic": "shoujo",
+            "status": "completed",
+            "year": 2021,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Long Strip"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2022-06-09T12:41:12+00:00",
+            "updatedAt": "2022-10-01T04:34:55+00:00",
+            "version": 4,
+            "availableTranslatedLanguages": [],
+            "latestUploadedChapter": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a23f34-2f26-4546-834d-ca06fba77612",
+      "type": "author",
+      "attributes": {
+        "name": "Saki Setouichi",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2021-04-19T21:59:45+00:00",
+        "updatedAt": "2021-04-19T21:59:45+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "beb25ef5-a947-423c-948c-2a43c038f3b4",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Seaside Return"
+            },
+            "altTitles": [],
+            "description": {
+              "en": "Seven years after graduating from high school leaving the boring northern fishing village she grew up in for a career in the bright lights and fast pace of Tokyo, Miyo comes back and finds things much as she left them. Coming home again is never easy, but it's the place you can always return."
+            },
+            "isLocked": false,
+            "links": {
+              "al": "104108",
+              "mu": "139839"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": null,
+            "lastChapter": null,
+            "publicationDemographic": "josei",
+            "status": "completed",
+            "year": null,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Oneshot"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2019-02-04T01:01:02+00:00",
+            "updatedAt": "2021-05-25T15:47:14+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [
+              "en"
+            ],
+            "latestUploadedChapter": "2a83fcb1-133b-4732-9696-c34545922f20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a2aa20-7bea-45d7-b026-af1085ca77e2",
+      "type": "author",
+      "attributes": {
+        "name": "koer (코어)",
+        "imageUrl": null,
+        "biography": {
+          "en": "Pronounced *core*."
+        },
+        "twitter": "https://twitter.com/koerfolio",
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": "https://blog.naver.com/radixcor",
+        "website": null,
+        "createdAt": "2021-04-19T21:59:45+00:00",
+        "updatedAt": "2022-12-30T13:40:58+00:00",
+        "version": 2
+      },
+      "relationships": [
+        {
+          "id": "2a45453a-cc9d-4835-8165-2bd585d72436",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Girl in the Birdcage"
+            },
+            "altTitles": [
+              {
+                "ko": "새장의 소녀"
+              }
+            ],
+            "description": {
+              "en": "Yeonkwang Arts High School makes a clear distinction between the talented and the mediocre. The talented receive full benefits of the Gifted and Talented program—funding, training, opportunities to participate in exclusive art contests—while the mediocre are left to fend for themselves in the hopes that they, too, can one day make it into the prestigious program. Talent equals power in this competitive school, but when Chung-eun, a G/T student, falls for Yumi, a non-G/T student, the tables are turned. While Chung-eun is blinded by Yumi’s charms, Yumi’s got a hidden agenda."
+            },
+            "isLocked": false,
+            "links": {
+              "al": "101441",
+              "ap": "girl-in-the-birdcage",
+              "mu": "148976",
+              "mal": "141623",
+              "raw": "https://www.lezhin.com/ko/comic/cage",
+              "engtl": "https://www.lezhin.com/en/comic/birdcage"
+            },
+            "originalLanguage": "ko",
+            "lastVolume": "2",
+            "lastChapter": "46",
+            "publicationDemographic": null,
+            "status": "completed",
+            "year": 2018,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Long Strip"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "a3c67850-4684-404e-9b7f-c69850ee5da6",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Girls' Love"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2019-06-26T19:15:42+00:00",
+            "updatedAt": "2023-01-21T08:03:07+00:00",
+            "version": 7,
+            "availableTranslatedLanguages": [
+              "es-la",
+              "en"
+            ],
+            "latestUploadedChapter": "5cd59d26-eee7-433c-a667-54245a5983a7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a47fa6-70cc-4055-925e-614f388b26f3",
+      "type": "author",
+      "attributes": {
+        "name": "Stephen W. Martin",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2021-04-19T21:59:45+00:00",
+        "updatedAt": "2021-04-19T21:59:45+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "ff9b50e5-a094-47e5-b09d-e5351128f6b7",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Davinchibi"
+            },
+            "altTitles": [],
+            "description": {
+              "en": "A young Leonardo Da Vinci and his childhood friends discover learning to fly takes a little magic."
+            },
+            "isLocked": false,
+            "links": null,
+            "originalLanguage": "en",
+            "lastVolume": "1",
+            "lastChapter": "8",
+            "publicationDemographic": null,
+            "status": "completed",
+            "year": null,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Long Strip"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Adventure"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Fantasy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2020-07-05T09:23:40+00:00",
+            "updatedAt": "2021-05-25T15:50:05+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [
+              "tr"
+            ],
+            "latestUploadedChapter": "8034885e-a613-4f95-ad98-58605606638b"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a7e459-b569-441b-8dea-6c75d1027ff3",
+      "type": "author",
+      "attributes": {
+        "name": "Nakashima Tsubaki",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2021-04-19T21:59:45+00:00",
+        "updatedAt": "2021-04-19T21:59:45+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "8689738b-6ff1-4a56-a80b-1cba9dd5e2b1",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "C♥C♥C"
+            },
+            "altTitles": [
+              {
+                "en": "CCC"
+              },
+              {
+                "ja-ro": "Chu Chu Chu"
+              },
+              {
+                "ja-ro": "Chu♥Chu♥Chu"
+              },
+              {
+                "ja": "チュ♥チュ♥チュ"
+              }
+            ],
+            "description": {
+              "en": "From Shoujo Manga Maniac:  \n  \nKojima Mitsu (a.k.a. Honey) is in middle school (She's 12 years old) but she's so small that she looks like she's in elementary school! One day while she is is changing into a maid uniform for a school event (with not much success…the uniform is too big for her), she find a little bat blocked by the window and helps it. Suddenly an awesome guy appears in front of her! He is a vampire and as thanks for saving his \"toy,\" he helps turn her into an adult (with a kiss)…"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "36040",
+              "mu": "5723",
+              "mal": "6040"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": "2",
+            "lastChapter": "11",
+            "publicationDemographic": "shoujo",
+            "status": "completed",
+            "year": 2007,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Fantasy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Supernatural"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2018-12-20T22:12:43+00:00",
+            "updatedAt": "2023-03-25T22:34:52+00:00",
+            "version": 4,
+            "availableTranslatedLanguages": [
+              "en"
+            ],
+            "latestUploadedChapter": "c44b23b8-277d-409a-96cb-1fcfaa299cb1"
+          }
+        },
+        {
+          "id": "11da1f86-3363-4308-a8b6-17c33700417e",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Ikenai Hokenshitsu"
+            },
+            "altTitles": [
+              {
+                "en": "Count 10!"
+              },
+              {
+                "en": "Dan x Boi!"
+              },
+              {
+                "en": "Ike Nai Hokenshitsu"
+              },
+              {
+                "en": "Ike-nai Hokenshitsu"
+              },
+              {
+                "en": "Ikenai Hokenshitsu"
+              },
+              {
+                "en": "Ikenai Hokenshitu"
+              },
+              {
+                "en": "Panic at the pool"
+              },
+              {
+                "en": "Toilet no Hanao-kun"
+              },
+              {
+                "en": "イケない・保健室"
+              },
+              {
+                "en": "快感保健室"
+              }
+            ],
+            "description": {
+              "en": "1. Ikenai Hokenshitsu  \nThe new infirmary teacher is hot, but he's kind of perverted!? He reads porn, too. A very dangerous man indeed!! Just what's going to happen to Mimi, the health committee member!?  \n  \n2. Toilet no Hanao-kun  \n  \n3. Dan x Boi!  \n  \n4. Panic at the pool  \n  \n5. Count 10!"
+            },
+            "isLocked": false,
+            "links": {
+              "al": "47214",
+              "ap": "ikenai-hokenshitsu",
+              "kt": "4309",
+              "mu": "19077",
+              "mal": "17214"
+            },
+            "originalLanguage": "ja",
+            "lastVolume": null,
+            "lastChapter": "5",
+            "publicationDemographic": "shoujo",
+            "status": "completed",
+            "year": null,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2018-03-09T04:42:00+00:00",
+            "updatedAt": "2021-05-25T15:39:30+00:00",
+            "version": 2,
+            "availableTranslatedLanguages": [
+              "en"
+            ],
+            "latestUploadedChapter": "133174aa-e5ad-4878-a7b1-b246b252ed6d"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20a928ea-c4b0-4d3e-a8db-a5d9a0e6aae4",
+      "type": "author",
+      "attributes": {
+        "name": "Rubber band powered airplane",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2023-04-14T22:50:40+00:00",
+        "updatedAt": "2023-04-14T22:50:40+00:00",
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "20ab0545-510d-49b5-b91b-599dacccc933",
+      "type": "author",
+      "attributes": {
+        "name": "Didiwalker",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2021-04-19T21:59:45+00:00",
+        "updatedAt": "2021-04-19T21:59:45+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "df4de629-bc56-4290-a68d-ab41c7ea8d6b",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Dorm 95"
+            },
+            "altTitles": [
+              {
+                "id": "Kosan 95"
+              }
+            ],
+            "description": {
+              "en": "If you think Dorm 95 is just a normal dormitory, then you're wrong. Whoever receives an invitation gets free housing and daily funds from the host, but at what price? Rena the normal girl is about to enter the full-of-mystery Dorm 95!"
+            },
+            "isLocked": false,
+            "links": {
+              "ap": "dorm-95",
+              "mu": "154035",
+              "raw": "https://www.webtoons.com/id/drama/kosan/list?title_no=840"
+            },
+            "originalLanguage": "id",
+            "lastVolume": null,
+            "lastChapter": null,
+            "publicationDemographic": null,
+            "status": "ongoing",
+            "year": null,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "3b60b75c-a2d7-4860-ab56-05f391bb889c",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Psychological"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "3e2b8dae-350e-4ab8-a8ce-016e844b9f0d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Long Strip"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Romance"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "4d32cc48-9f00-4cca-9b5a-a839f0764984",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Comedy"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Drama"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ee968100-4191-4968-93d3-f82d72be7e46",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Mystery"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "f5ba408b-0e7a-484d-8d49-4e9125ac96de",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Full Color"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2019-11-26T20:27:43+00:00",
+            "updatedAt": "2024-07-25T09:17:07+00:00",
+            "version": 4,
+            "availableTranslatedLanguages": [
+              "en"
+            ],
+            "latestUploadedChapter": "dac19ef5-710c-48ab-b3a6-253b2a3b7fa7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "20ad153b-89a3-45d0-996c-0b2150fe2b00",
+      "type": "author",
+      "attributes": {
+        "name": "Vitaly Terletsky",
+        "imageUrl": null,
+        "biography": {},
+        "twitter": null,
+        "pixiv": null,
+        "melonBook": null,
+        "fanBox": null,
+        "booth": null,
+        "namicomi": null,
+        "nicoVideo": null,
+        "skeb": null,
+        "fantia": null,
+        "tumblr": null,
+        "youtube": null,
+        "weibo": null,
+        "naver": null,
+        "website": null,
+        "createdAt": "2022-10-29T21:41:32+00:00",
+        "updatedAt": "2022-10-29T21:41:32+00:00",
+        "version": 1
+      },
+      "relationships": [
+        {
+          "id": "7cf3da63-61f4-4f84-8c7f-5667f9deb84b",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Jojo's Strange Ventures"
+            },
+            "altTitles": [
+              {
+                "ru": "Причудливые Авантюры Жожо"
+              },
+              {
+                "en": "Jojo's Curious Escapades(Author's translation)"
+              }
+            ],
+            "description": {
+              "en": "Jojo if it took place in Russia."
+            },
+            "isLocked": false,
+            "links": {},
+            "originalLanguage": "ru",
+            "lastVolume": "",
+            "lastChapter": "",
+            "publicationDemographic": null,
+            "status": "ongoing",
+            "year": 2020,
+            "contentRating": "safe",
+            "tags": [
+              {
+                "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Action"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "87cc87cd-a395-47af-b27a-93258283bbc6",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Adventure"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "b13b2a48-c720-44a9-9c77-39c9979373fb",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Doujinshi"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Delinquents"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2022-10-09T18:35:24+00:00",
+            "updatedAt": "2025-03-30T13:23:01+00:00",
+            "version": 10,
+            "availableTranslatedLanguages": [
+              "en"
+            ],
+            "latestUploadedChapter": "d00aa0cb-0af0-4d63-8451-eb53a5475d89"
+          }
+        }
+      ]
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 66499
+}

@@ -8,7 +8,7 @@
       "name": "774 (Nanashi)",
       "imageUrl": null,
       "biography": {
-        "en": "**Alt names**:\nナナシ"
+        "en": "**Alt names**:\nナナシ\n\n**Trackers:**\n- [AniList](https://anilist.co/staff/124304/Nanashi) "
       },
       "twitter": "https://twitter.com/774nanash",
       "pixiv": "https://www.pixiv.net/en/users/72342",
@@ -25,8 +25,8 @@
       "naver": null,
       "website": null,
       "createdAt": "2021-04-19T21:59:45+00:00",
-      "updatedAt": "2023-01-10T23:51:43+00:00",
-      "version": 3
+      "updatedAt": "2024-08-16T14:45:41+00:00",
+      "version": 4
     },
     "relationships": [
       {
@@ -116,10 +116,8 @@
           "createdAt": "2022-02-02T08:57:49+00:00",
           "updatedAt": "2022-05-11T18:00:16+00:00",
           "version": 6,
-          "availableTranslatedLanguages": [
-            "en"
-          ],
-          "latestUploadedChapter": "8c28138b-1de4-4345-a338-f03becbce15e"
+          "availableTranslatedLanguages": [],
+          "latestUploadedChapter": null
         }
       },
       {
@@ -315,26 +313,17 @@
           "availableTranslatedLanguages": [
             "id",
             "pt-br",
+            "es-la",
             "cs",
             "en"
           ],
-          "latestUploadedChapter": "5b10ce7e-49be-4147-bf9a-834b3d6b80d4"
+          "latestUploadedChapter": "564579c4-3862-48ee-b582-166bef6ad273"
         }
       },
       {
         "id": "f12e73c4-9f26-4523-9223-3abdf442749d",
         "type": "manga",
         "attributes": {
-          "isLocked": false,
-          "links": {
-            "raw": "https://www.pixiv.net/artworks/78708190"
-          },
-          "originalLanguage": "ja",
-          "lastVolume": "",
-          "lastChapter": "",
-          "publicationDemographic": null,
-          "status": "completed",
-          "contentRating": "safe",
           "title": {
             "en": "Neon Genesis Evangelion - Savage Dog Asuka and Grown-up Shin-chan (Doujinshi)"
           },
@@ -344,7 +333,17 @@
             }
           ],
           "description": {},
+          "isLocked": false,
+          "links": {
+            "raw": "https://www.pixiv.net/artworks/78708190"
+          },
+          "originalLanguage": "ja",
+          "lastVolume": "",
+          "lastChapter": "",
+          "publicationDemographic": null,
+          "status": "completed",
           "year": 2020,
+          "contentRating": "safe",
           "tags": [
             {
               "id": "0234a31e-a729-4e28-9d6a-3f87c4966b9e",
@@ -427,9 +426,9 @@
           ],
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
-          "version": 3,
           "createdAt": "2020-07-25T11:41:47+00:00",
           "updatedAt": "2022-03-24T13:34:18+00:00",
+          "version": 3,
           "availableTranslatedLanguages": [
             "pt-br",
             "en"
@@ -621,18 +620,16 @@
             }
           ],
           "description": {
-            "en": "Volume 1:  \n||  \n1. [774 (Nanashi)] Yupiel-sama no Geboku (Lady Yupiel's Servant)  \n2. [Akazawa RED] Sewayaki Zashiki-warashi (Meddlesome Zashiki-warashi)  \n3. [Takatsu] X-Card Frontier! (1)  \n4. [Amagaeru] Lolibabaa to Mago (Lolibabaa and Grandson)  \n5. [Batta] Gedou no Ie (Household of Gedou)  \n6. [Oouso] Hyakunen Shoujo (Centennial Maiden)  \n7. [Cyocyo] Enkyori Renai (Love Across the Aeons)  \n8. [BeNantoka] Eien no Wakaba Girl (Eternally Verdant)  \n9. [Koishi Chikasa] Kinuito no Ude (Silken Arm)  \n10. [Ogata Zen] Suzuwe-san wa Ryoubo (Dorm Mother Suzuwe-san)  \n11. [Yumano Yuuki] Natsu Ouse (Midsummer Tryst)  \n12. [Kinnotama] Tentacle act  \n13. [Esuo] Licking Monster  \n14. [Gengorou] Kawaranai Mono (Unchanging)  \n15. [Miura Yasuto] Hakka Shoujo - Bangaihen (Peppermint Girl - Side Story)  \n15.5. Authors' notes and background information  \n15.6. TL notes  \n||  \nVolume 2:  \n||  \nMD can only credit 3 groups but there are 4 that worked on it.   \n  \nRaws provided by fynolt2 (for the main volume), and dlfnzy1 (the side material by Kinku)  \nTranslated by CapableScoutMan  \nTypesetting, redrawing, cleaning, and all sorts of editing by S.T.A.L.K.E.R., B.E.C. Scans and bigk40k  \n  \n1. [Ogata Zen] Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku (Dorm Mother Suzuwe-san: One peaceful day)  \n2. [Ike] Kyuuketsuki to Hoshigatari no Yoru (Discussing the Starlit Sky with a Vampire)  \n3. [Gengorou] Boku to Sennin-sama (The Xian and I)  \n4. [Yumano Yuuki] Oshikake Kitsune Yome (The Uninvited Fox Wife)  \n5. [774 (Nanashi)] Yupiel-sama to no Nichijou (Everyday Life with Lady Yupiel)  \n6. [BeNantoka] Zom Zom Biyori  \n7. [Tamano Kedama] Chuu Chuu Drain  \n8. [Batta] Gedou no Yukari (The Bonds of Gedou)  \n9. [Oouso] Natsu no Omohide (Memories of Summer)  \n10. [Amagaeru] Ookeyaki no Kouro (Kouro of the Great Zelkova)  \n11. [Mudou Eichi] Mechanical Instinct  \n12. [CyoCyoPolice] Kokoroechigai no Oyome-san (The Imprudent Bride)  \n13. [Yam] Nekomimi Kaa-san (Nekomommy)  \n14. [Mutou Mato] Akai Mi Hajiketa (Split the Scarlet Fruit of Dawn)  \n15. [Koishi Chikasa] Hitokui-sama no Chocolate Cake (The Anthropovore's Chocolate Cake)  \n16. [Kamen no Hito] Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis (1)  \n16.5. [Kinku] Side material and notes  \n||  \nVolume 3:  \n||  \n1. [Cyocyo] Love Across the Aeons (2)  \n2. [Ogata Zen] Dorm Mother Suzuwe-San  \n3. [Kokusei Roukun] Everlasting Fragrance  \n4. [Tamano Kedama] Beastie Charm: Chuu Chuu Drain (2)  \n5. [Gengorou] Kagachi-Sama  \n6. [Takatsue] X-Card Frontier! (2)  \n7. [Amagaeru] Welcome to the Youkai Bistro  \n8. [Yumano Yuuki] The Demon Lord is Level 1  \n9. [Saryuu] My First Time at the Red (Lolibabaa) Light District  \n10. [Emons] The Masters Hometown  \n11. [Batta] Cycle of Gedou  \n12. [Oouso] Magical Granny Orgasm Chiyo-San  \n13. [yam] Legend of the Invincible Warashi-Sama!  \n14. [Mudou Eichi] Sergeant Reboot  \n15. [Yuzuha] \"Lolibabaa tales from Japan-Oni-Slaying Chapter\"  \n16. [Koishi Chikasa] Witch of the Fire Scene - Stem  \n17. [Kamen No Hito] Although the lolibabaa understands lolicons, she's desperate to increase her loli appeal because he only goes for actual lolis (2)  \nOmakes: [Miyamarun] Wine for Two  \n||  \nVolume 4:  \n||  \n1. Namake Youko (The Lazy Fox)  \n2. Lusty Charms - Chuu Chuu Drain 3  \n3. Lolikko ni eroi koto shitemo babaa nanode hinan sareru iware wa nai yo ne (I can lewd the loli all I want, and nobody can criticise me because she's a grandma)  \n4. Eisei no Mai Zenpen Part 1(Everlasting Dance Part 1)  \n5. Lolibabaa ni Aitakatta kara Isekai Tensei Shita (I wanted to meet a lolibabaa, so I got reborn into another world)  \n6. Freeze!!  \n7. Tsuzureori (Tapestry)  \n8. Lamp no Majin (Genie of the Lamp)  \n9. Youkai Koryouriya ni Youkoso ~Shizuoka Ryokou Hen~ (Welcome to the Youkai Bistro ~Trip to Shizuoka)  \n10. Ningyou no Oningyou (The Doll's Puppet)  \n11. Furusato no Tama-baasama (Granny Tama from my Hometown)  \n12. Devil's Born  \n13. Witch of the Fire Scene - Bloom  \n13.5 Kamen no Hito - Story Art  \n13.6 Bonus  \n||"
+            "en": "Volume 1:  \n1. Yupiel-sama no Geboku (Lady Yupiel's Servant) by 774 (Nanashi)\n2. Sewayaki Zashiki-warashi (Meddlesome Zashiki-warashi) by Akazawa RED\n3. X-Card Frontier! (1) by Takatsu\n4. Lolibabaa to Mago (Lolibabaa and Grandson) by Amagaeru\n5. Gedou no Ie (Household of Gedou) by Batta\n6. Hyakunen Shoujo (Centennial Maiden) by Oouso\n7. Enkyori Renai (Love Across the Aeons) by Cyocyo\n8. Eien no Wakaba Girl (Eternally Verdant) by BeNantoka\n9. Kinuito no Ude (Silken Arm) by Koishi Chikasa\n10. Suzuwe-san wa Ryoubo (Dorm Mother Suzuwe-san) by Ogata Zen\n11. Natsu Ouse (Midsummer Tryst) by Yumano Yuuki\n12. Tentacle Act by Kinnotama\n13. Licking Monster by Esuo\n14. Kawaranai Mono (Unchanging) by Gengorou\n15. Hakka Shoujo - Bangaihen (Peppermint Girl - Side Story) by Miura Yasuto\n15.5. Authors' notes and background information  \n15.6. TL notes  \n\nVolume 2:  \n1. Suzuwe-san wa Ryoubo: Aru Hi no Heinichiroku (Dorm Mother Suzuwe-san: One Peaceful Day) by Ogata Zen\n2. Kyuuketsuki to Hoshigatari no Yoru (Discussing the Starlit Sky with a Vampire) by Ike\n3. Boku to Sennin-sama (The Xian and I) by Gengorou\n4. Oshikake Kitsune Yome (The Uninvited Fox Wife) by Yumano Yuuki\n5. Yupiel-sama to no Nichijou (Everyday Life with Lady Yupiel) by 774 (Nanashi)\n6. Zom Zom Biyori by BeNantoka\n7. Chuu Chuu Drain by Tamano Kedama\n8. Gedou no Yukari (The Bonds of Gedou) by Batta\n9. Natsu no Omohide (Memories of Summer) by Oouso\n10. Ookeyaki no Kouro (Kouro of the Great Zelkova) by Amagaeru\n11. Mechanical Instinct by Mudou Eichi\n12. Kokoroechigai no Oyome-san (The Imprudent Bride) by CyoCyoPolice\n13. Nekomimi Kaa-san (Nekomommy) by Yam\n14. Akai Mi Hajiketa (Split the Scarlet Fruit of Dawn) by Mutou Mato\n15. Hitokui-sama no Chocolate Cake (The Anthropovore's Chocolate Cake) by Koishi Chikasa\n16. Although the Lolibabaa Understands Lolicons, She's Desperate to Increase Her Loli Appeal Because He Only Goes for Actual Lolis (1) by Kamen no Hito\n16.5. [Kinku] Side material and notes  \n\nMD can only credit 3 groups but there are 4 that worked on it.   \n1. Raws provided by fynolt2 (for the main volume), and dlfnzy1 (the side material by Kinku)  \n2. Translated by CapableScoutMan  \n3. Typesetting, redrawing, cleaning, and all sorts of editing by S.T.A.L.K.E.R., B.E.C. Scans and bigk40k  \n  \nVolume 3:  \n1. Love Across the Aeons (2) by Cyocyo\n2. Dorm Mother Suzuwe-San by Ogata Zen\n3. Everlasting Fragrance by Kokusei Roukun\n4. Beastie Charm: Chuu Chuu Drain (2) by Tamano Kedama\n5. Kagachi-Sama by Gengorou\n6. X-Card Frontier! (2) by Takatsue\n7. Welcome to the Youkai Bistro by Amagaeru\n8. The Demon Lord is Level 1 by Yumano Yuuki\n9. My First Time at the Red (Lolibabaa) Light District by Saryuu\n10. The Master's Hometown by Emons\n11. Cycle of Gedou by Batta\n12. Magical Granny Orgasm Chiyo-San by Oouso\n13. Legend of the Invincible Warashi-Sama! by Yam\n14. Sergeant Reboot by Mudou Eichi\n15. Lolibabaa Tales from Japan - Oni-Slaying Chapter by Yuzuha\n16. Witch of the Fire Scene - Stem by Koishi Chikasa\n17. Although the Lolibabaa Understands Lolicons, She's Desperate to Increase Her Loli Appeal Because He Only Goes for Actual Lolis (2) by Kamen No Hito\nOmakes: [Miyamarun] Wine for Two \n\nVolume 4:  \n1. The Lazy Fox by Namake Youko\n2. Lusty Charms - Chuu Chuu Drain 3 by Tamano Kedama\n3. I Can Lewd the Loli All I Want, and Nobody Can Criticize Me Because She's a Grandma by Atage\n4. Everlasting Dance Part 1 (Eisei no Mai Zenpen Part 1)\n5. I Wanted to Meet a Lolibabaa, So I Got Reborn into Another World (Lolibabaa ni Aitakatta kara Isekai Tensei Shita) by Kanimura Ebio\n6. Freeze!! by Oouso\n7. Tapestry (Tsuzureori) by Ayane \n8. Genie of the Lamp (Lamp no Majin) by nam / yam \n9. Welcome to the Youkai Bistro ~Trip to Shizuoka~ (Youkai Koryouriya ni Youkoso ~Shizuoka Ryokou Hen~) by Amagaeru\n10. The Doll's Puppet (Ningyou no Oningyou) by Emons\n11. Granny Tama from My Hometown (Furusato no Tama-baasama) by Dokukinokojin \n12. Devil's Born by Mudou Eichi\n13. Witch of the Fire Scene - Bloom by Koishi Chikasa\n13.5. Story Art by  Kamen no Hito \n13.6 Bonus\nOmakes: [Miyamarun] I want to be a fox goddess!"
           },
           "isLocked": false,
-          "links": {
-            "mu": "137645"
-          },
+          "links": {},
           "originalLanguage": "ja",
           "lastVolume": "",
           "lastChapter": "",
           "publicationDemographic": null,
           "status": "ongoing",
-          "year": null,
+          "year": 2016,
           "contentRating": "pornographic",
           "tags": [
             {
@@ -756,8 +753,8 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2020-05-09T07:31:47+00:00",
-          "updatedAt": "2024-04-24T09:25:03+00:00",
-          "version": 5,
+          "updatedAt": "2025-04-12T18:55:02+00:00",
+          "version": 11,
           "availableTranslatedLanguages": [
             "en",
             "ar",
@@ -771,37 +768,28 @@
         "type": "manga",
         "attributes": {
           "title": {
-            "en": "A Tale of Being Eaten by a Man-Eating Yokai"
+            "en": "A Tale of Being Eaten by a Man-Eating Youkai"
           },
           "altTitles": [
-            {
-              "en": "Getting Devoured by a Man-Eating Youkai"
-            },
             {
               "ja": "人喰いの妖怪に喰われる話"
             },
             {
-              "en": "Flirting with a Dangerous Youkai"
+              "ja-ro": "Hitokui no Youkai ni Kuwareru Hanashi"
             },
             {
-              "ja-ro": "Yabai Youkai to Ichaicha Shitai dake no Manga"
-            },
-            {
-              "ja": "ヤバイ妖怪とイチャイチャしたいだけの漫画"
-            },
-            {
-              "ja-ro": "Hito Kui no Youkai ni Kuuwareru Hanashi"
+              "en": "Getting Devoured by a Man-Eating Youkai"
             }
           ],
           "description": {
-            "en": "A happy misunderstanding."
+            "en": "A man and a man-eating youkai have different understandings of the terms of their relationship.\n___\n**Additional Official Raws:**\n- [Chapter 1 (pixiv)](https://www.pixiv.net/artworks/77639630)\n- [Chapter 2](https://x.com/774nanash/status/1456572792195878918)\n- [Chapter 3](https://x.com/774nanash/status/1567111467228610560)"
           },
           "isLocked": false,
           "links": {
             "al": "122386",
             "kt": "56835",
             "mu": "169222",
-            "raw": "https://www.pixiv.net/en/artworks/77639630"
+            "raw": "https://x.com/774nanash/status/1190244943538733058"
           },
           "originalLanguage": "ja",
           "lastVolume": "",
@@ -833,6 +821,19 @@
                 },
                 "description": {},
                 "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "423e2eae-a7a2-4a8b-ac03-a8351462d71d",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Romance"
+                },
+                "description": {},
+                "group": "genre",
                 "version": 1
               },
               "relationships": []
@@ -893,8 +894,8 @@
           "state": "published",
           "chapterNumbersResetOnNewVolume": false,
           "createdAt": "2020-03-31T13:45:09+00:00",
-          "updatedAt": "2023-12-07T01:46:00+00:00",
-          "version": 13,
+          "updatedAt": "2025-02-03T01:17:55+00:00",
+          "version": 15,
           "availableTranslatedLanguages": [
             "en",
             "pl"

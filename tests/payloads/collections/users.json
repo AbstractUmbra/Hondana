@@ -1,0 +1,129 @@
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "1567f289-7772-4115-9570-8f8cf944c4b2",
+      "type": "user",
+      "attributes": {
+        "username": "30rtymoredays",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "969f3ed0-b5c8-4171-b152-5fd14b0b54bb",
+      "type": "user",
+      "attributes": {
+        "username": "1744adil",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "6bd1194b-9fd4-437a-aed0-21019859638f",
+      "type": "user",
+      "attributes": {
+        "username": "30_fujoshi_07",
+        "roles": [
+          "ROLE_UNVERIFIED"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "813238bb-6517-4195-8533-5009244ec075",
+      "type": "user",
+      "attributes": {
+        "username": "176",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "063bd435-14ce-4c11-84fa-21a7f3fbdd97",
+      "type": "user",
+      "attributes": {
+        "username": "1763",
+        "roles": [
+          "ROLE_UNVERIFIED"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "faddb46e-d5b2-4d57-9826-5c8113cfa7fc",
+      "type": "user",
+      "attributes": {
+        "username": "17640253135",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "c890d912-26e1-44dc-a694-7aeeedbdfb2c",
+      "type": "user",
+      "attributes": {
+        "username": "1766396989",
+        "roles": [
+          "ROLE_USER"
+        ],
+        "version": 2
+      },
+      "relationships": []
+    },
+    {
+      "id": "a140f4b1-4e3d-49f1-946b-2cd858dd3bb0",
+      "type": "user",
+      "attributes": {
+        "username": "---___---",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "9f88749b-6166-4eea-8e7a-9be5052c2f88",
+      "type": "user",
+      "attributes": {
+        "username": "177",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 1
+      },
+      "relationships": []
+    },
+    {
+      "id": "9df1b27c-976f-453e-9fa8-f0b2d4926807",
+      "type": "user",
+      "attributes": {
+        "username": "177013",
+        "roles": [
+          "ROLE_MEMBER"
+        ],
+        "version": 3
+      },
+      "relationships": []
+    }
+  ],
+  "limit": 10,
+  "offset": 0,
+  "total": 5240541
+}

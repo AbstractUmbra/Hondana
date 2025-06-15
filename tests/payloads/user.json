@@ -2,27 +2,15 @@
   "result": "ok",
   "response": "entity",
   "data": {
-    "id": "9b699d71-882d-4386-aeaa-ddf5523c73b0",
+    "id": "fd14373d-6c5f-483a-bf40-1df9326d68d2",
     "type": "user",
     "attributes": {
-      "username": "luigiymario2",
+      "username": "AbstractUmbra",
       "roles": [
-        "ROLE_GROUP_LEADER",
-        "ROLE_GROUP_MEMBER",
-        "ROLE_MEMBER",
-        "ROLE_SUPPORTER"
+        "ROLE_MEMBER"
       ],
-      "version": 36007
+      "version": 146
     },
-    "relationships": [
-      {
-        "id": "155d7139-8d9a-49eb-bceb-d5e26db08b72",
-        "type": "scanlation_group"
-      },
-      {
-        "id": "74400b6d-45f1-4e83-9b03-ab6f599e4a6b",
-        "type": "scanlation_group"
-      }
-    ]
+    "relationships": []
   }
 }
