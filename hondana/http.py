@@ -247,7 +247,7 @@ class MaybeUnlock:
         self.lock: asyncio.Lock = lock
         self._unlock: bool = True
 
-    def __enter__(self: MU) -> MU:
+    def __enter__(self: Self) -> Self:
         return self
 
     def defer(self) -> None:
