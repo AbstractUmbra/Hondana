@@ -154,7 +154,7 @@ class Chapter:
         self.pages: int = self._attributes["pages"]
         self.translated_language: str = self._attributes["translatedLanguage"]
         self.external_url: str | None = self._attributes["externalUrl"]
-        self.is_unavailable = self._attributes["isUnavailable"]
+        self.is_unavailable: bool = self._attributes["isUnavailable"]
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
