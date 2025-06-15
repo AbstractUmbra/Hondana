@@ -75,6 +75,7 @@ class ChapterAttributesResponse(TypedDict):
     pages: int
     translatedLanguage: str
     externalUrl: str | None
+    isUnavailable: bool
     version: int
     createdAt: str
     updatedAt: str
