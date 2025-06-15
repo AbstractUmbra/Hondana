@@ -133,7 +133,7 @@ class Author(AuthorArtistTag):
         self.youtube: str | None = self._attributes["youtube"]
         self.weibo: str | None = self._attributes["weibo"]
         self.naver: str | None = self._attributes["naver"]
-        self.namicomi: str | None = self._attributes["namicomi"]
+        self.namicomi: str | None = self._attributes.get("namicomi")
         self.website: str | None = self._attributes["website"]
         self.version: int = self._attributes["version"]
         self._biography: LocalizedString | None = self._attributes["biography"]
