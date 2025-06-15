@@ -3,11 +3,7 @@ name = "Hondana"
 version = "3.6.0"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
-dependencies = [
-    "aiohttp<4.0,>=3.9",
-    "aiohttp[speedups]<4.0,>=3.9; extra == \"speed\"",
-    "orjson; extra == \"speed\"",
-]
+dependencies = ["aiohttp<4.0,>=3.9"]
 requires-python = "<4.0,>=3.11"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -31,29 +27,20 @@ repository = "https://github.com/AbstractUmbra/hondana"
 [project.optional-dependencies]
 speed = ["orjson", "aiohttp[speedups]"]
 
-[project.scripts]
-version = "hondana.__main__:show_version"
-
-[tool.pdm]
-distribution = true
-
-[tool.pdm.dev-dependencies]
-dev = ["ruff", "typing-extensions"]
+[dependency-groups]
+dev = ["ruff", "typing-extensions", "pre-commit"]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
 tests = ["pytest", "pytest-asyncio"]
 
-[tool.pdm.build]
-includes = [
-    "hondana",
-    "hondana/**/*.py",
-    "hondana/py.typed",
-    "hondana/extras/tags.json",
-    "hondana/extras/report_reasons.json",
-    "LICENSE",
-]
+[project.scripts]
+version = "hondana.__main__:show_version"
+
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["hondana"]
 
 [tool.ruff]
 line-length = 125
@@ -110,6 +97,7 @@ select = [
 ]
 ignore = [
     "ANN401",
+    "COM812",  # to use ruff formatter
     "DOC501",  # these currently don't work with sphinx
     "DOC502",  # these currently don't work with sphinx
     "F401",
@@ -186,7 +174,15 @@ inline-quotes = "double"
 "typing_extensions.TypeGuard".msg = "TypeGuard is fundamentally unsafe"
 
 [tool.pyright]
+venvPath = "."
+venv = ".venv"
 exclude = [
+    "**/__pycache__",
+    "docs/**/*.py",
+    "tests/_update_payloads.py",
+    "./_preflight.py",
+]
+ignore = [
     "**/__pycache__",
     "docs/**/*.py",
     "tests/_update_payloads.py",
@@ -202,24 +198,3 @@ pythonVersion = "3.11"
 asyncio_mode = "strict"
 asyncio_default_fixture_loop_scope = "session"
 testpaths = ["tests"]
-
-[tool.pdm.scripts]
-spec = "python _api_dl.py"
-check = "ruff check ."
-format = "ruff format --check"
-pyright = "pyright"
-_types = "pyright --ignoreexternal --verifytypes hondana"
-types = { composite = ["pyright", "_types"] }
-tests = "pytest"
-docs = "sphinx-build -aEWT --keep-going docs/ docs/build" # TODO: add -n when sphinx is fixed
-tags = { call = "_preflight:__update_tags" }
-report_reasons = { call = "_preflight:__update_report_reasons" }
-pre = { composite = [
-    "check",
-    "format",
-    "types",
-    "tests",
-    "docs",
-    "tags",
-    "report_reasons",
-] }
