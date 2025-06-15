@@ -42,22 +42,22 @@ PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections"
 HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 CollectionType = Literal[
-    "author",
+    "authors",
     "chapter_feed",
-    "cover",
-    "custom_list",
+    "covers",
+    "custom_lists",
     "legacy_mapping",
     "manga",
-    "manga_relation",
-    "report",  # not supported, needs moderator access
-    "scanlator_group",
-    "user",  # needs authentication access
-    "user_report",  # not supported, needs moderator access
+    "manga_relations",
+    "reports",  # not supported, needs moderator access
+    "scanlator_groups",
+    "users",  # needs authentication access
+    "user_reports",  # not supported, needs moderator access
 ]
 
 
 @overload
-def clone_collection(type_: Literal["author"], /) -> AuthorCollection: ...
+def clone_collection(type_: Literal["authors"], /) -> AuthorCollection: ...
 
 
 @overload
@@ -65,11 +65,11 @@ def clone_collection(type_: Literal["chapter_feed"], /) -> ChapterFeed: ...
 
 
 @overload
-def clone_collection(type_: Literal["cover"], /) -> CoverCollection: ...
+def clone_collection(type_: Literal["covers"], /) -> CoverCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["custom_list"], /) -> CustomListCollection: ...
+def clone_collection(type_: Literal["custom_lists"], /) -> CustomListCollection: ...
 
 
 @overload
@@ -81,28 +81,28 @@ def clone_collection(type_: Literal["manga"], /) -> MangaCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["manga_relation"], /) -> MangaRelationCollection: ...
+def clone_collection(type_: Literal["manga_relations"], /) -> MangaRelationCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["report"], /) -> ReportCollection: ...
+def clone_collection(type_: Literal["reports"], /) -> ReportCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["scanlator_group"], /) -> ScanlatorGroupCollection: ...
+def clone_collection(type_: Literal["scanlator_groups"], /) -> ScanlatorGroupCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["user"], /) -> UserCollection: ...
+def clone_collection(type_: Literal["users"], /) -> UserCollection: ...
 
 
 @overload
-def clone_collection(type_: Literal["user_report"], /) -> UserReportCollection: ...
+def clone_collection(type_: Literal["user_reports"], /) -> UserReportCollection: ...
 
 
 def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
     path = PATH / f"{type_}.json"
-    if type_ == "author":
+    if type_ == "authors":
         author_payload: GetMultiAuthorResponse = json.load(path.open())
         authors = [Author(HTTP, item) for item in author_payload["data"]]
         return AuthorCollection(HTTP, author_payload, authors=authors)
@@ -110,11 +110,11 @@ def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
         chapter_payload: GetMultiChapterResponse = json.load(path.open())
         chapters = [Chapter(HTTP, item) for item in chapter_payload["data"]]
         return ChapterFeed(HTTP, chapter_payload, chapters=chapters)
-    if type_ == "cover":
+    if type_ == "covers":
         cover_payload: GetMultiCoverResponse = json.load(path.open())
         covers = [Cover(HTTP, item) for item in cover_payload["data"]]
         return CoverCollection(HTTP, cover_payload, covers=covers)
-    if type_ == "custom_list":
+    if type_ == "custom_lists":
         custom_list_payload: GetMultiCustomListResponse = json.load(path.open())
         custom_lists = [CustomList(HTTP, item) for item in custom_list_payload["data"]]
         return CustomListCollection(HTTP, custom_list_payload, lists=custom_lists)
@@ -126,16 +126,16 @@ def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
         manga_payload: MangaSearchResponse = json.load(path.open())
         manga: list[Manga] = [Manga(HTTP, item) for item in manga_payload["data"]]
         return MangaCollection(HTTP, manga_payload, manga=manga)
-    if type_ == "manga_relation":
+    if type_ == "manga_relations":
         relation_payload: MangaRelationResponse = json.load(path.open())
         parent_id: str = ""
         manga_relation: list[MangaRelation] = [MangaRelation(HTTP, parent_id, item) for item in relation_payload["data"]]
         return MangaRelationCollection(HTTP, relation_payload, relations=manga_relation)
-    if type_ == "scanlator_group":
+    if type_ == "scanlator_groups":
         group_payload: GetMultiScanlationGroupResponse = json.load(path.open())
         groups = [ScanlatorGroup(HTTP, item) for item in group_payload["data"]]
         return ScanlatorGroupCollection(HTTP, group_payload, groups=groups)
-    if type_ == "user":
+    if type_ == "users":
         user_payload: GetMultiUserResponse = json.load(path.open())
         users = [User(HTTP, item) for item in user_payload["data"]]
         return UserCollection(HTTP, user_payload, users=users)
@@ -145,9 +145,9 @@ def clone_collection(type_: CollectionType, /) -> BaseCollection[Any]:
 
 class TestCollection:
     def test_author_collection(self) -> None:
-        path = PATH / "author.json"
+        path = PATH / "authors.json"
         payload: GetMultiAuthorResponse = json.load(path.open())
-        collection = clone_collection("author")
+        collection = clone_collection("authors")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]
@@ -165,9 +165,9 @@ class TestCollection:
         assert len(collection.items) == len(payload["data"])
 
     def test_cover_collection(self) -> None:
-        path = PATH / "cover.json"
+        path = PATH / "covers.json"
         payload: GetMultiCoverResponse = json.load(path.open())
-        collection = clone_collection("cover")
+        collection = clone_collection("covers")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]
@@ -175,9 +175,9 @@ class TestCollection:
         assert len(collection.items) == len(payload["data"])
 
     def test_custom_list_collection(self) -> None:
-        path = PATH / "custom_list.json"
+        path = PATH / "custom_lists.json"
         payload: GetMultiCustomListResponse = json.load(path.open())
-        collection = clone_collection("custom_list")
+        collection = clone_collection("custom_lists")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]
@@ -205,9 +205,9 @@ class TestCollection:
         assert len(collection.items) == len(payload["data"])
 
     def test_manga_relation_collection(self) -> None:
-        path = PATH / "manga_relation.json"
+        path = PATH / "manga_relations.json"
         payload: MangaRelationResponse = json.load(path.open())
-        collection = clone_collection("manga_relation")
+        collection = clone_collection("manga_relations")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]
@@ -215,9 +215,9 @@ class TestCollection:
         assert len(collection.items) == len(payload["data"])
 
     def test_scanlator_group_collection(self) -> None:
-        path = PATH / "scanlator_group.json"
+        path = PATH / "scanlator_groups.json"
         payload: GetMultiScanlationGroupResponse = json.load(path.open())
-        collection = clone_collection("scanlator_group")
+        collection = clone_collection("scanlator_groups")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]
@@ -225,9 +225,9 @@ class TestCollection:
         assert len(collection.items) == len(payload["data"])
 
     def test_user_collection(self) -> None:
-        path = PATH / "user.json"
+        path = PATH / "users.json"
         payload: GetMultiUserResponse = json.load(path.open())
-        collection = clone_collection("user")
+        collection = clone_collection("users")
 
         assert collection.limit == payload["limit"]
         assert collection.total == payload["total"]

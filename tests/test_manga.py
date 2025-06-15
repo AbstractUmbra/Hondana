@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
-RELATIONS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_relation.json"
+RELATIONS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_relations.json"
 STATISTICS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_statistics.json"
 RATING_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_ratings.json"
 
