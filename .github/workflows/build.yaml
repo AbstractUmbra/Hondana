@@ -14,51 +14,43 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: ["3.11", "3.x"]
 
-    name: "Build @ ${{ matrix.python-version }}"
+    name: "Build"
     steps:
       - name: "Checkout Repository"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: "Setup PDM @ ${{ matrix.python-version }}"
-        uses: pdm-project/setup-pdm@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{matrix.python-version}}
-          cache: true
+          enable-cache: true
+          python-version: '3.13'
+          activate-environment: true
 
-      - name: "Install deps @ ${{ matrix.python-version }}"
+      - name: "Install deps"
         run: |
-          pdm install --prod --check --no-editable
+          uv sync --locked --all-extras --all-groups --no-dev
 
-      - name: "Activate venv @ ${{ matrix.python-version }}"
+      - name: "Check it imports"
         run: |
-          echo "$(pdm info --where)/.venv/bin" >> $GITHUB_PATH
+          uv run python -c 'import hondana'
 
-      - name: "Check it imports @ ${{ matrix.python-version }}"
+      - name: "Test Suite"
         run: |
-          pdm run python -c 'import hondana'
+          uv run pytest
 
-      - name: "Test Suite @ ${{ matrix.python-version }}"
+      - name: "Build wheels"
         run: |
-          pdm run tests
+          uv build
 
-      - name: "Build wheels @ ${{ matrix.python-version}}"
-        run: |
-          pdm build
-
-      - name: "Build docs @ ${{ matrix.python-version}}"
+      - name: "Build docs"
         working-directory: docs/
         run: |
-          pdm run docs
+          uv run sphinx-build -aEWT --keep-going ./ ./build
 
-      - name: "Upload artifacts @ ${{ matrix.python-version}}"
-        if: matrix.python-version == '3.11'
+      - name: "Upload artifacts"
         uses: actions/upload-artifact@v4
         with:
           name: distributions
@@ -72,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
     permissions:
-      contents: read
+      contents: write
       id-token: write
 
     steps:
@@ -100,12 +92,13 @@ jobs:
           tag_name="${GITHUB_REF##*/}"
           gh release create "$tag_name" -F "CHANGELOG.md" "${assets[@]}"
 
-      - name: Set up PDM
-        uses: pdm-project/setup-pdm@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
-          python-version: 3.11
-          cache: true
+          enable-cache: true
+          python-version: '3.11'
+          activate-environment: true
 
       - name: Publish to PyPI
         run: |
-          pdm publish
+          uv publish
