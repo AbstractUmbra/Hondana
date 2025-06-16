@@ -12,9 +12,11 @@ docs/build
 docs/_build
 
 # local testing
-_api*.ya?ml
+_*.yaml
+_*.yml
 _*.py
 _*.json
+preflight.log
 .vscode/settings.json
 
 # media files

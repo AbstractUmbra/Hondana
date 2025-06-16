@@ -4,9 +4,10 @@ This file is inteded for manual CI/Integration usage only.
 It is NOT part of the Hondana API or for public use. No support will be provided for this file. Use at your own risk.
 """
 
+import argparse
 import asyncio
 import pathlib
-import subprocess
+import subprocess  # noqa: S404
 import sys
 
 import hondana
@@ -14,20 +15,62 @@ import hondana
 TAG_PATH = pathlib.Path("./hondana/extras/tags.json")
 REPORT_PATH = pathlib.Path("./hondana/extras/report_reasons.json")
 
-client = hondana.Client()
+
+class ProgramNamespace(argparse.Namespace):
+    tags: bool
+    reports: bool
+
+    def _parsed(self) -> bool:
+        return any([self.tags, self.reports])
 
 
-def __update_tags() -> None:
-    asyncio.run(client.update_tags())
-    asyncio.run(client.close())
+parser = argparse.ArgumentParser(description="Small pre-flight CI script for hondana")
+parser.add_argument("-t", "--tags", action="store_true", dest="tags", help="Whether to run the 'update tags' action.")
+parser.add_argument(
+    "-r", "--reports", action="store_true", dest="reports", help="Whether to run the 'update report reasons' action."
+)
 
-    diff = subprocess.run(["git", "diff", "--exit-code", str(TAG_PATH)], capture_output=False)
-    sys.exit(diff.returncode)
+
+async def __update_tags(client: hondana.Client, /) -> int:
+    await client.update_tags()
+
+    prog: asyncio.subprocess.Process = await asyncio.create_subprocess_exec("git", "diff", "--exit-code", str(REPORT_PATH))
+    return await prog.wait()
 
 
-def __update_report_reasons() -> None:
-    asyncio.run(client.update_report_reasons())
-    asyncio.run(client.close())
+async def __update_report_reasons(client: hondana.Client, /) -> int:
+    await client.update_report_reasons()
 
-    diff = subprocess.run(["git", "diff", "--exit-code", str(REPORT_PATH)], capture_output=False)
-    sys.exit(diff.returncode)
+    prog: asyncio.subprocess.Process = await asyncio.create_subprocess_exec(
+        "git",
+        "diff",
+        "--exit-code",
+        str(REPORT_PATH),
+    )
+    return await prog.wait()
+
+
+async def main(args: ProgramNamespace) -> None:
+    if not args._parsed():
+        msg = "At least one argument must be specified."
+        raise RuntimeError(msg)
+
+    client = hondana.Client()
+
+    if args.tags:
+        ret = await __update_tags(client)
+        if ret == 1:
+            msg = "Tags updated."
+            raise RuntimeError(msg)
+    if args.reports:
+        ret = await __update_report_reasons(client)
+        if ret == 1:
+            msg = "Reports updated."
+            raise RuntimeError(msg)
+
+    await client.close()
+
+
+if __name__ == "__main__":
+    args = parser.parse_args(namespace=ProgramNamespace())
+    asyncio.run(main(args))
