@@ -578,6 +578,7 @@ class HTTPClient:
         order: MangaListOrderQuery | None,
         includes: MangaIncludes | None,
         has_available_chapters: bool | None,
+        has_unavailable_chapters: bool | None,
         group: str | None,
     ) -> Response[manga.MangaSearchResponse]:
         route = Route("GET", "/manga")
@@ -644,6 +645,9 @@ class HTTPClient:
 
         if has_available_chapters is not None:
             query["hasAvailableChapters"] = has_available_chapters
+
+        if has_unavailable_chapters is not None:
+            query["hasUnavailableChapters"] = has_unavailable_chapters
 
         if group:
             query["group"] = group
@@ -842,6 +846,7 @@ class HTTPClient:
         include_empty_pages: bool | None,
         include_future_publish_at: bool | None,
         include_external_url: bool | None,
+        include_unavailable: bool | None,
     ) -> Response[chapter.GetMultiChapterResponse]:
         if manga_id is None:
             route = Route("GET", "/user/follows/manga/feed", authenticate=True)
@@ -897,6 +902,9 @@ class HTTPClient:
 
         if include_external_url:
             query["includeExternalUrl"] = include_external_url
+
+        if include_unavailable:
+            query["includeUnavailable"] = str(int(include_unavailable))
 
         return self.request(route, params=query)
 
@@ -1116,6 +1124,7 @@ class HTTPClient:
         include_empty_pages: bool | None,
         include_future_publish_at: bool | None,
         include_external_url: bool | None,
+        include_unavailable: bool | None,
         created_at_since: datetime.datetime | None,
         updated_at_since: datetime.datetime | None,
         published_at_since: datetime.datetime | None,
@@ -1182,6 +1191,10 @@ class HTTPClient:
         if include_external_url:
             resolved = str(int(include_external_url))
             query["includeExternalUrl"] = resolved
+
+        if include_unavailable:
+            resolved = str(int(include_unavailable))
+            query["includeUnavailable"] = resolved
 
         if created_at_since:
             query["createdAtSince"] = clean_isoformat(created_at_since)

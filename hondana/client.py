@@ -330,6 +330,7 @@ class Client:
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
+        include_unavailable: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -373,6 +374,8 @@ class Client:
             Whether to show chapters with a publishAt value set in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to show chapters that have an external URL attached to them.
+        include_unavailable: Optional[:class:`bool`]
+            Whether to show chapters that are marked as unavailable.
 
 
         .. note::
@@ -412,6 +415,7 @@ class Client:
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
+                include_unavailable=include_unavailable,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
@@ -448,6 +452,7 @@ class Client:
         order: MangaListOrderQuery | None = None,
         includes: MangaIncludes | None = None,
         has_available_chapters: bool | None = None,
+        has_unavailable_chapters: bool | None = None,
         group: str | None = None,
     ) -> MangaCollection:
         """|coro|
@@ -508,6 +513,8 @@ class Client:
             Defaults to these values.
         has_available_chapters: Optional[:class:`bool`]
             Filter the manga list to only those that have chapters.
+        has_unavailable_chapters: Optional[:class:`bool`]
+            Filter the manga list to only those that have chapters marked as unavailable.
         group: Optional[:class:`str`]
             Filter the manga list to only those uploaded by this group.
 
@@ -551,6 +558,7 @@ class Client:
                 order=order,
                 includes=includes or MangaIncludes(),
                 has_available_chapters=has_available_chapters,
+                has_unavailable_chapters=has_unavailable_chapters,
                 group=group,
             )
 
@@ -930,6 +938,7 @@ class Client:
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
+        include_unavailable: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -974,6 +983,8 @@ class Client:
             Whether to show chapters with a publishAt value set in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to show chapters that have an external URL attached to them.
+        include_unavailable: Optional[:class:`bool`]
+            Whether to show chapters that are marked as unavailable.
 
 
         .. note::
@@ -1012,6 +1023,7 @@ class Client:
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
+                include_unavailable=include_unavailable,
             )
 
             chapters.extend([Chapter(self._http, item) for item in data["data"]])
@@ -1487,6 +1499,7 @@ class Client:
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
+        include_unavailable: bool | None = None,
         created_at_since: datetime.datetime | None = None,
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
@@ -1537,6 +1550,8 @@ class Client:
             Whether to include chapters that have their publish time set to a time in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to include chapters that have an external url set.
+        include_unavailable: Optional[:class:`bool`]
+            Whether to show chapters that are marked as unavailable.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -1593,6 +1608,7 @@ class Client:
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
+                include_unavailable=include_unavailable,
                 created_at_since=created_at_since,
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,

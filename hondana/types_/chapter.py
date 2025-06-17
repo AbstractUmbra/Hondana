@@ -67,6 +67,8 @@ class ChapterAttributesResponse(TypedDict):
     publishAt: :class:`str`
 
     readableAt: :class:`str`
+
+    isUnavailable: :class:`bool`
     """
 
     title: str | None
@@ -81,6 +83,7 @@ class ChapterAttributesResponse(TypedDict):
     updatedAt: str
     publishAt: str
     readableAt: str
+    isUnavailable: bool
 
 
 class ChapterResponse(TypedDict):

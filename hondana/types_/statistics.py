@@ -75,6 +75,7 @@ class MangaStatisticsResponse(TypedDict):
     comments: CommentMetaData | None
     rating: StatisticsRatingResponse
     follows: int
+    unavailableChapterCount: int
 
 
 class BatchStatisticsResponse(TypedDict):

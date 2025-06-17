@@ -238,6 +238,7 @@ class CustomList:
             order=None,
             includes=MangaIncludes(),
             has_available_chapters=None,
+            has_unavailable_chapters=None,
             group=None,
         )
 

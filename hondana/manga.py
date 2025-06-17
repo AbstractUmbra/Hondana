@@ -611,6 +611,7 @@ class Manga:
             order=None,
             includes=MangaIncludes(),
             has_available_chapters=None,
+            has_unavailable_chapters=None,
             group=None,
         )
 
@@ -847,6 +848,7 @@ class Manga:
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
+        include_unavailable: bool | None = None,
     ) -> ChapterFeed:
         """|coro|
 
@@ -890,6 +892,8 @@ class Manga:
             Whether to show chapters with a publishAt value set in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to show chapters that have an external URL attached to them.
+        include_unavailable: Optional[:class:`bool`]
+            Whether to show chapters that are marked as unavailable.
 
 
         .. note::
@@ -929,6 +933,7 @@ class Manga:
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
+                include_unavailable=include_unavailable,
             )
 
             from .chapter import Chapter  # noqa: PLC0415 # cyclic import cheat
@@ -1131,6 +1136,7 @@ class Manga:
         include_empty_pages: bool | None = None,
         include_future_publish_at: bool | None = None,
         include_external_url: bool | None = None,
+        include_unavailable: bool | None = None,
         created_at_since: datetime.datetime | None = None,
         updated_at_since: datetime.datetime | None = None,
         published_at_since: datetime.datetime | None = None,
@@ -1179,6 +1185,8 @@ class Manga:
             Whether to include chapters that have their publish time set to a time in the future.
         include_external_url: Optional[:class:`bool`]
             Whether to include chapters that have an external url set.
+        include_unavailable: Optional[:class:`bool`]
+            Whether to include chapters that are marked as unavailable.
         created_at_since: Optional[:class:`datetime.datetime`]
             A start point to return chapters from based on their creation date.
         updated_at_since: Optional[:class:`datetime.datetime`]
@@ -1235,6 +1243,7 @@ class Manga:
                 include_empty_pages=include_empty_pages,
                 include_future_publish_at=include_future_publish_at,
                 include_external_url=include_external_url,
+                include_unavailable=include_unavailable,
                 created_at_since=created_at_since,
                 updated_at_since=updated_at_since,
                 published_at_since=published_at_since,
@@ -1529,6 +1538,7 @@ class MangaStatistics:
         "distribution",
         "follows",
         "parent_id",
+        "unavilable_chapter_count",
     )
 
     def __init__(self, http: HTTPClient, parent_id: str, payload: MangaStatisticsResponse | BatchStatisticsResponse) -> None:
@@ -1541,6 +1551,7 @@ class MangaStatistics:
         self.average: float | None = self._rating["average"]
         self.bayesian: float | None = self._rating["bayesian"]
         self.distribution: dict[str, int] | None = self._rating.get("distribution")
+        self.unavilable_chapter_count: int = self._data.get("unavailableChapterCount", 0)
 
     def __repr__(self) -> str:
         return f"<MangaStatistics for={self.parent_id!r}>"
