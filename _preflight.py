@@ -20,8 +20,15 @@ class ProgramNamespace(argparse.Namespace):
     tags: bool
     reports: bool
 
-    def _parsed(self) -> bool:
-        return any([self.tags, self.reports])
+    def _parsed(self, *, _all: bool = False) -> bool:
+        """This quick cheat only works if the `dest` of the params matches the annotations.
+
+        Returns
+        --------
+        :class:`bool`
+        """
+        c = all if _all else any
+        return c(getattr(self, anno) for anno in self.__annotations__)
 
 
 parser = argparse.ArgumentParser(description="Small pre-flight CI script for hondana")

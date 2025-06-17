@@ -15,6 +15,7 @@ if [[ ! -d "${VENV_PATH}" ]]; then
 fi
 
 # activate the venv to get proper env vars
+# shellcheck source=./.venv/bin/activate
 source .venv/bin/activate
 
 run_ruff(){
