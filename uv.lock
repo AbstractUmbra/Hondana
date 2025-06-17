@@ -462,7 +462,7 @@ wheels = [
 
 [[package]]
 name = "hondana"
-version = "3.7.0"
+version = "3.7.1"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },

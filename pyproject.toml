@@ -1,6 +1,6 @@
 [project]
 name = "Hondana"
-version = "3.7.0"
+version = "3.7.1"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
 dependencies = ["aiohttp<4.0,>=3.9"]
