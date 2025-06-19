@@ -39,11 +39,22 @@ version = "hondana.__main__:show_version"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.metadata]
+# direct dependency references, e.g `pip @ git+https://github.com/pypa/pip.git@master`
+allow-direct-references = true
+
 [tool.hatch.version]
 path = "hondana/__init__.py"
 
+[tool.hatch.build]
+dev-mode-dirs = ["hondana", "."]
+ignore-vcs = true
+sources = ["hondana"]
+
 [tool.hatch.build.targets.sdist]
-include = ["hondana", "tests/"]
+exclude = ["docs", ".github"]
+include = ["hondana/*", "tests/*", "LICENSE"]
+skip-excluded-dirs = false
 
 [tool.hatch.build.targets.wheel]
 packages = ["hondana"]
