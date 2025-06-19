@@ -39,7 +39,13 @@ version = "hondana.__main__:show_version"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build]
+[tool.hatch.version]
+path = "hondana/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = ["hondana", "tests/"]
+
+[tool.hatch.build.targets.wheel]
 packages = ["hondana"]
 
 [tool.ruff]
