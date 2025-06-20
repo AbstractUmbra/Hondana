@@ -99,16 +99,16 @@ class _Comments:
 
         Raises
         --------
-        :exc:`Forbidden`
+        Forbidden
             You must be authenticated to fetch/use threads/forums.
-        :exc:`NotFound`
+        NotFound
             The parent_id doesn't or no longer exists.
 
         Returns
         ---------
         :class:`~hondana.ForumThread`
             The cached or fetched ForumThread.
-        """
+        """  # noqa: DOC502 # raised in method call
         if self.thread and not force:
             return self.thread
 

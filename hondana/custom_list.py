@@ -278,18 +278,18 @@ class CustomList:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The request body was malformed.
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to edit this custom list.
-        :exc:`NotFound`
+        NotFound
             The custom list was not found, or one of the manga passed was not found.
 
         Returns
         --------
         :class:`CustomList`
             The returned custom list after it was updated.
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.update_custom_list(self.id, name=name, visibility=visibility, manga=manga, version=version)
 
         return self.__class__(self._http, data["data"])
@@ -302,11 +302,11 @@ class CustomList:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to delete this custom list.
-        :exc:`NotFound`
+        NotFound
             The custom list with this UUID was not found.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.delete_custom_list(self.id)
 
     @require_authentication
@@ -317,11 +317,11 @@ class CustomList:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to follow this custom list.
-        :exc:`NotFound`
+        NotFound
             The specified custom list does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.follow_custom_list(self.id)
 
     @require_authentication
@@ -332,9 +332,9 @@ class CustomList:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to unfollow this custom list.
-        :exc:`NotFound`
+        NotFound
             The specified custom list does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.unfollow_custom_list(self.id)

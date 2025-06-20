@@ -409,22 +409,24 @@ class HTTPClient:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             A request was malformed
-        :exc:`Unauthorized`
+        Unauthorized
             You attempted to use an endpoint you have no authorization for.
-        :exc:`Forbidden`
+        Forbidden
             Your auth was not sufficient to perform this action.
-        :exc:`NotFound`
+        NotFound
             The specified item, endpoint or resource was not found.
-        :exc:`APIException`
+        MangaDexServerError
+            A generic exception raised when the HTTP responde code is 5xx.
+        APIException
             A generic exception raised when the HTTP response code is non 2xx.
 
         Returns
         --------
         Any
             The potential response data we got from the request.
-        """
+        """  # noqa: DOC501 # unreachable error
         if self._session is None:
             self._session = await self._generate_session()
 

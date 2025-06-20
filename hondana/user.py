@@ -220,10 +220,10 @@ class User:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The response returned an error due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The user specified cannot be found.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         await self._http.delete_user(self.id)

@@ -308,7 +308,7 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
 
     Raises
     -------
-    :exc:`ValueError`
+    ValueError
         Exceeding the maximum pagination limit.
 
     Returns
@@ -390,7 +390,7 @@ def get_image_mime_type(data: bytes, /) -> str:
 
     Raises
     -------
-    :exc:`ValueError`
+    ValueError
         Unsupported image type used.
 
     Returns
@@ -501,7 +501,7 @@ def iso_to_delta(iso: str, /) -> datetime.timedelta:
 
     Raises
     -------
-    :exc:`TypeError`
+    TypeError
         If the given string is not a valid ISO8601 string and does not match :class:`~hondana.utils.MANGADEX_TIME_REGEX`.
 
     Returns

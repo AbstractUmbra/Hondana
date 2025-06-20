@@ -479,18 +479,18 @@ class Chapter:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The request body was malformed.
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to update this chapter.
-        :exc:`NotFound`
+        NotFound
             One or more UUIDs given were not found.
 
         Returns
         --------
         :class:`~hondana.Chapter`
             The chapter after being updated.
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.update_chapter(
             self.id,
             title=title,
@@ -511,13 +511,13 @@ class Chapter:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The query was malformed.
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to delete this chapter.
-        :exc:`NotFound`
+        NotFound
             The UUID passed for this chapter does not relate to a chapter in the API.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.delete_chapter(self.id)
 
     @require_authentication
@@ -851,9 +851,9 @@ class ChapterUpload:
 
     Raises
     -------
-    :exc:`TypeError`
+    TypeError
         If you provide more than 10 ScanlatorGroups.
-    :exc:`TypeError`
+    TypeError
         If you provide a chapter to edit but do not specify the version.
     """
 

@@ -349,18 +349,18 @@ class Author(AuthorArtistTag):
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The request body was malformed.
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to update this author.
-        :exc:`NotFound`
+        NotFound
             The author UUID given was not found.
 
         Returns
         --------
         :class:`~hondana.Author`
             The updated author from the API.
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.update_author(
             self.id,
             name=name,
@@ -388,9 +388,9 @@ class Author(AuthorArtistTag):
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorized to delete this author.
-        :exc:`NotFound`
+        NotFound
             The UUID given for the author was not found.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.delete_author(author_id)

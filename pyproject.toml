@@ -1,6 +1,5 @@
 [project]
 name = "Hondana"
-version = "3.7.1"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
 dependencies = ["aiohttp<4.0,>=3.9"]
@@ -18,6 +17,7 @@ classifiers = [
     "Topic :: Internet",
     "Typing :: Typed",
 ]
+dynamic = ["version"]
 
 [project.urls]
 "Issue Tracker" = "https://github.com/AbstractUmbra/hondana/issues"
@@ -58,6 +58,11 @@ skip-excluded-dirs = false
 
 [tool.hatch.build.targets.wheel]
 packages = ["hondana"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "session"
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 125
@@ -115,8 +120,6 @@ select = [
 ignore = [
     "ANN401",
     "COM812",  # to use ruff formatter
-    "DOC501",  # these currently don't work with sphinx
-    "DOC502",  # these currently don't work with sphinx
     "F401",
     "F402",
     "F403",
@@ -210,8 +213,3 @@ useLibraryCodeForTypes = true
 typeCheckingMode = "strict"
 reportImportCycles = false
 pythonVersion = "3.11"
-
-[tool.pytest.ini_options]
-asyncio_mode = "strict"
-asyncio_default_fixture_loop_scope = "session"
-testpaths = ["tests"]

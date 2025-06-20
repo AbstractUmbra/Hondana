@@ -693,18 +693,18 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The query parameters were not valid.
-        :exc:`Forbidden`
+        Forbidden
             The update returned an error due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga does not exist.
 
         Returns
         --------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.update_manga(
             self.id,
             title=title,
@@ -735,11 +735,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The update returned an error due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         await self._http.delete_manga(self.id)
 
@@ -751,11 +751,12 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The request returned an error due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
+
         await self._http.unfollow_manga(self.id)
 
     @require_authentication
@@ -777,11 +778,12 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The request returned an error due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
+
         await self._http.follow_manga(self.id)
         if set_status:
             await self.update_reading_status(status=status)
@@ -803,6 +805,7 @@ class Manga:
         Optional[:class:`str`]
             The manga name in the provided language, if found.
         """
+
         return self.alternate_titles.get(language_code, self.title)
 
     localized_title = localised_title
@@ -824,6 +827,7 @@ class Manga:
         Optional[:class:`str`]
             The manga description in the provided language, if found.
         """
+
         return self._description.get(language_code, self.description)
 
     localized_description = localised_description
@@ -901,14 +905,14 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The query parameters were malformed.
 
         Returns
         --------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         inner_limit = limit or 100
 
@@ -984,7 +988,7 @@ class Manga:
 
         Raises
         -------
-        :exc:`TypeError`
+        TypeError
             You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
         """
         if read_chapters or unread_chapters:
@@ -1007,16 +1011,17 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authenticated to perform this action.
-        :exc:`NotFound`
+        NotFound
             The specified manga does not exist, likely due to an incorrect ID.
 
         Returns
         --------
         :class:`~hondana.types_.manga.MangaSingleReadingStatusResponse`
             The raw payload from the API response.
-        """
+        """  # noqa: DOC502 # raised in method call
+
         return await self._http.get_manga_reading_status(self.id)
 
     @require_authentication
@@ -1037,11 +1042,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The query parameters were invalid.
-        :exc:`NotFound`
+        NotFound
             The specified manga cannot be found, likely due to incorrect ID.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         await self._http.update_manga_reading_status(self.id, status=status)
 
@@ -1086,11 +1091,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorised to add manga to this custom list.
-        :exc:`NotFound`
+        NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         await self._http.add_manga_to_custom_list(custom_list_id, manga_id=self.id)
 
@@ -1107,11 +1112,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             You are not authorised to remove a manga from the specified custom list.
-        :exc:`NotFound`
+        NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=self.id)
 
@@ -1210,14 +1215,14 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The query parameters were malformed
 
         Returns
         --------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
-        """
+        """  # noqa: DOC502 # raised in method call
 
         inner_limit = limit or 10
 
@@ -1285,17 +1290,17 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The request parameters were incorrect or malformed.
-        :exc:`Forbidden`
+        Forbidden
             You are not authorised to perform this action.
-        :exc:`NotFound`
+        NotFound
             The manga was not found.
 
         Returns
         --------
         :class:`~hondana.Manga`
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.submit_manga_draft(self.id, version=version)
         return self.__class__(self._http, data["data"])
 
@@ -1312,13 +1317,13 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The manga ID passed is malformed
 
         Returns
         --------
         :class:`~hondana.MangaRelationCollection`
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.get_manga_relation_list(self.id, includes=includes or MangaIncludes())
         fmt = [MangaRelation(self._http, self.id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
@@ -1349,15 +1354,15 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The volume parameter was malformed or the file was a bad format.
-        :exc:`Forbidden`
+        Forbidden
             You are not permitted for this action.
 
         Returns
         --------
         :class:`~hondana.Cover`
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.upload_cover(self.id, cover=cover, volume=volume, description=description, locale=locale)
         return Cover(self._http, data["data"])
 
@@ -1375,15 +1380,15 @@ class Manga:
 
         Raises
         -------
-        :exc:`BadRequest`
+        BadRequest
             The parameters were malformed
-        :exc:`Forbidden`
+        Forbidden
             You are not authorised for this action.
 
         Returns
         --------
         :class:`~hondana.MangaRelation`
-        """
+        """  # noqa: DOC502 # raised in method call
         data = await self._http.create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
         return MangaRelation(self._http, self.id, data["data"])
 
@@ -1414,11 +1419,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The request returned a response due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga UUID was not found or does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.set_manga_rating(self.id, rating=rating)
 
     @require_authentication
@@ -1429,11 +1434,11 @@ class Manga:
 
         Raises
         -------
-        :exc:`Forbidden`
+        Forbidden
             The request returned a response due to authentication failure.
-        :exc:`NotFound`
+        NotFound
             The specified manga UUID was not found or does not exist.
-        """
+        """  # noqa: DOC502 # raised in method call
         await self._http.delete_manga_rating(self.id)
 
     async def get_statistics(self) -> MangaStatistics:
