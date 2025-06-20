@@ -70,6 +70,10 @@ run_tests() {
     pytest
 }
 
+build_project() {
+    uv build
+}
+
 {
     run_ruff
     api_diff
@@ -78,4 +82,5 @@ run_tests() {
     run_pyright
     build_docs
     run_tests
+    build_project
 } 2>&1 | tee preflight.log
