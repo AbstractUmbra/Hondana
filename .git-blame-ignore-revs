@@ -3,3 +3,6 @@
 
 # update ruff
 3ef22447c2b4bf517348de796fc7be7456c0fff8
+
+# add DOC rules to ruff
+85655089f0ea06086f6f80e30857780026505c02
