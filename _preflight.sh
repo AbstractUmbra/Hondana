@@ -31,14 +31,20 @@ run_ruff(){
     fi
 }
 
+download_api_file(){
+    curl -SsL "https://api.mangadex.org/docs/static/api.yaml" -o _api.yaml
+}
+
 api_diff(){
     if [[ -f "${API_YAML}" ]]; then
         mv "${API_YAML}" "${OLD_API_YAML}"
     else
         echo "No API file, skipping to downloading new one."
+        download_api_file
+        return
     fi
 
-    curl -SsL "https://api.mangadex.org/docs/static/api.yaml" -o _api.yaml
+    download_api_file
 
     if ! cmp -s "${API_YAML}" "${OLD_API_YAML}"; then
         die "There's an API change, check the diff: \`diff ${API_YAML} ${OLD_API_YAML}\`"
