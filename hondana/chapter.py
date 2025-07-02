@@ -87,7 +87,7 @@ class Chapter:
     """A class representing a Chapter returned from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID associated with this chapter.
     title: Optional[:class:`str`]
@@ -161,15 +161,15 @@ class Chapter:
         self._published_at = self._attributes["publishAt"]
         self._readable_at = self._attributes["readableAt"]
         self._stats: ChapterStatistics | None = None
-        self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").resolve(
+        self._manga_relationship: MangaResponse = RelationshipResolver(relationships, "manga").pop(
             with_fallback=False,
             remove_empty=True,
-        )[0]
+        )
         self._scanlator_group_relationships: list[ScanlationGroupResponse] = RelationshipResolver(
             relationships,
             "scanlation_group",
         ).resolve(with_fallback=False, remove_empty=True)
-        self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").resolve(remove_empty=True)[0]
+        self._uploader_relationship: UserResponse = RelationshipResolver(relationships, "user").pop(remove_empty=True)
         self._at_home_url: str | None = None
         self.__uploader: User | None = None
         self.__parent: Manga | None = None
@@ -195,7 +195,7 @@ class Chapter:
         """Returns the statistics object of the chapter if it was fetched and cached.
 
         Returns
-        --------
+        -------
         Optional[:class:`hondana.ChapterStatistics`]
         """
         return self._stats
@@ -204,12 +204,11 @@ class Chapter:
         """
         Method to dump the chapter to a dictionary.
 
-
         .. warning::
             The dumped dictionary is not standard ``json`` spec compliant.
 
         Returns
-        --------
+        -------
         Dict[:class:`str`, Any]
         """
         fmt: dict[str, Any] = {}
@@ -228,13 +227,13 @@ class Chapter:
         This method returns the @Home data for this chapter.
 
         Parameters
-        ------------
+        ----------
         ssl :class:`bool`
             Whether to obtain an @Home URL for SSL only connections.
             Defaults to ``True``.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterAtHome`
             The returned details to reach a MD@H node for this chapter.
         """
@@ -246,7 +245,7 @@ class Chapter:
         """The URL to this chapter.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the chapter.
         """
@@ -257,7 +256,7 @@ class Chapter:
         """When this chapter was created.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this chapter was created.
         """
@@ -268,7 +267,7 @@ class Chapter:
         """When this chapter was last updated.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this chapter was last updated.
         """
@@ -279,7 +278,7 @@ class Chapter:
         """When this chapter was published.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this chapter was published.
         """
@@ -290,7 +289,7 @@ class Chapter:
         """When this chapter is readable.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this chapter becomes readable.
         """
@@ -301,7 +300,7 @@ class Chapter:
         """The parent Manga of the chapter.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.Manga`]
             The manga within the Chapter's payload, usually the parent manga.
         """
@@ -323,17 +322,15 @@ class Chapter:
     def manga_id(self) -> str | None:
         """The parent manga id of this chapter.
 
-
         .. note::
             This can be ``None`` if the chapter has no relationships key.
             Or in the almost impossible situation that it has no ``"manga"`` relationship.
 
         Returns
-        --------
+        -------
         :class:`str`
             The manga id.
         """
-
         return self._manga_relationship["id"] if self._manga_relationship else None
 
     @property
@@ -341,7 +338,7 @@ class Chapter:
         """The Scanlator Group that handled this chapter.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.ScanlatorGroup`]]
             The groups that handled this chapter's scanlation and upload.
         """
@@ -368,7 +365,7 @@ class Chapter:
         """The uploader who uploaded this chapter.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.User`]
             The user that handled this chapter's upload.
         """
@@ -387,7 +384,7 @@ class Chapter:
         This method will fetch the parent manga from a chapter's relationships and cache the response.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.Manga`]
             The Manga that was fetched from the API.
         """
@@ -416,7 +413,7 @@ class Chapter:
             as this method will make an API call to request this data.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.ScanlatorGroup`]]
             The scanlator group that was fetched from the API.
         """
@@ -458,7 +455,7 @@ class Chapter:
         This method will update the current chapter in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         title: Optional[:class:`str`]
             The title to rename the chapter to, if given.
         volume: Optional[:class:`str`]
@@ -478,7 +475,7 @@ class Chapter:
             pass ``None`` to them to send ``null`` to the API
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -487,7 +484,7 @@ class Chapter:
             One or more UUIDs given were not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Chapter`
             The chapter after being updated.
         """  # noqa: DOC502 # raised in method call
@@ -510,7 +507,7 @@ class Chapter:
         This method will delete the current chapter from the MangaDex API.
 
         Raises
-        -------
+        ------
         BadRequest
             The query was malformed.
         Forbidden
@@ -527,7 +524,7 @@ class Chapter:
         This method will mark the current chapter as read for the current authenticated user in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         update_history: :class:`bool`
             Whether to include this chapter in the authenticated user's read history.
         """
@@ -546,7 +543,7 @@ class Chapter:
         This method will mark the current chapter as unread for the current authenticated user in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         update_history: :class:`bool`
             Whether to include this chapter in the authenticated user's read history.
         """
@@ -565,7 +562,7 @@ class Chapter:
         This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaStatistics`
         """
         data = await self._http.get_chapter_statistics(self.id, None)
@@ -642,7 +639,7 @@ class Chapter:
         This method will attempt to download a chapter for you using the MangaDex process.
 
         Parameters
-        -----------
+        ----------
         path: Optional[Union[:class:`os.PathLike`, :class:`str`]]
             The path at which to use (or create) a directory to save the pages of the chapter.
             Defaults to ``"chapter number - chapter title"``
@@ -697,7 +694,7 @@ class Chapter:
         the bytes directly.
 
         Parameters
-        -----------
+        ----------
         start_page: :class:`int`
             The page at which to start downloading, leave at 0 (default) to download all.
         end_page: Optional[:class:`int`]
@@ -714,7 +711,7 @@ class Chapter:
             The API guidelines ask us to do this, so it defaults to ``True``.
 
         Yields
-        -------
+        ------
         :class:`bytes`
             The bytes of each page.
         """
@@ -727,7 +724,7 @@ class ChapterAtHome:
     A small helper object for the MD@H responses from the API.
 
     Attributes
-    -----------
+    ----------
     base_url: :class:`str`
         The base url for the MD@H connection
     hash: :class:`str`
@@ -772,7 +769,7 @@ class UploadData:
     A small helper object to store the upload data for each upload session and holds respective responses and errors.
 
     Attributes
-    -----------
+    ----------
     succeeded: List[:class:`~hondana.types_.upload.UploadedChapterResponse`]
         The succeeded responses from the upload session.
     errors: List[:class:`~hondana.types_.errors.ErrorType`]
@@ -806,7 +803,7 @@ class UploadData:
         """A property that returns a set of filenames that failed to upload.
 
         Returns
-        --------
+        -------
         Set[:class:`str`]
             The filenames of the failed uploads.
         """
@@ -820,7 +817,7 @@ class ChapterUpload:
     A context manager for handling the uploading of chapters to the MangaDex API.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`~hondana.Manga`
         The manga we are uploading a chapter for.
     volume: Optional[:class:`str`]
@@ -850,7 +847,7 @@ class ChapterUpload:
         Parameter is ignored if ``chapter_to_edit`` is ``None``.
 
     Raises
-    -------
+    ------
     TypeError
         If you provide more than 10 ScanlatorGroups.
     TypeError
@@ -941,7 +938,7 @@ class ChapterUpload:
         Opens an upload session and retrieves the session ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.upload.BeginChapterUploadResponse`
         """
         manga_id = self.manga.id if isinstance(self.manga, Manga) else self.manga
@@ -973,7 +970,7 @@ class ChapterUpload:
         This method will take a list of bytes and upload them to the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         images: List[:class:`pathlib.Path`]
             A list of images files as their Path objects.
         sort: :class:`bool`
@@ -984,7 +981,7 @@ class ChapterUpload:
             If ``None``, the default sorting key is used.
 
         Returns
-        --------
+        -------
         :class:`~hondana.chapter.UploadData`
             The upload data object of this upload session.
 
@@ -1041,7 +1038,7 @@ class ChapterUpload:
         This method will delete image(s) from the pending upload session.
 
         Parameters
-        -----------
+        ----------
         image_ids: List[:class:`str`]
             A list of pending image IDs.
 
@@ -1074,12 +1071,11 @@ class ChapterUpload:
         This method will abandon your current (or passed) upload session.
 
         Parameters
-        -----------
+        ----------
         session_id: Optional[:class:`str`]
             The session id which to abandon.
             Will default to the current instance's session.
         """
-
         session = session_id or self.upload_session_id
         if session is None:
             return
@@ -1096,7 +1092,7 @@ class ChapterUpload:
         This method will commit the pending upload session and return the valid chapter.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Chapter`
         """
         payload: dict[str, Any] = {"chapterDraft": {}, "pageOrder": self.uploaded}
@@ -1143,7 +1139,7 @@ class PreviouslyReadChapter:
     A richer interface for chapter read histories.
 
     Attributes
-    -----------
+    ----------
     chapter_id: :class:`str`
         The previously read chapter's ID.
     read_date: :class:`datetime.datetime`
@@ -1163,7 +1159,7 @@ class PreviouslyReadChapter:
         This method will fetch the chapter from the ID in the read payload.
 
         Returns
-        ---------
+        -------
         :class:`~hondana.Chapter`
         """
         data = await self._http.get_chapter(self.chapter_id, includes=includes or ChapterIncludes())
@@ -1175,7 +1171,7 @@ class ChapterStatistics:
     A small object to house chapter statistics.
 
     Attributes
-    -----------
+    ----------
     parent_id: :class:`str`
         The manga these statistics belong to.
     """
@@ -1203,7 +1199,7 @@ class ChapterStatistics:
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 
         Returns
-        --------
+        -------
         Optional[:class:`hondana.ChapterComments`]
         """
         if self._comments:

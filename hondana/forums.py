@@ -46,7 +46,7 @@ class _Comments:
     A helper object around the forum threads/comments of a type in the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     parent_id: :class:`str`
         The ID of the parent object (which this comment data belongs to).
     thread_id: :class:`int`
@@ -79,7 +79,7 @@ class _Comments:
         """The objects thread, if it exists.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.ForumThread`]
             The ForumThread relating to this object, if it exists already.
             See :meth:`fetch_thread` to fetch the thread and cache it here.
@@ -91,21 +91,23 @@ class _Comments:
 
         This method will fetch a forum thread from the API.
 
+        It does however function as a "create or fetch" API request.
+
         Parameters
-        -----------
+        ----------
         force: :class:`bool`
             Whether to avoid the potentially cached thread and fetch an updated one and cache it.
             Defaults to ``False``.
 
         Raises
-        --------
+        ------
         Forbidden
             You must be authenticated to fetch/use threads/forums.
         NotFound
             The parent_id doesn't or no longer exists.
 
         Returns
-        ---------
+        -------
         :class:`~hondana.ForumThread`
             The cached or fetched ForumThread.
         """  # noqa: DOC502 # raised in method call
@@ -121,14 +123,53 @@ class _Comments:
 
 
 class MangaComments(_Comments):
+    """
+    A helper object around the forum threads/comments of Manga in the MangaDex API.
+
+    Attributes
+    ----------
+    parent_id: :class:`str`
+        The ID of the parent object (which this comment data belongs to).
+    thread_id: :class:`int`
+        The ID of the thread on the MangaDex forums.
+    reply_count: :class:`int`
+        The amount of replies (comments) this object has in total.
+    """
+
     __inner_type__ = ForumThreadType.manga
 
 
 class ChapterComments(_Comments):
+    """
+    A helper object around the forum threads/comments of Chapter in the MangaDex API.
+
+    Attributes
+    ----------
+    parent_id: :class:`str`
+        The ID of the parent object (which this comment data belongs to).
+    thread_id: :class:`int`
+        The ID of the thread on the MangaDex forums.
+    reply_count: :class:`int`
+        The amount of replies (comments) this object has in total.
+    """
+
     __inner_type__ = ForumThreadType.chapter
 
 
 class ScanlatorGroupComments(_Comments):
+    """
+    A helper object around the forum threads/comments of Scanlator Group in the MangaDex API.
+
+    Attributes
+    ----------
+    parent_id: :class:`str`
+        The ID of the parent object (which this comment data belongs to).
+    thread_id: :class:`int`
+        The ID of the thread on the MangaDex forums.
+    reply_count: :class:`int`
+        The amount of replies (comments) this object has in total.
+    """
+
     __inner_type__ = ForumThreadType.scanlation_group
 
 
@@ -137,7 +178,7 @@ class ForumThread:
     A small helper object around ForumThreads in the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`int`
         The ID relating to this thread on the forums subdomain of MangaDex.
     replies_count: :class:`int`
@@ -163,7 +204,7 @@ class ForumThread:
         """Returns the url to this objects forum.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL.
         """

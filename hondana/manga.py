@@ -67,7 +67,7 @@ class Manga:
     """A class representing a Manga returned from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID associated to this manga.
     relation_type: Optional[:class:`~hondana.MangaRelationType`]
@@ -197,7 +197,7 @@ class Manga:
         self._cover_relationship: CoverResponse | None = RelationshipResolver["CoverResponse"](
             relationships,
             "cover_art",
-        ).resolve(with_fallback=True)[0]
+        ).pop(with_fallback=True)
         self.__authors: list[Author] | None = None
         self.__artists: list[Artist] | None = None
         self.__cover: Cover | None = None
@@ -223,7 +223,7 @@ class Manga:
         """The URL to this manga.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the manga.
         """
@@ -234,7 +234,7 @@ class Manga:
         """The manga's title.
 
         Returns
-        --------
+        -------
         :class:`str`
             The title of the manga, defaults to the ``en`` key in the titles attribute of the response.
             Attempts to fall back to the manga's default language, and failing that it will
@@ -252,7 +252,7 @@ class Manga:
         """The manga's description/synopsis.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
             The description of the manga, defaults to the ``en`` key in the titles.
             Falls back to the next available key if ``en`` is not present. If there is
@@ -271,7 +271,7 @@ class Manga:
         """The raw description attribute from the manga's payload from the API.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.common.LocalizedString`
             The raw object from the manga's api response payload.
             Provides no formatting on its own.
@@ -284,7 +284,7 @@ class Manga:
         """The raw alt_titles attribute from the manga's payload from the API.
 
         Returns
-        --------
+        -------
         :class:`hondana.types_.common.LocalizedString`
             The raw object from the manga's payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
@@ -296,7 +296,7 @@ class Manga:
         """The date this manga was created.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this manga was created.
         """
@@ -307,7 +307,7 @@ class Manga:
         """The date this manga was last updated.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this manga was last updated.
         """
@@ -318,7 +318,7 @@ class Manga:
         """The tags of this Manga.
 
         Returns
-        --------
+        -------
         List[:class:`~hondana.Tag`]
             The list of tags that this manga is associated with.
         """
@@ -328,13 +328,12 @@ class Manga:
     def artists(self) -> list[Artist] | None:
         """The artists of the parent Manga.
 
-
         .. note::
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter
             then this method will return ``None``.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Artist`]]
             The artists associated with this Manga.
         """
@@ -362,13 +361,12 @@ class Manga:
     def authors(self) -> list[Author] | None:
         """The artists of the parent Manga.
 
-
         .. note::
             If the parent manga was **not** requested with the "artist" `includes[]` query parameter
             then this method will return ``None``.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Author`]]
             The artists associated with this Manga.
 
@@ -397,13 +395,12 @@ class Manga:
     def cover(self) -> Cover | None:
         """The cover of the manga.
 
-
         .. note::
             If the parent manga was **not** requested with the "cover" `includes[]` query parameter
             then this method will return ``None``.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.Cover`]
             The cover of the manga.
         """
@@ -428,7 +425,7 @@ class Manga:
         """The related manga of the parent Manga.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
             The related manga of the parent manga.
         """
@@ -463,7 +460,7 @@ class Manga:
             then this method will not make extra API calls to retrieve the artist data.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Author`]]
             The artists of the manga.
         """
@@ -497,7 +494,7 @@ class Manga:
             then this method will not make extra API calls to retrieve the author data.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Author`]]
             The authors of the manga.
         """
@@ -526,7 +523,7 @@ class Manga:
         This method will return the cover URL of the parent Manga if it exists and caches the response.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.Cover`]
             The Cover associated with this Manga.
         """
@@ -541,12 +538,12 @@ class Manga:
         return self.cover
 
     def cover_url(self, *, size: Literal[256, 512] | None = None) -> str | None:
-        """This method will return a direct url to the cover art of the parent Manga.
+        """Method to return a direct url to the cover art of the parent Manga.
 
         If the manga was requested without the ``"cover_art"`` includes[] parameters, then this method will return ``None``.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
             The cover url, if present in the underlying manga details.
 
@@ -565,7 +562,7 @@ class Manga:
         This method will return all the related manga and cache their response.
 
         Parameters
-        -----------
+        ----------
         limit: :class:`int`
             The amount of manga to fetch. Defaults to ``100``.
         offset: :class:`int`
@@ -577,7 +574,7 @@ class Manga:
             then this method will not make extra API calls to retrieve manga data.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
             The related manga of the parent.
         """
@@ -648,7 +645,7 @@ class Manga:
         This method will update the current Manga within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         title: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
@@ -692,7 +689,7 @@ class Manga:
             are nullable in the API. Pass ``None`` explicitly to do so.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were not valid.
         Forbidden
@@ -701,7 +698,7 @@ class Manga:
             The specified manga does not exist.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
         """  # noqa: DOC502 # raised in method call
@@ -734,13 +731,12 @@ class Manga:
         This method will delete a Manga from the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             The update returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.delete_manga(self.id)
 
     @require_authentication
@@ -750,13 +746,12 @@ class Manga:
         This method will unfollow the current Manga for the logged-in user in the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.unfollow_manga(self.id)
 
     @require_authentication
@@ -766,7 +761,7 @@ class Manga:
         This method will follow the current Manga for the logged-in user in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         set_status: :class:`bool`
             Whether to set the reading status of the manga you follow.
             Due to the current MangaDex infrastructure, not setting a
@@ -777,57 +772,54 @@ class Manga:
             Irrelevant if ``set_status`` is ``False``.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.follow_manga(self.id)
         if set_status:
             await self.update_reading_status(status=status)
 
     def localised_title(self, language_code: LanguageCode, /) -> str | None:
-        """
-        This method will attempt to return the current manga's title in the provided language code.
+        """Method to return the current manga's title in the provided language code.
+
         Falling back to the :attr:`title`.
 
         Aliased to :meth:`~Manga.localized_title`
 
         Parameters
-        -----------
+        ----------
         language_code: :class:`~hondana.types_.common.LanguageCode`
             The language code to attempt to return the manga name in.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
             The manga name in the provided language, if found.
         """
-
         return self.alternate_titles.get(language_code, self.title)
 
     localized_title = localised_title
 
     def localised_description(self, language_code: LanguageCode, /) -> str | None:
-        """
-        This method will attempt to return the current manga's description in the provided language code.
+        """Method to return the current manga's description in the provided language code.
+
         Falling back to the :attr:`description`.
 
         Aliased to :meth:`~Manga.localized_description`
 
         Parameters
-        -----------
+        ----------
         language_code: :class:`~hondana.types_.common.LanguageCode`
             The language code to attempt to return the manga description in.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
             The manga description in the provided language, if found.
         """
-
         return self._description.get(language_code, self.description)
 
     localized_description = localised_description
@@ -859,7 +851,7 @@ class Manga:
         This method returns the current manga's chapter feed.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 100. The maximum amount of chapters to return-in the response.
         offset: :class:`int`
@@ -904,16 +896,15 @@ class Manga:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """  # noqa: DOC502 # raised in method call
-
         inner_limit = limit or 100
 
         chapters: list[Chapter] = []
@@ -957,7 +948,7 @@ class Manga:
         This method will return the read chapters of the current manga.
 
         Returns
-        --------
+        -------
         :class:`hondana.types_.manga.MangaReadMarkersResponse`
             The raw payload of the API.
             Contains a list of read chapter UUIDs.
@@ -977,7 +968,7 @@ class Manga:
         This method will batch update your read chapters for a given Manga.
 
         Parameters
-        -----------
+        ----------
         update_history: :class:`bool`
             Whether to show this chapter in the authenticated user's read history.
             Defaults to ``True``.
@@ -987,7 +978,7 @@ class Manga:
             The unread chapters for this Manga.
 
         Raises
-        -------
+        ------
         TypeError
             You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
         """
@@ -1010,18 +1001,17 @@ class Manga:
         This method will return the current reading status for the current manga.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authenticated to perform this action.
         NotFound
             The specified manga does not exist, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.manga.MangaSingleReadingStatusResponse`
             The raw payload from the API response.
         """  # noqa: DOC502 # raised in method call
-
         return await self._http.get_manga_reading_status(self.id)
 
     @require_authentication
@@ -1031,7 +1021,7 @@ class Manga:
         This method will update your current reading status for the current manga.
 
         Parameters
-        -----------
+        ----------
         status: :class:`~hondana.ReadingStatus`
             The reading status you wish to update this manga with.
 
@@ -1041,13 +1031,12 @@ class Manga:
             Please provide a value if you do not wish for this to happen.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were invalid.
         NotFound
             The specified manga cannot be found, likely due to incorrect ID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.update_manga_reading_status(self.id, status=status)
 
     async def get_volumes_and_chapters(
@@ -1061,14 +1050,14 @@ class Manga:
         This endpoint returns the raw relational mapping of a manga's volumes and chapters.
 
         Parameters
-        -----------
+        ----------
         translated_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
             The list of language codes you want to limit the search to.
         groups: Optional[List[:class:`str`]]
             A list of scanlator groups to filter the results by.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
@@ -1085,18 +1074,17 @@ class Manga:
         This method will add the current manga to the specified custom list.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list you wish to add the manga to.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorised to add manga to this custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.add_manga_to_custom_list(custom_list_id, manga_id=self.id)
 
     @require_authentication
@@ -1106,18 +1094,17 @@ class Manga:
         This method will remove the current manga from the specified custom list.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             THe UUID associated with the custom list you wish to add the manga to.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorised to remove a manga from the specified custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=self.id)
 
     async def get_chapters(
@@ -1153,7 +1140,7 @@ class Manga:
         This method will return a list of published chapters.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 100. This specifies the amount of chapters to return in one request.
         offset: :class:`int`
@@ -1214,16 +1201,15 @@ class Manga:
             which could lead to unexpected results.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """  # noqa: DOC502 # raised in method call
-
         inner_limit = limit or 10
 
         chapters: list[Chapter] = []
@@ -1271,7 +1257,7 @@ class Manga:
         This method will return a manga draft from MangaDex.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The Manga returned from the API.
         """
@@ -1284,12 +1270,12 @@ class Manga:
         This method will submit a draft for a manga.
 
         Parameters
-        -----------
+        ----------
         version: :class:`int`
             The version of the manga we're attributing this submission to.
 
         Raises
-        -------
+        ------
         BadRequest
             The request parameters were incorrect or malformed.
         Forbidden
@@ -1298,7 +1284,7 @@ class Manga:
             The manga was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
         """  # noqa: DOC502 # raised in method call
         data = await self._http.submit_manga_draft(self.id, version=version)
@@ -1310,18 +1296,18 @@ class Manga:
         This method will return a list of all relations to a given manga.
 
         Parameters
-        -----------
+        ----------
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional parameters for expanded requests to the API.
             Defaults to all possible expansions.
 
         Raises
-        -------
+        ------
         BadRequest
             The manga ID passed is malformed
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaRelationCollection`
         """  # noqa: DOC502 # raised in method call
         data = await self._http.get_manga_relation_list(self.id, includes=includes or MangaIncludes())
@@ -1342,7 +1328,7 @@ class Manga:
         This method will upload a cover to the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         cover: :class:`bytes`
             THe raw bytes of the image.
         volume: Optional[:class:`str`]
@@ -1353,14 +1339,14 @@ class Manga:
             The locale of this cover.
 
         Raises
-        -------
+        ------
         BadRequest
             The volume parameter was malformed or the file was a bad format.
         Forbidden
             You are not permitted for this action.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Cover`
         """  # noqa: DOC502 # raised in method call
         data = await self._http.upload_cover(self.id, cover=cover, volume=volume, description=description, locale=locale)
@@ -1373,20 +1359,20 @@ class Manga:
         This method will create a manga relation.
 
         Parameters
-        ------------
+        ----------
         target_manga: :class:`str`
             The manga ID of the related manga.
         relation_type: :class:`~hondana.MangaRelationType`
 
         Raises
-        -------
+        ------
         BadRequest
             The parameters were malformed
         Forbidden
             You are not authorised for this action.
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaRelation`
         """  # noqa: DOC502 # raised in method call
         data = await self._http.create_manga_relation(self.id, target_manga=target_manga, relation_type=relation_type)
@@ -1399,7 +1385,7 @@ class Manga:
         This method will delete a manga relation.
 
         Parameters
-        -----------
+        ----------
         relation_id: :class:`str`
             The ID of the related manga.
         """
@@ -1413,12 +1399,12 @@ class Manga:
         This method **overwrites** your previous set rating, if any.
 
         Parameters
-        -----------
+        ----------
         rating: :class:`int`
             The rating value, between 0 and 10.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned a response due to authentication failure.
         NotFound
@@ -1433,7 +1419,7 @@ class Manga:
         This method will delete your set rating on the manga.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned a response due to authentication failure.
         NotFound
@@ -1447,7 +1433,7 @@ class Manga:
         This method will fetch statistics on the current manga, and cache them as the :attr:`stats`
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaStatistics`
         """
         data = await self._http.get_manga_statistics(self.id, None)
@@ -1463,7 +1449,7 @@ class MangaRelation:
     """A class representing a MangaRelation returned from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     source_manga_id: :class:`str`
         The UUID associated to the parent manga of this relation.
     id: :class:`str`
@@ -1513,7 +1499,7 @@ class MangaStatistics:
     A small object to house manga statistics.
 
     Attributes
-    -----------
+    ----------
     follows: :class:`int`
         The number of follows this manga has.
     parent_id: :class:`str`
@@ -1567,7 +1553,7 @@ class MangaStatistics:
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 
         Returns
-        --------
+        -------
         Optional[:class:`hondana.MangaComments`]
         """
         if self._comments:
@@ -1581,7 +1567,7 @@ class MangaRating:
     A small object to encompass your personal manga ratings.
 
     Attributes
-    -----------
+    ----------
     parent_id: :class:`str`
         The parent manga this rating belongs to.
     rating: :class:`int`

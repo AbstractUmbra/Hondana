@@ -45,7 +45,7 @@ class Cover:
     """A class representing a Cover returned from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID associated with this cover.
     volume: Optional[:class:`str`]
@@ -87,12 +87,12 @@ class Cover:
         self.version: int = self._attributes["version"]
         self._created_at = self._attributes["createdAt"]
         self._updated_at = self._attributes["updatedAt"]
-        self._manga_relationship: MangaResponse | None = RelationshipResolver(relationships, "manga").resolve(
+        self._manga_relationship: MangaResponse | None = RelationshipResolver(relationships, "manga").pop(
             with_fallback=True,
-        )[0]
-        self._uploader_relationship: UserResponse | None = RelationshipResolver(relationships, "user").resolve(
+        )
+        self._uploader_relationship: UserResponse | None = RelationshipResolver(relationships, "user").pop(
             with_fallback=True,
-        )[0]
+        )
 
     def __repr__(self) -> str:
         return f"<Cover id={self.id!r} filename={self.file_name!r}>"
@@ -114,7 +114,7 @@ class Cover:
         """When this cover was created.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this cover was created.
         """
@@ -125,7 +125,7 @@ class Cover:
         """When this cover was last updated.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The UTC datetime of when this cover was last updated.
         """
@@ -139,7 +139,7 @@ class Cover:
             This is only populated if the Cover has populated relationships.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.User`]
             The user who uploaded this cover, if present.
         """
@@ -158,7 +158,7 @@ class Cover:
         response relationships.
 
         Parameters
-        -----------
+        ----------
         image_size: Optional[Literal[``256``, ``512``]]
             Defaults to ``None`` to return original quality.
             Specifies the return image dimensions.
@@ -167,7 +167,7 @@ class Cover:
             Useful for when Cover is part of something else's relationships, holding none of it's own.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
             The Cover url.
         """
@@ -190,13 +190,13 @@ class Cover:
         This method depends on :attr:`url`, as such, it can return None.
 
         Parameters
-        -----------
+        ----------
         size: Optional[Literal[``256``, ``512``]]
             Defaults to ``None`` to return original quality.
             Specifies the returned image size.
 
         Returns
-        --------
+        -------
         :class:`bytes`
             The raw image bytes.
         """
@@ -214,7 +214,7 @@ class Cover:
         This method will edit the current cover on the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         volume: :class:`str`
             The volume identifier relating the cover will represent.
         description: Optional[:class:`str`]
@@ -227,7 +227,7 @@ class Cover:
             The ``volume`` key is mandatory. You can pass ``None`` to null it in the API, but it must have a value.
 
         Raises
-        -------
+        ------
         TypeError
             The volume key was not given a value. This is required.
         BadRequest
@@ -236,7 +236,7 @@ class Cover:
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Cover`
             The returned cover after the edit.
         """  # noqa: DOC502 # raised in method call
@@ -251,7 +251,7 @@ class Cover:
         This method will delete the current cover from the MangaDex API.
 
         Raises
-        -------
+        ------
         BadRequest
             The request payload was malformed.
         Forbidden

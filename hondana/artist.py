@@ -46,7 +46,7 @@ class Artist(AuthorArtistTag):
     """A class representing an Artist returns from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID associated with this artist.
     name: :class:`str`
@@ -202,7 +202,7 @@ class Artist(AuthorArtistTag):
         """When this artist was created.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
         """
         return datetime.datetime.fromisoformat(self._created_at)
@@ -212,7 +212,7 @@ class Artist(AuthorArtistTag):
         """When this artist was last updated.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
         """
         return datetime.datetime.fromisoformat(self._updated_at)
@@ -222,7 +222,7 @@ class Artist(AuthorArtistTag):
         """The URL to this artist.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the artist.
         """
@@ -232,14 +232,13 @@ class Artist(AuthorArtistTag):
     def manga(self) -> list[Manga] | None:
         """Returns a list Manga related to this artist.
 
-
         .. note::
             If the Artist was not requested with the ``manga`` includes parameter, this will return None.
             To populate this, consider :meth:`~hondana.Artist.get_manga`
 
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
         """
         if self.__manga is not None:
@@ -270,7 +269,7 @@ class Artist(AuthorArtistTag):
             Consider requesting this object with the ``manga[]`` includes/expansion to save on more API requests.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
         """
         if self.manga is not None:
@@ -319,7 +318,7 @@ class Artist(AuthorArtistTag):
         This method will update an artist on the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: Optional[:class:`str`]
             The new name to update the artist with.
         biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
@@ -350,7 +349,7 @@ class Artist(AuthorArtistTag):
             The version revision of this artist.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -359,7 +358,7 @@ class Artist(AuthorArtistTag):
             The artist UUID given was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Artist`
             The updated artist from the API.
         """  # noqa: DOC502 # raised in method call
@@ -389,7 +388,7 @@ class Artist(AuthorArtistTag):
         This method will delete the current author from the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this author.
         NotFound

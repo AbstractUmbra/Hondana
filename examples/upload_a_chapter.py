@@ -11,10 +11,7 @@ import hondana
 
 
 async def main() -> None:
-    """
-    In this example we are going to upload a chapter to the MangaDex API.
-    """
-
+    """In this example we are going to upload a chapter to the MangaDex API."""
     # Create your client, you must be authorised to upload a chapter.
     async with hondana.Client(username="...", password="...", client_id="...", client_secret="...") as client:
         # Define your chapter details
@@ -80,7 +77,7 @@ async def alternative_main() -> None:
         )
 
         # I recommend the context manager method, since the session checking and committing are done for you.
-        await upload_session._check_for_session()  # pyright: ignore[reportPrivateUsage] # and it will also fail strict type checking
+        await upload_session._check_for_session()  # pyright: ignore[reportPrivateUsage] #noqa: SLF001 # and it will also fail strict type checking
 
         # let's open up some files and use their paths...
         files = [*pathlib.Path("./to_upload").iterdir()]

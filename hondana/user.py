@@ -46,7 +46,7 @@ class UserInfo:
     A helper class for the permission attributes of the logged-in user's token details.
 
     Attributes
-    -----------
+    ----------
     type: Literal[``session``]
         The type of token we have received.
     issuer: Literal[``mangadex.org``]
@@ -108,7 +108,7 @@ class User:
     A class representing a user from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The user's UUID.
     username: :class:`str`
@@ -174,7 +174,7 @@ class User:
         """The URL to this user.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the user.
         """
@@ -186,7 +186,7 @@ class User:
         This method will fetch the scanlator groups of this user from the API.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.ScanlatorGroup`]]
             The list of groups for this user, if any.
         """
@@ -219,11 +219,10 @@ class User:
         This method will delete a user from the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             The response returned an error due to authentication failure.
         NotFound
             The user specified cannot be found.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.delete_user(self.id)

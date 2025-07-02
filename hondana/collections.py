@@ -72,14 +72,14 @@ class BaseCollection(ABC, Generic[T]):
     arbitrary collections without needing to set up ``isinstance()`` checks.
 
     Attributes
-    -----------
+    ----------
     total: :class:`int`
         The total possible results with this query could return.
     offset: :class:`int`
         The offset used in this query.
     limit: :class:`int`
         The limit used in this query.
-    """
+    """  # noqa: D205
 
     total: int
     offset: int
@@ -93,7 +93,6 @@ class BaseCollection(ABC, Generic[T]):
 
         Returns
         -------
-
         :class:`list`
         """
 
@@ -103,7 +102,7 @@ class MangaCollection(BaseCollection["Manga"]):
     A collection object type to represent manga.
 
     Attributes
-    -----------
+    ----------
     manga: List[:class:`~hondana.Manga`]
         The manga returned from this collection.
     total: :class:`int`
@@ -143,7 +142,6 @@ class MangaCollection(BaseCollection["Manga"]):
 
         Returns
         -------
-
         List[:class:`~hondana.Manga`]
         """
         return self.manga
@@ -154,7 +152,7 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
     A collection object type to represent manga relations.
 
     Attributes
-    -----------
+    ----------
     relations: List[:class:`~hondana.MangaRelation`]
         The manga relations returned from this collection.
     total: :class:`int`
@@ -200,7 +198,6 @@ class MangaRelationCollection(BaseCollection["MangaRelation"]):
 
         Returns
         -------
-
         List[:class:`~hondana.MangaRelation`]
         """
         return self.relations
@@ -211,7 +208,7 @@ class ChapterFeed(BaseCollection["Chapter"]):
     A collection object type to represent chapters.
 
     Attributes
-    -----------
+    ----------
     chapters: List[:class:`~hondana.Chapter`]
         The chapters returned from this collection.
     total: :class:`int`
@@ -251,7 +248,6 @@ class ChapterFeed(BaseCollection["Chapter"]):
 
         Returns
         -------
-
         List[:class:`~hondana.Chapter`]
         """
         return self.chapters
@@ -262,7 +258,7 @@ class AuthorCollection(BaseCollection["Author"]):
     A collection object type to represent authors.
 
     Attributes
-    -----------
+    ----------
     authors: List[:class:`~hondana.Author`]
         The authors returned from this collection.
     total: :class:`int`
@@ -302,7 +298,6 @@ class AuthorCollection(BaseCollection["Author"]):
 
         Returns
         -------
-
         List[:class:`~hondana.Author`]
         """
         return self.authors
@@ -313,7 +308,7 @@ class CoverCollection(BaseCollection["Cover"]):
     A collection object type to represent covers.
 
     Attributes
-    -----------
+    ----------
     covers: List[:class:`~hondana.Cover`]
         The covers returned from this collection.
     total: :class:`int`
@@ -353,7 +348,6 @@ class CoverCollection(BaseCollection["Cover"]):
 
         Returns
         -------
-
         List[:class:`~hondana.Cover`]
         """
         return self.covers
@@ -364,7 +358,7 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
     A collection object type to represent scanlator groups.
 
     Attributes
-    -----------
+    ----------
     groups: List[:class:`~hondana.ScanlatorGroup`]
         The groups returned from this collection.
     total: :class:`int`
@@ -410,7 +404,6 @@ class ScanlatorGroupCollection(BaseCollection["ScanlatorGroup"]):
 
         Returns
         -------
-
         List[:class:`~hondana.ScanlatorGroup`]
         """
         return self.groups
@@ -421,7 +414,7 @@ class ReportCollection(BaseCollection["Report"]):
     A collection object type to represent reports.
 
     Attributes
-    -----------
+    ----------
     reports: List[:class:`~hondana.Report`]
         The reports returned from this collection.
     total: :class:`int`
@@ -461,7 +454,6 @@ class ReportCollection(BaseCollection["Report"]):
 
         Returns
         -------
-
         List[:class:`~hondana.Report`]
         """
         return self.reports
@@ -472,7 +464,7 @@ class UserReportCollection(BaseCollection["UserReport"]):
     A collection object type to represent reports.
 
     Attributes
-    -----------
+    ----------
     reports: List[:class:`~hondana.UserReport`]
         The reports returned from this collection.
     total: :class:`int`
@@ -514,7 +506,6 @@ class UserReportCollection(BaseCollection["UserReport"]):
 
         Returns
         -------
-
         List[:class:`~hondana.UserReport`]
         """
         return self.reports
@@ -525,7 +516,7 @@ class UserCollection(BaseCollection["User"]):
     A collection object type to represent users.
 
     Attributes
-    -----------
+    ----------
     users: List[:class:`~hondana.User`]
         The users returned from this collection.
     total: :class:`int`
@@ -565,7 +556,6 @@ class UserCollection(BaseCollection["User"]):
 
         Returns
         -------
-
         List[:class:`~hondana.User`]
         """
         return self.users
@@ -576,7 +566,7 @@ class CustomListCollection(BaseCollection["CustomList"]):
     A collection object type to represent custom lists.
 
     Attributes
-    -----------
+    ----------
     lists: List[:class:`~hondana.CustomList`]
         The custom lists returned from this collection.
     total: :class:`int`
@@ -616,7 +606,6 @@ class CustomListCollection(BaseCollection["CustomList"]):
 
         Returns
         -------
-
         List[:class:`~hondana.CustomList`]
         """
         return self.lists
@@ -627,7 +616,7 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
     A collection object type to represent custom lists.
 
     Attributes
-    -----------
+    ----------
     legacy_mappings: List[:class:`~hondana.LegacyItem`]
         The legacy mappings returned from this collection.
     total: :class:`int`
@@ -673,7 +662,6 @@ class LegacyMappingCollection(BaseCollection["LegacyItem"]):
 
         Returns
         -------
-
         List[:class:`~hondana.LegacyItem`]
         """
         return self.legacy_mappings
@@ -684,7 +672,7 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
     A collection object type to represent chapter read history.
 
     Attributes
-    -----------
+    ----------
     chapter_read_histories: List[:class:`~hondana.PreviouslyReadChapter`]
         The chapter read histories returned from this collection.
     total: :class:`int`
@@ -730,7 +718,6 @@ class ChapterReadHistoryCollection(BaseCollection["PreviouslyReadChapter"]):
 
         Returns
         -------
-
         List[:class:`~hondana.PreviouslyReadChapter`]
         """
         return self.history

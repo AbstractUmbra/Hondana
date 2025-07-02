@@ -42,14 +42,14 @@ try:
 except ModuleNotFoundError:
 
     def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
+        """Dump a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
         return json.dumps(obj, separators=(",", ":"), ensure_ascii=True, indent=2)
 
     _from_json = json.loads
 else:
 
     def to_json(obj: Any, /) -> str:
-        """A quick method that dumps a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
+        """Dump a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
         return orjson.dumps(obj, option=orjson.OPT_INDENT_2).decode("utf-8")
 
     _from_json = orjson.loads
@@ -132,7 +132,7 @@ It matches some things like: ``P1D2W`` (1 day, two weeks), ``P1D2WT3H4M`` (1 day
 """  # noqa: E501
 
 
-class AuthorArtistTag:
+class AuthorArtistTag:  # noqa: D101 # technically not public
     id: str
 
 
@@ -140,7 +140,7 @@ class Route:
     """A helper class for instantiating a HTTP method to MangaDex.
 
     Parameters
-    -----------
+    ----------
     verb: :class:`str`
         The HTTP verb you wish to perform, e.g. ``"POST"``
     path: :class:`str`
@@ -180,7 +180,7 @@ class AuthRoute(Route):
     """A helper class for instantiating a HTTP method to authenticate with MangaDex.
 
     Parameters
-    -----------
+    ----------
     verb: :class:`str`
         The HTTP verb you wish to perform. E.g. ``"POST"``
     base: :class:`str`
@@ -246,6 +246,13 @@ class CachedSlotProperty(Generic[T, T_co]):
 
 
 def cached_slot_property(name: str, /) -> Callable[[Callable[[T], T_co]], CachedSlotProperty[T, T_co]]:
+    """A decorator to describe a cached slot property within an object.
+
+    Returns
+    -------
+    :class:`CachedSlotProperty`
+    """
+
     def decorator(func: Callable[[T], T_co]) -> CachedSlotProperty[T, T_co]:
         return CachedSlotProperty(name, func)
 
@@ -257,7 +264,7 @@ def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Con
 
     @wraps(func)
     def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
-        if not item._http._authenticated:  # pyright: ignore[reportPrivateUsage] # we're gonna keep this private
+        if not item._http._authenticated:  # pyright: ignore[reportPrivateUsage] # noqa: SLF001 # we're gonna keep this private
             msg = "This method requires authentication."
             raise AuthenticationRequired(msg)
 
@@ -270,7 +277,7 @@ def deprecated(alternate: str | None = None, /) -> Callable[[Callable[B, T]], Ca
     """A decorator to mark a method as deprecated.
 
     Parameters
-    -----------
+    ----------
     alternate: Optional[:class:`str`]
         The alternate method to use.
     """  # noqa: DOC201 # not part of the public API.
@@ -298,7 +305,7 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
     """A helper function that will calculate the offset and limit parameters for API endpoints.
 
     Parameters
-    -----------
+    ----------
     limit: :class:`int`
         The limit (or amount) of objects you are requesting.
     offset: :class:`int`
@@ -307,12 +314,12 @@ def calculate_limits(limit: int, offset: int, /, *, max_limit: int = 100) -> tup
         The maximum limit value for the API Endpoint.
 
     Raises
-    -------
+    ------
     ValueError
         Exceeding the maximum pagination limit.
 
     Returns
-    --------
+    -------
     Tuple[:class:`int`, :class:`int`]
     """
     if offset >= MAX_DEPTH:
@@ -337,7 +344,7 @@ async def json_or_text(response: aiohttp.ClientResponse, /) -> dict[str, Any] | 
     """A quick method to parse a `aiohttp.ClientResponse` and test if it's json or text.
 
     Returns
-    --------
+    -------
     Union[Dict[:class:`str`, Any], str]
         The parsed json object as a dictionary, or the response text.
     """
@@ -356,12 +363,12 @@ def php_query_builder(obj: MANGADEX_QUERY_PARAM_TYPE, /) -> multidict.MultiDict[
     A helper function that builds a MangaDex (PHP) query string from a mapping.
 
     Parameters
-    -----------
+    ----------
     obj: Mapping[:class:`str`, Optional[Union[:class:`str`, :class:`int`, :class:`bool`, List[:class:`str`], Dict[:class:`str`, :class:`str`]]]]
         The mapping to build the query string from.
 
     Returns
-    --------
+    -------
     :class:`multidict.MultiDict`
         A dictionary/mapping type that allows for duplicate keys.
     """  # noqa: E501 # required for formatting
@@ -389,12 +396,12 @@ def get_image_mime_type(data: bytes, /) -> str:
     """Returns the image type from the first few bytes.
 
     Raises
-    -------
+    ------
     ValueError
         Unsupported image type used.
 
     Returns
-    --------
+    -------
     :class:`str`
         The mime type of the image data.
     """
@@ -413,7 +420,7 @@ def to_snake_case(string: str, /) -> str:
     """Quick function to return snake_case from camelCase.
 
     Returns
-    --------
+    -------
     :class:`str`
         The formatted string.
     """
@@ -430,7 +437,7 @@ def to_camel_case(string: str, /) -> str:
     """Quick function to return camelCase from snake_case.
 
     Returns
-    --------
+    -------
     :class:`str`
         The formatted string.
     """
@@ -441,6 +448,13 @@ def to_camel_case(string: str, /) -> str:
 
 
 def as_chunks(iterator: Iterable[T], /, max_size: int) -> Iterable[list[T]]:
+    """Quick method to take an iterable and yield smaller 'chunks' of itself.
+
+    Yields
+    ------
+        List[T]
+            The chunked list of T.
+    """
     ret: list[T] = []
     n = 0
     for item in iterator:
@@ -458,12 +472,12 @@ def delta_to_iso(delta: datetime.timedelta, /) -> str:
     """A helper method to dump a timedelta to an ISO 8601 timedelta string.
 
     Parameters
-    -----------
+    ----------
     delta: :class:`datetime.timedelta`
         The timedelta to convert.
 
     Returns
-    --------
+    -------
     :class:`str`
         The converted string.
     """
@@ -495,17 +509,17 @@ def iso_to_delta(iso: str, /) -> datetime.timedelta:
     """A helper method to load a timedelta from an ISO8601 string.
 
     Parameters
-    -----------
+    ----------
     iso: :class:`str`
         The ISO8601 datetime string to parse.
 
     Raises
-    -------
+    ------
     TypeError
         If the given string is not a valid ISO8601 string and does not match :class:`~hondana.utils.MANGADEX_TIME_REGEX`.
 
     Returns
-    --------
+    -------
     :class:`datetime.timedelta`
         The timedelta based on the parsed string.
     """
@@ -533,6 +547,16 @@ RelType = Literal[
 
 
 class RelationshipResolver(Generic[T]):
+    """Handler utility for cleanly resolving the relationship attributes in MangaDex API objects.
+
+    Parameters
+    ----------
+    relationships: list[:class:`hondana.types.RelationshipResponse`]
+        The relationships we wish to handle/filter.
+    relationship_type: :class:`str`
+        The type of relationship we want to filter by.
+    """
+
     __slots__ = (
         "_type",
         "limit",
@@ -556,6 +580,25 @@ class RelationshipResolver(Generic[T]):
     def resolve(self, *, remove_empty: bool = ...) -> list[T]: ...
 
     def resolve(self, *, with_fallback: bool = False, remove_empty: bool = False) -> list[T] | list[T | None]:
+        """Helper method to resolve the passed relationships data into a list of selected type.
+
+        Parameters
+        ----------
+        with_fallback: :class:`bool`
+            This (when true) will append a single ``None`` into the list if it is empty at the end of resolving.
+            This is for clean indexing of the list without raising a KeyError.
+            Defaults to ``False``.
+        remove_empty: :class:`bool`
+            This (when true) will refuse to add relationship data to the list if said data does not have it's
+            inner attributes.This is the case when the necessary ``includes`` were not provided.
+            Defaults to ``False``
+
+        Returns
+        -------
+        Union[List[T] | List[T | None]]
+            A complicated type. It will return the list of relationship type specified,
+            or a list with a single ``None`` depending on the parameters above.
+        """
         relationships = self.relationships.copy()
 
         ret: list[T | None] = []
@@ -569,17 +612,51 @@ class RelationshipResolver(Generic[T]):
             ret.append(None)
         return ret
 
+    @overload
+    def pop(self, *, with_fallback: Literal[False], remove_empty: bool = ...) -> T: ...
+
+    @overload
+    def pop(self, *, with_fallback: Literal[True], remove_empty: bool = ...) -> T | None: ...
+
+    @overload
+    def pop(self) -> T: ...
+
+    @overload
+    def pop(self, *, remove_empty: bool = ...) -> T: ...
+
+    def pop(self, *, with_fallback: bool = False, remove_empty: bool = False) -> T | None:
+        """Helper method which calls :meth:`resolve` and takes the first item from the list.
+
+        Parameters
+        ----------
+        with_fallback: :class:`bool`
+            This (when true) will append a single ``None`` into the list if it is empty at the end of resolving.
+            This is for clean indexing of the list without raising a KeyError.
+            Defaults to ``False``.
+        remove_empty: :class:`bool`
+            This (when true) will refuse to add relationship data to the list if said data does not have it's
+            inner attributes.This is the case when the necessary ``includes`` were not provided.
+            Defaults to ``False``
+
+        Returns
+        -------
+        Union[List[T] | List[T | None]]
+            A complicated type. It will return the list of relationship type specified,
+            or a list with a single ``None`` depending on the parameters above.
+        """
+        return self.resolve(with_fallback=with_fallback, remove_empty=remove_empty).pop()
+
 
 def clean_isoformat(dt: datetime.datetime, /) -> str:
-    """A helper method to cleanly convert a datetime (aware or naive) to a timezone-less ISO8601 string.
+    """Helper method to cleanly convert a datetime (aware or naive) to a timezone-less ISO8601 string.
 
     Parameters
-    -----------
+    ----------
     dt: :class:`datetime.datetime`
         The datetime to convert.
 
     Returns
-    --------
+    -------
     :class:`str`
         The ISO8601 string.
 

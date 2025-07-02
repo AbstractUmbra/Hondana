@@ -114,7 +114,7 @@ class Client:
     """User Client for interfacing with the MangaDex API.
 
     Parameters
-    -----------
+    ----------
     session: :class:`aiohttp.ClientSession` | None
         An optional ClientSession to pass to the client for internal use.
     username: :class:`str` | None
@@ -189,7 +189,18 @@ class Client:
         await self.close()
 
     async def login(self) -> None:
-        if not self._http._authenticated:  # pyright: ignore[reportPrivateUsage] # sanity reasons
+        """|coro|
+
+        A standalone method to log in to the API with the provided credentials.
+
+        This method is usually implicily called for you by the library.
+
+        Raises
+        ------
+        RuntimeError
+            No login credentials were supplied to the client before attempting to log in.
+        """
+        if not self._http._authenticated:  # pyright: ignore[reportPrivateUsage] # noqa: SLF001 # sanity reasons
             msg = "Cannot login as no OAuth2 credentials are set."
             raise RuntimeError(msg)
 
@@ -200,7 +211,6 @@ class Client:
 
         Logs the client out of the API and closes the internal http session.
         """
-
         return await self._http.close()
 
     async def check_username_available(self, username: str) -> bool:
@@ -209,17 +219,17 @@ class Client:
         This method will check if the username supplied is available for use on MangaDex.
 
         Parameters
-        -----------
+        ----------
         username: :class:`str`
             The username to check for.
 
         Raises
-        -------
+        ------
         Forbidden
             The request failed due to authorization.
 
         Returns
-        --------
+        -------
         :class:`bool`
             If the username is available or not.
         """  # noqa: DOC502 # raised in method call
@@ -235,7 +245,7 @@ class Client:
         add a new tag or similar.
 
         Returns
-        --------
+        -------
         Dict[:class:`str`, :class:`str`]
             The new tags from the API.
         """
@@ -259,7 +269,7 @@ class Client:
         add a new report reasons or similar.
 
         Returns
-        --------
+        -------
         Dict[:class:`str`, Dict[:class:`str`, :class:`str`]]
             The new report reasons from the API.
 
@@ -301,7 +311,7 @@ class Client:
         This method will retrieve the current list of tags on MangaDex.
 
         Returns
-        --------
+        -------
         List[:class:`~hondana.Tag`]
             The list of tags.
         """
@@ -337,7 +347,7 @@ class Client:
         This method will retrieve the logged-in user's followed manga chapter feed.
 
         Parameters
-        -----------
+        ----------
         limit: :class:`int`
             Defaults to 100. This is the limit of manga that is returned in this request,
             it is clamped at 500 as that is the max in the API.
@@ -383,12 +393,12 @@ class Client:
             then the API will return oldest first based on creation date.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were not valid.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """  # noqa: DOC502 # raised in method call
@@ -460,7 +470,7 @@ class Client:
         This method will perform a search based on the passed query parameters for manga.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 100. This is the limit of manga that is returned in this request,
             it is clamped at 500 as that is the max in the API.
@@ -523,12 +533,12 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the manga list.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were not valid.
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaCollection`
             Returns a collection of Manga.
         """  # noqa: DOC502 # raised in method call
@@ -595,7 +605,7 @@ class Client:
         This method will create a Manga within the MangaDex API for you.
 
         Parameters
-        -----------
+        ----------
         title: :class:`~hondana.types_.common.LocalizedString`
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
@@ -637,18 +647,17 @@ class Client:
             Leave this as ``None`` unless you fit these criteria.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were not valid.
         Forbidden
             The query failed due to authorization failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
         """  # noqa: DOC502 # raised in method call
-
         data = await self._http.create_manga(
             title=title,
             alt_titles=alt_titles,
@@ -682,7 +691,7 @@ class Client:
         This endpoint returns the raw relational mapping of a manga's volumes and chapters.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The manga UUID we are querying against.
         translated_language: Optional[List[:class:`~hondana.types_.common.LanguageCode`]]
@@ -691,7 +700,7 @@ class Client:
             A list of scanlator groups to filter the results by.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.manga.GetMangaVolumesAndChaptersResponse`
             The raw payload from mangadex. There is no guarantee of the keys here.
         """
@@ -707,7 +716,7 @@ class Client:
         The method will fetch a Manga from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID of the manga to view.
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
@@ -715,14 +724,14 @@ class Client:
             If not given, it defaults to all possible reference expansions.
 
         Raises
-        -------
+        ------
         Forbidden
             The query failed due to authorization failure.
         NotFound
             The passed manga ID was not found, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The Manga that was returned from the API.
 
@@ -760,7 +769,7 @@ class Client:
         This method will update a Manga within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID of the manga to update.
         title: Optional[:class:`~hondana.types_.common.LocalizedString`]
@@ -802,7 +811,7 @@ class Client:
             are nullable in the API, pass ``None`` explicitly to do this.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were not valid.
         Forbidden
@@ -811,7 +820,7 @@ class Client:
             The specified manga does not exist.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
         """  # noqa: DOC502 # raised in method call
@@ -844,12 +853,12 @@ class Client:
         This method will delete a manga within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID of the manga we are deleting.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
         NotFound
@@ -857,7 +866,6 @@ class Client:
         """  # noqa: DOC502 # raised in method call
         await self._http.delete_manga(manga_id)
 
-    # TODO
     @require_authentication
     async def unfollow_manga(self, manga_id: str, /) -> None:
         """|coro|
@@ -865,12 +873,12 @@ class Client:
         This method will unfollow a Manga for the logged-in user in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID of the manga to unfollow.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
         NotFound
@@ -878,7 +886,6 @@ class Client:
         """  # noqa: DOC502 # raised in method call
         await self._http.unfollow_manga(manga_id)
 
-    # TODO
     @require_authentication
     async def follow_manga(
         self,
@@ -893,7 +900,7 @@ class Client:
         This method will follow a Manga for the logged-in user in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID of the manga to follow.
         set_status: :class:`bool`
@@ -903,10 +910,10 @@ class Client:
             Defaults to ``True``
         status: :class:`~hondana.ReadingStatus`
             The status to apply to the newly followed manga.
-            Irrelevant if ``set_status`` is ``False``.
+            Irrelevant if ``set_status`` is ``False``. Defaults to :attr:`ReadingStatus.reading`.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
         NotFound
@@ -945,7 +952,7 @@ class Client:
         This method returns the specified manga's chapter feed.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID of the manga whose feed we are requesting.
         limit: Optional[:class:`int`]
@@ -991,12 +998,12 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """  # noqa: DOC502 # raised in method call
@@ -1045,12 +1052,12 @@ class Client:
         This method will return the read chapters of the passed manga if singular, or all manga if plural.
 
         Parameters
-        -----------
+        ----------
         manga_ids: List[:class:`str`]
             A list of a single manga UUID or a list of many manga UUIDs.
 
         Returns
-        --------
+        -------
         Union[:class:`~hondana.types_.manga.MangaReadMarkersResponse`, :class:`~hondana.types_.manga.MangaGroupedReadMarkersResponse`]
         """  # noqa: E501 # required for formatting
         if len(manga_ids) == 1:
@@ -1072,7 +1079,7 @@ class Client:
         This method will batch update your read chapters for a given Manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The Manga we are updating read chapters for.
         update_history: :class:`bool`
@@ -1084,7 +1091,7 @@ class Client:
             The unread chapters for this Manga.
 
         Raises
-        -------
+        ------
         TypeError
             You must provide one or both of the parameters `read_chapters` and/or `unread_chapters`.
         """
@@ -1112,7 +1119,7 @@ class Client:
         This method will return a random manga from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
             The optional includes for the manga payload.
             Defaults to all possible reference expansions.
@@ -1124,7 +1131,7 @@ class Client:
             The tags and search mode to use for exclusion.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The random Manga that was returned.
         """
@@ -1150,7 +1157,7 @@ class Client:
         This method will return an object containing all the followed manga from the currently logged-in user.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             The amount of items we are requesting.
         offset: :class:`int`
@@ -1163,7 +1170,7 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the followed manga list.
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaCollection`
             Returns a collection of manga.
         """
@@ -1195,12 +1202,12 @@ class Client:
         This method will return the current reading status of all manga in the logged-in user's library.
 
         Parameters
-        -----------
+        ----------
         status: Optional[:class:`~hondana.ReadingStatus`]
             The reading status to filter the response with.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.manga.MangaMultipleReadingStatusResponse`
             The payload returned from MangaDex.
         """
@@ -1213,19 +1220,19 @@ class Client:
         This method will return the current reading status for the specified manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to query.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authenticated to perform this action.
         NotFound
             The specified manga does not exist, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.manga.MangaSingleReadingStatusResponse`
             The raw response from the API on the request.
         """  # noqa: DOC502 # raised in method call
@@ -1238,7 +1245,7 @@ class Client:
         This method will update your current reading status for the specified manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to update.
         status: Optional[:class:`~hondana.ReadingStatus`]
@@ -1250,13 +1257,12 @@ class Client:
             Please provide a value if you do not wish for this to happen.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were invalid.
         NotFound
             The specified manga cannot be found, likely due to incorrect ID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.update_manga_reading_status(manga_id, status=status)
 
     async def get_manga_draft(self, manga_id: str, /) -> Manga:
@@ -1265,12 +1271,12 @@ class Client:
         This method will return a manga draft from MangaDex.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID relation to the manga draft.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
             The Manga returned from the API.
         """
@@ -1284,18 +1290,18 @@ class Client:
         This method will submit a draft for a manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID relating to the manga we are submitting to.
         version: :class:`int`
             The version of the manga we're attributing this submission to.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
 
         Raises
-        -------
+        ------
         BadRequest
             The request parameters were incorrect or malformed.
         Forbidden
@@ -1321,7 +1327,7 @@ class Client:
         This method will return all drafts for a given manga.
 
         Parameters
-        -----------
+        ----------
         limit: :class:`int`
             The limit of objects to return.
             Defaults to 10.
@@ -1336,7 +1342,7 @@ class Client:
             The optional includes to request in the responses.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Manga`
         """
         data = await self._http.get_manga_draft_list(
@@ -1360,7 +1366,7 @@ class Client:
         This method will return a list of all relations to a given manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID for the manga we wish to query against.
         includes: Optional[:class:`~hondana.query.MangaIncludes`]
@@ -1368,11 +1374,11 @@ class Client:
             Defaults to all possible expansions.
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaRelationCollection`
 
         Raises
-        -------
+        ------
         BadRequest
             The manga ID passed is malformed
         """  # noqa: DOC502 # raised in method call
@@ -1394,7 +1400,7 @@ class Client:
         This method will create a manga relation.
 
         Parameters
-        ------------
+        ----------
         manga_id: :class:`str`
             The manga ID we are creating a relation to.
         target_manga: :class:`str`
@@ -1403,11 +1409,11 @@ class Client:
             The relation type we are creating.
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaRelation`
 
         Raises
-        -------
+        ------
         BadRequest
             The parameters were malformed
         Forbidden
@@ -1423,7 +1429,7 @@ class Client:
         This method will delete a manga relation.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID of the source manga.
         relation_id: :class:`str`
@@ -1438,20 +1444,19 @@ class Client:
         This method will add the specified manga to the specified custom list.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to add to the custom list.
         custom_list_id: :class:`str`
             The UUID associated with the custom list you wish to add the manga to.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorised to add manga to this custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.add_manga_to_custom_list(custom_list_id, manga_id=manga_id)
 
     @require_authentication
@@ -1461,20 +1466,19 @@ class Client:
         This method will remove the specified manga from the specified custom list.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The UUID associated with the manga you wish to remove from the specified custom list.
         custom_list_id: :class:`str`
             THe UUID associated with the custom list you wish to add the manga to.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorised to remove a manga from the specified custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=manga_id)
 
     async def chapter_list(
@@ -1511,7 +1515,7 @@ class Client:
         This method will return a list of published chapters.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 100. This specifies the amount of chapters to return in one request.
         offset: :class:`int`
@@ -1573,14 +1577,14 @@ class Client:
             which could lead to unexpected results.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
         """  # noqa: DOC502 # raised in method call
@@ -1637,7 +1641,7 @@ class Client:
         This method will retrieve a single chapter from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         chapter_id: :class:`str`
             The UUID representing the chapter we are fetching.
         includes: Optional[:class:`~hondana.query.ChapterIncludes`]
@@ -1652,7 +1656,7 @@ class Client:
             ``fetch_full_manga`` when True will result in an extra API request to fetch the full manga data.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Chapter`
             The Chapter we fetched from the API.
         """
@@ -1688,7 +1692,7 @@ class Client:
         This method will update a chapter in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         chapter_id: :class:`str`
             The UUID representing the chapter we are going to update.
         title: Optional[:class:`str`]
@@ -1710,7 +1714,7 @@ class Client:
             pass ``None`` to them to send ``null`` to the API
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -1719,7 +1723,7 @@ class Client:
             One or more UUIDs given were not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Chapter`
             The chapter after being updated.
         """  # noqa: DOC502 # raised in method call
@@ -1742,12 +1746,12 @@ class Client:
         This method will delete a chapter from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         chapter_id: :class:`str`
             The UUID of the chapter you wish to delete.
 
         Raises
-        -------
+        ------
         BadRequest
             The query was malformed.
         Forbidden
@@ -1764,14 +1768,14 @@ class Client:
         This method will return the last 30 chapters of read history for the currently logged in user.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to access this endpoint.
         NotFound
             You do not have any read history.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterReadHistoryCollection`
             A rich type around the returned data.
         """  # noqa: DOC502 # raised in method call
@@ -1799,7 +1803,7 @@ class Client:
         This method will fetch a list of cover arts from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         limit: :class:`int`
             Defaults to 10. This specifies the amount of scanlator groups to return in one request.
         offset: :class:`int`
@@ -1818,14 +1822,14 @@ class Client:
             The optional includes to request increased payloads during the request.
 
         Raises
-        -------
+        ------
         BadRequest
             The request parameters were malformed.
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CoverCollection`
             Returns a collection of covers.
         """  # noqa: DOC502 # raised in method call
@@ -1868,7 +1872,7 @@ class Client:
         This method will upload a cover to the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID relating to the manga this cover belongs to.
         cover: :class:`bytes`
@@ -1881,14 +1885,14 @@ class Client:
             The locale of this cover.
 
         Raises
-        -------
+        ------
         BadRequest
             The volume parameter was malformed or the file was a bad format.
         Forbidden
             You are not permitted for this action.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Cover`
         """  # noqa: DOC502 # raised in method call
         data = await self._http.upload_cover(manga_id, cover=cover, volume=volume, description=description, locale=locale)
@@ -1901,7 +1905,7 @@ class Client:
         The method will fetch a Cover from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         cover_id: :class:`str`
             The id of the cover we are fetching from the API.
         includes: Optional[:class:`~hondana.query.CoverIncludes`]
@@ -1912,12 +1916,12 @@ class Client:
             If you do not include the ``"manga"`` includes, then we will not be able to get the cover url.
 
         Raises
-        -------
+        ------
         NotFound
             The passed cover ID was not found, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Cover`
             The Cover returned from the API.
         """  # noqa: DOC502 # raised in method call
@@ -1940,7 +1944,7 @@ class Client:
         This method will edit a cover on the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         cover_id: :class:`str`
             The UUID relating to the cover you wish to edit.
         volume: :class:`str`
@@ -1955,7 +1959,7 @@ class Client:
             The ``volume`` key is mandatory. You can pass ``None`` to null it in the API, but it must have a value.
 
         Raises
-        -------
+        ------
         TypeError
             The volume key was not given a value. This is required.
         BadRequest
@@ -1964,7 +1968,7 @@ class Client:
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Cover`
             The returned cover after the edit.
         """  # noqa: DOC502 # raised in method call
@@ -1979,12 +1983,12 @@ class Client:
         This method will delete a cover from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         cover_id: :class:`str`
             The UUID relating to the cover you wish to delete.
 
         Raises
-        -------
+        ------
         BadRequest
             The request payload was malformed.
         Forbidden
@@ -2008,7 +2012,7 @@ class Client:
         This method will return a list of scanlator groups from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of scanlator groups to return in one request.
         offset: :class:`int`
@@ -2029,14 +2033,14 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`ScanlatorGroupCollection`
             A returned collection of scanlation groups.
         """  # noqa: DOC502 # raised in method call
@@ -2077,7 +2081,7 @@ class Client:
         This method will return a list of Users from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of users to return in one request.
         offset: :class:`int`
@@ -2094,14 +2098,14 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         BadRequest
             The request parameters were malformed
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`UserCollection`
             A returned collection of users.
         """  # noqa: DOC502 # raised in method call
@@ -2124,12 +2128,12 @@ class Client:
         This method will fetch a user from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         user_id: :class:`str`
             The UUID of the user you wish to fetch
 
         Returns
-        --------
+        -------
         :class:`User`
             The user returned from the API.
         """
@@ -2144,18 +2148,17 @@ class Client:
         This method will initiate the deletion of a user from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         user_id: :class:`str`
             The UUID of the user you wish to delete.
 
         Raises
-        -------
+        ------
         Forbidden
             The response returned an error due to authentication failure.
         NotFound
             The user specified cannot be found.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.delete_user(user_id)
 
     async def approve_user_deletion(self, approval_code: str, /) -> None:
@@ -2164,11 +2167,10 @@ class Client:
         This method will approve a user deletion in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         approval_code: :class:`str`
             The UUID representing the approval code to delete the user.
         """
-
         await self._http.approve_user_deletion(approval_code)
 
     @require_authentication
@@ -2178,18 +2180,17 @@ class Client:
         This method will change the current authenticated user's password.
 
         Parameters
-        -----------
+        ----------
         old_password: :class:`str`
             The current (old) password we will be changing from.
         new_password: :class:`str`
             The new password we will be changing to.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to an authentication issue.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.update_user_password(old_password=old_password, new_password=new_password)
 
     @require_authentication
@@ -2199,16 +2200,15 @@ class Client:
         This method will update the current authenticated user's email.
 
         Parameters
-        -----------
+        ----------
         email: :class:`str`
             The new email address to change to.
 
         Raises
-        -------
+        ------
         Forbidden
             The API returned an error due to authentication failure.
         """  # noqa: DOC502 # raised in method call
-
         await self._http.update_user_email(email)
 
     @require_authentication
@@ -2218,12 +2218,12 @@ class Client:
         This method will return the current authenticated user's details.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.User`
             Your current user details returned from the API.
         """  # noqa: DOC502 # raised in method call
@@ -2238,19 +2238,19 @@ class Client:
         This method will return a list of scanlation groups the current authenticated user follows.
 
         Parameters
-        -----------
+        ----------
         limit: :class:`int`
             Defaults to 10. The amount of groups to return in one request.
         offset: :class:`int`
             Defaults to 0. The pagination offset.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         List[:class:`ScanlatorGroup`]
             The list of groups that are being followed.
         """  # noqa: DOC502 # raised in method call
@@ -2265,16 +2265,15 @@ class Client:
         This method will check if the current authenticated user is following a scanlation group.
 
         Parameters
-        -----------
+        ----------
         group_id: :class:`str`
             The UUID representing the scanlation group you wish to check.
 
         Returns
-        --------
+        -------
         :class:`bool`
             Whether the passed scanlation group is followed or not.
         """
-
         try:
             await self._http.is_group_followed(group_id)
         except errors.NotFound:
@@ -2283,6 +2282,19 @@ class Client:
 
     @require_authentication
     async def check_if_following_manga(self, manga_id: str, /) -> bool:
+        """|coro|
+
+        This method will check if the currently logged in user is following the supplied Manga.
+
+        Parameters
+        ----------
+        manga_id: :class:`str`
+            The manga to check if we're following.
+
+        Returns
+        -------
+        :class:`bool`
+        """
         try:
             await self._http.is_manga_followed(manga_id)
         except errors.NotFound:
@@ -2296,7 +2308,7 @@ class Client:
         This method will return the current authenticated user's followed users.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 10. The amount of users to return in one request.
         offset: :class:`int`
@@ -2307,12 +2319,12 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.UserCollection`
             A returned collection of users.
         """  # noqa: DOC502 # raised in method call
@@ -2336,21 +2348,20 @@ class Client:
         This method will check if the current authenticated user is following the specified user.
 
         Parameters
-        -----------
+        ----------
         user_id: :class:`str`
             The UUID relating to the user you wish to query against.
 
         Raises
-        -------
+        ------
         Forbidden
             The requested returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`bool`
             Whether the target user is followed or not.
         """  # noqa: DOC502 # raised in method call
-
         try:
             await self._http.is_user_followed(user_id)
         except errors.NotFound:
@@ -2365,7 +2376,7 @@ class Client:
         This method will return the current authenticated user's custom list follows.
 
         Returns
-        --------
+        -------
         list[:class:`CustomList`]
             The list of custom lists you follow.
         """
@@ -2380,7 +2391,7 @@ class Client:
         This method will check if the current authenticated user is following the specified custom list.
 
         Returns
-        --------
+        -------
         :class:`bool`
             Whether you follow this custom list or not.
         """
@@ -2397,7 +2408,7 @@ class Client:
         This method will create an account with the passed parameters within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         username: :class:`str`
             The username you wish to use in the new account.
         password: :class:`str`
@@ -2410,12 +2421,12 @@ class Client:
             The created account will still need to be activated.
 
         Raises
-        -------
+        ------
         BadRequest
             The parameters passed were malformed.
 
         Returns
-        --------
+        -------
         :class:`User`
             The created user.
         """  # noqa: DOC502 # raised in method call
@@ -2428,12 +2439,12 @@ class Client:
         This method will activate an account on the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         activation_code: :class:`str`
             The activation code for the account.
 
         Raises
-        -------
+        ------
         BadRequest
             The query was malformed.
         NotFound
@@ -2447,12 +2458,12 @@ class Client:
         This method will resend an activation code to the specified email.
 
         Parameters
-        -----------
+        ----------
         email: :class:`str`
             The email to resend the activation code to.
 
         Raises
-        -------
+        ------
         BadRequest
             The email passed is not pending activation.
         """  # noqa: DOC502 # raised in method call
@@ -2465,12 +2476,12 @@ class Client:
         Effectively triggering the "forgotten password" email to be sent.
 
         Parameters
-        -----------
+        ----------
         email: :class:`str`
             The email address belonging to the account you wish to recover.
 
         Raises
-        -------
+        ------
         BadRequest
             The email does not belong to a matching account.
         """  # noqa: DOC502 # raised in method call
@@ -2482,14 +2493,14 @@ class Client:
         This method will complete an account recovery process.
 
         Parameters
-        -----------
+        ----------
         recovery_code: :class:`str`
             The recovery code given during the recovery process.
         new_password: :class:`str`
             The new password to use for the recovered account.
 
         Raises
-        -------
+        ------
         BadRequest
             The recovery code given was not found or the password was greater than 1024 characters.
         """  # noqa: DOC502 # raised in method call
@@ -2502,7 +2513,7 @@ class Client:
         Mainly a small endpoint to check the API is alive and responding.
 
         Returns
-        --------
+        -------
         :class:`bool`
             Whether and 'pong' response was received.
         """
@@ -2521,19 +2532,19 @@ class Client:
         This method will return a small response from the API to retrieve a legacy MangaDex's new details.
 
         Parameters
-        -----------
+        ----------
         mapping_type: :class:`~hondana.types_.legacy.LegacyMappingType`
             The type of the object we are querying.
         item_ids: List[:class:`int`]
             The legacy integer IDs of MangaDex items.
 
         Raises
-        --------
+        ------
         BadRequest
             The query was malformed.
 
         Returns
-        ---------
+        -------
         :class:`LegacyMappingCollection`
             The list of returned items from this query.
         """  # noqa: DOC502 # raised in method call
@@ -2547,7 +2558,7 @@ class Client:
         This method will retrieve a MangaDex@Home URL for accessing a chapter.
 
         Parameters
-        -----------
+        ----------
         chapter_id: :class:`str`
             The UUID of the chapter we are retrieving a URL for.
         ssl: :class:`bool`
@@ -2555,12 +2566,12 @@ class Client:
             If ``False`` is selected, then the MD@H node we request may be available on a non-standard port.
 
         Raises
-        -------
+        ------
         NotFound
             The specified chapter ID was not found.
 
         Returns
-        --------
+        -------
         :class:`str`
             Returns the URL we requested.
         """  # noqa: DOC502 # raised in method call
@@ -2580,7 +2591,7 @@ class Client:
         This method will create a custom list within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: :class:`str`
             The name of this custom list.
         visibility: Optional[:class:`~hondana.CustomListVisibility`]
@@ -2589,14 +2600,14 @@ class Client:
             A list of manga IDs to add to this custom list.
 
         Raises
-        -------
+        ------
         BadRequest
             The payload was malformed.
         NotFound
             One of the passed Manga IDs was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CustomList`
             The custom list that was created.
         """  # noqa: DOC502 # raised in method call
@@ -2616,19 +2627,19 @@ class Client:
         This method will retrieve a custom list from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID associated with the custom list we wish to retrieve.
         includes: Optional[:class:`~hondana.query.CustomListIncludes`]
             The list of additional data to request in the payload.
 
         Raises
-        -------
+        ------
         NotFound
             The custom list with this ID was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CustomList`
             The retrieved custom list.
         """  # noqa: DOC502 # raised in method call
@@ -2652,7 +2663,7 @@ class Client:
         This method will update a custom list within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The custom list ID we wish to update.
         name: Optional[:class:`str`]
@@ -2670,7 +2681,7 @@ class Client:
             Passing the ``manga`` key here will overwrite the manga in this custom list.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -2679,7 +2690,7 @@ class Client:
             The custom list was not found, or one of the manga passed was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CustomList`
             The returned custom list after it was updated.
         """  # noqa: DOC502 # raised in method call
@@ -2700,12 +2711,12 @@ class Client:
         This method will delete a custom list from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID relating to the custom list we wish to delete.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this custom list.
         NotFound
@@ -2721,12 +2732,12 @@ class Client:
         This method will follow a custom list within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID relating to the custom list we wish to follow.
 
         Raises
-        -------
+        ------
         BadRequest
             The request was malformed.
         Forbidden
@@ -2746,12 +2757,12 @@ class Client:
         The method will unbookmark a custom list within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID relating to the custom list we wish to unbookmark.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to unbookmark this custom list.
         NotFound
@@ -2768,7 +2779,7 @@ class Client:
         This method will get the current authenticated user's custom list.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 10. The amount of custom lists to return in one request.
         offset: :class:`int`
@@ -2779,12 +2790,12 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """  # noqa: DOC502 # raised in method call
@@ -2815,7 +2826,7 @@ class Client:
         This method will retrieve another user's custom lists.
 
         Parameters
-        -----------
+        ----------
         user_id: :class:`str`
             The UUID of the user whose lists we wish to retrieve.
         limit: Optional[:class:`int`]
@@ -2828,12 +2839,12 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned an error due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
         """  # noqa: DOC502 # raised in method call
@@ -2879,7 +2890,7 @@ class Client:
         This method returns the specified manga's chapter feed.
 
         Parameters
-        -----------
+        ----------
         custom_list_id: :class:`str`
             The UUID of the custom list whose feed we are requesting.
         limit: Optional[:class:`int`]
@@ -2920,7 +2931,7 @@ class Client:
             Whether to show chapters that have an external URL attached to them.
 
         Raises
-        -------
+        ------
         BadRequest
             The query parameters were malformed.
         Unauthorized
@@ -2931,7 +2942,7 @@ class Client:
             The specified custom list was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterFeed`
             Returns a collections of chapters.
         """  # noqa: DOC502 # raised in method call
@@ -2989,7 +3000,7 @@ class Client:
         This method will create a scanlation group within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: :class:`str`
             The name of the scanlation group.
         website: Optional[:class:`str`]
@@ -3020,14 +3031,14 @@ class Client:
 
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
             You are not authorized to create scanlation groups.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API on creation.
         """  # noqa: DOC502 # raised in method call
@@ -3058,7 +3069,7 @@ class Client:
         This method will get a scanlation group from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to fetch.
         includes: Optional[:class:`~hondana.query.ScanlatorGroupIncludes`]
@@ -3066,14 +3077,14 @@ class Client:
             Defaults to all possible expansions
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to view this scanlation group.
         NotFound
             The scanlation group was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API.
         """  # noqa: DOC502 # raised in method call
@@ -3108,7 +3119,7 @@ class Client:
         This method will update a scanlation group within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group we are updating.
         name: Optional[:class:`str`]
@@ -3155,7 +3166,7 @@ class Client:
             or be a valid ``datetime.timedelta``.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed
         Forbidden
@@ -3164,7 +3175,7 @@ class Client:
             The passed scanlation group ID cannot be found.
 
         Returns
-        --------
+        -------
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
         """  # noqa: DOC502 # raised in method call
@@ -3197,12 +3208,12 @@ class Client:
         This method will delete a scanlation group.
 
         Parameters
-        -----------
+        ----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to delete.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this scanlation group.
         NotFound
@@ -3218,12 +3229,12 @@ class Client:
         This method will delete a scanlation group.
 
         Parameters
-        -----------
+        ----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to follow.
 
         Raises
-        -------
+        ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
         """  # noqa: DOC502 # raised in method call
@@ -3239,12 +3250,12 @@ class Client:
         This method will delete a scanlation group.
 
         Parameters
-        -----------
+        ----------
         scanlation_group_id: :class:`str`
             The UUID relating to the scanlation group you wish to unfollow.
 
         Raises
-        -------
+        ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
         """  # noqa: DOC502 # raised in method call
@@ -3267,7 +3278,7 @@ class Client:
         This method will fetch a list of authors from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             Defaults to 10. This specifies the amount of scanlator groups to return in one request.
         offset: :class:`int`
@@ -3287,14 +3298,14 @@ class Client:
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the author collection.
 
         Raises
-        -------
+        ------
         BadRequest
             The request payload was malformed.
         Forbidden
             The request failed due to authentication failure.
 
         Returns
-        --------
+        -------
         :class:`~hondana.AuthorCollection`
             A returned collection of authors.
         """  # noqa: DOC502 # raised in method call
@@ -3342,7 +3353,7 @@ class Client:
         This method will create an author within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: :class:`str`
             The name of the author we are creating.
         biography: Optional[:class:`~hondana.types_.common.LocalizedString`]
@@ -3371,14 +3382,14 @@ class Client:
             The website URL of the author.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
             You are not authorized to create authors.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Author`
             The author created within the API.
         """  # noqa: DOC502 # raised in method call
@@ -3409,7 +3420,7 @@ class Client:
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
 
         Parameters
-        -----------
+        ----------
         author_id: :class:`str`
             The ID of the author we are fetching.
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
@@ -3417,12 +3428,12 @@ class Client:
             Defaults to all possible expansions.
 
         Raises
-        -------
+        ------
         NotFound
             The passed author ID was not found, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Author`
             The Author returned from the API.
         """  # noqa: DOC502 # raised in method call
@@ -3440,7 +3451,7 @@ class Client:
             MangaDex does not differentiate types of Artist/Author. The endpoint is the same for both.
 
         Parameters
-        -----------
+        ----------
         artist_id: :class:`str`
             The ID of the author we are fetching.
         includes: Optional[:class:`~hondana.query.AuthorIncludes`]
@@ -3448,12 +3459,12 @@ class Client:
             Defaults to all possible expansions.
 
         Raises
-        -------
+        ------
         NotFound
             The passed artist ID was not found, likely due to an incorrect ID.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Artist`
             The Author returned from the API.
         """  # noqa: DOC502 # raised in method call
@@ -3487,7 +3498,7 @@ class Client:
         This method will update an author on the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         author_id: :class:`str`
             The UUID relating to the author we wish to update.
         name: Optional[:class:`str`]
@@ -3520,7 +3531,7 @@ class Client:
             The version revision of this author.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -3529,7 +3540,7 @@ class Client:
             The author UUID given was not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.Author`
             The updated author from the API.
         """  # noqa: DOC502 # raised in method call
@@ -3559,12 +3570,12 @@ class Client:
         This method will delete an author from the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         author_id: :class:`str`
             The UUID relating the author you wish to delete.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this author.
         NotFound
@@ -3585,6 +3596,43 @@ class Client:
         order: ReportListOrderQuery | None = None,
         includes: UserReportIncludes | None = None,
     ) -> UserReportCollection:
+        """|coro|
+
+        This method will get any reports submitted by the logged in user.
+
+        Parameters
+        ----------
+        limit:  :class:`int`
+            The amount of items to fetch per query. Defaults to ``10``.
+        offset: :class:`int`
+            The pagination offset to begin fetching from. Defaults to ``0``.
+        object_id: Optional[:class:`str`]
+            The id of the object to fetch reports for. Defaults to ``None``.
+        reason: Optional[:class:`hondana.ReportReason`]
+            The reason for the reports to filter by, if any.
+        category: Optional[:class:`hondana.ReportCategory`]
+            The category of the reports to filter by, if any.
+        status: Optional[:class:`hondana.ReportStatus`]
+            The status of the reports to filter by, if any.
+        order: Optional[:class:`hondana.ReportListOrderQuery`]
+            The order of the query, if any.
+        includes: Optional[:class:`hondana.UserReportIncludes`]
+            The data to include with each report, if any.
+            Defaults to all optional data.
+
+        Raises
+        ------
+        BadRequest
+            The query data was not in an acceptable format.
+        Forbidden
+            There is invalid or no login credentials supplied.
+        NotFound
+            The requested data cannot be found.
+
+        Returns
+        -------
+        :class:`hondana.UserReportCollection`
+        """  # noqa: DOC502 # raised by method call
         data = await self._http.get_reports_current_user(
             limit=limit,
             offset=offset,
@@ -3607,12 +3655,12 @@ class Client:
         This method will create a report for moderator review in the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         details: :class:`~hondana.ReportDetails`
             The details of the report.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -3629,19 +3677,19 @@ class Client:
         This method will return your personal manga ratings for the given manga.
 
         Parameters
-        -----------
+        ----------
         manga_ids: List[:class:`str`]
             The IDs of the manga you wish to fetch your ratings for.
 
         Raises
-        -------
+        ------
         Forbidden
             Failed response due to authentication failure.
         NotFound
             A given manga id was not found or does not exist.
 
         Returns
-        --------
+        -------
         List[:class:`~hondana.MangaRating`]
         """  # noqa: DOC502 # raised in method call
         data = await self._http.get_my_ratings(manga_ids)
@@ -3658,14 +3706,14 @@ class Client:
         This method **overwrites** your previous set rating, if any.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The manga you are setting the rating for.
         rating: :class:`int`
             The rating value, between 1 and 10.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned a response due to authentication failure.
         NotFound
@@ -3680,12 +3728,12 @@ class Client:
         This method will delete your set rating on the passed manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The manga you wish to delete the rating for.
 
         Raises
-        -------
+        ------
         Forbidden
             The request returned a response due to authentication failure.
         NotFound
@@ -3704,14 +3752,14 @@ class Client:
         This method will return the statistics for the passed manga, singular or plural.
 
         Parameters
-        -----------
+        ----------
         manga_id: Optional[:class:`str`]
             The manga id to fetch the statistics for.
         manga_ids: Optional[List[:class:`str`]]
             The list of manga IDs to fetch the statistics for.
 
         Returns
-        ---------
+        -------
         :class:`~hondana.MangaStatistics`
         """
         data = await self._http.get_manga_statistics(manga_id, manga_ids)
@@ -3726,7 +3774,7 @@ class Client:
         This method will abandon an existing upload session.
 
         Parameters
-        -----------
+        ----------
         session_id: :class:`str`
             The upload
         """
@@ -3755,8 +3803,7 @@ class Client:
 
 
         Examples
-        ---------
-
+        --------
         Using the async context manager: ::
 
             async with Client.upload_session(
@@ -3771,7 +3818,7 @@ class Client:
 
 
         Parameters
-        -----------
+        ----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
         chapter: :class:`str`
@@ -3809,9 +3856,9 @@ class Client:
             The ``external_url`` parameter requires an explicit permission on MangaDex to set.
 
         Returns
-        --------
+        -------
         :class:`~hondana.ChapterUpload`
-        """
+        """  # noqa: D205, D404
         return ChapterUpload(
             self._http,
             manga,
@@ -3850,7 +3897,7 @@ class Client:
         This method will perform the chapter upload for you, providing a list of images.
 
         Parameters
-        -----------
+        ----------
         manga: Union[:class:`~hondana.Manga`, :class:`str`]
             The manga we will be uploading a chapter for.
         chapter: :class:`str`
@@ -3886,7 +3933,7 @@ class Client:
             The list of images to upload as their Paths.
 
         Returns
-        --------
+        -------
         :class:`hondana.Chapter`
             The chapter we created.
 
@@ -3909,7 +3956,6 @@ class Client:
             I personally advise the `context manager <https://realpython.com/python-with-statement/>`_
             method as it allows more control over your upload session.
         """
-
         async with ChapterUpload(
             self._http,
             manga,
@@ -3936,11 +3982,10 @@ class Client:
         Currently, there is no formatting done on this key as the api has not documented it.
 
         Returns
-        --------
+        -------
         Dict[:class:`str`, :class:`Any`]
             The settings template.
         """
-
         return await self._http.get_latest_settings_template()
 
     @require_authentication
@@ -3950,23 +3995,22 @@ class Client:
         This method will return a specific setting template version.
 
         Parameters
-        -----------
+        ----------
         version: :class:`str`
             The UUID relating to the specified template.
 
         Raises
-        -------
+        ------
         Forbidden
             The request failed due to authentication issues.
         NotFound
             The specified template was not found.
 
         Returns
-        --------
+        -------
         Dict[:class:`str`, :class:`Any`]
             The returned settings template.
         """  # noqa: DOC502 # raised in method call
-
         return await self._http.get_specific_template_version(version)
 
     @require_authentication
@@ -3976,14 +4020,14 @@ class Client:
         This method will return the current logged-in user's settings.
 
         Raises
-        -------
+        ------
         Forbidden
             The request failed due to authentication issues.
         NotFound
             The logged-in user's settings were not found.
 
         Returns
-        --------
+        -------
         :class:`hondana.types_.settings.SettingsPayload`
             The user's settings.
         """  # noqa: DOC502 # raised in method call
@@ -3996,7 +4040,7 @@ class Client:
         This method will update or create user settings based on a formatted settings templates.
 
         Parameters
-        -----------
+        ----------
         payload: :class:`hondana.types_.settings.Settings`
             A payload representing the settings.
         updated_at: :class:`datetime.datetime`
@@ -4004,23 +4048,44 @@ class Client:
             Defaults to a UTC datetime for "now".
 
         Raises
-        -------
+        ------
         Forbidden
             The request failed due to authentication issues.
         NotFound
             The logged-in user's settings were not found.
 
         Returns
-        --------
+        -------
         :class:`~hondana.types_.settings.SettingsPayload`
             The returned (and created) payload.
         """  # noqa: DOC502 # raised in method call
-
         time = updated_at or datetime.datetime.now(datetime.UTC)
         return await self._http.upsert_user_settings(payload, updated_at=time)
 
     @require_authentication
     async def create_forum_thread(self, thread_type: ForumThreadType, resource_id: str) -> ForumThread:
+        """|coro|
+
+        This method will create a forum thread.
+
+        Parameters
+        ----------
+        thread_type: :class:`hondana.ForumThreadType`
+            Which type of thread to create.
+        resouces_id: :class:`str`
+            The id of the item we're creating the thread around, e.g. a Manga id.
+
+        Raises
+        ------
+        NotFound
+            The resource ID was not found.
+        BadRequest
+            Parameters were not in an acceptable format.
+
+        Returns
+        -------
+        :class:`hondana.ForumThread`
+        """  # noqa: DOC502 # raised in method call.
         data = await self._http.create_forum_thread(thread_type=thread_type, resource_id=resource_id)
 
         return ForumThread(self._http, data["data"])
@@ -4032,14 +4097,14 @@ class Client:
         This method will check if moderator approval will be required for uploading to a manga.
 
         Parameters
-        -----------
+        ----------
         manga_id: :class:`str`
             The ID of the manga we will be checking against.
         locale: :class:`hondana.types_.common.LanguageCode`
             The locale we will be uploading.
 
         Returns
-        --------
+        -------
         :class:`bool`
         """
         data = await self._http.check_approval_required(manga_id, locale)

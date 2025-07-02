@@ -31,7 +31,7 @@ __all__ = ("Settings", "SettingsPayload")
 
 class Settings(TypedDict):
     """
-    This object is currently not documented.
+    Currently not documented.
     """
 
 

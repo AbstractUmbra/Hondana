@@ -71,62 +71,23 @@ exclude = ["docs/"]
 
 [tool.ruff.lint]
 preview = true
-select = [
-    "A",
-    "ANN",
-    "ASYNC",
-    "B",
-    "BLE",
-    "C4",
-    "COM",
-    "DOC",
-    "DTZ",
-    "E",
-    "EM",
-    "ERA",
-    "F",
-    "FA",
-    "FBT",
-    "FURB",
-    "G",
-    "I",
-    "INP",
-    "ISC",
-    "NPY",
-    "PD",
-    "PERF",
-    "PGH",
-    "PIE",
-    "PLC",
-    "PLE",
-    "PLW",
-    "PTH",
-    "PYI",
-    "Q",
-    "Q003",
-    "RET",
-    "RSE",
-    "RUF",
-    "S",
-    "SIM",
-    "SLOT",
-    "T20",
-    "TC",
-    "TID",
-    "TRY",
-    "UP",
-    "YTT",
-]
+select = ["ALL"]
 ignore = [
     "ANN401",
+    "C901",    # we use non-nested ifs to handle request parameters
     "COM812",  # to use ruff formatter
+    "D105",    # not necessary here
+    "D400",
+    "D401",
     "F401",
     "F402",
     "F403",
     "F405",
+    "N818",    # I can name my exceptions whatever I want
     "PD011",   # this is not a numpy codebase
     "PERF203",
     "PLC0414", # pyright ruling for `as` imports needed
+    "PLR",     # I don't like these rules
     "Q000",
     "RUF001",
     "RUF009",
@@ -136,24 +97,36 @@ ignore = [
     "UP034",
     "UP038",
 ]
+
 unfixable = [
     "E501", # line length handled in other ways by ruff format
     "ERA",  # Don't delete commented out code
 ]
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = [
-    "S101",   # we use `assert` in tests
+    "D",      # tests dont get documented
+    "DOC",    # tests dont get documented
     "EM101",  # testing exceptions are okay I feel
     "INP001", # we don't import tests generally
+    "S101",   # we use `assert` in tests
+    "SLF001", # we use private attrs during tests
+]
+"hondana/enums.py" = [
+    "D101", # Enums are documented manually
 ]
 "hondana/types_/*" = [
+    "D101",   # not really documented
+    "D200",   # not really documented
+    "D205",   # not really documented
     "INP001", # we don't use the types namespace as a package
 ]
 "examples/*" = [
+    "CPY001", # not necessary
+    "D",      # no docs needed there
     "INP001", # this is the examples directory
-    "T201",   # we showcase examples using print
-    "S106",   # no secure values are used
     "RET504", # this is done for commenting purposes
+    "S106",   # no secure values are used
+    "T201",   # we showcase examples using print
 ]
 
 [tool.ruff.format]

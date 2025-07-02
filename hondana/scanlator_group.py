@@ -50,7 +50,7 @@ class ScanlatorGroup:
     A class representing a Scanlator Group from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID relating to this scanlator group.
     name: :class:`str`
@@ -151,7 +151,7 @@ class ScanlatorGroup:
         self._leader_relationship: UserResponse | None = RelationshipResolver["UserResponse"](
             relationships,
             "leader",
-        ).resolve(with_fallback=True)[0]
+        ).pop(with_fallback=True)
         self._member_relationships: list[UserResponse] = RelationshipResolver["UserResponse"](
             relationships,
             "member",
@@ -179,7 +179,7 @@ class ScanlatorGroup:
         """Returns the statistics object of the scanlator group if it was fetched and cached.
 
         Returns
-        --------
+        -------
         Optional[:class:`hondana.ScanlatorGroupStatistics`]
         """
         return self._stats
@@ -190,7 +190,7 @@ class ScanlatorGroup:
         Returns the time when the ScanlatorGroup was created.
 
         Returns
-        ---------
+        -------
         :class:`datetime.datetime`
         """
         return datetime.datetime.fromisoformat(self._created_at)
@@ -201,7 +201,7 @@ class ScanlatorGroup:
         Returns the time when the ScanlatorGroup was last updated.
 
         Returns
-        ---------
+        -------
         :class:`datetime.datetime`
         """
         return datetime.datetime.fromisoformat(self._updated_at)
@@ -211,7 +211,7 @@ class ScanlatorGroup:
         """The URL to this scanlator group.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the scanlator group.
         """
@@ -222,7 +222,7 @@ class ScanlatorGroup:
         """The publishing delay of this scanlation group.
 
         Returns
-        --------
+        -------
         Optional[:class:`datetime.timedelta`]
             The default timedelta offset at which this group releases their chapters, if any.
         """
@@ -236,7 +236,7 @@ class ScanlatorGroup:
         """The leader of this scanlation group, if any.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.User`]
             The leader of the scanlation group.
         """
@@ -264,7 +264,7 @@ class ScanlatorGroup:
         """The members of this scanlation group, if any.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.User`]]
             The members of the scanlation group.
         """
@@ -303,7 +303,7 @@ class ScanlatorGroup:
 
 
         Returns
-        --------
+        -------
         Optional[User]
             The leader of the ScanlatorGroup, if present.
         """
@@ -336,7 +336,7 @@ class ScanlatorGroup:
             This is due to having no relationship data.
 
         Returns
-        --------
+        -------
         Optional[List[User]]
             The list of members of the scanlation group.
         """
@@ -360,7 +360,7 @@ class ScanlatorGroup:
         This method will delete the current scanlation group.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this scanlation group.
         NotFound
@@ -376,7 +376,7 @@ class ScanlatorGroup:
         This method will follow the current scanlation group.
 
         Raises
-        -------
+        ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
         """  # noqa: DOC502 # raised in method call
@@ -392,7 +392,7 @@ class ScanlatorGroup:
         This method will unfollow the current scanlation group.
 
         Raises
-        -------
+        ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
         """  # noqa: DOC502 # raised in method call
@@ -426,7 +426,7 @@ class ScanlatorGroup:
         This method will update a scanlation group within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: Optional[:class:`str`]
             The name to update the group with.
         leader: Optional[:class:`str`]
@@ -471,7 +471,7 @@ class ScanlatorGroup:
             or be a valid ``datetime.timedelta``.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed
         Forbidden
@@ -480,7 +480,7 @@ class ScanlatorGroup:
             The passed scanlation group ID cannot be found.
 
         Returns
-        --------
+        -------
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
         """  # noqa: DOC502 # raised in method call
@@ -513,7 +513,7 @@ class ScanlatorGroup:
         This method will fetch statistics on the current chapter, and cache them as the :attr:`stats`
 
         Returns
-        --------
+        -------
         :class:`~hondana.MangaStatistics`
         """
         data = await self._http.get_chapter_statistics(self.id, None)
@@ -556,7 +556,7 @@ class ScanlatorGroupStatistics:
         Returns the comments helper object if the target object has the relevant data (has comments, basically).
 
         Returns
-        --------
+        -------
         Optional[:class:`hondana.ChapterComments`]
         """
         if self._comments:

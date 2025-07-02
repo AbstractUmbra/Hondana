@@ -97,7 +97,7 @@ class _Includes:
         """Generates a list of strings based on the kwargs.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -119,7 +119,7 @@ class _Includes:
         """A factory method that returns all possible reference expansions for this type.
 
         Returns
-        --------
+        -------
         An Includes type object with all flags set.
         """
         self = cls()
@@ -134,7 +134,7 @@ class _Includes:
         """A factory method that disables all possible reference expansions for this type.
 
         Returns
-        --------
+        -------
         An Includes type object with no flags set.
         """
         self = cls()
@@ -146,9 +146,10 @@ class _Includes:
 
 
 class MangaListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Manga lists.
+
     Parameters
-    -----------
+    ----------
     title: :class:`~hondana.query.Order`
         Title ordering.
     year: :class:`~hondana.query.Order`
@@ -188,9 +189,10 @@ class MangaListOrderQuery(_OrderQuery):
 
 
 class FeedOrderQuery(_OrderQuery):
-    """
+    """Query ordering for feeds.
+
     Parameters
-    -----------
+    ----------
     created_at: :class:`~hondana.query.Order`
         Ordering by creation date.
     updated_at: :class:`~hondana.query.Order`
@@ -226,9 +228,10 @@ class FeedOrderQuery(_OrderQuery):
 
 
 class MangaDraftListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Manga draft lists.
+
     Parameters
-    -----------
+    ----------
     title: :class:`~hondana.query.Order`
         Title ordering.
     year: :class:`~hondana.query.Order`
@@ -256,9 +259,10 @@ class MangaDraftListOrderQuery(_OrderQuery):
 
 
 class CoverArtListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Cover art lists.
+
     Parameters
-    -----------
+    ----------
     created_at: :class:`~hondana.query.Order`
         Ordering by creation date.
     updated_at: :class:`~hondana.query.Order`
@@ -282,9 +286,10 @@ class CoverArtListOrderQuery(_OrderQuery):
 
 
 class ScanlatorGroupListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Scanlator group lists.
+
     Parameters
-    -----------
+    ----------
     name: :class:`~hondana.query.Order`
         Name ordering.
     created_at: :class:`~hondana.query.Order`
@@ -316,9 +321,10 @@ class ScanlatorGroupListOrderQuery(_OrderQuery):
 
 
 class AuthorListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Author lists.
+
     Parameters
-    -----------
+    ----------
     name: :class:`~hondana.query.Order`
         Name ordering.
     """
@@ -332,9 +338,10 @@ class AuthorListOrderQuery(_OrderQuery):
 
 
 class UserListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for User lists.
+
     Parameters
-    -----------
+    ----------
     username: :class:`~hondana.query.Order`
         Username ordering.
     """
@@ -348,9 +355,10 @@ class UserListOrderQuery(_OrderQuery):
 
 
 class ReportListOrderQuery(_OrderQuery):
-    """
+    """Query ordering for Report lists.
+
     Parameters
-    -----------
+    ----------
     created_at: :class:`~hondana.query.Order`
         Ordering by creation date.
     """
@@ -368,7 +376,7 @@ class ArtistIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     """
@@ -382,7 +390,7 @@ class ArtistIncludes(_Includes):
         """Generates a list of strings based on the kwargs.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -394,7 +402,7 @@ class AuthorIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     """
@@ -408,7 +416,7 @@ class AuthorIncludes(_Includes):
         """Generates a list of strings based on the kwargs.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -420,7 +428,7 @@ class ChapterIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     user: :class:`bool`
@@ -444,7 +452,7 @@ class ChapterIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -456,7 +464,7 @@ class CoverIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     user: :class:`bool`
@@ -476,7 +484,7 @@ class CoverIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -488,7 +496,7 @@ class CustomListIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     manga: :class:`bool`
         Defaults to ``True``. Whether to include manga in the relationships.
     user: :class:`bool`
@@ -512,7 +520,7 @@ class CustomListIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The formatted query string.
         """
@@ -524,7 +532,7 @@ class MangaIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     author: :class:`bool`
         Defaults to ``True``. Whether to include author in the relationships.
     artist: :class:`bool`
@@ -554,7 +562,7 @@ class ScanlatorGroupIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     leader: :class:`bool`
         Defaults to ``True``. Whether to include leader in the relationships.
     member: :class:`bool`
@@ -574,7 +582,7 @@ class ScanlatorGroupIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -586,7 +594,7 @@ class UserReportIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     user: :class:`bool`
         Defaults to ``True``. Whether to include user in the relationships.
     reason: :class:`bool`
@@ -606,7 +614,7 @@ class UserReportIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """
@@ -618,7 +626,7 @@ class SubscriptionIncludes(_Includes):
     A helper for generating the ``includes[]`` parameter for queries.
 
     Parameters
-    -----------
+    ----------
     user: :class:`bool`
         Defaults to ``True``. Whether to include user in the relationships.
     """
@@ -632,7 +640,7 @@ class SubscriptionIncludes(_Includes):
         """Returns a list of valid query strings.
 
         Returns
-        --------
+        -------
         List[:class:`str`]
             The list of query parameters (pre-PHP formatting).
         """

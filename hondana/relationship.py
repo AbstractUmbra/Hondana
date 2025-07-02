@@ -44,7 +44,7 @@ class Relationship:
         Each "object" retrieved here will be a partial variant.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The ID relating to this relationship.
     type: :class:`str`

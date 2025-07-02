@@ -137,7 +137,7 @@ TAGS: dict[str, str] = MANGA_TAGS
 ALLOWED_IMAGE_FORMATS: set[str] = {"image/png", "image/gif", "image/jpeg", "image/jpg", "image/webp"}
 
 
-__all__ = ("HTTPClient",)
+__all__ = []
 
 
 class Token:
@@ -263,7 +263,7 @@ class MaybeUnlock:
             self.lock.release()
 
 
-class HTTPClient:
+class HTTPClient:  # not part of the public API
     __slots__ = (
         "_auth_token",
         "_authenticated",
@@ -317,7 +317,7 @@ class HTTPClient:
         Creates an :class:`aiohttp.ClientSession` for use in the http client.
 
         Returns
-        --------
+        -------
         :class:`aiohttp.ClientSession`
             The underlying client session we use.
 
@@ -332,7 +332,6 @@ class HTTPClient:
 
         This method will close the internal client session to ensure a clean exit.
         """
-
         if self._session is not None:
             await self._session.close()
 
@@ -402,13 +401,13 @@ class HTTPClient:
         This performs the HTTP request, handling authentication tokens when doing it.
 
         Parameters
-        -----------
+        ----------
         route: Union[:class:`Route`, :class:`AuthRoute`]
             The route describes the http verb and endpoint to hit.
             The request is the one that takes in the query params or request body.
 
         Raises
-        -------
+        ------
         BadRequest
             A request was malformed
         Unauthorized
@@ -423,7 +422,7 @@ class HTTPClient:
             A generic exception raised when the HTTP response code is non 2xx.
 
         Returns
-        --------
+        -------
         Any
             The potential response data we got from the request.
         """  # noqa: DOC501 # unreachable error
@@ -528,7 +527,7 @@ class HTTPClient:
                             raise Forbidden(response, errors=data["errors"])
                         if response.status == 404:
                             raise NotFound(response, errors=data["errors"])
-                        LOGGER.exception("Unhandled HTTP error occurred: %s -> %s", response.status, data)
+                        LOGGER.error("Unhandled HTTP error occurred: %s -> %s", response.status, data)
                         raise APIException(
                             response,
                             status_code=response.status,

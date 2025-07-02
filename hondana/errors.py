@@ -50,7 +50,7 @@ class Error:
     Common Error type class representing an error returned from MangaDex.
 
     Attributes
-    -----------
+    ----------
     error_id: :class:`str`
         The UUID representing this error.
     error_status: :class:`int`
@@ -105,6 +105,12 @@ class RefreshTokenFailure(Exception):
 
     @property
     def status(self) -> int:
+        """The HTTP response code from the error we received.
+
+        Returns
+        -------
+        :class:`int`
+        """
         return self.response.status
 
 
@@ -112,7 +118,7 @@ class UploadInProgress(Exception):
     """An exception to be raised when an upload in progress is already found for the logged-in user.
 
     Attributes
-    -----------
+    ----------
     message: class:`str`
         The message returned with this error.
     session_id: :class:`str`
@@ -137,7 +143,7 @@ class MangaDexServerError(Exception):
     """Generic exception type for when MangaDex is down.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: :class:`int`
@@ -159,7 +165,7 @@ class APIException(Exception):
     """Generic API error when the response code is a non 2xx error.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: :class:`int`
@@ -207,7 +213,7 @@ class BadRequest(APIException):
     """An error for when the API query was malformed.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: Literal[``400``]
@@ -228,7 +234,7 @@ class PreviousAPIVersionRequest(BadRequest):
     An error for when the API query matches the criteria of an older API version.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: Literal[``400``]
@@ -254,7 +260,7 @@ class Unauthorized(APIException):
     """An error for when you are unauthorized on this API endpoint.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: Literal[``401``]
@@ -274,7 +280,7 @@ class Forbidden(APIException):
     """An error for when your authorization was rejected.
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: Literal[``403``]
@@ -294,7 +300,7 @@ class NotFound(APIException):
     """An error for when the requested API item was not found."
 
     Attributes
-    -----------
+    ----------
     response: :class:`aiohttp.ClientResponse`
         The response object pertaining to this request.
     status_code: Literal[``404``]

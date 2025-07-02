@@ -48,7 +48,7 @@ class Tag:
     """A class representing a single Tag from MangaDex.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID associated with this tag.
     group: :class:`str`
@@ -108,7 +108,7 @@ class Tag:
         """The name of the tag.
 
         Returns
-        --------
+        -------
         :class:`str`
         """
         name = self._name.get("en")
@@ -122,7 +122,7 @@ class Tag:
         """The description of the tag, if any.
 
         Returns
-        --------
+        -------
         Optional[:class:`str`]
         """
         if not self._description:
@@ -137,10 +137,11 @@ class Tag:
     @property
     def url(self) -> str:
         """The URL to this tag.
+
         Allows browsing all manga attributed to this tag
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the tag.
         """
@@ -151,7 +152,7 @@ class Tag:
         """The relationships of this Tag.
 
         Returns
-        --------
+        -------
         List[:class:`~hondana.Relationship`]
             The list of relationships this tag has.
         """
@@ -162,14 +163,14 @@ class QueryTags:
     """Utility class for creating a Tag based query.
 
     Attributes
-    -----------
+    ----------
     tags: List[:class:`str`]
         The tag names you are going to query.
     mode: Literal[``"AND"``, ``"OR"``]
         The logical operation for the tags.
 
     Raises
-    -------
+    ------
     TypeError
         The mode specified for the builder is not one of "AND" or "OR"
     ValueError

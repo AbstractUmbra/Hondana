@@ -47,7 +47,7 @@ class CustomList:
     """A class representing a CustomList returned from the MangaDex API.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID relating to this custom list.
     name: :class:`str`
@@ -86,9 +86,9 @@ class CustomList:
         self.visibility: CustomListVisibility = CustomListVisibility(self._attributes["visibility"])
         self.pinned: bool = self._attributes.get("pinned", False)
         self.version: int = self._attributes["version"]
-        self._owner_relationship: UserResponse | None = RelationshipResolver["UserResponse"](relationships, "user").resolve(
+        self._owner_relationship: UserResponse | None = RelationshipResolver["UserResponse"](relationships, "user").pop(
             with_fallback=True,
-        )[0]
+        )
         self._manga_relationships: list[MangaResponse] = RelationshipResolver["MangaResponse"](
             relationships,
             "manga",
@@ -116,7 +116,7 @@ class CustomList:
         """The URL to this custom list.
 
         Returns
-        --------
+        -------
         :class:`str`
             The URL of the custom list.
         """
@@ -127,7 +127,7 @@ class CustomList:
         """Returns the owner of this custom list.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.User`]
             The owner of this list, if any.
         """
@@ -152,11 +152,10 @@ class CustomList:
         """Returns the of manga present in this custom list, if any.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
             The list of manga present, if any.
         """
-
         if self.__manga is not None:
             return self.__manga
 
@@ -178,7 +177,7 @@ class CustomList:
         This method will make an API request to get the owner of a Custom List.
 
         Returns
-        --------
+        -------
         Optional[:class:`~hondana.User`]
             The owner of this list, if any.
         """
@@ -198,14 +197,14 @@ class CustomList:
         This method will attempt to fetch the manga that are members of this custom list.
 
         Parameters
-        -----------
+        ----------
         limit: Optional[:class:`int`]
             The amount of manga to fetch per request, defaults to ``100``.
         offset: :class:`int`
             The pagination offset to begin at. Defaults to ``0``.
 
         Returns
-        --------
+        -------
         Optional[List[:class:`~hondana.Manga`]]
         """
         if self.manga is not None:
@@ -261,7 +260,7 @@ class CustomList:
         This method will update the current custom list within the MangaDex API.
 
         Parameters
-        -----------
+        ----------
         name: Optional[:class:`str`]
             The name we wish to edit the custom list with.
         visibility: Optional[:class:`~hondana.CustomListVisibility`]
@@ -277,7 +276,7 @@ class CustomList:
             Passing the ``manga`` key here will overwrite the manga in this custom list.
 
         Raises
-        -------
+        ------
         BadRequest
             The request body was malformed.
         Forbidden
@@ -286,7 +285,7 @@ class CustomList:
             The custom list was not found, or one of the manga passed was not found.
 
         Returns
-        --------
+        -------
         :class:`CustomList`
             The returned custom list after it was updated.
         """  # noqa: DOC502 # raised in method call
@@ -301,7 +300,7 @@ class CustomList:
         This method will delete the current custom list from the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to delete this custom list.
         NotFound
@@ -316,7 +315,7 @@ class CustomList:
         The method will follow a custom list within the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to follow this custom list.
         NotFound
@@ -331,7 +330,7 @@ class CustomList:
         The method will unfollow a custom list within the MangaDex API.
 
         Raises
-        -------
+        ------
         Forbidden
             You are not authorized to unfollow this custom list.
         NotFound

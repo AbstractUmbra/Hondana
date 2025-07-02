@@ -38,7 +38,7 @@ class LegacyItem:
     """A generic class representing a legacy ID mapping from the previous MangaDex API to the new.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The legacy mapping UUID (NOT the new item UUID).
     obj_new_id: :class:`str`

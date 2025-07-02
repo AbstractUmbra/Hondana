@@ -55,7 +55,7 @@ class ReportDetails:
     """A helper object for creating reports to send to MangaDex.
 
     Parameters
-    -----------
+    ----------
     category: :class:`~hondana.ReportCategory`
         The type of object we are reporting on.
     reason: Union[:class:`~hondana.AuthorReportReason`, :class:`~hondana.ChapterReportReason`, :class:`~hondana.ScanlationGroupReportReason`, :class:`~hondana.MangaReportReason`, :class:`~hondana.UserReportReason`]
@@ -148,9 +148,10 @@ class ReportDetails:
 
 
 class Report:
-    """
+    """An object reprsenting a report.
+
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         The UUID of this report.
     reason: :class:`str`
@@ -205,7 +206,7 @@ class UserReport:
     A user generated report on MangaDex.
 
     Attributes
-    -----------
+    ----------
     id: :class:`str`
         This report's ID.
     details: :class:`str`
@@ -251,7 +252,7 @@ class UserReport:
         """Returns the date this report was created in UTC.
 
         Returns
-        --------
+        -------
         :class:`datetime.datetime`
             The date this report was created.
         """
