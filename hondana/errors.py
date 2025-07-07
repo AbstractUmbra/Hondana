@@ -40,6 +40,7 @@ __all__ = (
     "NotFound",
     "PreviousAPIVersionRequest",
     "RefreshTokenFailure",
+    "TermsOfServiceNotAccepted",
     "Unauthorized",
     "UploadInProgress",
 )
@@ -314,3 +315,7 @@ class NotFound(APIException):
 
     def __init__(self, response: aiohttp.ClientResponse, /, *, errors: list[ErrorType]) -> None:
         super().__init__(response, status_code=404, errors=errors)
+
+
+class TermsOfServiceNotAccepted(Exception):
+    """An error for when the ToS is not accepted prior to a chapter upload."""

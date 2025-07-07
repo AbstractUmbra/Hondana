@@ -32,6 +32,8 @@ async def main() -> None:
             title=title,
             translated_language=translated_language,
             scanlator_groups=scanlator_groups,
+            # we need to accept the terms of service to upload a chapter.
+            accept_tos=True,
         ) as upload_session:
             # let's open up some files and use their paths...
             files = [*pathlib.Path("./to_upload").iterdir()]
@@ -74,6 +76,7 @@ async def alternative_main() -> None:
             title=title,
             translated_language=translated_language,
             scanlator_groups=scanlator_groups,
+            accept_tos=True,
         )
 
         # I recommend the context manager method, since the session checking and committing are done for you.
@@ -115,6 +118,7 @@ async def other_alternative_main() -> None:
             translated_language=translated_language,
             images=files,
             scanlator_groups=scanlator_groups,
+            accept_tos=True,
         )
 
 
