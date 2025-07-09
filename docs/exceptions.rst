@@ -30,3 +30,23 @@ Unauthorized
 Forbidden
 ---------
 .. autoexception:: Forbidden()
+
+MangaDexServerError
+-------------------
+.. autoexception:: MangaDexServerError()
+
+PreviousAPIVersionRequest
+-------------------------
+.. autoexception:: PreviousAPIVersionRequest()
+
+RefreshTokenFailure
+-------------------
+.. autoexception:: RefreshTokenFailure()
+
+TermsOfServiceNotAccepted
+-------------------------
+.. autoexception:: TermsOfServiceNotAccepted()
+
+UploadInProgress
+----------------
+.. autoexception:: UploadInProgress()

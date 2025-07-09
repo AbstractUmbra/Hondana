@@ -3796,6 +3796,7 @@ class Client:
         publish_at: datetime.datetime | None = None,
         existing_upload_session_id: str | None = None,
         version: int | None = None,
+        accept_tos: bool,
     ) -> ChapterUpload:
         """
         This method will return an async `context manager <https://realpython.com/python-with-statement/>`_
@@ -3812,7 +3813,8 @@ class Client:
                 volume=volume,
                 title=title,
                 translated_language=translated_language,
-                scanlator_groups=scanlator_groups
+                scanlator_groups=scanlator_groups,
+                accept_tos=True,
             ) as session:
                 await session.upload_images(your_list_of_bytes)
 
@@ -3850,6 +3852,8 @@ class Client:
         version: Optional[:class:`int`]
             The new version of the chapter you are editing.
             Only necessary if ``chapter_to_edit`` is not ``None``.
+        accept_tos: :class:`bool`
+            Whether you accept the `MangaDex Terms of Service <https://mangadex.org/compliance>`_ by uploading this chapter.
 
 
         .. note::
@@ -3872,6 +3876,7 @@ class Client:
             publish_at=publish_at,
             existing_upload_session_id=existing_upload_session_id,
             version=version,
+            accept_tos=accept_tos,
         )
 
     @require_authentication
@@ -3890,6 +3895,7 @@ class Client:
         publish_at: datetime.datetime | None = None,
         existing_upload_session_id: str | None = None,
         version: int | None = None,
+        accept_tos: bool,
         images: list[pathlib.Path],
     ) -> Chapter:
         """|coro|
@@ -3929,6 +3935,8 @@ class Client:
         version: Optional[:class:`int`]
             The new version of the chapter you are editing.
             Only necessary if ``chapter_to_edit`` is not ``None``.
+        accept_tos: :class:`bool`
+            Whether you accept the `MangaDex Terms of Service <https://mangadex.org/compliance>`_ by uploading this chapter.
         images: List[:class:`pathlib.Path`]
             The list of images to upload as their Paths.
 
@@ -3968,6 +3976,7 @@ class Client:
             scanlator_groups=scanlator_groups,
             external_url=external_url,
             existing_upload_session_id=existing_upload_session_id,
+            accept_tos=accept_tos,
             version=version,
         ) as session:
             await session.upload_images(images)

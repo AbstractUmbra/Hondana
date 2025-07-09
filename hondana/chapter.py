@@ -33,7 +33,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 import aiohttp
 
-from .errors import NotFound, UploadInProgress
+from .errors import NotFound, TermsOfServiceNotAccepted, UploadInProgress
 from .forums import ChapterComments
 from .manga import Manga
 from .query import ChapterIncludes, MangaIncludes, ScanlatorGroupIncludes
@@ -845,6 +845,8 @@ class ChapterUpload:
     version: Optional[:class:`int`]
         The version you are updating a chapter to.
         Parameter is ignored if ``chapter_to_edit`` is ``None``.
+    accept_tos: :class:`bool`
+        Whether you accept the `MangaDex Terms of Service <https://mangadex.org/compliance>`_ by uploading this chapter.
 
     Raises
     ------
@@ -858,6 +860,7 @@ class ChapterUpload:
         "__committed",
         "_http",
         "_uploaded_filenames",
+        "accepted_tos",
         "chapter",
         "chapter_to_edit",
         "external_url",
@@ -889,6 +892,7 @@ class ChapterUpload:
         publish_at: datetime.datetime | None = None,
         existing_upload_session_id: str | None = None,
         version: int | None = None,
+        accept_tos: bool,
     ) -> None:
         if len(scanlator_groups) > 10:
             msg = "You can only attribute up to 10 scanlator groups per upload."
@@ -912,6 +916,7 @@ class ChapterUpload:
         self.upload_errors: list[ErrorType] = []
         self.upload_session_id: str | None = existing_upload_session_id
         self.version: int | None = version
+        self.accepted_tos: bool = accept_tos
         self._uploaded_filenames: set[str] = set()
         self.__committed: bool = False
 
@@ -1091,6 +1096,11 @@ class ChapterUpload:
 
         This method will commit the pending upload session and return the valid chapter.
 
+        Raises
+        ------
+        TermsOfServiceNotAccepted
+            If the Terms of Service were not accepted prior to committing the chapter upload.
+
         Returns
         -------
         :class:`~hondana.Chapter`
@@ -1107,6 +1117,10 @@ class ChapterUpload:
 
         if self.publish_at:
             payload["chapterDraft"]["publishAt"] = clean_isoformat(self.publish_at)
+
+        if not self.accepted_tos:
+            raise TermsOfServiceNotAccepted
+        payload["termsAccepted"] = True
 
         route = Route("POST", "/upload/{session_id}/commit", session_id=self.upload_session_id, authenticate=True)
         data: GetSingleChapterResponse = await self._http.request(route, json=payload)
