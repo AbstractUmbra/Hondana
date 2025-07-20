@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "chapter.json"
 
-PAYLOAD: GetSingleChapterResponse = json.load(PATH.open())
+PAYLOAD: GetSingleChapterResponse = json.load(PATH.open(encoding="utf-8"))
 HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 

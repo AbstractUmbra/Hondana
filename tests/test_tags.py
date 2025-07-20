@@ -43,7 +43,7 @@ if TYPE_CHECKING:
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga.json"
 
-PAYLOAD: GetMangaResponse = json.load(PATH.open())
+PAYLOAD: GetMangaResponse = json.load(PATH.open(encoding="utf-8"))
 HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 

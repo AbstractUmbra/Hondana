@@ -686,7 +686,7 @@ def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
 
 
 _tags_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"
-with _tags_path.open("r") as _tags_fp:
+with _tags_path.open("r", encoding="utf-8") as _tags_fp:
     MANGA_TAGS: dict[str, str] = _from_json(_tags_fp.read())
 
 

@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 
 PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "collections" / "legacy_mapping.json"
 
-PAYLOAD: GetLegacyMappingResponse = json.load(PATH.open())
+PAYLOAD: GetLegacyMappingResponse = json.load(PATH.open(encoding="utf-8"))
 HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 

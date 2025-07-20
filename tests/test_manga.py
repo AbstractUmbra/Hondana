@@ -49,10 +49,10 @@ RELATIONS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "man
 STATISTICS_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_statistics.json"
 RATING_PATH: pathlib.Path = pathlib.Path(__file__).parent / "payloads" / "manga_ratings.json"
 
-PAYLOAD: GetMangaResponse = json.load(PATH.open())
-RELATIONS_PAYLOAD: MangaRelationResponse = json.load(RELATIONS_PATH.open())
-STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(STATISTICS_PATH.open())
-RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(RATING_PATH.open())
+PAYLOAD: GetMangaResponse = json.load(PATH.open(encoding="utf-8"))
+RELATIONS_PAYLOAD: MangaRelationResponse = json.load(RELATIONS_PATH.open(encoding="utf-8"))
+STATISTICS_PAYLOAD: GetMangaStatisticsResponse = json.load(STATISTICS_PATH.open(encoding="utf-8"))
+RATING_PAYLOAD: GetPersonalMangaRatingsResponse = json.load(RATING_PATH.open(encoding="utf-8"))
 HTTP: HTTPClient = object()  # pyright: ignore[reportAssignmentType] # this is just for test purposes.
 
 
