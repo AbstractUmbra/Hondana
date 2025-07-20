@@ -1,5 +1,5 @@
 [project]
-name = "Hondana"
+name = "hondana"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
 dependencies = ["aiohttp<4.0,>=3.9"]
@@ -47,9 +47,8 @@ allow-direct-references = true
 path = "hondana/__init__.py"
 
 [tool.hatch.build]
-dev-mode-dirs = ["hondana", "."]
+dev-mode-dirs = ["."]
 ignore-vcs = true
-sources = ["hondana"]
 
 [tool.hatch.build.targets.sdist]
 exclude = ["docs", ".github"]
@@ -57,7 +56,7 @@ include = ["hondana/*", "tests/*", "LICENSE"]
 skip-excluded-dirs = false
 
 [tool.hatch.build.targets.wheel]
-packages = ["hondana"]
+packages = ["./hondana"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "strict"
