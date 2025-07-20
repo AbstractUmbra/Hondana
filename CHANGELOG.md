@@ -1,4 +1,4 @@
-3.7.2
+3.7.3
 
 API Version 5.12.0
 
@@ -6,13 +6,11 @@ API Version 5.12.0
 Hondana fix release, see below for finer details.
 
 ## Added
-- Added `accept_tos=` to `ChapterUpload`, `Client.upload_session` and `Client.upload_chapter` as a mandatory parameter. (01445d23a8777cdf31e89990d50d29a32687a4ea)
-  - Added to all relevant examples.
-  - Added necessary documentation.
 
 ## Changes
 
 ## Fixes
+- Fixed an issue where built and published wheels actually didn't contain source code. (6028e67222a7d15b502f1ed8bda2455671f8c9f4)
 
 ### Notes
 - The Terms of Service you are requested to accept for chapter uploading can be found [here](https://mangadex.org/compliance).
