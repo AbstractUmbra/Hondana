@@ -2812,7 +2812,6 @@ class Client:
 
         return CustomListCollection(self._http, data, lists)
 
-    @require_authentication
     async def get_users_custom_lists(
         self,
         user_id: str,
@@ -2838,16 +2837,11 @@ class Client:
         .. note::
             Passing ``None`` to ``limit`` will attempt to retrieve all items in the chapter feed.
 
-        Raises
-        ------
-        Forbidden
-            The request returned an error due to authentication failure.
-
         Returns
         -------
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         lists: list[CustomList] = []
