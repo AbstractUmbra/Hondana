@@ -28,7 +28,7 @@ repository = "https://github.com/AbstractUmbra/hondana"
 speed = ["orjson", "aiohttp[speedups]"]
 
 [dependency-groups]
-dev = ["ruff", "typing-extensions", "pre-commit"]
+dev = ["ruff==0.13.2", "typing-extensions", "pre-commit"]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
 tests = ["pytest", "pytest-asyncio"]
 
@@ -73,28 +73,28 @@ preview = true
 select = ["ALL"]
 ignore = [
     "ANN401",
-    "C901",    # we use non-nested ifs to handle request parameters
-    "COM812",  # to use ruff formatter
-    "D105",    # not necessary here
+    "ASYNC240", # we use pathlib.Path due to not depending on trio/anyio
+    "C901",     # we use non-nested ifs to handle request parameters
+    "COM812",   # to use ruff formatter
+    "D105",     # not necessary here
     "D400",
     "D401",
     "F401",
     "F402",
     "F403",
     "F405",
-    "N818",    # I can name my exceptions whatever I want
-    "PD011",   # this is not a numpy codebase
+    "N818",     # I can name my exceptions whatever I want
+    "PD011",    # this is not a numpy codebase
     "PERF203",
-    "PLC0414", # pyright ruling for `as` imports needed
-    "PLR",     # I don't like these rules
+    "PLC0414",  # pyright ruling for `as` imports needed
+    "PLR",      # I don't like these rules
     "Q000",
     "RUF001",
     "RUF009",
     "SIM105",
-    "TRY003",  # over-eager rule
-    "TRY301",  # unrealistic rule
+    "TRY003",   # over-eager rule
+    "TRY301",   # unrealistic rule
     "UP034",
-    "UP038",
 ]
 
 unfixable = [

@@ -450,7 +450,7 @@ class HTTPClient:  # not part of the public API
         if json:
             headers["Content-Type"] = "application/json"
             kwargs["data"] = to_json(json)
-            LOGGER.debug("Current json body is: %s", str(kwargs["data"]))
+            LOGGER.debug("Current json body is: %s", kwargs["data"])
 
         if params:
             resolved_params = php_query_builder(params)
