@@ -2812,7 +2812,6 @@ class Client:
 
         return CustomListCollection(self._http, data, lists)
 
-    @require_authentication
     async def get_users_custom_lists(
         self,
         user_id: str,
