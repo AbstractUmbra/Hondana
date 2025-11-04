@@ -70,7 +70,6 @@ extensions: list[str] = [
     "sphinx.ext.viewcode",
     "sphinxcontrib_trio",
     "resource_links",
-    "prettyversion",
     "details",
     "exception_hierarchy",
     "attributetable",
