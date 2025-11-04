@@ -22,13 +22,13 @@ dynamic = ["version"]
 [project.urls]
 "Issue Tracker" = "https://github.com/AbstractUmbra/hondana/issues"
 Discord = "https://discord.gg/aYGYJxwqe5"
-repository = "https://github.com/AbstractUmbra/hondana"
+Repository = "https://github.com/AbstractUmbra/hondana"
 
 [project.optional-dependencies]
 speed = ["orjson", "aiohttp[speedups]"]
 
 [dependency-groups]
-dev = ["ruff==0.13.2", "typing-extensions", "pre-commit"]
+dev = ["ruff", "typing-extensions", "pre-commit"]
 docs = ["sphinx", "sphinxcontrib-trio", "furo"]
 tests = ["pytest", "pytest-asyncio"]
 
