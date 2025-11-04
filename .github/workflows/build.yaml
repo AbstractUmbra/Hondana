@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
           python-version: '3.13'
@@ -93,7 +93,7 @@ jobs:
           gh release create "$tag_name" -F "CHANGELOG.md" "${assets[@]}"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: '3.13'
           activate-environment: true
