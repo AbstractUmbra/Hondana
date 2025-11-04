@@ -1,8 +1,8 @@
-# type: ignore[reportUnusedFunction] # preflight use
+# type: ignore[reportUnusedFunction] # preflight use  # noqa: CPY001
 """
 This file is inteded for manual CI/Integration usage only.
 It is NOT part of the Hondana API or for public use. No support will be provided for this file. Use at your own risk.
-"""
+"""  # noqa: D205, D404
 
 import argparse
 import asyncio
@@ -24,9 +24,9 @@ class ProgramNamespace(argparse.Namespace):
         """This quick cheat only works if the `dest` of the params matches the annotations.
 
         Returns
-        --------
+        -------
         :class:`bool`
-        """
+        """  # noqa: D404
         c = all if _all else any
         return c(getattr(self, anno) for anno in self.__annotations__)
 
@@ -58,7 +58,7 @@ async def __update_report_reasons(client: hondana.Client, /) -> int:
 
 
 async def main(args: ProgramNamespace) -> None:
-    if not args._parsed():
+    if not args._parsed():  # noqa: SLF001
         msg = "At least one argument must be specified."
         raise RuntimeError(msg)
 
