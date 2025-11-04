@@ -2921,7 +2921,7 @@ class Client:
             Whether to show chapters with no pages available.
         include_future_publish_at: Optional[:class:`bool`]
             Whether to show chapters with a publishAt value set in the future.
-        includeExternalUrl: Optional[:class:`bool`]
+        include_external_url: Optional[:class:`bool`]
             Whether to show chapters that have an external URL attached to them.
 
         Raises
@@ -4075,7 +4075,7 @@ class Client:
         ----------
         thread_type: :class:`hondana.ForumThreadType`
             Which type of thread to create.
-        resouces_id: :class:`str`
+        resource_id: :class:`str`
             The id of the item we're creating the thread around, e.g. a Manga id.
 
         Raises
