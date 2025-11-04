@@ -33,7 +33,7 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 import aiohttp
 
-from .errors import NotFound, TermsOfServiceNotAccepted, UploadInProgress
+from .errors import APIException, NotFound, TermsOfServiceNotAccepted, UploadInProgress
 from .forums import ChapterComments
 from .manga import Manga
 from .query import ChapterIncludes, MangaIncludes, ScanlatorGroupIncludes
@@ -595,20 +595,28 @@ class Chapter:
             )
             LOGGER.debug("Attempting to download: %s", route.url)
             start_req = time.monotonic()
+
             response: tuple[bytes, ClientResponse] = await self._http.request(route)
             data, page_resp = response
+
             end_req = time.monotonic()
             total_req_secs = end_req - start_req
             LOGGER.debug("Downloaded: %s", route.url)
 
             if report and self._at_home_url != "https://uploads.mangadex.org":
-                await self._http.at_home_report(
-                    url=route.url,
-                    success=page_resp.status == 200,
-                    cached=page_resp.headers.get("X-Cache", "").casefold() == "hit",
-                    size=(page_resp.content_length or 0),
-                    duration=int(total_req_secs * 1000),
-                )
+                try:
+                    await self._http.at_home_report(
+                        url=route.url,
+                        success=page_resp.status == 200,
+                        cached=page_resp.headers.get("X-Cache", "").lower().startswith("hit"),
+                        size=(page_resp.content_length or 0),
+                        duration=int(total_req_secs * 1000),
+                    )
+                except APIException as err:
+                    if 500 <= err.status_code < 600:
+                        # known Cloudflare error due to MD@H failing.
+                        LOGGER.exception("Reporting MD@H node has failed with handled status code: %s")
+                    raise
 
             if page_resp.status != 200:
                 self._at_home_url = None
@@ -632,11 +640,14 @@ class Chapter:
         end_page: int | None = None,
         data_saver: bool = False,
         ssl: bool = False,
-        report: bool = True,
+        report: bool = False,
     ) -> None:
         """|coro|
 
         This method will attempt to download a chapter for you using the MangaDex process.
+
+        .. versionchanged:: 3.7.5
+            The ``report`` parameter now defaults to ``False`` due to inconsistent errors in MD@H nodes.
 
         Parameters
         ----------
@@ -655,7 +666,7 @@ class Chapter:
             Defaults to ``False``.
         report: :class:`bool`
             Whether to report success or failures to MangaDex per page download.
-            The API guidelines ask us to do this, so it defaults to ``True``.
+            The API guidelines ask us to do this, however MD@H nodes are currently inconsistent so it defaults to ``False``.
             Does not count towards your (user) rate-limits.
         """
         path = path or f"{self.chapter} - {self.title}"
@@ -685,13 +696,16 @@ class Chapter:
         end_page: int | None = None,
         data_saver: bool = False,
         ssl: bool = False,
-        report: bool = True,
+        report: bool = False,
     ) -> AsyncGenerator[bytes, None]:
         """|coro|
 
         This method will attempt to download a chapter for you using the MangaDex process, and return the bytes
         of each page. This is similar to :meth:`.download`, but instead of writing to a directory it returns
         the bytes directly.
+
+        .. versionchanged:: 3.7.5
+            The ``report`` parameter now defaults to ``False`` due to inconsistent errors in MD@H nodes.
 
         Parameters
         ----------
@@ -708,7 +722,8 @@ class Chapter:
             Defaults to ``False``.
         report: :class:`bool`
             Whether to report success or failures to MangaDex per page download.
-            The API guidelines ask us to do this, so it defaults to ``True``.
+            The API guidelines ask us to do this, however MD@H nodes are currently inconsistent so it defaults to ``False``.
+            Does not count towards your (user) rate-limits.
 
         Yields
         ------
