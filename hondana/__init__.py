@@ -26,14 +26,12 @@ __title__ = "Hondana"
 __author__ = "AbstractUmbra"
 __license__ = "MIT"
 __copyright__ = "Copyright 2021-present AbstractUmbra"
-__version__ = "3.7.4"
+__version__ = "3.7.5"
 
 import logging
 from typing import Literal, NamedTuple
 
-from . import query as query
-from . import types_ as types_
-from . import utils as utils
+from . import query as query, types_ as types_, utils as utils
 from .artist import *
 from .author import *
 from .chapter import *
@@ -51,8 +49,7 @@ from .report import *
 from .scanlator_group import *
 from .tags import *
 from .user import *
-from .utils import MANGA_TAGS as MANGA_TAGS
-from .utils import MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
+from .utils import MANGA_TAGS as MANGA_TAGS, MANGADEX_URL_REGEX as MANGADEX_URL_REGEX
 
 
 class VersionInfo(NamedTuple):
@@ -63,9 +60,7 @@ class VersionInfo(NamedTuple):
     serial: int
 
 
-version_info: VersionInfo = VersionInfo(
-    major=3, minor=7, micro=4, releaselevel="final", serial=0
-)
+version_info: VersionInfo = VersionInfo(major=3, minor=7, micro=5, releaselevel="final", serial=0)
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
