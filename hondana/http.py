@@ -34,6 +34,7 @@ from os import getenv
 from typing import TYPE_CHECKING, Any, Literal, Self, TypeVar, overload
 
 import aiohttp
+from multidict import MultiDict
 
 from . import __version__
 from .enums import (
@@ -755,7 +756,7 @@ class HTTPClient:  # not part of the public API
         /,
         *,
         title: common.LocalizedString | None,
-        alt_titles: list[common.LocalizedString] | None,
+        alt_titles: list[common.LocalizedString] | MultiDict[str] | None,
         description: common.LocalizedString | None,
         authors: list[str] | None,
         artists: list[str] | None,
@@ -779,7 +780,8 @@ class HTTPClient:  # not part of the public API
             query["title"] = title
 
         if alt_titles:
-            query["altTitles"] = alt_titles
+            formatted = [{k: v} for k, v in alt_titles.items()] if isinstance(alt_titles, MultiDict) else alt_titles
+            query["altTitles"] = formatted
 
         if description:
             query["description"] = description

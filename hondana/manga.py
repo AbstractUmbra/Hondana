@@ -35,9 +35,11 @@ from .enums import ContentRating, MangaRelationType, MangaState, MangaStatus, Pu
 from .forums import MangaComments
 from .query import ArtistIncludes, AuthorIncludes, ChapterIncludes, CoverIncludes, FeedOrderQuery, MangaIncludes
 from .tags import Tag
-from .utils import MISSING, RelationshipResolver, cached_slot_property, require_authentication
+from .utils import MISSING, RelationshipResolver, cached_slot_property, require_authentication, to_multidict
 
 if TYPE_CHECKING:
+    from multidict import MultiDict
+
     from .http import HTTPClient
     from .tags import QueryTags
     from .types_ import manga
@@ -157,7 +159,7 @@ class Manga:
         self._description: LocalizedString = self._attributes["description"]
         related = payload.get("related", None)
         self.relation_type: MangaRelationType | None = MangaRelationType(related) if related else None
-        self.alternate_titles: LocalizedString = {k: v for item in self._attributes["altTitles"] for k, v in item.items()}  # pyright: ignore[reportAttributeAccessIssue]  # TypedDict.items() is weird
+        self.alternate_titles: MultiDict[str] = to_multidict(self._attributes["altTitles"])  # pyright: ignore[reportArgumentType] # narrowing of a Literal
         self.locked: bool = self._attributes.get("isLocked", False)
         self.links: manga.MangaLinks = self._attributes["links"]
         self.original_language: str = self._attributes["originalLanguage"]
@@ -280,12 +282,12 @@ class Manga:
         return self._description
 
     @property
-    def alt_titles(self) -> LocalizedString:
+    def alt_titles(self) -> MultiDict[str]:
         """The raw alt_titles attribute from the manga's payload from the API.
 
         Returns
         -------
-        :class:`hondana.types_.common.LocalizedString`
+        :class:`~multidict.MultiDict`
             The raw object from the manga's payload.
             Provides no formatting on its own. Consider :meth:`~hondana.Manga.localised_title` instead.
         """
@@ -624,7 +626,7 @@ class Manga:
         self,
         *,
         title: LocalizedString | None = None,
-        alt_titles: list[LocalizedString] | None = None,
+        alt_titles: MultiDict[str] | None = None,
         description: LocalizedString | None = None,
         authors: list[str] | None = None,
         artists: list[str] | None = None,
@@ -649,7 +651,7 @@ class Manga:
         title: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga titles in the format of ``language_key: title``
             i.e. ``{"en": "Some Manga Title"}``
-        alt_titles: Optional[List[:class:`~hondana.types_.common.LocalizedString`]]
+        alt_titles: Optional[:class:`~multidict.MultiDict[str]``]
             The alternative titles in the format of ``language_key: title``
             i.e. ``[{"en": "Some Other Title"}, {"fr": "Un Autre Titre"}]``
         description: Optional[:class:`~hondana.types_.common.LocalizedString`]

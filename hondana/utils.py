@@ -35,6 +35,7 @@ from typing import TYPE_CHECKING, Any, ClassVar, Generic, Literal, TypedDict, Ty
 from urllib.parse import quote as _uriquote
 
 import multidict
+from multidict import MultiDict
 from yarl import URL
 
 try:
@@ -57,7 +58,7 @@ else:
 from .errors import AuthenticationRequired
 
 if TYPE_CHECKING:
-    from collections.abc import Callable, Iterable
+    from collections.abc import Callable, Iterable, Sequence
     from typing import Concatenate, TypeAlias
 
     import aiohttp
@@ -683,6 +684,15 @@ def upload_file_sort(key: SupportsRichComparison) -> tuple[int, str]:
 
     msg = "Invalid filename format given."
     raise ValueError(msg)
+
+
+def to_multidict(incoming: Sequence[dict[str, T_co]]) -> MultiDict[T_co]:
+    ret = MultiDict[T_co]()
+    for item in incoming:
+        for k, v in item.items():
+            ret.add(k, v)
+
+    return ret
 
 
 _tags_path: pathlib.Path = _PROJECT_DIR.parent / "extras" / "tags.json"

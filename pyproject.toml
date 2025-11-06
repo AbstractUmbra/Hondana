@@ -2,7 +2,10 @@
 name = "hondana"
 description = "An asynchronous wrapper around the MangaDex v5 API"
 authors = [{ name = "Alex Nørgaard", email = "umbra@abstractumbra.dev" }]
-dependencies = ["aiohttp<4.0,>=3.9"]
+dependencies = [
+    "aiohttp<4.0,>=3.9",
+    "multidict>=6.7.0",
+]
 requires-python = "<4.0,>=3.11"
 readme = "README.md"
 license = { file = "LICENSE" }

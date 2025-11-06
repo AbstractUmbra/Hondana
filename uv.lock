@@ -670,6 +670,7 @@ name = "hondana"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
+    { name = "multidict" },
 ]
 
 [package.optional-dependencies]
@@ -698,6 +699,7 @@ tests = [
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.9,<4.0" },
     { name = "aiohttp", extras = ["speedups"], marker = "extra == 'speed'" },
+    { name = "multidict", specifier = ">=6.7.0" },
     { name = "orjson", marker = "extra == 'speed'" },
 ]
 provides-extras = ["speed"]

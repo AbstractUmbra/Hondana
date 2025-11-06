@@ -96,6 +96,7 @@ if TYPE_CHECKING:
     from typing import Self
 
     from aiohttp import ClientSession
+    from multidict import MultiDict
 
     from .tags import QueryTags
     from .types_ import common, legacy, manga
@@ -748,7 +749,7 @@ class Client:
         /,
         *,
         title: common.LocalizedString | None = None,
-        alt_titles: list[common.LocalizedString] | None = None,
+        alt_titles: list[common.LocalizedString] | MultiDict[str] | None = None,
         description: common.LocalizedString | None = None,
         authors: list[str] | None = None,
         artists: list[str] | None = None,
@@ -774,8 +775,9 @@ class Client:
             The UUID of the manga to update.
         title: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga titles in the format of ``language_key: title``
-        alt_titles: Optional[List[:class:`~hondana.types_.common.LocalizedString`]]
-            The alternative titles in the format of ``language_key: title``
+        alt_titles: Optional[Union[List[:class:`~hondana.types_.common.LocalizedString`], :class:`~multidict.MultiDict`]]
+            The alternative titles in the format of ``language_key: title`` or a :class:`~multidict.MultiDict` representing
+            the same.
         description: Optional[:class:`~hondana.types_.common.LocalizedString`]
             The manga description in the format of ``language_key: description``
         authors: Optional[List[:class:`str`]]

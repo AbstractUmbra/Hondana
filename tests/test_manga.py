@@ -38,7 +38,6 @@ if TYPE_CHECKING:
     from hondana.http import HTTPClient
     from hondana.types_.artist import ArtistResponse
     from hondana.types_.author import AuthorResponse
-    from hondana.types_.common import LocalizedString
     from hondana.types_.cover import CoverResponse
     from hondana.types_.manga import GetMangaResponse, MangaRelationResponse, MangaResponse
     from hondana.types_.statistics import GetMangaStatisticsResponse, GetPersonalMangaRatingsResponse
@@ -181,10 +180,11 @@ class TestManga:
 
         alt_titles = PAYLOAD["data"]["attributes"]["altTitles"]
 
-        fmt: LocalizedString = {k: v for obj in alt_titles for k, v in obj.items()}  # pyright: ignore[reportAssignmentType] # TypedDict.items() is weird
+        for item in alt_titles:
+            for k, v in item.items():
+                assert v in manga.alt_titles.getall(k)
 
-        for code, title in fmt.items():
-            assert manga.alternate_titles.get(code) == title
+        assert len(manga.alt_titles) == len(alt_titles)
 
     def test_localized_title(self) -> None:
         manga = clone_manga("manga")
