@@ -35,7 +35,7 @@ jobs:
           uv sync --locked --all-extras --all-groups
 
       - name: "Run Pyright @ ${{ matrix.python-version }}"
-        uses: jakebailey/pyright-action@v2
+        uses: jakebailey/pyright-action@v3
         with:
           warnings: false
           verify-types: "hondana"
