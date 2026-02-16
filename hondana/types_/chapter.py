@@ -83,7 +83,6 @@ class ChapterAttributesResponse(TypedDict):
     updatedAt: str
     publishAt: str
     readableAt: str
-    isUnavailable: bool
 
 
 class ChapterResponse(TypedDict):
