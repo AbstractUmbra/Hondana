@@ -78,6 +78,7 @@ ignore = [
     "COM812",   # to use ruff formatter
     "D105",     # not necessary here
     "D400",
+    "D420",
     "D401",
     "F401",
     "F402",
