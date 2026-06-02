@@ -224,5 +224,5 @@ class User:
             The response returned an error due to authentication failure.
         NotFound
             The user specified cannot be found.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_user(self.id)

@@ -233,7 +233,7 @@ class Client:
         -------
         :class:`bool`
             If the username is available or not.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.account_available(username)
         return data["available"]
 
@@ -402,7 +402,7 @@ class Client:
         -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 100
 
         chapters: list[Chapter] = []
@@ -542,7 +542,7 @@ class Client:
         -------
         :class:`~hondana.MangaCollection`
             Returns a collection of Manga.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 100
 
         manga: list[Manga] = []
@@ -658,7 +658,7 @@ class Client:
         -------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_manga(
             title=title,
             alt_titles=alt_titles,
@@ -737,7 +737,7 @@ class Client:
             The Manga that was returned from the API.
 
         .. versionadded:: 2.0.11
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_manga(manga_id, includes=includes or MangaIncludes())
 
         return Manga(self._http, data["data"])
@@ -825,7 +825,7 @@ class Client:
         -------
         :class:`~hondana.Manga`
             The manga that was returned after creation.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_manga(
             manga_id,
             title=title,
@@ -865,7 +865,7 @@ class Client:
             The request returned an error due to authentication failure.
         NotFound
             The specified manga doesn't exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_manga(manga_id)
 
     @require_authentication
@@ -885,7 +885,7 @@ class Client:
             The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.unfollow_manga(manga_id)
 
     @require_authentication
@@ -920,7 +920,7 @@ class Client:
             The request returned an error due to authentication failure.
         NotFound
             The specified manga does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.follow_manga(manga_id)
         if set_status:
             await self._http.update_manga_reading_status(manga_id, status=status)
@@ -1008,7 +1008,7 @@ class Client:
         -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 100
 
         chapters: list[Chapter] = []
@@ -1237,7 +1237,7 @@ class Client:
         -------
         :class:`~hondana.types_.manga.MangaSingleReadingStatusResponse`
             The raw response from the API on the request.
-        """  # noqa: DOC502 # raised in method call
+        """
         return await self._http.get_manga_reading_status(manga_id)
 
     @require_authentication
@@ -1264,7 +1264,7 @@ class Client:
             The query parameters were invalid.
         NotFound
             The specified manga cannot be found, likely due to incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.update_manga_reading_status(manga_id, status=status)
 
     async def get_manga_draft(self, manga_id: str, /) -> Manga:
@@ -1310,7 +1310,7 @@ class Client:
             You are not authorised to perform this action.
         NotFound
             The manga was not found.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.submit_manga_draft(manga_id, version=version)
         return Manga(self._http, data["data"])
 
@@ -1383,7 +1383,7 @@ class Client:
         ------
         BadRequest
             The manga ID passed is malformed
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_manga_relation_list(manga_id, includes=includes or MangaIncludes())
         fmt = [MangaRelation(self._http, manga_id, item) for item in data["data"]]
         return MangaRelationCollection(self._http, data, fmt)
@@ -1420,7 +1420,7 @@ class Client:
             The parameters were malformed
         Forbidden
             You are not authorised for this action.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_manga_relation(manga_id, target_manga=target_manga, relation_type=relation_type)
         return MangaRelation(self._http, manga_id, data["data"])
 
@@ -1458,7 +1458,7 @@ class Client:
             You are not authorised to add manga to this custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.add_manga_to_custom_list(custom_list_id, manga_id=manga_id)
 
     @require_authentication
@@ -1480,7 +1480,7 @@ class Client:
             You are not authorised to remove a manga from the specified custom list.
         NotFound
             The specified manga or specified custom list are not found, likely due to an incorrect UUID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.remove_manga_from_custom_list(custom_list_id, manga_id=manga_id)
 
     async def chapter_list(
@@ -1589,7 +1589,7 @@ class Client:
         -------
         :class:`~hondana.ChapterFeed`
             Returns a collection of chapters.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 100
 
         chapters: list[Chapter] = []
@@ -1728,7 +1728,7 @@ class Client:
         -------
         :class:`~hondana.Chapter`
             The chapter after being updated.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_chapter(
             chapter_id,
             title=title,
@@ -1760,7 +1760,7 @@ class Client:
             You are not authorized to delete this chapter.
         NotFound
             The UUID passed for this chapter does not relate to a chapter in the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_chapter(chapter_id)
 
     @require_authentication
@@ -1780,7 +1780,7 @@ class Client:
         -------
         :class:`~hondana.ChapterReadHistoryCollection`
             A rich type around the returned data.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.user_read_history()
 
         history: list[PreviouslyReadChapter] = [
@@ -1834,7 +1834,7 @@ class Client:
         -------
         :class:`~hondana.CoverCollection`
             Returns a collection of covers.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         covers: list[Cover] = []
@@ -1896,7 +1896,7 @@ class Client:
         Returns
         -------
         :class:`~hondana.Cover`
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.upload_cover(manga_id, cover=cover, volume=volume, description=description, locale=locale)
 
         return Cover(self._http, data["data"])
@@ -1926,7 +1926,7 @@ class Client:
         -------
         :class:`~hondana.Cover`
             The Cover returned from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_cover(cover_id, includes=includes or CoverIncludes())
 
         return Cover(self._http, data["data"])
@@ -1973,7 +1973,7 @@ class Client:
         -------
         :class:`~hondana.Cover`
             The returned cover after the edit.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.edit_cover(cover_id, volume=volume, description=description, version=version)
 
         return Cover(self._http, data["data"])
@@ -1995,7 +1995,7 @@ class Client:
             The request payload was malformed.
         Forbidden
             The request returned an error due to authentication.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_cover(cover_id)
 
     async def scanlation_group_list(
@@ -2045,7 +2045,7 @@ class Client:
         -------
         :class:`ScanlatorGroupCollection`
             A returned collection of scanlation groups.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         groups: list[ScanlatorGroup] = []
@@ -2110,7 +2110,7 @@ class Client:
         -------
         :class:`UserCollection`
             A returned collection of users.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         users: list[User] = []
@@ -2160,7 +2160,7 @@ class Client:
             The response returned an error due to authentication failure.
         NotFound
             The user specified cannot be found.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_user(user_id)
 
     async def approve_user_deletion(self, approval_code: str, /) -> None:
@@ -2192,7 +2192,7 @@ class Client:
         ------
         Forbidden
             The request returned an error due to an authentication issue.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.update_user_password(old_password=old_password, new_password=new_password)
 
     @require_authentication
@@ -2210,7 +2210,7 @@ class Client:
         ------
         Forbidden
             The API returned an error due to authentication failure.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.update_user_email(email)
 
     @require_authentication
@@ -2228,7 +2228,7 @@ class Client:
         -------
         :class:`~hondana.User`
             Your current user details returned from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_my_details()
 
         return User(self._http, data["data"])
@@ -2255,7 +2255,7 @@ class Client:
         -------
         List[:class:`ScanlatorGroup`]
             The list of groups that are being followed.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_my_followed_groups(limit=limit, offset=offset)
 
         return [ScanlatorGroup(self._http, item) for item in data["data"]]
@@ -2329,7 +2329,7 @@ class Client:
         -------
         :class:`~hondana.UserCollection`
             A returned collection of users.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         users: list[User] = []
@@ -2363,7 +2363,7 @@ class Client:
         -------
         :class:`bool`
             Whether the target user is followed or not.
-        """  # noqa: DOC502 # raised in method call
+        """
         try:
             await self._http.is_user_followed(user_id)
         except errors.NotFound:
@@ -2431,7 +2431,7 @@ class Client:
         -------
         :class:`User`
             The created user.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_account(username=username, password=password, email=email)
         return User(self._http, data["data"])
 
@@ -2451,7 +2451,7 @@ class Client:
             The query was malformed.
         NotFound
             The activation code passed was not a valid one.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.activate_account(activation_code)
 
     async def resend_activation_code(self, email: str, /) -> None:
@@ -2468,7 +2468,7 @@ class Client:
         ------
         BadRequest
             The email passed is not pending activation.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.resend_activation_code(email)
 
     async def recover_account(self, email: str, /) -> None:
@@ -2486,7 +2486,7 @@ class Client:
         ------
         BadRequest
             The email does not belong to a matching account.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.recover_account(email)
 
     async def complete_account_recovery(self, recovery_code: str, /, *, new_password: str) -> None:
@@ -2505,7 +2505,7 @@ class Client:
         ------
         BadRequest
             The recovery code given was not found or the password was greater than 1024 characters.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.complete_account_recovery(recovery_code, new_password=new_password)
 
     async def ping_the_server(self) -> bool:
@@ -2549,7 +2549,7 @@ class Client:
         -------
         :class:`LegacyMappingCollection`
             The list of returned items from this query.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.legacy_id_mapping(mapping_type, item_ids=item_ids)
         items = [LegacyItem(self._http, item) for item in data["data"]]
         return LegacyMappingCollection(self._http, data, items)
@@ -2576,7 +2576,7 @@ class Client:
         -------
         :class:`str`
             Returns the URL we requested.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_at_home_url(chapter_id, ssl=ssl)
         return data["baseUrl"]
 
@@ -2612,7 +2612,7 @@ class Client:
         -------
         :class:`~hondana.CustomList`
             The custom list that was created.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_custom_list(name=name, visibility=visibility, manga=manga)
 
         return CustomList(self._http, data["data"])
@@ -2644,7 +2644,7 @@ class Client:
         -------
         :class:`~hondana.CustomList`
             The retrieved custom list.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_custom_list(custom_list_id, includes=includes or CustomListIncludes())
 
         return CustomList(self._http, data["data"])
@@ -2695,7 +2695,7 @@ class Client:
         -------
         :class:`~hondana.CustomList`
             The returned custom list after it was updated.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_custom_list(
             custom_list_id,
             name=name,
@@ -2723,7 +2723,7 @@ class Client:
             You are not authorized to delete this custom list.
         NotFound
             The custom list with this UUID was not found.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_custom_list(custom_list_id)
 
     @require_authentication
@@ -2746,7 +2746,7 @@ class Client:
             You are not authorized to follow this custom list.
         NotFound
             The specified custom list does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.follow_custom_list(custom_list_id)
 
     bookmark_custom_list = follow_custom_list
@@ -2769,7 +2769,7 @@ class Client:
             You are not authorized to unbookmark this custom list.
         NotFound
             The specified custom list does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.unfollow_custom_list(custom_list_id)
 
     unbookmark_custom_list = unfollow_custom_list
@@ -2800,7 +2800,7 @@ class Client:
         -------
         :class:`~hondana.CustomListCollection`
             A returned collection of custom lists.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         lists: list[CustomList] = []
@@ -2941,7 +2941,7 @@ class Client:
         -------
         :class:`~hondana.ChapterFeed`
             Returns a collections of chapters.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 100
 
         chapters: list[Chapter] = []
@@ -3037,7 +3037,7 @@ class Client:
         -------
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API on creation.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_scanlation_group(
             name=name,
             website=website,
@@ -3083,7 +3083,7 @@ class Client:
         -------
         :class:`~hondana.ScanlatorGroup`
             The group returned from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.view_scanlation_group(scanlation_group_id, includes=includes or ScanlatorGroupIncludes())
         return ScanlatorGroup(self._http, data["data"])
 
@@ -3174,7 +3174,7 @@ class Client:
         -------
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_scanlation_group(
             scanlation_group_id,
             name=name,
@@ -3214,7 +3214,7 @@ class Client:
             You are not authorized to delete this scanlation group.
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_scanlation_group(scanlation_group_id)
 
     @require_authentication
@@ -3233,7 +3233,7 @@ class Client:
         ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.follow_scanlation_group(scanlation_group_id)
 
     bookmark_scanlation_group = follow_scanlation_group
@@ -3254,7 +3254,7 @@ class Client:
         ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.unfollow_scanlation_group(scanlation_group_id)
 
     unbookmark_scanlation_group = unfollow_scanlation_group
@@ -3304,7 +3304,7 @@ class Client:
         -------
         :class:`~hondana.AuthorCollection`
             A returned collection of authors.
-        """  # noqa: DOC502 # raised in method call
+        """
         inner_limit = limit or 10
 
         authors: list[Author] = []
@@ -3388,7 +3388,7 @@ class Client:
         -------
         :class:`~hondana.Author`
             The author created within the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.create_author(
             name=name,
             biography=biography,
@@ -3432,7 +3432,7 @@ class Client:
         -------
         :class:`~hondana.Author`
             The Author returned from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_author(author_id, includes=includes or AuthorIncludes())
 
         return Author(self._http, data["data"])
@@ -3463,7 +3463,7 @@ class Client:
         -------
         :class:`~hondana.Artist`
             The Author returned from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_artist(artist_id, includes=includes or ArtistIncludes())
 
         return Artist(self._http, data["data"])
@@ -3539,7 +3539,7 @@ class Client:
         -------
         :class:`~hondana.Author`
             The updated author from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_author(
             author_id,
             name=name,
@@ -3576,7 +3576,7 @@ class Client:
             You are not authorized to delete this author.
         NotFound
             The UUID given for the author was not found.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_author(author_id)
 
     @require_authentication
@@ -3628,7 +3628,7 @@ class Client:
         Returns
         -------
         :class:`hondana.UserReportCollection`
-        """  # noqa: DOC502 # raised by method call
+        """
         data = await self._http.get_reports_current_user(
             limit=limit,
             offset=offset,
@@ -3663,7 +3663,7 @@ class Client:
             The request returned a response due to authentication failure.
         NotFound
             The specified report UUID or object UUID does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.create_report(details=details)
 
     @require_authentication
@@ -3687,7 +3687,7 @@ class Client:
         Returns
         -------
         List[:class:`~hondana.MangaRating`]
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.get_my_ratings(manga_ids)
 
         ratings = data["ratings"]
@@ -3714,7 +3714,7 @@ class Client:
             The request returned a response due to authentication failure.
         NotFound
             The specified manga UUID was not found or does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.set_manga_rating(manga_id, rating=rating)
 
     @require_authentication
@@ -3734,7 +3734,7 @@ class Client:
             The request returned a response due to authentication failure.
         NotFound
             The specified manga UUID was not found or does not exist.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_manga_rating(manga_id)
 
     async def get_manga_statistics(
@@ -4015,7 +4015,7 @@ class Client:
         -------
         Dict[:class:`str`, :class:`Any`]
             The returned settings template.
-        """  # noqa: DOC502 # raised in method call
+        """
         return await self._http.get_specific_template_version(version)
 
     @require_authentication
@@ -4035,7 +4035,7 @@ class Client:
         -------
         :class:`hondana.types_.settings.SettingsPayload`
             The user's settings.
-        """  # noqa: DOC502 # raised in method call
+        """
         return await self._http.get_user_settings()
 
     @require_authentication
@@ -4063,7 +4063,7 @@ class Client:
         -------
         :class:`~hondana.types_.settings.SettingsPayload`
             The returned (and created) payload.
-        """  # noqa: DOC502 # raised in method call
+        """
         time = updated_at or datetime.datetime.now(datetime.UTC)
         return await self._http.upsert_user_settings(payload, updated_at=time)
 
@@ -4090,7 +4090,7 @@ class Client:
         Returns
         -------
         :class:`hondana.ForumThread`
-        """  # noqa: DOC502 # raised in method call.
+        """
         data = await self._http.create_forum_thread(thread_type=thread_type, resource_id=resource_id)
 
         return ForumThread(self._http, data["data"])

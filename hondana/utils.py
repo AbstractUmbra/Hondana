@@ -43,14 +43,14 @@ try:
 except ModuleNotFoundError:
 
     def to_json(obj: Any, /) -> str:
-        """Dump a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
+        """Dump a Python type to JSON object."""
         return json.dumps(obj, separators=(",", ":"), ensure_ascii=True, indent=2)
 
     _from_json = json.loads
 else:
 
     def to_json(obj: Any, /) -> str:
-        """Dump a Python type to JSON object."""  # noqa: DOC201 # not part of the public API.
+        """Dump a Python type to JSON object."""
         return orjson.dumps(obj, option=orjson.OPT_INDENT_2).decode("utf-8")
 
     _from_json = orjson.loads
@@ -261,7 +261,7 @@ def cached_slot_property(name: str, /) -> Callable[[Callable[[T], T_co]], Cached
 
 
 def require_authentication(func: Callable[Concatenate[C, B], T]) -> Callable[Concatenate[C, B], T]:
-    """A decorator to raise on authentication methods."""  # noqa: DOC201 # not part of the public API.
+    """A decorator to raise on authentication methods."""
 
     @wraps(func)
     def wrapper(item: C, *args: B.args, **kwargs: B.kwargs) -> T:
@@ -281,7 +281,7 @@ def deprecated(alternate: str | None = None, /) -> Callable[[Callable[B, T]], Ca
     ----------
     alternate: Optional[:class:`str`]
         The alternate method to use.
-    """  # noqa: DOC201 # not part of the public API.
+    """
 
     def decorator(func: Callable[B, T]) -> Callable[B, T]:
         @wraps(func)

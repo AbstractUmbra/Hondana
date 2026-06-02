@@ -69,7 +69,6 @@ target-version = "py311"
 exclude = ["docs/"]
 
 [tool.ruff.lint]
-preview = true
 select = ["ALL"]
 ignore = [
     "ANN401",
@@ -88,6 +87,7 @@ ignore = [
     "PD011",    # this is not a numpy codebase
     "PERF203",
     "PLC0414",  # pyright ruling for `as` imports needed
+    "PLW0717",  # this is fine
     "PLR",      # I don't like these rules
     "Q000",
     "RUF001",

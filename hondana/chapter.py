@@ -487,7 +487,7 @@ class Chapter:
         -------
         :class:`~hondana.Chapter`
             The chapter after being updated.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_chapter(
             self.id,
             title=title,
@@ -514,7 +514,7 @@ class Chapter:
             You are not authorized to delete this chapter.
         NotFound
             The UUID passed for this chapter does not relate to a chapter in the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_chapter(self.id)
 
     @require_authentication
@@ -1031,7 +1031,7 @@ class ChapterUpload:
         outer_idx = 1
         for batch in chunks:
             form = aiohttp.FormData()
-            for _, item in enumerate(batch, start=outer_idx):  # noqa: FURB148 # we use this for the passable enumeration
+            for _, item in enumerate(batch, start=outer_idx):
                 with item.open("rb") as f:
                     data = f.read()
 

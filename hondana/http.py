@@ -426,7 +426,7 @@ class HTTPClient:  # not part of the public API
         -------
         Any
             The potential response data we got from the request.
-        """  # noqa: DOC501 # unreachable error
+        """
         if self._session is None:
             self._session = await self._generate_session()
 

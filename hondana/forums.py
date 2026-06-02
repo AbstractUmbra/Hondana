@@ -110,7 +110,7 @@ class _Comments:
         -------
         :class:`~hondana.ForumThread`
             The cached or fetched ForumThread.
-        """  # noqa: DOC502 # raised in method call
+        """
         if self.thread and not force:
             return self.thread
 

@@ -239,7 +239,7 @@ class Cover:
         -------
         :class:`~hondana.Cover`
             The returned cover after the edit.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.edit_cover(self.id, volume=volume, description=description, version=version)
 
         return self.__class__(self._http, data["data"])
@@ -256,5 +256,5 @@ class Cover:
             The request payload was malformed.
         Forbidden
             The request returned an error due to authentication.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_cover(self.id)

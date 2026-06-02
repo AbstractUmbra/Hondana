@@ -359,7 +359,7 @@ class Author(AuthorArtistTag):
         -------
         :class:`~hondana.Author`
             The updated author from the API.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_author(
             self.id,
             name=name,
@@ -391,5 +391,5 @@ class Author(AuthorArtistTag):
             You are not authorized to delete this author.
         NotFound
             The UUID given for the author was not found.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_author(author_id)

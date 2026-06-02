@@ -365,7 +365,7 @@ class ScanlatorGroup:
             You are not authorized to delete this scanlation group.
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.delete_scanlation_group(self.id)
 
     @require_authentication
@@ -379,7 +379,7 @@ class ScanlatorGroup:
         ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.follow_scanlation_group(self.id)
 
     bookmark = follow
@@ -395,7 +395,7 @@ class ScanlatorGroup:
         ------
         NotFound
             The scanlation group cannot be found, likely due to an incorrect ID.
-        """  # noqa: DOC502 # raised in method call
+        """
         await self._http.unfollow_scanlation_group(self.id)
 
     unbookmark = unfollow
@@ -483,7 +483,7 @@ class ScanlatorGroup:
         -------
         :class:`ScanlatorGroup`
             The group returned from the API after its update.
-        """  # noqa: DOC502 # raised in method call
+        """
         data = await self._http.update_scanlation_group(
             self.id,
             name=name,
