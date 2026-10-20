@@ -1,4 +1,4 @@
-3.7.5
+3.7.6
 
 API Version 5.12.0
 
@@ -6,12 +6,12 @@ API Version 5.12.0
 Hondana fix release, see below for finer details.
 
 ## Added
+- New tag for `mahjong` has been added. (789aa723d31fd573a57a185c2391f5d5e59682f6)
 
 ## Changes
-- Chapter download reporting is now opt-in rather than opt-out. (6a6af180348cb1cbfbbfcc43798c9eec919caaac)
 
 ## Fixes
-- Some bad documentation parameters. (5744f24a16575fe93b54129d8b651cc807df0fbc)
+- Dependency updates to patch security vulnerability. (0952520707f95a77d54535fdbc4d3606bff1669e)
 
 ### Notes
 - Chapter reporting is now opt-in due to developer statements that it is unmaintained and causing infrequent/sporadic erroring with CloudFlare.

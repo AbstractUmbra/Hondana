@@ -77,18 +77,19 @@ ignore = [
     "COM812",   # to use ruff formatter
     "D105",     # not necessary here
     "D400",
-    "D420",
     "D401",
+    "D420",
     "F401",
     "F402",
     "F403",
     "F405",
+    "ICN001",
     "N818",     # I can name my exceptions whatever I want
     "PD011",    # this is not a numpy codebase
     "PERF203",
     "PLC0414",  # pyright ruling for `as` imports needed
-    "PLW0717",  # this is fine
     "PLR",      # I don't like these rules
+    "PLW0717",  # this is fine
     "Q000",
     "RUF001",
     "RUF009",
