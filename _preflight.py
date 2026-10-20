@@ -1,13 +1,13 @@
-# type: ignore[reportUnusedFunction] # preflight use  # noqa: CPY001
+# type: ignore[reportUnusedFunction] # preflight use  # ruff: ignore[missing-copyright-notice]
 """
 This file is inteded for manual CI/Integration usage only.
 It is NOT part of the Hondana API or for public use. No support will be provided for this file. Use at your own risk.
-"""  # noqa: D205, D404
+"""  # ruff: ignore[missing-blank-line-after-summary, docstring-starts-with-this]
 
 import argparse
 import asyncio
 import pathlib
-import subprocess  # noqa: S404
+import subprocess  # ruff: ignore[suspicious-subprocess-import]
 import sys
 
 import hondana
@@ -19,16 +19,6 @@ REPORT_PATH = pathlib.Path("./hondana/extras/report_reasons.json")
 class ProgramNamespace(argparse.Namespace):
     tags: bool
     reports: bool
-
-    def _parsed(self, *, _all: bool = False) -> bool:
-        """This quick cheat only works if the `dest` of the params matches the annotations.
-
-        Returns
-        -------
-        :class:`bool`
-        """  # noqa: D404
-        c = all if _all else any
-        return c(getattr(self, anno) for anno in self.__annotations__)
 
 
 parser = argparse.ArgumentParser(description="Small pre-flight CI script for hondana")
@@ -58,7 +48,7 @@ async def __update_report_reasons(client: hondana.Client, /) -> int:
 
 
 async def main(args: ProgramNamespace) -> None:
-    if not args._parsed():  # noqa: SLF001
+    if not args.reports and not args.tags:
         msg = "At least one argument must be specified."
         raise RuntimeError(msg)
 
