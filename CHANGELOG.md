@@ -1,4 +1,4 @@
-3.7.6
+3.7.7
 
 API Version 5.12.0
 
@@ -6,7 +6,6 @@ API Version 5.12.0
 Hondana fix release, see below for finer details.
 
 ## Added
-- New tag for `mahjong` has been added. (789aa723d31fd573a57a185c2391f5d5e59682f6)
 
 ## Changes
 
