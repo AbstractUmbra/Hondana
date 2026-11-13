@@ -10,7 +10,7 @@ Hondana fix release, see below for finer details.
 ## Changes
 
 ## Fixes
-- Dependency updates to patch security vulnerability. (0952520707f95a77d54535fdbc4d3606bff1669e)
+- Dependency updates to patch security vulnerability. (38dcd5fbbd21388add3bc85493a55858213647c4)
 
 ### Notes
 - Chapter reporting is now opt-in due to developer statements that it is unmaintained and causing infrequent/sporadic erroring with CloudFlare.
